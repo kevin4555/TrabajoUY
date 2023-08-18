@@ -7,11 +7,11 @@ import excepciones.TipoPublicacionNoExisteException;
 
 public interface IControladorOferta {
 	
-	//public abstract void altaDatosPaquete(String nombre, String descripcion, int periodoValDias,Double descuento, Date fechaAlta);
 	
+		
 	public abstract ArrayList<String> listarTipoDePublicaciones() throws TipoPublicacionNoExisteException;
 	
-	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords);
+	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic, String nicknameEmpresa);
 	
 	
 
@@ -20,22 +20,16 @@ public interface IControladorOferta {
 }
 
 /*
- * +ingresarDatosPaquete(nombre : String, descripcion: String, periodoValDias : Int, descuento: Float, fechaAlta: DTFecha)
-+registrarPaquete() 
-+obtenerOfertasEmpresa(nicknameEmpresa: String): Set(String)
-+seleccionarOfertaLaboral(nomOferta: String): DTOferta
+
 +listarPostulantes(): Set(string)
-+seleccionarPostulante(nickname : String)
-+registrarPostulacion();
++registrarPostulacion(cvReducido: String, motivacion: String, fechaPostulacion: DTFecha, nickname : String, nomOferta: String);
 +listarTipoDePublicaciones(): Set(String)
-+seleccionarEmpresa(nickname: String)
-+seleccionarTipoPublicacion(nomTipoPublicacion: String)
 +listarKeywords(): Set(String)
-+seleccionarKeyword(nomKeyword: String): Set(String)
-+altaOfertaLaboral(nombre: String, descrip: String, horaInicio: DTHora, horaFin: DTHora, remuneracion: Float, ciudad: String, departamento: String, fechaAlta: DTFecha, keywords: Set(String))
-+confirmarAltaOfertaLaboral()
-+ingresarDatosTipoPublicacion(nombre: String, descripcion: String, exposicion: String, duracion: int, costo: Foat, fechaPub: DTFecha)
-+confirmarAltaPublicacion()
++obtenerKeyword(nomKeyword: String): Keyword
++confirmarAltaPublicacion(nombre: String, descripcion: String, exposicion: String, duracion: int, costo: Foat, fechaPub: DTFecha)
++altaOfertaLaboral(nombre: String, descrip: String, horaInicio: DTHora, horaFin: DTHora, remuneracion: Float, ciudad: String, departamento: String, fechaAlta: DTFecha, listaKeywords: Set(String), nomTpoPublic: String, nicknameEmpresa: String)
 +listarPaquetes(): Set(String)
 +agregarTipoPublicacionAlPaquete(cantIncluida: Int)
++obtenerDTOfertaLaboral(nomOferta: String):DTOferta
++obtenerOfertaLaboral(nomOferta): OfertaLaboral
 */
