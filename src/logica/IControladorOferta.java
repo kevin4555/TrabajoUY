@@ -1,15 +1,15 @@
 package logica;
 
 import java.sql.Date;
-import java.util.List;
+import java.util.ArrayList;
 
 public interface IControladorOferta {
 	
 	//public abstract void altaDatosPaquete(String nombre, String descripcion, int periodoValDias,Double descuento, Date fechaAlta);
 	
-	public abstract List<String> listarTipoDePublicaciones();
+	public abstract ArrayList<String> listarTipoDePublicaciones();
 	
-	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, List<String> keywords);
+	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords);
 	
 	
 
