@@ -21,11 +21,16 @@ public class ManejadorSettings {
 	}
 	
 	public ArrayList <String> listarTipoDePublicaciones() {
-		ArrayList <String> nomTiposPublic = new ArrayList<String>();
-		for (Map.Entry<String, TipoPublicacion> tposPublic: nomTipoPublicacion.entrySet()) {
-			nomTiposPublic.add(tposPublic.getKey());
+		if (nomTipoPublicacion.isEmpty())
+			return null;
+		else {
+			ArrayList <String> nomTiposPublic = new ArrayList<String>();
+			for (Map.Entry<String, TipoPublicacion> tposPublic: nomTipoPublicacion.entrySet()) {
+				nomTiposPublic.add(tposPublic.getKey());
+			}
+			return nomTiposPublic;
 		}
-		return nomTiposPublic;
+		
 	}
 	
 	
