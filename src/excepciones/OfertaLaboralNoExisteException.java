@@ -1,5 +1,10 @@
 package excepciones;
 
-public class OfertaLaboralNoExisteException {
+@SuppressWarnings("serial")
+public class OfertaLaboralNoExisteException extends Exception {
+
+	public OfertaLaboralNoExisteException(String string) {
+		super(string);
+	}
 
 }
