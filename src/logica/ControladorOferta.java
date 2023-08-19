@@ -40,8 +40,31 @@ public class ControladorOferta implements IControladorOferta {
 			emp.agregarOferta(ol);
 			//paso 8
 		}
-		
+	}
+	
+	public OfertaLaboral obtenerOfertaLaboral(String nomOferta)
+	{
+		return null;
+	}
+	
+	public DTOferta obtenerDTOfertaLaboral(String nomOferta)
+	{
+		return null;
+	}
+	
+	public void agregarTipoPublicacionAlPaquete(int cantIncluida)
+	{
 		
 	}
+	
+	public ArrayList<String> listarPaquetes()
+	{
+		return null;
+	}
 
+	public void altaOfertaLaboral(String nombre, String descripcion, Date horaInicio, Date horaFin, Float remuneracion, String departamento, Date fechaAlta, ArrayList<String> listaKeywords, String nomTipoPublicacion, String nicknameEmpresa)
+	{
+		
+	}
+	
 }
