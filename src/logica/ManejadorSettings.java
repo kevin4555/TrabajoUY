@@ -2,16 +2,15 @@ package logica;
 
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class ManejadorSettings {
 	
 	private static ManejadorSettings instancia = null;
-	private Map<String, TipoPublicacion> nomTipoPublicacion;
-	private Map<String, Keyword> nomKeywords;
+	private HashMap<String, TipoPublicacion> colTipoPublicaciones;
+	private HashMap<String, Keyword> colKeywords;
 	
 	private ManejadorSettings() {
-		nomTipoPublicacion = new HashMap<String, TipoPublicacion>();
+		colTipoPublicaciones = new HashMap<String, TipoPublicacion>();
     }
 
 	public static ManejadorSettings getinstance() {
@@ -21,30 +20,29 @@ public class ManejadorSettings {
 	}
 	
 	public ArrayList <String> listarTipoDePublicaciones() {
-		if (nomTipoPublicacion.isEmpty())
-			return null;
-		else {
-			ArrayList <String> nomTiposPublic = new ArrayList<String>();
-			for (Map.Entry<String, TipoPublicacion> tposPublic: nomTipoPublicacion.entrySet()) {
-				nomTiposPublic.add(tposPublic.getKey());
-			}
-			return nomTiposPublic;
+		ArrayList <String> listTipoPublicaciones = new ArrayList<String>();
+		for (String key : colTipoPublicaciones.keySet() ) {
+			listTipoPublicaciones.add(key);
 		}
-		
+		return listTipoPublicaciones;		
 	}
 	
 	
 	public TipoPublicacion obtenerTipoPublicacion(String nombre) {
-        return ((TipoPublicacion) nomTipoPublicacion.get(nombre));
+        return ((TipoPublicacion) colTipoPublicaciones.get(nombre));
     }
 	
 	public Keyword obtenerKeywords(String nombre) {
-        return ((Keyword) nomKeywords.get(nombre));
+        return ((Keyword) colKeywords.get(nombre));
     }
 	
-	
-    
-	
+	public ArrayList<String> listarKeywords(){
+		ArrayList<String> listKewords = new ArrayList<String>();
+		for (String key : colKeywords.keySet()) {
+			listKewords.add(key);
+		}
+		return listKewords;
+	}
 	
 	
 	
@@ -53,14 +51,3 @@ public class ManejadorSettings {
 
 
 
-/*
- * 
- * 
- * for (Map.Entry<Integer, String> entry : datos.entrySet()) {
-    System.out.println("clave=" + entry.getKey() + ", valor=" + entry.getValue());
-}
- * 
-
-
-+obtenerKeywords(nomKey:string):Keyword
- */
