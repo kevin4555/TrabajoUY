@@ -1,19 +1,21 @@
-package logica;
+package logica.controllers;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
-import excepciones.KeywordNoExisteException;
-import excepciones.KeywordsNoExistenKeywords;
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.PostulantesNoExistenPostulantes;
-import excepciones.TipoPublicacionNoExisteException;
+import logica.interfaces.IControladorOferta;
 
 
 public class ControladorOferta implements IControladorOferta {
+
+	@Override
+	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion,
+			String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic,
+			String nicknameEmpresa) {
+	}
 	
 
-
+/*
 	public ArrayList<String> listarTipoDePublicaciones() throws TipoPublicacionNoExisteException {
 		ManejadorSettings ms = ManejadorSettings.getinstance();
 		ArrayList<String> nomTposPublic = ms.listarTipoDePublicaciones();
@@ -23,7 +25,7 @@ public class ControladorOferta implements IControladorOferta {
 		else {
 			throw new TipoPublicacionNoExisteException("No existen tipos de publicaciones registrados");
 		}
-	}
+	}/*
 
 	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic, String nicknameEmpresa) {
 		ControladorUsuario cu = new ControladorUsuario();
@@ -146,6 +148,5 @@ public class ControladorOferta implements IControladorOferta {
 	
 	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, Float descuento, Date fechaAlta)
 	{
-		
+		*/
 	}
-}

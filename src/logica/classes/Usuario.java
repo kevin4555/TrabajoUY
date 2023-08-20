@@ -1,4 +1,4 @@
-package logica;
+package logica.classes;
 
 public class Usuario {
 	protected String nickname;

@@ -1,6 +1,10 @@
-package logica;
+package logica.handlers;
 
 import java.util.HashMap;
+
+import logica.classes.Keyword;
+import logica.classes.TipoPublicacion;
+
 import java.util.ArrayList;
 
 public class ManejadorSettings {

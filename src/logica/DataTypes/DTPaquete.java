@@ -1,4 +1,4 @@
-package logica;
+package logica.DataTypes;
 
 public class DTPaquete {
 	private String nombre;

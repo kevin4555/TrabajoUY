@@ -1,4 +1,4 @@
-package logica;
+package logica.classes;
 
 import java.util.ArrayList;
 import java.util.Date;

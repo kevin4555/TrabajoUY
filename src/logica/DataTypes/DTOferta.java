@@ -1,4 +1,4 @@
-package logica;
+package logica.DataTypes;
 
 import java.util.ArrayList;
 import java.sql.Date;

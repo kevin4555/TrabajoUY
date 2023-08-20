@@ -1,6 +1,8 @@
-package logica;
+package logica.classes;
 
 import java.util.ArrayList;
+
+import logica.DataTypes.DTPaquete;
 
 public class PaquetePublicacion {
 	private String nombre;

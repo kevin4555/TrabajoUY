@@ -1,7 +1,11 @@
-package logica;
+package logica.handlers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import logica.classes.Empresa;
+import logica.classes.Postulante;
+import logica.classes.Usuario;
 
 public class ManejadorUsuario {
 	private static ManejadorUsuario instancia = null;

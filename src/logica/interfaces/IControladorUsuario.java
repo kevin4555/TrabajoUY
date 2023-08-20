@@ -1,4 +1,6 @@
-package logica;
+package logica.interfaces;
+
+import logica.classes.Empresa;
 
 public interface IControladorUsuario {
 	

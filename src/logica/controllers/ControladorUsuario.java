@@ -1,4 +1,7 @@
-package logica;
+package logica.controllers;
+
+import logica.classes.Empresa;
+import logica.interfaces.IControladorUsuario;
 
 public class ControladorUsuario implements IControladorUsuario {
 

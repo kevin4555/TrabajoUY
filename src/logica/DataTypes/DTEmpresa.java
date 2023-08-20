@@ -2,8 +2,6 @@ package logica.DataTypes;
 
 import java.util.ArrayList;
 
-import logica.DTOferta;
-
 public class DTEmpresa extends DTUsuario{
 	private String descripcion;
 	private String sitioWeb;
