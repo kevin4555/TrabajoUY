@@ -3,9 +3,14 @@ package logica.interfaces;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import excepciones.ColeccionTipoPublicacionEsVaciaException;
+import excepciones.KeywordNoExisteException;
+import excepciones.TipoPublicacionNoExiste;
+import excepciones.UsuarioNoExisteUsuarioException;
+
 public interface IControladorOferta {
 	
-	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic, String nicknameEmpresa);
+	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic, String nicknameEmpresa) throws KeywordNoExisteException, TipoPublicacionNoExiste, UsuarioNoExisteUsuarioException;
 	
 	
 

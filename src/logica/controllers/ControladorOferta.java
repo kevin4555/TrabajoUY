@@ -1,8 +1,15 @@
 package logica.controllers;
 
+import logica.classes.*;
+import logica.handlers.*;
+
 import java.sql.Date;
 import java.util.ArrayList;
 
+import excepciones.ColeccionTipoPublicacionEsVaciaException;
+import excepciones.KeywordNoExisteException;
+import excepciones.TipoPublicacionNoExiste;
+import excepciones.UsuarioNoExisteUsuarioException;
 import logica.interfaces.IControladorOferta;
 
 
@@ -11,41 +18,44 @@ public class ControladorOferta implements IControladorOferta {
 	@Override
 	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion,
 			String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic,
-			String nicknameEmpresa) {
+			String nicknameEmpresa) throws TipoPublicacionNoExiste, KeywordNoExisteException, UsuarioNoExisteUsuarioException  {
+		// chequear si existe ofertalaboral
+				ControladorUsuario contUsu = new ControladorUsuario();
+				Empresa emp = contUsu.obtenerEmpresa(nicknameEmpresa);
+				if (emp == null) {
+					throw new UsuarioNoExisteUsuarioException("La empresa " + nicknameEmpresa + " no existe");
+				}
+				ManejadorSettings manejadorSettings = ManejadorSettings.getinstance();
+				TipoPublicacion tp = manejadorSettings.obtenerTipoPublicacion(nomTpoPublic);
+				if (tp == null) 
+					throw new TipoPublicacionNoExiste("El tipo de publicacion " + nomTpoPublic + " no existe");
+				OfertaLaboral ofertaLab = new OfertaLaboral(nombre, descrip, ciudad, departamento, horaInicio, horaFin, remuneracion, fechaAlta);
+				for (String kw: keywords) {
+					Keyword key = manejadorSettings.obtenerKeywords(kw);
+					if (key == null)
+						throw new KeywordNoExisteException("La keyword " + kw + " no existe");
+					ofertaLab.getKw().put(kw, key);
+				}
+				ofertaLab.setTp(tp);
+				emp.agregarOferta(ofertaLab);
+				ManejadorOfertas manejadorOfer = ManejadorOfertas.getinstance();
+				//manejadorOfer.agregarOferta(ofertaLab);
 	}
 	
-
-/*
-	public ArrayList<String> listarTipoDePublicaciones() throws TipoPublicacionNoExisteException {
-		ManejadorSettings ms = ManejadorSettings.getinstance();
-		ArrayList<String> nomTposPublic = ms.listarTipoDePublicaciones();
+	public ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException {
+		ManejadorSettings manejadorSettings = ManejadorSettings.getinstance();
+		ArrayList<String> nomTposPublic = manejadorSettings.listarTipoDePublicaciones();
 		if (nomTposPublic != null) {
 			return nomTposPublic;
 		}
 		else {
-			throw new TipoPublicacionNoExisteException("No existen tipos de publicaciones registrados");
-		}
-	}/*
-
-	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic, String nicknameEmpresa) {
-		ControladorUsuario cu = new ControladorUsuario();
-		Empresa emp = cu.obtenerEmpresa(nicknameEmpresa);
-		
-		ManejadorSettings ms = ManejadorSettings.getInstance();
-		TipoPublicacion tp = ms.obtenerTipoPublicacion(nomTpoPublic);
-		if (tp != null) {
-			OfertaLaboral ol = new OfertaLaboral(nombre, descrip, ciudad, departamento, horaInicio, horaFin, remuneracion, fechaAlta);
-			for (String kw: keywords) {
-				Keyword key = ms.obtenerKeywords(kw);
-				if (key != null) {
-					ol.getKw().put(kw, key);
-				}	
-			}
-			ol.setTp(tp);
-			emp.agregarOferta(ol);
-			//paso 8
+			throw new ColeccionTipoPublicacionEsVaciaException("No existen tipos de publicaciones registrados");
 		}
 	}
+	
+
+/*
+
 	
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta)
 	{
