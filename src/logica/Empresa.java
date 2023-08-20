@@ -35,7 +35,7 @@ public class Empresa extends Usuario {
 		this.ofertasLaborales.add(ol);
 	}
 	
-	public Set<String> obtenerOfertasEmpresa(){
+	public Set<String> obtenerNombresOfertas(){
 		Set<String> ofertas = new HashSet<String>();
 		for (OfertaLaboral oferta : this.ofertasLaborales) {
 			ofertas.add(oferta.getNombre());
