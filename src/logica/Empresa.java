@@ -9,6 +9,15 @@ public class Empresa extends Usuario {
 	private String sitioWeb;
 	private ArrayList<OfertaLaboral> ofertasLaborales;
 	
+	public Empresa() {}
+	
+	public Empresa(String nickname, String nombre, 
+			String apellido, String email, String descripcion, String sitioWeb) {
+		super(nickname, nombre, apellido, email);
+		this.descripcion = descripcion;
+		this.sitioWeb = sitioWeb;
+	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -26,13 +35,13 @@ public class Empresa extends Usuario {
 	}
 	
 	
-	public void agregarOferta(OfertaLaboral ol) {
+	public boolean agregarOferta(OfertaLaboral ol) {
 		for (OfertaLaboral oferta : this.ofertasLaborales) {
 			if (ol.getNombre().equals(oferta.getNombre())) {
-				return;
+				return false;
 			}
 		}
-		this.ofertasLaborales.add(ol);
+		return this.ofertasLaborales.add(ol);
 	}
 	
 	public Set<String> obtenerNombresOfertas(){
