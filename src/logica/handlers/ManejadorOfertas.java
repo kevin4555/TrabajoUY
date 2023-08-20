@@ -62,5 +62,4 @@ public class ManejadorOfertas {
 			throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
 		}
 	}
-
 }
