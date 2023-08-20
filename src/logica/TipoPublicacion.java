@@ -48,15 +48,5 @@ public class TipoPublicacion {
 		this.fechaAlta = fechaAlta;
 	}
 	
-	
-
 }
 
-/*
- -nombre : String
--descripcion : String
--exposicion : String
--duracionDia : Int
--costo : Float
--fechaAlta : DTFecha
-*/ 
