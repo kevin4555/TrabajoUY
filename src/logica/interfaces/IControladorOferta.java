@@ -7,10 +7,6 @@ public interface IControladorOferta {
 	
 	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic, String nicknameEmpresa);
 	
-	
-
-	
-
 }
 
 /*
