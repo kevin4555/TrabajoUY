@@ -35,13 +35,8 @@ public class Empresa extends Usuario {
 	}
 	
 	
-	public boolean agregarOferta(OfertaLaboral ol) {
-		for (OfertaLaboral oferta : this.ofertasLaborales) {
-			if (ol.getNombre().equals(oferta.getNombre())) {
-				return false;
-			}
-		}
-		return this.ofertasLaborales.add(ol);
+	public void agregarOferta(OfertaLaboral ol) {
+		this.ofertasLaborales.add(ol);
 	}
 	
 	public Set<String> obtenerNombresOfertas(){

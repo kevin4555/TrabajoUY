@@ -11,8 +11,28 @@ public class PaquetePublicacion {
 	private float costo;
 	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
 	
+	public PaquetePublicacion(String nombre, String descripcion, int cantidadPublicaciones,
+			int periodoValidez, float descuento,
+			ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.cantidadPublicaciones = cantidadPublicaciones;
+		this.periodoValidez = periodoValidez;
+		this.descuento = descuento;
+		this.cantidadPublicaciones = cantidadPublicaciones;
+		setCosto();
+	}
+	
 	public String getNombre() {
 		return nombre;
+	}
+	
+	private void setCosto() {
+		float costoTotal = 0;
+		for (CantidadTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) {
+			costoTotal += cantidadTipoPublicacion.obtenerCostoPublicaciones();
+		}
+		this.costo = costoTotal * descuento;
 	}
 	
 	public void setNombre(String nombre) {
@@ -46,17 +66,18 @@ public class PaquetePublicacion {
 	public float getDescuento() {
 		return descuento;
 	}
-	
+	/**
+	 * Establece el descuento y recalcula el costo. 
+	 * 
+	 * @param descuento Descripción del primer parámetro.
+	 */
 	public void setDescuento(float descuento) {
 		this.descuento = descuento;
+		setCosto();
 	}
 	
 	public float getCosto() {
 		return costo;
-	}
-	
-	public void setCosto(float costo) {
-		this.costo = costo;
 	}
 	
 	public ArrayList<CantidadTipoPublicacion> getCantidadTipoPublicaciones() {

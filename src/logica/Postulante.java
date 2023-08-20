@@ -36,9 +36,6 @@ public class Postulante extends Usuario{
 		this.nacionalidad = nacionalidad;
 	}
 
-	
-	
-
 	public ArrayList<Postulacion> getPostulaciones() {
 		return postulaciones;
 	}

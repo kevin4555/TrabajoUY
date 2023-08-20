@@ -33,7 +33,7 @@ public class CantidadTipoPublicacion {
 	}
 	
 	public double obtenerCostoPublicaciones() {
-		return this.tipoPublicacion.getCosto();
+		return this.tipoPublicacion.getCosto() * this.cantidadRestante;
 	}
 
 }
