@@ -17,7 +17,7 @@ public class ManejadorSettings {
 		colTipoPublicaciones = new HashMap<String, TipoPublicacion>();
     }
 
-	public static ManejadorSettings getinstance() {
+	public static ManejadorSettings getInstance() {
         if (instancia == null)
             instancia = new ManejadorSettings();
         return instancia;

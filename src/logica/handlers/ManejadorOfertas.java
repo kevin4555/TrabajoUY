@@ -18,7 +18,7 @@ public class ManejadorOfertas {
 
 	private HashMap<String, OfertaLaboral> coleccionOfertaLaboral;
 
-	public static ManejadorOfertas getinstance() {
+	public static ManejadorOfertas getInstance() {
 		if (instancia == null) {
 			instancia = new ManejadorOfertas();
 		}

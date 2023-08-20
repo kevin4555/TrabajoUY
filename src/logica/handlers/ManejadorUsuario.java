@@ -18,7 +18,7 @@ public class ManejadorUsuario {
 		colPostulantes = new HashMap<String, Postulante>();
 		colEmpresas = new HashMap<String, Empresa>();
 	}
-	public static ManejadorUsuario getinstance() {
+	public static ManejadorUsuario getInstance() {
         if (instancia == null)
             instancia = new ManejadorUsuario();
         return instancia;
@@ -48,5 +48,10 @@ public class ManejadorUsuario {
 	public void agregarEmpresa(Empresa empresa) {
 		colEmpresas.put(empresa.getNickname(), empresa);
 		colUsuarios.put(empresa.getNickname(), empresa);
+	}
+	
+	public ArrayList<String> listarPostulantes()
+	{
+		return null;
 	}
 }

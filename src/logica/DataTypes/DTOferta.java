@@ -12,10 +12,10 @@ public class DTOferta {
 	private Date horaFin;
 	private Float remuneracion;
 	private Date fechaAlta;
-	private ArrayList<DTPaquete> paquetes;
+	private DTPaquete paquete;
 	private ArrayList<DTPostulacion> postulaciones;
 	
-	public DTOferta(String nombre, String descripcion, String ciudad, Date horaInicio, Date horaFin, Float remuneracion, Date fechaAlta, ArrayList<DTPaquete> paquetes, ArrayList<DTPostulacion> postulaciones)
+	public DTOferta(String nombre, String descripcion, String ciudad, Date horaInicio, Date horaFin, Float remuneracion, Date fechaAlta, DTPaquete paquete, ArrayList<DTPostulacion> postulaciones)
 	{
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -24,7 +24,7 @@ public class DTOferta {
 		this.horaFin = horaFin;
 		this.remuneracion = remuneracion;
 		this.fechaAlta = fechaAlta;
-		this.paquetes = paquetes;
+		this.paquete = paquete;
 		this.postulaciones = postulaciones;
 	}
 	
@@ -58,5 +58,13 @@ public class DTOferta {
 	
 	public Date getFechaAlta() {
 		return fechaAlta;
+	}
+
+	public DTPaquete getPaquete() {
+		return paquete;
+	}
+
+	public ArrayList<DTPostulacion> getPostulaciones() {
+		return postulaciones;
 	}
 }
