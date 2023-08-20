@@ -8,3 +8,4 @@ public class TipoPublicacionNoExisteException extends Exception {
         super(mensaje);
     }
 }
+

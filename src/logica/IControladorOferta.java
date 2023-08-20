@@ -2,7 +2,6 @@ package logica;
 
 import java.sql.Date;
 import java.util.ArrayList;
-
 import excepciones.TipoPublicacionNoExisteException;
 
 public interface IControladorOferta {
@@ -11,7 +10,7 @@ public interface IControladorOferta {
 		
 	public abstract ArrayList<String> listarTipoDePublicaciones() throws TipoPublicacionNoExisteException;
 	
-	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic, String nicknameEmpresa);
+	public abstract void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic, String nicknameEmpresa) throws TipoPublicacionNoExisteException;
 	
 	
 
