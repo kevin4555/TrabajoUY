@@ -48,31 +48,26 @@ public class ControladorOferta implements IControladorOferta {
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta)
 	{
 		ManejadorOfertas mo = ManejadorOfertas.getInstance();
-		OfertaLaboral ol = mo.find(nomOferta);
-		if(ol != null)
-		{
+		try {
+			OfertaLaboral ol = mo.obtenerOfertaLaboral(nomOferta);
 			return ol;
-		}
-		else
+		}catch(OfertalLaboralNoExisteException e)
 		{
-			throw new OfertaLaboralNoExisteException("No existe OfertaLaboral con el nombre indicado");
+			System.out.println(e.getMessage());
 		}
 	}
 	
 	public DTOferta obtenerDTOfertaLaboral(String nomOferta)
 	{
 		ManejadorOfertas mo = ManejadorOfertas.getInstance();
-		OfertaLaboral ol = mo.find(nomOferta);
-		if(ol != null)
+		try {
+			OfertaLaboral ol = mo.find(nomOferta);
+		}catch(DtOfertaNoExisteException e)
 		{
-			//Falta agregar los postulantes y paquetes pero tengo dudas.
-			DToferta dtol = new DTOferta(ol.getNombre(), ol.getDescripcion(), ol.getCiudad(), ol.getDepartamento(), ol.getHoraInicio(), ol.getHoraFin(), ol.getRemunaracion(), ol.getFechaAlta(), );
-			return dtol;
+			System.out.println(e.getMessage());
 		}
-		else
-		{
-			throw new OfertaLaboralNoExisteException("No existe OfertaLaboral con el nombre indicado");
-		}
+		DTOferta dtof = new DTOferta(ol.getNombre(), ol.getDescripcion(), ol.getCiudad(), ol.getDepartamento(), ol.getHoraInicio(), ol.getHoraFin(), ol.getRemunaracion(), ol.getFechaAlta());
+
 	}
 	
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida)
@@ -97,14 +92,12 @@ public class ControladorOferta implements IControladorOferta {
 	public Keyword obtenerKeyword(String nomKeyword)
 	{
 		ManejadorSetting ms = ManejadorSetting.getInstance();
+		try {
 		Keyword k = ms.find(nomKeyword);
-		if(k != null)
+		return k;
+		}catch()
 		{
-			return k;
-		}
-		else
-		{
-			throw new KeywordNoExisteException("No existe Keyword con el nombre indicado");
+			System.out.println(e.getMessage());
 		}
 	}
 	
