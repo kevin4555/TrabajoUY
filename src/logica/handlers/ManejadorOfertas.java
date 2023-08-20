@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
+import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import logica.classes.OfertaLaboral;
@@ -38,26 +39,27 @@ public class ManejadorOfertas {
 	}
 
 	public void agregarOferta(OfertaLaboral ofertaLaboral) throws OfertaLaboralYaExisteException {
-		if (coleccionOfertaLaboral.get(ofertaLaboral.getNombre()) == null) {
+		if (!coleccionOfertaLaboral.containsKey(ofertaLaboral.getNombre())) {
 			coleccionOfertaLaboral.put(ofertaLaboral.getNombre(), ofertaLaboral);
 		} else {
 			throw new OfertaLaboralYaExisteException("La oferta laboral que desea ingresar ya existe");
 		}
 	}
-	/*
-	public DTOferta obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException {
-		DTOferta resultado = coleccionOfertaLaboral.get(nombreOferta).getDT
-		if (resultado == null) {
+
+	/*public DTOferta obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException {
+		OfertaLaboral encontrado = coleccionOfertaLaboral.get(nombreOferta);
+		
+		if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
 			throw new DtOfertaNoExisteException("No existe la oferta solicitada");
 		} else {
-			return resultado;
+			return coleccionOfertaLaboral.get(nombreOferta).getDtOferta();
 		}
 	}*/
 
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
-		OfertaLaboral resultado = coleccionOfertaLaboral.get(nomOferta);
-		if (resultado != null) {
-			return resultado;
+		
+		if (coleccionOfertaLaboral.containsKey(nomOferta)) {
+			return coleccionOfertaLaboral.get(nomOferta);
 		} else {
 			throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
 		}
