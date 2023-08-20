@@ -1,10 +1,13 @@
 package logica;
 
 import java.sql.Date;
-import excepciones.TipoPublicacionNoExisteException;
-
-
 import java.util.ArrayList;
+
+import excepciones.KeywordNoExisteException;
+import excepciones.KeywordsNoExistenKeywords;
+import excepciones.OfertaLaboralNoExisteException;
+import excepciones.PostulantesNoExistenPostulantes;
+import excepciones.TipoPublicacionNoExisteException;
 
 
 public class ControladorOferta implements IControladorOferta {
@@ -26,7 +29,7 @@ public class ControladorOferta implements IControladorOferta {
 		ControladorUsuario cu = new ControladorUsuario();
 		Empresa emp = cu.obtenerEmpresa(nicknameEmpresa);
 		
-		ManejadorSettings ms = ManejadorSettings.getinstance();
+		ManejadorSettings ms = ManejadorSettings.getInstance();
 		TipoPublicacion tp = ms.obtenerTipoPublicacion(nomTpoPublic);
 		if (tp != null) {
 			OfertaLaboral ol = new OfertaLaboral(nombre, descrip, ciudad, departamento, horaInicio, horaFin, remuneracion, fechaAlta);
@@ -40,8 +43,109 @@ public class ControladorOferta implements IControladorOferta {
 			emp.agregarOferta(ol);
 			//paso 8
 		}
-		
+	}
+	
+	public OfertaLaboral obtenerOfertaLaboral(String nomOferta)
+	{
+		ManejadorOfertas mo = ManejadorOfertas.getInstance();
+		try {
+			OfertaLaboral ol = mo.obtenerOfertaLaboral(nomOferta);
+			return ol;
+		}catch(OfertalLaboralNoExisteException e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public DTOferta obtenerDTOfertaLaboral(String nomOferta)
+	{
+		ManejadorOfertas mo = ManejadorOfertas.getInstance();
+		try {
+			OfertaLaboral ol = mo.find(nomOferta);
+		}catch(DtOfertaNoExisteException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		DTOferta dtof = new DTOferta(ol.getNombre(), ol.getDescripcion(), ol.getCiudad(), ol.getDepartamento(), ol.getHoraInicio(), ol.getHoraFin(), ol.getRemunaracion(), ol.getFechaAlta());
+
+	}
+	
+	public void agregarTipoPublicacionAlPaquete(int cantIncluida)
+	{
 		
 	}
+	
+	public ArrayList<String> listarPaquetes()
+	{
+		ArrayList<String> paquetes = new ArrayList<>();
+		ManejadorPaquetes mp = ManejadorPaquetes.getInstance();
+		paquetes = mp.obtenerPaquetes();
+		return paquetes;
+	}
 
+	
+	public void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub)
+	{
+		
+	}
+	
+	public Keyword obtenerKeyword(String nomKeyword)
+	{
+		ManejadorSetting ms = ManejadorSetting.getInstance();
+		try {
+		Keyword k = ms.find(nomKeyword);
+		return k;
+		}catch()
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public ArrayList<String> listarKeywords()
+	{
+		ManejadorSetting ms = ManejadorSetting.getInstance();
+		ArrayList<String> lkeyword = ms.listarKeywords();
+		if(lkeyword != null)
+		{
+			return lkeyword;
+		}
+		else
+		{
+			throw new KeywordsNoExistenKeywords("No hay keyword para listar");
+		}
+	}
+	
+	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname, String nomOferta)
+	{
+	
+	}
+	
+	public ArrayList<String> listarPostulantes()
+	{
+		ManejadorUsuario mu = ManejadorUsuario.getinstance();
+		ArrayList<String> lpostulantes = mu.listarPostulantes();
+		if(lpostulantes != null)
+		{
+			return lpostulantes;
+		}
+		else
+		{
+			throw new PostulantesNoExistenPostulantes("No existen postulantes a listar");
+		}
+	}
+	
+	public DTOferta obtenerDTofertaLaboral(String nomOferta)
+	{
+		return null;
+	}
+	
+	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa)
+	{
+		return null;
+	}
+	
+	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, Float descuento, Date fechaAlta)
+	{
+		
+	}
 }

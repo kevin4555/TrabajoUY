@@ -14,6 +14,7 @@ public class OfertaLaboral {
 	private Date fechaAlta;
 	private Map<String, Keyword> kw;
 	private TipoPublicacion tp;
+	private CompraPaquete cp;
 	
 	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,double remunaracion,Date fechaAlta) {
 		this.nombre = nombre;
@@ -89,5 +90,13 @@ public class OfertaLaboral {
 
 	public void setTp(TipoPublicacion tp) {
 		this.tp = tp;
+	}
+
+	public CompraPaquete getCp() {
+		return cp;
+	}
+
+	public void setCp(CompraPaquete cp) {
+		this.cp = cp;
 	}
 }
