@@ -99,4 +99,10 @@ public class OfertaLaboral {
 	public void setCp(CompraPaquete cp) {
 		this.cp = cp;
 	}
+	
+
+	public void agregarPostulacionAOfertaLaboral(Postulacion postulacion) {
+		// TODO Auto-generated method stub
+		
+	}
 }

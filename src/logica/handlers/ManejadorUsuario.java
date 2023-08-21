@@ -20,7 +20,7 @@ public class ManejadorUsuario {
 		colPostulantes = new HashMap<String, Postulante>();
 		colEmpresas = new HashMap<String, Empresa>();
 	}
-	public static ManejadorUsuario getinstance() {
+	public static ManejadorUsuario getInstance() {
         if (instancia == null)
             instancia = new ManejadorUsuario();
         return instancia;
@@ -66,6 +66,28 @@ public class ManejadorUsuario {
 			colEmpresas.put(empresa.getNickname(), empresa);
 			colUsuarios.put(empresa.getNickname(), empresa);
 		}
-		
+	}
+	
+	public ArrayList<String> listarUsuarios(){
+		ArrayList<String> listaUsuarios = new ArrayList<String>();
+		for(String nickUsuario : colUsuarios.keySet()) {
+			listaUsuarios.add(nickUsuario);
+		}
+		return listaUsuarios;
+	}
+	
+	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteUsuarioException {
+		if(!colUsuarios.containsKey(nicknameUsuario)) {
+			throw new UsuarioNoExisteUsuarioException("No existe usuario con nickname: " + nicknameUsuario);
+		}
+		return ((Usuario)colUsuarios.get(nicknameUsuario));
+	}
+	
+	public ArrayList<String> listarPostulanes(){
+		ArrayList<String> listaPostulantes = new ArrayList<String>();
+		for(String nickPostulante : colPostulantes.keySet()) {
+			listaPostulantes.add(nickPostulante);
+		}
+		return listaPostulantes;
 	}
 }
