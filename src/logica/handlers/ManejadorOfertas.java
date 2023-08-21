@@ -45,18 +45,16 @@ public class ManejadorOfertas {
 		}
 	}
 
-	/*public DTOferta obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException {
-		OfertaLaboral encontrado = coleccionOfertaLaboral.get(nombreOferta);
-		
+	public DTOferta obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException {
 		if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
 			throw new DtOfertaNoExisteException("No existe la oferta solicitada");
 		} else {
 			return coleccionOfertaLaboral.get(nombreOferta).getDtOferta();
 		}
-	}*/
+	}
 
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
-		
+
 		if (coleccionOfertaLaboral.containsKey(nomOferta)) {
 			return coleccionOfertaLaboral.get(nomOferta);
 		} else {
