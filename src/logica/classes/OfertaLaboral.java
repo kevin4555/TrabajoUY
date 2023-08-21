@@ -13,12 +13,12 @@ public class OfertaLaboral {
 	private Date horaFin;
 	private double remunaracion;
 	private Date fechaAlta;
-	private Map<String, Keyword> kw;
-	private TipoPublicacion tp;
-	private CompraPaquete cp;
+	private ArrayList<Keyword> kewords;
+	private TipoPublicacion tipoPublicacion;
+	private CompraPaquete compraPaquete;
 	private ArrayList<Postulacion> postulaciones;
 	
-	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,double remunaracion,Date fechaAlta, Map<String,Keyword> keywords ,TipoPublicacion tipoPublicacion, CompraPaquete cp) {
+	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,double remunaracion,Date fechaAlta, ArrayList<Keyword> keywords ,TipoPublicacion tipoPublicacion, CompraPaquete cp) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
@@ -27,9 +27,9 @@ public class OfertaLaboral {
 		this.horaFin = horaFin;
 		this.remunaracion = remunaracion;
 		this.fechaAlta = fechaAlta;
-		this.kw = keywords;
-		this.tp = tipoPublicacion;
-		this.cp = cp;
+		this.kewords = keywords;
+		this.tipoPublicacion = tipoPublicacion;
+		this.compraPaquete = cp;
 	}
 
 	public String getNombre() {
@@ -81,28 +81,28 @@ public class OfertaLaboral {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public Map<String, Keyword> getKw() {
-		return kw;
+	public ArrayList<Keyword> getKw() {
+		return kewords;
 	}
 
-	public void setKw(Map<String, Keyword> kw) {
-		this.kw = kw;
+	public void setKeword(ArrayList<Keyword> kw) {
+		this.kewords = kw;
 	}
 
-	public TipoPublicacion getTp() {
-		return tp;
+	public TipoPublicacion getTipoPublicacion() {
+		return tipoPublicacion;
 	}
 
-	public void setTp(TipoPublicacion tp) {
-		this.tp = tp;
+	public void setTipoPublicacion(TipoPublicacion tp) {
+		this.tipoPublicacion = tp;
 	}
 
-	public CompraPaquete getCp() {
-		return cp;
+	public CompraPaquete getCompraPaquete() {
+		return compraPaquete;
 	}
 
-	public void setCp(CompraPaquete cp) {
-		this.cp = cp;
+	public void setCompraPaquete(CompraPaquete cp) {
+		this.compraPaquete = cp;
 	}
 	
 
