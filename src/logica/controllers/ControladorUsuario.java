@@ -5,9 +5,13 @@ import java.util.ArrayList;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
+import logica.classes.OfertaLaboral;
+import logica.classes.Postulacion;
 import logica.classes.Postulante;
+import logica.classes.Usuario;
 import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
@@ -44,7 +48,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 
 	@Override
-	public void editarDatosBasicos(DTUsuario dtusuario) throws UsuarioNoExisteUsuarioException {
+	public void editarDatosBasicos(DTUsuario dtusuario) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Usuario usuario = manejadorUsuario.obtenerUsuario(dtusuario.getNickname());
 		usuario.setApellido(dtusuario.getApellido());
@@ -54,7 +58,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 
 	@Override
-	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteUsuarioException {
+	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empr = manejadorUsuarios.obtenerEmpresa(nicknameEmpresa);
 		return empr.obtenerNombresOfertas();
@@ -63,18 +67,18 @@ public class ControladorUsuario implements IControladorUsuario {
 	@Override
 	public ArrayList<String> listarPostulantes() {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
-		return manejadorUsuarios.listarPostulanes();
+		return manejadorUsuarios.listarPostulantes();
 	}
 	
 	@Override
 	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
-			String nomOferta) throws UsuarioNoExisteUsuarioException {
+			String nomOferta) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = manejadorUsuario.obtenerPostulante(nickname);
 		Fabrica fabrica = Fabrica.getInstance();
 		IControladorOferta controladorOferta = fabrica.obtenerControladorOferta();
 		OfertaLaboral oferta = controladorOferta.obtenerOfertaLaboral(nomOferta);
-		Postulacion postulacion = new Postulacion(motivacion, fechaPostulacion, cvReducido);
+		Postulacion postulacion = new Postulacion(motivacion, fechaPostulacion, cvReducido, postulante,oferta);
 		postulante.agregarPostulacion(postulacion);
 		oferta.agregarPostulacionAOfertaLaboral(postulacion);
 		
@@ -94,7 +98,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String link) throws UsuarioYaExisteUsuarioException {
+			String link) throws UsuarioYaExisteException {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link);
 		manejadorUsuarios.agregarEmpresa(empresa);

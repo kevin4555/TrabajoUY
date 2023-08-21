@@ -83,9 +83,9 @@ public class ManejadorUsuario {
 		return listaUsuarios;
 	}
 	
-	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteUsuarioException {
+	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteException {
 		if(!colUsuarios.containsKey(nicknameUsuario)) {
-			throw new UsuarioNoExisteUsuarioException("Usuario: " + nicknameUsuario + " no existe");
+			throw new UsuarioNoExisteException("Usuario: " + nicknameUsuario + " no existe");
 		}
 		return colUsuarios.get(nicknameUsuario);
 	}

@@ -2,19 +2,15 @@ package logica.interfaces;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Map;
-
-import logica.DataTypes.DTOferta;
-import logica.classes.CantidadTipoPublicacion;
-import logica.classes.CompraPaquete;
-import logica.classes.Keyword;
-import logica.classes.OfertaLaboral;
-import logica.classes.TipoPublicacion;
 
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.KeywordNoExisteException;
 import excepciones.TipoPublicacionNoExiste;
 import excepciones.UsuarioNoExisteException;
+import logica.DataTypes.DTOferta;
+import logica.classes.CantidadTipoPublicacion;
+import logica.classes.Keyword;
+import logica.classes.OfertaLaboral;
 
 public interface IControladorOferta {
 	
@@ -24,7 +20,7 @@ public interface IControladorOferta {
 
 	public ArrayList<String> listarPostulantes();
 	
-	public ArrayList<String> listarTipoDePublicaciones();
+	public ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException;
 	
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta);
 	

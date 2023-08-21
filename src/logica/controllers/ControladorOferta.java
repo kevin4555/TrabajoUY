@@ -59,7 +59,7 @@ public class ControladorOferta implements IControladorOferta {
 				//manejadorOfer.agregarOferta(ofertaLab);
 	}
 	
-	public ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException {
+	public ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException  {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ArrayList<String> nomTposPublic = manejadorSettings.listarTipoDePublicaciones();
 		if (nomTposPublic != null) {
@@ -90,7 +90,6 @@ public class ControladorOferta implements IControladorOferta {
 
 	@Override
 	public ArrayList<String> listarPaquetes() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -1,6 +1,7 @@
 package logica.classes;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class OfertaLaboral {
