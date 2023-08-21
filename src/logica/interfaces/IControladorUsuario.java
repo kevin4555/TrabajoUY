@@ -27,7 +27,7 @@ public interface IControladorUsuario {
 	
 	public abstract void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad) throws UsuarioYaExisteUsuarioException;
 	
-	public abstract void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link);
+	public abstract void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link) throws UsuarioYaExisteUsuarioException;
 	
 
 }

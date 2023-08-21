@@ -95,8 +95,10 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String link) {
-		// TODO Auto-generated method stub
+			String link) throws UsuarioYaExisteUsuarioException {
+		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
+		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link);
+		manejadorUsuarios.agregarEmpresa(empresa);
 		
 	}
 
