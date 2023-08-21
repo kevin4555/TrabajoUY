@@ -1,20 +1,14 @@
 package logica.controllers; 
 
-import logica.classes.*;
-import logica.handlers.*;
-
-import java.sql.Date;
+import java.sql.Date; 
 import java.util.ArrayList;
 import java.util.Map;
 
-import excepciones.ColeccionTipoPublicacionEsVaciaException;
-import excepciones.KeywordNoExisteException;
-import excepciones.TipoPublicacionNoExiste;
-import excepciones.UsuarioNoExisteException;
-import logica.interfaces.IControladorOferta;
-import excepciones.DtOfertaNoExisteException; 
+import excepciones.DtOfertaNoExisteException;
+import excepciones.KeywordNoExisteException;  
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
+import excepciones.UsuarioNoExisteUsuarioException;
 import logica.DataTypes.DTOferta;
 import logica.DataTypes.DTPaquete;
 import logica.classes.CantidadTipoPublicacion;
@@ -27,137 +21,19 @@ import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
 import logica.handlers.ManejadorOfertas;
+import logica.handlers.ManejadorPaquetes;
 import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
+import logica.interfaces.IControladorOferta; 
 
 public class ControladorOferta implements IControladorOferta { 
 
-	@Override
-	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion,
-			String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic,
-			String nicknameEmpresa) throws TipoPublicacionNoExiste, KeywordNoExisteException, UsuarioNoExisteException  {
-		// chequear si existe ofertalaboral
-				ControladorUsuario contUsu = new ControladorUsuario();
-				Empresa emp = contUsu.obtenerEmpresa(nicknameEmpresa);
-				if (emp == null) {
-					throw new UsuarioNoExisteException("Empresa " + nicknameEmpresa + " no existe");
-				}
-				ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-				TipoPublicacion tp = manejadorSettings.obtenerTipoPublicacion(nomTpoPublic);
-				if (tp == null) 
-					throw new TipoPublicacionNoExiste("El tipo de publicacion " + nomTpoPublic + " no existe");
-				OfertaLaboral ofertaLab = new OfertaLaboral(nombre, descrip, ciudad, departamento, horaInicio, horaFin, remuneracion, fechaAlta, keywords);
-				for (String kw: keywords) {
-					Keyword key = manejadorSettings.obtenerKeywords(kw);
-					if (key == null)
-						throw new KeywordNoExisteException("La keyword " + kw + " no existe");
-					ofertaLab.getKw().put(kw, key);
-				}
-				ofertaLab.setTp(tp);
-				emp.agregarOferta(ofertaLab);
-				ManejadorOfertas manejadorOfer = ManejadorOfertas.getInstance();
-				//manejadorOfer.agregarOferta(ofertaLab);
-	}
-	
-	public ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException  {
-		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		ArrayList<String> nomTposPublic = manejadorSettings.listarTipoDePublicaciones();
-		if (nomTposPublic != null) {
-			return nomTposPublic;
-		}
-		else {
-			throw new ColeccionTipoPublicacionEsVaciaException("No existen tipos de publicaciones registrados");
-		}
-	}
+	public ArrayList<String> listarTipoDePublicaciones(){ 
+		ManejadorSettings msetting = ManejadorSettings.getInstance(); 
+		ArrayList<String> nomTposPublic = msetting.listarTipoDePublicaciones(); 
+		return nomTposPublic; 
+	} 
 
-	@Override
-	public ArrayList<String> listarPostulantes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ArrayList<String> listarPaquetes() {
-		return null;
-	}
-
-	@Override
-	public void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion,
-			Float costo, Date fechaPub) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void AltaKeyword(String name) {
-		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		try {
-			manejadorSettings.addKeyword(name);
-		} catch (Exception e) {
-			System.out.print(e.getMessage());
-		}
-	}
-
-	@Override
-	public Keyword obtenerKeywords(String nomKeyword) {
-		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		try {
-			return manejadorSettings.obtenerKeywords(nomKeyword);
-		} catch (Exception e) {
-			System.out.print(e.getMessage());
-		}
-		return null;
-	}
-
-	@Override
-	public ArrayList<String> listarKeywords() {
-		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		return manejadorSettings.listarKeywords();
-	}
-
-	@Override
-	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
-			String nomOferta) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public DTOferta obtenerDtOfertaLaboral(String nomOferta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias,
-			Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion) {
-		
-	}
-	
-
-/*
-
-	
-	public OfertaLaboral obtenerOfertaLaboral(String nomOferta)
-	{
-		ManejadorOfertas mo = ManejadorOfertas.getInstance();
 	public void altaOfertaLaboral(String nombre, String descripcion, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, Map<String,Keyword> keywords, TipoPublicacion tipoPublicacion, CompraPaquete cp) 
 	{ 
 		ManejadorOfertas mofertas = ManejadorOfertas.getInstance();
@@ -183,20 +59,25 @@ public class ControladorOferta implements IControladorOferta {
 		}
 	} 
 
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida) 
+	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) 
 	{ 
-	
+		ManejadorSettings msetting = ManejadorSettings.getInstance();
+		ManejadorPaquetes mpaquete = ManejadorPaquetes.getInstance();
+		
+		TipoPublicacion tpublicacion = msetting.obtenerTipoPublicacion(nomTipoPublicacion);
+		PaquetePublicacion paq = mpaquete.obtenerPaquete(nomTipoPaquete);
+		
+		paq.crearCantidadTipoPublicacion(paq, cantIncluida, tpublicacion);
+		
 	} 
 
 	public ArrayList<String> listarPaquetes() 
 	{ 
-		ArrayList<String> paquetes = new ArrayList<>();
-		ManejadorPaquetes mpaquetes = ManejadorPaquetes.getInstance(); 
-		paquetes = mpaquetes.getColeccionPaquetes(); 
-		return paquetes; 
+		ManejadorPaquetes mpaquetes = ManejadorPaquetes.getInstance();
+		return mpaquetes.litarPaquetes(); 
 	} 
 
-	public void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) 
+	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) 
 	{ 
 		TipoPublicacion publicacionT = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fechaPub);
 		
@@ -257,7 +138,7 @@ public class ControladorOferta implements IControladorOferta {
 	{ 
 		ManejadorOfertas mofertas = ManejadorOfertas.getInstance(); 
 		try { 
-			OfertaLaborl olaboral = mofertas.obtenerOfertaLaboral(nomOferta);
+			OfertaLaboral olaboral = mofertas.obtenerOfertaLaboral(nomOferta);
 			DTOferta dtoferta = olaboral.obtenerDtOfertaLaboral();
 			return dtoferta;
 		}catch(DtOfertaNoExisteException e) 
@@ -287,7 +168,5 @@ public class ControladorOferta implements IControladorOferta {
 		ManejadorPaquetes mpaquetes = ManejadorPaquetes.getInstance();
 		PaquetePublicacion paquete = new PaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValDias, descuento, cantidadTipoPublicacion);
 		mpaquetes.agregarElemento(paquete);
-	} */
-	
-}
- 
+	} 
+} 
