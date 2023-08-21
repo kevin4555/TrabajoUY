@@ -10,6 +10,16 @@ public class TipoPublicacion {
 	private int duracionDia;
 	private double costo;
 	private Date fechaAlta;
+	private CantidadTipoPublicacion cantTipo;
+	
+	public TipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) {
+		this.setNombre(nombre);
+		this.setDescripcion(descripcion);
+		this.setExposicion(exposicion);
+		this.setDuracionDia(duracion);
+		this.setCosto(costo);
+		this.setFechaAlta(fechaPub);
+	}
 	
 	public String getNombre() {
 		return nombre;

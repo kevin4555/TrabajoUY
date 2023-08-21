@@ -18,7 +18,7 @@ public class ManejadorOfertas {
 
 	private HashMap<String, OfertaLaboral> coleccionOfertaLaboral;
 
-	public static ManejadorOfertas getinstance() {
+	public static ManejadorOfertas getInstance() {
 		if (instancia == null) {
 			instancia = new ManejadorOfertas();
 		}
@@ -62,5 +62,4 @@ public class ManejadorOfertas {
 			throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
 		}
 	}
-
 }

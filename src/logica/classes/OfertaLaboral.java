@@ -16,7 +16,7 @@ public class OfertaLaboral {
 	private TipoPublicacion tp;
 	private CompraPaquete cp;
 	
-	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,double remunaracion,Date fechaAlta) {
+	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,double remunaracion,Date fechaAlta, Map<String,Keyword> keywords ,TipoPublicacion tipoPublicacion, CompraPaquete cp) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
@@ -25,6 +25,9 @@ public class OfertaLaboral {
 		this.horaFin = horaFin;
 		this.remunaracion = remunaracion;
 		this.fechaAlta = fechaAlta;
+		this.kw = keywords;
+		this.tp = tipoPublicacion;
+		this.cp = cp;
 	}
 	
 	public String getNombre() {
