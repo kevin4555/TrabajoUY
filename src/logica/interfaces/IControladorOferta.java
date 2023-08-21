@@ -7,7 +7,7 @@ import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.KeywordNoExisteException;
 import excepciones.TipoPublicacionNoExiste;
 import excepciones.UsuarioNoExisteException;
-import logica.DataTypes.DTOferta;
+import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.CantidadTipoPublicacion;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
@@ -36,7 +36,7 @@ public interface IControladorOferta {
 	
 	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname, String nomOferta);
 	
-	public DTOferta obtenerDtOfertaLaboral(String nomOferta);
+	public DTOfertaLaboral obtenerDtOfertaLaboral(String nomOferta);
 	
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa);
 	
