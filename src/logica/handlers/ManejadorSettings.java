@@ -2,6 +2,8 @@ package logica.handlers;
 
 import java.util.HashMap;
 
+import excepciones.KeywordNoExisteException;
+import excepciones.TipoPublicacionNoExiste;
 import logica.classes.Keyword;
 import logica.classes.TipoPublicacion;
 
@@ -32,11 +34,17 @@ public class ManejadorSettings {
 	}
 	
 	
-	public TipoPublicacion obtenerTipoPublicacion(String nombre) {
+	public TipoPublicacion obtenerTipoPublicacion(String nombre) throws TipoPublicacionNoExiste {
+		if(!colTipoPublicaciones.containsKey(nombre)) {
+			throw new TipoPublicacionNoExiste("No existe Tipo Publicacion con nombre: " + nombre);
+		}
         return ((TipoPublicacion) colTipoPublicaciones.get(nombre));
     }
 	
-	public Keyword obtenerKeywords(String nombre) {
+	public Keyword obtenerKeywords(String nombre) throws KeywordNoExisteException {
+		if(!colKeywords.containsKey(nombre)) {
+			throw new KeywordNoExisteException("No existe keyword con nombre: " + nombre);
+		}
         return ((Keyword) colKeywords.get(nombre));
     }
 	
