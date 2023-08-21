@@ -1,7 +1,6 @@
 package logica.classes;
 
 import java.sql.Date;
-import java.util.HashMap;
 
 import excepciones.OfertaLaboralNoExisteException;
 
