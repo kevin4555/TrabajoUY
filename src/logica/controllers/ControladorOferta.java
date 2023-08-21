@@ -36,12 +36,6 @@ import logica.interfaces.IControladorOferta;
 
 public class ControladorOferta implements IControladorOferta { 
 
-	public ArrayList<String> listarTipoDePublicaciones(){ 
-		ManejadorSettings msetting = ManejadorSettings.getInstance(); 
-		ArrayList<String> nomTposPublic = msetting.listarTipoDePublicaciones(); 
-		return nomTposPublic; 
-	} 
-
 	@Override
 	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion,
 			String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic,
@@ -52,7 +46,7 @@ public class ControladorOferta implements IControladorOferta {
 				if (emp == null) {
 					throw new UsuarioNoExisteUsuarioException("La empresa " + nicknameEmpresa + " no existe");
 				}
-				ManejadorSettings manejadorSettings = ManejadorSettings.getinstance();
+				ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 				TipoPublicacion tp = manejadorSettings.obtenerTipoPublicacion(nomTpoPublic);
 				if (tp == null) 
 					throw new TipoPublicacionNoExiste("El tipo de publicacion " + nomTpoPublic + " no existe");
@@ -217,4 +211,5 @@ public class ControladorOferta implements IControladorOferta {
 		PaquetePublicacion paquete = new PaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValDias, descuento, cantidadTipoPublicacion);
 		mpaquetes.agregarElemento(paquete);
 	} 
-} 
+}
+ */

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
-import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import logica.classes.OfertaLaboral;
