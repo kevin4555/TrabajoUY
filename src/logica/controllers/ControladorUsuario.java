@@ -80,7 +80,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		OfertaLaboral oferta = controladorOferta.obtenerOfertaLaboral(nomOferta);
 		Postulacion postulacion = new Postulacion(motivacion, fechaPostulacion, cvReducido, postulante,oferta);
 		postulante.agregarPostulacion(postulacion);
-		oferta.agregarPostulacionAOfertaLaboral(postulacion);
+		oferta.agregarPostulacion(postulacion);
 		
 	}
 

@@ -51,7 +51,7 @@ public class ManejadorSettings {
 		}
 	}
 
-	public Keyword obtenerKeywords(String nombre) throws KeywordNoExisteException {
+	public Keyword obtenerKeyword(String nombre) throws KeywordNoExisteException {
 		if (colKeywords.get(nombre) != null) {
 			return colKeywords.get(nombre);
 		} else {

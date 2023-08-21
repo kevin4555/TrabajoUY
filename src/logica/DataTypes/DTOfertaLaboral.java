@@ -3,7 +3,7 @@ package logica.DataTypes;
 import java.util.ArrayList;
 import java.sql.Date;
 
-public class DTOferta {
+public class DTOfertaLaboral {
 	private String nombre;
 	private String descripcion;
 	private String ciudad;
@@ -12,10 +12,10 @@ public class DTOferta {
 	private Date horaFin;
 	private Float remuneracion;
 	private Date fechaAlta;
-	private DTPaquete paquete;
+	private DTPaquetePublicacion paquete;
 	private ArrayList<DTPostulacion> postulaciones;
 	
-	public DTOferta(String nombre, String descripcion, String ciudad, Date horaInicio, Date horaFin, Float remuneracion, Date fechaAlta, DTPaquete paquete, ArrayList<DTPostulacion> postulaciones)
+	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, Date horaInicio, Date horaFin, Float remuneracion, Date fechaAlta, DTPaquetePublicacion paquete, ArrayList<DTPostulacion> postulaciones)
 	{
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -60,7 +60,7 @@ public class DTOferta {
 		return fechaAlta;
 	}
 
-	public DTPaquete getPaquete() {
+	public DTPaquetePublicacion getPaquete() {
 		return paquete;
 	}
 

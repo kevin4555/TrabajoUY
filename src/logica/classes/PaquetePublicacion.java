@@ -2,7 +2,7 @@ package logica.classes;
 
 import java.util.ArrayList;
 
-import logica.DataTypes.DTPaquete;
+import logica.DataTypes.DTPaquetePublicacion;
 
 public class PaquetePublicacion {
 	private String nombre;
@@ -90,8 +90,8 @@ public class PaquetePublicacion {
 		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
 	}
 	
-	public DTPaquete obtenerDTPaquete() {
-		return new DTPaquete(nombre, descripcion, cantidadPublicaciones,
+	public DTPaquetePublicacion obtenerDTPaquete() {
+		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones,
 				periodoValidez, descuento, costo);
 	}
 }

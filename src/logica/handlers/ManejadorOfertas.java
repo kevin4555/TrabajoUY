@@ -46,7 +46,7 @@ public class ManejadorOfertas {
 		}
 	}
 
-	public DTOferta obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException {
+	public DTOfertaLaboral obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException {
 		if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
 			throw new DtOfertaNoExisteException("No existe la oferta solicitada");
 		} else {

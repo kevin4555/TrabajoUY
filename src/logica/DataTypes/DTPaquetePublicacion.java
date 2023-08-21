@@ -1,6 +1,6 @@
 package logica.DataTypes;
 
-public class DTPaquete {
+public class DTPaquetePublicacion {
 	private String nombre;
 	private String descripcion;
 	private int cantidadPublicaciones;
@@ -8,7 +8,7 @@ public class DTPaquete {
 	private float descuento;
 	private float costo;
 	
-	public DTPaquete(String nombre, String descripcion, int cantidadPublicaciones,
+	public DTPaquetePublicacion(String nombre, String descripcion, int cantidadPublicaciones,
 			int periodoValidez, float descuento, float costo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
