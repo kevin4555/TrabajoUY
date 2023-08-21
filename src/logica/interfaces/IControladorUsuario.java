@@ -4,13 +4,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
-import excepciones.UsuarioNoExisteUsuarioException;
+import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
 
 public interface IControladorUsuario {
 	
-	public abstract Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteUsuarioException;
+	public abstract Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
 	public abstract ArrayList<String> listarEmpresas() throws ColeccionEmpresaEsVaciaException;
 	

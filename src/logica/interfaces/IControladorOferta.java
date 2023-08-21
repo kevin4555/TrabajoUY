@@ -14,11 +14,13 @@ import logica.classes.TipoPublicacion;
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.KeywordNoExisteException;
 import excepciones.TipoPublicacionNoExiste;
-import excepciones.UsuarioNoExisteUsuarioException;
+import excepciones.UsuarioNoExisteException;
 
 public interface IControladorOferta {
 	
-	public void altaOfertaLaboral(String nombre, String descripcion, Date horaInicio, Date horaFin, double remuneracion, String ciudad, String departamento, Date fechaAlta, Map<String,Keyword> keywords, TipoPublicacion tipoPublicacion, CompraPaquete cp);
+	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion,
+			String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic,
+			String nicknameEmpresa) throws TipoPublicacionNoExiste, KeywordNoExisteException, UsuarioNoExisteException;
 
 	public ArrayList<String> listarPostulantes();
 	

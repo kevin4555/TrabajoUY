@@ -4,9 +4,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
-import excepciones.UsuarioNoExisteUsuarioException;
+import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
+import logica.classes.Postulante;
 import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorUsuario;
 
@@ -14,18 +15,18 @@ import logica.interfaces.IControladorUsuario;
 public class ControladorUsuario implements IControladorUsuario {
 
 
-	public Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteUsuarioException {
-		ManejadorUsuario manejUsu = ManejadorUsuario.getinstance();
+	public Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException {
+		ManejadorUsuario manejUsu = ManejadorUsuario.getInstance();
 		Empresa emp = manejUsu.obtenerEmpresa(nicknameEmpresa);
 		if (emp == null) 
-			throw new UsuarioNoExisteUsuarioException("La empresa " + nicknameEmpresa + " no existe");
+			throw new UsuarioNoExisteException("La empresa " + nicknameEmpresa + " no existe");
 		else {
 			return emp;
 		}
 	}
 
 	public ArrayList<String> listarEmpresas() throws ColeccionEmpresaEsVaciaException{
-		ManejadorUsuario manejUsu = ManejadorUsuario.getinstance();
+		ManejadorUsuario manejUsu = ManejadorUsuario.getInstance();
 		ArrayList<String> nomEmpresas = manejUsu.listarEmpresas();
 		if (nomEmpresas != null) {
 			return nomEmpresas;
@@ -69,7 +70,14 @@ public class ControladorUsuario implements IControladorUsuario {
 	@Override
 	public void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac,
 			String nacionalidad) {
-		// TODO Auto-generated method stub
+		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+		Postulante postulante = new Postulante(nickname, nombre, apellido, email, fechaNac, nacionalidad);
+		try {
+			manejadorUsuario.agregarPostulante(postulante);
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
 		
 	}
 

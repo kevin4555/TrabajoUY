@@ -29,7 +29,7 @@ public class OfertaLaboral {
 		this.tp = tipoPublicacion;
 		this.cp = cp;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}

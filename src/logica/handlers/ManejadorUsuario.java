@@ -3,6 +3,8 @@ package logica.handlers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExisteException;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
@@ -29,29 +31,48 @@ public class ManejadorUsuario {
 		for(String empr : colEmpresas.keySet()) {
 			listEmpresa.add(empr);
 		}
-		return listEmpresa;	
+		return listEmpresa;
 	}
 	
-	public Empresa obtenerEmpresa(String nickEmpresa) {
-		return ((Empresa) colEmpresas.get(nickEmpresa));
+	public Empresa obtenerEmpresa(String nickEmpresa) throws UsuarioNoExisteException {
+		if(colEmpresas.get(nickEmpresa) != null) {
+			return colEmpresas.get(nickEmpresa);
+		}else {
+			throw new UsuarioNoExisteException("Empresa " + nickEmpresa + " no existe");
+		}
 	}
 	
-	public Postulante obtenerPostulante(String nickPostulante) {
-		return ((Postulante) colPostulantes.get(nickPostulante));
+	public Postulante obtenerPostulante(String nickPostulante) throws UsuarioNoExisteException {
+		if(colPostulantes.get(nickPostulante) != null) {
+			return  colPostulantes.get(nickPostulante);
+		}else {
+			throw new UsuarioNoExisteException("Postulante " + nickPostulante + " no existe");
+		}
 	}
 	
-	public void agregarPostulante(Postulante postulante) {
-		colPostulantes.put(postulante.getNickname(), postulante);
-		colUsuarios.put(postulante.getNickname(), postulante);
+	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException {
+		if(colPostulantes.get(postulante.getNickname()) == null) {
+			colPostulantes.put(postulante.getNickname(), postulante);
+			colUsuarios.put(postulante.getNickname(), postulante);
+		}else {
+			throw new UsuarioYaExisteException("Postulante " + postulante.getNickname() + " ya existe");
+		}
 	}
 	
-	public void agregarEmpresa(Empresa empresa) {
-		colEmpresas.put(empresa.getNickname(), empresa);
-		colUsuarios.put(empresa.getNickname(), empresa);
+	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException {
+		if(colEmpresas.get(empresa.getNickname()) == null) {
+			colEmpresas.put(empresa.getNickname(), empresa);
+			colUsuarios.put(empresa.getNickname(), empresa);
+		}else {
+			throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
+		}
 	}
 	
-	public ArrayList<String> listarPostulantes()
-	{
-		return null;
+	public ArrayList<String> listarPostulantes(){
+		ArrayList<String> postulantes = new ArrayList<String>();
+		for (String key : colPostulantes.keySet()) {
+			postulantes.add(key);
+		}
+		return postulantes;
 	}
 }
