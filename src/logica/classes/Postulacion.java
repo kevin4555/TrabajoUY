@@ -1,64 +1,52 @@
 package logica.classes;
 
-import java.sql.Date;
-
-import excepciones.OfertaLaboralNoExisteException;
-
-import java.util.ArrayList;
-import logica.DataTypes.DTPostulacion;
-import logica.handlers.ManejadorOfertas;
+import java.util.Date;
 
 public class Postulacion {
-	private String descripcionMotivacion;
+	private Postulante postulante;
+	private OfertaLaboral ofertaLaboral;
+	private String descrpMotivacion;
 	private Date fechaPostulacion;
 	private String cvReducido;
-	private ArrayList<OfertaLaboral> postulaciones;
 	
-	public Postulacion(String descripcionMotivacion, Date fechaPostulacion, String cvReducido)
-	{
-		this.setCvReducido(cvReducido);
-		this.setDescripcionMotivacion(descripcionMotivacion);
-		this.setFechaPostulacion(fechaPostulacion);
+	public Postulacion(String descrpMotivacion, Date fechaPostulacion, String cvReducido, Postulante postulante, OfertaLaboral ofertaLaboral) {
+		super();
+		this.descrpMotivacion = descrpMotivacion;
+		this.fechaPostulacion = fechaPostulacion;
+		this.cvReducido = cvReducido;
+		this.postulante = postulante;
+		this.ofertaLaboral = ofertaLaboral;
 	}
 	
-	public DTPostulacion obtenerDtPostulacion()
-	{
-	return null;	
+	public String getDescrpMotivacion() {
+		return descrpMotivacion;
 	}
-
-	public String getDescripcionMotivacion() {
-		return descripcionMotivacion;
+	
+	public void setDescrpMotivacion(String descrpMotivacion) {
+		this.descrpMotivacion = descrpMotivacion;
 	}
-
-	public void setDescripcionMotivacion(String descripcionMotivacion) {
-		this.descripcionMotivacion = descripcionMotivacion;
-	}
-
+	
 	public Date getFechaPostulacion() {
 		return fechaPostulacion;
 	}
-
+	
 	public void setFechaPostulacion(Date fechaPostulacion) {
 		this.fechaPostulacion = fechaPostulacion;
 	}
-
+	
 	public String getCvReducido() {
 		return cvReducido;
 	}
-
+	
 	public void setCvReducido(String cvReducido) {
 		this.cvReducido = cvReducido;
 	}
-	
-	public void agregarOferta(String nomOferta)
-	{
-		ManejadorOfertas mofertas = ManejadorOfertas.getInstance();
-		try {
-			OfertaLaboral oferta = mofertas.obtenerOfertaLaboral(nomOferta);
-			postulaciones.add(oferta);
-		}catch(OfertaLaboralNoExisteException e)
-		{
-			System.out.println(e.getMessage());
-		}
+
+	public OfertaLaboral getOfertaLaboral() {
+		return ofertaLaboral;
+	}
+
+	public Postulante getPostulante() {
+		return postulante;
 	}
 }

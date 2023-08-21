@@ -9,6 +9,7 @@ import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.handlers.ManejadorUsuario;
+import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
 
@@ -38,32 +39,44 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public ArrayList<String> listaDeUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
+		return manejadorUsuarios.listarUsuarios();
 	}
 
 	@Override
-	public void editarDatosBasicos(DTUsuario usuario) {
-		// TODO Auto-generated method stub
+	public void editarDatosBasicos(DTUsuario dtusuario) throws UsuarioNoExisteUsuarioException {
+		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+		Usuario usuario = manejadorUsuario.obtenerUsuario(dtusuario.getNickname());
+		usuario.setApellido(dtusuario.getApellido());
+		usuario.setNombre(dtusuario.getNombre());
+		//si se necesitan cambiar mas datos hay que hacer alguna magia para distinguir la empresa del postulante
 		
 	}
 
 	@Override
-	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteUsuarioException {
+		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
+		Empresa empr = manejadorUsuarios.obtenerEmpresa(nicknameEmpresa);
+		return empr.obtenerNombresOfertas();
 	}
 
 	@Override
 	public ArrayList<String> listarPostulantes() {
-		// TODO Auto-generated method stub
-		return null;
+		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
+		return manejadorUsuarios.listarPostulanes();
 	}
-
+	
 	@Override
 	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
-			String nomOferta) {
-		// TODO Auto-generated method stub
+			String nomOferta) throws UsuarioNoExisteUsuarioException {
+		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+		Postulante postulante = manejadorUsuario.obtenerPostulante(nickname);
+		Fabrica fabrica = Fabrica.getInstance();
+		IControladorOferta controladorOferta = fabrica.obtenerControladorOferta();
+		OfertaLaboral oferta = controladorOferta.obtenerOfertaLaboral(nomOferta);
+		Postulacion postulacion = new Postulacion(motivacion, fechaPostulacion, cvReducido);
+		postulante.agregarPostulacion(postulacion);
+		oferta.agregarPostulacionAOfertaLaboral(postulacion);
 		
 	}
 
@@ -77,14 +90,14 @@ public class ControladorUsuario implements IControladorUsuario {
 		} catch (Exception e) {
 			System.out.print(e.getMessage());
 		}
-		
-		
 	}
 
 	@Override
 	public void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String link) {
-		// TODO Auto-generated method stub
+			String link) throws UsuarioYaExisteUsuarioException {
+		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
+		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link);
+		manejadorUsuarios.agregarEmpresa(empresa);
 		
 	}
 

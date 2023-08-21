@@ -41,6 +41,15 @@ public class ManejadorUsuario {
 			throw new UsuarioNoExisteException("Empresa " + nickEmpresa + " no existe");
 		}
 	}
+
+	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException {
+		if(colEmpresas.get(empresa.getNickname()) == null) {
+			colEmpresas.put(empresa.getNickname(), empresa);
+			colUsuarios.put(empresa.getNickname(), empresa);
+		}else {
+			throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
+		}
+	}
 	
 	public Postulante obtenerPostulante(String nickPostulante) throws UsuarioNoExisteException {
 		if(colPostulantes.get(nickPostulante) != null) {
@@ -58,21 +67,26 @@ public class ManejadorUsuario {
 			throw new UsuarioYaExisteException("Postulante " + postulante.getNickname() + " ya existe");
 		}
 	}
-	
-	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException {
-		if(colEmpresas.get(empresa.getNickname()) == null) {
-			colEmpresas.put(empresa.getNickname(), empresa);
-			colUsuarios.put(empresa.getNickname(), empresa);
-		}else {
-			throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
-		}
-	}
-	
 	public ArrayList<String> listarPostulantes(){
 		ArrayList<String> postulantes = new ArrayList<String>();
 		for (String key : colPostulantes.keySet()) {
 			postulantes.add(key);
 		}
 		return postulantes;
+	}
+	
+	public ArrayList<String> listarUsuarios(){
+		ArrayList<String> listaUsuarios = new ArrayList<String>();
+		for(String nickUsuario : colUsuarios.keySet()) {
+			listaUsuarios.add(nickUsuario);
+		}
+		return listaUsuarios;
+	}
+	
+	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteUsuarioException {
+		if(!colUsuarios.containsKey(nicknameUsuario)) {
+			throw new UsuarioNoExisteUsuarioException("Usuario: " + nicknameUsuario + " no existe");
+		}
+		return colUsuarios.get(nicknameUsuario);
 	}
 }
