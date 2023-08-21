@@ -24,11 +24,11 @@ public class ManejadorPaquetes {
 	
 	public ArrayList<String> listarPaquetes()
 	{
-		ArrayList<String> listPaquets = new ArrayList<String>();
+		ArrayList<String> listPaquetes = new ArrayList<String>();
 		for (String key : colPaquetes.keySet()) {
-			listPaquets.add(key);
+			listPaquetes.add(key);
 		}
-		return listPaquets;
+		return listPaquetes;
 	}
 	
 	public void agregarPaquete(PaquetePublicacion paquete) throws PaquetePublicacionYaExisteException
