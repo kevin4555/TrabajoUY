@@ -16,6 +16,7 @@ public class OfertaLaboral {
 	private Map<String, Keyword> kw;
 	private TipoPublicacion tp;
 	private CompraPaquete cp;
+	private ArrayList<Postulacion> postulaciones;
 	
 	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,double remunaracion,Date fechaAlta, Map<String,Keyword> keywords ,TipoPublicacion tipoPublicacion, CompraPaquete cp) {
 		this.nombre = nombre;
@@ -105,8 +106,11 @@ public class OfertaLaboral {
 	}
 	
 
-	public void agregarPostulacionAOfertaLaboral(Postulacion postulacion) {
-		// TODO Auto-generated method stub
-		
+	public void agregarPostulacion(Postulacion postulacion) {
+		this.postulaciones.add(postulacion);
+	}
+
+	public ArrayList<Postulacion> getPostulacion() {
+		return postulaciones;
 	}
 }
