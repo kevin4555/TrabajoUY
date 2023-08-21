@@ -52,6 +52,12 @@ public class ControladorOferta implements IControladorOferta {
 			throw new ColeccionTipoPublicacionEsVaciaException("No existen tipos de publicaciones registrados");
 		}
 	}
+
+	@Override
+	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 /*
