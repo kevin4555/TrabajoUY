@@ -3,8 +3,8 @@ package logica.handlers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import excepciones.UsuarioNoExisteUsuarioException;
-import excepciones.UsuarioYaExisteUsuarioException;
+import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExisteException;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
@@ -31,41 +31,48 @@ public class ManejadorUsuario {
 		for(String empr : colEmpresas.keySet()) {
 			listEmpresa.add(empr);
 		}
-		return listEmpresa;	
+		return listEmpresa;
 	}
 	
-	public Empresa obtenerEmpresa(String nickEmpresa) throws UsuarioNoExisteUsuarioException {
-		if (!colEmpresas.containsKey(nickEmpresa)) {
-			throw new UsuarioNoExisteUsuarioException("No existe empresa con nickname: " + nickEmpresa);
-		}
-		return ((Empresa) colEmpresas.get(nickEmpresa));
-	}
-	
-	public Postulante obtenerPostulante(String nickPostulante) throws UsuarioNoExisteUsuarioException {
-		if (!colPostulantes.containsKey(nickPostulante)) {
-			throw new UsuarioNoExisteUsuarioException("No existe postulante con nickname: " + nickPostulante);
-		}
-		return ((Postulante) colPostulantes.get(nickPostulante));
-	}
-	
-	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteUsuarioException {
-		if(!colUsuarios.containsKey(postulante.getNickname())) {
-			colPostulantes.put(postulante.getNickname(), postulante);
-			colUsuarios.put(postulante.getNickname(), postulante);
-		}
-		else {
-			throw new UsuarioYaExisteUsuarioException("Ya existe usuario con nickname: " + postulante.getNickname());
+	public Empresa obtenerEmpresa(String nickEmpresa) throws UsuarioNoExisteException {
+		if(colEmpresas.get(nickEmpresa) != null) {
+			return colEmpresas.get(nickEmpresa);
+		}else {
+			throw new UsuarioNoExisteException("Empresa " + nickEmpresa + " no existe");
 		}
 	}
-	
-	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteUsuarioException {
-		if (!colUsuarios.containsKey(empresa.getNickname())) {
-			throw new UsuarioYaExisteUsuarioException("Ya existe usuario con nickname: " + empresa.getNickname());
-		}
-		else {
+
+	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException {
+		if(colEmpresas.get(empresa.getNickname()) == null) {
 			colEmpresas.put(empresa.getNickname(), empresa);
 			colUsuarios.put(empresa.getNickname(), empresa);
+		}else {
+			throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
 		}
+	}
+	
+	public Postulante obtenerPostulante(String nickPostulante) throws UsuarioNoExisteException {
+		if(colPostulantes.get(nickPostulante) != null) {
+			return  colPostulantes.get(nickPostulante);
+		}else {
+			throw new UsuarioNoExisteException("Postulante " + nickPostulante + " no existe");
+		}
+	}
+	
+	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException {
+		if(colPostulantes.get(postulante.getNickname()) == null) {
+			colPostulantes.put(postulante.getNickname(), postulante);
+			colUsuarios.put(postulante.getNickname(), postulante);
+		}else {
+			throw new UsuarioYaExisteException("Postulante " + postulante.getNickname() + " ya existe");
+		}
+	}
+	public ArrayList<String> listarPostulantes(){
+		ArrayList<String> postulantes = new ArrayList<String>();
+		for (String key : colPostulantes.keySet()) {
+			postulantes.add(key);
+		}
+		return postulantes;
 	}
 	
 	public ArrayList<String> listarUsuarios(){
@@ -76,18 +83,10 @@ public class ManejadorUsuario {
 		return listaUsuarios;
 	}
 	
-	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteUsuarioException {
+	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteException {
 		if(!colUsuarios.containsKey(nicknameUsuario)) {
-			throw new UsuarioNoExisteUsuarioException("No existe usuario con nickname: " + nicknameUsuario);
+			throw new UsuarioNoExisteException("Usuario: " + nicknameUsuario + " no existe");
 		}
-		return ((Usuario)colUsuarios.get(nicknameUsuario));
-	}
-	
-	public ArrayList<String> listarPostulanes(){
-		ArrayList<String> listaPostulantes = new ArrayList<String>();
-		for(String nickPostulante : colPostulantes.keySet()) {
-			listaPostulantes.add(nickPostulante);
-		}
-		return listaPostulantes;
+		return colUsuarios.get(nicknameUsuario);
 	}
 }

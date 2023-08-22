@@ -8,6 +8,7 @@ import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
+import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
 
@@ -19,7 +20,7 @@ public class ManejadorOfertas {
 
 	private HashMap<String, OfertaLaboral> coleccionOfertaLaboral;
 
-	public static ManejadorOfertas getinstance() {
+	public static ManejadorOfertas getInstance() {
 		if (instancia == null) {
 			instancia = new ManejadorOfertas();
 		}
@@ -46,23 +47,20 @@ public class ManejadorOfertas {
 		}
 	}
 
-	/*public DTOferta obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException {
-		OfertaLaboral encontrado = coleccionOfertaLaboral.get(nombreOferta);
-		
+	public DTOfertaLaboral obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException {
 		if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
 			throw new DtOfertaNoExisteException("No existe la oferta solicitada");
 		} else {
-			return coleccionOfertaLaboral.get(nombreOferta).getDtOferta();
+			return coleccionOfertaLaboral.get(nombreOferta).obtenerDTOfertaLaboral();
 		}
-	}*/
+	}
 
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
-		
+
 		if (coleccionOfertaLaboral.containsKey(nomOferta)) {
 			return coleccionOfertaLaboral.get(nomOferta);
 		} else {
 			throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
 		}
 	}
-
 }
