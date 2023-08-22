@@ -10,9 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import excepciones.ColeccionEmpresaEsVaciaException;
+import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import logica.interfaces.IControladorOferta;
+import logica.interfaces.IControladorUsuario;
 
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -24,6 +28,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JFrame;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 
@@ -32,6 +37,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
     private IControladorOferta controlOferta;
+    private IControladorUsuario controlUsu;
     
     // Los componentes gráficos se agregan como atributos de la clase
     // para facilitar su acceso desde diferentes métodos de la misma.
@@ -66,9 +72,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public AltaOfertaLaboral(IControladorOferta icu) {
+    public AltaOfertaLaboral(IControladorOferta icontOfer, IControladorUsuario icontUsu) {
         // Se inicializa con el controlador de usuarios
-        controlOferta = icu;
+        controlOferta = icontOfer;
+        controlUsu = icontUsu;
 
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame,
         // etc.
@@ -104,12 +111,26 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		ubicacionEtiquetas.add(lblEmpresa);
 		
 		comboBoxEmpresa = new JComboBox();
+		try {
+			for (int i = 0; i < controlUsu.listarEmpresas().size(); i++) {
+				comboBoxEmpresa.addItem(controlUsu.listarEmpresas().get(i));
+			}
+		} catch (ColeccionEmpresaEsVaciaException e) {
+			//No se imprime nada al usuario. simplemente no muestra las empresas
+		}
 		ubicacionTexto.add(comboBoxEmpresa);
 		
 		JLabel lblTipoPublicacion = new JLabel("  Tipo de publicación");
 		ubicacionEtiquetas.add(lblTipoPublicacion);
 		
 		comboBoxTpoPublicacion = new JComboBox();
+		try {
+			for (int i = 0; i < controlOferta.listarTipoDePublicaciones().size(); i++) {
+				comboBoxTpoPublicacion.addItem(controlOferta.listarTipoDePublicaciones().get(i));
+			}
+		} catch (ColeccionTipoPublicacionEsVaciaException e){
+			//No se imprime nada al usuario. simplemente no muestra los tipos de publicacion
+		}
 		ubicacionTexto.add(comboBoxTpoPublicacion);
 		
 		lblNombre = new JLabel("  Nombre");
@@ -173,13 +194,13 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		btnCancelar = new JButton("Cancelar");
 		ubicacionBotones.add(btnCancelar);
 
-        /*btnConfirmar.addActionListener(new ActionListener() {
+        btnConfirmar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                cmdRegistroUsuarioActionPerformed(arg0);
+                cmdRegistroOfertaLaboralActionPerformed(arg0);
             }
         });
 
-        GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
+       /* GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
         gbc_btnAceptar.fill = GridBagConstraints.BOTH;
         gbc_btnAceptar.insets = new Insets(0, 0, 0, 5);
         gbc_btnAceptar.gridx = 1;
@@ -188,7 +209,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
         // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
         // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
-        btnCancelar = new JButton("Cancelar");
+        //btnCancelar = new JButton("Cancelar");
        /* btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 limpiarFormulario();
@@ -201,6 +222,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
         gbc_btnCancelar.gridy = 3;
         getContentPane().add(btnCancelar, gbc_btnCancelar); */
     }
+    
+    
 
     // Este método es invocado al querer registrar un usuario, funcionalidad
     // provista por la operación del sistem registrarUsuario().
@@ -208,17 +231,25 @@ public class AltaOfertaLaboral extends JInternalFrame {
     // y que la cédula sea un número. 
     // Tanto en caso de que haya un error (de verificación o de registro) o no, se despliega
     // un mensaje utilizando un panel de mensaje (JOptionPane).
-    /*protected void cmdRegistroUsuarioActionPerformed(ActionEvent arg0) {
+    protected void cmdRegistroOfertaLaboralActionPerformed(ActionEvent arg0) {
         // TODO Auto-generated method stub
 
         // Obtengo datos de los controles Swing
-        String nombreU = this.textFieldNombre.getText();
-        String apellidoU = this.textFieldApellido.getText();
-        String ciU = this.textFieldCI.getText();
+        String nombreOfertaLab = this.textFieldNombre.getText();
+        String descripOfertaLab = this.textFieldDescripcion.getText();
+        String remuneracionOfertaLab = this.textFieldRemuneracion.getText();
+        String ciudadOfertaLab =  this.textFieldCiudad.getText();
+        String departOfertaLab = this.textFieldDepartamento.getText();
+        String nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
+        String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+        String fechaAlta = this.textFieldFechaAlta.getText();
+        String horaIniOfertaLab = this.textFieldHoraInicio.getText();
+        String horaFinOfertaLab = this.textFieldHoraFin.getText();
+        
 
-        if (checkFormulario()) {
+        /*if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab, fechaAlta, horaIniOfertaLab, horaFinOfertaLab)) {
             try {
-                controlOferta.registrarUsuario(nombreU, apellidoU, ciU);
+                controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, null, null, ABORT, ciudadOfertaLab, horaFinOfertaLab, null, null, nomTipoPublic, nicknameEmpresa);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Registrar Usuario",
@@ -231,8 +262,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
             // Limpio el internal frame antes de cerrar la ventana
             limpiarFormulario();
-            setVisible(false);
-        }*/
+            setVisible(false);*/
+        }
     
 
     // Permite validar la información introducida en los campos e indicar
@@ -240,21 +271,20 @@ public class AltaOfertaLaboral extends JInternalFrame {
     // Este tipo de chequeos se puede realizar de otras formas y con otras librerías de Java, 
     // por ejemplo impidiendo que se escriban caracteres no numéricos al momento de escribir en
     // en el campo de la cédula, o mostrando un mensaje de error apenas el foco pasa a otro campo.
-    /*private boolean checkFormulario() {
-        String nombreU = this.textFieldNombre.getText();
-        String apellidoU = this.textFieldApellido.getText();
-        String ciU = this.textFieldCI.getText();
+    private boolean checkFormulario(String nombreOfertaLab, String descripOfertaLab, String remuneracionOfertaLab, String ciudadOfertaLab, String departOfertaLab, String fechaAlta, 
+    		String horaIniOfertaLab, String horaFinOfertaLab) {
 
-        if (nombreU.isEmpty() || apellidoU.isEmpty() || ciU.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Usuario",
+        if (nombreOfertaLab.isEmpty() || descripOfertaLab.isEmpty() || remuneracionOfertaLab.isEmpty() || ciudadOfertaLab.isEmpty() 
+        		|| departOfertaLab.isEmpty() || fechaAlta.isEmpty() || horaIniOfertaLab.isEmpty() || horaFinOfertaLab.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Oferta Laboral",
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
         try {
-            Integer.parseInt(ciU);
+            Double.parseDouble(remuneracionOfertaLab);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "La CI debe ser un numero", "Registrar Usuario",
+            JOptionPane.showMessageDialog(this, "La remunaracion debe ser un numero", "Registrar Oferta Laboral",
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -267,8 +297,13 @@ public class AltaOfertaLaboral extends JInternalFrame {
     // se ocultan, por lo que conviene borrar la información para que 
     // no aparezca al mostrarlas nuevamente.
     private void limpiarFormulario() {
-        textFieldNombre.setText("");
-        textFieldApellido.setText("");
-        textFieldCI.setText("");
-    }*/
+    	textFieldNombre.setText("");
+    	textFieldDescripcion.setText("");
+    	textFieldRemuneracion.setText("");
+    	textFieldCiudad.setText("");
+    	textFieldDepartamento.setText("");
+    	textFieldFechaAlta.setText("");
+    	textFieldHoraInicio.setText("");
+    	textFieldHoraFin.setText("");
+    }
 }

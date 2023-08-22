@@ -64,7 +64,7 @@ public class Principal extends JFrame {
         consultarUsuInternalFrame = new ConsultarUsuario(ICU);
         consultarUsuInternalFrame.setVisible(false);
         
-        crearOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICO);
+        crearOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICO, ICU);
         crearOfertaLaboralInternalFrame.setVisible(false);
         
         consultarOfertaInternalFrame = new ConsultaOfertaLaboral(ICO);
