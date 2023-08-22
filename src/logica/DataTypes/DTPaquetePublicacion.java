@@ -8,8 +8,7 @@ public class DTPaquetePublicacion {
 	private float descuento;
 	private float costo;
 	
-	public DTPaquetePublicacion(String nombre, String descripcion, int cantidadPublicaciones,
-			int periodoValidez, float descuento, float costo) {
+	public DTPaquetePublicacion(String nombre, String descripcion, int cantidadPublicaciones, int periodoValidez, float descuento, float costo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.cantidadPublicaciones = cantidadPublicaciones;

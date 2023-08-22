@@ -32,7 +32,7 @@ public class ControladorOferta implements IControladorOferta {
 		return nombreTiposPublicacion;
 	}
 
-	public void altaOfertaLaboral(String nombre, String descripcion, Date horaInicio, Date horaFin, double remuneracion,
+	public void altaOfertaLaboral(String nombre, String descripcion, Date horaInicio, Date horaFin, Float remuneracion,
 			String ciudad, String departamento, Date fechaAlta, ArrayList<Keyword> keywords,
 			TipoPublicacion tipoPublicacion, CompraPaquete cp) {
 

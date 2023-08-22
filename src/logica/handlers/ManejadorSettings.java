@@ -66,5 +66,4 @@ public class ManejadorSettings {
 		}
 		return listKewords;
 	}
-
 }
