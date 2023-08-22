@@ -21,6 +21,7 @@ import java.awt.CardLayout;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class AltaUsuario extends JInternalFrame{
@@ -156,7 +157,7 @@ public class AltaUsuario extends JInternalFrame{
 		textFieldcitioWeb = new JTextField();
 		textFieldcitioWeb.setBounds(151, 60, 86, 20);
 		panelEmpresa.add(textFieldcitioWeb);
-		textFieldcitioWeb.setColumns(10);		
+		textFieldcitioWeb.setColumns(10);
 	}
 	public void cambiarPanel(JPanel panel ) {
 		layeredPane.removeAll();
@@ -176,4 +177,5 @@ public class AltaUsuario extends JInternalFrame{
 	public JPanel getPanelEmpresa() {
 		return panelEmpresa;
 	}
+
 }
