@@ -17,6 +17,7 @@ public class Empresa extends Usuario {
 		this.descripcion = descripcion;
 		this.sitioWeb = sitioWeb;
 	}
+	//cambio
 	
 	public String getDescripcion() {
 		return descripcion;
