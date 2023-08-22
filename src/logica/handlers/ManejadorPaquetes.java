@@ -10,47 +10,37 @@ import logica.classes.PaquetePublicacion;
 public class ManejadorPaquetes {
 	private static ManejadorPaquetes instancia = null;
 	private HashMap<String, PaquetePublicacion> colPaquetes;
-	
+
 	public static ManejadorPaquetes getInstance() {
 		if (instancia == null)
 			instancia = new ManejadorPaquetes();
 		return instancia;
 	}
-	
-	public PaquetePublicacion obtenerPaquete(String nomPaquete)
-	{
-		return ((PaquetePublicacion) colPaquetes.get(nomPaquete));
+
+	public PaquetePublicacion obtenerPaquete(String nomPaquete) {
+		return colPaquetes.get(nomPaquete);
 	}
-	
-	public ArrayList<String> listarPaquetes()
-	{
-		ArrayList<String> listPaquetes = new ArrayList<String>();
+
+	public ArrayList<String> listarPaquetes() {
+		ArrayList<String> listaPaquetes = new ArrayList<String>();
 		for (String key : colPaquetes.keySet()) {
-			listPaquetes.add(key);
+			listaPaquetes.add(key);
 		}
-		return listPaquetes;
+		return listaPaquetes;
 	}
-	
-	public void agregarPaquete(PaquetePublicacion paquete) throws PaquetePublicacionYaExisteException
-	{
-		if(colPaquetes.get(paquete.getNombre()) != null)
-		{
-		colPaquetes.put(paquete.getNombre(),paquete);
-		}
-		else
-		{
+
+	public void agregarPaquete(PaquetePublicacion paquete) throws PaquetePublicacionYaExisteException {
+		if (colPaquetes.get(paquete.getNombre()) != null) {
+			colPaquetes.put(paquete.getNombre(), paquete);
+		} else {
 			throw new PaquetePublicacionYaExisteException("El paquete" + paquete.getNombre() + "ya existe");
 		}
 	}
-	
-	public void eliminarPaquete(String nomPaquete) throws PaquetePublicacionNoExisteException
-	{
-		if(colPaquetes.get(nomPaquete) != null)
-		{
+
+	public void eliminarPaquete(String nomPaquete) throws PaquetePublicacionNoExisteException {
+		if (colPaquetes.get(nomPaquete) != null) {
 			colPaquetes.remove(nomPaquete);
-		}
-		else
-		{
+		} else {
 			throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + "no existe");
 		}
 	}

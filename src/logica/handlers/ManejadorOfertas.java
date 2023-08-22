@@ -8,6 +8,7 @@ import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
+import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
 
@@ -50,7 +51,7 @@ public class ManejadorOfertas {
 		if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
 			throw new DtOfertaNoExisteException("No existe la oferta solicitada");
 		} else {
-			return coleccionOfertaLaboral.get(nombreOferta).getDTOfertaLaboral();
+			return coleccionOfertaLaboral.get(nombreOferta).obtenerDTOfertaLaboral();
 		}
 	}
 
