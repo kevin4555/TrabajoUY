@@ -15,6 +15,8 @@ public interface IControladorOferta {
 	
 
 	public abstract OfertaLaboral obtenerOfertaLaboral(String nomOferta);
+	
+	public abstract ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException;
 
 	
 
