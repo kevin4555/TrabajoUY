@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Map;
 
+import logica.DataTypes.DTOfertaLaboral;
+
 public class OfertaLaboral {
 	private String nombre;
 	private String descripcion;
@@ -114,6 +116,9 @@ public class OfertaLaboral {
 		return postulaciones;
 	}
 	
+	public DTOfertaLaboral obtenerDTOfertaLaboral() {
+		return null;
 	
+	}
 	
 }
