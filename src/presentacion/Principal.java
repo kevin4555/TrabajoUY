@@ -18,7 +18,7 @@ import logica.interfaces.IControladorUsuario;
 
 public class Principal extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel contentPanel;
 	private JFrame ventanaPrincipal;
 	private IControladorUsuario ICU;
 	private IControladorOferta ICO;
