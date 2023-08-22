@@ -121,6 +121,7 @@ public class OfertaLaboral {
 		return postulaciones;
 	}
 	
+	@SuppressWarnings("null")
 	public ArrayList<DTPostulacion> obtenerDTPostulacion()
 	{
 		ArrayList<DTPostulacion> listaDTPostulaciones = null;
