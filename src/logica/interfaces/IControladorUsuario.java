@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
@@ -23,7 +24,7 @@ public interface IControladorUsuario {
 	
 	public abstract ArrayList<String> listarPostulantes();
 	
-	public abstract void registrarPostulacion(String cvReducido,String motivacion, Date fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException;
+	public abstract void registrarPostulacion(String cvReducido,String motivacion, Date fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
 	
 	public abstract void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad) throws UsuarioYaExisteException;
 	

@@ -55,12 +55,12 @@ public class ManejadorOfertas {
 		}
 	}
 
-	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
+	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) { //throws OfertaLaboralNoExisteException {
 
-		if (coleccionOfertaLaboral.containsKey(nomOferta)) {
-			return coleccionOfertaLaboral.get(nomOferta);
-		} else {
+		//if (coleccionOfertaLaboral.containsKey(nomOferta)) {
+		return coleccionOfertaLaboral.get(nomOferta);
+		/*} else {
 			throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
-		}
+		}*/
 	}
 }

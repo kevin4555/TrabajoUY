@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+
+
 import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import logica.interfaces.IControladorOferta;
@@ -63,7 +65,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JLabel lblDepartamento;
 	private JTextField textFieldDepartamento;
 	private JLabel lblFechaDeAlta;
-	private JTextField textFieldFechaAlta;
+	//private JCalendar textFieldFechaAlta;
 	private JLabel lblKeyword;
 	private JButton btnSeleccionarKeyword;
 	private JButton btnConfirmar;
@@ -111,26 +113,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		ubicacionEtiquetas.add(lblEmpresa);
 		
 		comboBoxEmpresa = new JComboBox();
-		try {
-			for (int i = 0; i < controlUsu.listarEmpresas().size(); i++) {
-				comboBoxEmpresa.addItem(controlUsu.listarEmpresas().get(i));
-			}
-		} catch (ColeccionEmpresaEsVaciaException e) {
-			//No se imprime nada al usuario. simplemente no muestra las empresas
-		}
 		ubicacionTexto.add(comboBoxEmpresa);
 		
 		JLabel lblTipoPublicacion = new JLabel("  Tipo de publicación");
 		ubicacionEtiquetas.add(lblTipoPublicacion);
 		
 		comboBoxTpoPublicacion = new JComboBox();
-		try {
-			for (int i = 0; i < controlOferta.listarTipoDePublicaciones().size(); i++) {
-				comboBoxTpoPublicacion.addItem(controlOferta.listarTipoDePublicaciones().get(i));
-			}
-		} catch (ColeccionTipoPublicacionEsVaciaException e){
-			//No se imprime nada al usuario. simplemente no muestra los tipos de publicacion
-		}
 		ubicacionTexto.add(comboBoxTpoPublicacion);
 		
 		lblNombre = new JLabel("  Nombre");
@@ -178,8 +166,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		lblFechaDeAlta = new JLabel("  Fecha de Alta");
 		ubicacionEtiquetas.add(lblFechaDeAlta);
 		
-		textFieldFechaAlta = new JTextField();
-		ubicacionTexto.add(textFieldFechaAlta);
+		/*textFieldFechaAlta = new JCalendar();
+		ubicacionTexto.add(textFieldFechaAlta);*/
 		
 		JLabel lblKeyword = new JLabel("  Keyword");
 		ubicacionEtiquetas.add(lblKeyword);
@@ -223,6 +211,31 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(btnCancelar, gbc_btnCancelar); */
     }
     
+    public void cargarEmpresas()
+    {
+    	DefaultComboBoxModel<String> model;
+    	String[] empresas;
+		try {
+			empresas = (controlUsu.listarEmpresas()).toArray(new String[0]);
+			model = new DefaultComboBoxModel<String>(empresas);
+			comboBoxEmpresa.setModel(model); 
+		} catch (ColeccionEmpresaEsVaciaException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void cargarTipoPublicaciones()
+    {
+    	DefaultComboBoxModel<String> model;
+    	String[] tiposPublicaciones;
+		try {
+			tiposPublicaciones = (controlOferta.listarTipoDePublicaciones()).toArray(new String[0]);
+			model = new DefaultComboBoxModel<String>(tiposPublicaciones);
+			comboBoxTpoPublicacion.setModel(model); 
+		} catch (ColeccionTipoPublicacionEsVaciaException e) {
+			e.printStackTrace();
+		}
+    }
     
 
     // Este método es invocado al querer registrar un usuario, funcionalidad
@@ -242,7 +255,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         String departOfertaLab = this.textFieldDepartamento.getText();
         String nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
         String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
-        String fechaAlta = this.textFieldFechaAlta.getText();
+        //String fechaAlta = this.textFieldFechaAlta.toString();
         String horaIniOfertaLab = this.textFieldHoraInicio.getText();
         String horaFinOfertaLab = this.textFieldHoraFin.getText();
         
@@ -302,7 +315,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     	textFieldRemuneracion.setText("");
     	textFieldCiudad.setText("");
     	textFieldDepartamento.setText("");
-    	textFieldFechaAlta.setText("");
+    	//textFieldFechaAlta.setDate("");
     	textFieldHoraInicio.setText("");
     	textFieldHoraFin.setText("");
     }
