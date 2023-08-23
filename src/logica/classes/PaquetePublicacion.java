@@ -13,15 +13,14 @@ public class PaquetePublicacion {
 	private float costo;
 	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
 
-	public PaquetePublicacion(String nombre, String descripcion, int cantidadPublicaciones, int periodoValidez,
-			float descuento, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {
+	public PaquetePublicacion(String nombre, String descripcion, int cantidadPublicaciones, int periodoValidez, float descuento, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.cantidadPublicaciones = cantidadPublicaciones;
 		this.periodoValidez = periodoValidez;
 		this.descuento = descuento;
-		this.cantidadPublicaciones = cantidadPublicaciones;
-		setCosto();
+		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
+		this.setCosto();
 	}
 
 	public String getNombre() {
