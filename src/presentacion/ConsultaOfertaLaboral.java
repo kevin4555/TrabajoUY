@@ -105,13 +105,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         comboBoxEmpresasRegistradas.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
         	{
-        		try {
-        			String empresa = (String) comboBoxEmpresasRegistradas.getSelectedItem();
-					String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
-					cargarOfertaEmpresa(ofertasLaborales);
-        		} catch (UsuarioNoExisteException e1) {
-					e1.printStackTrace();
-				}
+        		cargarOfertaEmpresa(e);
         	}
         });
         
@@ -122,8 +116,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         comboBoxOfertasLaborales.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
         	{
-        			String ofertaLaboral = (String) comboBoxOfertasLaborales.getSelectedItem();
-        			cargarDatosOferta(controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral));
+        		cargarDatosOferta(e);
         	}
         });
         
@@ -231,28 +224,32 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
 			 
     }
     
-    public void cargarOfertaEmpresa(String[] ofertasEmpresa)
-    {
-    	try {    	
-    		DefaultComboBoxModel<String> model;
-    		model = new DefaultComboBoxModel<String>(ofertasEmpresa);
-    		comboBoxOfertasLaborales.setModel(model);
-    	}catch(OfertaLaboralColeccionVaciaException e)
-    	{
+    public void cargarOfertaEmpresa(ActionEvent e)
+    { 	
+			try {
+				String empresa = (String) comboBoxEmpresasRegistradas.getSelectedItem();
+				String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
+				DefaultComboBoxModel<String> model;
+	    		model = new DefaultComboBoxModel<String>(ofertasLaborales);
+	    		comboBoxOfertasLaborales.setModel(model);
+			} catch (UsuarioNoExisteException e1) {
+				e1.printStackTrace();
+			}
     		
-    	}
     }
     
-    public void cargarDatosOferta(DTOfertaLaboral dtOfertaLaboral)
+    public void cargarDatosOferta(ActionEvent e)
     {
-	   textFieldNombre.setText(dtOfertaLaboral.getNombre());
-	   textFieldDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
-	   textFieldHoraInicio.setText(dateToString(dtOfertaLaboral.getHoraInicio()));
-	   textFieldHoraFin.setText(dateToString(dtOfertaLaboral.getHoraFin()));
-	   textFieldRemuneracion.setText((dtOfertaLaboral.getRemuneracion()).toString());
-	   textFieldCiudad.setText(dtOfertaLaboral.getCiudad());
-	   textFieldDepartamento.setText(dtOfertaLaboral.getDepartamento());
-	   textFieldFechaAlta.setText(dateToString(dtOfertaLaboral.getFechaAlta()));
+    	String ofertaLaboral = (String) comboBoxOfertasLaborales.getSelectedItem();
+	    DTOfertaLaboral dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
+		textFieldNombre.setText(dtOfertaLaboral.getNombre());
+		textFieldDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
+		textFieldHoraInicio.setText(dateToString(dtOfertaLaboral.getHoraInicio()));
+		textFieldHoraFin.setText(dateToString(dtOfertaLaboral.getHoraFin()));
+		textFieldRemuneracion.setText((dtOfertaLaboral.getRemuneracion()).toString());
+		textFieldCiudad.setText(dtOfertaLaboral.getCiudad());
+		textFieldDepartamento.setText(dtOfertaLaboral.getDepartamento());
+		textFieldFechaAlta.setText(dateToString(dtOfertaLaboral.getFechaAlta()));
     }
     
 }

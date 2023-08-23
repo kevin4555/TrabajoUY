@@ -181,7 +181,7 @@ private void initialize() {
         menuItemPostulacionOfertaLab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para postularse a una oferta laboral
-            	postulacionOfertaLabInternalFrame.cargarEmpresas();
+            	//postulacionOfertaLabInternalFrame.cargarEmpresas();
             	postulacionOfertaLabInternalFrame.setVisible(true);
             }
         });
