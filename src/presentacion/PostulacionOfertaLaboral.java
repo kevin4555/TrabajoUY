@@ -57,8 +57,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Postulación a Oferta Laboral");
-        setBounds(30, 30, 400, 280);
-        getContentPane().setLayout(new BorderLayout(0, 0));
+        setBounds(30, 30, 508, 380);
+        
         
         JPanel ubicacionNorte = new JPanel();
         getContentPane().add(ubicacionNorte, BorderLayout.NORTH);
@@ -87,6 +87,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         JComboBox comboBoxOfertasLaborales = new JComboBox();
         ubicacionComboBox.add(comboBoxOfertasLaborales);
         comboBoxOfertasLaborales.setVisible(false);
+        
+        
         
         JPanel ubicacionCentro = new JPanel();
         getContentPane().add(ubicacionCentro, BorderLayout.CENTER);
