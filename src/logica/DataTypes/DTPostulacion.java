@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class DTPostulacion {
 
-	//private DTUsuario usuario;
+	private DTUsuario usuario;
 
 	private String descripMotivacion;
 
@@ -12,16 +12,16 @@ public class DTPostulacion {
 
 	private String cvReducido;
 
-	/*DTPostulacion(DTUsuario usuario, String descripMotivacion, Date fechaPostulacion, String cvReducido) {
+	public DTPostulacion(DTUsuario usuario, String descripMotivacion, Date fechaPostulacion, String cvReducido) {
 		this.usuario = usuario;
 		this.descripMotivacion = descripMotivacion;
 		this.fechaPostulacion = fechaPostulacion;
 		this.cvReducido = cvReducido;
-	}*/
+	}
 
-	/*public DTUsuario getUsuario() {
+	public DTUsuario getUsuario() {
 		return usuario;
-	}*/
+	}
 
 	
 	public String getDescripMotivacion() {
@@ -35,5 +35,6 @@ public class DTPostulacion {
 	public String getCvReducido() {
 		return cvReducido;
 	}
+	
 
 }

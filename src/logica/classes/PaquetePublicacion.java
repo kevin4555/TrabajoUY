@@ -94,12 +94,9 @@ public class PaquetePublicacion {
 		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo);
 	}
 
-	
 	//FALTA IMPLEMENTAR
-	public void crearCantidadTipoPublicacion(PaquetePublicacion paquetePublicacion, int cantIncluida,
-			TipoPublicacion tipoPublicacion) {
-		    
-
+	public void crearCantidadTipoPublicacion(PaquetePublicacion paquetePublicacion, int cantIncluida, TipoPublicacion tipoPublicacion) {
+		   
 	}
 
 }
