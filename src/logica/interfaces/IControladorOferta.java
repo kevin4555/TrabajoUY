@@ -1,7 +1,6 @@
 package logica.interfaces;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
@@ -11,7 +10,6 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExiste;
 import excepciones.TipoPublicacionYaExisteException;
-import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.CantidadTipoPublicacion;
 import logica.classes.Keyword;
@@ -20,9 +18,7 @@ import logica.classes.TipoPublicacion;
 
 public interface IControladorOferta {
 	
-	public void altaOfertaLaboral(String nombre, String descripcion, String horario, float remuneracion,
-			String ciudad, String departamento, Date fechaAlta,
-			TipoPublicacion tipoPublicacion) throws OfertaLaboralYaExisteException;
+	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) throws OfertaLaboralYaExisteException;
 
 	public ArrayList<String> listarPostulantes();
 	
