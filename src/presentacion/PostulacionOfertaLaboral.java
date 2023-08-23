@@ -22,6 +22,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.SwingConstants;
@@ -336,7 +337,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     {
     	try {
 			String empresa = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
-			this.nomEmpresa = controlUsuarioLab.obtenerEmpresa(empresa);
+			//this.Empresa = controlUsuarioLab.obtenerEmpresa(empresa);
 			
 			String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
 			DefaultComboBoxModel<String> model;
@@ -351,14 +352,14 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     {
     	String ofertaLaboral = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
     	try {
-			this.nomOferta = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
+			this.oferta = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
 		} catch (OfertaLaboralNoExisteException e1) {
 		}
 	    DTOfertaLaboral dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
 		textFieldNombre.setText(dtOfertaLaboral.getNombre());
 		textFieldDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
-		textFieldHoraInicio.setText(dateToString(dtOfertaLaboral.getHoraInicio()));
-		textFieldHoraFin.setText(dateToString(dtOfertaLaboral.getHoraFin()));
+		/*textFieldHoraInicio.setText(dateToString(dtOfertaLaboral.getHoraInicio()));
+		textFieldHoraFin.setText(dateToString(dtOfertaLaboral.getHoraFin()));*/
 		textFieldRemuneracion.setText((dtOfertaLaboral.getRemuneracion()).toString());
 		textFieldCiudad.setText(dtOfertaLaboral.getCiudad());
 		textFieldDepartamento.setText(dtOfertaLaboral.getDepartamento());
@@ -377,12 +378,29 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	String cvReducido = textFieldCVReducido.getText();
     	String motivacion = textFieldMotivacion.getText();
     	String fechaPostulacion = textFieldFechaPostulacion.getText();
-    	
+    	Date fechaPostulacionD = stringToDate(fechaPostulacion);
     	
     	if(chequearDatos())
-    	{
-    		controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacion, this.oferta.getNombre(), nomOferta);
-    	}
+    		try {
+                controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacionD, this.postulante.getNickname() , this.oferta.getNombre());
+            } catch (UsuarioNoExisteException e1) {
+
+            } catch (OfertaLaboralNoExisteException e1) {
+
+            }
+    }
+    
+    public Date stringToDate(String Fecha)
+    {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date fechaParseada;
+            fechaParseada = (Date) inputFormat.parse(Fecha);
+            return fechaParseada;
+        }catch(ParseException e)
+        {
+            return null;
+        }
     }
     
     public boolean chequearDatos()

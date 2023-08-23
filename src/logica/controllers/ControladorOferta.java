@@ -1,6 +1,7 @@
 package logica.controllers;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
@@ -41,8 +42,8 @@ public class ControladorOferta implements IControladorOferta {
 		}
 	}
 
-	public void altaOfertaLaboral(String nombre, String descripcion, Date horaInicio, Date horaFin, Float remuneracion,
-			String ciudad, String departamento, Date fechaAlta, ArrayList<Keyword> keywords,
+	public void altaOfertaLaboral(String nombre, String descripcion, String horario, float remuneracion,
+			String ciudad, String departamento, Date fechaAlta,
 			TipoPublicacion tipoPublicacion) throws OfertaLaboralYaExisteException {
 
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
@@ -51,8 +52,8 @@ public class ControladorOferta implements IControladorOferta {
 			throw new OfertaLaboralYaExisteException("La Oferta Laboral " + nombre + " ya se encuentra registrada");
 		}
 		else {
-			ofertaLaboral = new OfertaLaboral(nombre, descripcion, ciudad, departamento, horaInicio, horaFin,
-					remuneracion, fechaAlta, keywords, tipoPublicacion);
+			ofertaLaboral = new OfertaLaboral(nombre, descripcion, horario,
+					remuneracion,ciudad, departamento, fechaAlta, tipoPublicacion);
 			manejadorOfertas.agregarOferta(ofertaLaboral);
 		}
 		
@@ -102,6 +103,17 @@ public class ControladorOferta implements IControladorOferta {
 			manejadorSettings.addTipoPublicacion(tipoPublicacion);
 		}
 
+	}
+	
+	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExiste {
+		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
+		TipoPublicacion tpoPublic = manejadorSettings.obtenerTipoPublicacion(nomTpoPublic);
+		if  (tpoPublic == null) {
+			throw new TipoPublicacionNoExiste("El tipo de publicacion " + nomTpoPublic + " no existe");
+		}
+		else {
+			return tpoPublic;
+		}
 	}
 	
 	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException {
@@ -202,14 +214,23 @@ public class ControladorOferta implements IControladorOferta {
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion,
-			String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic,
-			String nicknameEmpresa) throws TipoPublicacionNoExiste, KeywordNoExisteException, UsuarioNoExisteException {
-		// TODO Auto-generated method stub
-
+	
+	public void agregarKeywordEnOfertaLaboral(String nomKeyword, String nomOferta) throws KeywordNoExisteException, OfertaLaboralNoExisteException {
+		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
+		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
+		Keyword keyword = manejadorSettings.obtenerKeyword(nomKeyword);
+		if (keyword == null) {
+			throw new KeywordNoExisteException("La Keyword " + nomKeyword + " no existe");
+		}
+		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
+		if (ofertaLaboral == null) {
+			throw new OfertaLaboralNoExisteException("La Oferta laboral " + nomOferta + " no existe");
+		}
+		ofertaLaboral.agregarKeyword(keyword);
+		
 	}
+
+
 
 	@Override
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida) {
