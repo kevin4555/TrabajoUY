@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.sql.Time;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -13,7 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import excepciones.KeywordYaExisteException;
 import excepciones.TipoPublicacionYaExisteException;
+import excepciones.UsuarioYaExisteException;
 import logica.controllers.Fabrica;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
@@ -152,6 +155,8 @@ private void initialize() {
         menuItemRegistrarOferta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar una oferta laboral
+            	crearOfertaLaboralInternalFrame.cargarEmpresas();
+            	crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
             	crearOfertaLaboralInternalFrame.setVisible(true);
             }
         });
@@ -193,9 +198,33 @@ private void initialize() {
 			ICO.altaTipoPublicacion("Destacada", "Destaca tu anuncio", "2", 15, 500f, Date.valueOf("2023-8-5"));
 			ICO.altaTipoPublicacion("Estándar", "Mejora la posición de tu anuncio", "3", 20, 150f, Date.valueOf("2023-8-15"));
 			ICO.altaTipoPublicacion("Básica", "Publica de forma sencilla en la lista de ofertas", "4", 7, 50f, Date.valueOf("2023-8-7"));
-			JOptionPane.showMessageDialog(this, "El Tipo de Publicacion se ha creado con éxito", "Trabajo.uy",
+			ICO.altaKeyword("Tiempo completo");
+			ICO.altaKeyword("Medio tiempo");
+			ICO.altaKeyword("Remoto");
+			ICO.altaKeyword("Freelance");
+			ICO.altaKeyword("Temporal");
+			ICO.altaKeyword("Permanente");
+			ICO.altaKeyword("Computación");
+			ICO.altaKeyword("Administración");
+			ICO.altaKeyword("Logística");
+			ICO.altaKeyword("Contabilidad");
+			ICU.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com", "EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
+					"http://www.EcoTechInnovations.com");
+			ICU.altaEmpresa("FusionTech", "William", "Smith", "contacto@FusionTech.net", "FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y la automatización avanzada. Nuestro equipo multidisciplinario de ingenieros, científicos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimización de procesos industriales hasta la creación de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnología mejore y amplíe nuestras capacidades innatas.",
+					"http://www.fusiontechdynamics.net");
+			
+			
+			//ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
+				//Time.valueOf("09:00:00"), Time.valueOf("18:00:00"), 90000f, Date.valueOf("2023-8-14"), , );
+			JOptionPane.showMessageDialog(this, "Los Datos de prueba se ha creado con éxito", "Trabajo.uy",
                     JOptionPane.INFORMATION_MESSAGE);
 		} catch (TipoPublicacionYaExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		} catch (KeywordYaExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		} catch (java.lang.NullPointerException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		} catch (UsuarioYaExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		}
 		

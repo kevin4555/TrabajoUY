@@ -22,10 +22,9 @@ public class OfertaLaboral {
 	private Date fechaAlta;
 	private ArrayList<Keyword> kewords;
 	private TipoPublicacion tipoPublicacion;
-	private CompraPaquete compraPaquete;
 	private ArrayList<Postulacion> postulaciones;
 	
-	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,Float remuneracion,Date fechaAlta, ArrayList<Keyword> keywords ,TipoPublicacion tipoPublicacion, CompraPaquete cp) {
+	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,Float remuneracion,Date fechaAlta, ArrayList<Keyword> keywords ,TipoPublicacion tipoPublicacion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
@@ -36,7 +35,6 @@ public class OfertaLaboral {
 		this.fechaAlta = fechaAlta;
 		this.kewords = keywords;
 		this.tipoPublicacion = tipoPublicacion;
-		this.compraPaquete = cp;
 	}
 
 	public String getNombre() {
@@ -104,13 +102,6 @@ public class OfertaLaboral {
 		this.tipoPublicacion = tp;
 	}
 
-	public CompraPaquete getCompraPaquete() {
-		return compraPaquete;
-	}
-
-	public void setCompraPaquete(CompraPaquete cp) {
-		this.compraPaquete = cp;
-	}
 	
 
 	public void agregarPostulacion(Postulacion postulacion) {

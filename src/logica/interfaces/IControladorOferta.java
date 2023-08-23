@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.KeywordNoExisteException;
+import excepciones.KeywordYaExisteException;
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.TipoPublicacionNoExiste;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
@@ -23,7 +25,7 @@ public interface IControladorOferta {
 	
 	public ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException;
 	
-	public OfertaLaboral obtenerOfertaLaboral(String nomOferta);
+	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException;
 	
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida);
 	
@@ -31,7 +33,9 @@ public interface IControladorOferta {
 	
 	public void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub);
 	
-	public Keyword obtenerKeywords(String nomKeyword);
+	public Keyword obtenerKeywords(String nomKeyword) throws KeywordNoExisteException;
+	
+	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException;
 	
 	public ArrayList<String> listarKeywords();
 	
