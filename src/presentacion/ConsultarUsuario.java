@@ -27,6 +27,9 @@ import logica.interfaces.IControladorUsuario;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
 public class ConsultarUsuario extends JInternalFrame {
@@ -38,7 +41,6 @@ public class ConsultarUsuario extends JInternalFrame {
 	private JTextField textFieldRemuneracion;
 	private JTextField textFieldCiudad;
 	private JTextField textFieldDepartamento;
-	private JTextField textFieldDescripcion;
 	private JTextField textFieldSitioWeb;
 	private JTextField textFieldFechaNacimiento;
 	private JTextField textFieldNacionalidad;
@@ -49,6 +51,8 @@ public class ConsultarUsuario extends JInternalFrame {
 	private JPanel panelPostulante;
 	private JLayeredPane layeredPane;
 	private JComboBox<String> comboBoxSeleccionOferta;
+	private JScrollPane scrollPane;
+	private JTextArea textAreaDescripcion;
 	public ConsultarUsuario(IControladorUsuario contrUsuario, IControladorOferta contrOferta) {
 		setIconifiable(true);
 		setResizable(true);
@@ -57,6 +61,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		controladorUsuario = contrUsuario;
 		controladorOferta = contrOferta;
 		getContentPane().setLayout(new BorderLayout(0, 0));
+		setBounds(100, 100, 594, 502);
 		
 		JPanel panelBotones = new JPanel();
 		getContentPane().add(panelBotones, BorderLayout.SOUTH);
@@ -182,7 +187,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		
 		layeredPane = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane = new GridBagConstraints();
-		gbc_layeredPane.gridheight = 2;
+		gbc_layeredPane.gridheight = 3;
 		gbc_layeredPane.gridwidth = 2;
 		gbc_layeredPane.insets = new Insets(0, 0, 5, 0);
 		gbc_layeredPane.fill = GridBagConstraints.BOTH;
@@ -195,33 +200,15 @@ public class ConsultarUsuario extends JInternalFrame {
 		layeredPane.add(panelEmpresa, "name_918030925291900");
 		GridBagLayout gbl_panelEmpresa = new GridBagLayout();
 		gbl_panelEmpresa.columnWidths = new int[]{114, 0, 0};
-		gbl_panelEmpresa.rowHeights = new int[]{0, 0, 0};
+		gbl_panelEmpresa.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_panelEmpresa.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_panelEmpresa.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelEmpresa.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panelEmpresa.setLayout(gbl_panelEmpresa);
-		
-		JLabel lblDescripcionEmpresa = new JLabel("Descripcion:");
-		GridBagConstraints gbc_lblDescripcionEmpresa = new GridBagConstraints();
-		gbc_lblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDescripcionEmpresa.anchor = GridBagConstraints.EAST;
-		gbc_lblDescripcionEmpresa.gridx = 0;
-		gbc_lblDescripcionEmpresa.gridy = 0;
-		panelEmpresa.add(lblDescripcionEmpresa, gbc_lblDescripcionEmpresa);
-		
-		textFieldDescripcion = new JTextField();
-		textFieldDescripcion.setEditable(false);
-		GridBagConstraints gbc_textFieldDescripcion = new GridBagConstraints();
-		gbc_textFieldDescripcion.insets = new Insets(0, 0, 5, 0);
-		gbc_textFieldDescripcion.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldDescripcion.gridx = 1;
-		gbc_textFieldDescripcion.gridy = 0;
-		panelEmpresa.add(textFieldDescripcion, gbc_textFieldDescripcion);
-		textFieldDescripcion.setColumns(10);
 		
 		JLabel lblSitioWeb = new JLabel("Sitio Web:");
 		GridBagConstraints gbc_lblSitioWeb = new GridBagConstraints();
 		gbc_lblSitioWeb.anchor = GridBagConstraints.EAST;
-		gbc_lblSitioWeb.insets = new Insets(0, 0, 0, 5);
+		gbc_lblSitioWeb.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSitioWeb.gridx = 0;
 		gbc_lblSitioWeb.gridy = 1;
 		panelEmpresa.add(lblSitioWeb, gbc_lblSitioWeb);
@@ -229,11 +216,38 @@ public class ConsultarUsuario extends JInternalFrame {
 		textFieldSitioWeb = new JTextField();
 		textFieldSitioWeb.setEditable(false);
 		GridBagConstraints gbc_textFieldSitioWeb = new GridBagConstraints();
+		gbc_textFieldSitioWeb.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldSitioWeb.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldSitioWeb.gridx = 1;
 		gbc_textFieldSitioWeb.gridy = 1;
 		panelEmpresa.add(textFieldSitioWeb, gbc_textFieldSitioWeb);
 		textFieldSitioWeb.setColumns(10);
+		
+		JLabel lblDescripcionEmpresa = new JLabel("Descripcion:");
+		GridBagConstraints gbc_lblDescripcionEmpresa = new GridBagConstraints();
+		gbc_lblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDescripcionEmpresa.anchor = GridBagConstraints.EAST;
+		gbc_lblDescripcionEmpresa.gridx = 0;
+		gbc_lblDescripcionEmpresa.gridy = 2;
+		panelEmpresa.add(lblDescripcionEmpresa, gbc_lblDescripcionEmpresa);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setEnabled(false);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 2;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 2;
+		panelEmpresa.add(scrollPane, gbc_scrollPane);
+		
+		textAreaDescripcion = new JTextArea();
+		textAreaDescripcion.setLineWrap(true);
+		textAreaDescripcion.setWrapStyleWord(true);
+		textAreaDescripcion.setEditable(false);
+		scrollPane.setViewportView(textAreaDescripcion);
 		
 		panelPostulante = new JPanel();
 		layeredPane.add(panelPostulante, "name_919472867094100");
@@ -409,7 +423,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.textFieldEmail.setText(dtUsuario.getEmail());
 		if(dtUsuario instanceof DTEmpresa) {
 			DTEmpresa dtEmpresa = (DTEmpresa) dtUsuario;
-			this.textFieldDescripcion.setText(dtEmpresa.getDescripcion());
+			this.textAreaDescripcion.setText(dtEmpresa.getDescripcion());
 			this.textFieldSitioWeb.setText(dtEmpresa.getSitioWeb());
 			cambiarPanel(panelEmpresa);			
 		}
