@@ -76,7 +76,7 @@ public class Principal extends JFrame {
         crearTipoPublicDeOfertaLabInternalFrame = new AltaTipoPublicacionDeOfertaLab(ICO);
         crearTipoPublicDeOfertaLabInternalFrame.setVisible(false);
         
-        postulacionOfertaLabInternalFrame = new PostulacionOfertaLaboral(ICO);
+        postulacionOfertaLabInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
         postulacionOfertaLabInternalFrame.setVisible(false);
 
 		
@@ -181,6 +181,7 @@ private void initialize() {
         menuItemPostulacionOfertaLab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para postularse a una oferta laboral
+            	postulacionOfertaLabInternalFrame.cargarEmpresas();
             	postulacionOfertaLabInternalFrame.setVisible(true);
             }
         });
