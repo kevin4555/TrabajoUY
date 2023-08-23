@@ -223,7 +223,7 @@ private void initialize() {
 			ICU.altaEmpresa("MIEM", "Pablo" , "Bengoechea" , "eldiez@MIEM.org.uy" , "Balance Energ´etico Nacional (BEN). La Dirección Nacional de Energía (DNE) del Ministerio de Industria, Energía y Minería (MIEM) presenta anualmente el BEN.",
 					"MIEM.com.uy");
 			ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
-				"09:00 - 18:00", 90000f,"Montevideo", "Montevideo", Date.valueOf("2023-8-14"), ICO.obtenerTipoPublicacion("Premium"));
+				"09:00", "18:00", 90000f,"Montevideo", "Montevideo", Date.valueOf("2023-8-14"), ICO.obtenerTipoPublicacion("Premium"));
 			JOptionPane.showMessageDialog(this, "Los Datos de prueba se ha creado con éxito", "Trabajo.uy", JOptionPane.INFORMATION_MESSAGE);
 			
 		} catch (TipoPublicacionYaExisteException e) {
