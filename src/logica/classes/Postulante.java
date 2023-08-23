@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import logica.DataTypes.DTPostulante;
+import logica.DataTypes.DTUsuario;
 
 public class Postulante extends Usuario{
 	private Date fechaNacimiento;
@@ -13,11 +14,11 @@ public class Postulante extends Usuario{
 	
 	public Postulante() {}
 	
-	public Postulante(String nickname, String nombre, 
-			String apellido, String email, Date fechaNacimiento, String nacionalidad) {
+	public Postulante(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, String nacionalidad) {
 		super(nickname, nombre, apellido, email);
 		this.fechaNacimiento = fechaNacimiento;
 		this.nacionalidad = nacionalidad;
+		this.postulaciones = new ArrayList<Postulacion>();
 	}
 	
 	public Date getFechaNacimiento() {
@@ -52,5 +53,21 @@ public class Postulante extends Usuario{
 	public void agregarPostulacion(Postulacion postulacion) {
 		this.postulaciones.add(postulacion);
 	}
+	
+	@Override
+	public ArrayList<String> listarOfertasUsuario(){
+		ArrayList<String> listaOfertas = new ArrayList<String>();
+		for(Postulacion postulacion : postulaciones ) {
+			listaOfertas.add(postulacion.getNombreOfertaLaboral());
+		}
+		return listaOfertas;
+	}
+
+	@Override
+	public DTUsuario obtenerDTUsuario() {
+		
+		return this.obtenerDTPostulante();
+	}
+	
 	
 }

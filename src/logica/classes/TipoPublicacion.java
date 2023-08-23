@@ -58,5 +58,9 @@ public class TipoPublicacion {
 		this.fechaAlta = fechaAlta;
 	}
 	
+	public CantidadTipoPublicacion getCantidadTipoPublicacion()
+	{
+		return cantTipo;
+	}
 }
 

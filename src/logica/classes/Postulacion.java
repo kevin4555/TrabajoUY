@@ -2,6 +2,9 @@ package logica.classes;
 
 import java.util.Date;
 
+import logica.DataTypes.DTPostulacion;
+import logica.DataTypes.DTUsuario;
+
 public class Postulacion {
 	private Postulante postulante;
 	private OfertaLaboral ofertaLaboral;
@@ -48,5 +51,18 @@ public class Postulacion {
 
 	public Postulante getPostulante() {
 		return postulante;
+	}
+	
+	public DTPostulacion obtenerDTPostulacion()
+	{
+		
+		DTUsuario dtUsuario = new DTUsuario(this.getPostulante().getNickname(), this.getPostulante().getNombre(), this.getPostulante().getApellido(), this.getPostulante().getEmail());
+		
+		DTPostulacion dtPostulacion = new DTPostulacion(dtUsuario, this.getDescrpMotivacion(), (java.sql.Date) this.getFechaPostulacion(), this.getCvReducido());
+		return dtPostulacion;
+	}
+	
+	public String getNombreOfertaLaboral() {
+		return this.ofertaLaboral.getNombre();
 	}
 }

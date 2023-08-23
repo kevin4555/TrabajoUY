@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import logica.DataTypes.DTEmpresa;
+import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTUsuario;
+
 public class Empresa extends Usuario {
 	private String descripcion;
 	private String sitioWeb;
@@ -11,11 +15,11 @@ public class Empresa extends Usuario {
 	
 	public Empresa() {}
 	
-	public Empresa(String nickname, String nombre, 
-			String apellido, String email, String descripcion, String sitioWeb) {
+	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb) {
 		super(nickname, nombre, apellido, email);
 		this.descripcion = descripcion;
 		this.sitioWeb = sitioWeb;
+		this.ofertasLaborales = new ArrayList<OfertaLaboral>();
 	}
 	//cambio
 	
@@ -42,8 +46,11 @@ public class Empresa extends Usuario {
 	
 	public ArrayList<String> obtenerNombresOfertas(){
 		ArrayList<String> ofertas = new ArrayList<String>();
-		for (OfertaLaboral oferta : this.ofertasLaborales) {
-			ofertas.add(oferta.getNombre());
+		if(!ofertasLaborales.isEmpty())
+		{
+			for (OfertaLaboral oferta : this.ofertasLaborales) {
+				ofertas.add(oferta.getNombre());
+			}
 		}
 		return ofertas;
 	}
@@ -56,4 +63,26 @@ public class Empresa extends Usuario {
 		this.ofertasLaborales = ofertasLaborales;
 	}
 	
+	public DTEmpresa obtenerDTEmpresa() {
+		ArrayList<DTOfertaLaboral> listaDTOfertas = new ArrayList<DTOfertaLaboral>();
+		for(OfertaLaboral oferta : ofertasLaborales) {
+			listaDTOfertas.add(oferta.obtenerDTOfertaLaboral());
+		}
+		DTEmpresa resultado = new DTEmpresa(this.nickname, this.nombre, this.apellido, this.email, this.descripcion, this.sitioWeb, listaDTOfertas);
+		return resultado;
+	}
+	
+	@Override
+	public ArrayList<String> listarOfertasUsuario(){
+		ArrayList<String> listaOfertas = new ArrayList<String>();
+		for(OfertaLaboral oferta : ofertasLaborales) {
+			listaOfertas.add(oferta.getNombre());
+		}
+		return listaOfertas;
+	}
+
+	@Override
+	public DTUsuario obtenerDTUsuario() {
+		return this.obtenerDTEmpresa();
+	}
 }
