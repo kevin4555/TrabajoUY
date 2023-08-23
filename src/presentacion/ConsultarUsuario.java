@@ -198,13 +198,13 @@ public class ConsultarUsuario extends JInternalFrame {
 		panelEmpresa.add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
 		
-		JLabel lblCitioWeb = new JLabel("Citio Web:");
-		GridBagConstraints gbc_lblCitioWeb = new GridBagConstraints();
-		gbc_lblCitioWeb.anchor = GridBagConstraints.EAST;
-		gbc_lblCitioWeb.insets = new Insets(0, 0, 0, 5);
-		gbc_lblCitioWeb.gridx = 0;
-		gbc_lblCitioWeb.gridy = 1;
-		panelEmpresa.add(lblCitioWeb, gbc_lblCitioWeb);
+		JLabel lblSitioWeb = new JLabel("Sitio Web:");
+		GridBagConstraints gbc_lblSitioWeb = new GridBagConstraints();
+		gbc_lblSitioWeb.anchor = GridBagConstraints.EAST;
+		gbc_lblSitioWeb.insets = new Insets(0, 0, 0, 5);
+		gbc_lblSitioWeb.gridx = 0;
+		gbc_lblSitioWeb.gridy = 1;
+		panelEmpresa.add(lblSitioWeb, gbc_lblSitioWeb);
 		
 		textField_5 = new JTextField();
 		textField_5.setEditable(false);
