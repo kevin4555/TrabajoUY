@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import logica.DataTypes.DTOfertaLaboral;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
@@ -67,74 +68,41 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         setClosable(true);
         setTitle("Consultar Oferta Laboral");
         setBounds(30, 30, 483, 339);
+        getContentPane().setLayout(null);
         
-        JPanel ubicacionBoton = new JPanel();
-        ubicacionBoton.setBorder(new EmptyBorder(5,5,5,5));
-        getContentPane().add(ubicacionBoton, BorderLayout.SOUTH);
-        ubicacionBoton.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
+        JPanel ubicacionComboBox = new JPanel();
+        ubicacionComboBox.setBounds(104, 36, 300, 75);
+        getContentPane().add(ubicacionComboBox);
+        ubicacionComboBox.setLayout(new GridLayout(2, 1, 10, 25));
+        
+        JComboBox comboBoxEmpresasRegistradas = new JComboBox();
+        ubicacionComboBox.add(comboBoxEmpresasRegistradas);
+        
+        JComboBox comboBoxOfertasLaborales = new JComboBox();
+        ubicacionComboBox.add(comboBoxOfertasLaborales);
         
         JPanel ubicacionEtiquetas = new JPanel();
-        ubicacionEtiquetas.setBorder(new EmptyBorder(2,10,150,5));
-        getContentPane().add(ubicacionEtiquetas, BorderLayout.WEST);
-        ubicacionEtiquetas.setLayout(new GridLayout(2,1,1,1));
+        ubicacionEtiquetas.setBounds(10, 36, 89, 75);
+        getContentPane().add(ubicacionEtiquetas);
+        ubicacionEtiquetas.setLayout(new GridLayout(2, 1, 10, 15));
         
+        JLabel lblOfertasLaborales = new JLabel("Ofertas Laborales");
+        ubicacionEtiquetas.add(lblOfertasLaborales);
         
+        JLabel lblEmpresas = new JLabel("Empresas");
+        ubicacionEtiquetas.add(lblEmpresas);
         
-        JPanel ubicacionCombo = new JPanel(new GridBagLayout());
-        ubicacionCombo.setBorder(new EmptyBorder(5,5,120,5));
-        getContentPane().add(ubicacionCombo, BorderLayout.CENTER);
-        ubicacionCombo.setLayout(new GridLayout(3, 1, 1, 15));
+        JPanel panel = new JPanel();
+        panel.setBounds(212, 257, 113, 41);
+        getContentPane().add(panel);
         
         JButton btnCerrar = new JButton("Cerrar");
-        ubicacionBoton.add(btnCerrar);
-        
-        btnCerrar.addActionListener(new ActionListener()
-        {
-        	public void actionPerformed(ActionEvent e)
-        	{
-        		dispose();
+        panel.add(btnCerrar);
+        btnCerrar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
         	}
         });
-        
-        JLabel lblempresas = new JLabel("Empresas");
-        ubicacionEtiquetas.add(lblempresas);
-        
-        JLabel lblofertasLaborales = new JLabel("	Ofertas Laborales");
-        lblofertasLaborales.setBounds(200,200,0, 0);
-        ubicacionEtiquetas.add(lblofertasLaborales);
-        lblofertasLaborales.setVisible(false);
-        
-        JComboBox comboBoxListaEmpresas = new JComboBox<>();
-        ubicacionCombo.add(comboBoxListaEmpresas);
-        
-        JComboBox comboBoxListaOfertasLaborales = new JComboBox();
-        comboBoxListaOfertasLaborales.setVisible(false);
-        ubicacionCombo.add(comboBoxListaOfertasLaborales);
-        
-        
-        
-        comboBoxListaEmpresas.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String empresaSeleccionada = (String) comboBoxListaEmpresas.getSelectedItem();
-                try {
-                	lblofertasLaborales.setVisible(true);
-                	comboBoxListaOfertasLaborales.setVisible(true);
-					String[] ofertasEmpresas = (controlUsuarioLab.obtenerOfertasEmpresa(empresaSeleccionada)).toArray(new String[0]);
-					cargarOfertaEmpresa(ofertasEmpresas);
-                } catch (UsuarioNoExisteException e1) {
-					e1.printStackTrace();
-				}
-                
-            }
-        });
-        
-        comboBoxListaOfertasLaborales.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String ofertaSeleccionada = (String) comboBoxListaOfertasLaborales.getSelectedItem();                
-            }
-        }); 
+      
     }
     
     
@@ -158,6 +126,8 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
 		comboBoxListaOfertasLaborales.setModel(model);
     }
     
-   
-    
+    public void mostrarInformacionOfertaLaboral(DTOfertaLaboral dtOfertaLaboral)
+    {
+    	
+    }
 }

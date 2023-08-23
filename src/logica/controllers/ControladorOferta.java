@@ -173,9 +173,9 @@ public class ControladorOferta implements IControladorOferta {
 	@Override
 	public void altaOfertaLaboral(String nombre, String descrip, Date horaInicio, Date horaFin, double remuneracion,
 			String ciudad, String departamento, Date fechaAlta, ArrayList<String> keywords, String nomTpoPublic,
-			String nicknameEmpresa) throws TipoPublicacionNoExiste, KeywordNoExisteException, UsuarioNoExisteException {
-		// TODO Auto-generated method stub
-
+			String nicknameEmpresa)
+	{
+		
 	}
 
 	@Override
