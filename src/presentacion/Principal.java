@@ -3,6 +3,7 @@ package presentacion;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import excepciones.TipoPublicacionYaExisteException;
 import logica.controllers.Fabrica;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
@@ -186,6 +188,16 @@ private void initialize() {
     }
 
 	protected void cargarDatosDePrueba(ActionEvent arg0) {
+		try {
+			ICO.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30, 4000f, Date.valueOf("2023-8-10"));
+			ICO.altaTipoPublicacion("Destacada", "Destaca tu anuncio", "2", 15, 500f, Date.valueOf("2023-8-5"));
+			ICO.altaTipoPublicacion("Estándar", "Mejora la posición de tu anuncio", "3", 20, 150f, Date.valueOf("2023-8-15"));
+			ICO.altaTipoPublicacion("Básica", "Publica de forma sencilla en la lista de ofertas", "4", 7, 50f, Date.valueOf("2023-8-7"));
+			JOptionPane.showMessageDialog(this, "El Tipo de Publicacion se ha creado con éxito", "Trabajo.uy",
+                    JOptionPane.INFORMATION_MESSAGE);
+		} catch (TipoPublicacionYaExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		}
 		
 	}
 

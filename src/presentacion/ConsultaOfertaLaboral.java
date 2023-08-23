@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 import javax.swing.BoxLayout;
 import java.awt.TextArea;
 import java.awt.Panel;

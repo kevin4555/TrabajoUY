@@ -34,12 +34,16 @@ public class ManejadorSettings {
 		return listTipoPublicaciones;
 	}
 
-	public TipoPublicacion obtenerTipoPublicacion(String nombre) throws TipoPublicacionNoExiste {
-		if (colTipoPublicaciones.get(nombre) != null) {
+	public TipoPublicacion obtenerTipoPublicacion(String nombre)  {
+		//if (colTipoPublicaciones.get(nombre) != null) {
 			return colTipoPublicaciones.get(nombre);
-		} else {
+		/*} else {
 			throw new TipoPublicacionNoExiste("TipoPublicacion " + nombre + " no existe");
-		}
+		}*/
+	}
+	
+	public void addTipoPublicacion(TipoPublicacion tpoPublic) {
+		colTipoPublicaciones.put(tpoPublic.getNombre(), tpoPublic);
 	}
 
 	public void addKeyword(String nombre) throws KeywordYaExisteException {

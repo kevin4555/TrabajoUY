@@ -7,6 +7,7 @@ import excepciones.KeywordNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExiste;
+import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.CantidadTipoPublicacion;
@@ -78,11 +79,21 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
-			Date fechaPub) {
-		TipoPublicacion tipoPublicacion = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo,
-				fechaPub);
+			Date fechaPub) throws TipoPublicacionYaExisteException {
+		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
+		TipoPublicacion tpoPublic = manejadorSettings.obtenerTipoPublicacion(nombre);
+		if (tpoPublic != null) {
+			throw new TipoPublicacionYaExisteException("El tipo de publicacion " + nombre + " ya se encuentra registrado");
+		}
+		else {
+			TipoPublicacion tipoPublicacion = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo,
+					fechaPub);
+			manejadorSettings.addTipoPublicacion(tipoPublicacion);
+		}
 
 	}
+	
+	
 
 	public Keyword obtenerKeywords(String nomKeyword) {
 		try {

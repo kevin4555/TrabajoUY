@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.KeywordNoExisteException;
 import excepciones.TipoPublicacionNoExiste;
+import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.CantidadTipoPublicacion;
@@ -41,4 +42,7 @@ public interface IControladorOferta {
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa);
 	
 	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias, Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion);
+
+	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
+			Date fechaPub) throws TipoPublicacionYaExisteException;
 }
