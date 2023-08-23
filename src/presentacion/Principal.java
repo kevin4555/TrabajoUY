@@ -61,7 +61,7 @@ public class Principal extends JFrame {
         crearUsuInternalFrame = new CrearUsuario(ICU);
         crearUsuInternalFrame.setVisible(false);
 
-        consultarUsuInternalFrame = new ConsultarUsuario(ICU);
+        consultarUsuInternalFrame = new ConsultarUsuario(ICU, ICO);
         consultarUsuInternalFrame.setVisible(false);
         
         crearOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICO, ICU);
@@ -138,6 +138,7 @@ private void initialize() {
        menuConsultaUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
+            	consultarUsuInternalFrame.cargarUsuarios();
             	consultarUsuInternalFrame.setVisible(true);
             }
         });

@@ -16,6 +16,12 @@ import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import javax.swing.JTextField;
 
+import excepciones.UsuarioNoExisteException;
+import logica.DataTypes.DTEmpresa;
+import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTPostulante;
+import logica.DataTypes.DTUsuario;
+import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
 import javax.swing.JComboBox;
@@ -24,22 +30,32 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class ConsultarUsuario extends JInternalFrame {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textFieldNickName;
+	private JTextField textFieldNombre;
+	private JTextField textFieldApellido;
+	private JTextField textFieldEmail;
 	private JTextField textFieldNombreOferta;
-	private JTextField textFieldDescripcionOferta;
 	private JTextField textFieldRemuneracion;
 	private JTextField textFieldCiudad;
 	private JTextField textFieldDepartamento;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField textFieldDescripcion;
+	private JTextField textFieldSitioWeb;
+	private JTextField textFieldFechaNacimiento;
+	private JTextField textFieldNacionalidad;
 	private IControladorUsuario controladorUsuario;
-	public ConsultarUsuario(IControladorUsuario contrUsuario) {
+	private IControladorOferta controladorOferta;
+	private JComboBox<String> comboBoxSeleccionUsuario;
+	private JPanel panelEmpresa;
+	private JPanel panelPostulante;
+	private JLayeredPane layeredPane;
+	private JComboBox<String> comboBoxSeleccionOferta;
+	public ConsultarUsuario(IControladorUsuario contrUsuario, IControladorOferta contrOferta) {
+		setIconifiable(true);
+		setResizable(true);
+		setClosable(true);
+		setMaximizable(true);
 		controladorUsuario = contrUsuario;
+		controladorOferta = contrOferta;
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelBotones = new JPanel();
@@ -47,6 +63,11 @@ public class ConsultarUsuario extends JInternalFrame {
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
 		
 		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		panelBotones.add(btnCerrar);
 		
 		JPanel panelDatos = new JPanel();
@@ -66,27 +87,26 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblSeleccion.gridy = 1;
 		panelDatos.add(lblSeleccion, gbc_lblSeleccion);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.addActionListener(new ActionListener() {
+		comboBoxSeleccionUsuario = new JComboBox<String>();
+		cargarUsuarios();
+		comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nicknameUsuario = comboBox.getSelectedItem().toString();
+				try {
+					cargarDatosUsuarios(e);
+				} catch (UsuarioNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
-		try {
-			ArrayList<String> listaUsuarios = contrUsuario.listaDeUsuarios();
-			for(String nickUsuario : listaUsuarios) {
-				comboBox.addItem(nickUsuario);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 1;
-		panelDatos.add(comboBox, gbc_comboBox);
+		
+		GridBagConstraints gbc_comboBoxSeleccionUsuario = new GridBagConstraints();
+		gbc_comboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBoxSeleccionUsuario.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxSeleccionUsuario.gridx = 1;
+		gbc_comboBoxSeleccionUsuario.gridy = 1;
+		panelDatos.add(comboBoxSeleccionUsuario, gbc_comboBoxSeleccionUsuario);
 		
 		JLabel lblNickname = new JLabel("Nickname:");
 		GridBagConstraints gbc_lblNickname = new GridBagConstraints();
@@ -96,15 +116,15 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblNickname.gridy = 2;
 		panelDatos.add(lblNickname, gbc_lblNickname);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 2;
-		panelDatos.add(textField, gbc_textField);
-		textField.setColumns(10);
+		textFieldNickName = new JTextField();
+		textFieldNickName.setEditable(false);
+		GridBagConstraints gbc_textFieldNickName = new GridBagConstraints();
+		gbc_textFieldNickName.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldNickName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNickName.gridx = 1;
+		gbc_textFieldNickName.gridy = 2;
+		panelDatos.add(textFieldNickName, gbc_textFieldNickName);
+		textFieldNickName.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
@@ -114,15 +134,15 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblNombre.gridy = 3;
 		panelDatos.add(lblNombre, gbc_lblNombre);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 3;
-		panelDatos.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		textFieldNombre = new JTextField();
+		textFieldNombre.setEditable(false);
+		GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
+		gbc_textFieldNombre.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNombre.gridx = 1;
+		gbc_textFieldNombre.gridy = 3;
+		panelDatos.add(textFieldNombre, gbc_textFieldNombre);
+		textFieldNombre.setColumns(10);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
 		GridBagConstraints gbc_lblApellido = new GridBagConstraints();
@@ -132,15 +152,15 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblApellido.gridy = 4;
 		panelDatos.add(lblApellido, gbc_lblApellido);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 4;
-		panelDatos.add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
+		textFieldApellido = new JTextField();
+		textFieldApellido.setEditable(false);
+		GridBagConstraints gbc_textFieldApellido = new GridBagConstraints();
+		gbc_textFieldApellido.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldApellido.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldApellido.gridx = 1;
+		gbc_textFieldApellido.gridy = 4;
+		panelDatos.add(textFieldApellido, gbc_textFieldApellido);
+		textFieldApellido.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
@@ -150,28 +170,28 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblEmail.gridy = 5;
 		panelDatos.add(lblEmail, gbc_lblEmail);
 		
-		textField_3 = new JTextField();
-		textField_3.setEditable(false);
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_3.gridx = 1;
-		gbc_textField_3.gridy = 5;
-		panelDatos.add(textField_3, gbc_textField_3);
-		textField_3.setColumns(10);
+		textFieldEmail = new JTextField();
+		textFieldEmail.setEditable(false);
+		GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
+		gbc_textFieldEmail.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldEmail.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldEmail.gridx = 1;
+		gbc_textFieldEmail.gridy = 5;
+		panelDatos.add(textFieldEmail, gbc_textFieldEmail);
+		textFieldEmail.setColumns(10);
 		
-		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane = new GridBagConstraints();
 		gbc_layeredPane.gridheight = 2;
 		gbc_layeredPane.gridwidth = 2;
-		gbc_layeredPane.insets = new Insets(0, 0, 5, 5);
+		gbc_layeredPane.insets = new Insets(0, 0, 5, 0);
 		gbc_layeredPane.fill = GridBagConstraints.BOTH;
 		gbc_layeredPane.gridx = 0;
 		gbc_layeredPane.gridy = 6;
 		panelDatos.add(layeredPane, gbc_layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
-		JPanel panelEmpresa = new JPanel();
+		panelEmpresa = new JPanel();
 		layeredPane.add(panelEmpresa, "name_918030925291900");
 		GridBagLayout gbl_panelEmpresa = new GridBagLayout();
 		gbl_panelEmpresa.columnWidths = new int[]{114, 0, 0};
@@ -188,15 +208,15 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblDescripcionEmpresa.gridy = 0;
 		panelEmpresa.add(lblDescripcionEmpresa, gbc_lblDescripcionEmpresa);
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_4.gridx = 1;
-		gbc_textField_4.gridy = 0;
-		panelEmpresa.add(textField_4, gbc_textField_4);
-		textField_4.setColumns(10);
+		textFieldDescripcion = new JTextField();
+		textFieldDescripcion.setEditable(false);
+		GridBagConstraints gbc_textFieldDescripcion = new GridBagConstraints();
+		gbc_textFieldDescripcion.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldDescripcion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldDescripcion.gridx = 1;
+		gbc_textFieldDescripcion.gridy = 0;
+		panelEmpresa.add(textFieldDescripcion, gbc_textFieldDescripcion);
+		textFieldDescripcion.setColumns(10);
 		
 		JLabel lblSitioWeb = new JLabel("Sitio Web:");
 		GridBagConstraints gbc_lblSitioWeb = new GridBagConstraints();
@@ -206,16 +226,16 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblSitioWeb.gridy = 1;
 		panelEmpresa.add(lblSitioWeb, gbc_lblSitioWeb);
 		
-		textField_5 = new JTextField();
-		textField_5.setEditable(false);
-		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_5.gridx = 1;
-		gbc_textField_5.gridy = 1;
-		panelEmpresa.add(textField_5, gbc_textField_5);
-		textField_5.setColumns(10);
+		textFieldSitioWeb = new JTextField();
+		textFieldSitioWeb.setEditable(false);
+		GridBagConstraints gbc_textFieldSitioWeb = new GridBagConstraints();
+		gbc_textFieldSitioWeb.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldSitioWeb.gridx = 1;
+		gbc_textFieldSitioWeb.gridy = 1;
+		panelEmpresa.add(textFieldSitioWeb, gbc_textFieldSitioWeb);
+		textFieldSitioWeb.setColumns(10);
 		
-		JPanel panelPostulante = new JPanel();
+		panelPostulante = new JPanel();
 		layeredPane.add(panelPostulante, "name_919472867094100");
 		GridBagLayout gbl_panelPostulante = new GridBagLayout();
 		gbl_panelPostulante.columnWidths = new int[]{113, 0, 0};
@@ -232,15 +252,15 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblFechaNacimiento.gridy = 0;
 		panelPostulante.add(lblFechaNacimiento, gbc_lblFechaNacimiento);
 		
-		textField_6 = new JTextField();
-		textField_6.setEditable(false);
-		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_6.gridx = 1;
-		gbc_textField_6.gridy = 0;
-		panelPostulante.add(textField_6, gbc_textField_6);
-		textField_6.setColumns(10);
+		textFieldFechaNacimiento = new JTextField();
+		textFieldFechaNacimiento.setEditable(false);
+		GridBagConstraints gbc_textFieldFechaNacimiento = new GridBagConstraints();
+		gbc_textFieldFechaNacimiento.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldFechaNacimiento.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldFechaNacimiento.gridx = 1;
+		gbc_textFieldFechaNacimiento.gridy = 0;
+		panelPostulante.add(textFieldFechaNacimiento, gbc_textFieldFechaNacimiento);
+		textFieldFechaNacimiento.setColumns(10);
 		
 		JLabel lblNacionalidad = new JLabel("Nacionalidad:");
 		GridBagConstraints gbc_lblNacionalidad = new GridBagConstraints();
@@ -250,14 +270,14 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblNacionalidad.gridy = 1;
 		panelPostulante.add(lblNacionalidad, gbc_lblNacionalidad);
 		
-		textField_7 = new JTextField();
-		textField_7.setEditable(false);
-		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
-		gbc_textField_7.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_7.gridx = 1;
-		gbc_textField_7.gridy = 1;
-		panelPostulante.add(textField_7, gbc_textField_7);
-		textField_7.setColumns(10);
+		textFieldNacionalidad = new JTextField();
+		textFieldNacionalidad.setEditable(false);
+		GridBagConstraints gbc_textFieldNacionalidad = new GridBagConstraints();
+		gbc_textFieldNacionalidad.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNacionalidad.gridx = 1;
+		gbc_textFieldNacionalidad.gridy = 1;
+		panelPostulante.add(textFieldNacionalidad, gbc_textFieldNacionalidad);
+		textFieldNacionalidad.setColumns(10);
 		
 		JLabel lblOfertas = new JLabel("Ofertas Laborales:");
 		GridBagConstraints gbc_lblOfertas = new GridBagConstraints();
@@ -267,13 +287,18 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblOfertas.gridy = 10;
 		panelDatos.add(lblOfertas, gbc_lblOfertas);
 		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 1;
-		gbc_comboBox_1.gridy = 10;
-		panelDatos.add(comboBox_1, gbc_comboBox_1);
+		comboBoxSeleccionOferta = new JComboBox<String>();
+		comboBoxSeleccionOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarDatosOferta(e);
+			}
+		});
+		GridBagConstraints gbc_comboBoxSeleccionOferta = new GridBagConstraints();
+		gbc_comboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxSeleccionOferta.gridx = 1;
+		gbc_comboBoxSeleccionOferta.gridy = 10;
+		panelDatos.add(comboBoxSeleccionOferta, gbc_comboBoxSeleccionOferta);
 		
 		JLabel lblNombreOferta = new JLabel("Nombre Oferta:");
 		GridBagConstraints gbc_lblNombreOferta = new GridBagConstraints();
@@ -293,30 +318,12 @@ public class ConsultarUsuario extends JInternalFrame {
 		panelDatos.add(textFieldNombreOferta, gbc_textFieldNombreOferta);
 		textFieldNombreOferta.setColumns(10);
 		
-		JLabel lblDescripcionOderta = new JLabel("Descripcion de Oferta:");
-		GridBagConstraints gbc_lblDescripcionOderta = new GridBagConstraints();
-		gbc_lblDescripcionOderta.anchor = GridBagConstraints.EAST;
-		gbc_lblDescripcionOderta.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDescripcionOderta.gridx = 0;
-		gbc_lblDescripcionOderta.gridy = 12;
-		panelDatos.add(lblDescripcionOderta, gbc_lblDescripcionOderta);
-		
-		textFieldDescripcionOferta = new JTextField();
-		textFieldDescripcionOferta.setEditable(false);
-		GridBagConstraints gbc_textFieldDescripcionOferta = new GridBagConstraints();
-		gbc_textFieldDescripcionOferta.insets = new Insets(0, 0, 5, 0);
-		gbc_textFieldDescripcionOferta.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldDescripcionOferta.gridx = 1;
-		gbc_textFieldDescripcionOferta.gridy = 12;
-		panelDatos.add(textFieldDescripcionOferta, gbc_textFieldDescripcionOferta);
-		textFieldDescripcionOferta.setColumns(10);
-		
 		JLabel lblRemuneracion = new JLabel("Remuneracion");
 		GridBagConstraints gbc_lblRemuneracion = new GridBagConstraints();
 		gbc_lblRemuneracion.anchor = GridBagConstraints.EAST;
 		gbc_lblRemuneracion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRemuneracion.gridx = 0;
-		gbc_lblRemuneracion.gridy = 13;
+		gbc_lblRemuneracion.gridy = 12;
 		panelDatos.add(lblRemuneracion, gbc_lblRemuneracion);
 		
 		textFieldRemuneracion = new JTextField();
@@ -325,7 +332,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_textFieldRemuneracion.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldRemuneracion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldRemuneracion.gridx = 1;
-		gbc_textFieldRemuneracion.gridy = 13;
+		gbc_textFieldRemuneracion.gridy = 12;
 		panelDatos.add(textFieldRemuneracion, gbc_textFieldRemuneracion);
 		textFieldRemuneracion.setColumns(10);
 		
@@ -334,7 +341,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_lblCiudad.anchor = GridBagConstraints.EAST;
 		gbc_lblCiudad.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCiudad.gridx = 0;
-		gbc_lblCiudad.gridy = 14;
+		gbc_lblCiudad.gridy = 13;
 		panelDatos.add(lblCiudad, gbc_lblCiudad);
 		
 		textFieldCiudad = new JTextField();
@@ -343,28 +350,87 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_textFieldCiudad.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldCiudad.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldCiudad.gridx = 1;
-		gbc_textFieldCiudad.gridy = 14;
+		gbc_textFieldCiudad.gridy = 13;
 		panelDatos.add(textFieldCiudad, gbc_textFieldCiudad);
 		textFieldCiudad.setColumns(10);
 		
 		JLabel lblDepartamento = new JLabel("Departamento");
 		GridBagConstraints gbc_lblDepartamento = new GridBagConstraints();
 		gbc_lblDepartamento.anchor = GridBagConstraints.EAST;
-		gbc_lblDepartamento.insets = new Insets(0, 0, 0, 5);
+		gbc_lblDepartamento.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDepartamento.gridx = 0;
-		gbc_lblDepartamento.gridy = 15;
+		gbc_lblDepartamento.gridy = 14;
 		panelDatos.add(lblDepartamento, gbc_lblDepartamento);
 		
 		textFieldDepartamento = new JTextField();
 		textFieldDepartamento.setEditable(false);
 		GridBagConstraints gbc_textFieldDepartamento = new GridBagConstraints();
+		gbc_textFieldDepartamento.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldDepartamento.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldDepartamento.gridx = 1;
-		gbc_textFieldDepartamento.gridy = 15;
+		gbc_textFieldDepartamento.gridy = 14;
 		panelDatos.add(textFieldDepartamento, gbc_textFieldDepartamento);
 		textFieldDepartamento.setColumns(10);
 		
 		
 	}
+
+
+	protected void cargarDatosOferta(ActionEvent e) {
+		String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
+		DTOfertaLaboral  dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
+		this.textFieldNombreOferta.setText(oferta);
+		this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
+		this.textFieldCiudad.setText(dtOferta.getCiudad());
+		this.textFieldDepartamento.setText(dtOferta.getDepartamento());
+		
+	}
+
+
+	public void cargarUsuarios() {
+		try {
+			ArrayList<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
+			for(String nickUsuario : listaUsuarios) {
+				comboBoxSeleccionUsuario.addItem(nickUsuario);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
+		String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
+		DTUsuario dtUsuario = controladorUsuario.obtenerDTUsuario(nicknameUsuario);
+		ArrayList<String> listaOfertas = controladorUsuario.listaOfertasUsuario(nicknameUsuario);
+		this.textFieldNickName.setText(nicknameUsuario);
+		this.textFieldNombre.setText(dtUsuario.getNombre());
+		this.textFieldApellido.setText(dtUsuario.getApellido());
+		this.textFieldEmail.setText(dtUsuario.getEmail());
+		if(dtUsuario instanceof DTEmpresa) {
+			DTEmpresa dtEmpresa = (DTEmpresa) dtUsuario;
+			this.textFieldDescripcion.setText(dtEmpresa.getDescripcion());
+			this.textFieldSitioWeb.setText(dtEmpresa.getSitioWeb());
+			cambiarPanel(panelEmpresa);			
+		}
+		if(dtUsuario instanceof DTPostulante) {
+			DTPostulante dtPostulante = (DTPostulante) dtUsuario;
+			this.textFieldNacionalidad.setText(dtPostulante.getNacionalidad());
+			this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().toGMTString());
+			cambiarPanel(panelPostulante);
+		}
+		for(String oferta : listaOfertas) {
+			comboBoxSeleccionOferta.addItem(oferta);
+		}
+		
+	}
+	
+	public void cambiarPanel(JPanel panel) {
+		layeredPane.removeAll();
+		layeredPane.add(panel);
+		layeredPane.repaint();
+		layeredPane.revalidate();
+	}
+
 
 }
