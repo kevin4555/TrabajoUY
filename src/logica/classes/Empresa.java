@@ -11,11 +11,11 @@ public class Empresa extends Usuario {
 	
 	public Empresa() {}
 	
-	public Empresa(String nickname, String nombre, 
-			String apellido, String email, String descripcion, String sitioWeb) {
+	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb) {
 		super(nickname, nombre, apellido, email);
 		this.descripcion = descripcion;
 		this.sitioWeb = sitioWeb;
+		this.ofertasLaborales = new ArrayList<OfertaLaboral>();
 	}
 	
 	public String getDescripcion() {
@@ -41,8 +41,11 @@ public class Empresa extends Usuario {
 	
 	public ArrayList<String> obtenerNombresOfertas(){
 		ArrayList<String> ofertas = new ArrayList<String>();
-		for (OfertaLaboral oferta : this.ofertasLaborales) {
-			ofertas.add(oferta.getNombre());
+		if(!ofertasLaborales.isEmpty())
+		{
+			for (OfertaLaboral oferta : this.ofertasLaborales) {
+				ofertas.add(oferta.getNombre());
+			}
 		}
 		return ofertas;
 	}

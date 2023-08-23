@@ -37,6 +37,7 @@ public class OfertaLaboral {
 		this.kewords = keywords;
 		this.tipoPublicacion = tipoPublicacion;
 		this.compraPaquete = cp;
+		this.postulaciones = new ArrayList<Postulacion>();
 	}
 
 	public String getNombre() {

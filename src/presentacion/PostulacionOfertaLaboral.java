@@ -6,6 +6,9 @@ import javax.swing.JInternalFrame;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import logica.DataTypes.DTOfertaLaboral;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 import javax.swing.DefaultComboBoxModel;
@@ -15,10 +18,14 @@ import javax.swing.JComboBox;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.swing.SwingConstants;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
+import excepciones.UsuarioNoExisteException;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -36,19 +43,21 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private JTextField textFieldCiudad;
     private JTextField textFieldDepartamento;
     private JTextField textFieldFechaAlta;
-    private JComboBox comboBoxEmpresasRegistradas;
-    private JComboBox comboBoxOfertasLaborales;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
-
+    private JComboBox<String> comboBoxEmpresasRegistradasPostulacion;
+    private JComboBox<String> comboBoxOfertasLaboralesPostulacion;
+    private JComboBox<String> comboBoxPostulantesRegistrados;
+    private JTextField textFieldCVReducido;
+    private JTextField textFieldMotivacion;
+    private JTextField textFieldFechaPostulacion;
     /**
      * Create the frame.
      */
+    @SuppressWarnings("null")
     public PostulacionOfertaLaboral(IControladorOferta icontOfeLab, IControladorUsuario icontUsuLab) {
         // Se inicializa con el controlador de usuarios
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;
+
         
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
@@ -81,14 +90,12 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         ubicacionNorte.add(ubicacionComboBox);
         ubicacionComboBox.setLayout(new GridLayout(2, 1, 0, 2));
         
-        JComboBox comboBoxEmpresasRegistradas = new JComboBox();
-        ubicacionComboBox.add(comboBoxEmpresasRegistradas);
+        comboBoxEmpresasRegistradasPostulacion = new JComboBox<String>();
+        ubicacionComboBox.add(comboBoxEmpresasRegistradasPostulacion);
         
-        JComboBox comboBoxOfertasLaborales = new JComboBox();
-        ubicacionComboBox.add(comboBoxOfertasLaborales);
-        comboBoxOfertasLaborales.setVisible(false);
-        
-        
+        comboBoxOfertasLaboralesPostulacion = new JComboBox<String>();
+        ubicacionComboBox.add(comboBoxOfertasLaboralesPostulacion);
+        comboBoxOfertasLaboralesPostulacion.setVisible(false);
         
         JPanel ubicacionCentro = new JPanel();
         getContentPane().add(ubicacionCentro, BorderLayout.CENTER);
@@ -187,14 +194,15 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         textFieldFechaAlta.setEditable(false);
         ubicacionTextos.add(textFieldFechaAlta);
         
-        JPanel PostulanteEIngreso = new JPanel();
-        ubicacionCentro.add(PostulanteEIngreso);
-        PostulanteEIngreso.setLayout(new GridLayout(0, 2, 0, 0));
-        PostulanteEIngreso.setVisible(false);
+        JPanel postulanteEIngreso = new JPanel();
+        ubicacionCentro.add(postulanteEIngreso);
+        postulanteEIngreso.setLayout(new GridLayout(0, 2, 0, 0));
+        postulanteEIngreso.setVisible(false);
         
         JPanel ubicacionEtiqueta = new JPanel();
-        PostulanteEIngreso.add(ubicacionEtiqueta);
+        postulanteEIngreso.add(ubicacionEtiqueta);
         ubicacionEtiqueta.setLayout(new GridLayout(2, 1, 10, 1));
+        ubicacionEtiqueta.setVisible(false);
         
         JLabel lblPostulantesRegistrados = new JLabel("Postulantes");
         lblPostulantesRegistrados.setHorizontalAlignment(SwingConstants.CENTER);
@@ -204,14 +212,15 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         ubicacionEtiqueta.add(ubicacionEspacioLibre);
         
         JPanel ubicacionComboTextField = new JPanel();
-        PostulanteEIngreso.add(ubicacionComboTextField);
+        postulanteEIngreso.add(ubicacionComboTextField);
         ubicacionComboTextField.setLayout(new GridLayout(2, 0, 5,0));
+        ubicacionComboTextField.setVisible(false);
         
-        JComboBox comboBoxPostulantesRegistrados = new JComboBox();
+        comboBoxPostulantesRegistrados = new JComboBox<String>();
         ubicacionComboTextField.add(comboBoxPostulantesRegistrados);
         
         JPanel ubicacionEtiquetasText = new JPanel();
-        PostulanteEIngreso.add(ubicacionEtiquetasText);
+        postulanteEIngreso.add(ubicacionEtiquetasText);
         ubicacionEtiquetasText.setLayout(new GridLayout(3, 1, 0, 0));
         ubicacionEtiquetasText.setVisible(false);
         
@@ -228,34 +237,62 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         ubicacionEtiquetasText.add(lblFechaPostulacion);
         
         JPanel ubicacionTextFields = new JPanel();
-        PostulanteEIngreso.add(ubicacionTextFields);
+        postulanteEIngreso.add(ubicacionTextFields);
         ubicacionTextFields.setLayout(new GridLayout(3, 1, 0, 0));
         ubicacionTextFields.setVisible(false);
         
-        textField = new JTextField();
-        textField.setHorizontalAlignment(SwingConstants.CENTER);
-        textField.setEditable(false);
-        ubicacionTextFields.add(textField);
+        textFieldCVReducido = new JTextField();
+        textFieldCVReducido.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionTextFields.add(textFieldCVReducido);
         
-        textField_1 = new JTextField();
-        textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_1.setEditable(false);
-        ubicacionTextFields.add(textField_1);
+        textFieldMotivacion = new JTextField();
+        textFieldMotivacion.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionTextFields.add(textFieldMotivacion);
         
-        textField_2 = new JTextField();
-        textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_2.setEditable(false);
-        ubicacionTextFields.add(textField_2);
+        textFieldFechaPostulacion = new JTextField();
+        textFieldFechaPostulacion.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionTextFields.add(textFieldFechaPostulacion);
         
         JPanel ubicacionSur = new JPanel();
         getContentPane().add(ubicacionSur, BorderLayout.SOUTH);
+        
+        comboBoxEmpresasRegistradasPostulacion.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e)
+    		{
+    			cargarOfertaEmpresaPostulacion(e);
+    			comboBoxOfertasLaboralesPostulacion.setVisible(true);
+    			lblOfertasLaborales.setVisible(true);
+    		}
+        });
+        
+        comboBoxOfertasLaboralesPostulacion.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e)
+    		{
+    			cargarDatosOfertaLaboralPostulacion(e);
+    			cargarPostulantes(e);
+    			ubicacionEtiquetasDTOF.setVisible(true);
+    			ubicacionTextos.setVisible(true);
+    			postulanteEIngreso.setVisible(true);
+    			ubicacionEtiqueta.setVisible(true);
+    			ubicacionComboTextField.setVisible(true);
+    			
+    		}
+        });       
+        
+        comboBoxPostulantesRegistrados.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e)
+    		{
+    			ubicacionEtiquetasText.setVisible(true);
+    			ubicacionTextFields.setVisible(true);
+    		}
+        });
         
         JButton btnBotonAceptar = new JButton("Aceptar");
         ubicacionSur.add(btnBotonAceptar);
         btnBotonAceptar.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
         	{
-        		
+        		//registrarPostulacion(e);
         	}
         });
         
@@ -270,15 +307,84 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         
     }
     
-//    public void cargarEmpresas()
+    public String dateToString(Date fecha)
+    {
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    	return formatter.format(fecha);
+    }
+    
+    public void cargarEmpresasPostulacion()
+    {
+    	String[] empresas;
+		try {
+			empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
+			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
+			comboBoxEmpresasRegistradasPostulacion.setModel(model);
+		} catch (ColeccionEmpresaEsVaciaException e) {
+		}
+    }
+    
+    public void cargarOfertaEmpresaPostulacion(ActionEvent e)
+    {
+    	try {
+			String empresa = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
+			String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
+			DefaultComboBoxModel<String> model;
+    		model = new DefaultComboBoxModel<String>(ofertasLaborales);
+    		comboBoxOfertasLaboralesPostulacion.setModel(model);
+		} catch (UsuarioNoExisteException e1) {
+			e1.printStackTrace();
+		}
+    }
+    
+    public void cargarDatosOfertaLaboralPostulacion(ActionEvent e)
+    {
+    	String ofertaLaboral = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
+	    DTOfertaLaboral dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
+		textFieldNombre.setText(dtOfertaLaboral.getNombre());
+		textFieldDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
+		textFieldHoraInicio.setText(dateToString(dtOfertaLaboral.getHoraInicio()));
+		textFieldHoraFin.setText(dateToString(dtOfertaLaboral.getHoraFin()));
+		textFieldRemuneracion.setText((dtOfertaLaboral.getRemuneracion()).toString());
+		textFieldCiudad.setText(dtOfertaLaboral.getCiudad());
+		textFieldDepartamento.setText(dtOfertaLaboral.getDepartamento());
+		textFieldFechaAlta.setText(dateToString(dtOfertaLaboral.getFechaAlta()));
+    }
+    
+    public void cargarPostulantes(ActionEvent e)
+    {
+    	String[] postulantes = (controlUsuarioLab.listarPostulantes()).toArray(new String[0]);
+    	DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(postulantes);
+    	comboBoxPostulantesRegistrados.setModel(model);
+    }
+    
+//    public void registrarPostulacion(ActionEvent e)
 //    {
-//    		String[] empresas;
-//			try {
-//				empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
-//				DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
-//				comboBoxEmpresasRegistradas.setModel(model);
-//			} catch (ColeccionEmpresaEsVaciaException e) {
-//			}
-//			 
+//    	String cvReducido = textFieldCVReducido.getText();
+//    	String motivacion = textFieldMotivacion.getText();
+//    	String fechaPostulacion = textFieldFechaPostulacion.getText();
+//    	
+//    	
+//    	if(chequearDatos())
+//    	{
+//    		controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacion, nomEmpresa, nomOferta);
+//    	}
 //    }
+    
+    public boolean chequearDatos()
+    {
+    	String cvReducido = textFieldCVReducido.getText();
+    	String motivacion = textFieldMotivacion.getText();
+    	String fechaPostulacion = textFieldFechaPostulacion.getText();
+    	
+    	if(cvReducido.isEmpty() || motivacion.isEmpty() || fechaPostulacion.isEmpty())
+    	{
+    		JOptionPane.showMessageDialog(this, "La CI debe ser un numero", "Registrar Usuario",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+    	}
+    	
+    	//Falta el chequeo de la fecha
+    	return true;
+    }
 }

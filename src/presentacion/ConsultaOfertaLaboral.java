@@ -72,12 +72,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         JButton btnBotonCerrar = new JButton("Cerrar");
         ubicacionSur.add(btnBotonCerrar);
         
-        btnBotonCerrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-        
         JPanel ubicacionNorte = new JPanel();
         getContentPane().add(ubicacionNorte, BorderLayout.NORTH);
         ubicacionNorte.setLayout(new GridLayout(1, 2, 10, 10));
@@ -90,7 +84,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         lblEmpresas.setHorizontalAlignment(SwingConstants.CENTER);
         ubicacionIzq.add(lblEmpresas);
         
-        
         JLabel lblOfertasLaborales = new JLabel("Ofertas Laborales");
         lblOfertasLaborales.setHorizontalAlignment(SwingConstants.CENTER);
         ubicacionIzq.add(lblOfertasLaborales);
@@ -100,25 +93,12 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         ubicacionNorte.add(ubicacionDer);
         ubicacionDer.setLayout(new GridLayout(2, 1, 1, 10));
         
-        comboBoxEmpresasRegistradas = new JComboBox();
+        comboBoxEmpresasRegistradas = new JComboBox<String>();
         ubicacionDer.add(comboBoxEmpresasRegistradas);
-        comboBoxEmpresasRegistradas.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e)
-        	{
-        		cargarOfertaEmpresa(e);
-        	}
-        });
         
-        comboBoxOfertasLaborales = new JComboBox();
+        comboBoxOfertasLaborales = new JComboBox<String>();
         ubicacionDer.add(comboBoxOfertasLaborales);
         comboBoxOfertasLaborales.setVisible(false);
-        
-        comboBoxOfertasLaborales.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e)
-        	{
-        		cargarDatosOferta(e);
-        	}
-        });
         
         JPanel ubicacionCentro = new JPanel();
         getContentPane().add(ubicacionCentro, BorderLayout.CENTER);
@@ -204,6 +184,29 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         textFieldFechaAlta.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldFechaAlta.setEditable(false);
         ubicacionTextos.add(textFieldFechaAlta);
+        
+        btnBotonCerrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        
+        comboBoxEmpresasRegistradas.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e)
+        	{
+        		cargarOfertaEmpresa(e);
+        		lblOfertasLaborales.setVisible(true);
+        		comboBoxOfertasLaborales.setVisible(true);
+        	}
+        });
+        
+        comboBoxOfertasLaborales.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e)
+        	{
+        		cargarDatosOferta(e);
+        		ubicacionCentro.setVisible(true);
+        	}
+        });
     }
     
     public String dateToString(Date fecha)
