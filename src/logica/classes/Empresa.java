@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import logica.DataTypes.DTEmpresa;
+import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTUsuario;
+
 public class Empresa extends Usuario {
 	private String descripcion;
 	private String sitioWeb;
@@ -58,4 +62,26 @@ public class Empresa extends Usuario {
 		this.ofertasLaborales = ofertasLaborales;
 	}
 	
+	public DTEmpresa obtenerDTEmpresa() {
+		ArrayList<DTOfertaLaboral> listaDTOfertas = new ArrayList<DTOfertaLaboral>();
+		for(OfertaLaboral oferta : ofertasLaborales) {
+			listaDTOfertas.add(oferta.obtenerDTOfertaLaboral());
+		}
+		DTEmpresa resultado = new DTEmpresa(this.nickname, this.nombre, this.apellido, this.email, this.descripcion, this.sitioWeb, listaDTOfertas);
+		return resultado;
+	}
+	
+	@Override
+	public ArrayList<String> listarOfertasUsuario(){
+		ArrayList<String> listaOfertas = new ArrayList<String>();
+		for(OfertaLaboral oferta : ofertasLaborales) {
+			listaOfertas.add(oferta.getNombre());
+		}
+		return listaOfertas;
+	}
+
+	@Override
+	public DTUsuario obtenerDTUsuario() {
+		return this.obtenerDTEmpresa();
+	}
 }
