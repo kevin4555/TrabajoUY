@@ -2,9 +2,7 @@ package logica.handlers;
 
 import java.util.HashMap;
 
-import excepciones.KeywordNoExisteException;
-import excepciones.KeywordYaExisteException;
-import excepciones.TipoPublicacionNoExiste;
+
 import logica.classes.Keyword;
 import logica.classes.TipoPublicacion;
 
@@ -18,7 +16,9 @@ public class ManejadorSettings {
 
 	private ManejadorSettings() {
 		colTipoPublicaciones = new HashMap<String, TipoPublicacion>();
+		colKeywords = new HashMap<String, Keyword>();
 	}
+	
 
 	public static ManejadorSettings getInstance() {
 		if (instancia == null)
@@ -34,29 +34,30 @@ public class ManejadorSettings {
 		return listTipoPublicaciones;
 	}
 
-	public TipoPublicacion obtenerTipoPublicacion(String nombre) throws TipoPublicacionNoExiste {
+	public TipoPublicacion obtenerTipoPublicacion(String nombre)  {
 		if (colTipoPublicaciones.get(nombre) != null) {
 			return colTipoPublicaciones.get(nombre);
 		} else {
-			throw new TipoPublicacionNoExiste("TipoPublicacion " + nombre + " no existe");
+			return null;
 		}
 	}
+	
+	public void addTipoPublicacion(TipoPublicacion tpoPublic) {
+		colTipoPublicaciones.put(tpoPublic.getNombre(), tpoPublic);
+	}
 
-	public void addKeyword(String nombre) throws KeywordYaExisteException {
-		if (colKeywords.get(nombre) == null) {
+	public void addKeyword(Keyword keyword) { //throws KeywordYaExisteException {
+		colKeywords.put(keyword.getNombre(), keyword);
+		/*if (colKeywords.get(nombre) == null) {
 			Keyword keyword = new Keyword(nombre);
 			colKeywords.put(nombre, keyword);
 		} else {
 			throw new KeywordYaExisteException("Keyword " + nombre + " ya existe");
-		}
+		}*/
 	}
 
-	public Keyword obtenerKeyword(String nombre) throws KeywordNoExisteException {
-		if (colKeywords.get(nombre) != null) {
+	public Keyword obtenerKeyword(String nombre) {
 			return colKeywords.get(nombre);
-		} else {
-			throw new KeywordNoExisteException("Keyword " + nombre + " no existe");
-		}
 	}
 
 	public ArrayList<String> listarKeywords() {

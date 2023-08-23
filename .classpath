@@ -6,22 +6,22 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Cristhian/Desktop/jcalendar/lib/jcalendar-1.4.jar">
+	<classpathentry kind="lib" path="Utilidades/jcalendar-1.4.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Cristhian/Desktop/jcalendar/lib/jgoodies-common-1.2.0.jar">
+	<classpathentry kind="lib" path="Utilidades/jgoodies-common-1.2.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Cristhian/Desktop/jcalendar/lib/jgoodies-looks-2.4.1.jar">
+	<classpathentry kind="lib" path="Utilidades/jgoodies-looks-2.4.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Cristhian/Desktop/jcalendar/lib/junit-4.6.jar">
+	<classpathentry kind="lib" path="Utilidades/junit-4.6.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

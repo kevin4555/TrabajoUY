@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
@@ -72,7 +73,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	
 	@Override
 	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
-			String nomOferta) throws UsuarioNoExisteException {
+			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = manejadorUsuario.obtenerPostulante(nickname);
 		Fabrica fabrica = Fabrica.getInstance();
