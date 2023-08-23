@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import excepciones.KeywordYaExisteException;
+import excepciones.OfertaLaboralYaExisteException;
+import excepciones.TipoPublicacionNoExiste;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.controllers.Fabrica;
@@ -215,9 +217,8 @@ private void initialize() {
 			ICU.altaEmpresa("FusionTech", "William", "Smith", "contacto@FusionTech.net", "FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y la automatización avanzada. Nuestro equipo multidisciplinario de ingenieros, científicos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimización de procesos industriales hasta la creación de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnología mejore y amplíe nuestras capacidades innatas.",
 					"http://www.fusiontechdynamics.net");
 			
-			
-			//ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
-				//Time.valueOf("09:00:00"), Time.valueOf("18:00:00"), 90000f, Date.valueOf("2023-8-14"), , );
+			ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
+				"09:00 - 18:00", 90000f,"Montevideo", "Montevideo", Date.valueOf("2023-8-14"), ICO.obtenerTipoPublicacion("Premium"));
 			JOptionPane.showMessageDialog(this, "Los Datos de prueba se ha creado con éxito", "Trabajo.uy", JOptionPane.INFORMATION_MESSAGE);
 			
 		} catch (TipoPublicacionYaExisteException e) {
@@ -227,6 +228,10 @@ private void initialize() {
 		} catch (java.lang.NullPointerException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} catch (UsuarioYaExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		} catch (OfertaLaboralYaExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		} catch (TipoPublicacionNoExiste e ) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		}
 		
