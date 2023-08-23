@@ -35,7 +35,6 @@ public class OfertaLaboral {
 		this.fechaAlta = fechaAlta;
 		this.kewords = keywords;
 		this.tipoPublicacion = tipoPublicacion;
-		this.compraPaquete = cp;
 		this.postulaciones = new ArrayList<Postulacion>();
 	}
 

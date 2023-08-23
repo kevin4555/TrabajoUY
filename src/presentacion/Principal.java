@@ -218,13 +218,8 @@ private void initialize() {
 			
 			//ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
 				//Time.valueOf("09:00:00"), Time.valueOf("18:00:00"), 90000f, Date.valueOf("2023-8-14"), , );
-			JOptionPane.showMessageDialog(this, "Los Datos de prueba se ha creado con éxito", "Trabajo.uy",
-                    JOptionPane.INFORMATION_MESSAGE);
-			try {
-				ICU.altaEmpresa("EcoTech","Sophia", "Johnson","info@EcoTech.com", "EcoTech Innovations es una empresa lıder en soluciones tecnologicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafıos ambientales mas apremiantes de nuestro tiempo. Desde sistemas de energıa renovable y dispositivos de monitorizacion ambiental hasta soluciones de gestion de residuos inteligentes, nuestra mision es proporcionar herramientas que permitan a las empresas y comunidades adoptar practicas mas ecologicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnologıa y la naturaleza, y trabajamos incansablemente para impulsar un futuro mas limpio y sostenible.","http://www.EcoTechInnovations.com");
-			} catch (UsuarioYaExisteException e) {
-				e.printStackTrace();
-			}
+			JOptionPane.showMessageDialog(this, "Los Datos de prueba se ha creado con éxito", "Trabajo.uy", JOptionPane.INFORMATION_MESSAGE);
+			
 		} catch (TipoPublicacionYaExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} catch (KeywordYaExisteException e) {

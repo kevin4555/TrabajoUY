@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import logica.DataTypes.DTOfertaLaboral;
+import logica.classes.Empresa;
+import logica.classes.OfertaLaboral;
+import logica.classes.Postulante;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 import javax.swing.DefaultComboBoxModel;
@@ -24,6 +27,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.SwingConstants;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 
 import javax.swing.JTextField;
@@ -49,6 +53,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private JTextField textFieldCVReducido;
     private JTextField textFieldMotivacion;
     private JTextField textFieldFechaPostulacion;
+    private Empresa empresa;
+    private OfertaLaboral oferta;
+    private Postulante postulante;
     /**
      * Create the frame.
      */
@@ -318,6 +325,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	String[] empresas;
 		try {
 			empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
+			
 			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
 			comboBoxEmpresasRegistradasPostulacion.setModel(model);
 		} catch (ColeccionEmpresaEsVaciaException e) {
@@ -328,6 +336,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     {
     	try {
 			String empresa = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
+			this.nomEmpresa = controlUsuarioLab.obtenerEmpresa(empresa);
+			
 			String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
 			DefaultComboBoxModel<String> model;
     		model = new DefaultComboBoxModel<String>(ofertasLaborales);
@@ -340,6 +350,10 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     public void cargarDatosOfertaLaboralPostulacion(ActionEvent e)
     {
     	String ofertaLaboral = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
+    	try {
+			this.nomOferta = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
+		} catch (OfertaLaboralNoExisteException e1) {
+		}
 	    DTOfertaLaboral dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
 		textFieldNombre.setText(dtOfertaLaboral.getNombre());
 		textFieldDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
@@ -358,18 +372,18 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	comboBoxPostulantesRegistrados.setModel(model);
     }
     
-//    public void registrarPostulacion(ActionEvent e)
-//    {
-//    	String cvReducido = textFieldCVReducido.getText();
-//    	String motivacion = textFieldMotivacion.getText();
-//    	String fechaPostulacion = textFieldFechaPostulacion.getText();
-//    	
-//    	
-//    	if(chequearDatos())
-//    	{
-//    		controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacion, nomEmpresa, nomOferta);
-//    	}
-//    }
+    public void registrarPostulacion(ActionEvent e)
+    {
+    	String cvReducido = textFieldCVReducido.getText();
+    	String motivacion = textFieldMotivacion.getText();
+    	String fechaPostulacion = textFieldFechaPostulacion.getText();
+    	
+    	
+    	if(chequearDatos())
+    	{
+    		controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacion, this.oferta.getNombre(), nomOferta);
+    	}
+    }
     
     public boolean chequearDatos()
     {
