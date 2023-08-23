@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import logica.DataTypes.DTPostulante;
+import logica.DataTypes.DTUsuario;
 
 public class Postulante extends Usuario{
 	private Date fechaNacimiento;
@@ -52,5 +53,21 @@ public class Postulante extends Usuario{
 	public void agregarPostulacion(Postulacion postulacion) {
 		this.postulaciones.add(postulacion);
 	}
+	
+	@Override
+	public ArrayList<String> listarOfertasUsuario(){
+		ArrayList<String> listaOfertas = new ArrayList<String>();
+		for(Postulacion postulacion : postulaciones ) {
+			listaOfertas.add(postulacion.getNombreOfertaLaboral());
+		}
+		return listaOfertas;
+	}
+
+	@Override
+	public DTUsuario obtenerDTUsuario() {
+		
+		return this.obtenerDTPostulante();
+	}
+	
 	
 }
