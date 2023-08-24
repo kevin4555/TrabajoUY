@@ -96,6 +96,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		return usuario;
 	}
 
+	@Override
 	public DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException {
 		Usuario usuario = this.obtenerUsuario(nickname);
 		return usuario.obtenerDTUsuario();
@@ -106,23 +107,9 @@ public class ControladorUsuario implements IControladorUsuario {
 		return usuario.listarOfertasUsuario();
 	}
 
-	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException {
-		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
-		Usuario usuario = manejadorUsuario.obtenerUsuario(nickname);
-		return usuario;
-	}
-
-	public DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException {
-		Usuario usuario = this.obtenerUsuario(nickname);
-		return usuario.obtenerDTUsuario();
-	}
-
-	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException {
-		Usuario usuario = this.obtenerUsuario(nickname);
-		return usuario.listarOfertasUsuario();
-	}
-
-	public Postulante obtenerPostulante(String nickname) throws UsuarioNoExisteException {
-		return ManejadorUsuario.getInstance().obtenerPostulante(nickname);
+	@Override
+	public Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException {
+	   ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+	   return manejadorUsuario.obtenerPostulante(nomPostulante);
 	}
 }

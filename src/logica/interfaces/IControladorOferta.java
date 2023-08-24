@@ -1,7 +1,7 @@
 package logica.interfaces;
 
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
@@ -31,8 +31,6 @@ public interface IControladorOferta {
 	
 	public ArrayList<String> listarPaquetes();
 	
-	public void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub);
-	
 	public void agregarKeywordEnOfertaLaboral(String nomKeyword, String nomOferta) throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException;
 	
 	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException;
@@ -49,7 +47,9 @@ public interface IControladorOferta {
 	
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
-	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias, Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException;
+	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias,
+			Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion)
+			throws PaquetePublicacionYaExisteException;
 
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
 			Date fechaPub) throws TipoPublicacionYaExisteException;

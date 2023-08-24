@@ -16,6 +16,7 @@ import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import javax.swing.JTextField;
 
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
@@ -98,13 +99,13 @@ public class ConsultarUsuario extends JInternalFrame {
 		cargarUsuarios();
 		comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
+			/*	try {
 					cargarDatosUsuarios(e);
 				} catch (UsuarioNoExisteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
-
+				}*/
+				
 			}
 		});
 
@@ -304,11 +305,11 @@ public class ConsultarUsuario extends JInternalFrame {
 		panelDatos.add(lblOfertas, gbc_lblOfertas);
 
 		comboBoxSeleccionOferta = new JComboBox<String>();
-		comboBoxSeleccionOferta.addActionListener(new ActionListener() {
+		/*comboBoxSeleccionOferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarDatosOferta(e);
 			}
-		});
+		});*/
 		GridBagConstraints gbc_comboBoxSeleccionOferta = new GridBagConstraints();
 		gbc_comboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
@@ -390,7 +391,7 @@ public class ConsultarUsuario extends JInternalFrame {
 
 	}
 
-	protected void cargarDatosOferta(ActionEvent e) {
+	protected void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException {
 		String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
 		DTOfertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
 		this.textFieldNombreOferta.setText(oferta);
@@ -410,8 +411,8 @@ public class ConsultarUsuario extends JInternalFrame {
 			// TODO: handle exception
 		}
 	}
-
-	@SuppressWarnings("deprecation")
+	
+/*	@SuppressWarnings("deprecation")
 	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
 		String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
 		DTUsuario dtUsuario = controladorUsuario.obtenerDTUsuario(nicknameUsuario);
@@ -435,9 +436,9 @@ public class ConsultarUsuario extends JInternalFrame {
 		for (String oferta : listaOfertas) {
 			comboBoxSeleccionOferta.addItem(oferta);
 		}
-
-	}
-
+		
+	}*/
+	
 	public void cambiarPanel(JPanel panel) {
 		layeredPane.removeAll();
 		layeredPane.add(panel);
