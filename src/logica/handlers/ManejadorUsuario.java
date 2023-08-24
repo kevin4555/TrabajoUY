@@ -121,4 +121,8 @@ public class ManejadorUsuario {
 			throw new UsuarioNoExisteException("Usuario: " + nicknameUsuario + " no existe");
 		}
 	}
+	
+	public void clean() {
+		instancia = null;
+	}
 }
