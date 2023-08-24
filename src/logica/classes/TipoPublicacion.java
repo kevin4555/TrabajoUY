@@ -1,6 +1,6 @@
 package logica.classes;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class TipoPublicacion {
 	
@@ -19,6 +19,7 @@ public class TipoPublicacion {
 		this.setDuracionDia(duracion);
 		this.setCosto(costo);
 		this.setFechaAlta(fechaPub);
+		this.cantTipo = null;
 	}
 	
 	public String getNombre() {

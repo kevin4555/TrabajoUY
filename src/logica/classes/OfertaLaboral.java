@@ -1,16 +1,10 @@
 package logica.classes;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
 import java.util.ArrayList;
-import java.util.Map;
-
-import excepciones.DtOfertaNoExisteException;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
-import logica.handlers.ManejadorOfertas;
-import logica.handlers.ManejadorSettings;
 
 public class OfertaLaboral {
 	private String nombre;
