@@ -56,6 +56,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private JTextArea textAreaDescripcion;
     private OfertaLaboral oferta;
     private Postulante postulante;
+    private String seleccionEmpresa;
     /**
      * Create the frame.
      */
@@ -64,7 +65,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         // Se inicializa con el controlador de usuarios
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;
-
+        this.seleccionEmpresa = "";
         
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
@@ -263,7 +264,14 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         comboBoxEmpresasRegistradasPostulacion.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e)
     		{
-    			cargarOfertaEmpresaPostulacion(e);
+    			String empresa = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();	
+    			if(empresa != seleccionEmpresa)
+    			{
+    				limpiarInformacion();
+    				ubicacionDatosOferta.setVisible(false);
+    				postulanteEIngreso.setVisible(false);
+    			}
+    			cargarOfertaEmpresaPostulacion(e, empresa);
     			comboBoxOfertasLaboralesPostulacion.setVisible(true);
     			lblOfertasLaborales.setVisible(true);
     		}
@@ -297,7 +305,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         btnBotonAceptar.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
         	{
-        		//registrarPostulacion(e);
+        		registrarPostulacion(e);
         	}
         });
         
@@ -307,9 +315,19 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         	public void actionPerformed(ActionEvent e)
         	{
         		dispose();
+        		ubicacionEtiquetasDTOF.setVisible(false);
+    			ubicacionTextos.setVisible(false);
+    			postulanteEIngreso.setVisible(false);
+    			ubicacionEtiqueta.setVisible(false);
+    			ubicacionComboTextField.setVisible(false);
+    			ubicacionDatosOferta.setVisible(false);
+    			ubicacionEtiquetasText.setVisible(false);
+    			ubicacionTextFields.setVisible(false);
+    			comboBoxOfertasLaboralesPostulacion.setVisible(false);
+    			lblOfertasLaborales.setVisible(false);
+    			limpiarInformacion();
         	}
         });
-        
     }
     
     public String dateToString(Date fecha)
@@ -341,10 +359,10 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 
     }
     
-    public void cargarOfertaEmpresaPostulacion(ActionEvent e)
+    public void cargarOfertaEmpresaPostulacion(ActionEvent e, String empresa)
     {
     	try {
-			String empresa = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
+			
 			String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
 			DefaultComboBoxModel<String> model;
     		model = new DefaultComboBoxModel<String>(ofertasLaborales);
@@ -398,6 +416,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 
 			}
     	}
+    	limpiarInformacion();
     }
     
     public boolean chequearDatos()
@@ -408,7 +427,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	
     	if(cvReducido.isEmpty() || motivacion.isEmpty() || fechaPostulacion.isEmpty())
     	{
-    		JOptionPane.showMessageDialog(this, "La CI debe ser un numero", "Registrar Usuario",
+    		JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos.", "Registrar Usuario",
                     JOptionPane.ERROR_MESSAGE);
             return false;
     	}
@@ -425,5 +444,17 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    public void limpiarInformacion()
+    {
+    	textFieldNombre.setText("");
+		textAreaDescripcion.setText("");	   
+		textFieldHoraInicio.setText("");
+		textFieldHoraFin.setText("");
+		textFieldRemuneracion.setText("");
+		textFieldCiudad.setText("");
+		textFieldDepartamento.setText("");
+		textFieldFechaAlta.setText("");
     }
 }
