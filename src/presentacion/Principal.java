@@ -206,7 +206,10 @@ private void initialize() {
 	@SuppressWarnings("deprecation")
 	protected void cargarDatosDePrueba(ActionEvent arg0) {
 		try {
-			Date fecha = new Date("2023-8-10");
+			Date fecha = new Date();
+			fecha.setHours(2);
+			fecha.setMinutes(3);
+			fecha.setYear(2023);
 			ICO.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30, 4000f, fecha);
 			ICO.altaTipoPublicacion("Destacada", "Destaca tu anuncio", "2", 15, 500f, fecha);
 			ICO.altaTipoPublicacion("Estándar", "Mejora la posición de tu anuncio", "3", 20, 150f, fecha);
@@ -227,7 +230,10 @@ private void initialize() {
 			ICU.altaEmpresa("ANTEL", "Washington", "Rocha" , "jarrington@ANTEL.com.uy", "En Antel te brindamos servicios de vanguardia en tecnología de comunicación en Telefonía Móvil, Fija, Banda Ancha y Datos", "ANTEL.com.uy");
 			ICU.altaEmpresa("MIEM", "Pablo" , "Bengoechea" , "eldiez@MIEM.org.uy" , "Balance Energ´etico Nacional (BEN). La Dirección Nacional de Energía (DNE) del Ministerio de Industria, Energía y Minería (MIEM) presenta anualmente el BEN.", "MIEM.com.uy");
 		
-			Date fecha2 = new Date("2023-8-14");
+			Date fecha2 = new Date();
+			fecha2.setHours(12);
+			fecha2.setMinutes(333);
+			fecha2.setYear(2024);
 			ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "09:00", "18:00", 90000f,"Montevideo", "Montevideo", fecha2, ICO.obtenerTipoPublicacion("Premium"));
 
 			ICU.obtenerEmpresa("EcoTech").agregarOferta(ICO.obtenerOfertaLaboral("Desarrollador Frontend"));

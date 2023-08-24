@@ -53,5 +53,10 @@ public class ControladorUsuarioTesting {
 		Usuario usuario = controladorUsuario.obtenerUsuario("NicknameTest");
 		Assert.fail();
 	}
+	
+	@Test
+	public void 
+	
+	
 }
 	

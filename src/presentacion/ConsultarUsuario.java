@@ -305,11 +305,16 @@ public class ConsultarUsuario extends JInternalFrame {
 		panelDatos.add(lblOfertas, gbc_lblOfertas);
 
 		comboBoxSeleccionOferta = new JComboBox<String>();
-		/*comboBoxSeleccionOferta.addActionListener(new ActionListener() {
+		comboBoxSeleccionOferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarDatosOferta(e);
+				try {
+					cargarDatosOferta(e);
+				} catch (OfertaLaboralNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-		});*/
+		});
 		GridBagConstraints gbc_comboBoxSeleccionOferta = new GridBagConstraints();
 		gbc_comboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
@@ -412,7 +417,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		}
 	}
 	
-/*	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
 		String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
 		DTUsuario dtUsuario = controladorUsuario.obtenerDTUsuario(nicknameUsuario);
@@ -437,7 +442,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			comboBoxSeleccionOferta.addItem(oferta);
 		}
 		
-	}*/
+	}
 	
 	public void cambiarPanel(JPanel panel) {
 		layeredPane.removeAll();

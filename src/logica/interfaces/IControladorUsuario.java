@@ -34,4 +34,8 @@ public interface IControladorUsuario {
 	public  Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException;
 	
 	public  DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException;
+
+	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException;
+
+	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException;
 }
