@@ -50,7 +50,7 @@ public class ControladorOferta implements IControladorOferta {
 		return ofertaLaboral;
 	}
 
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) throws TipoPublicacionYaExisteException, PaquetePublicacionNoExisteException 
+	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException 
 	{
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
@@ -75,7 +75,7 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorSettings.addTipoPublicacion(tipoPublicacion);
 	}
 	
-	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException 
+	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException
 	{
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		TipoPublicacion tpoPublic = manejadorSettings.obtenerTipoPublicacion(nomTpoPublic);

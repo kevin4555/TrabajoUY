@@ -160,6 +160,7 @@ private void initialize() {
                 // Muestro el InternalFrame para registrar una oferta laboral
             	crearOfertaLaboralInternalFrame.cargarEmpresas();
             	crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
+
             	crearOfertaLaboralInternalFrame.setVisible(true);
             }
         });

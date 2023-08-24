@@ -392,11 +392,11 @@ public class ConsultarUsuario extends JInternalFrame {
 
 	protected void cargarDatosOferta(ActionEvent e) {
 		String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
-		DTOfertaLaboral  dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
+		//DTOfertaLaboral  dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
 		this.textFieldNombreOferta.setText(oferta);
-		this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
-		this.textFieldCiudad.setText(dtOferta.getCiudad());
-		this.textFieldDepartamento.setText(dtOferta.getDepartamento());
+		//this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
+		//this.textFieldCiudad.setText(dtOferta.getCiudad());
+		//this.textFieldDepartamento.setText(dtOferta.getDepartamento());
 		
 	}
 
