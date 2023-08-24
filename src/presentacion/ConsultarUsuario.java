@@ -16,6 +16,7 @@ import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import javax.swing.JTextField;
 
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
@@ -49,6 +50,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	private JPanel panelPostulante;
 	private JLayeredPane layeredPane;
 	private JComboBox<String> comboBoxSeleccionOferta;
+	
 	public ConsultarUsuario(IControladorUsuario contrUsuario, IControladorOferta contrOferta) {
 		setIconifiable(true);
 		setResizable(true);
@@ -376,7 +378,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	}
 
 
-	protected void cargarDatosOferta(ActionEvent e) {
+	protected void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException {
 		String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
 		DTOfertaLaboral  dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
 		this.textFieldNombreOferta.setText(oferta);
