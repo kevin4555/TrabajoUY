@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import logica.DataTypes.DTOfertaLaboral;
+import logica.classes.Empresa;
+import logica.classes.OfertaLaboral;
+import logica.classes.Postulante;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 import javax.swing.DefaultComboBoxModel;
@@ -19,11 +22,13 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.SwingConstants;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 
 import javax.swing.JTextField;
@@ -49,6 +54,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private JTextField textFieldCVReducido;
     private JTextField textFieldMotivacion;
     private JTextField textFieldFechaPostulacion;
+    private Empresa empresa;
+    private OfertaLaboral oferta;
+    private Postulante postulante;
     /**
      * Create the frame.
      */
@@ -318,6 +326,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	String[] empresas;
 		try {
 			empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
+			
 			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
 			comboBoxEmpresasRegistradasPostulacion.setModel(model);
 		} catch (ColeccionEmpresaEsVaciaException e) {
@@ -328,6 +337,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     {
     	try {
 			String empresa = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
+			//this.Empresa = controlUsuarioLab.obtenerEmpresa(empresa);
+			
 			String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
 			DefaultComboBoxModel<String> model;
     		model = new DefaultComboBoxModel<String>(ofertasLaborales);
@@ -340,11 +351,15 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     public void cargarDatosOfertaLaboralPostulacion(ActionEvent e)
     {
     	String ofertaLaboral = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
+    	try {
+			this.oferta = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
+		} catch (OfertaLaboralNoExisteException e1) {
+		}
 	    DTOfertaLaboral dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
 		textFieldNombre.setText(dtOfertaLaboral.getNombre());
 		textFieldDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
-		textFieldHoraInicio.setText(dateToString(dtOfertaLaboral.getHoraInicio()));
-		textFieldHoraFin.setText(dateToString(dtOfertaLaboral.getHoraFin()));
+		textFieldHoraInicio.setText(dtOfertaLaboral.getHorarioInicio());
+		textFieldHoraFin.setText(dtOfertaLaboral.getHorarioFinal());
 		textFieldRemuneracion.setText((dtOfertaLaboral.getRemuneracion()).toString());
 		textFieldCiudad.setText(dtOfertaLaboral.getCiudad());
 		textFieldDepartamento.setText(dtOfertaLaboral.getDepartamento());
@@ -358,18 +373,35 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	comboBoxPostulantesRegistrados.setModel(model);
     }
     
-//    public void registrarPostulacion(ActionEvent e)
-//    {
-//    	String cvReducido = textFieldCVReducido.getText();
-//    	String motivacion = textFieldMotivacion.getText();
-//    	String fechaPostulacion = textFieldFechaPostulacion.getText();
-//    	
-//    	
-//    	if(chequearDatos())
-//    	{
-//    		controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacion, nomEmpresa, nomOferta);
-//    	}
-//    }
+    public void registrarPostulacion(ActionEvent e)
+    {
+    	String cvReducido = textFieldCVReducido.getText();
+    	String motivacion = textFieldMotivacion.getText();
+    	String fechaPostulacion = textFieldFechaPostulacion.getText();
+    	Date fechaPostulacionD = stringToDate(fechaPostulacion);
+    	
+    	if(chequearDatos())
+    		try {
+                controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacionD, this.postulante.getNickname() , this.oferta.getNombre());
+            } catch (UsuarioNoExisteException e1) {
+
+            } catch (OfertaLaboralNoExisteException e1) {
+
+            }
+    }
+    
+    public Date stringToDate(String Fecha)
+    {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date fechaParseada;
+            fechaParseada = (Date) inputFormat.parse(Fecha);
+            return fechaParseada;
+        }catch(ParseException e)
+        {
+            return null;
+        }
+    }
     
     public boolean chequearDatos()
     {

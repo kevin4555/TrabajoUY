@@ -9,6 +9,7 @@ import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTOfertaLaboral;
+import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
 
@@ -17,8 +18,12 @@ public class ManejadorOfertas {
 	private static ManejadorOfertas instancia = null;
 
 	private HashMap<String, TipoPublicacion> coleccionTipoPublicacion;
-
 	private HashMap<String, OfertaLaboral> coleccionOfertaLaboral;
+	
+	private ManejadorOfertas() {
+		coleccionTipoPublicacion = new HashMap<String, TipoPublicacion>();
+		coleccionOfertaLaboral = new HashMap<String, OfertaLaboral>();
+	}
 
 	public static ManejadorOfertas getInstance() {
 		if (instancia == null) {
