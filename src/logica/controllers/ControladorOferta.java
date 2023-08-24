@@ -1,10 +1,8 @@
 package logica.controllers;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 
-import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
@@ -15,7 +13,6 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.CantidadTipoPublicacion;
-import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
@@ -42,21 +39,12 @@ public class ControladorOferta implements IControladorOferta {
 		}
 	}
 
-	public void altaOfertaLaboral(String nombre, String descripcion, String horario, float remuneracion,
-			String ciudad, String departamento, Date fechaAlta,
-			TipoPublicacion tipoPublicacion) throws OfertaLaboralYaExisteException {
-
+	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) throws OfertaLaboralYaExisteException
+	{
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nombre);
-		if (ofertaLaboral != null) {
-			throw new OfertaLaboralYaExisteException("La Oferta Laboral " + nombre + " ya se encuentra registrada");
-		}
-		else {
-			ofertaLaboral = new OfertaLaboral(nombre, descripcion, horario,
-					remuneracion,ciudad, departamento, fechaAlta, tipoPublicacion);
-			manejadorOfertas.agregarOferta(ofertaLaboral);
-		}
-		
+		ofertaLaboral = new OfertaLaboral(nombre, descripcion, horarioInicial, horarioFinal, remuneracion,ciudad, departamento, fechaAlta, tipoPublicacion);
+		manejadorOfertas.agregarOferta(ofertaLaboral);
 	}
 
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException{
