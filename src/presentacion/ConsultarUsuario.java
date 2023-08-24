@@ -16,6 +16,7 @@ import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import javax.swing.JTextField;
 
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
@@ -390,13 +391,20 @@ public class ConsultarUsuario extends JInternalFrame {
 	}
 
 
-	protected void cargarDatosOferta(ActionEvent e) {
+	protected void cargarDatosOferta(ActionEvent e){
 		String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
-		DTOfertaLaboral  dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
-		this.textFieldNombreOferta.setText(oferta);
-		this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
-		this.textFieldCiudad.setText(dtOferta.getCiudad());
-		this.textFieldDepartamento.setText(dtOferta.getDepartamento());
+		DTOfertaLaboral dtOferta;
+		try
+		{
+			dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
+			this.textFieldNombreOferta.setText(oferta);
+			this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
+			this.textFieldCiudad.setText(dtOferta.getCiudad());
+			this.textFieldDepartamento.setText(dtOferta.getDepartamento());
+		}
+		catch (OfertaLaboralNoExisteException e1)
+		{
+		}
 		
 	}
 

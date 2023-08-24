@@ -94,20 +94,27 @@ public class ControladorUsuario implements IControladorUsuario {
 		Usuario usuario = manejadorUsuario.obtenerUsuario(nickname);
 		return usuario;
 	}
-	
+		@Override
+		public DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-		Usuario usuario = this.obtenerUsuario(nickname);
-		return usuario.obtenerDTUsuario();
-	}
-	
-	p
+		@Override
+		public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-		return usuario.listarOfertasUsuario();
-	}
-	
-	p
+		@Override
+		public Postulante obtenerPostulante(String nickname) throws UsuarioNoExisteException
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-	} 
 }
 
 	
