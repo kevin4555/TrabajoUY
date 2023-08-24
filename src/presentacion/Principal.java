@@ -20,6 +20,8 @@ import excepciones.UsuarioYaExisteException;
 import logica.controllers.Fabrica;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
+import java.awt.BorderLayout;
+import javax.swing.JInternalFrame;
 
 
 @SuppressWarnings("serial")
@@ -82,9 +84,8 @@ public class Principal extends JFrame {
         crearTipoPublicDeOfertaLabInternalFrame.setVisible(false);
         
         postulacionOfertaLabInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
-        postulacionOfertaLabInternalFrame.setVisible(false);
+        postulacionOfertaLabInternalFrame.setVisible(false);     
 
-		
         ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
         ventanaPrincipal.getContentPane().add(crearUsuInternalFrame);
         ventanaPrincipal.getContentPane().add(crearOfertaLaboralInternalFrame);

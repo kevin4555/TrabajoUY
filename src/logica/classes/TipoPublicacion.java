@@ -19,6 +19,7 @@ public class TipoPublicacion {
 		this.setDuracionDia(duracion);
 		this.setCosto(costo);
 		this.setFechaAlta(fechaPub);
+		this.cantTipo = null;
 	}
 	
 	public String getNombre() {
