@@ -9,6 +9,7 @@ import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
+import logica.classes.Usuario;
 
 public interface IControladorUsuario {
 	
@@ -30,5 +31,12 @@ public interface IControladorUsuario {
 	
 	public abstract void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link) throws UsuarioYaExisteException;
 	
-	public abstract Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException;
+	public abstract DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException;
+	
+	public abstract Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException;
+	
+	public abstract ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException;
+	
+	public abstract Postulante obtenerPostulante(String nickname) throws UsuarioNoExisteException;
+
 }
