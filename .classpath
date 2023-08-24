@@ -26,5 +26,9 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Laboratorio/Repo-git/tpgr04/Utilidades/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Laboratorio/Repo-git/tpgr04/Utilidades/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Laboratorio/Repo-git/tpgr04/Utilidades/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Laboratorio/Repo-git/tpgr04/Utilidades/junit-4.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

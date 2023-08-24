@@ -1,7 +1,8 @@
 package logica.controllers;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
@@ -29,29 +30,29 @@ import logica.interfaces.IControladorOferta;
 
 public class ControladorOferta implements IControladorOferta {
 
-	public ArrayList<String> listarTipoDePublicaciones()
-	{
+	public ArrayList<String> listarTipoDePublicaciones() {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ArrayList<String> nombreTiposPublicacion = manejadorSettings.listarTipoDePublicaciones();
 		return nombreTiposPublicacion;
 	}
 
-	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException
-	{
+	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
+			float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion)
+			throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
-		OfertaLaboral ofertaLaboral = new OfertaLaboral(nombre, descripcion, horarioInicial, horarioFinal, remuneracion,ciudad, departamento, fechaAlta, tipoPublicacion);
+		OfertaLaboral ofertaLaboral = new OfertaLaboral(nombre, descripcion, horarioInicial, horarioFinal, remuneracion,
+				ciudad, departamento, fechaAlta, tipoPublicacion);
 		manejadorOfertas.agregarOferta(ofertaLaboral);
 	}
 
-	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException
-	{
+	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
 		return ofertaLaboral;
 	}
 
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) throws TipoPublicacionYaExisteException, PaquetePublicacionNoExisteException 
-	{
+	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete)
+			throws TipoPublicacionYaExisteException, PaquetePublicacionNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 
@@ -62,51 +63,46 @@ public class ControladorOferta implements IControladorOferta {
 		paquetePublicacion.crearCantidadTipoPublicacion(paquetePublicacion, cantIncluida, tipoPublicacion);
 	}
 
-	public ArrayList<String> listarPaquetes() 
-	{
+	public ArrayList<String> listarPaquetes() {
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 		return manejadorPaquetes.listarPaquetes();
 	}
-
-	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) throws TipoPublicacionYaExisteException 
-	{
+    public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
+			Date fechaPub) throws TipoPublicacionYaExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		TipoPublicacion tipoPublicacion = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fechaPub);
+		TipoPublicacion tipoPublicacion = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo,
+				fechaPub);
 		manejadorSettings.addTipoPublicacion(tipoPublicacion);
 	}
-	
-	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException 
-	{
+
+	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic)
+			throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		TipoPublicacion tpoPublic = manejadorSettings.obtenerTipoPublicacion(nomTpoPublic);
 		return tpoPublic;
 	}
-	
-	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException, TipoPublicacionYaExisteException 
-	{
+
+	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException, TipoPublicacionYaExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		Keyword keyword = new Keyword(nomKeyword);
-		manejadorSettings.addKeyword(keyword);	
+		manejadorSettings.addKeyword(keyword);
 	}
-	
-	
 
-	public Keyword obtenerKeywords(String nomKeyword) throws KeywordNoExisteException, TipoPublicacionNoExisteException 
-	{
+	public Keyword obtenerKeywords(String nomKeyword)
+			throws KeywordNoExisteException, TipoPublicacionNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		Keyword keyword = manejadorSettings.obtenerKeyword(nomKeyword);
 		return keyword;
 	}
 
-	public ArrayList<String> listarKeywords() 
-	{
+	public ArrayList<String> listarKeywords() {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ArrayList<String> listKeywords = manejadorSettings.listarKeywords();
 		return listKeywords;
 	}
 
-	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException 
-	{
+	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
+			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 
@@ -117,15 +113,13 @@ public class ControladorOferta implements IControladorOferta {
 		postulante.agregarPostulacion(postulacion);
 	}
 
-	public ArrayList<String> listarPostulantes() 
-	{
+	public ArrayList<String> listarPostulantes() {
 		ControladorUsuario controladorUsuario = new ControladorUsuario();
 		ArrayList<String> lpostulantes = controladorUsuario.listarPostulantes();
 		return lpostulantes;
 	}
 
-	public DTOfertaLaboral obtenerDtOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException 
-	{
+	public DTOfertaLaboral obtenerDtOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
@@ -133,49 +127,39 @@ public class ControladorOferta implements IControladorOferta {
 		return dtOfertaLaboral;
 	}
 
-	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException 
-	{
+	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
-			
+
 		Empresa empresa = manejadorUsuario.obtenerEmpresa(nicknameEmpresa);
 		ArrayList<OfertaLaboral> ofertas = empresa.getOfertasLaborales();
 
 		ArrayList<String> nombreOfertas = new ArrayList<String>();
-		for (OfertaLaboral ofertaLaboral : ofertas) 
-		{
+		for (OfertaLaboral ofertaLaboral : ofertas) {
 			nombreOfertas.add(ofertaLaboral.getNombre());
 		}
 		return nombreOfertas;
 	}
 
-	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias, Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException 
-	{
+	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias,
+			Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion)
+			throws PaquetePublicacionYaExisteException {
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
-		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValDias, descuento, cantidadTipoPublicacion);
+		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion, cantidadPublicaciones,
+				periodoValDias, descuento, cantidadTipoPublicacion);
 		manejadorPaquetes.agregarPaquete(paquetePublicacion);
 	}
-	
-	public void agregarKeywordEnOfertaLaboral(String nomKeyword, String nomOferta) throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException 
-	{
+
+	public void agregarKeywordEnOfertaLaboral(String nomKeyword, String nomOferta)
+			throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 		Keyword keyword = manejadorSettings.obtenerKeyword(nomKeyword);
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
 		ofertaLaboral.agregarKeyword(keyword);
-		
+
 	}
 
-
-
-	@Override
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion,
-			Float costo, Date fechaPub) {
 		// TODO Auto-generated method stub
 
 	}

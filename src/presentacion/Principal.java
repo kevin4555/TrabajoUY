@@ -3,7 +3,7 @@ package presentacion;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -20,6 +20,9 @@ import excepciones.UsuarioYaExisteException;
 import logica.controllers.Fabrica;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
+import java.awt.BorderLayout;
+import javax.swing.JInternalFrame;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
@@ -80,15 +83,21 @@ public class Principal extends JFrame {
         crearTipoPublicDeOfertaLabInternalFrame.setVisible(false);
         
         postulacionOfertaLabInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
+        postulacionOfertaLabInternalFrame.setBackground(new Color(240, 240, 240));
+        postulacionOfertaLabInternalFrame.setResizable(false);
         postulacionOfertaLabInternalFrame.setVisible(false);
 
 		
         ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
         ventanaPrincipal.getContentPane().add(crearUsuInternalFrame);
+        
+        JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
+        crearUsuInternalFrame.getContentPane().add(internalFrame, BorderLayout.NORTH);
+        internalFrame.setVisible(true);
         ventanaPrincipal.getContentPane().add(crearOfertaLaboralInternalFrame);
         ventanaPrincipal.getContentPane().add(consultarOfertaInternalFrame);
         ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
-        ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame);
+        ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame, BorderLayout.CENTER);
         
    
 	}
@@ -198,10 +207,11 @@ private void initialize() {
 
 	protected void cargarDatosDePrueba(ActionEvent arg0) {
 		try {
-			ICO.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30, 4000f, Date.valueOf("2023-8-10"));
-			ICO.altaTipoPublicacion("Destacada", "Destaca tu anuncio", "2", 15, 500f, Date.valueOf("2023-8-5"));
-			ICO.altaTipoPublicacion("Estándar", "Mejora la posición de tu anuncio", "3", 20, 150f, Date.valueOf("2023-8-15"));
-			ICO.altaTipoPublicacion("Básica", "Publica de forma sencilla en la lista de ofertas", "4", 7, 50f, Date.valueOf("2023-8-7"));
+			Date fecha = new Date("2023-8-10");
+			ICO.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30, 4000f, fecha);
+			ICO.altaTipoPublicacion("Destacada", "Destaca tu anuncio", "2", 15, 500f, fecha);
+			ICO.altaTipoPublicacion("Estándar", "Mejora la posición de tu anuncio", "3", 20, 150f, fecha);
+			ICO.altaTipoPublicacion("Básica", "Publica de forma sencilla en la lista de ofertas", "4", 7, 50f, fecha);
 			ICO.altaKeyword("Tiempo completo");
 			ICO.altaKeyword("Medio tiempo");
 			ICO.altaKeyword("Remoto");
@@ -218,7 +228,8 @@ private void initialize() {
 			ICU.altaEmpresa("ANTEL", "Washington", "Rocha" , "jarrington@ANTEL.com.uy", "En Antel te brindamos servicios de vanguardia en tecnología de comunicación en Telefonía Móvil, Fija, Banda Ancha y Datos", "ANTEL.com.uy");
 			ICU.altaEmpresa("MIEM", "Pablo" , "Bengoechea" , "eldiez@MIEM.org.uy" , "Balance Energ´etico Nacional (BEN). La Dirección Nacional de Energía (DNE) del Ministerio de Industria, Energía y Minería (MIEM) presenta anualmente el BEN.", "MIEM.com.uy");
 		
-			ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "09:00", "18:00", 90000f,"Montevideo", "Montevideo", Date.valueOf("2023-8-14"), ICO.obtenerTipoPublicacion("Premium"));
+			Date fecha2 = new Date("2023-8-14");
+			ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "09:00", "18:00", 90000f,"Montevideo", "Montevideo", fecha2, ICO.obtenerTipoPublicacion("Premium"));
 
 			ICU.obtenerEmpresa("EcoTech").agregarOferta(ICO.obtenerOfertaLaboral("Desarrollador Frontend"));
 

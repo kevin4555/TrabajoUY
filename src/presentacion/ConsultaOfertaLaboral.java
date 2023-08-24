@@ -17,7 +17,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;

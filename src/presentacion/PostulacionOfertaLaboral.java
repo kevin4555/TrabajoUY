@@ -20,7 +20,7 @@ import javax.swing.JComboBox;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -62,6 +62,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
      */
     @SuppressWarnings("null")
     public PostulacionOfertaLaboral(IControladorOferta icontOfeLab, IControladorUsuario icontUsuLab) {
+    	
         // Se inicializa con el controlador de usuarios
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;
