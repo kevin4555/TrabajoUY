@@ -2,7 +2,10 @@ package logica.handlers;
 
 import java.util.HashMap;
 
-
+import excepciones.KeywordNoExisteException;
+import excepciones.KeywordYaExisteException;
+import excepciones.TipoPublicacionNoExisteException;
+import excepciones.TipoPublicacionYaExisteException;
 import logica.classes.Keyword;
 import logica.classes.TipoPublicacion;
 
@@ -14,55 +17,82 @@ public class ManejadorSettings {
 	private HashMap<String, TipoPublicacion> colTipoPublicaciones;
 	private HashMap<String, Keyword> colKeywords;
 
-	private ManejadorSettings() {
+	private ManejadorSettings() 
+	{
 		colTipoPublicaciones = new HashMap<String, TipoPublicacion>();
 		colKeywords = new HashMap<String, Keyword>();
 	}
 	
-
-	public static ManejadorSettings getInstance() {
+	public static ManejadorSettings getInstance() 
+	{
 		if (instancia == null)
 			instancia = new ManejadorSettings();
 		return instancia;
 	}
 
-	public ArrayList<String> listarTipoDePublicaciones() {
+	public ArrayList<String> listarTipoDePublicaciones() 
+	{
 		ArrayList<String> listTipoPublicaciones = new ArrayList<String>();
-		for (String key : colTipoPublicaciones.keySet()) {
+		for (String key : colTipoPublicaciones.keySet()) 
+		{
 			listTipoPublicaciones.add(key);
 		}
 		return listTipoPublicaciones;
 	}
 
-	public TipoPublicacion obtenerTipoPublicacion(String nombre)  {
-		if (colTipoPublicaciones.get(nombre) != null) {
+	public TipoPublicacion obtenerTipoPublicacion(String nombre) throws TipoPublicacionYaExisteException
+	{
+		if (colTipoPublicaciones.containsKey(nombre)) 
+		{
 			return colTipoPublicaciones.get(nombre);
-		} else {
-			return null;
+		} 
+		else 
+		{
+			throw new TipoPublicacionYaExisteException("La publicacion " + nombre + " no existe");
 		}
 	}
 	
-	public void addTipoPublicacion(TipoPublicacion tpoPublic) {
-		colTipoPublicaciones.put(tpoPublic.getNombre(), tpoPublic);
+	public void addTipoPublicacion(TipoPublicacion tpoPublic) throws TipoPublicacionYaExisteException 
+	{
+		if(!colTipoPublicaciones.containsKey(tpoPublic.getNombre()))
+		{	
+			colTipoPublicaciones.put(tpoPublic.getNombre(), tpoPublic);
+		}
+		else
+		{
+			throw new TipoPublicacionYaExisteException("La publicacion " + tpoPublic.getNombre() +" ya existe");
+		}
 	}
 
-	public void addKeyword(Keyword keyword) { //throws KeywordYaExisteException {
+	public void addKeyword(Keyword keyword) throws KeywordYaExisteException
+	{
+		if(!colKeywords.containsKey(keyword.getNombre()))
+		{
 		colKeywords.put(keyword.getNombre(), keyword);
-		/*if (colKeywords.get(nombre) == null) {
-			Keyword keyword = new Keyword(nombre);
-			colKeywords.put(nombre, keyword);
-		} else {
-			throw new KeywordYaExisteException("Keyword " + nombre + " ya existe");
-		}*/
+		}
+		else
+		{
+			throw new KeywordYaExisteException("La keyword " + keyword.getNombre() + " ya existe");
+		}
 	}
 
-	public Keyword obtenerKeyword(String nombre) {
+	public Keyword obtenerKeyword(String nombre)  throws KeywordNoExisteException
+	{
+		if(colKeywords.containsKey(nombre))
+		{
 			return colKeywords.get(nombre);
+		}
+		else
+		{
+			throw new KeywordNoExisteException("La keyword " + nombre + " no existe");
+		}
 	}
 
-	public ArrayList<String> listarKeywords() {
+	public ArrayList<String> listarKeywords() 
+	{
 		ArrayList<String> listKewords = new ArrayList<String>();
-		for (String key : colKeywords.keySet()) {
+		for (String key : colKeywords.keySet()) 
+		{
 			listKewords.add(key);
 		}
 		return listKewords;

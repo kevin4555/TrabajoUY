@@ -1,6 +1,10 @@
 package logica.classes;
 
-public class Usuario {
+import java.util.ArrayList;
+
+import logica.DataTypes.DTUsuario;
+
+public abstract class Usuario {
 	protected String nickname;
 	protected String nombre;
 	protected String apellido;
@@ -42,4 +46,8 @@ public class Usuario {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
+	abstract public ArrayList<String> listarOfertasUsuario();
+	
+	abstract public DTUsuario obtenerDTUsuario();
 }

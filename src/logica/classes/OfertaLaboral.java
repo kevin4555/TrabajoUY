@@ -25,7 +25,7 @@ public class OfertaLaboral {
 	private TipoPublicacion tipoPublicacion;
 	private ArrayList<Postulacion> postulaciones;
 	
-	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion,String ciudad,String departamento, Date fechaAlta,TipoPublicacion tipoPublicacion) {
+	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
@@ -106,10 +106,10 @@ public class OfertaLaboral {
 		return postulaciones;
 	}
 	
-	@SuppressWarnings("null")
+	
 	public ArrayList<DTPostulacion> obtenerDTPostulacion()
 	{
-		ArrayList<DTPostulacion> listaDTPostulaciones = null;
+		ArrayList<DTPostulacion> listaDTPostulaciones = new ArrayList<DTPostulacion>();
 		for(Postulacion iter : postulaciones)
 		{
 			listaDTPostulaciones.add(iter.obtenerDTPostulacion());

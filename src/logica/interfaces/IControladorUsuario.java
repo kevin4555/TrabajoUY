@@ -3,18 +3,18 @@ package logica.interfaces;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
+import logica.classes.Postulante;
 
 public interface IControladorUsuario {
 	
 	public abstract Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
-	public abstract ArrayList<String> listarEmpresas() throws ColeccionEmpresaEsVaciaException;
+	public abstract ArrayList<String> listarEmpresas();
 	
 	public abstract ArrayList<String> listaDeUsuarios();
 	
@@ -30,5 +30,5 @@ public interface IControladorUsuario {
 	
 	public abstract void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link) throws UsuarioYaExisteException;
 	
-
+	public abstract Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException;
 }
