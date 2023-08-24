@@ -3,7 +3,7 @@ package presentacion;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,6 +21,7 @@ import logica.controllers.Fabrica;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
+
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
 
@@ -34,6 +35,7 @@ public class Principal extends JFrame {
 	private ConsultaOfertaLaboral consultarOfertaInternalFrame;
 	private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
 	private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
+	private Date fecha;
 
 	/**
 	 * Launch the application.
@@ -60,7 +62,7 @@ public class Principal extends JFrame {
 		Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.obtenerControladorUsuario();
         ICO = fabrica.obtenerControladorOferta();
-        
+        this.fecha = new Date();
         // Se crean los InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
 
@@ -89,8 +91,6 @@ public class Principal extends JFrame {
         ventanaPrincipal.getContentPane().add(consultarOfertaInternalFrame);
         ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
         ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame);
-        
-   
 	}
 	
 private void initialize() {
@@ -195,12 +195,16 @@ private void initialize() {
       
     }
 
+	@SuppressWarnings("deprecation")
 	protected void cargarDatosDePrueba(ActionEvent arg0) {
 		try {
-			ICO.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30, 4000f, Date.valueOf("2023-8-10"));
-			ICO.altaTipoPublicacion("Destacada", "Destaca tu anuncio", "2", 15, 500f, Date.valueOf("2023-8-5"));
-			ICO.altaTipoPublicacion("Estándar", "Mejora la posición de tu anuncio", "3", 20, 150f, Date.valueOf("2023-8-15"));
-			ICO.altaTipoPublicacion("Básica", "Publica de forma sencilla en la lista de ofertas", "4", 7, 50f, Date.valueOf("2023-8-7"));
+			fecha.setYear(2023);
+			fecha.setMonth(8);
+			fecha.setDate(10);
+			ICO.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30, 4000f, fecha);
+			ICO.altaTipoPublicacion("Destacada", "Destaca tu anuncio", "2", 15, 500f, fecha);
+			ICO.altaTipoPublicacion("Estándar", "Mejora la posición de tu anuncio", "3", 20, 150f, fecha);
+			ICO.altaTipoPublicacion("Básica", "Publica de forma sencilla en la lista de ofertas", "4", 7, 50f, fecha);
 			ICO.altaKeyword("Tiempo completo");
 			ICO.altaKeyword("Medio tiempo");
 			ICO.altaKeyword("Remoto");
@@ -217,7 +221,7 @@ private void initialize() {
 			ICU.altaEmpresa("ANTEL", "Washington", "Rocha" , "jarrington@ANTEL.com.uy", "En Antel te brindamos servicios de vanguardia en tecnología de comunicación en Telefonía Móvil, Fija, Banda Ancha y Datos", "ANTEL.com.uy");
 			ICU.altaEmpresa("MIEM", "Pablo" , "Bengoechea" , "eldiez@MIEM.org.uy" , "Balance Energ´etico Nacional (BEN). La Dirección Nacional de Energía (DNE) del Ministerio de Industria, Energía y Minería (MIEM) presenta anualmente el BEN.", "MIEM.com.uy");
 		
-			ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "09:00", "18:00", 90000f,"Montevideo", "Montevideo", Date.valueOf("2023-8-14"), ICO.obtenerTipoPublicacion("Premium"));
+			ICO.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "09:00", "18:00", 90000f,"Montevideo", "Montevideo", fecha, ICO.obtenerTipoPublicacion("Premium"));
 
 			ICU.obtenerEmpresa("EcoTech").agregarOferta(ICO.obtenerOfertaLaboral("Desarrollador Frontend"));
 

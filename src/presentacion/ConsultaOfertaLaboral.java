@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import logica.DataTypes.DTOfertaLaboral;
-import logica.classes.OfertaLaboral;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
@@ -17,7 +16,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
@@ -55,8 +54,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     /**
      * Create the frame.
      */
-    @SuppressWarnings("null")
-	public ConsultaOfertaLaboral(IControladorOferta icontOfeLab, IControladorUsuario icontUsuLab) {
+    public ConsultaOfertaLaboral(IControladorOferta icontOfeLab, IControladorUsuario icontUsuLab) {
         // Se inicializa con el controlador de oferta
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;
@@ -202,14 +200,8 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         
         comboBoxEmpresasRegistradas.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
-        	{
-        		String empresa = (String) comboBoxEmpresasRegistradas.getSelectedItem();
-        		if(empresa != seleccionEmpresa)
-        		{
-        			limpiarInformacion();
-        			ubicacionCentro.setVisible(false);
-        		}
-        		cargarOfertaEmpresa(e, empresa);
+        	{        		
+        		cargarOfertaEmpresa(e);
         		lblOfertasLaborales.setVisible(true);
         		comboBoxOfertasLaborales.setVisible(true);
         	}
@@ -238,9 +230,9 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
 			comboBoxEmpresasRegistradas.setModel(model);	 
     }
     
-    public void cargarOfertaEmpresa(ActionEvent e, String empresa)
+    public void cargarOfertaEmpresa(ActionEvent e)
     { 	
-		this.seleccionEmpresa = empresa;
+    	String empresa = (String) comboBoxEmpresasRegistradas.getSelectedItem();
 		String[] ofertasLaborales;
 		try {
 			ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
