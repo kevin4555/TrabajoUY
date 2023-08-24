@@ -3,12 +3,10 @@ package logica.controllers;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
-import excepciones.TipoPublicacionNoExiste;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTOfertaLaboral;
@@ -28,15 +26,11 @@ import logica.interfaces.IControladorOferta;
 
 public class ControladorOferta implements IControladorOferta {
 
-	public ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException{
+	public ArrayList<String> listarTipoDePublicaciones()
+	{
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ArrayList<String> nombreTiposPublicacion = manejadorSettings.listarTipoDePublicaciones();
-		if (nombreTiposPublicacion != null) {
-			return nombreTiposPublicacion;
-		}
-		else {
-			throw new ColeccionTipoPublicacionEsVaciaException("No existen tipos de publicaciones registrados");
-		}
+		return nombreTiposPublicacion;
 	}
 
 	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) throws OfertaLaboralYaExisteException
@@ -50,12 +44,7 @@ public class ControladorOferta implements IControladorOferta {
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException{
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
-		if (ofertaLaboral == null) {
-			throw new OfertaLaboralNoExisteException("La Oferta laboral " + nomOferta + " no existe");
-		}
-		else {
-			return ofertaLaboral;
-		} 
+		return ofertaLaboral;
 	}
 
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) {
@@ -79,18 +68,12 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
-			Date fechaPub) throws TipoPublicacionYaExisteException {
+		Date fechaPub) throws TipoPublicacionYaExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		TipoPublicacion tpoPublic = manejadorSettings.obtenerTipoPublicacion(nombre);
-		if (tpoPublic != null) {
-			throw new TipoPublicacionYaExisteException("El tipo de publicacion " + nombre + " ya se encuentra registrado");
-		}
-		else {
-			TipoPublicacion tipoPublicacion = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo,
-					fechaPub);
-			manejadorSettings.addTipoPublicacion(tipoPublicacion);
-		}
-
+		TipoPublicacion tipoPublicacion = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo,
+		fechaPub);
+		manejadorSettings.addTipoPublicacion(tipoPublicacion);
 	}
 	
 	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExiste {
@@ -106,13 +89,8 @@ public class ControladorOferta implements IControladorOferta {
 	
 	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		if (manejadorSettings.obtenerKeyword(nomKeyword) == null) {
-			Keyword keyword = new Keyword(nomKeyword);
-			manejadorSettings.addKeyword(keyword);	
-		}
-		else {
-			throw new KeywordYaExisteException("La keyword " + nomKeyword + " ya se encuentra registrada");
-		}
+		Keyword keyword = new Keyword(nomKeyword);
+		manejadorSettings.addKeyword(keyword);	
 	}
 	
 	
@@ -120,12 +98,7 @@ public class ControladorOferta implements IControladorOferta {
 	public Keyword obtenerKeywords(String nomKeyword) throws KeywordNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		Keyword keyword = manejadorSettings.obtenerKeyword(nomKeyword);
-		if  (keyword == null) {
-			throw new KeywordNoExisteException("La Keyword " + nomKeyword + " no existe");
-		}
-		else {
-			return keyword;
-		}
+		return keyword;
 	}
 
 	public ArrayList<String> listarKeywords() {

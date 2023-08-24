@@ -22,7 +22,7 @@ public interface IControladorOferta {
 
 	public ArrayList<String> listarPostulantes();
 	
-	public ArrayList<String> listarTipoDePublicaciones() throws ColeccionTipoPublicacionEsVaciaException;
+	public ArrayList<String> listarTipoDePublicaciones();
 	
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException;
 	

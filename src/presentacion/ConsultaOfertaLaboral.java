@@ -17,7 +17,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.time.format.DateTimeFormatter;
 
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
@@ -26,7 +25,6 @@ import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 
 import java.text.SimpleDateFormat;
-import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.UsuarioNoExisteException;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -218,27 +216,25 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     public void cargarEmpresas()
     {
     		String[] empresas;
-			try {
-				empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
-				DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
-				comboBoxEmpresasRegistradas.setModel(model);
-			} catch (ColeccionEmpresaEsVaciaException e) {
-			}
-			 
+			empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
+			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
+			comboBoxEmpresasRegistradas.setModel(model);	 
     }
     
     public void cargarOfertaEmpresa(ActionEvent e)
     { 	
-			try {
-				String empresa = (String) comboBoxEmpresasRegistradas.getSelectedItem();
-				String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
-				DefaultComboBoxModel<String> model;
-	    		model = new DefaultComboBoxModel<String>(ofertasLaborales);
-	    		comboBoxOfertasLaborales.setModel(model);
-			} catch (UsuarioNoExisteException e1) {
-				e1.printStackTrace();
-			}
-    		
+		String empresa = (String) comboBoxEmpresasRegistradas.getSelectedItem();
+		String[] ofertasLaborales;
+		try {
+			ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
+			DefaultComboBoxModel<String> model;
+		    model = new DefaultComboBoxModel<String>(ofertasLaborales);
+		    comboBoxOfertasLaborales.setModel(model);	
+		} catch (UsuarioNoExisteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
     }
     
     public void cargarDatosOferta(ActionEvent e)

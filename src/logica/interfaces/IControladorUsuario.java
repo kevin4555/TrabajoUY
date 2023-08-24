@@ -4,19 +4,19 @@ package logica.interfaces;
 import java.util.ArrayList;
 import java.util.Date;
 
-import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
 import logica.classes.Usuario;
+import logica.classes.Postulante;
 
 public interface IControladorUsuario {
 	
 	public abstract Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
-	public abstract ArrayList<String> listarEmpresas() throws ColeccionEmpresaEsVaciaException;
+	public abstract ArrayList<String> listarEmpresas();
 	
 	public abstract ArrayList<String> listaDeUsuarios();
 	
@@ -38,4 +38,5 @@ public interface IControladorUsuario {
 	
 	public abstract ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException;
 
+	public abstract Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException;
 }

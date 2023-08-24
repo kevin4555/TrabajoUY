@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import logica.DataTypes.DTOfertaLaboral;
-import logica.classes.Empresa;
 import logica.classes.OfertaLaboral;
 import logica.classes.Postulante;
 import logica.interfaces.IControladorOferta;
@@ -27,7 +26,6 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.SwingConstants;
 
-import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 
@@ -54,7 +52,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private JTextField textFieldCVReducido;
     private JTextField textFieldMotivacion;
     private JTextField textFieldFechaPostulacion;
-    private Empresa empresa;
     private OfertaLaboral oferta;
     private Postulante postulante;
     /**
@@ -292,6 +289,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     		{
     			ubicacionEtiquetasText.setVisible(true);
     			ubicacionTextFields.setVisible(true);
+    			guardarPostulante();
     		}
         });
         
@@ -321,24 +319,33 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	return formatter.format(fecha);
     }
     
+    public Date stringToDate(String Fecha)
+    {
+    	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	try {
+    		Date fechaParseada;
+    		fechaParseada = (Date) inputFormat.parse(Fecha);
+    		return fechaParseada;
+    	}catch(ParseException e)
+    	{
+    		return null;
+    	}
+    }
+    
     public void cargarEmpresasPostulacion()
     {
     	String[] empresas;
-		try {
 			empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
 			
 			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
 			comboBoxEmpresasRegistradasPostulacion.setModel(model);
-		} catch (ColeccionEmpresaEsVaciaException e) {
-		}
+
     }
     
     public void cargarOfertaEmpresaPostulacion(ActionEvent e)
     {
     	try {
 			String empresa = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
-			//this.Empresa = controlUsuarioLab.obtenerEmpresa(empresa);
-			
 			String[] ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
 			DefaultComboBoxModel<String> model;
     		model = new DefaultComboBoxModel<String>(ofertasLaborales);
@@ -381,26 +388,15 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	Date fechaPostulacionD = stringToDate(fechaPostulacion);
     	
     	if(chequearDatos())
+    	{
     		try {
-                controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacionD, this.postulante.getNickname() , this.oferta.getNombre());
-            } catch (UsuarioNoExisteException e1) {
+				controlUsuarioLab.registrarPostulacion(cvReducido, motivacion, fechaPostulacionD, this.postulante.getNickname() , this.oferta.getNombre());
+			} catch (UsuarioNoExisteException e1) {
 
-            } catch (OfertaLaboralNoExisteException e1) {
+			} catch (OfertaLaboralNoExisteException e1) {
 
-            }
-    }
-    
-    public Date stringToDate(String Fecha)
-    {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date fechaParseada;
-            fechaParseada = (Date) inputFormat.parse(Fecha);
-            return fechaParseada;
-        }catch(ParseException e)
-        {
-            return null;
-        }
+			}
+    	}
     }
     
     public boolean chequearDatos()
@@ -418,5 +414,15 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	
     	//Falta el chequeo de la fecha
     	return true;
+    }
+    
+    public void guardarPostulante()
+    {
+    	try {
+			this.postulante = controlUsuarioLab.obtenerPostulante((comboBoxPostulantesRegistrados.getSelectedItem().toString()));
+		} catch (UsuarioNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
