@@ -16,7 +16,6 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
@@ -25,6 +24,8 @@ import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import excepciones.UsuarioNoExisteException;
 import javax.swing.JPanel;
 import javax.swing.JTextField;

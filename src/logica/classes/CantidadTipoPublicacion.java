@@ -4,6 +4,12 @@ public class CantidadTipoPublicacion {
 	private PaquetePublicacion paquetePublicacion;
 	private int cantidadRestante;
 	private TipoPublicacion tipoPublicacion;
+	
+	public CantidadTipoPublicacion(TipoPublicacion tipoPublicacion,PaquetePublicacion paquetePublicacion,int cantidadInicial) {
+		this.paquetePublicacion = paquetePublicacion;
+		this.cantidadRestante = cantidadInicial;
+		this.tipoPublicacion = tipoPublicacion;
+	}
 
 	public int getCantidadRestante() {
 		return cantidadRestante;

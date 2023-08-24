@@ -1,6 +1,7 @@
 package logica.classes;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class TipoPublicacion {
 	
@@ -10,7 +11,7 @@ public class TipoPublicacion {
 	private int duracionDia;
 	private double costo;
 	private Date fechaAlta;
-	private CantidadTipoPublicacion cantTipo;
+	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
 	
 	public TipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) {
 		this.setNombre(nombre);
@@ -58,9 +59,17 @@ public class TipoPublicacion {
 		this.fechaAlta = fechaAlta;
 	}
 	
-	public CantidadTipoPublicacion getCantidadTipoPublicacion()
-	{
-		return cantTipo;
+	public ArrayList<CantidadTipoPublicacion> getCantidadTipoPublicaciones() {
+		return cantidadTipoPublicaciones;
 	}
+	
+	public void addCantidadTipoPublicacion(CantidadTipoPublicacion cantidadTipoPublicacion) {
+		if ( this.cantidadTipoPublicaciones == null) {
+			 this.cantidadTipoPublicaciones = new ArrayList<CantidadTipoPublicacion>();
+		}
+		this.cantidadTipoPublicaciones.add(cantidadTipoPublicacion);
+	}
+
+	
 }
 

@@ -1,8 +1,8 @@
 package logica.DataTypes;
 
 import java.util.ArrayList;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
+
 
 public class DTOfertaLaboral {
 	private String nombre;

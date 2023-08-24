@@ -12,8 +12,6 @@ import javax.swing.border.EmptyBorder;
 
 
 
-import excepciones.ColeccionEmpresaEsVaciaException;
-import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
@@ -219,7 +217,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 			empresas = (controlUsu.listarEmpresas()).toArray(new String[0]);
 			model = new DefaultComboBoxModel<String>(empresas);
 			comboBoxEmpresa.setModel(model); 
-		} catch (ColeccionEmpresaEsVaciaException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
@@ -232,7 +230,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 			tiposPublicaciones = (controlOferta.listarTipoDePublicaciones()).toArray(new String[0]);
 			model = new DefaultComboBoxModel<String>(tiposPublicaciones);
 			comboBoxTpoPublicacion.setModel(model); 
-		} catch (ColeccionTipoPublicacionEsVaciaException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }

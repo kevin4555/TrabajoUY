@@ -2,6 +2,8 @@ package logica.handlers;
 
 import java.util.HashMap;
 
+import excepciones.KeywordNoExisteException;
+import excepciones.KeywordYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import logica.classes.Keyword;
@@ -38,7 +40,7 @@ public class ManejadorSettings {
 		return listTipoPublicaciones;
 	}
 
-	public TipoPublicacion obtenerTipoPublicacion(String nombre) throws TipoPublicacionYaExisteException
+	public TipoPublicacion obtenerTipoPublicacion(String nombre) throws TipoPublicacionNoExisteException
 	{
 		if (colTipoPublicaciones.containsKey(nombre)) 
 		{
@@ -46,7 +48,7 @@ public class ManejadorSettings {
 		} 
 		else 
 		{
-			throw new TipoPublicacionYaExisteException("La publicacion" + nombre + "no existe");
+			throw new TipoPublicacionNoExisteException("La publicacion " + nombre + " no existe");
 		}
 	}
 	
@@ -58,23 +60,23 @@ public class ManejadorSettings {
 		}
 		else
 		{
-			throw new TipoPublicacionYaExisteException("La publicacion" + tpoPublic.getNombre() +"ya existe");
+			throw new TipoPublicacionYaExisteException("La publicacion " + tpoPublic.getNombre() +" ya existe");
 		}
 	}
 
-	public void addKeyword(Keyword keyword) throws TipoPublicacionYaExisteException
+	public void addKeyword(Keyword keyword) throws KeywordYaExisteException
 	{
-		if(colKeywords.containsKey(keyword.getNombre()))
+		if(!colKeywords.containsKey(keyword.getNombre()))
 		{
-		colKeywords.put(keyword.getNombre(), keyword);
+			colKeywords.put(keyword.getNombre(), keyword);
 		}
 		else
 		{
-			throw new TipoPublicacionYaExisteException("La publicacion" + keyword + "ya existe");
+			throw new KeywordYaExisteException("La Keyword " + keyword + " ya existe");
 		}
 	}
 
-	public Keyword obtenerKeyword(String nombre)  throws TipoPublicacionNoExisteException
+	public Keyword obtenerKeyword(String nombre)  throws KeywordNoExisteException
 	{
 		if(colKeywords.containsKey(nombre))
 		{
@@ -82,7 +84,7 @@ public class ManejadorSettings {
 		}
 		else
 		{
-			throw new TipoPublicacionNoExisteException("La publicacion" + nombre + "no existe");
+			throw new KeywordNoExisteException("La publicacion" + nombre + "no existe");
 		}
 	}
 
