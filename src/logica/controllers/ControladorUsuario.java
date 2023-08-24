@@ -62,7 +62,14 @@ public class ControladorUsuario implements IControladorUsuario {
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empr = manejadorUsuarios.obtenerEmpresa(nicknameEmpresa);
+		if(empr != null)
+		{
 		return empr.obtenerNombresOfertas();
+		}
+		else
+		{
+			throw new UsuarioNoExisteException("La empresa seleccionada no contiene ofertas");
+		}
 	}
 
 	@Override

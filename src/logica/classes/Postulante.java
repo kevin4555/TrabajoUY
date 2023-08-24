@@ -13,11 +13,11 @@ public class Postulante extends Usuario{
 	
 	public Postulante() {}
 	
-	public Postulante(String nickname, String nombre, 
-			String apellido, String email, Date fechaNacimiento, String nacionalidad) {
+	public Postulante(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, String nacionalidad) {
 		super(nickname, nombre, apellido, email);
 		this.fechaNacimiento = fechaNacimiento;
 		this.nacionalidad = nacionalidad;
+		this.postulaciones = new ArrayList<Postulacion>();
 	}
 	
 	public Date getFechaNacimiento() {
