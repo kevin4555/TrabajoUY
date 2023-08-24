@@ -17,7 +17,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
@@ -50,17 +50,14 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     private JTextField textFieldDepartamento;
     private JTextField textFieldFechaAlta;
     private JTextArea textAreaDescripcion;
-    private String seleccionEmpresa;
-
     /**
      * Create the frame.
      */
-    @SuppressWarnings("null")
-	public ConsultaOfertaLaboral(IControladorOferta icontOfeLab, IControladorUsuario icontUsuLab) {
+    public ConsultaOfertaLaboral(IControladorOferta icontOfeLab, IControladorUsuario icontUsuLab) {
         // Se inicializa con el controlador de oferta
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;
-        this.seleccionEmpresa = "";
+        
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
         setIconifiable(true);
@@ -79,8 +76,38 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         JComboBox comboBoxEmpresasRegistradas = new JComboBox();
         ubicacionComboBox.add(comboBoxEmpresasRegistradas);
         
-        JComboBox comboBoxOfertasLaborales = new JComboBox();
-        ubicacionComboBox.add(comboBoxOfertasLaborales);
+        JPanel ubicacionNorte = new JPanel();
+        getContentPane().add(ubicacionNorte, BorderLayout.NORTH);
+        ubicacionNorte.setLayout(new GridLayout(1, 2, 10, 10));
+        
+        JPanel ubicacionIzq = new JPanel();
+        ubicacionNorte.add(ubicacionIzq);
+        ubicacionIzq.setLayout(new GridLayout(2, 1, 100, 5));
+        
+        JLabel lblEmpresas = new JLabel("Empresas");
+        lblEmpresas.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionIzq.add(lblEmpresas);
+        
+        JLabel lblOfertasLaborales = new JLabel("Ofertas Laborales");
+        lblOfertasLaborales.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionIzq.add(lblOfertasLaborales);
+        lblOfertasLaborales.setVisible(false);
+        
+        JPanel ubicacionDer = new JPanel();
+        ubicacionNorte.add(ubicacionDer);
+        ubicacionDer.setLayout(new GridLayout(2, 1, 1, 10));
+        
+        this.comboBoxEmpresasRegistradas = new JComboBox<String>();
+        ubicacionDer.add(this.comboBoxEmpresasRegistradas);
+        
+        this.comboBoxOfertasLaborales = new JComboBox<String>();
+        ubicacionDer.add(this.comboBoxOfertasLaborales);
+        this.comboBoxOfertasLaborales.setVisible(false);
+        
+        JPanel ubicacionCentro = new JPanel();
+        getContentPane().add(ubicacionCentro, BorderLayout.CENTER);
+        ubicacionCentro.setLayout(new GridLayout(1, 2, 0, 0));
+        ubicacionCentro.setVisible(false);
         
         JPanel ubicacionEtiquetas = new JPanel();
         ubicacionEtiquetas.setBounds(10, 36, 89, 75);
@@ -121,73 +148,67 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         ubicacionCentro.add(ubicacionTextos);
         ubicacionTextos.setLayout(new GridLayout(8, 1, 0, 0));
         
-        textFieldNombre = new JTextField();
-        textFieldNombre.setEditable(false);
-        textFieldNombre.setHorizontalAlignment(SwingConstants.CENTER);
-        ubicacionTextos.add(textFieldNombre);
+        this.textFieldNombre = new JTextField();
+        this.textFieldNombre.setEditable(false);
+        this.textFieldNombre.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionTextos.add(this.textFieldNombre);
         
         JScrollPane scrollPaneDescripcion = new JScrollPane();
         ubicacionTextos.add(scrollPaneDescripcion);
         
-        JTextArea textAreaDescripcion = new JTextArea();
-        scrollPaneDescripcion.setViewportView(textAreaDescripcion);
+        this.textAreaDescripcion = new JTextArea();
+        scrollPaneDescripcion.setViewportView(this.textAreaDescripcion);
         
-        textFieldHoraInicio = new JTextField();
-        textFieldHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
-        textFieldHoraInicio.setEditable(false);
-        ubicacionTextos.add(textFieldHoraInicio);
+        this.textFieldHoraInicio = new JTextField();
+        this.textFieldHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
+        this.textFieldHoraInicio.setEditable(false);
+        ubicacionTextos.add(this.textFieldHoraInicio);
         
-        textFieldHoraFin = new JTextField();
-        textFieldHoraFin.setHorizontalAlignment(SwingConstants.CENTER);
-        textFieldHoraFin.setEditable(false);
-        ubicacionTextos.add(textFieldHoraFin);
+        this.textFieldHoraFin = new JTextField();
+        this.textFieldHoraFin.setHorizontalAlignment(SwingConstants.CENTER);
+        this.textFieldHoraFin.setEditable(false);
+        ubicacionTextos.add(this.textFieldHoraFin);
         
-        textFieldRemuneracion = new JTextField();
-        textFieldRemuneracion.setHorizontalAlignment(SwingConstants.CENTER);
-        textFieldRemuneracion.setEditable(false);
-        ubicacionTextos.add(textFieldRemuneracion);
+        this.textFieldRemuneracion = new JTextField();
+        this.textFieldRemuneracion.setHorizontalAlignment(SwingConstants.CENTER);
+        this.textFieldRemuneracion.setEditable(false);
+        ubicacionTextos.add(this.textFieldRemuneracion);
         
-        textFieldCiudad = new JTextField();
-        textFieldCiudad.setHorizontalAlignment(SwingConstants.CENTER);
-        textFieldCiudad.setEditable(false);
-        ubicacionTextos.add(textFieldCiudad);
+        this.textFieldCiudad = new JTextField();
+        this.textFieldCiudad.setHorizontalAlignment(SwingConstants.CENTER);
+        this.textFieldCiudad.setEditable(false);
+        ubicacionTextos.add(this.textFieldCiudad);
         
-        textFieldDepartamento = new JTextField();
-        textFieldDepartamento.setHorizontalAlignment(SwingConstants.CENTER);
-        textFieldDepartamento.setEditable(false);
-        ubicacionTextos.add(textFieldDepartamento);
+        this.textFieldDepartamento = new JTextField();
+        this.textFieldDepartamento.setHorizontalAlignment(SwingConstants.CENTER);
+        this.textFieldDepartamento.setEditable(false);
+        ubicacionTextos.add(this.textFieldDepartamento);
         
-        textFieldFechaAlta = new JTextField();
-        textFieldFechaAlta.setHorizontalAlignment(SwingConstants.CENTER);
-        textFieldFechaAlta.setEditable(false);
-        ubicacionTextos.add(textFieldFechaAlta);
+        this.textFieldFechaAlta = new JTextField();
+        this.textFieldFechaAlta.setHorizontalAlignment(SwingConstants.CENTER);
+        this.textFieldFechaAlta.setEditable(false);
+        ubicacionTextos.add(this.textFieldFechaAlta);
         
         btnBotonCerrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 lblOfertasLaborales.setVisible(false);
-                comboBoxOfertasLaborales.setVisible(false);
+               
                 ubicacionCentro.setVisible(false);
                 limpiarInformacion();
             }
         });
         
-        comboBoxEmpresasRegistradas.addActionListener(new ActionListener(){
+        this.comboBoxEmpresasRegistradas.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
-        	{
-        		String empresa = (String) comboBoxEmpresasRegistradas.getSelectedItem();
-        		if(empresa != seleccionEmpresa)
-        		{
-        			limpiarInformacion();
-        			ubicacionCentro.setVisible(false);
-        		}
-        		cargarOfertaEmpresa(e, empresa);
+        	{        		
+        		cargarOfertaEmpresa(e);
         		lblOfertasLaborales.setVisible(true);
         		comboBoxOfertasLaborales.setVisible(true);
         	}
         });
         
-        comboBoxOfertasLaborales.addActionListener(new ActionListener(){
+        this.comboBoxOfertasLaborales.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
         	{
         		cargarDatosOferta(e);
@@ -208,18 +229,18 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     		String[] empresas;
 			empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
 			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
-			comboBoxEmpresasRegistradas.setModel(model);	 
+			this.comboBoxEmpresasRegistradas.setModel(model);	 
     }
     
-    public void cargarOfertaEmpresa(ActionEvent e, String empresa)
+    public void cargarOfertaEmpresa(ActionEvent e)
     { 	
-		this.seleccionEmpresa = empresa;
+    	String empresa = (String) (this.comboBoxEmpresasRegistradas).getSelectedItem();
 		String[] ofertasLaborales;
 		try {
 			ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
 			DefaultComboBoxModel<String> model;
 		    model = new DefaultComboBoxModel<String>(ofertasLaborales);
-		    comboBoxOfertasLaborales.setModel(model);	
+		    this.comboBoxOfertasLaborales.setModel(model);	
 		} catch (UsuarioNoExisteException e1) {
 			e1.printStackTrace();
 		}
@@ -227,19 +248,19 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     
     public void cargarDatosOferta(ActionEvent e)
     {
-    	String ofertaLaboral = (String) comboBoxOfertasLaborales.getSelectedItem();
-    	DTOfertaLaboral dtOfertaLaboral;
+    	String ofertaLaboral = (String) (this.comboBoxOfertasLaborales).getSelectedItem();
+    	OfertaLaboral dtOfertaLaboral;
 	    try {
-			dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
+			dtOfertaLaboral = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
 			
-		    textFieldNombre.setText(dtOfertaLaboral.getNombre());
-			textAreaDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
-			textFieldHoraInicio.setText(dtOfertaLaboral.getHorarioInicio());
-			textFieldHoraFin.setText(dtOfertaLaboral.getHorarioFinal());
-			textFieldRemuneracion.setText((dtOfertaLaboral.getRemuneracion()).toString());
-			textFieldCiudad.setText(dtOfertaLaboral.getCiudad());
-			textFieldDepartamento.setText(dtOfertaLaboral.getDepartamento());
-			textFieldFechaAlta.setText(dateToString(dtOfertaLaboral.getFechaAlta()));
+			(this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
+			(this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());	   
+			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicial());
+			(this.textFieldHoraFin).setText(dtOfertaLaboral.getHorarioFinal());
+			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemunaracion())));
+			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
+			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
+			(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));
 		} catch (OfertaLaboralNoExisteException e1) {
 
     	}
@@ -247,14 +268,14 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     
     public void limpiarInformacion()
     {
-    	textFieldNombre.setText("");
-		textAreaDescripcion.setText("");	   
-		textFieldHoraInicio.setText("");
-		textFieldHoraFin.setText("");
-		textFieldRemuneracion.setText("");
-		textFieldCiudad.setText("");
-		textFieldDepartamento.setText("");
-		textFieldFechaAlta.setText("");
+    	this.textFieldNombre.setText("");
+    	this.textAreaDescripcion.setText("");	   
+    	this.textFieldHoraInicio.setText("");
+    	this.textFieldHoraFin.setText("");
+    	this.textFieldRemuneracion.setText("");
+    	this.textFieldCiudad.setText("");
+    	this.textFieldDepartamento.setText("");
+		this.textFieldFechaAlta.setText("");
     }
     
     public void mostrarInformacionOfertaLaboral(DTOfertaLaboral dtOfertaLaboral)

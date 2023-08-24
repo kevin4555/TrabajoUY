@@ -58,7 +58,7 @@ public class Postulacion {
 		
 		DTUsuario dtUsuario = new DTUsuario(this.getPostulante().getNickname(), this.getPostulante().getNombre(), this.getPostulante().getApellido(), this.getPostulante().getEmail());
 		
-		DTPostulacion dtPostulacion = new DTPostulacion(dtUsuario, this.getDescrpMotivacion(), (java.sql.Date) this.getFechaPostulacion(), this.getCvReducido());
+		DTPostulacion dtPostulacion = new DTPostulacion(dtUsuario, this.getDescrpMotivacion(),this.getFechaPostulacion(), this.getCvReducido());
 		return dtPostulacion;
 	}
 	
