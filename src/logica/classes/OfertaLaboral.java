@@ -100,10 +100,10 @@ public class OfertaLaboral {
 		return postulaciones;
 	}
 	
-	@SuppressWarnings("null")
+	
 	public ArrayList<DTPostulacion> obtenerDTPostulacion()
 	{
-		ArrayList<DTPostulacion> listaDTPostulaciones = null;
+		ArrayList<DTPostulacion> listaDTPostulaciones = new ArrayList<DTPostulacion>();
 		for(Postulacion iter : postulaciones)
 		{
 			listaDTPostulaciones.add(iter.obtenerDTPostulacion());
