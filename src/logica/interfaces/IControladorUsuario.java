@@ -9,6 +9,7 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
+import logica.classes.Postulante;
 import logica.classes.Usuario;
 
 public interface IControladorUsuario {
@@ -36,5 +37,7 @@ public interface IControladorUsuario {
 	public abstract Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException;
 	
 	public abstract ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException;
+	
+	public abstract Postulante obtenerPostulante(String nickname) throws UsuarioNoExisteException;
 
 }
