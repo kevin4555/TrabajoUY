@@ -58,6 +58,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
      * Create the frame.
      */
     public PostulacionOfertaLaboral(IControladorOferta icontOfeLab, IControladorUsuario icontUsuLab) {
+    	
         // Se inicializa con el controlador de usuarios
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;

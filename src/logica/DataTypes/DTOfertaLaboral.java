@@ -3,7 +3,6 @@ package logica.DataTypes;
 import java.util.ArrayList;
 import java.util.Date;
 
-
 public class DTOfertaLaboral {
 	private String nombre;
 	private String descripcion;

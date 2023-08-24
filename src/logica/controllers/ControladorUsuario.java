@@ -88,33 +88,28 @@ public class ControladorUsuario implements IControladorUsuario {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link);
 		manejadorUsuarios.agregarEmpresa(empresa);
-	}	
+	}
+
 	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Usuario usuario = manejadorUsuario.obtenerUsuario(nickname);
 		return usuario;
 	}
-		@Override
-		public DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
 
-		@Override
-		public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
+	@Override
+	public DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException {
+		Usuario usuario = this.obtenerUsuario(nickname);
+		return usuario.obtenerDTUsuario();
+	}
 
-		@Override
-		public Postulante obtenerPostulante(String nickname) throws UsuarioNoExisteException
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
+	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException {
+		Usuario usuario = this.obtenerUsuario(nickname);
+		return usuario.listarOfertasUsuario();
+	}
 
+	@Override
+	public Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException {
+		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+		return manejadorUsuario.obtenerPostulante(nomPostulante);
+	}
 }
-
-	
