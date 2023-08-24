@@ -1,41 +1,36 @@
 package logica.classes;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
-import java.util.Map;
-
-import excepciones.DtOfertaNoExisteException;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
-import logica.handlers.ManejadorOfertas;
-import logica.handlers.ManejadorSettings;
 
 public class OfertaLaboral {
 	private String nombre;
 	private String descripcion;
 	private String ciudad;
 	private String departamento;
-	private Date horaInicio;
-	private Date horaFin;
-	private Float remuneracion;
+	private String horarioInicial;
+	private String horarioFinal;
+	private float remuneracion;
 	private Date fechaAlta;
-	private ArrayList<Keyword> kewords;
+	private ArrayList<Keyword> listaKeywords;
 	private TipoPublicacion tipoPublicacion;
 	private ArrayList<Postulacion> postulaciones;
 	
-	public OfertaLaboral(String nombre,String descripcion,String ciudad,String departamento,Date horaInicio,Date horaFin,Float remuneracion,Date fechaAlta, ArrayList<Keyword> keywords ,TipoPublicacion tipoPublicacion) {
+	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
 		this.departamento = departamento;
-		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
+		this.horarioInicial = horarioInicial;
+		this.horarioFinal = horarioFinal;
 		this.remuneracion = remuneracion;
 		this.fechaAlta = fechaAlta;
-		this.kewords = keywords;
 		this.tipoPublicacion = tipoPublicacion;
 		this.postulaciones = new ArrayList<Postulacion>();
+		this.listaKeywords = new ArrayList<Keyword>();
 	}
 
 	public String getNombre() {
@@ -62,22 +57,10 @@ public class OfertaLaboral {
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
-	public Date getHoraInicio() {
-		return horaInicio;
-	}
-	public void setHoraInicio(Date horaInicio) {
-		this.horaInicio = horaInicio;
-	}
-	public Date getHoraFin() {
-		return horaFin;
-	}
-	public void setHoraFin(Date horaFin) {
-		this.horaFin = horaFin;
-	}
-	public Float getRemunaracion() {
+	public float getRemunaracion() {
 		return remuneracion;
 	}
-	public void setRemunaracion(Float remuneracion) {
+	public void setRemunaracion(float remuneracion) {
 		this.remuneracion = remuneracion;
 	}
 	public Date getFechaAlta() {
@@ -88,11 +71,11 @@ public class OfertaLaboral {
 	}
 
 	public ArrayList<Keyword> getKw() {
-		return kewords;
+		return listaKeywords;
 	}
 
 	public void setKeword(ArrayList<Keyword> kw) {
-		this.kewords = kw;
+		this.listaKeywords = kw;
 	}
 
 	public TipoPublicacion getTipoPublicacion() {
@@ -103,6 +86,10 @@ public class OfertaLaboral {
 		this.tipoPublicacion = tp;
 	}
 
+		
+	public void agregarKeyword(Keyword keyword) {
+		listaKeywords.add(keyword);
+	}
 	
 
 	public void agregarPostulacion(Postulacion postulacion) {
@@ -128,8 +115,24 @@ public class OfertaLaboral {
 		CantidadTipoPublicacion cantidadTipoPublicacion = this.tipoPublicacion.getCantidadTipoPublicacion();
 		PaquetePublicacion paquetePublicacion = cantidadTipoPublicacion.getPaquetePublicacion();
 		DTPaquetePublicacion dtPaquetePublicacion = new DTPaquetePublicacion(this.getNombre(), this.getDescripcion(), cantidadTipoPublicacion.getCantidadRestante(), paquetePublicacion.getPeriodoValidez(), paquetePublicacion.getDescuento(), paquetePublicacion.getCosto());
-		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(), this.getHoraInicio(), this.getHoraFin(), this.getRemunaracion(), this.getFechaAlta(), dtPaquetePublicacion, this.obtenerDTPostulacion());
+		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), dtPaquetePublicacion, this.obtenerDTPostulacion());
 		return dtOfertaLaboral;
+	}
+
+	public String getHorarioFinal() {
+		return horarioFinal;
+	}
+
+	public void setHorarioFinal(String horarioFinal) {
+		this.horarioFinal = horarioFinal;
+	}
+
+	public String getHorarioInicial() {
+		return horarioInicial;
+	}
+
+	public void setHorarioInicial(String horarioInicial) {
+		this.horarioInicial = horarioInicial;
 	}
 	
 }

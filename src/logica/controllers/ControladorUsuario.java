@@ -1,9 +1,8 @@
 package logica.controllers;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
-import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
@@ -17,29 +16,18 @@ import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
-
 public class ControladorUsuario implements IControladorUsuario {
-
 
 	public Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException {
 		ManejadorUsuario manejUsu = ManejadorUsuario.getInstance();
 		Empresa emp = manejUsu.obtenerEmpresa(nicknameEmpresa);
-		if (emp == null) 
-			throw new UsuarioNoExisteException("La empresa " + nicknameEmpresa + " no existe");
-		else {
-			return emp;
-		}
+		return emp;
 	}
 
-	public ArrayList<String> listarEmpresas() throws ColeccionEmpresaEsVaciaException{
+	public ArrayList<String> listarEmpresas() {
 		ManejadorUsuario manejUsu = ManejadorUsuario.getInstance();
 		ArrayList<String> nomEmpresas = manejUsu.listarEmpresas();
-		if (nomEmpresas != null) {
-			return nomEmpresas;
-		}
-		else {
-			throw new ColeccionEmpresaEsVaciaException("No existen tipos de publicaciones registrados");
-		}
+		return nomEmpresas;
 	}
 
 	@Override
@@ -54,22 +42,16 @@ public class ControladorUsuario implements IControladorUsuario {
 		Usuario usuario = manejadorUsuario.obtenerUsuario(dtusuario.getNickname());
 		usuario.setApellido(dtusuario.getApellido());
 		usuario.setNombre(dtusuario.getNombre());
-		//si se necesitan cambiar mas datos hay que hacer alguna magia para distinguir la empresa del postulante
-		
+		// si se necesitan cambiar mas datos hay que hacer alguna magia para distinguir
+		// la empresa del postulante
 	}
 
 	@Override
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empr = manejadorUsuarios.obtenerEmpresa(nicknameEmpresa);
-		if(empr != null)
-		{
 		return empr.obtenerNombresOfertas();
-		}
-		else
-		{
-			throw new UsuarioNoExisteException("La empresa seleccionada no contiene ofertas");
-		}
+
 	}
 
 	@Override
@@ -77,7 +59,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		return manejadorUsuarios.listarPostulantes();
 	}
-	
+
 	@Override
 	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
 			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
@@ -86,22 +68,18 @@ public class ControladorUsuario implements IControladorUsuario {
 		Fabrica fabrica = Fabrica.getInstance();
 		IControladorOferta controladorOferta = fabrica.obtenerControladorOferta();
 		OfertaLaboral oferta = controladorOferta.obtenerOfertaLaboral(nomOferta);
-		Postulacion postulacion = new Postulacion(motivacion, fechaPostulacion, cvReducido, postulante,oferta);
+		Postulacion postulacion = new Postulacion(motivacion, fechaPostulacion, cvReducido, postulante, oferta);
 		postulante.agregarPostulacion(postulacion);
 		oferta.agregarPostulacion(postulacion);
-		
+
 	}
 
 	@Override
 	public void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac,
-			String nacionalidad) {
+			String nacionalidad) throws UsuarioYaExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = new Postulante(nickname, nombre, apellido, email, fechaNac, nacionalidad);
-		try {
-			manejadorUsuario.agregarPostulante(postulante);
-		} catch (Exception e) {
-			System.out.print(e.getMessage());
-		}
+		manejadorUsuario.agregarPostulante(postulante);
 	}
 
 	@Override
@@ -110,26 +88,28 @@ public class ControladorUsuario implements IControladorUsuario {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link);
 		manejadorUsuarios.agregarEmpresa(empresa);
-		
 	}
-	
+
 	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Usuario usuario = manejadorUsuario.obtenerUsuario(nickname);
 		return usuario;
 	}
-	
+
+	@Override
 	public DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException {
 		Usuario usuario = this.obtenerUsuario(nickname);
 		return usuario.obtenerDTUsuario();
 	}
-	
-	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException{
+
+	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException {
 		Usuario usuario = this.obtenerUsuario(nickname);
 		return usuario.listarOfertasUsuario();
 	}
-	
-	public Postulante obtenerPostulante(String nickname) throws UsuarioNoExisteException {
-		return ManejadorUsuario.getInstance().obtenerPostulante(nickname);
+
+	@Override
+	public Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException {
+	   ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+	   return manejadorUsuario.obtenerPostulante(nomPostulante);
 	}
 }
