@@ -173,7 +173,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 
 			// Limpio el internal frame antes de cerrar la ventana
 			limpiarInformacion();
-			setVisible(false);
+			setVisible(true);
 		}
 
 	}

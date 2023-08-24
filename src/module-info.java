@@ -1,8 +1,7 @@
-module tpgr04
+/*module tpgr04
 {
     requires java.desktop;
     requires jcalendar;
-	requires junit;
     exports presentacion;
     exports logica.interfaces;
     exports logica.handlers;
@@ -10,4 +9,4 @@ module tpgr04
     exports logica.controllers;
     exports logica.classes;
     exports excepciones;
-}
+}*/

@@ -99,12 +99,12 @@ public class ConsultarUsuario extends JInternalFrame {
 		cargarUsuarios();
 		comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
+			/*	try {
 					cargarDatosUsuarios(e);
 				} catch (UsuarioNoExisteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}*/
 				
 			}
 		});

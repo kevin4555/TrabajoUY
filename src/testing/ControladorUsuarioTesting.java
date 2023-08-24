@@ -54,5 +54,16 @@ public class ControladorUsuarioTesting {
 		
 	}
 	
+	@Test
+	public void obtenerUsuarioManejadorVacio() throws UsuarioNoExisteException {
+		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		Usuario usuario = controladorUsuario.obtenerUsuario("NicknameTest");
+		Assert.fail();
+	}
+	
+	@Test
+	public void 
+	
+	
 }
 	
