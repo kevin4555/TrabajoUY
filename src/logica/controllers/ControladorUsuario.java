@@ -1,7 +1,7 @@
 package logica.controllers;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.OfertaLaboralNoExisteException;

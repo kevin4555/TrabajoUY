@@ -1,5 +1,6 @@
 package logica.controllers;
 
+import logica.interfaces.IControladorDatosDePrueba;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
@@ -21,5 +22,9 @@ public class Fabrica {
 	
 	public IControladorOferta obtenerControladorOferta() {
 		return new ControladorOferta();
+	}
+	
+	public IControladorDatosDePrueba obtenerControladorDatosDePrueba() {
+		return new ControladorDatosDePrueba();
 	}
 }

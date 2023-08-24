@@ -1,7 +1,8 @@
 package logica.interfaces;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import excepciones.ColeccionEmpresaEsVaciaException;
 import excepciones.OfertaLaboralNoExisteException;
