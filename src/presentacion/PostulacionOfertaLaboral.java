@@ -31,6 +31,8 @@ import excepciones.UsuarioNoExisteException;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class PostulacionOfertaLaboral extends JInternalFrame {
@@ -39,7 +41,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private IControladorOferta controlOfertaLab;
     private IControladorUsuario controlUsuarioLab;
     private JTextField textFieldNombre;
-    private JTextField textFieldDescripcion;
     private JTextField textFieldHoraInicio;
     private JTextField textFieldHoraFin;
     private JTextField textFieldRemuneracion;
@@ -52,6 +53,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private JTextField textFieldCVReducido;
     private JTextField textFieldMotivacion;
     private JTextField textFieldFechaPostulacion;
+    private JTextArea textAreaDescripcion;
     private OfertaLaboral oferta;
     private Postulante postulante;
     /**
@@ -152,49 +154,46 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         ubicacionTextos.setLayout(new GridLayout(8, 1, 0, 0));
         
         textFieldNombre = new JTextField();
-        textFieldNombre.setEnabled(false);
         textFieldNombre.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldNombre.setEditable(false);
         ubicacionTextos.add(textFieldNombre);
         
-        textFieldDescripcion = new JTextField();
-        textFieldDescripcion.setEnabled(false);
-        textFieldDescripcion.setHorizontalAlignment(SwingConstants.CENTER);
-        textFieldDescripcion.setEditable(false);
-        ubicacionTextos.add(textFieldDescripcion);
+        JScrollPane scrollPaneDescripcion = new JScrollPane();
+        ubicacionTextos.add(scrollPaneDescripcion);
+        
+        JTextArea textAreaDescripcion = new JTextArea();
+        textAreaDescripcion.setWrapStyleWord(true);
+        textAreaDescripcion.setLineWrap(true);
+        textAreaDescripcion.setEnabled(false);
+        textAreaDescripcion.setEditable(false);
+        scrollPaneDescripcion.setViewportView(textAreaDescripcion);
         
         textFieldHoraInicio = new JTextField();
-        textFieldHoraInicio.setEnabled(false);
         textFieldHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldHoraInicio.setEditable(false);
         ubicacionTextos.add(textFieldHoraInicio);
         
         textFieldHoraFin = new JTextField();
-        textFieldHoraFin.setEnabled(false);
         textFieldHoraFin.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldHoraFin.setEditable(false);
         ubicacionTextos.add(textFieldHoraFin);
         
         textFieldRemuneracion = new JTextField();
-        textFieldRemuneracion.setEnabled(false);
         textFieldRemuneracion.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldRemuneracion.setEditable(false);
         ubicacionTextos.add(textFieldRemuneracion);
         
         textFieldCiudad = new JTextField();
-        textFieldCiudad.setEnabled(false);
         textFieldCiudad.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldCiudad.setEditable(false);
         ubicacionTextos.add(textFieldCiudad);
         
         textFieldDepartamento = new JTextField();
-        textFieldDepartamento.setEnabled(false);
         textFieldDepartamento.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldDepartamento.setEditable(false);
         ubicacionTextos.add(textFieldDepartamento);
         
         textFieldFechaAlta = new JTextField();
-        textFieldFechaAlta.setEnabled(false);
         textFieldFechaAlta.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldFechaAlta.setEditable(false);
         ubicacionTextos.add(textFieldFechaAlta);
@@ -280,7 +279,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     			postulanteEIngreso.setVisible(true);
     			ubicacionEtiqueta.setVisible(true);
     			ubicacionComboTextField.setVisible(true);
-    			
+    			ubicacionDatosOferta.setVisible(true);
     		}
         });       
         
@@ -357,20 +356,22 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     
     public void cargarDatosOfertaLaboralPostulacion(ActionEvent e)
     {
-    	String ofertaLaboral = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
     	try {
-			this.oferta = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
+    		String ofertaLaboral = (String) comboBoxEmpresasRegistradasPostulacion.getSelectedItem();
+			this.oferta = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral); 	
+			DTOfertaLaboral dtOfertaLaboral;
+			dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
+			textFieldNombre.setText(dtOfertaLaboral.getNombre());
+			textAreaDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
+			textFieldHoraInicio.setText(dtOfertaLaboral.getHorarioInicio());
+			textFieldHoraFin.setText(dtOfertaLaboral.getHorarioFinal());
+			textFieldRemuneracion.setText((dtOfertaLaboral.getRemuneracion()).toString());
+			textFieldCiudad.setText(dtOfertaLaboral.getCiudad());
+			textFieldDepartamento.setText(dtOfertaLaboral.getDepartamento());
+			textFieldFechaAlta.setText(dateToString(dtOfertaLaboral.getFechaAlta()));
 		} catch (OfertaLaboralNoExisteException e1) {
+			
 		}
-	    DTOfertaLaboral dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
-		textFieldNombre.setText(dtOfertaLaboral.getNombre());
-		textFieldDescripcion.setText(dtOfertaLaboral.getDescripcion());	   
-		textFieldHoraInicio.setText(dtOfertaLaboral.getHorarioInicio());
-		textFieldHoraFin.setText(dtOfertaLaboral.getHorarioFinal());
-		textFieldRemuneracion.setText((dtOfertaLaboral.getRemuneracion()).toString());
-		textFieldCiudad.setText(dtOfertaLaboral.getCiudad());
-		textFieldDepartamento.setText(dtOfertaLaboral.getDepartamento());
-		textFieldFechaAlta.setText(dateToString(dtOfertaLaboral.getFechaAlta()));
     }
     
     public void cargarPostulantes(ActionEvent e)

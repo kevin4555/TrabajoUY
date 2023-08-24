@@ -12,8 +12,6 @@ import javax.swing.border.EmptyBorder;
 
 
 
-import excepciones.ColeccionEmpresaEsVaciaException;
-import excepciones.ColeccionTipoPublicacionEsVaciaException;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
@@ -211,30 +209,22 @@ public class AltaOfertaLaboral extends JInternalFrame {
         getContentPane().add(btnCancelar, gbc_btnCancelar); */
     }
     
-    public void cargarEmpresas()
+    @SuppressWarnings("unchecked")
+	public void cargarEmpresas()
     {
     	DefaultComboBoxModel<String> model;
-    	String[] empresas;
-		try {
-			empresas = (controlUsu.listarEmpresas()).toArray(new String[0]);
+    	String[] empresas = (controlUsu.listarEmpresas()).toArray(new String[0]);
 			model = new DefaultComboBoxModel<String>(empresas);
 			comboBoxEmpresa.setModel(model); 
-		} catch (ColeccionEmpresaEsVaciaException e) {
-			e.printStackTrace();
-		}
     }
     
-    public void cargarTipoPublicaciones()
+    @SuppressWarnings("unchecked")
+	public void cargarTipoPublicaciones()
     {
     	DefaultComboBoxModel<String> model;
-    	String[] tiposPublicaciones;
-		try {
-			tiposPublicaciones = (controlOferta.listarTipoDePublicaciones()).toArray(new String[0]);
-			model = new DefaultComboBoxModel<String>(tiposPublicaciones);
-			comboBoxTpoPublicacion.setModel(model); 
-		} catch (ColeccionTipoPublicacionEsVaciaException e) {
-			e.printStackTrace();
-		}
+    	String[] tiposPublicaciones = (controlOferta.listarTipoDePublicaciones()).toArray(new String[0]);
+		model = new DefaultComboBoxModel<String>(tiposPublicaciones);
+		comboBoxTpoPublicacion.setModel(model); 
     }
     
 
