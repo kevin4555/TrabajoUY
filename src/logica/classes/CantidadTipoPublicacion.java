@@ -5,8 +5,6 @@ public class CantidadTipoPublicacion {
 	private int cantidadRestante;
 	private TipoPublicacion tipoPublicacion;
 	
-	public CantidadTipoPublicacion(PaquetePublicacion paquetePublicacion, int cantidadRestante, TipoPublicacion tipoPublicacion) {
-		this.paquetePublicacion = paquetePublicacion;
 	public CantidadTipoPublicacion(int cantidadRestante, TipoPublicacion tipoPublicacion) {
 		this.paquetePublicacion = null;
 		this.cantidadRestante = cantidadRestante;

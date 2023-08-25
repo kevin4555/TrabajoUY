@@ -50,7 +50,7 @@ public interface IControladorOferta {
 	
 	public void registrarPaquete(String nombre, String descripcion , int periodoValDias,
 			float descuento, Date fechaAlta, ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion)
-			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException;
+			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException, TipoPublicacionNoExisteException;
 
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo,
 			Date fechaPub) throws TipoPublicacionYaExisteException;

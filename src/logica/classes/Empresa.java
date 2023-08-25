@@ -51,6 +51,7 @@ public class Empresa extends Usuario {
 		{
 			for (OfertaLaboral oferta : this.ofertasLaborales) {
 				ofertas.add(oferta.getNombre());
+				
 			}
 		}
 		return ofertas;

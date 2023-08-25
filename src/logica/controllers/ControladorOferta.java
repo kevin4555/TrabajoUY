@@ -144,16 +144,23 @@ public class ControladorOferta implements IControladorOferta {
 
 	public void registrarPaquete(String nombre, String descripcion , int periodoValDias,
 			float descuento, Date fechaAlta, ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion)
-			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException {
+			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException, TipoPublicacionNoExisteException {
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		
 		ArrayList<CantidadTipoPublicacion> arrayCantidad = new ArrayList<CantidadTipoPublicacion>();
 		
 		for(DTCantidadTipoPublicacion dtCantidad : cantidadTipoPublicacion) {
-			TipoPublicacion publicacionParticularPublicacion = manejadorSettings.obtenerTipoPublicacion(dtCantidad.getNombreTipoPublicacion());
-			CantidadTipoPublicacion nuevoTipo = new CantidadTipoPublicacion(dtCantidad.getCantidad(), publicacionParticularPublicacion);
-	        arrayCantidad.add(nuevoTipo);
+			TipoPublicacion publicacionParticularPublicacion;
+			try {
+				publicacionParticularPublicacion = manejadorSettings.obtenerTipoPublicacion(dtCantidad.getNombreTipoPublicacion());
+				CantidadTipoPublicacion nuevoTipo = new CantidadTipoPublicacion(dtCantidad.getCantidad(), publicacionParticularPublicacion);
+		        arrayCantidad.add(nuevoTipo);
+			} catch (TipoPublicacionNoExisteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion,
