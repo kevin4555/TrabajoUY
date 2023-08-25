@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTUsuario;
@@ -13,12 +14,10 @@ public class Empresa extends Usuario {
 	private String sitioWeb;
 	private ArrayList<OfertaLaboral> ofertasLaborales;
 	
-	public Empresa() {}
-	
 	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb) {
 		super(nickname, nombre, apellido, email);
-		this.descripcion = descripcion;
-		this.sitioWeb = sitioWeb;
+		setDescripcion(descripcion);
+		setSitioWeb(sitioWeb);
 		this.ofertasLaborales = new ArrayList<OfertaLaboral>();
 	}
 	
@@ -39,7 +38,10 @@ public class Empresa extends Usuario {
 	}
 	
 	
-	public void agregarOferta(OfertaLaboral ol) {
+	public void agregarOferta(OfertaLaboral ol) throws OfertaLaboralYaExisteException {
+		if (ofertasLaborales.indexOf(ol) != -1) {
+			throw new OfertaLaboralYaExisteException("La Oferta Laboral " + ol.getNombre() + " ya esta asociada a la Empresa " + this.nickname);
+		}
 		this.ofertasLaborales.add(ol);
 	}
 	
@@ -56,10 +58,6 @@ public class Empresa extends Usuario {
 
 	public ArrayList<OfertaLaboral> getOfertasLaborales() {
 		return ofertasLaborales;
-	}
-
-	public void setOfertasLaborales(ArrayList<OfertaLaboral> ofertasLaborales) {
-		this.ofertasLaborales = ofertasLaborales;
 	}
 	
 	public DTEmpresa obtenerDTEmpresa() {

@@ -7,8 +7,15 @@ public class CantidadTipoPublicacion {
 	
 	public CantidadTipoPublicacion(PaquetePublicacion paquetePublicacion, int cantidadRestante, TipoPublicacion tipoPublicacion) {
 		this.paquetePublicacion = paquetePublicacion;
+	public CantidadTipoPublicacion(int cantidadRestante, TipoPublicacion tipoPublicacion) {
+		this.paquetePublicacion = null;
 		this.cantidadRestante = cantidadRestante;
 		this.tipoPublicacion = tipoPublicacion;
+	}
+	
+	
+	public void asociarPaquete(PaquetePublicacion paquete) {
+		this.paquetePublicacion = paquete;
 	}
 	
 	public int getCantidadRestante() {
