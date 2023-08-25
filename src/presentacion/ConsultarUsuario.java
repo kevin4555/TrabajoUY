@@ -109,14 +109,13 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.comboBoxSeleccionUsuario = new JComboBox<String>();
 		this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * try {
-				 * cargarDatosUsuarios(e);
-				 * } catch (UsuarioNoExisteException e1) {
-				 * // TODO Auto-generated catch block
-				 * e1.printStackTrace();
-				 * }
-				 */
+
+				try {
+					cargarDatosUsuarios(e);
+				} catch (UsuarioNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 		});
