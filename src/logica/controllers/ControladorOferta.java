@@ -103,6 +103,7 @@ public class ControladorOferta implements IControladorOferta {
 		return listKeywords;
 	}
 
+	
 	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
 			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();

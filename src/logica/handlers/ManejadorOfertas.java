@@ -90,5 +90,4 @@ public class ManejadorOfertas {
 	public void clean() {
 		instancia = null;
 	}
-	
 }

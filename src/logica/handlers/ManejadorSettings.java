@@ -98,4 +98,7 @@ public class ManejadorSettings {
 		return listKewords;
 	}
 		
+	public void clean() {
+		instancia = null;
+	}
 }
