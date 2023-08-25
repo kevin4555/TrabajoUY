@@ -3,6 +3,7 @@ package logica.controllers;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -12,6 +13,7 @@ import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
+import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.CantidadTipoPublicacion;
 import logica.classes.Empresa;
@@ -139,12 +141,27 @@ public class ControladorOferta implements IControladorOferta {
 		return nombreOfertas;
 	}
 
-	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias,
-			Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion)
-			throws PaquetePublicacionYaExisteException {
+	public void registrarPaquete(String nombre, String descripcion , int periodoValDias,
+			Float descuento, Date fechaAlta, ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion)
+			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException {
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
-		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion, cantidadPublicaciones,
-				periodoValDias, descuento, cantidadTipoPublicacion);
+		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
+		
+		ArrayList<CantidadTipoPublicacion> arrayCantidad = new ArrayList<CantidadTipoPublicacion>();
+		
+		for(DTCantidadTipoPublicacion dtCantidad : cantidadTipoPublicacion) {
+			TipoPublicacion publicacionParticularPublicacion = manejadorSettings.obtenerTipoPublicacion(dtCantidad.getNombreTipoPublicacion());
+			CantidadTipoPublicacion nuevoTipo = new CantidadTipoPublicacion(dtCantidad.getCantidad(), publicacionParticularPublicacion);
+	        arrayCantidad.add(nuevoTipo);
+		}
+		
+		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion,
+				periodoValDias, descuento, arrayCantidad);
+		
+		for (CantidadTipoPublicacion cantidadTipo :arrayCantidad) {
+			 cantidadTipo.asociarPaquete(paquetePublicacion);
+		}
+		
 		manejadorPaquetes.agregarPaquete(paquetePublicacion);
 	}
 

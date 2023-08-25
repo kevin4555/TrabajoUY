@@ -88,6 +88,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link);
 		manejadorUsuarios.agregarEmpresa(empresa);
+
 	}
 
 	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException {
