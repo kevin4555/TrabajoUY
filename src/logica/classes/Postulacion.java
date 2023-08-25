@@ -61,4 +61,8 @@ public class Postulacion {
 		DTPostulacion dtPostulacion = new DTPostulacion(dtUsuario, this.getDescrpMotivacion(),this.getFechaPostulacion(), this.getCvReducido());
 		return dtPostulacion;
 	}
+	
+	public String getNombreOfertaLaboral() {
+		return this.ofertaLaboral.getNombre();
+	}
 }

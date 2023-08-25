@@ -96,10 +96,20 @@ public class ControladorUsuario implements IControladorUsuario {
 		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link);
 		manejadorUsuarios.agregarEmpresa(empresa);
 	}
-
-	public Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException
-	{
-		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
-		return manejadorUsuarios.obtenerPostulante(nomPostulante);
+	
+	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException {
+		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+		Usuario usuario = manejadorUsuario.obtenerUsuario(nickname);
+		return usuario;
+	}
+	
+	public DTUsuario obtenerDTUsuario(String nickname) throws UsuarioNoExisteException {
+		Usuario usuario = this.obtenerUsuario(nickname);
+		return usuario.obtenerDTUsuario();
+	}
+	
+	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException{
+		Usuario usuario = this.obtenerUsuario(nickname);
+		return usuario.listarOfertasUsuario();
 	}
 }
