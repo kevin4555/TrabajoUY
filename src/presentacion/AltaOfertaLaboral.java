@@ -274,49 +274,55 @@ public class AltaOfertaLaboral extends JInternalFrame {
         // TODO Auto-generated method stub
 
         // Obtengo datos de los controles Swing
-        String nombreOfertaLab = this.textFieldNombre.getText();
-        String descripOfertaLab = this.textFieldDescripcion.getText();
-        String remuneracionOfertaLab = this.textFieldRemuneracion.getText();
-        String ciudadOfertaLab =  this.textFieldCiudad.getText();
-        String departOfertaLab = this.textFieldDepartamento.getText();
-        String nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
-        String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
-        Date fechaAlta = (Date)this.dateChooser.getDate();
-        String horaIniOfertaLab = this.textFieldHoraInicio.getText();
-        String horaFinOfertaLab = this.textFieldHoraFin.getText();
-        ArrayList<String> keywordSeleccionadas = (ArrayList<String>)this.listaKeyword.getSelectedValuesList();
+    	try {
+    		String nombreOfertaLab = this.textFieldNombre.getText();
+            String descripOfertaLab = this.textFieldDescripcion.getText();
+            String remuneracionOfertaLab = this.textFieldRemuneracion.getText();
+            String ciudadOfertaLab =  this.textFieldCiudad.getText();
+            String departOfertaLab = this.textFieldDepartamento.getText();
+            String nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
+            String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+            Date fechaAlta = (Date)this.dateChooser.getDate();
+            
+            String horaIniOfertaLab = this.textFieldHoraInicio.getText();
+            String horaFinOfertaLab = this.textFieldHoraFin.getText();
+            ArrayList<String> keywordSeleccionadas = (ArrayList<String>)this.listaKeyword.getSelectedValuesList();
+            
+
+            if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab, horaIniOfertaLab, horaFinOfertaLab, fechaAlta)) {
+                try {
+                    controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab, Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta, controlOferta.obtenerTipoPublicacion(nomTipoPublic));
+                    controlUsu.obtenerEmpresa(nicknameEmpresa).agregarOferta(controlOferta.obtenerOfertaLaboral(nombreOfertaLab));
+                    controlOferta.agregarKeywordEnOfertaLaboral(keywordSeleccionadas, nombreOfertaLab);
+                    //falta asociar keywords.
+                    // Muestro éxito de la operación
+                    JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito", "Registrar Oferta Laboral",
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                } catch (TipoPublicacionNoExisteException e) {
+                	//No imprime nada
+                } catch (UsuarioNoExisteException e) {
+                	//no imprime nada
+                } catch (OfertaLaboralYaExisteException e) {
+                	JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+                } catch (OfertaLaboralNoExisteException e) {
+                	//no imprime nada
+                } catch (NumberFormatException e) {
+                	JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+    			} catch (TipoPublicacionYaExisteException e) {
+    				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+    			} catch (KeywordNoExisteException e) {
+    				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+    			} 
+
+                // Limpio el internal frame antes de cerrar la ventana
+                limpiarFormulario();
+                //setVisible(false);
+            } 
+    	} catch (java.lang.ClassCastException e) {
+			JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha válida", "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		}
         
-
-        if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab, horaIniOfertaLab, horaFinOfertaLab, fechaAlta)) {
-            try {
-                controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab, Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta, controlOferta.obtenerTipoPublicacion(nomTipoPublic));
-                controlUsu.obtenerEmpresa(nicknameEmpresa).agregarOferta(controlOferta.obtenerOfertaLaboral(nombreOfertaLab));
-                controlOferta.agregarKeywordEnOfertaLaboral(keywordSeleccionadas, nombreOfertaLab);
-                //falta asociar keywords.
-                // Muestro éxito de la operación
-                JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito", "Registrar Oferta Laboral",
-                        JOptionPane.INFORMATION_MESSAGE);
-
-            } catch (TipoPublicacionNoExisteException e) {
-            	//No imprime nada
-            } catch (UsuarioNoExisteException e) {
-            	//no imprime nada
-            } catch (OfertaLaboralYaExisteException e) {
-            	JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-            } catch (OfertaLaboralNoExisteException e) {
-            	//no imprime nada
-            } catch (NumberFormatException e) {
-            	JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			} catch (TipoPublicacionYaExisteException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			} catch (KeywordNoExisteException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			}
-
-            // Limpio el internal frame antes de cerrar la ventana
-            limpiarFormulario();
-            //setVisible(false);
-        }
      }
     
 
