@@ -11,6 +11,7 @@ import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
+import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.CantidadTipoPublicacion;
 import logica.classes.Keyword;
@@ -47,9 +48,9 @@ public interface IControladorOferta {
 	
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
-	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias,
-			Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion)
-			throws PaquetePublicacionYaExisteException;
+	public void registrarPaquete(String nombre, String descripcion , int periodoValDias,
+			Float descuento, Date fechaAlta, ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion)
+			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException;
 
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
 			Date fechaPub) throws TipoPublicacionYaExisteException;

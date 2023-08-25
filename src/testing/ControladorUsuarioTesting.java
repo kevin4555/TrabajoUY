@@ -1,8 +1,8 @@
 package testing;
 
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -53,9 +53,6 @@ public class ControladorUsuarioTesting {
 		Usuario usuario = controladorUsuario.obtenerUsuario("NicknameTest");
 		Assert.fail();
 	}
-	
-	@Test
-	public void 
 	
 	
 }
