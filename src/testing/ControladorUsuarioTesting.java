@@ -82,5 +82,23 @@ public class ControladorUsuarioTesting {
 		Assert.assertEquals(listaEsperada, listaResultado);
 	}
 	
+	@Test
+	public void listarUsuuariosListaVacia() {
+		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		ArrayList<String> lista = controladorUsuario.listaDeUsuarios();
+		Assert.assertTrue(lista.isEmpty());
+	}
+	
+	@Test
+	public void obtenerUsuarioManejadorVacio() throws UsuarioNoExisteException {
+		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		Usuario usuario = controladorUsuario.obtenerUsuario("NicknameTest");
+		Assert.fail();
+	}
+	
+	@Test
+	public void 
+	
+	
 }
 	

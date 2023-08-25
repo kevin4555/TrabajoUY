@@ -302,13 +302,16 @@ public class ConsultarUsuario extends JInternalFrame {
 		panelDatos.add(lblOfertas, gbc_lblOfertas);
 
 		comboBoxSeleccionOferta = new JComboBox<String>();
-		/*
-		 * comboBoxSeleccionOferta.addActionListener(new ActionListener() {
-		 * public void actionPerformed(ActionEvent e) {
-		 * cargarDatosOferta(e);
-		 * }
-		 * });
-		 */
+		comboBoxSeleccionOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					cargarDatosOferta(e);
+				} catch (OfertaLaboralNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		GridBagConstraints gbc_comboBoxSeleccionOferta = new GridBagConstraints();
 		gbc_comboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
@@ -411,38 +414,32 @@ public class ConsultarUsuario extends JInternalFrame {
 		}
 	}
 
-	/*
-	 * @SuppressWarnings("deprecation")
-	 * public void cargarDatosUsuarios(ActionEvent e) throws
-	 * UsuarioNoExisteException {
-	 * String nicknameUsuario =
-	 * comboBoxSeleccionUsuario.getSelectedItem().toString();
-	 * DTUsuario dtUsuario = controladorUsuario.obtenerDTUsuario(nicknameUsuario);
-	 * ArrayList<String> listaOfertas =
-	 * controladorUsuario.listaOfertasUsuario(nicknameUsuario);
-	 * this.textFieldNickName.setText(nicknameUsuario);
-	 * this.textFieldNombre.setText(dtUsuario.getNombre());
-	 * this.textFieldApellido.setText(dtUsuario.getApellido());
-	 * this.textFieldEmail.setText(dtUsuario.getEmail());
-	 * if (dtUsuario instanceof DTEmpresa) {
-	 * DTEmpresa dtEmpresa = (DTEmpresa) dtUsuario;
-	 * this.textAreaDescripcion.setText(dtEmpresa.getDescripcion());
-	 * this.textFieldSitioWeb.setText(dtEmpresa.getSitioWeb());
-	 * cambiarPanel(panelEmpresa);
-	 * }
-	 * if (dtUsuario instanceof DTPostulante) {
-	 * DTPostulante dtPostulante = (DTPostulante) dtUsuario;
-	 * this.textFieldNacionalidad.setText(dtPostulante.getNacionalidad());
-	 * this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().
-	 * toGMTString());
-	 * cambiarPanel(panelPostulante);
-	 * }
-	 * for (String oferta : listaOfertas) {
-	 * comboBoxSeleccionOferta.addItem(oferta);
-	 * }
-	 * 
-	 * }
-	 */
+	@SuppressWarnings("deprecation")
+	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
+		String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
+		DTUsuario dtUsuario = controladorUsuario.obtenerDTUsuario(nicknameUsuario);
+		ArrayList<String> listaOfertas = controladorUsuario.listaOfertasUsuario(nicknameUsuario);
+		this.textFieldNickName.setText(nicknameUsuario);
+		this.textFieldNombre.setText(dtUsuario.getNombre());
+		this.textFieldApellido.setText(dtUsuario.getApellido());
+		this.textFieldEmail.setText(dtUsuario.getEmail());
+		if (dtUsuario instanceof DTEmpresa) {
+			DTEmpresa dtEmpresa = (DTEmpresa) dtUsuario;
+			this.textAreaDescripcion.setText(dtEmpresa.getDescripcion());
+			this.textFieldSitioWeb.setText(dtEmpresa.getSitioWeb());
+			cambiarPanel(panelEmpresa);
+		}
+		if (dtUsuario instanceof DTPostulante) {
+			DTPostulante dtPostulante = (DTPostulante) dtUsuario;
+			this.textFieldNacionalidad.setText(dtPostulante.getNacionalidad());
+			this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().toGMTString());
+			cambiarPanel(panelPostulante);
+		}
+		for (String oferta : listaOfertas) {
+			comboBoxSeleccionOferta.addItem(oferta);
+		}
+
+	}
 
 	public void cambiarPanel(JPanel panel) {
 		layeredPane.removeAll();
