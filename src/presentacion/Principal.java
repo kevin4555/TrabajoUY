@@ -29,6 +29,7 @@ import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.classes.Keyword;
 import logica.controllers.Fabrica;
+import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 import java.awt.BorderLayout;
@@ -38,33 +39,34 @@ import java.awt.Color;
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
 
-	private JPanel contentPane;
-	private JFrame ventanaPrincipal;
-	private IControladorUsuario ICU;
-	private IControladorOferta ICO;
-	private CrearUsuario crearUsuInternalFrame;
-	private ConsultarUsuario consultarUsuInternalFrame;
-	private AltaOfertaLaboral crearOfertaLaboralInternalFrame;
-	private ConsultaOfertaLaboral consultarOfertaInternalFrame;
-	private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
-	private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
-	private Date fecha;
+    private JPanel contentPane;
+    private JFrame ventanaPrincipal;
+    private IControladorUsuario ICU;
+    private IControladorOferta ICO;
+    private CrearUsuario crearUsuInternalFrame;
+    private ConsultarUsuario consultarUsuInternalFrame;
+    private AltaOfertaLaboral crearOfertaLaboralInternalFrame;
+    private ConsultaOfertaLaboral consultarOfertaInternalFrame;
+    private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
+    private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
+    private Date fecha;
+    private String fechaS = "23/02/1923";
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal frame = new Principal();
-					frame.ventanaPrincipal.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Principal frame = new Principal();
+                    frame.ventanaPrincipal.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
 	/**
 	 * Create the frame.
