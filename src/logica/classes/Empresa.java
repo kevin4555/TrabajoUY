@@ -63,15 +63,10 @@ public class Empresa extends Usuario {
 	}
 	
 	public DTEmpresa obtenerDTEmpresa() {
-		System.out.println("dentro de obtener DTEmpresa");
 		ArrayList<DTOfertaLaboral> listaDTOfertas = new ArrayList<DTOfertaLaboral>();
 		for(OfertaLaboral oferta : ofertasLaborales) {
-			System.out.println("principio del for");
-			System.out.println("nombre oferta: " + oferta.getNombre());
 			listaDTOfertas.add(oferta.obtenerDTOfertaLaboral());
-			System.out.println("despues dtoferta");
 		}
-		System.out.println("despues de lista DTOfertas");
 		DTEmpresa resultado = new DTEmpresa(this.nickname, this.nombre, this.apellido, this.email, this.descripcion, this.sitioWeb, listaDTOfertas);
 		return resultado;
 	}
@@ -79,12 +74,6 @@ public class Empresa extends Usuario {
 	@Override
 	public ArrayList<String> listarOfertasUsuario(){
 		return this.obtenerNombresOfertas();
-		/*
-		ArrayList<String> listaOfertas = new ArrayList<String>();
-		for(OfertaLaboral oferta : this.ofertasLaborales) {
-			listaOfertas.add(oferta.getNombre());
-		}
-		return listaOfertas;*/
 	}
 
 	@Override

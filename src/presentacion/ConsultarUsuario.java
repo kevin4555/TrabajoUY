@@ -6,10 +6,13 @@ import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
@@ -56,14 +59,15 @@ public class ConsultarUsuario extends JInternalFrame {
 	private String usuarioSeleccionado;
 	private String ofertaSeleccionada;
 	private JButton btnCerrar;
+	private JPanel panelDatos;
 
 	public ConsultarUsuario(IControladorUsuario contrUsuario, IControladorOferta contrOferta) {
+		setClosable(true);
 		this.usuarioSeleccionado = "";
 		this.ofertaSeleccionada = "";
 		
 		setIconifiable(true);
 		setResizable(true);
-		setClosable(true);
 		setMaximizable(true);
 		this.controladorUsuario = contrUsuario;
 		controladorOferta = contrOferta;
@@ -77,13 +81,14 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
 				limpiarTodosLosDatos();
+				dispose();
+				
 			}
 		});
 		panelBotones.add(btnCerrar);
 
-		JPanel panelDatos = new JPanel();
+		this.panelDatos = new JPanel();
 		getContentPane().add(panelDatos, BorderLayout.CENTER);
 		GridBagLayout gbl_panelDatos = new GridBagLayout();
 		gbl_panelDatos.columnWidths = new int[] { 113, 739, 0 };
@@ -403,20 +408,25 @@ public class ConsultarUsuario extends JInternalFrame {
 
 	protected void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException {
 		String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
-		DTOfertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
-		this.textFieldNombreOferta.setText(oferta);
-		this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
-		this.textFieldCiudad.setText(dtOferta.getCiudad());
-		this.textFieldDepartamento.setText(dtOferta.getDepartamento());
-
+		if (ofertaSeleccionada != oferta) {
+			DTOfertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
+			this.textFieldNombreOferta.setText(oferta);
+			this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
+			this.textFieldCiudad.setText(dtOferta.getCiudad());
+			this.textFieldDepartamento.setText(dtOferta.getDepartamento());
+		}
 	}
 
 	public void cargarUsuarios() {
 		try {
 			ArrayList<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
-			for (String nickUsuario : listaUsuarios) {
-				comboBoxSeleccionUsuario.addItem(nickUsuario);
-			}
+			String [] arrayUsuarios;
+			arrayUsuarios = listaUsuarios.toArray(new String [0]);
+			Arrays.sort(arrayUsuarios);
+			DefaultComboBoxModel<String> model;
+			model = new DefaultComboBoxModel<String>(arrayUsuarios);
+			this.comboBoxSeleccionUsuario.setModel(model);
+		
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -430,8 +440,8 @@ public class ConsultarUsuario extends JInternalFrame {
 			usuarioSeleccionado = nicknameUsuario;
 			limpiarDatosOfertas();
 			DTUsuario dtUsuario = this.controladorUsuario.obtenerDTUsuario(nicknameUsuario);
-			ArrayList<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
-			System.out.println(listaOfertas.isEmpty());
+			
+		
 			this.textFieldNickName.setText(nicknameUsuario);
 			this.textFieldNombre.setText(dtUsuario.getNombre());
 			this.textFieldApellido.setText(dtUsuario.getApellido());
@@ -448,9 +458,12 @@ public class ConsultarUsuario extends JInternalFrame {
 				this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().toGMTString());
 				cambiarPanel(panelPostulante);
 			}
-			for (String oferta : listaOfertas) {
-				this.comboBoxSeleccionOferta.addItem(oferta);
-			}
+			ArrayList<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
+			String [] arrayOfertas = listaOfertas.toArray(new String[0]);
+			Arrays.sort(arrayOfertas);
+			DefaultComboBoxModel<String> model;
+			model = new DefaultComboBoxModel<String>(arrayOfertas);
+			this.comboBoxSeleccionOferta.setModel(model);
 		}
 		
 	}
@@ -468,10 +481,13 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.textFieldCiudad.setText("");
 		this.textFieldNombreOferta.setText("");
 		this.textFieldRemuneracion.setText("");
-		this.comboBoxSeleccionOferta.removeAllItems();
+		//this.comboBoxSeleccionOferta = new JComboBox<String>();
 	}
 	
 	public void limpiarTodosLosDatos() {
+		
+		this.ofertaSeleccionada = "";
+		this.usuarioSeleccionado ="";
 		this.textFieldNickName.setText("");
 		this.textFieldNombre.setText("");
 		this.textFieldApellido.setText("");
@@ -482,10 +498,19 @@ public class ConsultarUsuario extends JInternalFrame {
 		
 		this.textAreaDescripcion.setText("");
 		this.textFieldSitioWeb.setText("");
+		this.textFieldDepartamento.setText("");
+		this.textFieldCiudad.setText("");
+		this.textFieldNombreOferta.setText("");
+		this.textFieldRemuneracion.setText("");
 		
-		this.comboBoxSeleccionUsuario.removeAllItems();
-		this.limpiarDatosOfertas();
+		ArrayList<String> listaOfertas = new ArrayList<String>();
+		String [] arrayOfertas = listaOfertas.toArray(new String[0]);
+		Arrays.sort(arrayOfertas);
+		DefaultComboBoxModel<String> model;
+		model = new DefaultComboBoxModel<String>(arrayOfertas);
+		this.comboBoxSeleccionOferta.setModel(model);
 		
+		this.comboBoxSeleccionUsuario.setModel(model);
 		
 	}
 	
