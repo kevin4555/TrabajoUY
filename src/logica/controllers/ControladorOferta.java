@@ -68,7 +68,7 @@ public class ControladorOferta implements IControladorOferta {
 		return manejadorPaquetes.listarPaquetes();
 	}
 
-	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) throws TipoPublicacionYaExisteException 
+	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo, Date fechaPub) throws TipoPublicacionYaExisteException 
 	{
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		TipoPublicacion tipoPublicacion = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fechaPub);
@@ -148,7 +148,7 @@ public class ControladorOferta implements IControladorOferta {
 		return nombreOfertas;
 	}
 
-	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias, Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException 
+	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias, float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException 
 	{
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValDias, descuento, cantidadTipoPublicacion);

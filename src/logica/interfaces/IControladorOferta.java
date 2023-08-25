@@ -49,8 +49,8 @@ public interface IControladorOferta {
 	
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
-	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias, Float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException;
+	public void registrarPaquete(String nombre, String descripcion, int cantidadPublicaciones, int periodoValDias, float descuento, Date fechaAlta, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException;
 
-	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
+	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo,
 			Date fechaPub) throws TipoPublicacionYaExisteException;
 }
