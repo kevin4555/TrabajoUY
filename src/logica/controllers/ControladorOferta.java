@@ -178,8 +178,4 @@ public class ControladorOferta implements IControladorOferta {
 
 	}
 
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida) {
-		// TODO Auto-generated method stub
-
-	}
 }

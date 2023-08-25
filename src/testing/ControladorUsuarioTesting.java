@@ -18,6 +18,7 @@ import excepciones.UsuarioEmailRepetido;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import junit.framework.Assert;
+import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
@@ -72,10 +73,15 @@ public class ControladorUsuarioTesting {
 		Assert.assertTrue(lista.isEmpty());
 	}
 
-	/*@Test
-	public void obtenerUsuarioTest() {
-		
-	}*/
+	@Test
+	public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException {
+		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
+		Usuario usuarioResultado = controladorUsuario.obtenerUsuario("NicknameTest");
+		Assert.assertEquals("NicknameTest", usuarioResultado.getNickname());
+		Assert.assertEquals("NombreTest", usuarioResultado.getNombre());
+		Assert.assertEquals("ApellidoTest", usuarioResultado.getApellido());
+		Assert.assertEquals("EmailTest", usuarioResultado.getEmail());
+	}
 	
 	@Test
 	public void obtenerUsuarioManejadorVacio() throws UsuarioNoExisteException {		
@@ -85,7 +91,16 @@ public class ControladorUsuarioTesting {
 		{
 			Assert.assertEquals("Usuario: Carlitos no existe", e.getMessage());
 		}
-
+	}
+	
+	@Test
+	public void obtenerDtUsuario() throws UsuarioYaExisteException, UsuarioNoExisteException {
+		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
+		DTUsuario dtResultado = controladorUsuario.obtenerDTUsuario("NicknameTest");
+		Assert.assertEquals("NicknameTest", dtResultado.getNickname());
+		Assert.assertEquals("NombreTest", dtResultado.getNombre());
+		Assert.assertEquals("ApellidoTest", dtResultado.getApellido());
+		Assert.assertEquals("EmailTest", dtResultado.getEmail());
 	}
 	
 	@Test
@@ -165,6 +180,16 @@ public class ControladorUsuarioTesting {
 		Assert.assertEquals(listaEsperada, listaResultado);
 	}
 	
+	@Test
+	public void editarDatosBasicosDeUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException {
+		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest");
+		DTUsuario dtUsuario = postulante1.obtenerDTUsuario();
+		controladorUsuario.editarDatosBasicos(dtUsuario, "nombreNuevo", "apellidoNuevo");
+		Usuario resultado = controladorUsuario.obtenerUsuario("NicknameTest");
+		Assert.assertEquals("nombreNuevo", resultado.getNombre());
+		Assert.assertEquals("apellidoNuevo", resultado.getApellido());
+		
+	}
 	
 }
 	

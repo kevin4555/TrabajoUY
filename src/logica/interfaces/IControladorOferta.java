@@ -28,8 +28,6 @@ public interface IControladorOferta {
 	
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException;
 	
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida);
-	
 	public ArrayList<String> listarPaquetes();
 	
 	public void agregarKeywordEnOfertaLaboral(ArrayList<String> listaKeyword, String nomOferta) throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException;
