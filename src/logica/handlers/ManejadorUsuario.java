@@ -14,11 +14,13 @@ public class ManejadorUsuario {
 	private HashMap<String, Usuario> colUsuarios;
 	private HashMap<String, Postulante> colPostulantes;
 	private HashMap<String, Empresa> colEmpresas;
+	private HashMap<String, Usuario> usuariosEmail;
 	
 	private ManejadorUsuario() {
 		colUsuarios = new HashMap<String, Usuario>();
 		colPostulantes = new HashMap<String, Postulante>();
 		colEmpresas = new HashMap<String, Empresa>();
+		
 	}
 	
 	public static ManejadorUsuario getInstance() 
