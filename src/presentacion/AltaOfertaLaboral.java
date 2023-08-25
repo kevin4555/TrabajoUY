@@ -244,16 +244,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		}
 	}
 
-	// }
-
-	// Este método es invocado al querer registrar un usuario, funcionalidad
-	// provista por la operación del sistem registrarUsuario().
-	// Previamente se hace una verificación de los campos, particularmente que no
-	// sean vacíos
-	// y que la cédula sea un número.
-	// Tanto en caso de que haya un error (de verificación o de registro) o no, se
-	// despliega
-	// un mensaje utilizando un panel de mensaje (JOptionPane).
 	protected void cmdRegistroOfertaLaboralActionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 
@@ -360,10 +350,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		if (noHayTipoPublic) {
 			JOptionPane.showMessageDialog(this, "No se puede registrar un Oferta Laboral sin estar asociada a un Tipo de Publicación", "Registrar Oferta Laboral",
 					JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
 		if (noHayEmpresa) {
 			JOptionPane.showMessageDialog(this, "No se puede registrar un Oferta Laboral sin estar asociada a una Empresa", "Registrar Oferta Laboral",
 					JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
 		if (fechaAlta == null) {
 			JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
