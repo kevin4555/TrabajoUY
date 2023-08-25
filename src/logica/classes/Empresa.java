@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTUsuario;
@@ -37,7 +38,10 @@ public class Empresa extends Usuario {
 	}
 	
 	
-	public void agregarOferta(OfertaLaboral ol) {
+	public void agregarOferta(OfertaLaboral ol) throws OfertaLaboralYaExisteException {
+		if (ofertasLaborales.indexOf(ol) != -1) {
+			throw new OfertaLaboralYaExisteException("La Oferta Laboral " + ol.getNombre() + " ya esta asociada a la Empresa " + this.nickname);
+		}
 		this.ofertasLaborales.add(ol);
 	}
 	

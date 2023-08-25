@@ -118,11 +118,11 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         getContentPane().add(ubicacionEtiquetas);
         ubicacionEtiquetas.setLayout(new GridLayout(2, 1, 10, 15));
         
-        JLabel lblOfertasLaborales = new JLabel("Ofertas Laborales");
+        /*JLabel lblOfertasLaborales = new JLabel("Ofertas Laborales");
         ubicacionEtiquetas.add(lblOfertasLaborales);
         
         JLabel lblEmpresas = new JLabel("Empresas");
-        ubicacionEtiquetas.add(lblEmpresas);
+        ubicacionEtiquetas.add(lblEmpresas);*/
         
         JPanel panel = new JPanel();
         panel.setBounds(212, 257, 113, 41);
@@ -193,7 +193,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         this.textFieldFechaAlta.setEditable(false);
         ubicacionTextos.add(this.textFieldFechaAlta);
         
-        btnBotonCerrar.addActionListener(new ActionListener() {
+        /*btnBotonCerrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 lblOfertasLaborales.setVisible(false);
@@ -201,7 +201,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
                 ubicacionCentro.setVisible(false);
                 limpiarInformacion();
             }
-        });
+        });*/
         
         this.comboBoxEmpresasRegistradas.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)

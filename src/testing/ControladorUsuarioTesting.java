@@ -4,6 +4,8 @@ package testing;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+/*
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -84,3 +86,4 @@ public class ControladorUsuarioTesting {
 	
 }
 	
+*/

@@ -5,6 +5,7 @@ import javax.swing.JInternalFrame;
 
 
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -17,6 +18,7 @@ import logica.interfaces.IControladorUsuario;
 
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -29,7 +31,15 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
+
+import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralYaExisteException;
+import excepciones.TipoPublicacionNoExisteException;
+import excepciones.TipoPublicacionYaExisteException;
+import excepciones.UsuarioNoExisteException;
 
 
 @SuppressWarnings("serial")
@@ -65,9 +75,11 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JLabel lblFechaDeAlta;
 	//private JCalendar textFieldFechaAlta;
 	private JLabel lblKeyword;
+	private JList<String> listaKeyword;
 	private JButton btnSeleccionarKeyword;
 	private JButton btnConfirmar;
 	private JButton btnCancelar;
+	private JDateChooser dateChooser;
 
     /**
      * Create the frame.
@@ -97,13 +109,13 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		ubicacionTexto = new JPanel();
 		ubicacionTexto.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		add(ubicacionBotones, BorderLayout.SOUTH); // Establezco ubicacion de los botones al sur del Panle
+		getContentPane().add(ubicacionBotones, BorderLayout.SOUTH); // Establezco ubicacion de los botones al sur del Panle
 		ubicacionBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
 		
-		add(ubicacionEtiquetas, BorderLayout.WEST); // Establezco ubicacion de los botones al oeste del Panel
+		getContentPane().add(ubicacionEtiquetas, BorderLayout.WEST); // Establezco ubicacion de los botones al oeste del Panel
 		ubicacionEtiquetas.setLayout(new GridLayout(11, 1, 10, 10));
 		
-		add(ubicacionTexto, BorderLayout.CENTER); // Establezco ubicacion de los botones al centro del Panel
+		getContentPane().add(ubicacionTexto, BorderLayout.CENTER); // Establezco ubicacion de los botones al centro del Panel
 		ubicacionTexto.setLayout(new GridLayout(11, 1, 10, 10));
 		
 		
@@ -164,15 +176,18 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		lblFechaDeAlta = new JLabel("  Fecha de Alta");
 		ubicacionEtiquetas.add(lblFechaDeAlta);
 		
-		/*textFieldFechaAlta = new JCalendar();
-		ubicacionTexto.add(textFieldFechaAlta);*/
+		
+		dateChooser = new JDateChooser();
+		ubicacionTexto.add(dateChooser);
 		
 		JLabel lblKeyword = new JLabel("  Keyword");
 		ubicacionEtiquetas.add(lblKeyword);
 		
-		btnSeleccionarKeyword = new JButton("Seleccionar Keywords");
-		ubicacionTexto.add(btnSeleccionarKeyword);
-
+		JList<String> listaKeyword = new JList();
+		ubicacionTexto.add(listaKeyword);
+		listaKeyword.setVisibleRowCount(4);
+		
+		
 		
 		btnConfirmar = new JButton("Confirmar");
 		ubicacionBotones.add(btnConfirmar);
@@ -227,6 +242,24 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		comboBoxTpoPublicacion.setModel(model); 
     }
     
+    public void cargarKeywords() {
+    	DefaultListModel listModel = new DefaultListModel();
+    	//Recorrer el contenido del ArrayList
+    	for(int i=0; i<controlOferta.listarKeywords().size(); i++) {
+    	    //Añadir cada elemento del ArrayList en el modelo de la lista
+    	    listModel.add(i, controlOferta.listarKeywords().get(i));
+    	}
+    	//Asociar el modelo de lista al JList
+    	listaKeyword.setModel(listModel);
+    }
+    
+    	
+    	
+ 
+ //   }
+    
+    
+    
 
     // Este método es invocado al querer registrar un usuario, funcionalidad
     // provista por la operación del sistem registrarUsuario().
@@ -245,28 +278,41 @@ public class AltaOfertaLaboral extends JInternalFrame {
         String departOfertaLab = this.textFieldDepartamento.getText();
         String nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
         String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
-        //String fechaAlta = this.textFieldFechaAlta.toString();
+        Date fechaAlta = (Date)this.dateChooser.getDate();
         String horaIniOfertaLab = this.textFieldHoraInicio.getText();
         String horaFinOfertaLab = this.textFieldHoraFin.getText();
         
 
-        /*if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab, fechaAlta, horaIniOfertaLab, horaFinOfertaLab)) {
+        if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab, horaIniOfertaLab, horaFinOfertaLab, fechaAlta)) {
             try {
-                controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, null, null, ABORT, ciudadOfertaLab, horaFinOfertaLab, null, null, nomTipoPublic, nicknameEmpresa);
-
+                controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab, Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta, controlOferta.obtenerTipoPublicacion(nomTipoPublic));
+                controlUsu.obtenerEmpresa(nicknameEmpresa).agregarOferta(controlOferta.obtenerOfertaLaboral(nombreOfertaLab));
+                //falta asociar keywords.
                 // Muestro éxito de la operación
-                JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Registrar Usuario",
+                JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito", "Registrar Oferta Laboral",
                         JOptionPane.INFORMATION_MESSAGE);
 
-            } catch (UsuarioRepetidoException e) {
-                // Muestro error de registro
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
-            }
+            } catch (TipoPublicacionNoExisteException e) {
+            	//No imprime nada
+            } catch (UsuarioNoExisteException e) {
+            	//no imprime nada
+            } catch (OfertaLaboralYaExisteException e) {
+            	JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+            } catch (OfertaLaboralNoExisteException e) {
+            	//no imprime nada
+            } catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TipoPublicacionYaExisteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
             // Limpio el internal frame antes de cerrar la ventana
             limpiarFormulario();
-            setVisible(false);*/
+            //setVisible(false);
         }
+     }
     
 
     // Permite validar la información introducida en los campos e indicar
@@ -274,18 +320,18 @@ public class AltaOfertaLaboral extends JInternalFrame {
     // Este tipo de chequeos se puede realizar de otras formas y con otras librerías de Java, 
     // por ejemplo impidiendo que se escriban caracteres no numéricos al momento de escribir en
     // en el campo de la cédula, o mostrando un mensaje de error apenas el foco pasa a otro campo.
-    private boolean checkFormulario(String nombreOfertaLab, String descripOfertaLab, String remuneracionOfertaLab, String ciudadOfertaLab, String departOfertaLab, String fechaAlta, 
-    		String horaIniOfertaLab, String horaFinOfertaLab) {
+    private boolean checkFormulario(String nombreOfertaLab, String descripOfertaLab, String remuneracionOfertaLab, String ciudadOfertaLab, String departOfertaLab, 
+    		String horaIniOfertaLab, String horaFinOfertaLab, Date fechaAlta) {
 
         if (nombreOfertaLab.isEmpty() || descripOfertaLab.isEmpty() || remuneracionOfertaLab.isEmpty() || ciudadOfertaLab.isEmpty() 
-        		|| departOfertaLab.isEmpty() || fechaAlta.isEmpty() || horaIniOfertaLab.isEmpty() || horaFinOfertaLab.isEmpty()) {
+        		|| departOfertaLab.isEmpty() || fechaAlta.toString().isEmpty() || horaIniOfertaLab.isEmpty() || horaFinOfertaLab.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Oferta Laboral",
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
         try {
-            Double.parseDouble(remuneracionOfertaLab);
+            Float.parseFloat(remuneracionOfertaLab);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "La remunaracion debe ser un numero", "Registrar Oferta Laboral",
                     JOptionPane.ERROR_MESSAGE);
