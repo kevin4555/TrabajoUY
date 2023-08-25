@@ -9,6 +9,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.UsuarioEmailRepetido;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import junit.framework.Assert;
@@ -41,7 +42,7 @@ public class ManejadorUsuarioTesting
     }
 	
 	@Test
-	public void agregarEmpresaYPostulanteTest() throws UsuarioYaExisteException, UsuarioNoExisteException 
+	public void agregarEmpresaYPostulanteTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido 
 	{
 		Empresa empresa = new Empresa("empresa1", "Empresa 1", "Apellido", "empresa@example.com", "Descripción", "www.empresa.com");
 		Postulante postulante = new Postulante("postulante1", "Postulante 1", "Apellido", "postulante@example.com", this.fechaDate, "Nacionalidad");
