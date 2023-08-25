@@ -440,7 +440,7 @@ public class Principal extends JFrame {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} catch (OfertaLaboralYaExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-		} catch (TipoPublicacionNoExisteException e) {
+		} catch (TipoPublicacionNoExisteException e)  {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} catch (OfertaLaboralNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);

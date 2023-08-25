@@ -144,7 +144,7 @@ public class ControladorOferta implements IControladorOferta {
 
 	public void registrarPaquete(String nombre, String descripcion , int periodoValDias,
 			float descuento, Date fechaAlta, ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion)
-			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException {
+			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException, TipoPublicacionNoExisteException {
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		

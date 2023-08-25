@@ -22,6 +22,8 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTPostulante;
+import logica.DataTypes.DTUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
@@ -71,6 +73,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		controladorOferta = contrOferta;
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 594, 502);
+
 		JPanel panelBotones = new JPanel();
 		getContentPane().add(panelBotones, BorderLayout.SOUTH);
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
@@ -106,14 +109,13 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.comboBoxSeleccionUsuario = new JComboBox<String>();
 		this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
 					cargarDatosUsuarios(e);
 				} catch (UsuarioNoExisteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
+				
 			}
 		});
 
@@ -259,6 +261,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		textAreaDescripcion.setWrapStyleWord(true);
 		textAreaDescripcion.setEditable(false);
 		scrollPane.setViewportView(textAreaDescripcion);
+
 		panelPostulante = new JPanel();
 		layeredPane.add(panelPostulante, "name_919472867094100");
 		GridBagLayout gbl_panelPostulante = new GridBagLayout();
@@ -431,7 +434,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	
 	@SuppressWarnings({ "deprecation", "exports" })
 	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
-	/*	
+		
 		String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
 		if (nicknameUsuario != usuarioSeleccionado) {
 			usuarioSeleccionado = nicknameUsuario;
@@ -456,9 +459,6 @@ public class ConsultarUsuario extends JInternalFrame {
 				cambiarPanel(panelPostulante);
 			}
 			ArrayList<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
-			if (listaOfertas.isEmpty()) {
-				System.out.println("lista vacia");
-			}
 			String [] arrayOfertas = listaOfertas.toArray(new String[0]);
 			Arrays.sort(arrayOfertas);
 			DefaultComboBoxModel<String> model;
