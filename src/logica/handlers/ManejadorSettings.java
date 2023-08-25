@@ -48,7 +48,7 @@ public class ManejadorSettings {
 		} 
 		else 
 		{
-			throw new TipoPublicacionNoExisteException("El tipo publicacion " + nombre + " no existe");
+			throw new TipoPublicacionNoExisteException("El tipo de publicación " + nombre + " no existe");
 		}
 	}
 	

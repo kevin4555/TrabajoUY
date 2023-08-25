@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTUsuario;
@@ -37,7 +38,10 @@ public class Empresa extends Usuario {
 	}
 	
 	
-	public void agregarOferta(OfertaLaboral ol) {
+	public void agregarOferta(OfertaLaboral ol) throws OfertaLaboralYaExisteException {
+		if (ofertasLaborales.indexOf(ol) != -1) {
+			throw new OfertaLaboralYaExisteException("La Oferta Laboral " + ol.getNombre() + " ya esta asociada a la Empresa " + this.nickname);
+		}
 		this.ofertasLaborales.add(ol);
 	}
 	
@@ -47,6 +51,7 @@ public class Empresa extends Usuario {
 		{
 			for (OfertaLaboral oferta : this.ofertasLaborales) {
 				ofertas.add(oferta.getNombre());
+				
 			}
 		}
 		return ofertas;
@@ -57,6 +62,7 @@ public class Empresa extends Usuario {
 	}
 	
 	public DTEmpresa obtenerDTEmpresa() {
+		
 		ArrayList<DTOfertaLaboral> listaDTOfertas = new ArrayList<DTOfertaLaboral>();
 		for(OfertaLaboral oferta : ofertasLaborales) {
 			listaDTOfertas.add(oferta.obtenerDTOfertaLaboral());
@@ -67,11 +73,7 @@ public class Empresa extends Usuario {
 	
 	@Override
 	public ArrayList<String> listarOfertasUsuario(){
-		ArrayList<String> listaOfertas = new ArrayList<String>();
-		for(OfertaLaboral oferta : ofertasLaborales) {
-			listaOfertas.add(oferta.getNombre());
-		}
-		return listaOfertas;
+		return this.obtenerNombresOfertas();
 	}
 
 	@Override

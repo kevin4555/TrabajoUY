@@ -62,7 +62,6 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setClosable(true);
 		setTitle("Registro de Tipo Publicacion de Oferta Laboral");
 		setBounds(30, 30, 933, 470);
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -163,11 +162,11 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 
 				// Muestro éxito de la operación
 				JOptionPane.showMessageDialog(this, "La publicacion se creo con exito",
-						"Registrar tipo de publicación de oferta laboral", JOptionPane.INFORMATION_MESSAGE);
+						"Registrar tipo de publicación", JOptionPane.INFORMATION_MESSAGE);
 
 			} catch (TipoPublicacionYaExisteException e) {
 				// Muestro error de registro
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Registrar tipo de publicación de oferta laboral",
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Registrar tipo de publicación",
 						JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -195,10 +194,13 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 		String costo = this.textFieldCosto.getText();
 		Date fecha = this.dateChooser.getDate();
 
-		if (nombre.isEmpty() || descipcion.isEmpty() || exposicion.isEmpty() || duracion.isEmpty() || costo.isEmpty()
-				|| fecha == null) {
+		if (nombre.isEmpty() || descipcion.isEmpty() || exposicion.isEmpty() || duracion.isEmpty() || costo.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos",
-					"Registrar tipo de publicación de oferta laboral", JOptionPane.ERROR_MESSAGE);
+					"Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+			return false;
+		} if(fecha == null) {
+			JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
+					"Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
@@ -206,7 +208,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 			Integer.parseInt(duracion);
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(this, "La duración debe ser un valor numérico",
-					"Registrar tipo de publicación de oferta laboral", JOptionPane.ERROR_MESSAGE);
+					"Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
@@ -214,7 +216,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 			Float.parseFloat(costo);
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(this, "El costo debe ser un valor numérico",
-					"Registrar tipo de publicación de oferta laboral", JOptionPane.ERROR_MESSAGE);
+					"Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 

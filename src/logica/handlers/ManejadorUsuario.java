@@ -3,6 +3,7 @@ package logica.handlers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import excepciones.UsuarioEmailRepetido;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.classes.Empresa;
@@ -14,11 +15,13 @@ public class ManejadorUsuario {
 	private HashMap<String, Usuario> colUsuarios;
 	private HashMap<String, Postulante> colPostulantes;
 	private HashMap<String, Empresa> colEmpresas;
+	private HashMap<String, Usuario> usuariosEmail;
 	
 	private ManejadorUsuario() {
 		colUsuarios = new HashMap<String, Usuario>();
 		colPostulantes = new HashMap<String, Postulante>();
 		colEmpresas = new HashMap<String, Empresa>();
+		usuariosEmail = new HashMap<String, Usuario>();
 	}
 	
 	public static ManejadorUsuario getInstance() 
@@ -53,16 +56,20 @@ public class ManejadorUsuario {
 	
 
 	@SuppressWarnings("unlikely-arg-type")
-	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException 
+	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException, UsuarioEmailRepetido 
 	{
-		if(!colEmpresas.containsKey(empresa)) 
+		if(!colEmpresas.containsKey(empresa.getNickname()) && !usuariosEmail.containsKey(empresa.getEmail())) 
 		{
 			colEmpresas.put(empresa.getNickname(), empresa);
 			colUsuarios.put(empresa.getNickname(), empresa);
+			usuariosEmail.put(empresa.getEmail(), empresa);
 		}
-		else 
+		else if(colEmpresas.containsKey(empresa.getNickname()))
 		{
 			throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
+		}
+		else if (usuariosEmail.containsKey(empresa.getEmail())) {
+			throw new UsuarioEmailRepetido("El email: " + empresa.getEmail() +" ya existe" );
 		}
 	}
 	
@@ -112,15 +119,19 @@ public class ManejadorUsuario {
 		return listaUsuarios;
 	}	
 	
-	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException
+	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteException 
 	{
-		if(colUsuarios.containsKey(nickname))
+		if(colUsuarios.containsKey(nicknameUsuario)) 
 		{
-		return colUsuarios.get(nickname);
+			return colUsuarios.get(nicknameUsuario);
 		}
 		else
 		{
-			throw new UsuarioNoExisteException("El usuario "+ nickname + " no existe");
+			throw new UsuarioNoExisteException("Usuario: " + nicknameUsuario + " no existe");
 		}
-		}
+	}
+	
+	public void clean() {
+		instancia = null;
+	}
 }

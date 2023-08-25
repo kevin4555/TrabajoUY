@@ -50,8 +50,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     private JTextField textFieldDepartamento;
     private JTextField textFieldFechaAlta;
     private JTextArea textAreaDescripcion;
-    private String empresa1;
-    private String empresa2;
     /**
      * Create the frame.
      */
@@ -59,8 +57,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         // Se inicializa con el controlador de oferta
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;
-        this.empresa1 = "";
-        this.empresa2 = "";
         
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
@@ -203,16 +199,10 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         
         this.comboBoxEmpresasRegistradas.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
-        	{
-        		empresa1 = (String) (comboBoxEmpresasRegistradas).getSelectedItem();
-        		if(empresa1 != empresa2)
-        		{
-        			ubicacionCentro.setVisible(false);
-        			limpiarInformacion();
-        		}
+        	{        		
         		cargarOfertaEmpresa(e);
-            	lblOfertasLaborales.setVisible(true);
-            	comboBoxOfertasLaborales.setVisible(true);
+        		lblOfertasLaborales.setVisible(true);
+        		comboBoxOfertasLaborales.setVisible(true);
         	}
         });
         
@@ -239,32 +229,32 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
 			this.comboBoxEmpresasRegistradas.setModel(model);	 
     }
     
-    public void cargarOfertaEmpresa(@SuppressWarnings("exports") ActionEvent e)
-    { 		
+    public void cargarOfertaEmpresa(ActionEvent e)
+    { 	
+    	String empresa = (String) (this.comboBoxEmpresasRegistradas).getSelectedItem();
 		String[] ofertasLaborales;
 		try {
-			ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(this.empresa1)).toArray(new String[0]);
+			ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
 			DefaultComboBoxModel<String> model;
 		    model = new DefaultComboBoxModel<String>(ofertasLaborales);
 		    this.comboBoxOfertasLaborales.setModel(model);	
 		} catch (UsuarioNoExisteException e1) {
 			e1.printStackTrace();
 		}
-		this.empresa2 = this.empresa1;
     }
     
-    public void cargarDatosOferta(@SuppressWarnings("exports") ActionEvent e)
+    public void cargarDatosOferta(ActionEvent e)
     {
     	String ofertaLaboral = (String) (this.comboBoxOfertasLaborales).getSelectedItem();
-    	DTOfertaLaboral dtOfertaLaboral;
+    	OfertaLaboral dtOfertaLaboral;
 	    try {
-			dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
-			
+			dtOfertaLaboral = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
+		
 			(this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
 			(this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());	   
-			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicio());
+			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicial());
 			(this.textFieldHoraFin).setText(dtOfertaLaboral.getHorarioFinal());
-			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemuneracion())));
+			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemunaracion())));
 			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
 			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
 			(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));

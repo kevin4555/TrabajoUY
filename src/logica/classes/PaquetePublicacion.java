@@ -13,14 +13,17 @@ public class PaquetePublicacion {
 	private float costo;
 	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
 
-	public PaquetePublicacion(String nombre, String descripcion, int cantidadPublicaciones, int periodoValidez, float descuento, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {
+	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento, ArrayList<CantidadTipoPublicacion> cantidadTipo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.cantidadPublicaciones = cantidadPublicaciones;
+		this.cantidadPublicaciones = 0;
 		this.periodoValidez = periodoValidez;
 		this.descuento = descuento;
-		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
-		this.setCosto();
+		this.cantidadTipoPublicaciones = cantidadTipo;
+		for (CantidadTipoPublicacion cantidad : cantidadTipo) {
+			this.cantidadPublicaciones = this.cantidadPublicaciones + cantidad.getCantidadRestante();
+		}
+		this.setCosto(); 
 	}
 
 	public String getNombre() {
@@ -93,9 +96,10 @@ public class PaquetePublicacion {
 		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo);
 	}
 
-	//FALTA IMPLEMENTAR
-	public void crearCantidadTipoPublicacion(PaquetePublicacion paquetePublicacion, int cantIncluida, TipoPublicacion tipoPublicacion) {
-		   
+	// FALTA IMPLEMENTAR
+	public void crearCantidadTipoPublicacion(PaquetePublicacion paquetePublicacion, int cantIncluida,
+			TipoPublicacion tipoPublicacion) {
+
 	}
 
 }

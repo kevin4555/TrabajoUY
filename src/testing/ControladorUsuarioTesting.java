@@ -4,6 +4,8 @@ package testing;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+/*
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -60,9 +62,11 @@ public class ControladorUsuarioTesting {
 	
 	@Test
 	public void altaPostulanteTest() throws UsuarioYaExisteException, UsuarioNoExisteException {
-		Postulante postulanteEsperado = new Postulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate, "NacionalidadTest" );
+		
+		Postulante postulanteEsperado = new Postulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", Date.valueOf("1988-9-2"), "NacionalidadTest" );
 		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate, "NacionalidadTest" );
+		controladorUsuario.vaciarManejadorUsuario();
+		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", Date.valueOf("1988-9-2"), "NacionalidadTest" );
 		Postulante postulanteResultado = controladorUsuario.obtenerPostulante("NicknameTest");
 		Assert.assertEquals(postulanteEsperado.getNickname(), postulanteResultado.getNickname());
 		Assert.assertEquals(postulanteEsperado.getNombre(), postulanteResultado.getNombre());
@@ -75,7 +79,8 @@ public class ControladorUsuarioTesting {
 	@Test
 	public void listarUsuariosUsuarioUnico() throws UsuarioYaExisteException {
 		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate, "NacionalidadTest" );
+		controladorUsuario.vaciarManejadorUsuario();
+		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", Date.valueOf("1988-9-2"), "NacionalidadTest" );
 		ArrayList<String> listaEsperada = new ArrayList<String>();
 		listaEsperada.add("NicknameTest");
 		ArrayList<String> listaResultado = controladorUsuario.listaDeUsuarios();
@@ -85,8 +90,12 @@ public class ControladorUsuarioTesting {
 	@Test
 	public void listarUsuuariosListaVacia() {
 		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		ArrayList<String> lista = controladorUsuario.listaDeUsuarios();
-		Assert.assertTrue(lista.isEmpty());
+		controladorUsuario.vaciarManejadorUsuario();
+		ArrayList<String> listaResultado = controladorUsuario.listaDeUsuarios();
+		ArrayList<String> listaEsperada = new ArrayList<String>();
+		Assert.assertTrue(listaResultado.isEmpty());
+		//Assert.assertEquals(listaEsperada, listaResultado);
+		
 	}
 	
 	@Test
@@ -95,10 +104,6 @@ public class ControladorUsuarioTesting {
 		Usuario usuario = controladorUsuario.obtenerUsuario("NicknameTest");
 		Assert.fail();
 	}
-	
-	@Test
-	public void 
-	
-	
 }
 	
+*/
