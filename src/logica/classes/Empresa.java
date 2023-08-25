@@ -77,12 +77,6 @@ public class Empresa extends Usuario {
 	@Override
 	public ArrayList<String> listarOfertasUsuario(){
 		return this.obtenerNombresOfertas();
-		/*
-		ArrayList<String> listaOfertas = new ArrayList<String>();
-		for(OfertaLaboral oferta : this.ofertasLaborales) {
-			listaOfertas.add(oferta.getNombre());
-		}
-		return listaOfertas;*/
 	}
 
 	@Override

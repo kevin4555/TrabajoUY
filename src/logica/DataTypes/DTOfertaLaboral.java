@@ -14,11 +14,12 @@ public class DTOfertaLaboral {
 	private Date fechaAlta;
 	private ArrayList<DTPostulacion> postulaciones;
 	
-	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String horarioInicial, String horarioFinal, Float remuneracion, Date fechaAlta, ArrayList<DTPostulacion> postulaciones)
+	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento, String horarioInicial, String horarioFinal, Float remuneracion, Date fechaAlta, ArrayList<DTPostulacion> postulaciones)
 	{
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
+		this.departamento = departamento;
 		this.horarioInicio = horarioInicial;
 		this.horarioFinal = horarioFinal;
 		this.remuneracion = remuneracion;

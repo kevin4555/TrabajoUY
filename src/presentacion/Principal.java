@@ -38,62 +38,64 @@ import java.awt.Color;
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
 
-	private JPanel contentPanel;
-	private JFrame ventanaPrincipal;
-	private IControladorUsuario ICU;
-	private IControladorOferta ICO;
-	private CrearUsuario crearUsuInternalFrame;
-	private ConsultarUsuario consultarUsuInternalFrame;
-	private AltaOfertaLaboral crearOfertaLaboralInternalFrame;
-	private ConsultaOfertaLaboral consultarOfertaInternalFrame;
-	private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
-	private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
-	private Date fecha;
+    private JPanel contentPane;
+    private JFrame ventanaPrincipal;
+    private IControladorUsuario ICU;
+    private IControladorOferta ICO;
+    private CrearUsuario crearUsuInternalFrame;
+    private ConsultarUsuario consultarUsuInternalFrame;
+    private AltaOfertaLaboral crearOfertaLaboralInternalFrame;
+    private ConsultaOfertaLaboral consultarOfertaInternalFrame;
+    private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
+    private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
+    private Date fecha;
+    private String fechaS = "23/02/1923";
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal frame = new Principal();
-					frame.ventanaPrincipal.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Principal frame = new Principal();
+                    frame.ventanaPrincipal.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	/**
-	 * Create the frame.
-	 */
-	public Principal() {
-		initialize();
-		
-		Fabrica fabrica = Fabrica.getInstance();
+    /**
+     * Create the frame.
+     */
+    public Principal() {
+        initialize();
+
+        Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.obtenerControladorUsuario();
         ICO = fabrica.obtenerControladorOferta();
         this.fecha = new Date();
         // Se crean los InternalFrame y se incluyen al Frame principal ocultos.
-        // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
+        // De esta forma, no es necesario crear y destruir objetos lo que enlentece la
+        // ejecución.
 
         crearUsuInternalFrame = new CrearUsuario(ICU);
         crearUsuInternalFrame.setVisible(false);
 
         consultarUsuInternalFrame = new ConsultarUsuario(ICU, ICO);
         consultarUsuInternalFrame.setVisible(false);
-        
+
         crearOfertaLaboralInternalFrame = new AltaOfertaLaboral(ICO, ICU);
         crearOfertaLaboralInternalFrame.setVisible(false);
-        
+
         consultarOfertaInternalFrame = new ConsultaOfertaLaboral(ICO, ICU);
         consultarOfertaInternalFrame.setVisible(false);
-        
+
         crearTipoPublicDeOfertaLabInternalFrame = new AltaTipoPublicacionDeOfertaLab(ICO);
         crearTipoPublicDeOfertaLabInternalFrame.setVisible(false);
-        
+
         postulacionOfertaLabInternalFrame = new PostulacionOfertaLaboral(ICO, ICU);
         postulacionOfertaLabInternalFrame.setBackground(new Color(240, 240, 240));
         postulacionOfertaLabInternalFrame.setResizable(false);
@@ -101,7 +103,7 @@ public class Principal extends JFrame {
 
         ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
         ventanaPrincipal.getContentPane().add(crearUsuInternalFrame);
-        
+
         JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
         crearUsuInternalFrame.getContentPane().add(internalFrame, BorderLayout.NORTH);
         internalFrame.setVisible(true);
@@ -109,10 +111,10 @@ public class Principal extends JFrame {
         ventanaPrincipal.getContentPane().add(consultarOfertaInternalFrame);
         ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
         ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame);
-	}
-	
-private void initialize() {
-        
+    }
+
+    private void initialize() {
+
         // Se crea el Frame con las dimensiones indicadas.
         ventanaPrincipal = new JFrame();
         ventanaPrincipal.setTitle("Trabajo.uy");
@@ -120,8 +122,8 @@ private void initialize() {
         ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con menú (JMenu) desplegables.
-        // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
-        // evento asociado que permite realizar una acción una vez se seleccionan. 
+        // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un
+        // evento asociado que permite realizar una acción una vez se seleccionan.
         JMenuBar menuBar = new JMenuBar();
         ventanaPrincipal.setJMenuBar(menuBar);
 
@@ -137,11 +139,11 @@ private void initialize() {
             }
         });
         menuSistema.add(menuSalir);
-        
+
         JMenuItem menuCargarDatos = new JMenuItem("Cargar Datos");
         menuCargarDatos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                cargarDatosDePrueba(arg0); //Esta funcion carga los datos de prueba
+                cargarDatosDePrueba(arg0); // Esta funcion carga los datos de prueba
             }
         });
         menuSistema.add(menuCargarDatos);
@@ -158,61 +160,60 @@ private void initialize() {
         });
         menuUsuarios.add(menuItemRegistrarUsuario);
 
-       JMenuItem menuConsultaUsuario = new JMenuItem("Consulta de Usuario");
-       menuConsultaUsuario.addActionListener(new ActionListener() {
+        JMenuItem menuConsultaUsuario = new JMenuItem("Consulta de Usuario");
+        menuConsultaUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-            	consultarUsuInternalFrame.cargarUsuarios();
-            	consultarUsuInternalFrame.setVisible(true);
+                consultarUsuInternalFrame.cargarUsuarios();
+                consultarUsuInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuConsultaUsuario);
-        
+
         JMenu menuOfertaLaboral = new JMenu("Ofertas Laborales");
         menuBar.add(menuOfertaLaboral);
-        
+
         JMenuItem menuItemRegistrarOferta = new JMenuItem("Registrar Oferta Laboral");
         menuItemRegistrarOferta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar una oferta laboral
             	crearOfertaLaboralInternalFrame.cargarEmpresas();
             	crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
-
+                crearOfertaLaboralInternalFrame.cargarKeywords();
             	crearOfertaLaboralInternalFrame.setVisible(true);
             }
         });
         menuOfertaLaboral.add(menuItemRegistrarOferta);
-        
+
         JMenuItem menuItemConsultarOferta = new JMenuItem("Consultar Oferta Laboral");
         menuItemConsultarOferta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para consultar una oferta laboral
-            	consultarOfertaInternalFrame.cargarEmpresas();
-            	consultarOfertaInternalFrame.setVisible(true);
+                consultarOfertaInternalFrame.cargarEmpresas();
+                consultarOfertaInternalFrame.setVisible(true);
             }
         });
         menuOfertaLaboral.add(menuItemConsultarOferta);
-        
+
         JMenuItem menuItemAltaTipoPublicDeOferta = new JMenuItem("Registro Tipo de Publicacion de Oferta Laboral");
         menuItemAltaTipoPublicDeOferta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para crear un tipo de publicacion de  oferta laboral
-            	crearTipoPublicDeOfertaLabInternalFrame.setVisible(true);
+                // Muestro el InternalFrame para crear un tipo de publicacion de oferta laboral
+                crearTipoPublicDeOfertaLabInternalFrame.setVisible(true);
             }
         });
         menuOfertaLaboral.add(menuItemAltaTipoPublicDeOferta);
-        
+
         JMenuItem menuItemPostulacionOfertaLab = new JMenuItem("Postulacion a Oferta Laboral");
         menuItemPostulacionOfertaLab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para postularse a una oferta laboral
-            	postulacionOfertaLabInternalFrame.cargarEmpresasPostulacion();
-            	postulacionOfertaLabInternalFrame.setVisible(true);
+                postulacionOfertaLabInternalFrame.cargarEmpresasPostulacion();
+                postulacionOfertaLabInternalFrame.setVisible(true);
             }
         });
         menuOfertaLaboral.add(menuItemPostulacionOfertaLab);
 
-      
     }
 
 	@SuppressWarnings("deprecation")
@@ -324,7 +325,5 @@ private void initialize() {
 		} 
 	}
 
-  
-
-
+    
 }
