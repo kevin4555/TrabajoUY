@@ -40,7 +40,7 @@ public class ManejadorSettings {
 		return listTipoPublicaciones;
 	}
 
-	public TipoPublicacion obtenerTipoPublicacion(String nombre) throws TipoPublicacionYaExisteException
+	public TipoPublicacion obtenerTipoPublicacion(String nombre) throws TipoPublicacionNoExisteException
 	{
 		if (colTipoPublicaciones.containsKey(nombre)) 
 		{
@@ -48,7 +48,7 @@ public class ManejadorSettings {
 		} 
 		else 
 		{
-			throw new TipoPublicacionYaExisteException("La publicacion " + nombre + " no existe");
+			throw new TipoPublicacionNoExisteException("El tipo publicacion " + nombre + " no existe");
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class ManejadorSettings {
 		}
 		else
 		{
-			throw new TipoPublicacionYaExisteException("La publicacion " + tpoPublic.getNombre() +" ya existe");
+			throw new TipoPublicacionYaExisteException("El tipo publicacion " + tpoPublic.getNombre() +" ya existe");
 		}
 	}
 
@@ -97,5 +97,5 @@ public class ManejadorSettings {
 		}
 		return listKewords;
 	}
-	
+		
 }

@@ -14,9 +14,9 @@ public class Postulacion {
 	
 	public Postulacion(String descrpMotivacion, Date fechaPostulacion, String cvReducido, Postulante postulante, OfertaLaboral ofertaLaboral) {
 		super();
-		this.descrpMotivacion = descrpMotivacion;
-		this.fechaPostulacion = fechaPostulacion;
-		this.cvReducido = cvReducido;
+		setDescrpMotivacion(descrpMotivacion);
+		setFechaPostulacion(fechaPostulacion);
+		setCvReducido(cvReducido);
 		this.postulante = postulante;
 		this.ofertaLaboral = ofertaLaboral;
 	}
@@ -58,7 +58,7 @@ public class Postulacion {
 		
 		DTUsuario dtUsuario = new DTUsuario(this.getPostulante().getNickname(), this.getPostulante().getNombre(), this.getPostulante().getApellido(), this.getPostulante().getEmail());
 		
-		DTPostulacion dtPostulacion = new DTPostulacion(dtUsuario, this.getDescrpMotivacion(),this.getFechaPostulacion(), this.getCvReducido());
+		DTPostulacion dtPostulacion = new DTPostulacion(dtUsuario, this.getDescrpMotivacion(), this.getFechaPostulacion(), this.getCvReducido());
 		return dtPostulacion;
 	}
 	

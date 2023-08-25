@@ -20,15 +20,15 @@ public class OfertaLaboral {
 	private ArrayList<Postulacion> postulaciones;
 	
 	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.ciudad = ciudad;
-		this.departamento = departamento;
-		this.horarioInicial = horarioInicial;
-		this.horarioFinal = horarioFinal;
-		this.remuneracion = remuneracion;
-		this.fechaAlta = fechaAlta;
-		this.tipoPublicacion = tipoPublicacion;
+		setNombre(nombre);
+		setDescripcion(descripcion);
+		setCiudad(ciudad);
+		setDepartamento(departamento);
+		setHorarioInicial(horarioInicial);
+		setHorarioFinal(horarioFinal);
+		setRemunaracion(remuneracion);
+		setFechaAlta(fechaAlta);
+		setTipoPublicacion(tipoPublicacion);
 		this.postulaciones = new ArrayList<Postulacion>();
 		this.listaKeywords = new ArrayList<Keyword>();
 	}
@@ -63,6 +63,7 @@ public class OfertaLaboral {
 	public void setRemunaracion(float remuneracion) {
 		this.remuneracion = remuneracion;
 	}
+
 	public Date getFechaAlta() {
 		return fechaAlta;
 	}
