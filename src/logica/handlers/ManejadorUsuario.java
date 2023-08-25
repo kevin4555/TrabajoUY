@@ -53,7 +53,7 @@ public class ManejadorUsuario {
 	@SuppressWarnings("unlikely-arg-type")
 	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException 
 	{
-		if(colEmpresas.containsKey(empresa)) 
+		if(!colEmpresas.containsKey(empresa)) 
 		{
 			colEmpresas.put(empresa.getNickname(), empresa);
 			colUsuarios.put(empresa.getNickname(), empresa);
@@ -120,5 +120,9 @@ public class ManejadorUsuario {
 		{
 			throw new UsuarioNoExisteException("Usuario: " + nicknameUsuario + " no existe");
 		}
+	}
+	
+	public void clean() {
+		instancia = null;
 	}
 }

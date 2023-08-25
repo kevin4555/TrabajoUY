@@ -52,8 +52,12 @@ public class ControladorUsuarioTesting {
 	@Test
 	public void listarUsuuariosListaVacia() {
 		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		ArrayList<String> lista = controladorUsuario.listaDeUsuarios();
-		Assert.assertTrue(lista.isEmpty());
+		controladorUsuario.vaciarManejadorUsuario();
+		ArrayList<String> listaResultado = controladorUsuario.listaDeUsuarios();
+		ArrayList<String> listaEsperada = new ArrayList<String>();
+		Assert.assertTrue(listaResultado.isEmpty());
+		//Assert.assertEquals(listaEsperada, listaResultado);
+		
 	}
 	
 	@Test

@@ -73,11 +73,7 @@ public class Empresa extends Usuario {
 	
 	@Override
 	public ArrayList<String> listarOfertasUsuario(){
-		ArrayList<String> listaOfertas = new ArrayList<String>();
-		for(OfertaLaboral oferta : ofertasLaborales) {
-			listaOfertas.add(oferta.getNombre());
-		}
-		return listaOfertas;
+		return this.obtenerNombresOfertas();
 	}
 
 	@Override
