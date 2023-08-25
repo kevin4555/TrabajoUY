@@ -41,4 +41,6 @@ public interface IControladorUsuario {
 	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException;
 
 	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException;
+	
+	public void vaciarManejadorUsuario();
 }
