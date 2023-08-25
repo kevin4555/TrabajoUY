@@ -49,6 +49,8 @@ public class ManejadorUsuario {
 			throw new UsuarioNoExisteException("Empresa " + nickEmpresa + " no existe");
 		}
 	}
+	
+	
 
 	@SuppressWarnings("unlikely-arg-type")
 	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException 
@@ -108,7 +110,7 @@ public class ManejadorUsuario {
 			listaUsuarios.add(nickUsuario);
 		}
 		return listaUsuarios;
-	}
+	}	
 	
 	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteException 
 	{

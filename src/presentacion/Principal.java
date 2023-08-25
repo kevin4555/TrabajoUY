@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -21,6 +24,7 @@ import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
@@ -35,6 +39,7 @@ import logica.interfaces.IControladorUsuario;
 import java.awt.BorderLayout;
 import javax.swing.JInternalFrame;
 import java.awt.Color;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
@@ -179,16 +184,17 @@ public class Principal extends JFrame {
 		JMenu menuOfertaLaboral = new JMenu("Ofertas Laborales");
 		menuBar.add(menuOfertaLaboral);
 
-		JMenuItem menuItemRegistrarOferta = new JMenuItem("Registrar Oferta Laboral");
-		menuItemRegistrarOferta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Muestro el InternalFrame para registrar una oferta laboral
-				crearOfertaLaboralInternalFrame.cargarEmpresas();
-				crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
-				crearOfertaLaboralInternalFrame.setVisible(true);
-			}
-		});
-		menuOfertaLaboral.add(menuItemRegistrarOferta);
+        JMenuItem menuItemRegistrarOferta = new JMenuItem("Registrar Oferta Laboral");
+        menuItemRegistrarOferta.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Muestro el InternalFrame para registrar una oferta laboral
+            	crearOfertaLaboralInternalFrame.cargarEmpresas();
+            	crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
+                crearOfertaLaboralInternalFrame.cargarKeywords();
+            	crearOfertaLaboralInternalFrame.setVisible(true);
+            }
+        });
+        menuOfertaLaboral.add(menuItemRegistrarOferta);
 
 		JMenuItem menuItemConsultarOferta = new JMenuItem("Consultar Oferta Laboral");
 		menuItemConsultarOferta.addActionListener(new ActionListener() {
@@ -300,6 +306,7 @@ public class Principal extends JFrame {
 					"09:00", "18:00", 90000f, "Montevideo", "Montevideo", dateFormat.parse("14/08/23"),
 					ICO.obtenerTipoPublicacion("Premium"));
 
+					
 			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k1);
 			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k2);
 			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k3);
@@ -439,7 +446,10 @@ public class Principal extends JFrame {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} catch (UsuarioNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-		}
+		} catch (KeywordNoExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		} 
 	}
 
+    
 }

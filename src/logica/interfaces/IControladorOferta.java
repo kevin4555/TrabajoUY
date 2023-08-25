@@ -32,7 +32,7 @@ public interface IControladorOferta {
 	
 	public ArrayList<String> listarPaquetes();
 	
-	public void agregarKeywordEnOfertaLaboral(String nomKeyword, String nomOferta) throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException;
+	public void agregarKeywordEnOfertaLaboral(ArrayList<String> listaKeyword, String nomOferta) throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException;
 	
 	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException;
 	
@@ -49,9 +49,11 @@ public interface IControladorOferta {
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
 	public void registrarPaquete(String nombre, String descripcion , int periodoValDias,
-			Float descuento, Date fechaAlta, ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion)
+			float descuento, Date fechaAlta, ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion)
 			throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException;
 
-	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
+	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo,
 			Date fechaPub) throws TipoPublicacionYaExisteException;
+
+
 }

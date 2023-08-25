@@ -63,6 +63,7 @@ public class OfertaLaboral {
 	public void setRemunaracion(float remuneracion) {
 		this.remuneracion = remuneracion;
 	}
+
 	public Date getFechaAlta() {
 		return fechaAlta;
 	}
