@@ -12,13 +12,14 @@ public class TipoPublicacion {
 	private Date fechaAlta;
 	private CantidadTipoPublicacion cantTipo;
 	
-	public TipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) {
+	public TipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo, Date fechaPub) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setExposicion(exposicion);
 		this.setDuracionDia(duracion);
 		this.setCosto(costo);
 		this.setFechaAlta(fechaPub);
+		this.cantTipo = null;
 	}
 	
 	public String getNombre() {
