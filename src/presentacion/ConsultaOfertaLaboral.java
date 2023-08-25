@@ -249,7 +249,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     	OfertaLaboral dtOfertaLaboral;
 	    try {
 			dtOfertaLaboral = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
-			
+		
 			(this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
 			(this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());	   
 			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicial());

@@ -303,9 +303,9 @@ public class Principal extends JFrame {
 
 			ICO.altaOfertaLaboral("Desarrollador Frontend",
 					"Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
-					"09:00", "18:00", 90000f, "Montevideo", "Montevideo", dateFormat.parse("14/08/23"),
+					"09:00", "18:00", 90000f, "Montevideo", "Montevideo", dateFormat.parse("14/08/2023"),
 					ICO.obtenerTipoPublicacion("Premium"));
-
+			ICU.obtenerEmpresa("EcoTech").agregarOferta(ICO.obtenerOfertaLaboral("Desarrollador Frontend"));
 					
 			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k1);
 			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k2);
@@ -316,76 +316,84 @@ public class Principal extends JFrame {
 
 			ICO.altaOfertaLaboral("Estratega de Negocios",
 					"Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes.",
-					"08:00", "17:00", 80000f, "Punta del Este", "Maldonado", dateFormat.parse("14/08/23"),
+					"08:00", "17:00", 80000f, "Punta del Este", "Maldonado", dateFormat.parse("14/08/2023"),
 					ICO.obtenerTipoPublicacion("Estándar"));
-
+            
+			ICU.obtenerEmpresa("GlobalHealth").agregarOferta(ICO.obtenerOfertaLaboral("Estratega de Negocios"));
+			
 			ICO.obtenerOfertaLaboral("Estratega de Negocios").agregarKeyword(k5);
 
 			ICO.altaOfertaLaboral("Diseñador UX/UI",
 					"Trabaja en colaboración con nuestro talentoso equipo de diseño para crear soluciones impactantes.",
-					"14:00", "18:00", 65000f, "Rosario", "Colonia", dateFormat.parse("13/08/23"),
+					"14:00", "18:00", 65000f, "Rosario", "Colonia", dateFormat.parse("13/08/2023"),
 					ICO.obtenerTipoPublicacion("Estándar"));
+			ICU.obtenerEmpresa("FusionTech").agregarOferta(ICO.obtenerOfertaLaboral("Diseñador UX/UI"));
 			ICO.obtenerOfertaLaboral("Diseñador UX/UI").agregarKeyword(k2);
 			ICO.obtenerOfertaLaboral("Diseñador UX/UI").agregarKeyword(k3);
 			ICO.obtenerOfertaLaboral("Diseñador UX/UI").agregarKeyword(k6);
 
 			ICO.altaOfertaLaboral("Analista de Datos",
 					"Ayuda a nuestros clientes a tomar decisiones informadas basadas en análisis y visualizaciones de datos.",
-					"09:00", "13:00", 40000f, "Maldonado", "Maldonado", dateFormat.parse("11/08/23"),
+					"09:00", "13:00", 40000f, "Maldonado", "Maldonado", dateFormat.parse("11/08/2023"),
 					ICO.obtenerTipoPublicacion("Premium"));
+			ICU.obtenerEmpresa("ANTEL").agregarOferta(ICO.obtenerOfertaLaboral("Analista de Datos"));
+			
 			ICO.obtenerOfertaLaboral("Analista de Datos").agregarKeyword(k2);
 
 			ICO.altaOfertaLaboral("Content Manager",
 					"Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en línea de nuestros clientes.",
-					"18:00", "22:00", 10000f, "Montevideo", "Montevideo", dateFormat.parse("20/08/23"),
+					"18:00", "22:00", 10000f, "Montevideo", "Montevideo", dateFormat.parse("20/08/2023"),
 					ICO.obtenerTipoPublicacion("Destacada"));
+			ICU.obtenerEmpresa("MIEM").agregarOferta(ICO.obtenerOfertaLaboral("Content Manager"));
 			ICO.obtenerOfertaLaboral("Content Manager").agregarKeyword(k4);
 
 			ICO.altaOfertaLaboral("Soporte Técnico",
 					"Ofrece un excelente servicio de soporte técnico a nuestros clientes, resolviendo problemas y brindando soluciones",
-					"09:00", "18:00", 30000f, "Minas", "Lavalleja", dateFormat.parse("15/08/23"),
+					"09:00", "18:00", 30000f, "Minas", "Lavalleja", dateFormat.parse("15/08/2023"),
 					ICO.obtenerTipoPublicacion("Básica"));
+			ICU.obtenerEmpresa("TechSolutions").agregarOferta(ICO.obtenerOfertaLaboral("Soporte Técnico"));
 			ICO.obtenerOfertaLaboral("Soporte Técnico").agregarKeyword(k1);
 
 			ICO.altaOfertaLaboral("A. de Marketing Digital",
 					"Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.", "10:00",
-					"19:00", 80000f, "Flores", "Flores", dateFormat.parse("15/08/23"),
+					"19:00", 80000f, "Flores", "Flores", dateFormat.parse("15/08/2023"),
 					ICO.obtenerTipoPublicacion("Premium"));
+			ICU.obtenerEmpresa("EcoTech").agregarOferta(ICO.obtenerOfertaLaboral("A. de Marketing Digital"));
 
 			ICO.altaOfertaLaboral("Contador Senior",
 					"Unete a nuestro equipo contable y ayuda en la gestión financiera de la empresa.", "08:30", "17:30",
-					100000f, "Colonia Suiza", "Colonia", dateFormat.parse("16/08/23"),
+					100000f, "Colonia Suiza", "Colonia", dateFormat.parse("16/08/2023"),
 					ICO.obtenerTipoPublicacion("Destacada"));
-
+			ICU.obtenerEmpresa("GlobalHealth").agregarOferta(ICO.obtenerOfertaLaboral("Contador Senior"));
 			ICO.registrarPostulacion(
 					"Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos Microsoft Office.",
 					"Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.",
-					dateFormat.parse("16/08/23"), "lgarcia", "Desarrollador Frontend");
+					dateFormat.parse("16/08/2023"), "lgarcia", "Desarrollador Frontend");
 
 			ICO.registrarPostulacion(
 					"Estudiante de Comunicación, habilidades en redacción y manejo de redes sociales. Experiencia en prácticas en medios locales.",
 					"Me encantaría formar parte de un equipo que me permita desarrollar mis habilidades en comunicación y marketing.",
-					dateFormat.parse("15/08/23"), "matilo", "Estratega de Negocios");
+					dateFormat.parse("15/08/2023"), "matilo", "Estratega de Negocios");
 
 			ICO.registrarPostulacion(
 					"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.",
 					"Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
-					dateFormat.parse("14/08/23"), "maro", "Desarrollador Frontend");
+					dateFormat.parse("14/08/2023"), "maro", "Desarrollador Frontend");
 
 			ICO.registrarPostulacion(
 					"Técnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos eléctricos.",
 					"Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades técnicas y contribuir al mantenimiento eficiente.",
-					dateFormat.parse("13/08/23"), "javierf", "Diseñador UX/UI");
+					dateFormat.parse("13/08/2023"), "javierf", "Diseñador UX/UI");
 
 			ICO.registrarPostulacion(
 					"Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.",
 					"Me gustaría combinar mi pasión por la música con una oportunidad laboral que me permita seguir creciendo como artista.",
-					dateFormat.parse("12/08/23"), "valen25", "Estratega de Negocios");
+					dateFormat.parse("12/08/2023"), "valen25", "Estratega de Negocios");
 
 			ICO.registrarPostulacion(
 					"Licenciada en Administración, me considero genia, experiencia en gestión de equipos y proyectos. Conocimientos en Microsoft Office.",
 					"Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.",
-					dateFormat.parse("16/08/23"), "lgarcia", "Estratega de Negocios");
+					dateFormat.parse("16/08/2023"), "lgarcia", "Estratega de Negocios");
 
 			ArrayList<DTCantidadTipoPublicacion> paquete1 = new ArrayList<DTCantidadTipoPublicacion>();
 			ArrayList<DTCantidadTipoPublicacion> paquete2 = new ArrayList<DTCantidadTipoPublicacion>();
@@ -413,19 +421,19 @@ public class Principal extends JFrame {
 			paquete4.add(tipo8);
 
 			ICO.registrarPaquete("Básico", "Publica ofertas laborales en nuestra plataforma por un período de 30 días",
-					30, 20f, dateFormat.parse("16/08/23"), paquete1);
+					30, 20f, dateFormat.parse("16/08/2023"), paquete1);
 
 			ICO.registrarPaquete("Destacado",
 					"Publica ofertas laborales destacadas que se mostrará en la parte superior de los resultados de búsqueda por 45 días",
-					45, 10f, dateFormat.parse("15/08/23"), paquete2);
+					45, 10f, dateFormat.parse("15/08/2023"), paquete2);
 
 			ICO.registrarPaquete("Premium",
 					"Publica ofertas laborales premium que incluye promoción en nuestras redes sociales y listado en la sección destacada por 60 días",
-					60, 15f, dateFormat.parse("14/08/23"), paquete3);
+					60, 15f, dateFormat.parse("14/08/2023"), paquete3);
 
 			ICO.registrarPaquete("Express",
 					"Publica ofertas laborales urgentes resaltada en color y se mostrará en la sección de urgente por 15 días.",
-					15, 5f, dateFormat.parse("13/08/23"), paquete4);
+					15, 5f, dateFormat.parse("13/08/2023"), paquete4);
 
 			JOptionPane.showMessageDialog(this, "Los Datos de prueba se ha creado con éxito", "Trabajo.uy",
 					JOptionPane.INFORMATION_MESSAGE);
