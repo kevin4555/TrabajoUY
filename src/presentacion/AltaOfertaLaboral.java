@@ -263,8 +263,19 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		String remuneracionOfertaLab = this.textFieldRemuneracion.getText();
 		String ciudadOfertaLab = this.textFieldCiudad.getText();
 		String departOfertaLab = this.textFieldDepartamento.getText();
-		String nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
-		String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+		String nomTipoPublic = "";
+		boolean noHayTipoPublic = true;
+		boolean noHayEmpresa = true;
+		if (this.comboBoxTpoPublicacion.getSelectedIndex() != -1) {
+			nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
+			noHayTipoPublic = false;
+		}
+		String nicknameEmpresa = "";
+		if (this.comboBoxEmpresa.getSelectedIndex() != -1) {
+			 nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+			 noHayEmpresa = false;
+		}
+		
 		Date fechaAlta = this.dateChooser.getDate();
 
 		String horaIniOfertaLab = this.textFieldHoraInicio.getText();
@@ -277,7 +288,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		
 
 		if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab,
-				horaIniOfertaLab, horaFinOfertaLab, fechaAlta)) {
+				horaIniOfertaLab, horaFinOfertaLab, fechaAlta, nomTipoPublic, nicknameEmpresa, noHayTipoPublic, noHayEmpresa)) {
 			try {
 				controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab,
 						Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta,
@@ -327,7 +338,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	// a otro campo.
 	private boolean checkFormulario(String nombreOfertaLab, String descripOfertaLab, String remuneracionOfertaLab,
 			String ciudadOfertaLab, String departOfertaLab, String horaIniOfertaLab, String horaFinOfertaLab,
-			Date fechaAlta) {
+			Date fechaAlta, String nomTipoPublic, String nicknameEmpresa, boolean noHayEmpresa, boolean noHayTipoPublic) {
 
 		if (nombreOfertaLab.isEmpty() || descripOfertaLab.isEmpty() || remuneracionOfertaLab.isEmpty()
 				|| ciudadOfertaLab.isEmpty() || departOfertaLab.isEmpty() || horaIniOfertaLab.isEmpty()
@@ -335,6 +346,24 @@ public class AltaOfertaLaboral extends JInternalFrame {
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Oferta Laboral",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
+		}
+		if (nomTipoPublic.equals("Seleccione:")) {
+			JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de publicacion", "Registrar Oferta Laboral",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if (nicknameEmpresa.equals("Seleccione:")) {
+			JOptionPane.showMessageDialog(this, "Debe seleccionar una Empresa", "Registrar Oferta Laboral",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if (noHayTipoPublic) {
+			JOptionPane.showMessageDialog(this, "No se puede registrar un Oferta Laboral sin estar asociada a un Tipo de Publicación", "Registrar Oferta Laboral",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		if (noHayEmpresa) {
+			JOptionPane.showMessageDialog(this, "No se puede registrar un Oferta Laboral sin estar asociada a una Empresa", "Registrar Oferta Laboral",
+					JOptionPane.ERROR_MESSAGE);
 		}
 		if (fechaAlta == null) {
 			JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
