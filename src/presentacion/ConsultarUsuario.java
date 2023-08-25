@@ -422,7 +422,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	
 	@SuppressWarnings({ "deprecation", "exports" })
 	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
-		
+	/*	
 		String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
 		if (nicknameUsuario != usuarioSeleccionado) {
 			usuarioSeleccionado = nicknameUsuario;
@@ -449,7 +449,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			for (String oferta : listaOfertas) {
 				this.comboBoxSeleccionOferta.addItem(oferta);
 			}
-		}
+		}*/
 		
 	}
 	

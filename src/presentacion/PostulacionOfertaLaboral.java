@@ -264,8 +264,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         this.comboBoxEmpresasRegistradasPostulacion.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e)
     		{
-    			empresa1 = (String) (comboBoxEmpresasRegistradasPostulacion).getSelectedItem();
-        		if(empresa1 != empresa2)
+    			//empresa1 = (String) (comboBoxEmpresasRegistradasPostulacion).getSelectedItem();
+        		//if(empresa1 != empresa2)
         		{
         			ubicacionCentro.setVisible(false);
         			limpiarInformacion();
