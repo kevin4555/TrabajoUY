@@ -27,6 +27,8 @@ import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.controllers.Fabrica;
+import logica.handlers.ManejadorOfertas;
+import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
@@ -42,6 +44,8 @@ public class ControladorUsuarioTesting {
 	private static Empresa empresa1;
 	private static  Empresa empresa2;
 	private static ManejadorUsuario manejadorUsuario;
+	private static ManejadorOfertas manejadorOfertas;
+	private static ManejadorSettings manejadorSettings;
 	
 	@BeforeClass
 	public static void setUp()
@@ -49,6 +53,8 @@ public class ControladorUsuarioTesting {
 		controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
 		controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
 		manejadorUsuario = ManejadorUsuario.getInstance();
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorSettings = ManejadorSettings.getInstance();
 		String fecha1 = "02/09/1988";
 		String fecha2 = "04/4/2023";
 		
@@ -72,6 +78,8 @@ public class ControladorUsuarioTesting {
 	@Before
 	public void cleanUp() {
 		manejadorUsuario.clean();
+		manejadorOfertas.clean();
+		manejadorSettings.clean();
 	}
 	
 	@Test
@@ -222,13 +230,26 @@ public class ControladorUsuarioTesting {
 		Assert.assertEquals(esperado, resultado);
 	}
 	
-	/*@Test
-	public void registrarPostulacionTest() {
-		control.registrarPostulacion(
+	@Test
+	public void registrarPostulacionTest() throws UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetido, TipoPublicacionYaExisteException, OfertaLaboralYaExisteException, TipoPublicacionNoExisteException {
+		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com", 
+				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
+				"http://www.EcoTechInnovations.com");
+		controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30, 4000f, fechaDate2);
+		controladorOferta.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1,controladorOferta.obtenerTipoPublicacion("Premium"));
+		controladorUsuario.obtenerEmpresa("EcoTech").agregarOferta(controladorOferta.obtenerOfertaLaboral("Desarrollador Frontend"));
+		controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com", fechaDate2,"Uruguaya");
+		controladorUsuario.registrarPostulacion(
 				"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.",
 				"Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
-				dateFormat.parse("14/08/2023"), "maro", "Desarrollador Frontend");
-	}*/
+				fechaDate1, "maro", "Desarrollador Frontend");
+		ArrayList<String> resultado = controladorUsuario.listaOfertasUsuario("maro");
+		ArrayList<String> esperado = new ArrayList<String>();
+		esperado.add("Desarrollador Frontend");
+		Assert.assertEquals(esperado, resultado);
+		
+	}
+	
 	
 }
 	

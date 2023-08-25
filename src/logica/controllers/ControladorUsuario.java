@@ -115,7 +115,4 @@ public class ControladorUsuario implements IControladorUsuario {
 	   return manejadorUsuario.obtenerPostulante(nomPostulante);
 	}
 	
-	public void vaciarManejadorUsuario() {
-		ManejadorUsuario.getInstance().clean();
-	}
 }

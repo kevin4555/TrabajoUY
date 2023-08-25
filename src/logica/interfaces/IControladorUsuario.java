@@ -40,5 +40,4 @@ public interface IControladorUsuario {
 	
 	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException;
 	
-	public void vaciarManejadorUsuario();
 }

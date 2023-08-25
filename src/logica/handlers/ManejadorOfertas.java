@@ -87,4 +87,7 @@ public class ManejadorOfertas {
 		return resultado;
 	}
 	
+	public void clean() {
+		instancia = null;
+	}
 }
