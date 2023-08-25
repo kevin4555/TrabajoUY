@@ -10,16 +10,12 @@ public abstract class Usuario {
 	protected String apellido;
 	protected String email;
 	
-	
-	public Usuario() {};
-	
-	public Usuario( String nickname, String nombre, 
-			String apellido, String email) {
+	public Usuario( String nickname, String nombre, String apellido, String email) {
 		super();
-		this.nickname = nickname;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
+		setNickname(nickname);
+		setNombre(nombre);
+		setApellido(apellido);
+		setEmail(email);
 	}
 	
 	public String getNickname() {
