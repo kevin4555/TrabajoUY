@@ -49,7 +49,6 @@ public class Principal extends JFrame {
 	private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
 	private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
 	private Date fecha;
-	private String fechaS = "23/02/1923";
 
 	/**
 	 * Launch the application.

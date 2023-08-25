@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import logica.DataTypes.DTOfertaLaboral;
 import logica.classes.OfertaLaboral;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
@@ -55,8 +54,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private String postulante;
     private String seleccionEmpresa;
     private JDateChooser dateChoose;
-    private String empresa1;
-    private String empresa2;
     /**
      * Create the frame.
      */
@@ -66,8 +63,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;
         this.seleccionEmpresa = "";
-        this.empresa1 = "";
-        this.empresa2 = "";
+        
         
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
@@ -382,15 +378,15 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     public void cargarDatosOfertaLaboralPostulacion(ActionEvent e)
     {
     	String ofertaLaboral = (String) (this.comboBoxOfertasLaboralesPostulacion).getSelectedItem();
-    	DTOfertaLaboral dtOfertaLaboral;
+    	OfertaLaboral dtOfertaLaboral;
 	    try {
-			dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
+			dtOfertaLaboral = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
 			
 			(this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
 			(this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());	   
-			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicio());
+			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicial());
 			(this.textFieldHoraFin).setText(dtOfertaLaboral.getHorarioFinal());
-			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemuneracion())));
+			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemunaracion())));
 			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
 			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
 			(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));

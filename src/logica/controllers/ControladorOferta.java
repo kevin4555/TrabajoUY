@@ -162,11 +162,4 @@ public class ControladorOferta implements IControladorOferta {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion,
-			Float costo, Date fechaPub) {
-		// TODO Auto-generated method stub
-		
-	}
 }

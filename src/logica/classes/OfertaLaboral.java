@@ -20,15 +20,15 @@ public class OfertaLaboral {
 	private ArrayList<Postulacion> postulaciones;
 	
 	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) {
-		setNombre(nombre);
-		setDescripcion(descripcion);
-		setCiudad(ciudad);
-		setDepartamento(departamento);
-		setHorarioInicial(horarioInicial);
-		setHorarioFinal(horarioFinal);
-		setRemunaracion(remuneracion);
-		setFechaAlta(fechaAlta);
-		setTipoPublicacion(tipoPublicacion);
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.ciudad = ciudad;
+		this.departamento = departamento;
+		this.horarioInicial = horarioInicial;
+		this.horarioFinal = horarioFinal;
+		this.remuneracion = remuneracion;
+		this.fechaAlta = fechaAlta;
+		this.tipoPublicacion = tipoPublicacion;
 		this.postulaciones = new ArrayList<Postulacion>();
 		this.listaKeywords = new ArrayList<Keyword>();
 	}
@@ -113,10 +113,7 @@ public class OfertaLaboral {
 	}
 	
 	public DTOfertaLaboral obtenerDTOfertaLaboral() {
-		CantidadTipoPublicacion cantidadTipoPublicacion = this.tipoPublicacion.getCantidadTipoPublicacion();
-		PaquetePublicacion paquetePublicacion = cantidadTipoPublicacion.getPaquetePublicacion();
-		DTPaquetePublicacion dtPaquetePublicacion = new DTPaquetePublicacion(this.getNombre(), this.getDescripcion(), cantidadTipoPublicacion.getCantidadRestante(), paquetePublicacion.getPeriodoValidez(), paquetePublicacion.getDescuento(), paquetePublicacion.getCosto());
-		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), dtPaquetePublicacion, this.obtenerDTPostulacion());
+		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), this.obtenerDTPostulacion());
 		return dtOfertaLaboral;
 	}
 
