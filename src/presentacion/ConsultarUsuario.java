@@ -55,6 +55,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	private JTextArea textAreaDescripcion;
 	private String usuarioSeleccionado;
 	private String ofertaSeleccionada;
+	private JButton btnCerrar;
 
 	public ConsultarUsuario(IControladorUsuario contrUsuario, IControladorOferta contrOferta) {
 		this.usuarioSeleccionado = "";
@@ -73,10 +74,11 @@ public class ConsultarUsuario extends JInternalFrame {
 		getContentPane().add(panelBotones, BorderLayout.SOUTH);
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
 
-		JButton btnCerrar = new JButton("Cerrar");
+		this.btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				limpiarTodosLosDatos();
 			}
 		});
 		panelBotones.add(btnCerrar);
@@ -468,5 +470,23 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.textFieldRemuneracion.setText("");
 		this.comboBoxSeleccionOferta.removeAllItems();
 	}
-
+	
+	public void limpiarTodosLosDatos() {
+		this.textFieldNickName.setText("");
+		this.textFieldNombre.setText("");
+		this.textFieldApellido.setText("");
+		this.textFieldEmail.setText("");
+		
+		this.textFieldFechaNacimiento.setText("");
+		this.textFieldNacionalidad.setText("");
+		
+		this.textAreaDescripcion.setText("");
+		this.textFieldSitioWeb.setText("");
+		
+		this.comboBoxSeleccionUsuario.removeAllItems();
+		this.limpiarDatosOfertas();
+		
+		
+	}
+	
 }
