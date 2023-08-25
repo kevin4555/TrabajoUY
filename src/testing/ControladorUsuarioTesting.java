@@ -14,6 +14,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralYaExisteException;
+import excepciones.TipoPublicacionNoExisteException;
+import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetido;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
@@ -24,6 +28,7 @@ import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.controllers.Fabrica;
 import logica.handlers.ManejadorUsuario;
+import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
 public class ControladorUsuarioTesting {
@@ -31,6 +36,7 @@ public class ControladorUsuarioTesting {
 	private static Date fechaDate1;
 	private static Date fechaDate2;
 	private static IControladorUsuario controladorUsuario;
+	private static IControladorOferta controladorOferta;
 	private static Postulante postulante1;
 	private static Postulante postulante2;
 	private static Empresa empresa1;
@@ -41,6 +47,7 @@ public class ControladorUsuarioTesting {
 	public static void setUp()
 	{
 		controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
 		manejadorUsuario = ManejadorUsuario.getInstance();
 		String fecha1 = "02/09/1988";
 		String fecha2 = "04/4/2023";
@@ -190,6 +197,38 @@ public class ControladorUsuarioTesting {
 		Assert.assertEquals("apellidoNuevo", resultado.getApellido());
 		
 	}
+	
+	@Test
+	public void listarOfertasDeEmpresaTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, OfertaLaboralYaExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException, TipoPublicacionYaExisteException {
+		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com", 
+				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
+				"http://www.EcoTechInnovations.com");
+		controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30, 4000f, fechaDate2);
+		controladorOferta.altaOfertaLaboral("Desarrollador Frontend", "Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1,controladorOferta.obtenerTipoPublicacion("Premium"));
+		controladorUsuario.obtenerEmpresa("EcoTech").agregarOferta(controladorOferta.obtenerOfertaLaboral("Desarrollador Frontend"));
+		ArrayList<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
+		ArrayList<String> esperado = new ArrayList<String>();
+		esperado.add("Desarrollador Frontend");
+		Assert.assertEquals(esperado, resultado);
+	}
+	
+	@Test 
+	public void listarOfertasDeEmpresaVaciaTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, UsuarioNoExisteException {
+		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com", 
+				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
+				"http://www.EcoTechInnovations.com");
+		ArrayList<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
+		ArrayList<String> esperado = new ArrayList<String>();
+		Assert.assertEquals(esperado, resultado);
+	}
+	
+	/*@Test
+	public void registrarPostulacionTest() {
+		control.registrarPostulacion(
+				"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.",
+				"Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
+				dateFormat.parse("14/08/2023"), "maro", "Desarrollador Frontend");
+	}*/
 	
 }
 	
