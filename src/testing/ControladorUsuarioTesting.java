@@ -104,8 +104,6 @@ public class ControladorUsuarioTesting {
 		Usuario usuario = controladorUsuario.obtenerUsuario("NicknameTest");
 		Assert.fail();
 	}
-	
-	
 }
 	
 */
