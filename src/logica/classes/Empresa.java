@@ -13,12 +13,10 @@ public class Empresa extends Usuario {
 	private String sitioWeb;
 	private ArrayList<OfertaLaboral> ofertasLaborales;
 	
-	public Empresa() {}
-	
 	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb) {
 		super(nickname, nombre, apellido, email);
-		this.descripcion = descripcion;
-		this.sitioWeb = sitioWeb;
+		setDescripcion(descripcion);
+		setSitioWeb(sitioWeb);
 		this.ofertasLaborales = new ArrayList<OfertaLaboral>();
 	}
 	
@@ -56,10 +54,6 @@ public class Empresa extends Usuario {
 
 	public ArrayList<OfertaLaboral> getOfertasLaborales() {
 		return ofertasLaborales;
-	}
-
-	public void setOfertasLaborales(ArrayList<OfertaLaboral> ofertasLaborales) {
-		this.ofertasLaborales = ofertasLaborales;
 	}
 	
 	public DTEmpresa obtenerDTEmpresa() {

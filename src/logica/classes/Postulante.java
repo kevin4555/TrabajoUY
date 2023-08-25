@@ -12,12 +12,10 @@ public class Postulante extends Usuario{
 	private ArrayList<Postulacion> postulaciones;
 	
 	
-	public Postulante() {}
-	
 	public Postulante(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, String nacionalidad) {
 		super(nickname, nombre, apellido, email);
-		this.fechaNacimiento = fechaNacimiento;
-		this.nacionalidad = nacionalidad;
+		setFechaNacimiento(fechaNacimiento);
+		setNacionalidad(nacionalidad);
 		this.postulaciones = new ArrayList<Postulacion>();
 	}
 	
@@ -39,10 +37,6 @@ public class Postulante extends Usuario{
 
 	public ArrayList<Postulacion> getPostulaciones() {
 		return postulaciones;
-	}
-
-	public void setPostulaciones(ArrayList<Postulacion> postulaciones) {
-		this.postulaciones = postulaciones;
 	}
 	
 	public DTPostulante obtenerDTPostulante() {

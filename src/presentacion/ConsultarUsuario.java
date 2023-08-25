@@ -9,7 +9,6 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.JLayeredPane;
@@ -17,11 +16,7 @@ import java.awt.CardLayout;
 import javax.swing.JTextField;
 
 import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioNoExisteException;
-import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
-import logica.DataTypes.DTPostulante;
-import logica.DataTypes.DTUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 

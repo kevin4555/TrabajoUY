@@ -51,7 +51,7 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete)
-			throws TipoPublicacionYaExisteException, PaquetePublicacionNoExisteException {
+			throws TipoPublicacionYaExisteException, PaquetePublicacionNoExisteException, TipoPublicacionNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 
@@ -161,5 +161,12 @@ public class ControladorOferta implements IControladorOferta {
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion,
+			Float costo, Date fechaPub) {
+		// TODO Auto-generated method stub
+		
 	}
 }

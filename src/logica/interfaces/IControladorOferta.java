@@ -53,4 +53,7 @@ public interface IControladorOferta {
 
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
 			Date fechaPub) throws TipoPublicacionYaExisteException;
+
+	void confirmarAltaPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo,
+			Date fechaPub);
 }

@@ -14,9 +14,9 @@ public class Postulacion {
 	
 	public Postulacion(String descrpMotivacion, Date fechaPostulacion, String cvReducido, Postulante postulante, OfertaLaboral ofertaLaboral) {
 		super();
-		this.descrpMotivacion = descrpMotivacion;
-		this.fechaPostulacion = fechaPostulacion;
-		this.cvReducido = cvReducido;
+		setDescrpMotivacion(descrpMotivacion);
+		setFechaPostulacion(fechaPostulacion);
+		setCvReducido(cvReducido);
 		this.postulante = postulante;
 		this.ofertaLaboral = ofertaLaboral;
 	}

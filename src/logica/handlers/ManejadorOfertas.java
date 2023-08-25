@@ -76,4 +76,15 @@ public class ManejadorOfertas {
 			throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
 		}
 	}
+	
+	public ArrayList<String> listarOfertasLaborales() 
+	{
+		ArrayList<String> resultado = new ArrayList<String>();
+		for (Map.Entry<String, OfertaLaboral> entry : this.coleccionOfertaLaboral.entrySet()) 
+			{
+				resultado.add(entry.getKey());
+			}
+		return resultado;
+	}
+	
 }

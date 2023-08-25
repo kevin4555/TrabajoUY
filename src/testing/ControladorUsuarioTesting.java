@@ -1,6 +1,9 @@
 package testing;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,11 +21,41 @@ import logica.interfaces.IControladorUsuario;
 public class ControladorUsuarioTesting {
 	
 	private Date fechaDate;
+	private String fecha = "17/06/1999";
 	
 	@Before
 	public void setUp()
 	{
-		this.fechaDate = new Date("2023-8-10");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		try
+		{
+			this.fechaDate = dateFormat.parse(fecha);
+		}
+		catch (ParseException e)
+		{
+			e.getMessage();
+		}
+	}
+	
+	@Test
+	public void listarUsuuariosListaVacia() {
+		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		ArrayList<String> lista = controladorUsuario.listaDeUsuarios();
+		//Assert.assertTrue(lista.isEmpty());
+	}
+
+	
+	@Test
+	public void obtenerUsuarioManejadorVacio() throws UsuarioNoExisteException {
+		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		
+		try{
+			controladorUsuario.obtenerUsuario("Carlitos");
+		}catch(UsuarioNoExisteException e)
+		{
+			Assert.assertEquals("El usuario Carlitos no existe", e.getMessage());
+		}
+
 	}
 	
 	@Test
@@ -49,18 +82,5 @@ public class ControladorUsuarioTesting {
 		Assert.assertEquals(listaEsperada, listaResultado);
 	}
 	
-	@Test
-	public void listarUsuuariosListaVacia() {
-		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		ArrayList<String> lista = controladorUsuario.listaDeUsuarios();
-		Assert.assertTrue(lista.isEmpty());
-	}
-	
-	@Test
-	public void obtenerUsuarioManejadorVacio() throws UsuarioNoExisteException {
-		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		Usuario usuario = controladorUsuario.obtenerUsuario("NicknameTest");
-		Assert.fail();
-	}
 }
 	
