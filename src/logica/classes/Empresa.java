@@ -62,6 +62,7 @@ public class Empresa extends Usuario {
 	}
 	
 	public DTEmpresa obtenerDTEmpresa() {
+		
 		ArrayList<DTOfertaLaboral> listaDTOfertas = new ArrayList<DTOfertaLaboral>();
 		for(OfertaLaboral oferta : ofertasLaborales) {
 			listaDTOfertas.add(oferta.obtenerDTOfertaLaboral());
