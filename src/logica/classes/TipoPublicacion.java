@@ -8,7 +8,7 @@ public class TipoPublicacion {
 	private String descripcion;
 	private String exposicion;
 	private int duracionDia;
-	private double costo;
+	private float costo;
 	private Date fechaAlta;
 	private CantidadTipoPublicacion cantTipo;
 	
@@ -46,10 +46,10 @@ public class TipoPublicacion {
 	public void setDuracionDia(int duracionDia) {
 		this.duracionDia = duracionDia;
 	}
-	public double getCosto() {
+	public float getCosto() {
 		return costo;
 	}
-	public void setCosto(double costo) {
+	public void setCosto(float costo) {
 		this.costo = costo;
 	}
 	public Date getFechaAlta() {
