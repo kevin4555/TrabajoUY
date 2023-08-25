@@ -112,10 +112,7 @@ public class OfertaLaboral {
 	}
 	
 	public DTOfertaLaboral obtenerDTOfertaLaboral() {
-		CantidadTipoPublicacion cantidadTipoPublicacion = this.tipoPublicacion.getCantidadTipoPublicacion();
-		PaquetePublicacion paquetePublicacion = cantidadTipoPublicacion.getPaquetePublicacion();
-		DTPaquetePublicacion dtPaquetePublicacion = new DTPaquetePublicacion(this.getNombre(), this.getDescripcion(), cantidadTipoPublicacion.getCantidadRestante(), paquetePublicacion.getPeriodoValidez(), paquetePublicacion.getDescuento(), paquetePublicacion.getCosto());
-		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), dtPaquetePublicacion, this.obtenerDTPostulacion());
+		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), this.obtenerDTPostulacion());
 		return dtOfertaLaboral;
 	}
 
