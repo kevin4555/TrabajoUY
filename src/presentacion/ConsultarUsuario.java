@@ -432,7 +432,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	
 	@SuppressWarnings({ "deprecation", "exports" })
 	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
-		
+	/*	
 		String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
 		if (nicknameUsuario != usuarioSeleccionado) {
 			usuarioSeleccionado = nicknameUsuario;
@@ -456,14 +456,11 @@ public class ConsultarUsuario extends JInternalFrame {
 				this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().toGMTString());
 				cambiarPanel(panelPostulante);
 			}
-			ArrayList<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
-			String [] arrayOfertas = listaOfertas.toArray(new String[0]);
-			Arrays.sort(arrayOfertas);
-			DefaultComboBoxModel<String> model;
-			model = new DefaultComboBoxModel<String>(arrayOfertas);
-			this.comboBoxSeleccionOferta.setModel(model);
-		}
-
+			for (String oferta : listaOfertas) {
+				this.comboBoxSeleccionOferta.addItem(oferta);
+			}
+		}*/
+		
 	}
 	
 	@SuppressWarnings("exports")

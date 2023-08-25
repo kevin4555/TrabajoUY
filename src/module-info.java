@@ -1,4 +1,4 @@
-module tpgr04
+module Tarea1
 {
     requires java.desktop;
     requires jcalendar;

@@ -148,13 +148,15 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorPaquetes.agregarPaquete(paquetePublicacion);
 	}
 
-	public void agregarKeywordEnOfertaLaboral(String nomKeyword, String nomOferta)
+	public void agregarKeywordEnOfertaLaboral(ArrayList<String> listaKeyword, String nomOferta)
 			throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
-		Keyword keyword = manejadorSettings.obtenerKeyword(nomKeyword);
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
-		ofertaLaboral.agregarKeyword(keyword);
+		for (int i = 0; i < listaKeyword.size(); i++) {
+			ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listaKeyword.get(i)));
+		}
+		
 
 	}
 

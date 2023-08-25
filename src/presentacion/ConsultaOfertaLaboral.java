@@ -57,8 +57,8 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         // Se inicializa con el controlador de oferta
         controlOfertaLab = icontOfeLab;
         controlUsuarioLab = icontUsuLab;
-        this.empresa1 = "";
-        this.empresa2 = "";
+       // this.empresa1 = "";
+        //this.empresa2 = "";
         
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);

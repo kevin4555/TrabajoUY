@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -21,6 +22,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -32,9 +35,11 @@ import javax.swing.JFrame;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 
+import excepciones.KeywordNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
@@ -75,11 +80,18 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JLabel lblFechaDeAlta;
 	//private JCalendar textFieldFechaAlta;
 	private JLabel lblKeyword;
-	private JList<String> listaKeyword;
+	private JList<String> listaKeyword = new JList<>();;
 	private JButton btnSeleccionarKeyword;
 	private JButton btnConfirmar;
 	private JButton btnCancelar;
 	private JDateChooser dateChooser;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
 
     /**
      * Create the frame.
@@ -97,8 +109,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Registrar Oferta Laboral");
-        setBounds(100, 100, 594, 502);
+        setBounds(30, 30, 600, 502);
         
+        
+       
 
         ubicacionBotones = new JPanel();
 		ubicacionBotones.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -116,7 +130,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		ubicacionEtiquetas.setLayout(new GridLayout(11, 1, 10, 10));
 		
 		getContentPane().add(ubicacionTexto, BorderLayout.CENTER); // Establezco ubicacion de los botones al centro del Panel
-		ubicacionTexto.setLayout(new GridLayout(11, 1, 10, 10));
+		ubicacionTexto.setLayout(new GridLayout(11, 1, 0, 5));
 		
 		
 		lblEmpresa = new JLabel("  Empresa");
@@ -183,8 +197,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		JLabel lblKeyword = new JLabel("  Keyword");
 		ubicacionEtiquetas.add(lblKeyword);
 		
-		JList<String> listaKeyword = new JList();
-		ubicacionTexto.add(listaKeyword);
+		//JList<String> listaKeyword = new JList<>();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(listaKeyword);
+		ubicacionTexto.add(scrollPane);
 		listaKeyword.setVisibleRowCount(4);
 		
 		
@@ -194,34 +210,21 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		
 		btnCancelar = new JButton("Cancelar");
 		ubicacionBotones.add(btnCancelar);
+		
+		btnCancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                limpiarFormulario();
+                setVisible(false);
+            }
+        });
 
         btnConfirmar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 cmdRegistroOfertaLaboralActionPerformed(arg0);
             }
         });
-
-       /* GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-        gbc_btnAceptar.fill = GridBagConstraints.BOTH;
-        gbc_btnAceptar.insets = new Insets(0, 0, 0, 5);
-        gbc_btnAceptar.gridx = 1;
-        gbc_btnAceptar.gridy = 3;
-        getContentPane().add(btnAceptar, gbc_btnAceptar); */
-
-        // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
-        // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
-        //btnCancelar = new JButton("Cancelar");
-       /* btnCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                limpiarFormulario();
-                setVisible(false);
-            }
-        });*/
-        /*GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-        gbc_btnCancelar.fill = GridBagConstraints.BOTH;
-        gbc_btnCancelar.gridx = 2;
-        gbc_btnCancelar.gridy = 3;
-        getContentPane().add(btnCancelar, gbc_btnCancelar); */
+        
+     
     }
     
     @SuppressWarnings("unchecked")
@@ -243,14 +246,14 @@ public class AltaOfertaLaboral extends JInternalFrame {
     }
     
     public void cargarKeywords() {
-    	DefaultListModel listModel = new DefaultListModel();
+    	DefaultListModel<String> listModel = new DefaultListModel<String>();
+    	listaKeyword.setModel(listModel);
+    	
     	//Recorrer el contenido del ArrayList
     	for(int i=0; i<controlOferta.listarKeywords().size(); i++) {
     	    //Añadir cada elemento del ArrayList en el modelo de la lista
-    	    listModel.add(i, controlOferta.listarKeywords().get(i));
+    	    listModel.addElement(controlOferta.listarKeywords().get(i));
     	}
-    	//Asociar el modelo de lista al JList
-    	listaKeyword.setModel(listModel);
     }
     
     	
@@ -271,47 +274,55 @@ public class AltaOfertaLaboral extends JInternalFrame {
         // TODO Auto-generated method stub
 
         // Obtengo datos de los controles Swing
-        String nombreOfertaLab = this.textFieldNombre.getText();
-        String descripOfertaLab = this.textFieldDescripcion.getText();
-        String remuneracionOfertaLab = this.textFieldRemuneracion.getText();
-        String ciudadOfertaLab =  this.textFieldCiudad.getText();
-        String departOfertaLab = this.textFieldDepartamento.getText();
-        String nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
-        String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
-        Date fechaAlta = (Date)this.dateChooser.getDate();
-        String horaIniOfertaLab = this.textFieldHoraInicio.getText();
-        String horaFinOfertaLab = this.textFieldHoraFin.getText();
+    	try {
+    		String nombreOfertaLab = this.textFieldNombre.getText();
+            String descripOfertaLab = this.textFieldDescripcion.getText();
+            String remuneracionOfertaLab = this.textFieldRemuneracion.getText();
+            String ciudadOfertaLab =  this.textFieldCiudad.getText();
+            String departOfertaLab = this.textFieldDepartamento.getText();
+            String nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
+            String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+            Date fechaAlta = (Date)this.dateChooser.getDate();
+            
+            String horaIniOfertaLab = this.textFieldHoraInicio.getText();
+            String horaFinOfertaLab = this.textFieldHoraFin.getText();
+            ArrayList<String> keywordSeleccionadas = (ArrayList<String>)this.listaKeyword.getSelectedValuesList();
+            
+
+            if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab, horaIniOfertaLab, horaFinOfertaLab, fechaAlta)) {
+                try {
+                    controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab, Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta, controlOferta.obtenerTipoPublicacion(nomTipoPublic));
+                    controlUsu.obtenerEmpresa(nicknameEmpresa).agregarOferta(controlOferta.obtenerOfertaLaboral(nombreOfertaLab));
+                    controlOferta.agregarKeywordEnOfertaLaboral(keywordSeleccionadas, nombreOfertaLab);
+                    //falta asociar keywords.
+                    // Muestro éxito de la operación
+                    JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito", "Registrar Oferta Laboral",
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                } catch (TipoPublicacionNoExisteException e) {
+                	//No imprime nada
+                } catch (UsuarioNoExisteException e) {
+                	//no imprime nada
+                } catch (OfertaLaboralYaExisteException e) {
+                	JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+                } catch (OfertaLaboralNoExisteException e) {
+                	//no imprime nada
+                } catch (NumberFormatException e) {
+                	JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+    			} catch (TipoPublicacionYaExisteException e) {
+    				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+    			} catch (KeywordNoExisteException e) {
+    				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+    			} 
+
+                // Limpio el internal frame antes de cerrar la ventana
+                limpiarFormulario();
+                //setVisible(false);
+            } 
+    	} catch (java.lang.ClassCastException e) {
+			JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha válida", "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+		}
         
-
-        if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab, horaIniOfertaLab, horaFinOfertaLab, fechaAlta)) {
-            try {
-                controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab, Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta, controlOferta.obtenerTipoPublicacion(nomTipoPublic));
-                controlUsu.obtenerEmpresa(nicknameEmpresa).agregarOferta(controlOferta.obtenerOfertaLaboral(nombreOfertaLab));
-                //falta asociar keywords.
-                // Muestro éxito de la operación
-                JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito", "Registrar Oferta Laboral",
-                        JOptionPane.INFORMATION_MESSAGE);
-
-            } catch (TipoPublicacionNoExisteException e) {
-            	//No imprime nada
-            } catch (UsuarioNoExisteException e) {
-            	//no imprime nada
-            } catch (OfertaLaboralYaExisteException e) {
-            	JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-            } catch (OfertaLaboralNoExisteException e) {
-            	//no imprime nada
-            } catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (TipoPublicacionYaExisteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-            // Limpio el internal frame antes de cerrar la ventana
-            limpiarFormulario();
-            //setVisible(false);
-        }
      }
     
 
@@ -351,7 +362,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     	textFieldRemuneracion.setText("");
     	textFieldCiudad.setText("");
     	textFieldDepartamento.setText("");
-    	//textFieldFechaAlta.setDate("");
+    	dateChooser.setDate(null);
     	textFieldHoraInicio.setText("");
     	textFieldHoraFin.setText("");
     }
