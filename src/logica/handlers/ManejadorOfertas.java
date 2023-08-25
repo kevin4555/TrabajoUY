@@ -16,11 +16,11 @@ public class ManejadorOfertas {
 
 	private static ManejadorOfertas instancia = null;
 
-	private HashMap<String, TipoPublicacion> coleccionTipoPublicacion;
+	//private HashMap<String, TipoPublicacion> coleccionTipoPublicacion;
 	private HashMap<String, OfertaLaboral> coleccionOfertaLaboral;
 	
 	private ManejadorOfertas() {
-		coleccionTipoPublicacion = new HashMap<String, TipoPublicacion>();
+		//coleccionTipoPublicacion = new HashMap<String, TipoPublicacion>();
 		coleccionOfertaLaboral = new HashMap<String, OfertaLaboral>();
 	}
 
@@ -31,7 +31,7 @@ public class ManejadorOfertas {
 		return instancia;
 	}
 
-	public ArrayList<String> listarTiposDePublicaciones() 
+	/*public ArrayList<String> listarTiposDePublicaciones() 
 	{
 		ArrayList<String> resultado = new ArrayList<String>();
 		for (Map.Entry<String, TipoPublicacion> entry : this.coleccionTipoPublicacion.entrySet()) 
@@ -39,7 +39,7 @@ public class ManejadorOfertas {
 				resultado.add(entry.getKey());
 			}
 		return resultado;
-	}
+	}*/
 
 	public void agregarOferta(OfertaLaboral ofertaLaboral) throws OfertaLaboralYaExisteException 
 	{
@@ -85,6 +85,10 @@ public class ManejadorOfertas {
 				resultado.add(entry.getKey());
 			}
 		return resultado;
+	}
+	
+	public void clean() {
+		instancia = null;
 	}
 	
 }

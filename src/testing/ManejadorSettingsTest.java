@@ -81,4 +81,5 @@ public class ManejadorSettingsTest
 			Assert.assertEquals("El tipo publicacion UnaNoEsta no existe", e.getMessage());
 		}
 	}
+	
 }
