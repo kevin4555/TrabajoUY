@@ -20,7 +20,7 @@ public interface IControladorUsuario {
 	
 	public  ArrayList<String> listaDeUsuarios();
 	
-	public  void editarDatosBasicos(DTUsuario usuario) throws UsuarioNoExisteException;
+	public  void editarDatosBasicos(DTUsuario usuario, String nombreNuevo, String apellidoNuevo) throws UsuarioNoExisteException;
 	
 	public  ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
@@ -28,7 +28,7 @@ public interface IControladorUsuario {
 	
 	public  void registrarPostulacion(String cvReducido,String motivacion, Date fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
 	
-	public  void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad) throws UsuarioYaExisteException;
+	public  void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad) throws UsuarioYaExisteException, UsuarioEmailRepetido;
 	
 	public  void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link) throws UsuarioYaExisteException, UsuarioEmailRepetido;
 	
@@ -40,5 +40,4 @@ public interface IControladorUsuario {
 	
 	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException;
 	
-	public void vaciarManejadorUsuario();
 }

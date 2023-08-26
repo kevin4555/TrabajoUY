@@ -96,10 +96,12 @@ public class PaquetePublicacion {
 		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo);
 	}
 
-	// FALTA IMPLEMENTAR
-	public void crearCantidadTipoPublicacion(PaquetePublicacion paquetePublicacion, int cantIncluida,
+	public void crearCantidadTipoPublicacion(int cantIncluida,
 			TipoPublicacion tipoPublicacion) {
-
+		CantidadTipoPublicacion nuevoCantidad = new CantidadTipoPublicacion(cantIncluida, tipoPublicacion);
+		nuevoCantidad.asociarPaquete(this);
+		cantidadTipoPublicaciones.add(nuevoCantidad);
+		
 	}
 
 }

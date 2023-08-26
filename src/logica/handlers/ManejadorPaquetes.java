@@ -23,12 +23,13 @@ public class ManejadorPaquetes {
 	}
 
 	public PaquetePublicacion obtenerPaquete(String nomPaquete) throws PaquetePublicacionNoExisteException {
-		if (colPaquetes.isEmpty()) {
+		if (colPaquetes.containsKey(nomPaquete)) {
 			return colPaquetes.get(nomPaquete);
 		} else {
 			throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + " no existe");
 		}
 	}
+
 
 	public ArrayList<String> listarPaquetes() {
 		ArrayList<String> listaPaquetes = new ArrayList<String>();
@@ -52,5 +53,9 @@ public class ManejadorPaquetes {
 		} else {
 			throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + "no existe");
 		}
+	}
+	
+	public void clean() {
+		instancia = null;
 	}
 }

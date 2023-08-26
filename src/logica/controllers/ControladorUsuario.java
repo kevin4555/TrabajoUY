@@ -38,11 +38,11 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 
 	@Override
-	public void editarDatosBasicos(DTUsuario dtusuario) throws UsuarioNoExisteException {
+	public void editarDatosBasicos(DTUsuario dtusuario, String nombreNuevo, String apellidoNuevo) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Usuario usuario = manejadorUsuario.obtenerUsuario(dtusuario.getNickname());
-		usuario.setApellido(dtusuario.getApellido());
-		usuario.setNombre(dtusuario.getNombre());
+		usuario.setApellido(apellidoNuevo);
+		usuario.setNombre(nombreNuevo);
 		// si se necesitan cambiar mas datos hay que hacer alguna magia para distinguir
 		// la empresa del postulante
 	}
@@ -77,7 +77,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac,
-			String nacionalidad) throws UsuarioYaExisteException {
+			String nacionalidad) throws UsuarioYaExisteException, UsuarioEmailRepetido {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = new Postulante(nickname, nombre, apellido, email, fechaNac, nacionalidad);
 		manejadorUsuario.agregarPostulante(postulante);
@@ -115,7 +115,4 @@ public class ControladorUsuario implements IControladorUsuario {
 	   return manejadorUsuario.obtenerPostulante(nomPostulante);
 	}
 	
-	public void vaciarManejadorUsuario() {
-		ManejadorUsuario.getInstance().clean();
-	}
 }

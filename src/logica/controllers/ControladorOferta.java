@@ -70,7 +70,7 @@ public class ControladorOferta implements IControladorOferta {
 		tipoPublicacion = manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion);
 		PaquetePublicacion paquetePublicacion = manejadorPaquetes.obtenerPaquete(nomTipoPaquete);
 
-		paquetePublicacion.crearCantidadTipoPublicacion(paquetePublicacion, cantIncluida, tipoPublicacion);
+		paquetePublicacion.crearCantidadTipoPublicacion(cantIncluida, tipoPublicacion);
 	}
 
 	public ArrayList<String> listarPaquetes() {
@@ -112,6 +112,7 @@ public class ControladorOferta implements IControladorOferta {
 		return listKeywords;
 	}
 
+	
 	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
 			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
@@ -177,8 +178,4 @@ public class ControladorOferta implements IControladorOferta {
 
 	
 
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida) {
-		// TODO Auto-generated method stub
-
-	}
 }
