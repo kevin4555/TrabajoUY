@@ -125,7 +125,7 @@ public class Principal extends JFrame {
 		// Se crea el Frame con las dimensiones indicadas.
 		ventanaPrincipal = new JFrame();
 		ventanaPrincipal.setTitle("Trabajo.uy");
-		ventanaPrincipal.setBounds(100, 100, 594, 502);
+		ventanaPrincipal.setBounds(100, 100, 800, 700);
 		ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Se crea una barra de menú (JMenuBar) con menú (JMenu) desplegables.

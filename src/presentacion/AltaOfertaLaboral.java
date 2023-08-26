@@ -102,7 +102,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setClosable(true);
 		setTitle("Registrar Oferta Laboral");
 		setBounds(30, 30, 600, 502);
 
@@ -262,10 +261,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		}
 		String nicknameEmpresa = "";
 		if (this.comboBoxEmpresa.getSelectedIndex() != -1) {
-			 nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
-			 noHayEmpresa = false;
+			nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+			noHayEmpresa = false;
 		}
-		
+
 		Date fechaAlta = this.dateChooser.getDate();
 
 		String horaIniOfertaLab = this.textFieldHoraInicio.getText();
@@ -274,11 +273,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		if (!this.listaKeyword.getSelectedValuesList().isEmpty()) {
 			keywordSeleccionadas = (ArrayList<String>) this.listaKeyword.getSelectedValuesList();
 		}
-		
-		
 
 		if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab,
-				horaIniOfertaLab, horaFinOfertaLab, fechaAlta, nomTipoPublic, nicknameEmpresa, noHayTipoPublic, noHayEmpresa)) {
+				horaIniOfertaLab, horaFinOfertaLab, fechaAlta, nomTipoPublic, nicknameEmpresa, noHayTipoPublic,
+				noHayEmpresa)) {
 			try {
 				controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab,
 						Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta,
@@ -311,7 +309,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
 			} catch (KeywordNoExisteException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 			} catch (java.lang.ClassCastException e) {
-				JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Trabajo.uy",
+						JOptionPane.ERROR_MESSAGE);
 
 			}
 		}
@@ -359,19 +358,66 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		}
 		if (fechaAlta == null) {
 			JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
-					"Registrar tipo de publicación de oferta laboral", JOptionPane.ERROR_MESSAGE);
+					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
+		if (chequeoHoraValida(horaIniOfertaLab)) {
+			JOptionPane.showMessageDialog(this, "Por favor, ingrese una hora de inicio valida del tipo xx:xx",
+					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if (chequeoHoraValida(horaFinOfertaLab)) {
+			JOptionPane.showMessageDialog(this, "Por favor, ingrese una hora de fin valida del tipo xx:xx",
+					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		/*char data[] = {'a', 'b', 'c'};
+	     String str = new String(data);*/
+		
 
 		try {
 			Float.parseFloat(remuneracionOfertaLab);
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(this, "La remunaracion debe ser un numero", "Registrar Oferta Laboral",
+			JOptionPane.showMessageDialog(this, "La remuneración debe ser un numero", "Registrar Oferta Laboral",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		return true;
+	}
+	
+	private boolean chequeoHoraValida(String horario) {
+		char[] horaChar =  horario.toCharArray();
+		if (horaChar.length != 5) {
+			return true;
+		}
+		String hora = "";
+		String minuto = "";
+		try {
+			for (int i = 0; i < horaChar.length; i++) {
+				if (i != 2) {
+					Integer.parseInt(String.valueOf(horaChar[i]));
+					if (i < 2) {
+						hora = hora + horaChar[i]; 
+					} else if (i > 2) {
+						minuto = minuto + horaChar[i];
+					}
+				} else if (horaChar[i] != ':') {
+					return true;
+				}
+			}
+			if (Integer.parseInt(hora) < 0 || Integer.parseInt(hora) > 23) {
+				return true;
+			}
+			if (Integer.parseInt(minuto) < 0 || Integer.parseInt(minuto) > 59) {
+				return true;
+			}
+			return false;
+			 
+		} catch (NumberFormatException e) {
+			return true;
+		}
 	}
 
 	// Permite borrar el contenido de un formulario antes de cerrarlo.
