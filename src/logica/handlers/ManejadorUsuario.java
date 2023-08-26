@@ -86,16 +86,20 @@ public class ManejadorUsuario {
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
-	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException 
+	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException, UsuarioEmailRepetido 
 	{
-		if(!colPostulantes.containsKey(postulante)) 
+		if(!colPostulantes.containsKey(postulante) && usuariosEmail.containsKey(postulante.getEmail())) 
 		{
 			colPostulantes.put(postulante.getNickname(), postulante);
 			colUsuarios.put(postulante.getNickname(), postulante);
+			usuariosEmail.put(postulante.getEmail(), postulante);
 		}
-		else 
+		else if(colPostulantes.containsKey(postulante.getNickname())) 
 		{
 			throw new UsuarioYaExisteException("Postulante " + postulante.getNickname() + " ya existe");
+		}
+		else if(usuariosEmail.containsKey(postulante.getEmail())) {
+			throw new UsuarioEmailRepetido("El email: " + postulante.getEmail() +" ya existe" ); 
 		}
 	}
 	

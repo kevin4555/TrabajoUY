@@ -77,7 +77,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac,
-			String nacionalidad) throws UsuarioYaExisteException {
+			String nacionalidad) throws UsuarioYaExisteException, UsuarioEmailRepetido {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = new Postulante(nickname, nombre, apellido, email, fechaNac, nacionalidad);
 		manejadorUsuario.agregarPostulante(postulante);

@@ -89,7 +89,7 @@ public class ControladorUsuarioTesting {
 	}
 
 	@Test
-	public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException {
+	public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
 		Usuario usuarioResultado = controladorUsuario.obtenerUsuario("NicknameTest");
 		Assert.assertEquals("NicknameTest", usuarioResultado.getNickname());
@@ -109,7 +109,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void obtenerDtUsuario() throws UsuarioYaExisteException, UsuarioNoExisteException {
+	public void obtenerDtUsuario() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
 		DTUsuario dtResultado = controladorUsuario.obtenerDTUsuario("NicknameTest");
 		Assert.assertEquals("NicknameTest", dtResultado.getNickname());
@@ -119,7 +119,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void altaPostulanteTest() throws UsuarioYaExisteException, UsuarioNoExisteException {
+	public void altaPostulanteTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido {
 		
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
 		Postulante postulanteResultado = controladorUsuario.obtenerPostulante("NicknameTest");
@@ -132,7 +132,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void listarUsuariosUsuarioUnicoTest() throws UsuarioYaExisteException {
+	public void listarUsuariosUsuarioUnicoTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
 		ArrayList<String> listaEsperada = new ArrayList<String>();
 		listaEsperada.add("NicknameTest");
@@ -142,7 +142,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void listarUsuariosTest() throws UsuarioYaExisteException {
+	public void listarUsuariosTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest");
 		controladorUsuario.altaPostulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "EmailTest2", fechaDate2, "NacionalidadTest2");
 		ArrayList<String> listaResultado = controladorUsuario.listaDeUsuarios();
@@ -183,7 +183,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void listarPostulantesTest() throws UsuarioYaExisteException {
+	public void listarPostulantesTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest");
 		controladorUsuario.altaPostulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "EmailTest2", fechaDate2, "NacionalidadTest2");
 		ArrayList<String> listaResultado = controladorUsuario.listarPostulantes();
@@ -196,7 +196,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void editarDatosBasicosDeUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException {
+	public void editarDatosBasicosDeUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest");
 		DTUsuario dtUsuario = postulante1.obtenerDTUsuario();
 		controladorUsuario.editarDatosBasicos(dtUsuario, "nombreNuevo", "apellidoNuevo");
