@@ -18,7 +18,7 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
-import excepciones.UsuarioEmailRepetido;
+import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import junit.framework.Assert;
@@ -89,7 +89,7 @@ public class ControladorUsuarioTesting {
 	}
 
 	@Test
-	public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido {
+	public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetidoException {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
 		Usuario usuarioResultado = controladorUsuario.obtenerUsuario("NicknameTest");
 		Assert.assertEquals("NicknameTest", usuarioResultado.getNickname());
@@ -109,7 +109,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void obtenerDtUsuario() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido {
+	public void obtenerDtUsuario() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetidoException {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
 		DTUsuario dtResultado = controladorUsuario.obtenerDTUsuario("NicknameTest");
 		Assert.assertEquals("NicknameTest", dtResultado.getNickname());
@@ -119,7 +119,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void altaPostulanteTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido {
+	public void altaPostulanteTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetidoException {
 		
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
 		Postulante postulanteResultado = controladorUsuario.obtenerPostulante("NicknameTest");
@@ -132,7 +132,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void listarUsuariosUsuarioUnicoTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+	public void listarUsuariosUsuarioUnicoTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest" );
 		ArrayList<String> listaEsperada = new ArrayList<String>();
 		listaEsperada.add("NicknameTest");
@@ -142,7 +142,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void listarUsuariosTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+	public void listarUsuariosTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest");
 		controladorUsuario.altaPostulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "EmailTest2", fechaDate2, "NacionalidadTest2");
 		ArrayList<String> listaResultado = controladorUsuario.listaDeUsuarios();
@@ -155,7 +155,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void obtenerEmpresaTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, UsuarioNoExisteException {
+	public void obtenerEmpresaTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, UsuarioNoExisteException {
 		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1", "descripcion1", "sitioWeb1");
 		Empresa empresaResultado = controladorUsuario.obtenerEmpresa("nicknameEmpresa1");
 		Assert.assertEquals(empresa1.getNickname(), empresaResultado.getNickname());
@@ -169,7 +169,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void listarEmpresasTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+	public void listarEmpresasTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1", "descripcion1", "sitioWeb1");
 		controladorUsuario.altaEmpresa("nicknameEmpresa2", "nombre2", "apellido2", "email2", "descripcion2", "sitioWeb2");
 		ArrayList<String> listaResultado = controladorUsuario.listarEmpresas();
@@ -183,7 +183,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void listarPostulantesTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+	public void listarPostulantesTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest");
 		controladorUsuario.altaPostulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "EmailTest2", fechaDate2, "NacionalidadTest2");
 		ArrayList<String> listaResultado = controladorUsuario.listarPostulantes();
@@ -196,7 +196,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void editarDatosBasicosDeUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetido {
+	public void editarDatosBasicosDeUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetidoException {
 		controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest", fechaDate1, "NacionalidadTest");
 		DTUsuario dtUsuario = postulante1.obtenerDTUsuario();
 		controladorUsuario.editarDatosBasicos(dtUsuario, "nombreNuevo", "apellidoNuevo");
@@ -207,7 +207,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void listarOfertasDeEmpresaTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, OfertaLaboralYaExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException, TipoPublicacionYaExisteException {
+	public void listarOfertasDeEmpresaTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, OfertaLaboralYaExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException, TipoPublicacionYaExisteException {
 		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com", 
 				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
 				"http://www.EcoTechInnovations.com");
@@ -221,7 +221,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test 
-	public void listarOfertasDeEmpresaVaciaTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, UsuarioNoExisteException {
+	public void listarOfertasDeEmpresaVaciaTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, UsuarioNoExisteException {
 		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com", 
 				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
 				"http://www.EcoTechInnovations.com");
@@ -231,7 +231,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void registrarPostulacionTest() throws UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetido, TipoPublicacionYaExisteException, OfertaLaboralYaExisteException, TipoPublicacionNoExisteException {
+	public void registrarPostulacionTest() throws UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, TipoPublicacionYaExisteException, OfertaLaboralYaExisteException, TipoPublicacionNoExisteException {
 		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com", 
 				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
 				"http://www.EcoTechInnovations.com");

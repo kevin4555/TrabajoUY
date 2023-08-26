@@ -78,8 +78,9 @@ public class ManejadorSettingsTest
 			manejadorSettings.obtenerTipoPublicacion("UnaNoEsta");
 		}catch(TipoPublicacionNoExisteException e)
 		{
-			Assert.assertEquals("El tipo publicacion UnaNoEsta no existe", e.getMessage());
+			Assert.assertEquals("El tipo de publicación UnaNoEsta no existe", e.getMessage());
 		}
+		manejadorSettings.clean();
 	}
 	
 }

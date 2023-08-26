@@ -3,7 +3,7 @@ package logica.handlers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import excepciones.UsuarioEmailRepetido;
+import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.classes.Empresa;
@@ -56,7 +56,7 @@ public class ManejadorUsuario {
 	
 
 	@SuppressWarnings("unlikely-arg-type")
-	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException, UsuarioEmailRepetido 
+	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException, UsuarioEmailRepetidoException 
 	{
 		if(!colUsuarios.containsKey(empresa.getNickname()) && !usuariosEmail.containsKey(empresa.getEmail())) 
 		{
@@ -69,7 +69,7 @@ public class ManejadorUsuario {
 			throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
 		}
 		else if (usuariosEmail.containsKey(empresa.getEmail())) {
-			throw new UsuarioEmailRepetido("El email: " + empresa.getEmail() +" ya existe" );
+			throw new UsuarioEmailRepetidoException("El email: " + empresa.getEmail() +" ya existe" );
 		}
 	}
 	
@@ -86,7 +86,7 @@ public class ManejadorUsuario {
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
-	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException, UsuarioEmailRepetido 
+	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException, UsuarioEmailRepetidoException 
 	{
 		if(!colUsuarios.containsKey(postulante.getNickname()) && !usuariosEmail.containsKey(postulante.getEmail())) 
 		{
@@ -99,7 +99,7 @@ public class ManejadorUsuario {
 			throw new UsuarioYaExisteException("Postulante " + postulante.getNickname() + " ya existe");
 		}
 		else if(usuariosEmail.containsKey(postulante.getEmail())) {
-			throw new UsuarioEmailRepetido("El email: " + postulante.getEmail() +" ya existe" ); 
+			throw new UsuarioEmailRepetidoException("El email: " + postulante.getEmail() +" ya existe" ); 
 		}
 	}
 	
