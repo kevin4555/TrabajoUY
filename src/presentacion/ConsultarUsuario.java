@@ -13,6 +13,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
@@ -29,6 +30,7 @@ import logica.interfaces.IControladorUsuario;
 
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -454,7 +456,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			if (dtUsuario instanceof DTPostulante) {
 				DTPostulante dtPostulante = (DTPostulante) dtUsuario;
 				this.textFieldNacionalidad.setText(dtPostulante.getNacionalidad());
-				this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().toGMTString());
+				this.textFieldFechaNacimiento.setText(dateToString(dtPostulante.getFechaNacimiento()));
 				cambiarPanel(panelPostulante);
 			}
 			ArrayList<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
@@ -515,5 +517,11 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.comboBoxSeleccionUsuario.setModel(model);
 		
 	}
+	
+	 public String dateToString(Date fecha)
+	    {
+	    	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	    	return formatter.format(fecha);
+	    }
 	
 }
