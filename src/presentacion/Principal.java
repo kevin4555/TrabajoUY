@@ -301,71 +301,66 @@ public class Principal extends JFrame {
 			Keyword k7 = ICO.obtenerKeywords("Computación");
 			Keyword k8 = ICO.obtenerKeywords("Administración");
 			Keyword k9 = ICO.obtenerKeywords("Logística");
+			
+			ArrayList<String> keywords = new ArrayList<String>();
+			keywords.add(k1.getNombre());
+			keywords.add(k2.getNombre());
+			keywords.add(k3.getNombre());
+			keywords.add(k4.getNombre());
+			keywords.add(k5.getNombre());
+			keywords.add(k6.getNombre());
+			
 
 			ICO.altaOfertaLaboral("Desarrollador Frontend",
 					"Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
 					"09:00", "18:00", 90000f, "Montevideo", "Montevideo", dateFormat.parse("14/08/2023"),
-					ICO.obtenerTipoPublicacion("Premium"));
-			ICU.obtenerEmpresa("EcoTech").agregarOferta(ICO.obtenerOfertaLaboral("Desarrollador Frontend"));
+					"Premium", "EcoTech", keywords);
 					
-			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k1);
-			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k2);
-			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k3);
-			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k4);
-			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k5);
-			ICO.obtenerOfertaLaboral("Desarrollador Frontend").agregarKeyword(k6);
-
+			ArrayList<String> keywords2 = new ArrayList<String>();
+			keywords2.add(k5.getNombre());
 			ICO.altaOfertaLaboral("Estratega de Negocios",
 					"Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes.",
 					"08:00", "17:00", 80000f, "Punta del Este", "Maldonado", dateFormat.parse("14/08/2023"),
-					ICO.obtenerTipoPublicacion("Estándar"));
-            
-			ICU.obtenerEmpresa("GlobalHealth").agregarOferta(ICO.obtenerOfertaLaboral("Estratega de Negocios"));
-			
-			ICO.obtenerOfertaLaboral("Estratega de Negocios").agregarKeyword(k5);
-
+					"Estándar","GlobalHealth", keywords2);
+          
+			ArrayList<String> keywords3 = new ArrayList<String>();
+			keywords3.add(k2.getNombre());
+			keywords3.add(k3.getNombre());
+			keywords3.add(k6.getNombre());
 			ICO.altaOfertaLaboral("Diseñador UX/UI",
 					"Trabaja en colaboración con nuestro talentoso equipo de diseño para crear soluciones impactantes.",
-					"14:00", "18:00", 65000f, "Rosario", "Colonia", dateFormat.parse("13/08/2023"),
-					ICO.obtenerTipoPublicacion("Estándar"));
-			ICU.obtenerEmpresa("FusionTech").agregarOferta(ICO.obtenerOfertaLaboral("Diseñador UX/UI"));
-			ICO.obtenerOfertaLaboral("Diseñador UX/UI").agregarKeyword(k2);
-			ICO.obtenerOfertaLaboral("Diseñador UX/UI").agregarKeyword(k3);
-			ICO.obtenerOfertaLaboral("Diseñador UX/UI").agregarKeyword(k6);
+					"14:00", "18:00", 65000f, "Rosario", "Colonia", dateFormat.parse("13/08/2023"), "Estándar", "FusionTech", keywords3);
 
+			ArrayList<String> keywords4 = new ArrayList<String>();
+			keywords4.add(k2.getNombre());
 			ICO.altaOfertaLaboral("Analista de Datos",
 					"Ayuda a nuestros clientes a tomar decisiones informadas basadas en análisis y visualizaciones de datos.",
 					"09:00", "13:00", 40000f, "Maldonado", "Maldonado", dateFormat.parse("11/08/2023"),
-					ICO.obtenerTipoPublicacion("Premium"));
-			ICU.obtenerEmpresa("ANTEL").agregarOferta(ICO.obtenerOfertaLaboral("Analista de Datos"));
-			
-			ICO.obtenerOfertaLaboral("Analista de Datos").agregarKeyword(k2);
+					"Premium", "ANTEL", keywords4);
 
+			ArrayList<String> keywords5 = new ArrayList<String>();
+			keywords5.add(k4.getNombre());
 			ICO.altaOfertaLaboral("Content Manager",
 					"Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en línea de nuestros clientes.",
 					"18:00", "22:00", 10000f, "Montevideo", "Montevideo", dateFormat.parse("20/08/2023"),
-					ICO.obtenerTipoPublicacion("Destacada"));
-			ICU.obtenerEmpresa("MIEM").agregarOferta(ICO.obtenerOfertaLaboral("Content Manager"));
-			ICO.obtenerOfertaLaboral("Content Manager").agregarKeyword(k4);
+					"Destacada", "MIEM", keywords5);
 
+			ArrayList<String> keywords6 = new ArrayList<String>();
+			keywords6.add(k1.getNombre());
 			ICO.altaOfertaLaboral("Soporte Técnico",
 					"Ofrece un excelente servicio de soporte técnico a nuestros clientes, resolviendo problemas y brindando soluciones",
 					"09:00", "18:00", 30000f, "Minas", "Lavalleja", dateFormat.parse("15/08/2023"),
-					ICO.obtenerTipoPublicacion("Básica"));
-			ICU.obtenerEmpresa("TechSolutions").agregarOferta(ICO.obtenerOfertaLaboral("Soporte Técnico"));
-			ICO.obtenerOfertaLaboral("Soporte Técnico").agregarKeyword(k1);
+					"Básica", "TechSolutions", keywords6);
 
 			ICO.altaOfertaLaboral("A. de Marketing Digital",
 					"Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.", "10:00",
-					"19:00", 80000f, "Flores", "Flores", dateFormat.parse("15/08/2023"),
-					ICO.obtenerTipoPublicacion("Premium"));
-			ICU.obtenerEmpresa("EcoTech").agregarOferta(ICO.obtenerOfertaLaboral("A. de Marketing Digital"));
+					"19:00", 80000f, "Flores", "Flores", dateFormat.parse("15/08/2023"), "Premium", "EcoTech", new ArrayList<String>());
 
 			ICO.altaOfertaLaboral("Contador Senior",
 					"Unete a nuestro equipo contable y ayuda en la gestión financiera de la empresa.", "08:30", "17:30",
 					100000f, "Colonia Suiza", "Colonia", dateFormat.parse("16/08/2023"),
-					ICO.obtenerTipoPublicacion("Destacada"));
-			ICU.obtenerEmpresa("GlobalHealth").agregarOferta(ICO.obtenerOfertaLaboral("Contador Senior"));
+					"Destacada", "GlobalHealth", new ArrayList<String>());
+
 			ICO.registrarPostulacion(
 					"Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos Microsoft Office.",
 					"Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.",

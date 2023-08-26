@@ -20,7 +20,9 @@ import logica.classes.TipoPublicacion;
 
 public interface IControladorOferta {
 	
-	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException;
+	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
+			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion, String nicknameEmpresa, ArrayList<String> listakeywords)
+			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException;
 
 	public ArrayList<String> listarPostulantes();
 	
@@ -32,7 +34,6 @@ public interface IControladorOferta {
 	
 	public ArrayList<String> listarPaquetes();
 	
-	public void agregarKeywordEnOfertaLaboral(ArrayList<String> listaKeyword, String nomOferta) throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException;
 	
 	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException;
 	

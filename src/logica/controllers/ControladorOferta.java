@@ -28,6 +28,7 @@ import logica.handlers.ManejadorPaquetes;
 import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
+import logica.interfaces.IControladorUsuario;
 
 public class ControladorOferta implements IControladorOferta {
 
@@ -38,11 +39,19 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
-			float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion)
-			throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException {
+			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion, String nicknameEmpresa, ArrayList<String> listakeywords)
+			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
+		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
+		Fabrica fabrica = Fabrica.getInstance();
+		IControladorUsuario contUsuario = fabrica.obtenerControladorUsuario();
+		
 		OfertaLaboral ofertaLaboral = new OfertaLaboral(nombre, descripcion, horarioInicial, horarioFinal, remuneracion,
-				ciudad, departamento, fechaAlta, tipoPublicacion);
+				ciudad, departamento, fechaAlta, manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion));
+		for (int i = 0; i < listakeywords.size(); i++) {
+			ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listakeywords.get(i)));
+		}
+		contUsuario.obtenerEmpresa(nicknameEmpresa).agregarOferta(ofertaLaboral);
 		manejadorOfertas.agregarOferta(ofertaLaboral);
 	}
 
@@ -166,17 +175,7 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorPaquetes.agregarPaquete(paquetePublicacion);
 	}
 
-	public void agregarKeywordEnOfertaLaboral(ArrayList<String> listaKeyword, String nomOferta)
-			throws KeywordNoExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException {
-		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
-		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
-		for (int i = 0; i < listaKeyword.size(); i++) {
-			ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listaKeyword.get(i)));
-		}
-		
-
-	}
+	
 
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida) {
 		// TODO Auto-generated method stub

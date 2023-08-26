@@ -280,10 +280,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
 			try {
 				controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab,
 						Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta,
-						controlOferta.obtenerTipoPublicacion(nomTipoPublic));
-				controlUsu.obtenerEmpresa(nicknameEmpresa)
+						nomTipoPublic, nicknameEmpresa, keywordSeleccionadas);
+				/*controlUsu.obtenerEmpresa(nicknameEmpresa)
 						.agregarOferta(controlOferta.obtenerOfertaLaboral(nombreOfertaLab));
-				controlOferta.agregarKeywordEnOfertaLaboral(keywordSeleccionadas, nombreOfertaLab);
+				controlOferta.agregarKeywordEnOfertaLaboral(keywordSeleccionadas, nombreOfertaLab);*/
 				// falta asociar keywords.
 				// Muestro éxito de la operación
 				JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito",
@@ -300,14 +300,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
 				// no imprime nada
 			} catch (OfertaLaboralYaExisteException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			} catch (OfertaLaboralNoExisteException e) {
+			}  catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+			}  catch (KeywordNoExisteException e) {
 				// no imprime nada
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			} catch (TipoPublicacionYaExisteException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			} catch (KeywordNoExisteException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 			} catch (java.lang.ClassCastException e) {
 				JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Trabajo.uy",
 						JOptionPane.ERROR_MESSAGE);
