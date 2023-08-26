@@ -63,5 +63,6 @@ public class TipoPublicacion {
 	{
 		return cantTipo;
 	}
+	
 }
 

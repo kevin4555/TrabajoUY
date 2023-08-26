@@ -23,7 +23,6 @@ import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPostulacion;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
-import logica.controllers.Fabrica;
 import logica.handlers.ManejadorOfertas;
 
 public class ManejadorOfertasTest {
@@ -36,7 +35,6 @@ public class ManejadorOfertasTest {
 	@Before
 	public void setUp() {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Fabrica.getInstance().obtenerControladorOferta();
 		try {
 			this.fechaDate = dateFormat.parse(fecha);
 		} catch (ParseException e) {
