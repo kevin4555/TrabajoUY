@@ -102,7 +102,4 @@ public class ManejadorSettings {
 		instancia = null;
 	}
 		
-	public void clean() {
-		instancia = null;
-	}
 }

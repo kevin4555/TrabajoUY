@@ -336,4 +336,21 @@ public class ControladorOfertaTest {
 
 	}
 
+	@Test
+	public void testKeywordNoExiste() {
+		controladorOferta = new ControladorOferta();
+		try {
+			controladorOferta.obtenerKeywords("KeywordNoExiste");
+		} catch (KeywordNoExisteException e) {
+			// TODO Auto-generated catch block
+			Assert.assertEquals("La keyword KeywordNoExiste no existe", e.getMessage());
+		} catch (TipoPublicacionNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+
 }
