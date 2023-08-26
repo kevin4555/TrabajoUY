@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import excepciones.UsuarioEmailRepetido;
+import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import junit.framework.Assert;
@@ -71,7 +71,7 @@ public class ManejadorUsuarioTesting
 	}
 	
 	@Test
-	public void agregarEmpresaYPostulanteTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+	public void agregarEmpresaYPostulanteTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		manejadorUsuario = ManejadorUsuario.getInstance();
 		manejadorUsuario.agregarEmpresa(empresa1);
 		manejadorUsuario.agregarPostulante(postulante1);
@@ -89,7 +89,7 @@ public class ManejadorUsuarioTesting
 	}
 	
 	@Test
-	public void listarEmrpesasTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+	public void listarEmrpesasTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		manejadorUsuario = ManejadorUsuario.getInstance();
 		manejadorUsuario.agregarEmpresa(empresa1);
 		manejadorUsuario.agregarEmpresa(empresa2);
@@ -103,7 +103,7 @@ public class ManejadorUsuarioTesting
 	}
 	
 	@Test
-	public void listarPostulantesTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+	public void listarPostulantesTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		manejadorUsuario = ManejadorUsuario.getInstance();
 		manejadorUsuario.agregarPostulante(postulante1);
 		manejadorUsuario.agregarPostulante(postulante2);
@@ -118,7 +118,7 @@ public class ManejadorUsuarioTesting
 	}
 	
 	@Test
-	public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, UsuarioNoExisteException {
+	public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, UsuarioNoExisteException {
 		manejadorUsuario = ManejadorUsuario.getInstance();
 		manejadorUsuario.agregarPostulante(postulante1);
 		manejadorUsuario.agregarEmpresa(empresa1);
@@ -139,7 +139,7 @@ public class ManejadorUsuarioTesting
 			
 		} catch (UsuarioYaExisteException e) {
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			
 		} catch (UsuarioNoExisteException e) {
 			exception = true;
@@ -148,7 +148,7 @@ public class ManejadorUsuarioTesting
 	}
 	
 	@Test
-	public void obtenerEmpresaYPostulanteTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, UsuarioNoExisteException {
+	public void obtenerEmpresaYPostulanteTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, UsuarioNoExisteException {
 		manejadorUsuario = ManejadorUsuario.getInstance();
 		manejadorUsuario.agregarPostulante(postulante1);
 		manejadorUsuario.agregarEmpresa(empresa1);
@@ -167,7 +167,7 @@ public class ManejadorUsuarioTesting
 			Empresa empresa = manejadorUsuario.obtenerEmpresa("Pepe");
 		} catch (UsuarioYaExisteException e) {
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			
 		} catch (UsuarioNoExisteException e) {
 			exception = true;
@@ -184,7 +184,7 @@ public class ManejadorUsuarioTesting
 			Postulante postulante = manejadorUsuario.obtenerPostulante("Pepe");
 		} catch (UsuarioYaExisteException e) {
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			
 		} catch (UsuarioNoExisteException e) {
 			exception = true;
@@ -204,7 +204,7 @@ public class ManejadorUsuarioTesting
 		} catch (UsuarioYaExisteException e) {
 			// TODO Auto-generated catch block
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			exception = true;
 			
 		}
@@ -223,7 +223,7 @@ public class ManejadorUsuarioTesting
 		} catch (UsuarioYaExisteException e) {
 			// TODO Auto-generated catch block
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			exception = true;
 		}
 		Assert.assertTrue(exception);
@@ -241,7 +241,7 @@ public class ManejadorUsuarioTesting
 		} catch (UsuarioYaExisteException e) {
 			// TODO Auto-generated catch block
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			exception = true;
 		}
 		Assert.assertTrue(exception);
@@ -259,7 +259,7 @@ public class ManejadorUsuarioTesting
 		} catch (UsuarioYaExisteException e) {
 			exception = true;
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			
 		}
 		Assert.assertTrue(exception);
@@ -277,7 +277,7 @@ public class ManejadorUsuarioTesting
 		} catch (UsuarioYaExisteException e) {
 			exception = true;
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			
 		}
 		Assert.assertTrue(exception);
@@ -295,7 +295,7 @@ public class ManejadorUsuarioTesting
 		} catch (UsuarioYaExisteException e) {
 			exception = true;
 			
-		} catch (UsuarioEmailRepetido e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			
 		}
 		Assert.assertTrue(exception);

@@ -28,7 +28,7 @@ import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
-import excepciones.UsuarioEmailRepetido;
+import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTCantidadTipoPublicacion;
@@ -152,7 +152,7 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					cargarDatosDePrueba(arg0);
-				} catch (ParseException | KeywordNoExisteException | PaquetePublicacionYaExisteException | UsuarioEmailRepetido e) {
+				} catch (ParseException | KeywordNoExisteException | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} // Esta funcion carga los datos de prueba
@@ -230,7 +230,7 @@ public class Principal extends JFrame {
 
 	@SuppressWarnings("deprecation")
 	protected void cargarDatosDePrueba(ActionEvent arg0)
-			throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException, UsuarioEmailRepetido {
+			throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException, UsuarioEmailRepetidoException {
 		try {
 
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -458,7 +458,7 @@ public class Principal extends JFrame {
 		} catch (KeywordNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} 
-		catch(UsuarioEmailRepetido e) {
+		catch(UsuarioEmailRepetidoException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		}
 	}

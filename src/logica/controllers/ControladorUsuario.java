@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.ArrayList;
 
 import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioEmailRepetido;
+import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
@@ -77,7 +77,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac,
-			String nacionalidad) throws UsuarioYaExisteException, UsuarioEmailRepetido {
+			String nacionalidad) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = new Postulante(nickname, nombre, apellido, email, fechaNac, nacionalidad);
 		manejadorUsuario.agregarPostulante(postulante);
@@ -85,7 +85,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String link) throws UsuarioYaExisteException, UsuarioEmailRepetido {
+			String link) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link);
 		manejadorUsuarios.agregarEmpresa(empresa);

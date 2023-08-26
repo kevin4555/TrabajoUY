@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.ArrayList;
 
 import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioEmailRepetido;
+import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
@@ -28,9 +28,9 @@ public interface IControladorUsuario {
 	
 	public  void registrarPostulacion(String cvReducido,String motivacion, Date fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
 	
-	public  void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad) throws UsuarioYaExisteException, UsuarioEmailRepetido;
+	public  void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
 	
-	public  void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link) throws UsuarioYaExisteException, UsuarioEmailRepetido;
+	public  void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
 	
 	public  Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException;
 	
