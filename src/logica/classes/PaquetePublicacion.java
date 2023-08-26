@@ -26,7 +26,10 @@ public class PaquetePublicacion {
 		}
 		this.periodoValidez = periodoValidez;
 		this.descuento = descuento;
-		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
+		this.cantidadTipoPublicaciones = cantidadTipo;
+		for (CantidadTipoPublicacion cantidad : cantidadTipo) {
+			this.cantidadPublicaciones = this.cantidadPublicaciones + cantidad.getCantidadRestante();
+		}
 		this.setCosto();
 	}
 
@@ -41,7 +44,7 @@ public class PaquetePublicacion {
 				costoTotal += cantidadTipoPublicacion.obtenerCostoPublicaciones();
 			}
 		}
-		this.costo = costoTotal * descuento;
+		this.costo = costoTotal * ((100 - descuento) / 100);
 	}
 
 	public void setNombre(String nombre) {
@@ -91,10 +94,6 @@ public class PaquetePublicacion {
 
 	public float getCosto() {
 		return costo;
-	}
-
-	public ArrayList<CantidadTipoPublicacion> getCantidadTipoPublicaciones() {
-		return cantidadTipoPublicaciones;
 	}
 
 	public void setCantidadTipoPublicaciones(ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {

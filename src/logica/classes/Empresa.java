@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import excepciones.CompraPaqueteYaExisteException;
+import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTUsuario;
@@ -19,8 +20,8 @@ public class Empresa extends Usuario {
 
 	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb) {
 		super(nickname, nombre, apellido, email);
-		this.descripcion = descripcion;
-		this.sitioWeb = sitioWeb;
+		setDescripcion(descripcion);
+		setSitioWeb(sitioWeb);
 		this.ofertasLaborales = new ArrayList<OfertaLaboral>();
 		this.compraPaquetes = new HashMap<String, CompraPaquete>();
 	}
@@ -40,8 +41,12 @@ public class Empresa extends Usuario {
 	public void setSitioWeb(String sitioWeb) {
 		this.sitioWeb = sitioWeb;
 	}
-
-	public void agregarOferta(OfertaLaboral ol) {
+	
+	
+	public void agregarOferta(OfertaLaboral ol) throws OfertaLaboralYaExisteException {
+		if (ofertasLaborales.indexOf(ol) != -1) {
+			throw new OfertaLaboralYaExisteException("La Oferta Laboral " + ol.getNombre() + " ya esta asociada a la Empresa " + this.nickname);
+		}
 		this.ofertasLaborales.add(ol);
 	}
 
@@ -50,6 +55,7 @@ public class Empresa extends Usuario {
 		if (!ofertasLaborales.isEmpty()) {
 			for (OfertaLaboral oferta : this.ofertasLaborales) {
 				ofertas.add(oferta.getNombre());
+				
 			}
 		}
 		return ofertas;
@@ -64,6 +70,7 @@ public class Empresa extends Usuario {
 	}
 
 	public DTEmpresa obtenerDTEmpresa() {
+		
 		ArrayList<DTOfertaLaboral> listaDTOfertas = new ArrayList<DTOfertaLaboral>();
 		for (OfertaLaboral oferta : ofertasLaborales) {
 			listaDTOfertas.add(oferta.obtenerDTOfertaLaboral());
@@ -74,12 +81,8 @@ public class Empresa extends Usuario {
 	}
 
 	@Override
-	public ArrayList<String> listarOfertasUsuario() {
-		ArrayList<String> listaOfertas = new ArrayList<String>();
-		for (OfertaLaboral oferta : ofertasLaborales) {
-			listaOfertas.add(oferta.getNombre());
-		}
-		return listaOfertas;
+	public ArrayList<String> listarOfertasUsuario(){
+		return this.obtenerNombresOfertas();
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package logica.handlers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.classes.Empresa;
@@ -14,11 +15,13 @@ public class ManejadorUsuario {
 	private HashMap<String, Usuario> colUsuarios;
 	private HashMap<String, Postulante> colPostulantes;
 	private HashMap<String, Empresa> colEmpresas;
+	private HashMap<String, Usuario> usuariosEmail;
 	
 	private ManejadorUsuario() {
 		colUsuarios = new HashMap<String, Usuario>();
 		colPostulantes = new HashMap<String, Postulante>();
 		colEmpresas = new HashMap<String, Empresa>();
+		usuariosEmail = new HashMap<String, Usuario>();
 	}
 	
 	public static ManejadorUsuario getInstance() 
@@ -49,18 +52,24 @@ public class ManejadorUsuario {
 			throw new UsuarioNoExisteException("Empresa " + nickEmpresa + " no existe");
 		}
 	}
+	
+	
 
 	@SuppressWarnings("unlikely-arg-type")
-	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException 
+	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException, UsuarioEmailRepetidoException 
 	{
-		if(!colEmpresas.containsKey(empresa)) 
+		if(!colUsuarios.containsKey(empresa.getNickname()) && !usuariosEmail.containsKey(empresa.getEmail())) 
 		{
 			colEmpresas.put(empresa.getNickname(), empresa);
 			colUsuarios.put(empresa.getNickname(), empresa);
+			usuariosEmail.put(empresa.getEmail(), empresa);
 		}
-		else 
+		else if(colUsuarios.containsKey(empresa.getNickname()))
 		{
 			throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
+		}
+		else if (usuariosEmail.containsKey(empresa.getEmail())) {
+			throw new UsuarioEmailRepetidoException("El email: " + empresa.getEmail() +" ya existe" );
 		}
 	}
 	
@@ -77,16 +86,20 @@ public class ManejadorUsuario {
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
-	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException 
+	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException, UsuarioEmailRepetidoException 
 	{
-		if(!colPostulantes.containsKey(postulante)) 
+		if(!colUsuarios.containsKey(postulante.getNickname()) && !usuariosEmail.containsKey(postulante.getEmail())) 
 		{
 			colPostulantes.put(postulante.getNickname(), postulante);
 			colUsuarios.put(postulante.getNickname(), postulante);
+			usuariosEmail.put(postulante.getEmail(), postulante);
 		}
-		else 
+		else if(colUsuarios.containsKey(postulante.getNickname())) 
 		{
 			throw new UsuarioYaExisteException("Postulante " + postulante.getNickname() + " ya existe");
+		}
+		else if(usuariosEmail.containsKey(postulante.getEmail())) {
+			throw new UsuarioEmailRepetidoException("El email: " + postulante.getEmail() +" ya existe" ); 
 		}
 	}
 	
@@ -108,7 +121,7 @@ public class ManejadorUsuario {
 			listaUsuarios.add(nickUsuario);
 		}
 		return listaUsuarios;
-	}
+	}	
 	
 	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteException 
 	{
@@ -120,5 +133,9 @@ public class ManejadorUsuario {
 		{
 			throw new UsuarioNoExisteException("Usuario: " + nicknameUsuario + " no existe");
 		}
+	}
+	
+	public void clean() {
+		instancia = null;
 	}
 }

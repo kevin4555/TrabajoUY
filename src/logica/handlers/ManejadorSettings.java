@@ -48,7 +48,7 @@ public class ManejadorSettings {
 		} 
 		else 
 		{
-			throw new TipoPublicacionNoExisteException("La publicacion " + nombre + " no existe");
+			throw new TipoPublicacionNoExisteException("El tipo de publicación " + nombre + " no existe");
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class ManejadorSettings {
 		}
 		else
 		{
-			throw new TipoPublicacionYaExisteException("La publicacion " + tpoPublic.getNombre() +" ya existe");
+			throw new TipoPublicacionYaExisteException("El tipo publicacion " + tpoPublic.getNombre() +" ya existe");
 		}
 	}
 
@@ -72,7 +72,7 @@ public class ManejadorSettings {
 		}
 		else
 		{
-			throw new KeywordYaExisteException("La Keyword " + keyword + " ya existe");
+			throw new KeywordYaExisteException("La keyword " + keyword.getNombre() + " ya existe");
 		}
 	}
 
@@ -84,7 +84,7 @@ public class ManejadorSettings {
 		}
 		else
 		{
-			throw new KeywordNoExisteException("La publicacion" + nombre + "no existe");
+			throw new KeywordNoExisteException("La keyword " + nombre + " no existe");
 		}
 	}
 
@@ -98,4 +98,8 @@ public class ManejadorSettings {
 		return listKewords;
 	}
 	
+	public void clean() {
+		instancia = null;
+	}
+		
 }
