@@ -86,7 +86,218 @@ public class ManejadorUsuarioTesting
 		esperado.add(postulante2.getNickname());
 		Collections.sort(esperado);
 		Assert.assertEquals(esperado, resultado);
+	}
+	
+	@Test
+	public void listarEmrpesasTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		manejadorUsuario.agregarEmpresa(empresa1);
+		manejadorUsuario.agregarEmpresa(empresa2);
+		ArrayList<String> resultado = manejadorUsuario.listarEmpresas();
+		Collections.sort(resultado);
+		ArrayList<String> esperado = new ArrayList<String>();
+		esperado.add("nicknameEmpresa1");
+		esperado.add("nicknameEmpresa2");
+		Collections.sort(esperado);
+		Assert.assertEquals(esperado, resultado);
+	}
+	
+	@Test
+	public void listarPostulantesTest() throws UsuarioYaExisteException, UsuarioEmailRepetido {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		manejadorUsuario.agregarPostulante(postulante1);
+		manejadorUsuario.agregarPostulante(postulante2);
+		ArrayList<String> resultado = manejadorUsuario.listarPostulantes();
+		Collections.sort(resultado);
+		ArrayList<String> esperado = new ArrayList<String>();
+		esperado.add("NicknameTest");
+		esperado.add("NicknameTest2");
+		Collections.sort(esperado);
+		Assert.assertEquals(esperado, resultado);
 		
-	    
+	}
+	
+	@Test
+	public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, UsuarioNoExisteException {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		manejadorUsuario.agregarPostulante(postulante1);
+		manejadorUsuario.agregarEmpresa(empresa1);
+		Usuario usuario1 = manejadorUsuario.obtenerUsuario("NicknameTest");
+		Usuario usuario2 = manejadorUsuario.obtenerUsuario("nicknameEmpresa1");
+		Assert.assertEquals(postulante1, usuario1);
+		Assert.assertEquals(empresa1, usuario2);
+		
+	}
+	
+	@Test
+	public void obtenerUsuarioException() {
+		boolean exception = false;
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		try {
+			manejadorUsuario.agregarPostulante(postulante1);
+			Usuario usuario = manejadorUsuario.obtenerUsuario("Pepe");
+			
+		} catch (UsuarioYaExisteException e) {
+			
+		} catch (UsuarioEmailRepetido e) {
+			
+		} catch (UsuarioNoExisteException e) {
+			exception = true;
+		}
+		Assert.assertTrue(exception);
+	}
+	
+	@Test
+	public void obtenerEmpresaYPostulanteTest() throws UsuarioYaExisteException, UsuarioEmailRepetido, UsuarioNoExisteException {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		manejadorUsuario.agregarPostulante(postulante1);
+		manejadorUsuario.agregarEmpresa(empresa1);
+		Postulante postulante = manejadorUsuario.obtenerPostulante(postulante1.getNickname());
+		Empresa empresa = manejadorUsuario.obtenerEmpresa(empresa1.getNickname());
+		Assert.assertEquals(postulante1, postulante);
+		Assert.assertEquals(empresa1, empresa);
+	}
+	
+	@Test
+	public void obtenerEmpresaException() {
+		boolean exception = false;
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		try {
+			manejadorUsuario.agregarEmpresa(empresa1);
+			Empresa empresa = manejadorUsuario.obtenerEmpresa("Pepe");
+		} catch (UsuarioYaExisteException e) {
+			
+		} catch (UsuarioEmailRepetido e) {
+			
+		} catch (UsuarioNoExisteException e) {
+			exception = true;
+		}
+		Assert.assertTrue(exception);
+	}
+	
+	@Test
+	public void obtenerPostulanteException() {
+		boolean exception = false;
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		try {
+			manejadorUsuario.agregarPostulante(postulante1);
+			Postulante postulante = manejadorUsuario.obtenerPostulante("Pepe");
+		} catch (UsuarioYaExisteException e) {
+			
+		} catch (UsuarioEmailRepetido e) {
+			
+		} catch (UsuarioNoExisteException e) {
+			exception = true;
+		}
+		Assert.assertTrue(exception);
+	}
+	
+	@Test
+	public void agregarEpresaEmailRepetidoTest() {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		boolean exception = false;
+		try {
+			 
+			manejadorUsuario.agregarEmpresa(empresa1);
+			Empresa empresa = new Empresa("nicknameEmpresa", "nombre1", "apellido1", "email1@test.com", "descripcion1", "sitioWeb1");
+			manejadorUsuario.agregarEmpresa(empresa);
+		} catch (UsuarioYaExisteException e) {
+			// TODO Auto-generated catch block
+			
+		} catch (UsuarioEmailRepetido e) {
+			exception = true;
+			
+		}
+		Assert.assertTrue(exception);
+	}
+	
+	@Test
+	public void agregarPostulanteEmailRepetido() {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		boolean exception = false;
+		try {
+			 
+			manejadorUsuario.agregarPostulante(postulante1);
+			Postulante postulante = new Postulante("NicknameTest5", "NombreTest", "ApellidoTest", "EmailTest@test.com", fechaDate1, "NacionalidadTest" );
+			manejadorUsuario.agregarPostulante(postulante);
+		} catch (UsuarioYaExisteException e) {
+			// TODO Auto-generated catch block
+			
+		} catch (UsuarioEmailRepetido e) {
+			exception = true;
+		}
+		Assert.assertTrue(exception);
+	}
+	
+	@Test
+	public void postulanteYEmpresaEmailRepetido() {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		boolean exception = false;
+		try {
+			 
+			manejadorUsuario.agregarPostulante(postulante1);
+			Empresa empresa = new Empresa("nicknameEmpresa", "nombre1", "apellido1", "EmailTest@test.com", "descripcion1", "sitioWeb1");
+			manejadorUsuario.agregarEmpresa(empresa);
+		} catch (UsuarioYaExisteException e) {
+			// TODO Auto-generated catch block
+			
+		} catch (UsuarioEmailRepetido e) {
+			exception = true;
+		}
+		Assert.assertTrue(exception);
+	}
+	
+	@Test
+	public void postulanteNickRepetido() {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		boolean exception = false;
+		try {
+			 
+			manejadorUsuario.agregarPostulante(postulante1);
+			Postulante postulante = new Postulante("NicknameTest", "NombreTest5", "ApellidoTest5", "EmailTest@test.com5", fechaDate1, "NacionalidadTest5" );
+			manejadorUsuario.agregarPostulante(postulante);
+		} catch (UsuarioYaExisteException e) {
+			exception = true;
+			
+		} catch (UsuarioEmailRepetido e) {
+			
+		}
+		Assert.assertTrue(exception);
+	}
+	
+	@Test
+	public void empresaNickRepetido() {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		boolean exception = false;
+		try {
+			 
+			manejadorUsuario.agregarEmpresa(empresa1);
+			Empresa empresa = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1", "sitioWeb1");
+			manejadorUsuario.agregarEmpresa(empresa);
+		} catch (UsuarioYaExisteException e) {
+			exception = true;
+			
+		} catch (UsuarioEmailRepetido e) {
+			
+		}
+		Assert.assertTrue(exception);
+	}
+	
+	@Test
+	public void empresaYPostulanteNickRepetido() {
+		manejadorUsuario = ManejadorUsuario.getInstance();
+		boolean exception = false;
+		try {
+			 
+			manejadorUsuario.agregarEmpresa(empresa1);
+			Postulante postulante = new Postulante("nicknameEmpresa1", "NombreTest5", "ApellidoTest5", "EmailTest@test.com5", fechaDate1, "NacionalidadTest5" );
+			manejadorUsuario.agregarPostulante(postulante);
+		} catch (UsuarioYaExisteException e) {
+			exception = true;
+			
+		} catch (UsuarioEmailRepetido e) {
+			
+		}
+		Assert.assertTrue(exception);
 	}
 }
