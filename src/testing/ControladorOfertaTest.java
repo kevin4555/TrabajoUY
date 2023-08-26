@@ -22,7 +22,6 @@ import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
-import excepciones.UsuarioEmailRepetido;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
@@ -121,7 +120,7 @@ public class ControladorOfertaTest {
 	@Test
 	public void testAltaOFertaLaboralyValidacion()
 			throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException, TipoPublicacionNoExisteException,
-			KeywordNoExisteException, UsuarioNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetido,
+			KeywordNoExisteException, UsuarioNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException,
 			TipoPublicacionYaExisteException, KeywordYaExisteException {
 		manejadorOfertas = ManejadorOfertas.getInstance();
 		manejadorSettings = ManejadorSettings.getInstance();
@@ -167,7 +166,7 @@ public class ControladorOfertaTest {
 	@Test
 	public void testObtenerDtOfertaLaboralyValidacion()
 			throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException, UsuarioYaExisteException,
-			UsuarioEmailRepetido, KeywordYaExisteException, TipoPublicacionYaExisteException,
+			UsuarioEmailRepetidoException, KeywordYaExisteException, TipoPublicacionYaExisteException,
 			TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException {
 		manejadorOfertas = ManejadorOfertas.getInstance();
 		manejadorSettings = ManejadorSettings.getInstance();
@@ -293,10 +292,10 @@ public class ControladorOfertaTest {
 	}
 
 	@Test
-	public void testObtenerOfertasEmpresa() throws UsuarioYaExisteException, UsuarioEmailRepetidoException,
-			OfertaLaboralYaExisteException, OfertaLaboralNoExisteException, UsuarioNoExisteException,
-			UsuarioEmailRepetido, TipoPublicacionYaExisteException, KeywordYaExisteException,
-			TipoPublicacionNoExisteException, KeywordNoExisteException {
+	public void testObtenerOfertasEmpresa()
+			throws UsuarioYaExisteException, UsuarioEmailRepetidoException, OfertaLaboralYaExisteException,
+			OfertaLaboralNoExisteException, UsuarioNoExisteException, TipoPublicacionYaExisteException,
+			KeywordYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException {
 		manejadorOfertas = ManejadorOfertas.getInstance();
 		manejadorSettings = ManejadorSettings.getInstance();
 		manejadorPaquetes = ManejadorPaquetes.getInstance();
@@ -325,7 +324,8 @@ public class ControladorOfertaTest {
 
 	@Test
 	public void testRegistrarPostulacion() throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException,
-			UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetidoException, UsuarioEmailRepetido, KeywordYaExisteException, TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException {
+			UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
+			TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException {
 		manejadorOfertas = ManejadorOfertas.getInstance();
 		manejadorSettings = ManejadorSettings.getInstance();
 		manejadorPaquetes = ManejadorPaquetes.getInstance();

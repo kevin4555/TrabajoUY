@@ -13,7 +13,8 @@ public class PaquetePublicacion {
 	private float costo;
 	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
 
-	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento, ArrayList<CantidadTipoPublicacion> cantidadTipo) {
+	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento,
+			ArrayList<CantidadTipoPublicacion> cantidadTipo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.cantidadPublicaciones = 0;
@@ -23,7 +24,7 @@ public class PaquetePublicacion {
 		for (CantidadTipoPublicacion cantidad : cantidadTipo) {
 			this.cantidadPublicaciones = this.cantidadPublicaciones + cantidad.getCantidadRestante();
 		}
-		this.setCosto(); 
+		this.setCosto();
 	}
 
 	public String getNombre() {
@@ -35,7 +36,7 @@ public class PaquetePublicacion {
 		for (CantidadTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) {
 			costoTotal += cantidadTipoPublicacion.obtenerCostoPublicaciones();
 		}
-		this.costo = costoTotal * ((100-descuento)/100);
+		this.costo = costoTotal * ((100 - descuento) / 100);
 	}
 
 	public void setNombre(String nombre) {
@@ -92,12 +93,15 @@ public class PaquetePublicacion {
 		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo);
 	}
 
-	public void crearCantidadTipoPublicacion(int cantIncluida,
-			TipoPublicacion tipoPublicacion) {
+	public void crearCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) {
 		CantidadTipoPublicacion nuevoCantidad = new CantidadTipoPublicacion(cantIncluida, tipoPublicacion);
 		nuevoCantidad.asociarPaquete(this);
 		cantidadTipoPublicaciones.add(nuevoCantidad);
-		
+
+	}
+
+	public ArrayList<CantidadTipoPublicacion> getCantidadTipoPublicaciones() {
+		return cantidadTipoPublicaciones;
 	}
 
 }
