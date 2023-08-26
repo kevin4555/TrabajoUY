@@ -1,5 +1,7 @@
 package logica.classes;
 
+import logica.DataTypes.DTCantidadTipoPublicacion;
+
 public class CantidadTipoPublicacion {
 	private PaquetePublicacion paquetePublicacion;
 	private int cantidadRestante;
@@ -45,6 +47,11 @@ public class CantidadTipoPublicacion {
 	
 	public double obtenerCostoPublicaciones() {
 		return this.tipoPublicacion.getCosto() * this.cantidadRestante;
+	}
+	
+	public DTCantidadTipoPublicacion obtenerDTCantidadTipoPublicacion() {
+		return new DTCantidadTipoPublicacion(this.tipoPublicacion.getNombre(), this.cantidadRestante);
+		
 	}
 
 }

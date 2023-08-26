@@ -2,6 +2,8 @@ package logica.classes;
 
 import java.util.Date;
 
+import logica.DataTypes.DTTipoPublicacion;
+
 public class TipoPublicacion {
 	
 	private String nombre;
@@ -62,6 +64,10 @@ public class TipoPublicacion {
 	public CantidadTipoPublicacion getCantidadTipoPublicacion()
 	{
 		return cantTipo;
+	}
+	
+	public DTTipoPublicacion obtenerDTTipoPublicacion() {
+		return new DTTipoPublicacion(this.getNombre(), this.getDescripcion(), this.getExposicion(), this.getDuracionDia(), this.costo, this.getFechaAlta());
 	}
 }
 

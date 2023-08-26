@@ -7,12 +7,11 @@ public class DTTipoPublicacion {
 	private String descripcion;
 	private String exposicion;
 	private int duracionDia;
-	private double costo;
+	private float costo;
 	private Date fechaAlta;
 	
-	public DTTipoPublicacion(String nombre, String descripcion, String exposicion, int duracionDia, double costo,
+	public DTTipoPublicacion(String nombre, String descripcion, String exposicion, int duracionDia, float costo,
 			Date fechaAlta) {
-		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.exposicion = exposicion;
@@ -37,7 +36,7 @@ public class DTTipoPublicacion {
 		return duracionDia;
 	}
 	
-	public double getCosto() {
+	public float getCosto() {
 		return costo;
 	}
 	
