@@ -88,7 +88,7 @@ public class ManejadorUsuario {
 	@SuppressWarnings("unlikely-arg-type")
 	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException, UsuarioEmailRepetido 
 	{
-		if(!colPostulantes.containsKey(postulante) && usuariosEmail.containsKey(postulante.getEmail())) 
+		if(!colPostulantes.containsKey(postulante.getNickname()) && !usuariosEmail.containsKey(postulante.getEmail())) 
 		{
 			colPostulantes.put(postulante.getNickname(), postulante);
 			colUsuarios.put(postulante.getNickname(), postulante);
