@@ -246,7 +246,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     public void cargarDatosOferta(ActionEvent e)
     {
     	String ofertaLaboral = (String) (this.comboBoxOfertasLaborales).getSelectedItem();
-    	OfertaLaboral dtOfertaLaboral;
+    	DTOfertaLaboral dtOfertaLaboral;
 	    try {
 			dtOfertaLaboral = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
 		
@@ -254,7 +254,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
 			(this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());	   
 			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicial());
 			(this.textFieldHoraFin).setText(dtOfertaLaboral.getHorarioFinal());
-			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemunaracion())));
+			(this.textFieldRemuneracion).setText(String.valueOf(dtOfertaLaboral.getRemunaracion()));
 			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
 			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
 			(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));
