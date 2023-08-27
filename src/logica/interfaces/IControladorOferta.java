@@ -29,13 +29,11 @@ public interface IControladorOferta {
 			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion, String nicknameEmpresa, ArrayList<String> listakeywords)
 			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException;
 
-	public ArrayList<String> listarPostulantes();
 
 	public ArrayList<String> listarTipoDePublicaciones();
 
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException;
 	public ArrayList<String> listarPaquetes();
-	
 	
 	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException;
 	

@@ -129,12 +129,6 @@ public class ControladorOferta implements IControladorOferta {
 		postulante.agregarPostulacion(postulacion);
 	}
 
-	@Override
-	public ArrayList<String> listarPostulantes() {
-		ControladorUsuario controladorUsuario = new ControladorUsuario();
-		ArrayList<String> lpostulantes = controladorUsuario.listarPostulantes();
-		return lpostulantes;
-	}
 
 	public DTOfertaLaboral obtenerDtOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
@@ -194,10 +188,8 @@ public class ControladorOferta implements IControladorOferta {
 
 	@Override
 	public boolean estaPostulado(String postulante, String nomOfertaLaboral) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
-		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
-		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
-		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOfertaLaboral);
-		Postulante post = manejadorUsuario.obtenerPostulante(postulante);
+		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		Postulante post = controladorUsuario.obtenerPostulante(postulante);
 		return post.listarOfertasUsuario().contains(nomOfertaLaboral);
 	}
 
