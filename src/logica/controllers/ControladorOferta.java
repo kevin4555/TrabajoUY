@@ -192,4 +192,13 @@ public class ControladorOferta implements IControladorOferta {
 		return paquetePublicacion;
 	}
 
+	@Override
+	public boolean estaPostulado(String postulante, String nomOfertaLaboral) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
+		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
+		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOfertaLaboral);
+		Postulante post = manejadorUsuario.obtenerPostulante(postulante);
+		return post.listarOfertasUsuario().contains(nomOfertaLaboral);
+	}
+
 }
