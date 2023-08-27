@@ -108,6 +108,7 @@ public class Principal extends JFrame {
 		postulacionOfertaLabInternalFrame.setResizable(false);
 		postulacionOfertaLabInternalFrame.setVisible(false);
 
+		ventanaPrincipal.getContentPane().setLayout(null);
 		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
 		ventanaPrincipal.getContentPane().add(crearUsuInternalFrame);
 

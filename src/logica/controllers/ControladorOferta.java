@@ -54,8 +54,9 @@ public class ControladorOferta implements IControladorOferta {
 		for (int i = 0; i < listakeywords.size(); i++) {
             ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listakeywords.get(i)));
         }
+		manejadorOfertas.agregarOferta(ofertaLaboral);
         contUsuario.obtenerEmpresa(nicknameEmpresa).agregarOferta(ofertaLaboral);
-        manejadorOfertas.agregarOferta(ofertaLaboral);
+        
 		
 	}
 

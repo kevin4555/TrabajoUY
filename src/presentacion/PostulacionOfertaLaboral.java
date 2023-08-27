@@ -317,7 +317,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     		}
         });
         
-        JButton btnBotonAceptar = new JButton("Aceptar");
+        JButton btnBotonAceptar = new JButton("Confirmar");
         ubicacionSur.add(btnBotonAceptar);
         btnBotonAceptar.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
@@ -428,7 +428,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 				{
 					nombrePostulante = (controlUsuarioLab.obtenerPostulante(this.postulante)).getNickname();
 					controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, this.fechaPostulacion, nombrePostulante , this.nomOfertaLaboral);
-					JOptionPane.showMessageDialog(this, "La postulacion fue hecha con exito", "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(this, "La postulacion fue hecha con exito", "Registrar Usuario", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{

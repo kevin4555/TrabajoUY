@@ -63,7 +63,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 		setMaximizable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Registro de Tipo Publicacion de Oferta Laboral");
-		setBounds(30, 30, 933, 470);
+		setBounds(30, 30, 639, 470);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel ubicacionEtiquetas = new JPanel();

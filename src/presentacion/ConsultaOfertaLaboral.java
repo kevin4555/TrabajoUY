@@ -17,6 +17,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.swing.JComboBox;
@@ -63,7 +65,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setClosable(true);
         setTitle("Consultar Oferta Laboral");
         setBounds(30, 30, 508, 380);
         
@@ -226,13 +227,14 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     		String[] empresas;
 			empresas = (controlUsuarioLab.listarEmpresas()).toArray(new String[0]);
 			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(empresas);
-			this.comboBoxEmpresasRegistradas.setModel(model);	 
+			this.comboBoxEmpresasRegistradas.setModel(model);
     }
     
     public void cargarOfertaEmpresa(ActionEvent e)
     { 	
     	String empresa = (String) (this.comboBoxEmpresasRegistradas).getSelectedItem();
 		String[] ofertasLaborales;
+		limpiarInformacion();//correccion
 		try {
 			ofertasLaborales = (controlUsuarioLab.obtenerOfertasEmpresa(empresa)).toArray(new String[0]);
 			DefaultComboBoxModel<String> model;
@@ -273,6 +275,13 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     	this.textFieldCiudad.setText("");
     	this.textFieldDepartamento.setText("");
 		this.textFieldFechaAlta.setText("");
+		/*ArrayList<String> listaOfertas = new ArrayList<String>();
+		String [] arrayOfertas = listaOfertas.toArray(new String[0]);
+		Arrays.sort(arrayOfertas);
+		DefaultComboBoxModel<String> model;
+		model = new DefaultComboBoxModel<String>(arrayOfertas);
+		this.comboBoxOfertasLaborales.setModel(model);*/
+		
     }
     
 }
