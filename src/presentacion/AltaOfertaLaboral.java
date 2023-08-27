@@ -10,8 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-
-
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 

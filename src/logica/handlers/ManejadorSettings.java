@@ -68,7 +68,7 @@ public class ManejadorSettings {
 	{
 		if(!colKeywords.containsKey(keyword.getNombre()))
 		{
-			colKeywords.put(keyword.getNombre(), keyword);
+		colKeywords.put(keyword.getNombre(), keyword);
 		}
 		else
 		{

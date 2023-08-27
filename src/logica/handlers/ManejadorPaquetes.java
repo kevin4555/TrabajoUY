@@ -11,10 +11,9 @@ import logica.classes.PaquetePublicacion;
 public class ManejadorPaquetes {
 	private static ManejadorPaquetes instancia = null;
 	private HashMap<String, PaquetePublicacion> colPaquetes;
-	
-	public ManejadorPaquetes() {
-		super();
-		colPaquetes = new HashMap<String, PaquetePublicacion>();
+
+	private ManejadorPaquetes() {
+		this.colPaquetes = new HashMap<String, PaquetePublicacion>();
 	}
 
 	public static ManejadorPaquetes getInstance() {
@@ -27,7 +26,7 @@ public class ManejadorPaquetes {
 		if (colPaquetes.containsKey(nomPaquete)) {
 			return colPaquetes.get(nomPaquete);
 		} else {
-			throw new PaquetePublicacionNoExisteException("El paquete " + nomPaquete + " no existe");
+			throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + " no existe");
 		}
 	}
 
@@ -44,16 +43,15 @@ public class ManejadorPaquetes {
 		if (!colPaquetes.containsKey(paquete.getNombre())) {
 			colPaquetes.put(paquete.getNombre(), paquete);
 		} else {
-			throw new PaquetePublicacionYaExisteException("El paquete " + paquete.getNombre() + " ya existe");
+			throw new PaquetePublicacionYaExisteException("El paquete" + paquete.getNombre() + "ya existe");
 		}
 	}
 
 	public void eliminarPaquete(String nomPaquete) throws PaquetePublicacionNoExisteException {
 		if (colPaquetes.get(nomPaquete) != null) {
 			colPaquetes.remove(nomPaquete);
-		} 
-		else {
-			throw new PaquetePublicacionNoExisteException("El paquete " + nomPaquete + " no existe");
+		} else {
+			throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + "no existe");
 		}
 	}
 	

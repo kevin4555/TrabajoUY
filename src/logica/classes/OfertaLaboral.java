@@ -1,18 +1,13 @@
 package logica.classes;
 
-
-import java.util.ArrayList;
 import java.util.Date;
-
-import excepciones.DtOfertaNoExisteException;
+import java.util.ArrayList;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
 
 public class OfertaLaboral {
 	private String nombre;
-	private Empresa empresa;
-	private CompraPaquete compraPaquete;
 	private String descripcion;
 	private String ciudad;
 	private String departamento;
@@ -24,23 +19,7 @@ public class OfertaLaboral {
 	private TipoPublicacion tipoPublicacion;
 	private ArrayList<Postulacion> postulaciones;
 	
-	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion,String ciudad,String departamento, Date fechaAlta,TipoPublicacion tipoPublicacion, Empresa empresa, CompraPaquete compraPaquete) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.ciudad = ciudad;
-		this.departamento = departamento;
-		this.horarioInicial = horarioInicial;
-		this.horarioFinal = horarioFinal;
-		this.remuneracion = remuneracion;
-		this.fechaAlta = fechaAlta;
-		this.empresa = empresa;
-		this.compraPaquete = compraPaquete;
-		this.tipoPublicacion = tipoPublicacion;
-		this.postulaciones = new ArrayList<Postulacion>();
-		this.listaKeywords = new ArrayList<Keyword>();
-	}
-
-	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion,String ciudad,String departamento, Date fechaAlta,TipoPublicacion tipoPublicacion) {
+	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
@@ -152,14 +131,6 @@ public class OfertaLaboral {
 
 	public void setHorarioInicial(String horarioInicial) {
 		this.horarioInicial = horarioInicial;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public CompraPaquete getCompraPaquete() {
-		return compraPaquete;
 	}
 	
 }

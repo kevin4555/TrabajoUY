@@ -1,6 +1,5 @@
 package logica.classes;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import logica.DataTypes.DTTipoPublicacion;
@@ -13,7 +12,7 @@ public class TipoPublicacion {
 	private int duracionDia;
 	private float costo;
 	private Date fechaAlta;
-	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
+	private CantidadTipoPublicacion cantTipo;
 	
 	public TipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) {
 		this.setNombre(nombre);
@@ -22,7 +21,7 @@ public class TipoPublicacion {
 		this.setDuracionDia(duracion);
 		this.setCosto(costo);
 		this.setFechaAlta(fechaPub);
-		this.cantidadTipoPublicaciones = null;
+		this.cantTipo = null;
 	}
 	
 	public String getNombre() {
@@ -62,17 +61,10 @@ public class TipoPublicacion {
 		this.fechaAlta = fechaAlta;
 	}
 	
-	public ArrayList<CantidadTipoPublicacion> getCantidadTipoPublicaciones() {
-		return cantidadTipoPublicaciones;
+	public CantidadTipoPublicacion getCantidadTipoPublicacion()
+	{
+		return cantTipo;
 	}
-	
-	public void addCantidadTipoPublicacion(CantidadTipoPublicacion cantidadTipoPublicacion) {
-		if ( this.cantidadTipoPublicaciones == null) {
-			 this.cantidadTipoPublicaciones = new ArrayList<CantidadTipoPublicacion>();
-		}
-		this.cantidadTipoPublicaciones.add(cantidadTipoPublicacion);
-	}
-
 	
 	public DTTipoPublicacion obtenerDTTipoPublicacion() {
 		return new DTTipoPublicacion(this.getNombre(), this.getDescripcion(), this.getExposicion(), this.getDuracionDia(), this.costo, this.getFechaAlta());
