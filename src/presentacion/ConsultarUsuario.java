@@ -462,7 +462,6 @@ public class ConsultarUsuario extends JInternalFrame {
 			}
 			ArrayList<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
 			if(listaOfertas.isEmpty()) {
-				System.out.println("lista vacia");
 			}
 			String [] arrayOfertas = listaOfertas.toArray(new String[0]);
 			Arrays.sort(arrayOfertas);
