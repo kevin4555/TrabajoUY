@@ -23,6 +23,7 @@ import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPostulacion;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
+import logica.controllers.Fabrica;
 import logica.handlers.ManejadorOfertas;
 
 public class ManejadorOfertasTest {
@@ -35,6 +36,9 @@ public class ManejadorOfertasTest {
 	@Before
 	public void setUp() {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorOfertas.clean();
+		
 		try {
 			this.fechaDate = dateFormat.parse(fecha);
 		} catch (ParseException e) {
@@ -53,7 +57,6 @@ public class ManejadorOfertasTest {
 		manejadorOfertas.agregarOferta(oferta);
 		OfertaLaboral obtenida = manejadorOfertas.obtenerOfertaLaboral("nombre");
 		assertEquals(oferta, obtenida);
-		manejadorOfertas.clean();
 
 	}
 
@@ -71,7 +74,6 @@ public class ManejadorOfertasTest {
 		} catch (OfertaLaboralYaExisteException e) {
 			Assert.assertEquals("La oferta laboral que desea ingresar ya existe", e.getMessage());
 		}
-		manejadorOfertas.clean();
 	}
 
 	@Test
@@ -82,7 +84,6 @@ public class ManejadorOfertasTest {
 		} catch (OfertaLaboralNoExisteException e) {
 			Assert.assertEquals("No existe la oferta solicitada", e.getMessage());
 		}
-		manejadorOfertas.clean();
 	}
 
 	@Test
@@ -94,7 +95,6 @@ public class ManejadorOfertasTest {
 		} catch (DtOfertaNoExisteException e) {
 			Assert.assertEquals("No existe la oferta solicitada", e.getMessage());
 		}
-		manejadorOfertas.clean();
 	}
 
 	@Test
@@ -118,7 +118,6 @@ public class ManejadorOfertasTest {
 		Assert.assertEquals(dtOfertaLaboral.getFechaAlta(), resultaDtOfertaLaboral.getFechaAlta());
 		Assert.assertEquals(dtOfertaLaboral.getPostulaciones(), resultaDtOfertaLaboral.getPostulaciones());
 		Assert.assertEquals(dtOfertaLaboral.getDescripcion(), resultaDtOfertaLaboral.getDescripcion());
-		manejadorOfertas.clean();
 	}
 
 	@Test
@@ -141,7 +140,6 @@ public class ManejadorOfertasTest {
 		resultadoEsperado.add("nombre");
 		Collections.sort(resultadoEsperado);
 		Assert.assertEquals(resultadoEsperado, resultado);
-		manejadorOfertas.clean();
 	}
 
 }
