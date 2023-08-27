@@ -63,6 +63,4 @@ public interface IControladorOferta {
 
 	public PaquetePublicacion obtenerPaquetePublicacion(String string) throws PaquetePublicacionNoExisteException;
 
-	public boolean estaPostulado(String postulante, String nomOfertaLaboral) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
-
 }
