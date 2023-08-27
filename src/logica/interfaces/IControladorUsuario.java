@@ -1,5 +1,6 @@
 package logica.interfaces;
 
+
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -9,8 +10,9 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
-import logica.classes.Postulante;
 import logica.classes.Usuario;
+import logica.classes.Postulante;
+
 
 public interface IControladorUsuario {
 	

@@ -35,6 +35,7 @@ import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.classes.Keyword;
 import logica.controllers.Fabrica;
 import logica.handlers.ManejadorUsuario;
+import logica.interfaces.IControladorDatosDePrueba;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 import java.awt.BorderLayout;
@@ -45,34 +46,34 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
 
-    private JPanel contentPane;
-    private JFrame ventanaPrincipal;
-    private IControladorUsuario ICU;
-    private IControladorOferta ICO;
-    private CrearUsuario crearUsuInternalFrame;
-    private ConsultarUsuario consultarUsuInternalFrame;
-    private AltaOfertaLaboral crearOfertaLaboralInternalFrame;
-    private ConsultaOfertaLaboral consultarOfertaInternalFrame;
-    private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
-    private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
-    private Date fecha;
-    private String fechaS = "23/02/1923";
+	private JPanel contentPane;
+	private JFrame ventanaPrincipal;
+	private IControladorUsuario ICU;
+	private IControladorOferta ICO;
+	private CrearUsuario crearUsuInternalFrame;
+	private ConsultarUsuario consultarUsuInternalFrame;
+	private AltaOfertaLaboral crearOfertaLaboralInternalFrame;
+	private ConsultaOfertaLaboral consultarOfertaInternalFrame;
+	private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
+	private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
+	private Date fecha;
+	private String fechaS = "23/02/1923";
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Principal frame = new Principal();
-                    frame.ventanaPrincipal.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal frame = new Principal();
+					frame.ventanaPrincipal.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the frame.
@@ -107,13 +108,11 @@ public class Principal extends JFrame {
 		postulacionOfertaLabInternalFrame.setBackground(new Color(240, 240, 240));
 		postulacionOfertaLabInternalFrame.setResizable(false);
 		postulacionOfertaLabInternalFrame.setVisible(false);
-
-		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
+		
+		
 		ventanaPrincipal.getContentPane().add(crearUsuInternalFrame);
-
-		JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
-		crearUsuInternalFrame.getContentPane().add(internalFrame, BorderLayout.NORTH);
-		internalFrame.setVisible(true);
+		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
+		
 		ventanaPrincipal.getContentPane().add(crearOfertaLaboralInternalFrame);
 		ventanaPrincipal.getContentPane().add(consultarOfertaInternalFrame);
 		ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
@@ -145,21 +144,19 @@ public class Principal extends JFrame {
 				ventanaPrincipal.dispose();
 			}
 		});
-		menuSistema.add(menuSalir);
 
 		JMenuItem menuCargarDatos = new JMenuItem("Cargar Datos");
 		menuCargarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					cargarDatosDePrueba(arg0);
-				} catch (ParseException | KeywordNoExisteException | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException e) {
-					// TODO Auto-generated catch block
+				} catch (Exception e) {
 					e.printStackTrace();
 				} // Esta funcion carga los datos de prueba
 			}
 		});
 		menuSistema.add(menuCargarDatos);
-
+		menuSistema.add(menuSalir);
 		JMenu menuUsuarios = new JMenu("Usuarios");
 		menuBar.add(menuUsuarios);
 
@@ -185,17 +182,17 @@ public class Principal extends JFrame {
 		JMenu menuOfertaLaboral = new JMenu("Ofertas Laborales");
 		menuBar.add(menuOfertaLaboral);
 
-        JMenuItem menuItemRegistrarOferta = new JMenuItem("Registrar Oferta Laboral");
-        menuItemRegistrarOferta.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para registrar una oferta laboral
-            	crearOfertaLaboralInternalFrame.cargarEmpresas();
-            	crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
-                crearOfertaLaboralInternalFrame.cargarKeywords();
-            	crearOfertaLaboralInternalFrame.setVisible(true);
-            }
-        });
-        menuOfertaLaboral.add(menuItemRegistrarOferta);
+		JMenuItem menuItemRegistrarOferta = new JMenuItem("Registrar Oferta Laboral");
+		menuItemRegistrarOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para registrar una oferta laboral
+				crearOfertaLaboralInternalFrame.cargarEmpresas();
+				crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
+				crearOfertaLaboralInternalFrame.cargarKeywords();
+				crearOfertaLaboralInternalFrame.setVisible(true);
+			}
+		});
+		menuOfertaLaboral.add(menuItemRegistrarOferta);
 
 		JMenuItem menuItemConsultarOferta = new JMenuItem("Consultar Oferta Laboral");
 		menuItemConsultarOferta.addActionListener(new ActionListener() {
@@ -229,8 +226,8 @@ public class Principal extends JFrame {
 	}
 
 	@SuppressWarnings("deprecation")
-	protected void cargarDatosDePrueba(ActionEvent arg0)
-			throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException, UsuarioEmailRepetidoException {
+	protected void cargarDatosDePrueba(ActionEvent arg0) throws ParseException, KeywordNoExisteException,
+			PaquetePublicacionYaExisteException, UsuarioEmailRepetidoException {
 		try {
 
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -301,7 +298,7 @@ public class Principal extends JFrame {
 			Keyword k7 = ICO.obtenerKeywords("Computación");
 			Keyword k8 = ICO.obtenerKeywords("Administración");
 			Keyword k9 = ICO.obtenerKeywords("Logística");
-			
+
 			ArrayList<String> keywords = new ArrayList<String>();
 			keywords.add(k1.getNombre());
 			keywords.add(k2.getNombre());
@@ -309,57 +306,58 @@ public class Principal extends JFrame {
 			keywords.add(k4.getNombre());
 			keywords.add(k5.getNombre());
 			keywords.add(k6.getNombre());
-			
 
 			ICO.altaOfertaLaboral("Desarrollador Frontend",
 					"Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.",
-					"09:00", "18:00", 90000f, "Montevideo", "Montevideo", dateFormat.parse("14/08/2023"),
-					"Premium", "EcoTech", keywords);
-					
+					"09:00", "18:00", 90000f, "Montevideo", "Montevideo", dateFormat.parse("14/08/2023"), "Premium",
+					"EcoTech", keywords);
+
 			ArrayList<String> keywords2 = new ArrayList<String>();
 			keywords2.add(k5.getNombre());
 			ICO.altaOfertaLaboral("Estratega de Negocios",
 					"Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes.",
-					"08:00", "17:00", 80000f, "Punta del Este", "Maldonado", dateFormat.parse("14/08/2023"),
-					"Estándar","GlobalHealth", keywords2);
-          
+					"08:00", "17:00", 80000f, "Punta del Este", "Maldonado", dateFormat.parse("14/08/2023"), "Estándar",
+					"GlobalHealth", keywords2);
+
 			ArrayList<String> keywords3 = new ArrayList<String>();
 			keywords3.add(k2.getNombre());
 			keywords3.add(k3.getNombre());
 			keywords3.add(k6.getNombre());
 			ICO.altaOfertaLaboral("Diseñador UX/UI",
 					"Trabaja en colaboración con nuestro talentoso equipo de diseño para crear soluciones impactantes.",
-					"14:00", "18:00", 65000f, "Rosario", "Colonia", dateFormat.parse("13/08/2023"), "Estándar", "FusionTech", keywords3);
+					"14:00", "18:00", 65000f, "Rosario", "Colonia", dateFormat.parse("13/08/2023"), "Estándar",
+					"FusionTech", keywords3);
 
 			ArrayList<String> keywords4 = new ArrayList<String>();
 			keywords4.add(k2.getNombre());
 			ICO.altaOfertaLaboral("Analista de Datos",
 					"Ayuda a nuestros clientes a tomar decisiones informadas basadas en análisis y visualizaciones de datos.",
-					"09:00", "13:00", 40000f, "Maldonado", "Maldonado", dateFormat.parse("11/08/2023"),
-					"Premium", "ANTEL", keywords4);
+					"09:00", "13:00", 40000f, "Maldonado", "Maldonado", dateFormat.parse("11/08/2023"), "Premium",
+					"ANTEL", keywords4);
 
 			ArrayList<String> keywords5 = new ArrayList<String>();
 			keywords5.add(k4.getNombre());
 			ICO.altaOfertaLaboral("Content Manager",
 					"Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en línea de nuestros clientes.",
-					"18:00", "22:00", 10000f, "Montevideo", "Montevideo", dateFormat.parse("20/08/2023"),
-					"Destacada", "MIEM", keywords5);
+					"18:00", "22:00", 10000f, "Montevideo", "Montevideo", dateFormat.parse("20/08/2023"), "Destacada",
+					"MIEM", keywords5);
 
 			ArrayList<String> keywords6 = new ArrayList<String>();
 			keywords6.add(k1.getNombre());
 			ICO.altaOfertaLaboral("Soporte Técnico",
 					"Ofrece un excelente servicio de soporte técnico a nuestros clientes, resolviendo problemas y brindando soluciones",
-					"09:00", "18:00", 30000f, "Minas", "Lavalleja", dateFormat.parse("15/08/2023"),
-					"Básica", "TechSolutions", keywords6);
+					"09:00", "18:00", 30000f, "Minas", "Lavalleja", dateFormat.parse("15/08/2023"), "Básica",
+					"TechSolutions", keywords6);
 
 			ICO.altaOfertaLaboral("A. de Marketing Digital",
 					"Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.", "10:00",
-					"19:00", 80000f, "Flores", "Flores", dateFormat.parse("15/08/2023"), "Premium", "EcoTech", new ArrayList<String>());
+					"19:00", 80000f, "Flores", "Flores", dateFormat.parse("15/08/2023"), "Premium", "EcoTech",
+					new ArrayList<String>());
 
 			ICO.altaOfertaLaboral("Contador Senior",
 					"Unete a nuestro equipo contable y ayuda en la gestión financiera de la empresa.", "08:30", "17:30",
-					100000f, "Colonia Suiza", "Colonia", dateFormat.parse("16/08/2023"),
-					"Destacada", "GlobalHealth", new ArrayList<String>());
+					100000f, "Colonia Suiza", "Colonia", dateFormat.parse("16/08/2023"), "Destacada", "GlobalHealth",
+					new ArrayList<String>());
 
 			ICO.registrarPostulacion(
 					"Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos Microsoft Office.",
@@ -444,7 +442,7 @@ public class Principal extends JFrame {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} catch (OfertaLaboralYaExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-		} catch (TipoPublicacionNoExisteException e)  {
+		} catch (TipoPublicacionNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} catch (OfertaLaboralNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
@@ -452,11 +450,8 @@ public class Principal extends JFrame {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		} catch (KeywordNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-		} 
-		catch(UsuarioEmailRepetidoException e) {
+		} catch (UsuarioEmailRepetidoException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-    
 }

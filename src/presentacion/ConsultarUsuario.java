@@ -74,7 +74,6 @@ public class ConsultarUsuario extends JInternalFrame {
 		controladorOferta = contrOferta;
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 594, 502);
-
 		JPanel panelBotones = new JPanel();
 		getContentPane().add(panelBotones, BorderLayout.SOUTH);
 		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
@@ -262,7 +261,6 @@ public class ConsultarUsuario extends JInternalFrame {
 		textAreaDescripcion.setWrapStyleWord(true);
 		textAreaDescripcion.setEditable(false);
 		scrollPane.setViewportView(textAreaDescripcion);
-
 		panelPostulante = new JPanel();
 		layeredPane.add(panelPostulante, "name_919472867094100");
 		GridBagLayout gbl_panelPostulante = new GridBagLayout();

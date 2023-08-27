@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.SwingConstants;
 
@@ -348,10 +349,10 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         });
     }
     
-    public String dateToString(Date fecha)
+    public String dateToString(Date date)
     {
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    	return formatter.format(fecha);
+    	return formatter.format(date);
     }
     
     public Date stringToDate(String Fecha)

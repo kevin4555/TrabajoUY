@@ -91,7 +91,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		manejadorUsuarios.agregarEmpresa(empresa);
 
 	}
-
+	
 	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Usuario usuario = manejadorUsuario.obtenerUsuario(nickname);
@@ -107,7 +107,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException {
 		Usuario usuario = this.obtenerUsuario(nickname);
 		return usuario.listarOfertasUsuario();
-	}
+		}
 
 	@Override
 	public Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException {
