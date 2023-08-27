@@ -13,11 +13,16 @@ import java.util.Map;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
+import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
+import logica.classes.Keyword;
 import logica.classes.PaquetePublicacion;
 import logica.classes.TipoPublicacion;
 import logica.interfaces.IControladorDatosDePrueba;
@@ -44,21 +49,21 @@ public class ControladorDatosDePrueba implements IControladorDatosDePrueba {
 		Map<String, ArrayList<String>> mapOfertasLaboralesKeywords = createCSVMap(
 				createCSVPath("OfertasLaboralesKeywords"), separador);
 		cargarUsuarios(mapUsuarios, mapEmpresas, mapPostulantes);
-		System.out.print("OK" + " cargarUsuariosFromCSV");
+		System.out.print("OK" + " cargarUsuarios\n");
 		cargarTipoPublicacion(mapTipoPublicacion);
-		System.out.print("OK" + " cargarTipoPublicacion");
+		System.out.print("OK" + " cargarTipoPublicacion\n");
 		cargarKeywords(mapKeywords);
-		System.out.print("OK" + " cargarKeywords");
+		System.out.print("OK" + " cargarKeywords\n");
 		cargarPaquetesyCantidadTipoPublicacion(mapPaquetes, mapTipoPublicacionPaquetes, mapTipoPublicacion);
-		System.out.print("OK" + " cargarPaquetesyCantidadTipoPublicacion");
+		System.out.print("OK" + " cargarPaquetesyCantidadTipoPublicacion\n");
 		cargarEmpresaPaquete(mapUsuarios, mapPaquetes, mapEmpresasPaquetes);
-		System.out.print("OK" + " cargarEmpresaPaquete");
+		System.out.print("OK" + " cargarEmpresaPaquete\n");
 		cargarOfertasLaborales(mapUsuarios, mapOfertasLaborales, mapTipoPublicacion);
-		System.out.print("OK" + " cargarOfertasLaborales");
+		System.out.print("OK" + " cargarOfertasLaborales\n");
 		cargarOfertasLaboralesKeywords(mapOfertasLaboralesKeywords, mapKeywords, mapOfertasLaborales);
-		System.out.print("OK" + " cargarOfertasLaboralesKeywords");
+		System.out.print("OK" + " cargarOfertasLaboralesKeywords\n");
 		cargarPostulaciones(mapPostulaciones, mapUsuarios, mapOfertasLaborales);
-		System.out.print("OK" + " cargarPostulaciones");
+		System.out.print("OK" + " cargarPostulaciones\n");
 	}
 
 	private void cleanDatosActuales() {
@@ -102,7 +107,7 @@ public class ControladorDatosDePrueba implements IControladorDatosDePrueba {
 	}
 
 	private void cargarUsuarios(Map<String, ArrayList<String>> mapUsuarios, Map<String, ArrayList<String>> mapEmpresas,
-			Map<String, ArrayList<String>> mapPostulantes) throws ParseException, UsuarioYaExisteException {
+			Map<String, ArrayList<String>> mapPostulantes) throws ParseException, UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IControladorUsuario iControladorUsuario = fabrica.obtenerControladorUsuario();
 
@@ -156,7 +161,7 @@ public class ControladorDatosDePrueba implements IControladorDatosDePrueba {
 
 	private void cargarPaquetesyCantidadTipoPublicacion(Map<String, ArrayList<String>> mapPaquetes,
 			Map<String, ArrayList<String>> mapTipoPublicacionPaquetes,
-			Map<String, ArrayList<String>> mapTipoPublicacion) throws ParseException {
+			Map<String, ArrayList<String>> mapTipoPublicacion) throws ParseException, PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException {
 
 		Fabrica fabrica = Fabrica.getInstance();
 		IControladorOferta iControladorOferta = fabrica.obtenerControladorOferta();
@@ -166,9 +171,9 @@ public class ControladorDatosDePrueba implements IControladorDatosDePrueba {
 			String nombre = datosPaquete.get(0);
 			String descripcion = datosPaquete.get(1);
 			int periodoValDias = Integer.valueOf(datosPaquete.get(2).substring(0, datosPaquete.get(2).indexOf(" ")));
-			Float descuento = Float.valueOf(datosPaquete.get(3)) / 100;
+			Float descuento = Float.valueOf(datosPaquete.get(3));
 			Date fechaAlta = stringToDate("dd/MM/yyyy", datosPaquete.get(4));
-			iControladorOferta.registrarPaquete(nombre, descripcion, 0, periodoValDias, descuento, fechaAlta, null);
+			iControladorOferta.registrarPaquete(nombre, descripcion, periodoValDias, descuento, fechaAlta, null);
 		}
 		System.out.print("OK" + " cargarPaquetes\n");
 		for (String id : mapTipoPublicacionPaquetes.keySet()) {
@@ -230,7 +235,7 @@ public class ControladorDatosDePrueba implements IControladorDatosDePrueba {
 			Float remoneracion = Float.valueOf(datosOfertaLaboral.get(5));
 			Date fechaAlta = stringToDate("dd/MM/yyyy", datosOfertaLaboral.get(8));
 			iControladorOferta.altaOfertaLaboral(nombre, descripcion, horaInicio, horaFinal, remoneracion, ciudad,
-					departamento, fechaAlta, tipoPublicacion, empresa, null);
+					departamento, fechaAlta, tipoPublicacion.getNombre(), empresa.getNickname(),null);
 		}
 
 	}
@@ -246,16 +251,15 @@ public class ControladorDatosDePrueba implements IControladorDatosDePrueba {
 			String[] idKeywords = mapOfertasLaboralesKeywords.get(idOferta).get(0).split(", ");
 			String nombreOfertaLaboral = mapOfertasLaborales.get(idOferta).get(0);
 			for (String idKeyword : idKeywords) {
-				iControladorOferta.agregarKeywordEnOfertaLaboral(mapKeywords.get(idKeyword).get(0),
-						nombreOfertaLaboral);
+				Keyword keyword = iControladorOferta.obtenerKeywords(mapKeywords.get(idKeyword).get(0));
+				iControladorOferta.obtenerOfertaLaboral(nombreOfertaLaboral).agregarKeyword(keyword);
 			}
 		}
 	}
 
 	private void cargarPostulaciones(Map<String, ArrayList<String>> mapPostulaciones,
 			Map<String, ArrayList<String>> mapUsuarios, Map<String, ArrayList<String>> mapOfertasLaborales)
-			throws ParseException {
-		// TODO Auto-generated method stub
+			throws ParseException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IControladorOferta iControladorOferta = fabrica.obtenerControladorOferta();
 

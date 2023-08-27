@@ -16,18 +16,17 @@ public class PaquetePublicacion {
 	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
 	private Map<String, CompraPaquete> compraPaquetes;
 
-	public PaquetePublicacion(String nombre, String descripcion, int cantidadPublicaciones, int periodoValidez,
+	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez,
 			float descuento, ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.cantidadPublicaciones = cantidadPublicaciones;
 		if (this.cantidadTipoPublicaciones == null) {
 			this.cantidadTipoPublicaciones = new ArrayList<CantidadTipoPublicacion>();
 		}
 		this.periodoValidez = periodoValidez;
 		this.descuento = descuento;
-		this.cantidadTipoPublicaciones = cantidadTipo;
-		for (CantidadTipoPublicacion cantidad : cantidadTipo) {
+		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
+		for (CantidadTipoPublicacion cantidad : cantidadTipoPublicaciones) {
 			this.cantidadPublicaciones = this.cantidadPublicaciones + cantidad.getCantidadRestante();
 		}
 		this.setCosto();
@@ -99,6 +98,9 @@ public class PaquetePublicacion {
 	public void setCantidadTipoPublicaciones(ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {
 		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
 	}
+	public ArrayList<CantidadTipoPublicacion> getCantidadTipoPublicaciones() {
+		return this.cantidadTipoPublicaciones;
+	}
 
 	public DTPaquetePublicacion obtenerDTPaquete() {
 		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo);
@@ -109,6 +111,9 @@ public class PaquetePublicacion {
 			this.cantidadTipoPublicaciones = new ArrayList<CantidadTipoPublicacion>();
 		}
 		this.cantidadTipoPublicaciones.add(cantidadTipoPublicacion);
+		for (CantidadTipoPublicacion cantidad : cantidadTipoPublicaciones) {
+			this.cantidadPublicaciones = this.cantidadPublicaciones + cantidad.getCantidadRestante();
+		}
 		setCosto();
 	}
 
@@ -123,6 +128,12 @@ public class PaquetePublicacion {
 			throw new CompraPaqueteYaExisteException(
 					"CompraPaquete de la Empresa " + compraPaquete.getEmpresa().getNombre() + " ya existe");
 		}
+	}
+
+	public void crearCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) {
+		CantidadTipoPublicacion cantidadTipoPublicacion = new CantidadTipoPublicacion(cantIncluida, tipoPublicacion);
+		this.addCantidadTipoPublicacion(cantidadTipoPublicacion);
+		
 	}
 
 }

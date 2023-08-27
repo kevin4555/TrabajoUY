@@ -73,16 +73,6 @@ public class ClasesTest {
 	}
 
 	@Test
-	public void setNacionalidadClaseCompraPaquete() {
-		CompraPaquete nuevoCompraPaquete = new CompraPaquete(fechaDate, "Uruguaya");
-		nuevoCompraPaquete.setNacionalidad("Argentina");
-		nuevoCompraPaquete.setFehcaNacimiento(fechaDateSegunda);
-
-		Assert.assertEquals("Argentina", nuevoCompraPaquete.getNacionalidad());
-		Assert.assertEquals(fechaDateSegunda, nuevoCompraPaquete.getFehcaNacimiento());
-	}
-
-	@Test
 	public void setClaseEmpresa() {
 		Empresa empresa1 = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
 				"sitioWeb1");

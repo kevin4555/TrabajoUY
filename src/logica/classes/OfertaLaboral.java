@@ -40,6 +40,20 @@ public class OfertaLaboral {
 		this.listaKeywords = new ArrayList<Keyword>();
 	}
 
+	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion,String ciudad,String departamento, Date fechaAlta,TipoPublicacion tipoPublicacion) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.ciudad = ciudad;
+		this.departamento = departamento;
+		this.horarioInicial = horarioInicial;
+		this.horarioFinal = horarioFinal;
+		this.remuneracion = remuneracion;
+		this.fechaAlta = fechaAlta;
+		this.tipoPublicacion = tipoPublicacion;
+		this.postulaciones = new ArrayList<Postulacion>();
+		this.listaKeywords = new ArrayList<Keyword>();
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

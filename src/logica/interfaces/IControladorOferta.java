@@ -41,7 +41,7 @@ public interface IControladorOferta {
 	
 	public Keyword obtenerKeywords(String nomKeyword) throws KeywordNoExisteException, TipoPublicacionNoExisteException;
 
-	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException, TipoPublicacionYaExisteException;
+	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException;
 
 	public ArrayList<String> listarKeywords();
 
@@ -60,5 +60,7 @@ public interface IControladorOferta {
 			Date fechaPub) throws TipoPublicacionYaExisteException;
 
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException;
+
+	public PaquetePublicacion obtenerPaquetePublicacion(String string) throws PaquetePublicacionNoExisteException;
 
 }
