@@ -275,7 +275,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         
         JPanel ubicacionSur = new JPanel();
         getContentPane().add(ubicacionSur, BorderLayout.SOUTH);
-        ubicacionSur.setVisible(false);
+        ubicacionSur.setVisible(true);
         
         this.comboBoxEmpresasRegistradasPostulacion.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e)
