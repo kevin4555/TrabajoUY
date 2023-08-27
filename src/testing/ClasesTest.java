@@ -14,6 +14,7 @@ import logica.classes.CantidadTipoPublicacion;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
 import logica.classes.Keyword;
+import logica.classes.OfertaLaboral;
 import logica.classes.PaquetePublicacion;
 import logica.classes.TipoPublicacion;
 
@@ -105,5 +106,26 @@ public class ClasesTest {
 		Assert.assertEquals("KeywordTest", nuevoKeyword.getNombre());
 	}
 	
+	@Test
+    public void setClaseOfertaLaboral() {
+        TipoPublicacion tipoPublicacion = new TipoPublicacion("nombre", "descripcion", "exposicion", 15, 15f, fechaDate);
+        OfertaLaboral ofertaLaboral = new OfertaLaboral("nombreOferta", "descripcion", "09:00", "15:00", 15f, "Montevideo", "Montevideo", fechaDate, tipoPublicacion);
+        ofertaLaboral.setCiudad("Florida");
+        ofertaLaboral.setDepartamento("Florida");
+        ofertaLaboral.setDescripcion("nueva Descripcion");
+        ofertaLaboral.setFechaAlta(fechaDateSegunda);
+        ofertaLaboral.setNombre("nuevoNombre");
+        ofertaLaboral.setHorarioInicial("10:00");
+        ofertaLaboral.setHorarioFinal("16:00");
+        ofertaLaboral.setRemunaracion(13f);
 
+        Assert.assertEquals("Florida", ofertaLaboral.getCiudad());
+        Assert.assertEquals("Florida", ofertaLaboral.getDepartamento());
+        Assert.assertEquals("nueva Descripcion", ofertaLaboral.getDescripcion());
+        Assert.assertEquals(fechaDateSegunda, ofertaLaboral.getFechaAlta());
+        Assert.assertEquals("nuevoNombre", ofertaLaboral.getNombre());
+        Assert.assertEquals("10:00", ofertaLaboral.getHorarioInicial());
+        Assert.assertEquals("16:00", ofertaLaboral.getHorarioFinal());
+        Assert.assertEquals(13f, ofertaLaboral.getRemunaracion());
+    }
 }

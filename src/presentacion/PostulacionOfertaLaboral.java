@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import logica.classes.OfertaLaboral;
+import logica.DataTypes.DTOfertaLaboral;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 import javax.swing.DefaultComboBoxModel;
@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.SwingConstants;
 
@@ -52,7 +53,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private JTextField textFieldCVReducido;
     private JTextField textFieldMotivacion;
     private JTextArea textAreaDescripcion;
-    private String oferta;
     private String postulante;
     private String seleccionEmpresa;
     private JDateChooser dateChooser;
@@ -69,6 +69,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 	private JComponent ubicacionTextos;
 	private JComponent ubicacionCentro;
 	private JComponent postulanteEIngreso;
+	private String nomOfertaLaboral;
     /**
      * Create the frame.
      */
@@ -85,7 +86,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setClosable(true);
         setTitle("Postulación a Oferta Laboral");
         setBounds(30, 30, 508, 380);
         
@@ -349,10 +349,10 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         });
     }
     
-    public String dateToString(Date fecha)
+    public String dateToString(Date date)
     {
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    	return formatter.format(fecha);
+    	return formatter.format(date);
     }
     
     public Date stringToDate(String Fecha)
@@ -393,16 +393,16 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     
     public void cargarDatosOfertaLaboralPostulacion(ActionEvent e)
     {
-    	String ofertaLaboral = (String) (this.comboBoxOfertasLaboralesPostulacion).getSelectedItem();
-    	OfertaLaboral dtOfertaLaboral;
+    	this.nomOfertaLaboral = (String) (this.comboBoxOfertasLaboralesPostulacion).getSelectedItem();
+    	DTOfertaLaboral dtOfertaLaboral;
 	    try {
-			dtOfertaLaboral = controlOfertaLab.obtenerOfertaLaboral(ofertaLaboral);
+			dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(this.nomOfertaLaboral);
 			
 			(this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
 			(this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());	   
-			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicial());
+			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicio());
 			(this.textFieldHoraFin).setText(dtOfertaLaboral.getHorarioFinal());
-			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemunaracion())));
+			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemuneracion())));
 			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
 			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
 			(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));
@@ -421,19 +421,24 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     public void registrarPostulacion(ActionEvent e)
     {
     	if(chequearDatos())
-    	{
-	    	String nombreOferta;	    	
+    	{	
 	    	try {
-	    		nombreOferta = (controlOfertaLab.obtenerDtOfertaLaboral(this.oferta)).getNombre();
 				String nombrePostulante;
-				nombrePostulante = (controlUsuarioLab.obtenerPostulante(this.postulante)).getNickname();
-				controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, this.fechaPostulacion, nombrePostulante , nombreOferta);
+				if(!controlOfertaLab.estaPostulado(this.postulante, this.nomOfertaLaboral))
+				{
+					nombrePostulante = (controlUsuarioLab.obtenerPostulante(this.postulante)).getNickname();
+					controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, this.fechaPostulacion, nombrePostulante , this.nomOfertaLaboral);
+					JOptionPane.showMessageDialog(this, "La postulacion fue hecha con exito", "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(this, "El usuario ya esta postulado a esta oferta", "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+				}
 			} catch (UsuarioNoExisteException e1) {
 			} catch (OfertaLaboralNoExisteException e1) {
 			}
-	    	dispose();
+		}
     		comboBoxOfertasLaboralesPostulacion.setVisible(false);
-    		dispose();
     		comboBoxOfertasLaboralesPostulacion.setVisible(false);
 			this.lblOfertasLaborales.setVisible(false);
 			this.ubicacionDatosOferta.setVisible(false);
@@ -446,7 +451,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 			this.ubicacionTextos.setVisible(false);
 			this.postulanteEIngreso.setVisible(false);
 	    	limpiarInformacion();
-    	}
     }
     
     public boolean chequearDatos()
@@ -454,20 +458,20 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	this.cvReducido = this.textFieldCVReducido.getText();
     	this.motivacion = this.textFieldMotivacion.getText();
     	this.fechaPostulacion = this.dateChooser.getDate();
-	    if(cvReducido.isEmpty() || motivacion.isEmpty())
-	    {
-	    	JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos.", "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
-	        return false;
-	    }
-	    else if(this.fechaPostulacion == null)
-	    {
-	    	JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha válida", "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			return false;
-	    }
-	    else
-	    {
-	    	return true;
-	    }
+		if(cvReducido.isEmpty() || motivacion.isEmpty())
+		    {
+		    	JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos.", "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+		        return false;
+		    }
+		    else if(this.fechaPostulacion == null)
+		    {
+		    	JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha válida", "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+				return false;
+		    }
+		    else
+		    {
+		    	return true;
+		    }
     }
     
     public void guardarPostulante()
@@ -485,5 +489,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	this.textFieldCiudad.setText("");
     	this.textFieldDepartamento.setText("");
 		this.textFieldFechaAlta.setText("");
+		this.textFieldMotivacion.setText("");
+		this.textFieldCVReducido.setText("");
+		this.dateChooser.setDate(null);
     }
 }
+	
