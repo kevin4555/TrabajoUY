@@ -362,6 +362,12 @@ public class CrearUsuario extends JInternalFrame {
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
+	
+		if(!this.textFieldEmail.getText().contains("@")) {
+			JOptionPane.showMessageDialog(this, "Debe ingresar un mail con el valor @", "Registrar Usuario",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 
 		if (this.tipoUsuarioSeleccionado.equals("Postulante")) {
 			if (this.textFieldNacionalidad.getText().isEmpty()) {
