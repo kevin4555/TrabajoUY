@@ -16,26 +16,6 @@ public class ManejadorPaquetes {
 		this.colPaquetes = new HashMap<String, PaquetePublicacion>();
 	}
 
-	private ManejadorPaquetes() {
-		this.colPaquetes = new HashMap<String, PaquetePublicacion>();
-	}
-
-	private ManejadorPaquetes() {
-		this.colPaquetes = new HashMap<String, PaquetePublicacion>();
-	}
-
-	private ManejadorPaquetes() {
-		this.colPaquetes = new HashMap<String, PaquetePublicacion>();
-	}
-
-	private ManejadorPaquetes() {
-		this.colPaquetes = new HashMap<String, PaquetePublicacion>();
-	}
-
-	private ManejadorPaquetes() {
-		this.colPaquetes = new HashMap<String, PaquetePublicacion>();
-	}
-
 	public static ManejadorPaquetes getInstance() {
 		if (instancia == null)
 			instancia = new ManejadorPaquetes();
