@@ -25,6 +25,9 @@ public class ManejadorSettingsTest
 	@Before
 	public void setUp()
 	{
+		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
+		manejadorSettings.clean();
+		
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		try
 		{

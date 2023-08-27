@@ -349,7 +349,7 @@ public class ControladorOfertaTest {
 		controladorUsuario.altaPostulante("nicknameTesting", "nombreTesting", "apellidoTesting", "email", fechaDate,
 				"Montevideo");
 
-		controladorOferta.registrarPostulacion("cvReducidoString", "MotivacionTesting", fechaDate, "nicknameTesting",
+		controladorUsuario.registrarPostulacion("cvReducidoString", "MotivacionTesting", fechaDate, "nicknameTesting",
 				"test");
 
 		ArrayList<String> resultado = controladorUsuario.listaOfertasUsuario("nicknameTesting");

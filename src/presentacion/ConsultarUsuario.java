@@ -64,6 +64,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	private JPanel panelDatos;
 
 	public ConsultarUsuario(IControladorUsuario contrUsuario, IControladorOferta contrOferta) {
+		setTitle("Consulta de Usuarios");
 		this.usuarioSeleccionado = "";
 		this.ofertaSeleccionada = "";
 		

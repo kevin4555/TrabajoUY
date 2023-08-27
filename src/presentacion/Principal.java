@@ -111,9 +111,8 @@ public class Principal extends JFrame {
 		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
 		ventanaPrincipal.getContentPane().add(crearUsuInternalFrame);
 
-		JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
-		crearUsuInternalFrame.getContentPane().add(internalFrame, BorderLayout.NORTH);
-		internalFrame.setVisible(true);
+		
+		
 		ventanaPrincipal.getContentPane().add(crearOfertaLaboralInternalFrame);
 		ventanaPrincipal.getContentPane().add(consultarOfertaInternalFrame);
 		ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
@@ -361,32 +360,32 @@ public class Principal extends JFrame {
 					100000f, "Colonia Suiza", "Colonia", dateFormat.parse("16/08/2023"),
 					"Destacada", "GlobalHealth", new ArrayList<String>());
 
-			ICO.registrarPostulacion(
+			ICU.registrarPostulacion(
 					"Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos Microsoft Office.",
 					"Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.",
 					dateFormat.parse("16/08/2023"), "lgarcia", "Desarrollador Frontend");
 
-			ICO.registrarPostulacion(
+			ICU.registrarPostulacion(
 					"Estudiante de Comunicación, habilidades en redacción y manejo de redes sociales. Experiencia en prácticas en medios locales.",
 					"Me encantaría formar parte de un equipo que me permita desarrollar mis habilidades en comunicación y marketing.",
 					dateFormat.parse("15/08/2023"), "matilo", "Estratega de Negocios");
 
-			ICO.registrarPostulacion(
+			ICU.registrarPostulacion(
 					"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.",
 					"Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
 					dateFormat.parse("14/08/2023"), "maro", "Desarrollador Frontend");
 
-			ICO.registrarPostulacion(
+			ICU.registrarPostulacion(
 					"Técnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos eléctricos.",
 					"Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades técnicas y contribuir al mantenimiento eficiente.",
 					dateFormat.parse("13/08/2023"), "javierf", "Diseñador UX/UI");
 
-			ICO.registrarPostulacion(
+			ICU.registrarPostulacion(
 					"Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.",
 					"Me gustaría combinar mi pasión por la música con una oportunidad laboral que me permita seguir creciendo como artista.",
 					dateFormat.parse("12/08/2023"), "valen25", "Estratega de Negocios");
 
-			ICO.registrarPostulacion(
+			ICU.registrarPostulacion(
 					"Licenciada en Administración, me considero genia, experiencia en gestión de equipos y proyectos. Conocimientos en Microsoft Office.",
 					"Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.",
 					dateFormat.parse("16/08/2023"), "lgarcia", "Estratega de Negocios");
