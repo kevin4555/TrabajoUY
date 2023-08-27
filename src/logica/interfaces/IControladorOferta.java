@@ -43,9 +43,6 @@ public interface IControladorOferta {
 
 	public ArrayList<String> listarKeywords();
 
-	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
-			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
-
 	public DTOfertaLaboral obtenerDtOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException;
 
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;

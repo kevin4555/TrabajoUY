@@ -117,18 +117,6 @@ public class ControladorOferta implements IControladorOferta {
 		return listKeywords;
 	}
 
-	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
-			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
-		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
-		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
-
-		Postulante postulante = manejadorUsuario.obtenerPostulante(nickname);
-		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
-		Postulacion postulacion = new Postulacion(motivacion, fechaPostulacion, cvReducido, postulante, ofertaLaboral);
-		ofertaLaboral.agregarPostulacion(postulacion);
-		postulante.agregarPostulacion(postulacion);
-	}
-
 
 	public DTOfertaLaboral obtenerDtOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();

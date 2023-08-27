@@ -75,6 +75,7 @@ public class CrearUsuario extends JInternalFrame {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarUsuario();
+				limpiarTodosLosDatos();
 			}
 		});
 		panelBotones.add(btnConfirmar);
