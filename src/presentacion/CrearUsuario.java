@@ -74,8 +74,9 @@ public class CrearUsuario extends JInternalFrame {
 		this.btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarUsuario();
-				limpiarTodosLosDatos();
+				if (RegistrarUsuario()) {
+					limpiarTodosLosDatos();
+				}
 			}
 		});
 		panelBotones.add(btnConfirmar);
@@ -306,7 +307,7 @@ public class CrearUsuario extends JInternalFrame {
 		cambiarPanel(panelPostulante);
 	}
 
-	protected void RegistrarUsuario() {
+	protected boolean RegistrarUsuario() {
 		String nickname = this.textFieldNickName.getText();
 		String nombre = this.textFieldNombre.getText();
 		String apellido = this.textFieldApellido.getText();
@@ -325,17 +326,22 @@ public class CrearUsuario extends JInternalFrame {
 							nacionalidad);
 					JOptionPane.showMessageDialog(this, "El Postulante se ha creado con éxito", "Registrar Usuario",
 							JOptionPane.INFORMATION_MESSAGE);
+					return true;
 				} else {
 					this.controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descripcion, sitioWeb);
 					JOptionPane.showMessageDialog(this, "La Empresa se ha creado con éxito", "Registrar Usuario",
 							JOptionPane.INFORMATION_MESSAGE);
+					return true;
 				}
 			} catch (UsuarioYaExisteException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+				return false;
 			} catch (UsuarioEmailRepetidoException e2) {
 				JOptionPane.showMessageDialog(this, e2.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+				return false;
 			}
 		}
+		return false;
 	}
 
 	@SuppressWarnings("exports")
