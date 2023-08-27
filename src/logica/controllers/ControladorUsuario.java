@@ -109,6 +109,12 @@ public class ControladorUsuario implements IControladorUsuario {
 		return usuario.listarOfertasUsuario();
 	}
 
+	public Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException
+	{
+		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
+		return manejadorUsuarios.obtenerPostulante(nomPostulante);
+	}
+
 	@Override
 	public Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException {
 	   ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
