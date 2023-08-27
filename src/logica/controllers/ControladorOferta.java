@@ -183,4 +183,14 @@ public class ControladorOferta implements IControladorOferta {
 		return post.listarOfertasUsuario().contains(nomOfertaLaboral);
 	}
 
+	public ArrayList<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab) throws OfertaLaboralNoExisteException {
+		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
+		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOfertaLab);
+		ArrayList<String> listaKeywords = new ArrayList<String>();
+		for (int i = 0; i < ofertaLaboral.getKw().size(); i++) {
+			listaKeywords.add(ofertaLaboral.getKw().get(i).getNombre());
+		}
+		return listaKeywords;
+	}
+
 }
