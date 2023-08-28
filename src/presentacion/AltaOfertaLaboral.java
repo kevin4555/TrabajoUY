@@ -379,6 +379,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
+		
+		if(Float.parseFloat(remuneracionOfertaLab) <= 0) {
+			JOptionPane.showMessageDialog(this, "La remuneración debe ser mayor a cero", "Registrar Oferta Laboral",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 
 		return true;
 	}

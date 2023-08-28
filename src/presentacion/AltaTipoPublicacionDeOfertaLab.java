@@ -139,7 +139,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		ubicacionTexto.add(panel);
-		panel.setLayout(new GridLayout(0, 6, 0, 0));
+		panel.setLayout(new GridLayout(0, 5, 0, 0));
 
 		dateChooser = new JDateChooser();
 		panel.add(dateChooser);
@@ -211,11 +211,22 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 					"Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
+		
+		if (Integer.parseInt(duracion) <= 0) {
+			JOptionPane.showMessageDialog(this, "La duración debe ser mayor a cero",
+					"Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 
 		try {
 			Float.parseFloat(costo);
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(this, "El costo debe ser un valor numérico",
+					"Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if(Float.parseFloat(costo) < 0) {
+			JOptionPane.showMessageDialog(this, "El costo debe ser mayor o igual a cero",
 					"Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
