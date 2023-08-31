@@ -3,6 +3,7 @@ package logica.classes;
 import java.util.ArrayList;
 import java.util.Date;
 
+import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTPostulante;
 import logica.DataTypes.DTUsuario;
 
@@ -63,5 +64,14 @@ public class Postulante extends Usuario{
 		return this.obtenerDTPostulante();
 	}
 	
+	public DTPostulacion obtenerDTPostulacion(String nombreOferta) {
+		Postulacion postulacionAOferta = null;
+		for(Postulacion postulacion : postulaciones) {
+			if (postulacion.getNombreOfertaLaboral() == nombreOferta) {
+				postulacionAOferta = postulacion;
+			}
+		}
+		return postulacionAOferta.obtenerDTPostulacion();
+	}
 	
 }
