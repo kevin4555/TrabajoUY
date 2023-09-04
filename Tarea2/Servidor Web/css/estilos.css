@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 100px;
+    background-color: rgb(58, 73, 214);
+    font-size:  22px;
+    padding: 30px;
+    color: white;
+}
+
+.logo {
+    float: left;
+    text-transform: uppercase;
+    text-shadow:  0 0 5px #000;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #333;
+    text-shadow: 0 0 5px #ccc;
+}
+
+.portada {
+    float: right;
+}
+
+.menuRegistro {
+    list-style: none;
+}
+
+.menuRegistro li {
+    text-transform:  capitalize;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.menuRegistro a {
+    color: white;
+    text-decoration: none;
+}
+
+.menuRegistro a:hover {
+    color: #ee0e0e;
+}
+
+
+
+
+
+/*.call {
+    margin: 30px;
+    padding: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.call p {
+    margin-bottom: 20px;
+}
+
+.call a {
+    background-color: rgb(58, 73, 214);
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.call a:hover {
+    background-color: #333;
+}*/
+
+.home {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.keywords {
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.oferta p {
+    width: 50%;
+    padding: 10px;
+}
+
+.ofertaslaborales {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.oferta {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px;
+    padding: 10px;
+}
+
+.oferta a {
+    background-color: rgb(58, 73, 214);
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.oferta a:hover {
+    background-color: #333;
+}
+
+.imgOfertas {
+    width: 200px;
+    height: 200px;
+}
+.login {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    width: calc(100vh- 100px);
+}
+
