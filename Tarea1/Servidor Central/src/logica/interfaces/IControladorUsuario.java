@@ -7,6 +7,7 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
@@ -40,4 +41,9 @@ public interface IControladorUsuario {
 
 	ArrayList<String> listarPostulantes();
 	
+	public void editarPostulante(String nickname, String nombre, String apellido, Date fechaNacimiento, String nacionalidad) throws UsuarioNoExisteException;
+	
+	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion ) throws UsuarioNoExisteException;
+	
+	public DTPostulacion obtenerDTPostulacion(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException;
 }
