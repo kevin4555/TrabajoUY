@@ -7,7 +7,6 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
-import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
 import logica.classes.OfertaLaboral;
@@ -116,25 +115,4 @@ public class ControladorUsuario implements IControladorUsuario {
 	   return manejadorUsuario.obtenerPostulante(nomPostulante);
 	}
 	
-	public void editarPostulante(String nickname, String nombre, String apellido, Date fechaNacimiento, String nacionalidad) throws UsuarioNoExisteException {
-		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nickname);
-		postulante.setNombre(nombre);
-		postulante.setApellido(apellido);
-		postulante.setFechaNacimiento(fechaNacimiento);
-		postulante.setNacionalidad(nacionalidad);
-	}
-	
-	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion ) throws UsuarioNoExisteException {
-		
-		Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nickname);
-		empresa.setNombre(nombre);
-		empresa.setApellido(apellido);
-		empresa.setSitioWeb(sitioWeb);
-		empresa.setDescripcion(descripcion);
-	}
-	
-	public DTPostulacion obtenerDTPostulacion(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException {
-		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nicknamePostulante);
-		return postulante.obtenerDTPostulacion(nombreOferta);
-	}
 }
