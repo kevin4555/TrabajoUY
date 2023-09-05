@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Tarea1/Servidor Central/src"/>
+	<classpathentry kind="src" path="Tarea2/Servidor Central/src"/>
+	<classpathentry kind="lib" path="Tarea1/Servidor Central/Utilidades/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="Tarea1/Servidor Central/Utilidades/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="Tarea1/Servidor Central/Utilidades/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="Tarea1/Servidor Central/Utilidades/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="Tarea2/Servidor Central/Utilidades/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="Tarea2/Servidor Central/Utilidades/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="Tarea2/Servidor Central/Utilidades/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="Tarea2/Servidor Central/Utilidades/junit-4.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
