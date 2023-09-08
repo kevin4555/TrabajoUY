@@ -12,6 +12,7 @@ public class PaquetePublicacion {
 	private float descuento;
 	private float costo;
 	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
+	private ArrayList<CompraPaquete> compraPaquetes;
 
 	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento,
 			ArrayList<CantidadTipoPublicacion> cantidadTipo) {
@@ -24,6 +25,7 @@ public class PaquetePublicacion {
 		for (CantidadTipoPublicacion cantidad : cantidadTipo) {
 			this.cantidadPublicaciones = this.cantidadPublicaciones + cantidad.getCantidadRestante();
 		}
+		this.compraPaquetes = new ArrayList<CompraPaquete>();
 		this.setCosto();
 	}
 
@@ -55,10 +57,6 @@ public class PaquetePublicacion {
 		return cantidadPublicaciones;
 	}
 
-	public void setCantidadPublicaciones(int cantidadPublicaciones) {
-		this.cantidadPublicaciones = cantidadPublicaciones;
-	}
-
 	public int getPeriodoValidez() {
 		return periodoValidez;
 	}
@@ -85,23 +83,35 @@ public class PaquetePublicacion {
 		return costo;
 	}
 
-	public void setCantidadTipoPublicaciones(ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {
-		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
-	}
-
 	public DTPaquetePublicacion obtenerDTPaquete() {
 		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo);
 	}
 
-	public void crearCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) {
-		CantidadTipoPublicacion nuevoCantidad = new CantidadTipoPublicacion(cantIncluida, tipoPublicacion);
-		nuevoCantidad.asociarPaquete(this);
-		cantidadTipoPublicaciones.add(nuevoCantidad);
-
+	public void agregarCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) throws Exception {
+		CantidadTipoPublicacion nuevoCantidad = new CantidadTipoPublicacion(cantIncluida, tipoPublicacion, this);
+		if (cantidadTipoPublicaciones == null) {
+			cantidadTipoPublicaciones = new ArrayList<CantidadTipoPublicacion>();
+		}
+		if (!estaComprado()) {
+			cantidadPublicaciones += cantIncluida;
+			cantidadTipoPublicaciones.add(nuevoCantidad);
+			setCosto();
+		}else {
+			throw new Exception("Paquete ya esta comprado");
+		}
+		
 	}
 
 	public ArrayList<CantidadTipoPublicacion> getCantidadTipoPublicaciones() {
 		return cantidadTipoPublicaciones;
+	}
+	
+	public boolean estaComprado() {
+		return (compraPaquetes != null && !compraPaquetes.isEmpty());
+	}
+
+	public ArrayList<CompraPaquete> getCompraPaquetes() {
+		return compraPaquetes;
 	}
 
 }

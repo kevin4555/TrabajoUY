@@ -68,7 +68,7 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete)
-			throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException {
+			throws Exception {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 
@@ -76,7 +76,7 @@ public class ControladorOferta implements IControladorOferta {
 		tipoPublicacion = manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion);
 		PaquetePublicacion paquetePublicacion = manejadorPaquetes.obtenerPaquete(nomTipoPaquete);
 
-		paquetePublicacion.crearCantidadTipoPublicacion(cantIncluida, tipoPublicacion);
+		paquetePublicacion.agregarCantidadTipoPublicacion(cantIncluida, tipoPublicacion);
 	}
 
 	@Override

@@ -54,7 +54,7 @@ public interface IControladorOferta {
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo,
 			Date fechaPub) throws TipoPublicacionYaExisteException;
 
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException;
+	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException, Exception;
 
 	public PaquetePublicacion obtenerPaquetePublicacion(String string) throws PaquetePublicacionNoExisteException;
 

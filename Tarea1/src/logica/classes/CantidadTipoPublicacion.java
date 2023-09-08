@@ -13,6 +13,12 @@ public class CantidadTipoPublicacion {
 		this.tipoPublicacion = tipoPublicacion;
 	}
 	
+	public CantidadTipoPublicacion(int cantidadRestante, TipoPublicacion tipoPublicacion, PaquetePublicacion paquetePublicacion) {
+		this.paquetePublicacion = paquetePublicacion;
+		this.cantidadRestante = cantidadRestante;
+		this.tipoPublicacion = tipoPublicacion;
+	}
+	
 	
 	public void asociarPaquete(PaquetePublicacion paquete) {
 		this.paquetePublicacion = paquete;

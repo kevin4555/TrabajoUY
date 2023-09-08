@@ -18,7 +18,6 @@ import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
-import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
@@ -260,8 +259,7 @@ public class ControladorOfertaTest {
 	}
 
 	@Test
-	public void agregarTipoPublicacionAlPaquete() throws TipoPublicacionNoExisteException,
-			PaquetePublicacionNoExisteException, PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException {
+	public void agregarTipoPublicacionAlPaquete() throws Exception {
 		manejadorOfertas = ManejadorOfertas.getInstance();
 		manejadorSettings = ManejadorSettings.getInstance();
 		manejadorPaquetes = ManejadorPaquetes.getInstance();
