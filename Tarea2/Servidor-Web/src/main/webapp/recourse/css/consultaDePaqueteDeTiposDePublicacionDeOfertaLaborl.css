@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: rgb(58, 73, 214);
+    font-size: 22px;
+    padding: 30px;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+
+
+.header-right a {
+    color: #ffffff;
+}
+
+.menu {
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.logo {
+    float: left;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #000;
+    font-weight: bold;
+    color: white;
+}
+
+.logo span {
+    color: #333;
+    text-shadow: 0 0 5px #ccc;
+}
+
+.home {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    padding: 20px;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.keywords {
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.table {
+    border-color: #000;
+}
+
+.paquetesConsulta {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos para el dropdown*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropbtn {
+    background-color: rgb(58, 73, 214);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    padding-right: 2rem;
+    position: relative;
+}
+
+.opcionMenu {
+    width: 239px;
+    height: 56px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(58, 73, 214);
+    min-width: 10rem;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    height: 30px;
+}
+
+.dropdown-content a:hover {
+    background-color: #333;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.active {
+    font-weight: bold;
+}
+
+/* Estilos para hacer responsive */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+
+    .header-center {
+        margin-top: 1rem;
+    }
+
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-left,
+    .main-center,
+    .main-right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown {
+        text-align: center;
+    }
+}
+
+.btn.btn-secondary {
+    background-color: rgb(58, 73, 214);
+    border: #000 solid 1px;
+
+}
+
+.dropbtn::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-weight: bold;
+}
+
+/* Estilos para el centro*/
+.mainCenter {
+    max-height: 760px;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 800px;
+    display: flex;
+}
+
+.dropbtnConsulta {
+    background-color: rgb(58, 73, 214);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    padding-right: 2rem;
+    position: relative;
+    width: 300px;
+    min-width: none;
+    max-width: 300px;
+    height: 56px;
+    text-align: center;
+    max-height: 56px;
+    min-height: none;
+}
+
+.dropbtnConsulta::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-weight: bold;
+}
+
+.dropdownConsulta-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(58, 73, 214);
+    min-width: 10rem;
+    z-index: 1;
+}
+
+
+.dropdownConsulta-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 300px;
+}
+
+.dropdownConsulta-content a:hover {
+    background-color: #333;
+}
+
+.dropdownConsulta:hover .dropdownConsulta-content {
+    display: block;
+}
+
+.h5 {
+    height: auto;
+    width: auto;
+    text-align: center;
+}
+
+/* Estilos para la informacion del paquete */
+
+.infoPaquete {
+    max-width: 400px;
+    width: 400px;
+    min-width: 400px;
+    max-height: 565px;
+    height: 565px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.h7 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.ofertaDatosView {
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.ofertaDatosViewIMG {
+    text-align: center;
+}
+
+
+.imgOfertasDatosView {
+    max-width: 100%;
+    height: auto;
+}
+
+.dropdownConsulta {
+    position: relative;
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.paquetesConsulta {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.espacio {
+    margin-top: 20px;
+}
+
+.ofertasLaborales {
+    display: none;
+}
+
+.opcionConsulta {
+    width: 300px;
+    height: 30px;
+}
+
+.ofertasLaborales {
+    position: relative;
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropbtnOfertas {
+    background-color: rgb(58, 73, 214);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    padding-right: 2rem;
+    position: relative;
+    width: 300px;
+    min-width: none;
+    max-width: 300px;
+    height: 56px;
+    text-align: center;
+    max-height: 56px;
+    min-height: none;
+}
+
+.dropbtnOfertas::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-weight: bold;
+}
+
+.dropdownOfertas {
+    position: relative;
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dropdownOfertas-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(58, 73, 214);
+    min-width: 10rem;
+    z-index: 1;
+    text-align: center;
+    width: 300px;
+    display: none;
+}
+
+
+.dropdownOfertas-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 300px;
+}
+
+.dropdownOfertas-content a:hover {
+    background-color: #333;
+}
+
+.dropdownOfertas:hover .dropdownOfertas-content {
+    display: block;
+}
