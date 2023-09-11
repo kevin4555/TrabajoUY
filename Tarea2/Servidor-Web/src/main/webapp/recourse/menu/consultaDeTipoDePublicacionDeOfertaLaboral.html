@@ -15,7 +15,7 @@
     <header>
 
         <div class="header-left">
-            <a href="/index.html">
+            <a href="/tpgr04/Tarea2/Servidor-Web/src/main/webapp/index.html">
                 <aside class="logo">Trabajo<span>.uy</span></aside>
             </a>
         </div>
@@ -32,21 +32,26 @@
     <main class="home">
         <div class="mainLeft">
             <section class="menu">
+
                 <div class="dropdown">
-                    <h4> Menu </h4>
-                    <button type="button" class="dropbtn" id="dropdown-button">Seleccionar Pagina </button>
-                    <div class="dropdown-content">
-                        <a class="opcionDropMenu" href="../menu/compraPaquete.html" id="compraPaquete">Comprar
-                            Paquete</a>
-                        <a class="opcionDropMenu" href="../menu/consultaUsuario.html" id="consultaUsuario">Consultar
-                            Usuario</a>
-                        <a class="opcionDropMenu" href="../menu/consultaDeTipoDePublicacionDeOfertaLaboral.html"
-                            id="consultaDeTipoDePublicacionDeOfertaLaboral">Consultar tipo de
-                            publicacion</a>
-                        <a class="opcionDropMenu"
-                            href="../menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
-                            id="consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl">Consultar tipo de paquetes</a>
-                    </div>
+                    <h5> Menu </h4>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" id="dropdown-button">
+                            Seleccionar Pagina
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../menu/consultaUsuario.html"
+                                    id="consultaUsuario">Consultar
+                                    Usuario</a></li>
+                            <li><a class="dropdown-item" href="../menu/consultaDeTipoDePublicacionDeOfertaLaboral.html"
+                                    id="consultaDeTipoDePublicacionDeOfertaLaboral">Consultar tipo de
+                                    publicacion</a></li>
+                            <li><a class="dropdown-item"
+                                    href="../menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
+                                    id="consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl">Consultar tipo de
+                                    paquetes</a></li>
+                        </ul>
                 </div>
             </section>
 
@@ -97,60 +102,54 @@
         <div class="mainCenter">
 
             <section class="paquetesConsulta">
-                <div class="espacio3">
+                <div class="espacio3"></div>
 
-                </div>
-                <div class="dropdownConsulta">
+                <div class="dropdown">
                     <h5> Paquetes Registrados </h4>
-                        <button type="button" class="dropbtnConsulta" id="dropdownConsulta-button">Seleccione un tipo de
-                            publicacion
-                        </button>
-                        <div class="dropdownConsulta-content">
-                            <a class="opcionConsulta" href="#">Bronce</a>
-                            <a class="opcionConsulta" href="#">Plata</a>
-                            <a class="opcionConsulta" href="#">Oro</a>
-                            <a class="opcionConsulta" href="#">Platino</a>
-                            <a class="opcionConsulta" href="#">Diamante</a>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Seleccione un tipo
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Bronce</a></li>
+                            <li><a class="dropdown-item" href="#">Plata</a></li>
+                            <li><a class="dropdown-item" href="#">Oro</a></li>
+                        </ul>
+                </div>
+
+                <div class="espacio"></div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title">Detalles del tipo de publicacion</h5>
                         </div>
-                </div>
-
-                <div class="espacio">
-
-                </div>
-                <div class="infoTipoPublicacio">
-                    <div class="tituloDetallePublicacion">
-                        <h5> Detalles del tipo de publicacion</h5>
+                        <div class="textoCard">
+                            <div class="espacio"></div>
+                            <p class="publicacionDetalles"><strong>Tipo:</strong> Premium</p>
+                            <p class="publicacionDetalles"><strong>Descripción:</strong>
+                                Excelente para empresas con gran
+                                actividad de marketing.
+                            </p>
+                            <p class="publicacionDetalles"><strong>Exposicion:</strong> 23</p>
+                            <p class="publicacionDetalles"><strong>Duracion:</strong> 30</p>
+                            <p class="publicacionDetalles"><strong>Costo:</strong> $<span id="costo">99.99</span></p>
+                        </div>
                     </div>
-                    <div class="espacio2"></div>
-                    <p class="publicacionDetalles"><strong>Tipo:</strong> Premium</p>
-                    <p class="publicacionDetalles"><strong>Descripción:</strong>
-                        Excelente para empresas con gran
-                        actividad de marketing.
-                    </p>
-                    <p class="publicacionDetalles"><strong>Exposicion:</strong> 23</p>
-                    <p class="publicacionDetalles"><strong>Duracion:</strong> 30</p>
-                    <p class="publicacionDetalles"><strong>Costo:</strong> $<span id="costo">99.99</span></p>
                 </div>
-        </div>
-        </div>
-        </section>
-        </div>
-        <div class="mainRight">
-
+            </section>
         </div>
     </main>
 
     <footer>
     </footer>
 
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
         </script>
     <script src="../js/dejarOpcionMarcada.js"> </script>
-    <script src="../js/tipoPublicacion/seleccionConsultaTipoDePaquete.js"></script>
+
 </body>
 
 </html>

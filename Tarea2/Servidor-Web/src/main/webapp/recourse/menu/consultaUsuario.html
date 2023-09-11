@@ -16,7 +16,7 @@
     <header>
 
         <div class="header-left">
-            <a href="/index.html">
+            <a href="/tpgr04/Tarea2/Servidor-Web/src/main/webapp/index.html">
                 <aside class="logo">Trabajo<span>.uy</span></aside>
             </a>
         </div>
@@ -36,20 +36,24 @@
         <div class="mainLeft">
             <section class="menu">
                 <div class="dropdown">
-                    <h4><strong>Menu</strong></h4>
-                    <button class="dropbtn" id="dropdown-button">No hay opciones</button>
-                    <div class="dropdown-content">
-                        <a class="opcionDropMenu" href="../menu/compraPaquete.html" id="compraPaquete">Comprar
-                            Paquete</a>
-                        <a class="opcionDropMenu" href="../menu/consultaUsuario.html" id="consultaUsuario">Consultar
-                            Usuario</a>
-                        <a class="opcionDropMenu" href="../menu/consultaDeTipoDePublicacionDeOfertaLaboral.html"
-                            id="consultaDeTipoDePublicacionDeOfertaLaboral">Consultar tipo de
-                            publicacion</a>
-                        <a class="opcionDropMenu"
-                            href="../menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
-                            id="consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl">Consultar tipo de paquetes</a>
-                    </div>
+                    <h5> Menu </h4>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" id="dropdown-button">
+                            Seleccionar Pagina
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../menu/consultaUsuario.html"
+                                    id="consultaUsuario">Consultar
+                                    Usuario</a></li>
+                            <li><a class="dropdown-item" href="../menu/consultaDeTipoDePublicacionDeOfertaLaboral.html"
+                                    id="consultaDeTipoDePublicacionDeOfertaLaboral">Consultar tipo de
+                                    publicacion</a></li>
+                            <li><a class="dropdown-item"
+                                    href="../menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
+                                    id="consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl">Consultar tipo de
+                                    paquetes</a></li>
+                        </ul>
                 </div>
             </section>
 
@@ -97,109 +101,63 @@
                 </div>
             </section>
         </div>
-        <section class="consultaUsuario">
-            <div class="envolver">
-                <div class="espacio3">
+        <div class="mainCenter">
+            <div class="espacio3"></div>
+            <section class="consultaUsuario">
+                <div class="container">
+                    <h1>Usuarios registrados</h1>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="thClass">Perfil</th> <!-- Personaliza el ancho de la columna -->
+                                    <th class="thClass">Nickname</th> <!-- Personaliza el ancho de la columna -->
+                                    <th class="thClassLarge">Tipo de Usuario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Perfil</a></td>
+                                    <td>KevinBarraAmsterdam</td>
+                                    <td>Empresa</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Perfil</a></td>
+                                    <td>Benjamin</td>
+                                    <td>Postulante</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Perfil</a></td>
+                                    <td>EcoTech</td>
+                                    <td>Empresa</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Perfil</a></td>
+                                    <td>Meta</td>
+                                    <td>Empresa</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Perfil</a></td>
+                                    <td>CrisCanario</td>
+                                    <td>Postulante</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Perfil</a></td>
+                                    <td>Octobot</td>
+                                    <td>Empresa</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Perfil</a></td>
+                                    <td>MauroLombardo</td>
+                                    <td>Postulante</td>
+                                </tr>
 
-                </div>
-                <div class="dropdownConsultaUsuario">
-                    <h5><strong>Usuarios Registrados</strong></h4>
-                        <button type="button" class="dropbtnConsultaUsuario"
-                            id="dropdownConsultaUsuario-button">Seleccione
-                            un
-                            usuario
-                        </button>
-                        <div class="dropdownConsultaUsuario-content">
-                            <a class="opcionConsultaUsuario" href="#">Benjamin</a>
-                            <a class="opcionConsultaUsuario" href="#">Daniel</a>
-                            <a class="opcionConsultaUsuario" href="#">Kevin</a>
-                            <a class="opcionConsultaUsuario" href="#">EcoTech</a>
-                            <a class="opcionConsultaUsuario" href="#">Valentin</a>
-                            <a class="opcionConsultaUsuario" href="#">Cristhina</a>
-                        </div>
-                </div>
-                <div class="espacio">
-
-                </div>
-                <div class="infoUsuario" id="infoUsuario">
-                    <section class="usuarioDatos">
-                        <div class="tituloDetallePaquete">
-                            <h5><strong>Detalles del paquete</strong></h5>
-                        </div>
-
-                        <p class="usuarioDatosViewIMG"><img clas="imgUsuarioDatosView" src="../img/perfil.jpeg"
-                                alt="Imagen del Producto" width="150"></p>
-                        <p class="usuarioDatosView"><strong>Nickname:</strong> kevinpenarol23</p>
-                        <p class="usuarioDatosView"><strong>Nombre:</strong> Kevin</p>
-                        <p class="usuarioDatosView"><strong>Apellido:</strong>Perez</p>
-                        <p class="usuarioDatosView"><strong>Email:</strong> kevinpenarol23@gmail.com</p>
-                        <p class="usuarioDatosView"><strong>Contrasena:</strong> 123456</p>
-                        <p class="usuarioDatosView"><strong>Feha Nacimiento:</strong> 23/06/1993</p>
-                        <p class="usuarioDatosView"><strong>Nacionalidad:</strong> Paraguayo</p>
-                    </section>
-                </div>
-            </div>
-            <div class="ocultar" id="ocultar">
-                <div class="envolver3">
-                    <div class="espacio3"></div>
-                    <div class="ocultar2" id="ocultar2">
-                        <div class="dropdownConsultaUsuarioOfertas">
-                            <h5><strong>Ofertas Asociadas</strong></h4>
-                                <button type="button" class="dropbtnConsultaUsuarioOferta"
-                                    id="dropdownConsultaUsuarioOfertas-button">Seleccione
-                                    un
-                                    usuario
-                                </button>
-                                <div class="dropdownConsultaUsuarioOfertas-content">
-                                    <a class="opcionConsultaUsuario" href="#">Oferta 1</a>
-                                    <a class="opcionConsultaUsuario" href="#">Oferta 2</a>
-                                    <a class="opcionConsultaUsuario" href="#">Oferta 3</a>
-                                    <a class="opcionConsultaUsuario" href="#">Oferta 4</a>
-                                    <a class="opcionConsultaUsuario" href="#">Oferta 5</a>
-                                    <a class="opcionConsultaUsuario" href="#">Oferta 6</a>
-                                </div>
-                        </div>
-                        <div class="espacio"></div>
-                        <div class="dropdownConsultaUsuarioOfertas">
-                            <h5><strong>Postulaciones Asociadas</strong></h4>
-                                <button type="button" class="dropbtnConsultaUsuarioOferta"
-                                    id="dropdownConsultaUsuarioOfertas-button">Seleccione
-                                    un
-                                    usuario
-                                </button>
-                                <div class="dropdownConsultaUsuarioOfertas-content">
-                                    <a class="opcionConsultaUsuario" href="#">Postulacion 1</a>
-                                    <a class="opcionConsultaUsuario" href="#">Postulacion 2</a>
-                                    <a class="opcionConsultaUsuario" href="#">Postulacion 3</a>
-                                    <a class="opcionConsultaUsuario" href="#">Postulacion 4</a>
-                                    <a class="opcionConsultaUsuario" href="#">Postulacion 5</a>
-                                    <a class="opcionConsultaUsuario" href="#">Postulacion 6</a>
-                                </div>
-                        </div>
-                        <div class="espacio"></div>
-                        <div class="dropdownConsultaUsuarioOfertas">
-                            <h5><strong>Paquetes Asociados</strong></h4>
-                                <button type="button" class="dropbtnConsultaUsuarioOferta"
-                                    id="dropdownConsultaUsuarioOfertas-button">Seleccione
-                                    un
-                                    usuario
-                                </button>
-                                <div class="dropdownConsultaUsuarioOfertas-content">
-                                    <a class="opcionConsulta" href="#">Bronce</a>
-                                    <a class="opcionConsulta" href="#">Plata</a>
-                                    <a class="opcionConsulta" href="#">Oro</a>
-                                    <a class="opcionConsulta" href="#">Platino</a>
-                                    <a class="opcionConsulta" href="#">Diamante</a>
-                                </div>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="espacio"></div>
-                    <section class="ofertasYPaquetes">
-
-                    </section>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
     </main>
 
@@ -207,15 +165,10 @@
 
     </footer>
 
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
         </script>
-    <script src="/recourse/js/dejarOpcionMarcada.js"></script>
-    <script src="../js/consultaUsuario/aparecerLuegoClickConsultaUsuario.js"></script>
-    <script src="../js/consultaUsuario/seleccionConsultaTipoDePaquete.js"></script>
+    <script src="/tpgr04/Tarea2/Servidor-Web/src/main/webapp/recourse/js/dejarOpcionMarcada.js"></script>
 
 </body>
 

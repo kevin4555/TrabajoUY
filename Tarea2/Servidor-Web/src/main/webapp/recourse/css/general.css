@@ -66,7 +66,7 @@ header {
 .dropdown {
     position: relative;
     display: inline-block;
-    width: 16.875rem;
+    width: auto;
     max-width: 54rem;
     margin: 0 auto;
     padding: 1.35rem;
@@ -76,88 +76,7 @@ header {
     box-shadow: 0px 0px 0.675rem rgba(0, 0, 0, 0.2);
 }
 
-.dropbtn {
-    background-color: rgb(58, 73, 214);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 1rem;
-    padding-right: 2rem;
-    position: relative;
-    width: 14.85rem;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: rgb(58, 73, 214);
-    min-width: 10rem;
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    height: 2.025rem;
-}
-
-.opcionDropMenu {
-    width: 14.85rem;
-    height: 3.0375rem;
-}
-
-.dropdown-content a:hover {
-    background-color: #333;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.active {
-    font-weight: bold;
-}
-
-.dropbtn::after {
-    content: "▼";
-    position: absolute;
-    top: 50%;
-    right: 0.675rem;
-    transform: translateY(-50%);
-    font-weight: bold;
-}
-
 .btn.btn-secondary {
     background-color: rgb(58, 73, 214);
     border: #000 solid 0.0675rem;
-
-}
-
-@media screen and (max-width: 51.84rem) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: center;
-    }
-
-    .header-center {
-        margin-top: 1rem;
-    }
-
-    main {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .main-left,
-    .main-center,
-    .main-right {
-        width: 100%;
-        text-align: center;
-    }
-
-    .dropdown {
-        text-align: center;
-    }
 }

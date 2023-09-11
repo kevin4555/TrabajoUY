@@ -23,193 +23,26 @@
     display: flex;
 }
 
-.dropbtnConsulta {
-    background-color: rgb(58, 73, 214);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 1rem;
-    padding-right: 2rem;
-    position: relative;
-    width: 20.25rem;
-    min-width: none;
-    max-width: 20.25rem;
-    height: 3.78rem;
-    text-align: center;
-    max-height: 3.78rem;
-    min-height: none;
-}
-
-.dropbtnConsulta::after {
-    content: "▼";
-    position: absolute;
-    top: 50%;
-    right: 0.675rem;
-    transform: translateY(-50%);
-    font-weight: bold;
-}
-
-.dropdownConsulta-content {
-    display: none;
-    position: absolute;
-    background-color: rgb(58, 73, 214);
-    min-width: 10rem;
-    z-index: 1;
-}
-
-
-.dropdownConsulta-content a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    width: 20.25rem;
-}
-
-.dropdownConsulta-content a:hover {
-    background-color: #333;
-}
-
-.dropdownConsulta:hover .dropdownConsulta-content {
-    display: block;
-}
-
 .h5 {
     height: auto;
     width: auto;
     text-align: center;
 }
 
-.infoTipoPublicacio {
-    max-width: 27rem;
-    width: auto;
-    min-width: 27rem;
-    max-height: 38.1375rem;
-    height: auto;
-    margin: 0 auto;
-    padding: 1.35rem;
-    background-color: #fff;
-    border: 0.0675rem solid #ccc;
-    border-radius: 0.3375rem;
-    box-shadow: 0rem 0rem 0.675rem rgba(0, 0, 0, 0.2);
-
-    position: relative;
-    text-align: left;
-}
-
-.h7 {
-    font-size: 1.8225rem;
-    margin-bottom: 1.35rem;
-}
-
-.publicacionDetalles {
-    margin: 0;
-    margin-bottom: 0.675rem;
-    text-align: left;
-}
-
-.dropdownConsulta {
-    position: relative;
-    display: inline-block;
-    max-width: 54rem;
-    margin: 0 auto;
-    padding: 1.35rem;
-    background-color: white;
-    border: 0.0675rem solid #ccc;
-    border-radius: 0.3375rem;
-    box-shadow: 0rem 0rem 0.675rem rgba(0, 0, 0, 0.2);
-}
-
 .espacio {
     margin-top: 1.35rem;
 }
 
-.ofertasLaborales {
-    display: none;
-}
-
-.opcionConsulta {
-    width: 20.25rem;
-    height: 2.025rem;
-}
-
-.ofertasLaborales {
-    position: relative;
-    display: inline-block;
-    max-width: 54rem;
-    margin: 0 auto;
-    padding: 1.35rem;
-    background-color: #fff;
-    background-color: white;
-    border: 0.0675rem solid #ccc;
-    border-radius: 0.3375rem;
-    box-shadow: 0rem 0rem 0.675rem rgba(0, 0, 0, 0.2);
-}
-
-.dropbtnOfertas {
-    background-color: rgb(58, 73, 214);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 1rem;
-    padding-right: 2rem;
-    position: relative;
-    width: 20.25rem;
-    min-width: none;
-    max-width: 20.25rem;
-    height: 3.78rem;
-    text-align: center;
-    max-height: 3.78rem;
-    min-height: none;
-}
-
-.dropbtnOfertas::after {
-    content: "▼";
-    position: absolute;
-    top: 50%;
-    right: 0.675rem;
-    transform: translateY(-50%);
-    font-weight: bold;
-}
-
-.dropdownOfertas {
-    position: relative;
-    display: inline-block;
-    max-width: 54rem;
-    margin: 0 auto;
-    padding: 1.35rem;
-}
-
-.dropdownOfertas-content {
-    display: none;
-    position: absolute;
-    background-color: rgb(58, 73, 214);
-    min-width: 10rem;
-    z-index: 1;
-    text-align: center;
-    width: 20.25rem;
-    display: none;
-}
-
-
-.dropdownOfertas-content a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    width: 20.25rem;
-}
-
-.dropdownOfertas-content a:hover {
-    background-color: #333;
-}
-
-.dropdownOfertas:hover .dropdownOfertas-content {
-    display: block;
-}
-
-.espacio2 {
-    padding-bottom: 1.35rem;
-}
-
 .espacio3 {
-    padding: 4rem;
+    margin-top: 5rem;
+}
+
+.card {
+    width: 25rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.textoCard {
+    text-align: left;
 }

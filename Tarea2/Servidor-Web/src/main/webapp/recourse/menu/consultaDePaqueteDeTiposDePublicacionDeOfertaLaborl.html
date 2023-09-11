@@ -15,7 +15,7 @@
     <header>
 
         <div class="header-left">
-            <a href="/index.html">
+            <a href="/tpgr04/Tarea2/Servidor-Web/src/main/webapp/index.html">
                 <aside class="logo">Trabajo<span>.uy</span></aside>
             </a>
         </div>
@@ -33,20 +33,26 @@
         <div class="mainLeft">
             <section class="menu">
                 <div class="dropdown">
-                    <h4> Menu </h4>
-                    <button type="button" class="dropbtn" id="dropdown-button">Seleccionar Pagina </button>
-                    <div class="dropdown-content">
-                        <a class="opcionDropMenu" href="../menu/compraPaquete.html" id="compraPaquete">Comprar
-                            Paquete</a>
-                        <a class="opcionDropMenu" href="../menu/consultaUsuario.html" id="consultaUsuario">Consultar
-                            Usuario</a>
-                        <a class="opcionDropMenu" href="../menu/consultaDeTipoDePublicacionDeOfertaLaboral.html"
-                            id="consultaDeTipoDePublicacionDeOfertaLaboral">Consultar tipo de
-                            publicacion</a>
-                        <a class="opcionDropMenu"
-                            href="../menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
-                            id="consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl">Consultar tipo de paquetes</a>
-                    </div>
+                    <h5> Menu </h4>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" id="dropdown-button">
+                            Seleccionar Pagina
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../menu/compraPaquete.html" id="compraPaquete">Comprar
+                                    Paquete</a></li>
+                            <li><a class="dropdown-item" href="../menu/consultaUsuario.html"
+                                    id="consultaUsuario">Consultar
+                                    Usuario</a></li>
+                            <li><a class="dropdown-item" href="../menu/consultaDeTipoDePublicacionDeOfertaLaboral.html"
+                                    id="consultaDeTipoDePublicacionDeOfertaLaboral">Consultar tipo de
+                                    publicacion</a></li>
+                            <li><a class="dropdown-item"
+                                    href="../menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
+                                    id="consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl">Consultar tipo de
+                                    paquetes</a></li>
+                        </ul>
                 </div>
             </section>
 
@@ -95,51 +101,98 @@
             </section>
         </div>
         <div class="mainCenter">
-            <section class="paquetesConsulta">
-                <div class="dropdownConsulta">
-                    <h5> Paquetes Registrados </h4>
-                        <button type="button" class="dropbtnConsulta" id="dropdownConsulta-button">Selecciona un paquete
-                        </button>
-                        <div class="dropdownConsulta-content">
-                            <a class="opcionConsulta" href="#">Bronce</a>
-                            <a class="opcionConsulta" href="#">Plata</a>
-                            <a class="opcionConsulta" href="#">Oro</a>
-                            <a class="opcionConsulta" href="#">Platino</a>
-                            <a class="opcionConsulta" href="#">Diamante</a>
-                        </div>
+
+            <section class="consultaPaqueteTipoPublicacion">
+                <div class="paqueteTipoPublicacion">
+                    
+                    <img class="imgOfertas" src="../img/paquete.jpeg"
+                        alt="Oferta Desarrollo Frontend">
+                        
+                        <p class="paqueteTipoPublicacionDatosView">
+                            <strong>Tipo:</strong> Oro 
+                            <br>
+                            <strong>Descripción:</strong>
+                            Excelente para empresas con gran
+                            actividad de marketing.
+                            <br>
+                            <strong>Costo:</strong> $<span id="costo">99.99</span>
+                            <br>
+                            <strong>Cantidad de Publicaciones:</strong>
+                            <span id="cantidadPublicaciones">5</span>
+                            <br>
+                            <br>
+                            <a href="./tipoPublicacion.html">Mas Info</a>
+                        </p>
+                </div>
+                
+                <div class="paqueteTipoPublicacion">
+                    
+                    <img class="imgOfertas" src="../img/paquete.jpeg"
+                        alt="Oferta Desarrollo Frontend">
+                        
+                        <p class="paqueteTipoPublicacionDatosView">
+                            <strong>Tipo:</strong> Plata 
+                            <br>
+                            <strong>Descripción:</strong>
+                            Excelente para empresas con gran
+                            actividad de marketing.
+                            <br>
+                            <strong>Costo:</strong> $<span id="costo">99.99</span>
+                            <br>
+                            <strong>Cantidad de Publicaciones:</strong>
+                            <span id="cantidadPublicaciones">5</span>
+                            <br>
+                            <br>
+                            <a href="./tipoPublicacion.html">Mas Info</a>
+                        </p>
                 </div>
 
-                <div class="espacio">
-
+                <div class="paqueteTipoPublicacion">
+                    
+                    <img class="imgOfertas" src="../img/paquete.jpeg"
+                        alt="Oferta Desarrollo Frontend">
+                        
+                        <p class="paqueteTipoPublicacionDatosView">
+                            <strong>Tipo:</strong> Bronce 
+                            <br>
+                            <strong>Descripción:</strong>
+                            Excelente para empresas con gran
+                            actividad de marketing.
+                            <br>
+                            <strong>Costo:</strong> $<span id="costo">99.99</span>
+                            <br>
+                            <strong>Cantidad de Publicaciones:</strong>
+                            <span id="cantidadPublicaciones">3</span>
+                            <br>
+                            <br>
+                            <a href="./tipoPublicacion.html">Mas Info</a>
+                        </p>
                 </div>
-                <div class="infoPaquete">
-                    <div class="tituloDetallePaquete">
-                        <h5> Detalles del paquete</h5>
-                    </div>
 
-                    <p class="ofertaDatosViewIMG"><img clas="imgOfertasDatosView" src="../img/paquete.jpeg"
-                            alt="Imagen del Producto" width="150"></p>
-                    <p class="ofertaDatosView"><strong>Tipo:</strong> Premium</p>
-                    <p class="ofertaDatosView"><strong>Descripción:</strong>
-                        Excelente para empresas con gran
-                        actividad de marketing.
-                    </p>
-                    <p class="ofertaDatosView"><strong>Costo:</strong> $<span id="costo">99.99</span></p>
-                    <p class="ofertaDatosView"><strong>Cantidad de Publicaciones:</strong>
-                        <span id="cantidadPublicaciones">5</span>
-                    </p>
-                    <div class="dropdownOfertas">
-                        <button type="button" class="dropbtnOfertas" id="dropbtnOfertas-button">Selecciona una oferta
-                        </button>
-                        <div class="dropdownOfertas-content">
-                            <a class="opcionConsulta" href="#">Oferta 1</a>
-                            <a class="opcionConsulta" href="#">Oferta 2</a>
-                            <a class="opcionConsulta" href="#">Oferta 3</a>
-                            <a class="opcionConsulta" href="#">Oferta 4</a>
-                            <a class="opcionConsulta" href="#">Oferta 5</a>
-                        </div>
-                    </div>
+                <div class="paqueteTipoPublicacion">
+                    
+                    <img class="imgOfertas" src="../img/paquete.jpeg"
+                        alt="Oferta Desarrollo Frontend">
+                        
+                        <p class="paqueteTipoPublicacionDatosView">
+                            <strong>Tipo:</strong> Carbono 
+                            <br>
+                            <strong>Descripción:</strong>
+                            Excelente para empresas con gran
+                            actividad de marketing.
+                            <br>
+                            <strong>Costo:</strong> $<span id="costo">99.99</span>
+                            <br>
+                            <strong>Cantidad de Publicaciones:</strong>
+                            <span id="cantidadPublicaciones">2</span>
+                            <br>
+                            <br>
+                            <a href="./tipoPublicacion.html">Mas Info</a>
+                        </p>
                 </div>
+            </section>
+
+    
         </div>
         </div>
         </section>
@@ -158,8 +211,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
         </script>
+    <script src="../js/dejarOpcionMarcada.js"></script>
     <script src="../js/paqueteTipoPublicacion/consultaTipoPaqueteVerDropdownDeOfertas.js"></script>
-    <script src="../js/paqueteTipoPublicacion/dejarOpcionMarcada.js"></script>
     <script src="../js/paqueteTipoPublicacion/seleccionConsultaTipoDePaquete.js"></script>
 </body>
 
