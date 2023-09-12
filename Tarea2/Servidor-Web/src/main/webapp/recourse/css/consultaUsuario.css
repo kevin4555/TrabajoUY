@@ -1,0 +1,42 @@
+.consultaUsuario {
+    flex-direction: column;
+    position: relative;
+    display: flex;
+    width: auto;
+    height: auto;
+    margin: auto auto;
+    padding: 1.35rem;
+    background-color: #fff;
+    border: 0.0675rem solid #ccc;
+    border-radius: 0.3375rem;
+    box-shadow: 0rem 0rem 0.675rem rgba(0, 0, 0, 0.2);
+    top: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.espacio3 {
+    margin-top: 5rem;
+}
+
+.mainCenter
+{
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    text-align:start;
+}
+
+.containerGrid
+{
+    width: 100%;
+    height: auto;
+}
+
+.thClass{
+    width: 40%;
+}
+
+.thClassLarge{
+    width: 60%;
+}

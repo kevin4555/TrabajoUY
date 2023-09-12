@@ -1,10 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Kevin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="./recourse/css/index.css">
+    <link rel="stylesheet" href="./recourse/css/general.css">
+    <title>Trabajo.uy</title>
 </head>
-	<body>
-		<h1>COMO DIBUJOOOOOOO</h1>
-	</body>
+
+<body>
+    <!-- El cuerpo del body por lo general esta compuesto de tres etiquetas: header(portada), main, footer(pie de página, dónde por lo general van los contactos, redes sociales, etc)-->
+    <header>
+
+        <div class="header-left">
+            <a href="./index.html">
+                <aside class="logo">Trabajo<span>.uy</span></aside>
+            </a>
+        </div>
+        <div class="header-center">
+            <input type="text" placeholder="Buscar" class="textfieldBuscar">
+            <button class="btn btn-secondary">Buscar</button>
+        </div>
+        <div class="header-right">
+            <a href="../recourse/menu/miPerfilEmpresa.html">Perfil</a>
+        </div>
+
+    </header>
+
+    <main class="home">
+        <div class="mainLeft">
+            <section class="menu">
+                <div class="dropdown">
+                    <h5> Menu </h4>
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Seleccionar Pagina
+                    </a>
+                  
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="../webapp/recourse/menu/consultaUsuario.html" id="consultaUsuario">Consultar
+                        Usuario</a></li>
+                      <li><a class="dropdown-item" href="../webapp/recourse/menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
+                        id="consultaDeTipoDePublicacionDeOfertaLaboral">Consultar tipo de
+                        publicacion</a></li>
+                        <li><a class="dropdown-item" href="../webapp/recourse/menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
+                            id="consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl">Consultar tipo de paquetes</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="keywords">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Keywords</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><button class="btnKeyword btn">Tiempo Completo</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Medio tiempo</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Remoto</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Freelance</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Temporal</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Permanente</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Computación</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Administración</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Logística</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btnKeyword btn">Contabilidad</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <section class="ofertaslaborales">
+            <div class="oferta oferta1">
+                <img class="imgOfertas" src="./recourse/img/ofertaDesarrolloFrontend.jpg"
+                    alt="Oferta Desarrollo Frontend">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor eveniet fugit sit eaque magni
+                    enim a
+                    explicabo voluptate doloremque, similique inventore placeat accusantium maiores autem ipsam iste
+                    voluptas facilis repellendus?
+                    <br><br>
+                    <a href="./recourse/menu/consultaOfertaLaboral.html">Mas Info</a>
+                </p>
+            </div>
+            <div class="oferta oferta1">
+                <img class="imgOfertas" src="./recourse/img/ofertaDesarrolloFrontend.jpg"
+                    alt="Oferta Desarrollo Frontend">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias delectus et ea enim sapiente
+                    recusandae cum eveniet non iure sit neque odit debitis, numquam modi rerum quaerat soluta
+                    perspiciatis autem. <br><br>
+                    <a href="./recourse/menu/consultaOfertaLaboral.html">Mas Info</a>
+                </p>
+            </div>
+            <div class="oferta oferta1">
+                <img class="imgOfertas" src="./recourse/img/ofertaDesarrolloFrontend.jpg"
+                    alt="Oferta Desarrollo Frontend">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias delectus et ea enim sapiente
+                    recusandae cum eveniet non iure sit neque odit debitis, numquam modi rerum quaerat soluta
+                    perspiciatis autem. <br><br>
+                    <a href="./recourse/menu/consultaOfertaLaboral.html">Mas Info</a>
+                </p>
+            </div>
+            <div class="oferta oferta1">
+                <img class="imgOfertas" src="./recourse/img/ofertaDesarrolloFrontend.jpg"
+                    alt="Oferta Desarrollo Frontend">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias delectus et ea enim sapiente
+                    recusandae cum eveniet non iure sit neque odit debitis, numquam modi rerum quaerat soluta
+                    perspiciatis autem. <br><br>
+                    <a href="./recourse/menu/consultaOfertaLaboral.html">Mas Info</a>
+                </p>
+            </div>
+            <div class="oferta oferta1">
+                <img class="imgOfertas" src="./recourse/img/ofertaDesarrolloFrontend.jpg"
+                    alt="Oferta Desarrollo Frontend">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias delectus et ea enim sapiente
+                    recusandae cum eveniet non iure sit neque odit debitis, numquam modi rerum quaerat soluta
+                    perspiciatis autem. <br><br>
+                    <a href="./recourse/menu/consultaOfertaLaboral.html">Mas Info</a>
+                </p>
+            </div>
+            <div class="oferta oferta1">
+                <img class="imgOfertas" src="./recourse/img/ofertaDesarrolloFrontend.jpg"
+                    alt="Oferta Desarrollo Frontend">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias delectus et ea enim sapiente
+                    recusandae cum eveniet non iure sit neque odit debitis, numquam modi rerum quaerat soluta
+                    perspiciatis autem. <br><br>
+                    <a href="./recourse/menu/consultaOfertaLaboral.html">Mas Info</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
+    <script src="./recourse/js/dejarOpcionMarcada.js"></script>
+</body>
+
 </html>

@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header-right a {
+    color: #ffffff;
+}
+
+.menu {
+    text-align: center;
+    padding: 0.675rem;
+    margin: 0.675rem;
+}
+
+header,
+footer {
+    background-color: rgb(58, 73, 214);
+    font-size: 1.485rem;
+    padding: 2.025rem;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6.75rem;
+}
+
+.footer {
+    height: 4.875rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.logo {
+    float: left;
+    text-transform: uppercase;
+    text-shadow: 0 0 0.3375rem #000;
+    font-weight: bold;
+    color: white;
+}
+
+.logo span {
+    color: #333;
+    text-shadow: 0 0 0.3375rem #ccc;
+}
+
+.home {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2.025rem;
+}
+
+.keywords {
+    text-align: center;
+    padding: 0.675rem;
+    margin: 0.675rem;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    max-width: 54rem;
+    margin: 0 auto;
+    padding: 1.35rem;
+    background-color: white;
+    border: 0.0675rem solid #ccc;
+    border-radius: 0.3375rem;
+    box-shadow: 0px 0px 0.675rem rgba(0, 0, 0, 0.2);
+}
+
+.btn.btn-secondary {
+    background-color: rgb(58, 73, 214);
+    border: #000 solid 0.0675rem;
+}
