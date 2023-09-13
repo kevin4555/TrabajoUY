@@ -72,3 +72,8 @@ footer {
   background-color: rgb(58, 73, 214);
   border: #000 solid 0.0675rem;
 }
+
+.volverPaquete {
+  position: absolute;
+  top: 12%;
+}
