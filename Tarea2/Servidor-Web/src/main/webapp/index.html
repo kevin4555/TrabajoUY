@@ -1,233 +1,302 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/x-icon" href="./recourse/img/Icon_Logo.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./recourse/css/general.css" />
+    <title>Trabajo.uy</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
-  <link rel="icon" type="image/x-icon" href="./recourse/img/Icon_Logo.svg" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="./recourse/css/general.css" />
-  <title>Trabajo.uy</title>
-</head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <div class="row w-100 justify-content-between align-items-center">
+          <div class="col-2">
+            <a href="./index.html"
+              ><img
+                src="./recourse/img/Logo.svg"
+                alt="Logo"
+                class="navbar-brand img-fluid"
+            /></a>
+          </div>
 
-<body>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <div class="row w-100 justify-content-between align-items-center">
-        <div class="col-2">
-          <a href="./index.html"><img src="./recourse/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid" /></a>
-        </div>
-
-        <div class="col">
-          <div class="row justify-content-center">
-            <div class="col-5">
-              <form class="form-inline">
-                <div class="input-group">
-                  <input class="form-control" type="search" placeholder="Buscar oferta" aria-label="Search" />
-                  <button class="btn btn-outline-success" type="submit">
-                    <i class="bi bi-search text-white"></i>
-                  </button>
-                </div>
-              </form>
+          <div class="col">
+            <div class="row justify-content-center">
+              <div class="col-5">
+                <form class="form-inline">
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      type="search"
+                      placeholder="Buscar oferta"
+                      aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                      <i class="bi bi-search text-white"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-2">
-          <ul class="navbar-nav justify-content-evenly fs-3">
-            <li class="nav-item">
-              <a class="nav-link text-white" href="./index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="./recourse/menu/inicioSession.html">Acceder</a>
-            </li>
-          </ul>
+          <div class="col-2">
+            <ul class="navbar-nav justify-content-evenly fs-3">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="./index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white"
+                  href="./recourse/menu/inicioSession.html"
+                  >Acceder</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <main class="container pt-5">
-    <div class="row">
-      <div class="col-3">
-        <section class="text-center">
-          <div class="table-responsive overflow-auto tablaKeyword">
-            <table class="table table-hover table-bordered">
-              <thead class="table-primary">
-                <tr>
-                  <th class="cabezaTabla">Menú</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="d-flex"><a class="btn" href="./recourse/menu/consultaUsuario.html">Consulta usuarios</a></td>
-                </tr>
-                <tr>
-                  <td class="d-flex"><a class="btn" href="">Ver tipos de publicaciones</a></td>
-                </tr>
-                <tr>
-                  <td class="d-flex"><a class="btn" href="">Ver tipos de paquetes</a></td>
-                </tr>
-                <tr>
-                  <td class="d-flex"><a class="btn" href="">Consulta ofertas laborales</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <section class="text-center">
-          <div class="tablaKeyword table-responsive overflow-auto">
-            <table class="table table-hover table-bordered">
-              <thead class="table-primary">
-                <tr>
-                  <th class="cabezaTabla">Keywords</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <button class="btnKeyword btn">Tiempo Completo</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <button class="btnKeyword btn">Medio tiempo</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><button class="btnKeyword btn">Remoto</button></td>
-                </tr>
-                <tr>
-                  <td><button class="btnKeyword btn">Freelance</button></td>
-                </tr>
-                <tr>
-                  <td><button class="btnKeyword btn">Temporal</button></td>
-                </tr>
-                <tr>
-                  <td><button class="btnKeyword btn">Permanente</button></td>
-                </tr>
-                <tr>
-                  <td><button class="btnKeyword btn">Computación</button></td>
-                </tr>
-                <tr>
-                  <td>
-                    <button class="btnKeyword btn">Administración</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><button class="btnKeyword btn">Logística</button></td>
-                </tr>
-                <tr>
-                  <td>
-                    <button class="btnKeyword btn">Contabilidad</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+    <main class="container pt-5">
+      <div class="row">
+        <div class="col-3">
+          <section class="text-center">
+            <div class="table-responsive overflow-auto tablaKeyword">
+              <table class="table table-hover table-bordered">
+                <thead class="table-primary">
+                  <tr>
+                    <th class="cabezaTabla">Menú</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="d-flex">
+                      <a class="btn" href="./recourse/menu/consultaUsuario.html"
+                        >Consulta usuarios</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="d-flex">
+                      <a class="btn" href="">Ver tipos de publicaciones</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="d-flex">
+                      <a class="btn" href="">Ver tipos de paquetes</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="d-flex">
+                      <a class="btn" href="">Consulta ofertas laborales</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section class="text-center">
+            <div class="tablaKeyword table-responsive overflow-auto">
+              <table class="table table-hover table-bordered">
+                <thead class="table-primary">
+                  <tr>
+                    <th class="cabezaTabla">Keywords</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <button class="btnKeyword btn">Tiempo Completo</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class="btnKeyword btn">Medio tiempo</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><button class="btnKeyword btn">Remoto</button></td>
+                  </tr>
+                  <tr>
+                    <td><button class="btnKeyword btn">Freelance</button></td>
+                  </tr>
+                  <tr>
+                    <td><button class="btnKeyword btn">Temporal</button></td>
+                  </tr>
+                  <tr>
+                    <td><button class="btnKeyword btn">Permanente</button></td>
+                  </tr>
+                  <tr>
+                    <td><button class="btnKeyword btn">Computación</button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class="btnKeyword btn">Administración</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><button class="btnKeyword btn">Logística</button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class="btnKeyword btn">Contabilidad</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+        <div class="col-8">
+          <section>
+            <div class="card">
+              <div class="row g-0">
+                <div
+                  class="col-md-4 justify-content-center align-items-center d-flex"
+                >
+                  <img
+                    src="./recourse/img/ofertas/Oferta01.png"
+                    class="img-fluid rounded-start"
+                    alt="Imagen Oferta"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-header p-0 border-0 bg-white text-start">
+                      Desarrollador Frontend
+                    </h5>
+                    <p class="card-text">
+                      Únete a nuestro equipo de desarrollo frontend y crea
+                      experiencias de usuario excepcionales.
+                    </p>
+                  </div>
+                  <div class="card-footer border-0 bg-white text-end">
+                    <a
+                      href="./recourse/menu/Visitante/oferta.html"
+                      class="btn btn-primary"
+                      >Mas Info</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="row g-0">
+                <div
+                  class="col-md-4 justify-content-center align-items-center d-flex"
+                >
+                  <img
+                    src="./recourse/img/ofertas/Oferta07.jpeg"
+                    class="img-fluid rounded-start"
+                    alt="Imagen Oferta"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-header p-0 border-0 bg-white text-start">
+                      A. de Marketing Digital
+                    </h5>
+                    <p class="card-text">
+                      Únete a nuestro equipo de marketing y trabaja en
+                      estrategias digitales innovadoras.
+                    </p>
+                  </div>
+                  <div class="card-footer border-0 bg-white text-end">
+                    <a
+                      href="./recourse/menu/Visitante/oferta.html"
+                      class="btn btn-primary"
+                      >Mas Info</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="row g-0">
+                <div
+                  class="col-md-4 justify-content-center align-items-center d-flex"
+                >
+                  <img
+                    src="./recourse/img/ofertas/OfertaGenerica.jpg"
+                    class="img-fluid rounded-start"
+                    alt="Imagen Oferta"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-header p-0 border-0 bg-white text-start">
+                      Estratega de Negocios
+                    </h5>
+                    <p class="card-text">
+                      Forma parte de nuestro equipo de estrategia y contribuye
+                      al crecimiento de las empresas clientes.
+                    </p>
+                  </div>
+                  <div class="card-footer border-0 bg-white text-end">
+                    <a
+                      href="./recourse/menu/Visitante/oferta.html"
+                      class="btn btn-primary"
+                      >Mas Info</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="row g-0">
+                <div
+                  class="col-md-4 justify-content-center align-items-center d-flex"
+                >
+                  <img
+                    src="./recourse/img/ofertas/OfertaGenerica.jpg"
+                    class="img-fluid rounded-start"
+                    alt="Imagen Oferta"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-header p-0 border-0 bg-white text-start">
+                      Analista de Datos
+                    </h5>
+                    <p class="card-text">
+                      Ayuda a nuestros clientes a tomar decisiones informadas
+                      basadas en analisis y visualizaciones de datos.
+                    </p>
+                  </div>
+                  <div class="card-footer border-0 bg-white text-end">
+                    <a
+                      href="./recourse/menu/Visitante/oferta.html"
+                      class="btn btn-primary"
+                      >Mas Info</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
-      <div class="col-8">
-        <section>
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-4 justify-content-center align-items-center d-flex">
-                <img src="./recourse/img/ofertas/Oferta01.png" class="img-fluid rounded-start" alt="Imagen Oferta" />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-header p-0 border-0 bg-white text-start">
-                    Desarrollador Frontend
-                  </h5>
-                  <p class="card-text">
-                    Únete a nuestro equipo de desarrollo frontend y crea
-                    experiencias de usuario excepcionales.
-                  </p>
-                </div>
-                <div class="card-footer border-0 bg-white text-end">
-                  <a href="./recourse/menu/Visitante/oferta.html" class="btn btn-primary">Mas Info</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-4 justify-content-center align-items-center d-flex">
-                <img src="./recourse/img/ofertas/Oferta07.jpeg" class="img-fluid rounded-start" alt="Imagen Oferta" />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-header p-0 border-0 bg-white text-start">
-                    A. de Marketing Digital
-                  </h5>
-                  <p class="card-text">
-                    Únete a nuestro equipo de marketing y trabaja en
-                    estrategias digitales innovadoras.
-                  </p>
-                </div>
-                <div class="card-footer border-0 bg-white text-end">
-                  <a href="./recourse/menu/Visitante/oferta.html" class="btn btn-primary">Mas Info</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-4 justify-content-center align-items-center d-flex">
-                <img src="./recourse/img/ofertas/OfertaGenerica.jpg" class="img-fluid rounded-start"
-                  alt="Imagen Oferta" />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-header p-0 border-0 bg-white text-start">
-                    Estratega de Negocios
-                  </h5>
-                  <p class="card-text">
-                    Forma parte de nuestro equipo de estrategia y contribuye
-                    al crecimiento de las empresas clientes.
-                  </p>
-                </div>
-                <div class="card-footer border-0 bg-white text-end">
-                  <a href="./recourse/menu/Visitante/oferta.html" class="btn btn-primary">Mas Info</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-4 justify-content-center align-items-center d-flex">
-                <img src="./recourse/img/ofertas/OfertaGenerica.jpg" class="img-fluid rounded-start"
-                  alt="Imagen Oferta" />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-header p-0 border-0 bg-white text-start">
-                    Analista de Datos
-                  </h5>
-                  <p class="card-text">
-                    Ayuda a nuestros clientes a tomar decisiones informadas
-                    basadas en analisis y visualizaciones de datos.
-                  </p>
-                </div>
-                <div class="card-footer border-0 bg-white text-end">
-                  <a href="./recourse/menu/Visitante/oferta.html" class="btn btn-primary">Mas Info</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-    <div></div>
-  </main>
+      <div></div>
+    </main>
 
-  <footer></footer>
+    <footer></footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-  </script>
-  <script src="./recourse/js/dejarOpcionMarcada.js"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./recourse/js/dejarOpcionMarcada.js"></script>
+  </body>
 </html>
