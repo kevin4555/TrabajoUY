@@ -79,11 +79,15 @@ footer {
 }
 
 .imgPerfil {
-  width: 40px;
+  width: 60px;
 }
 
 .selectUsuario {
   padding: 0.5px;
+}
+
+.fotoDePerfil {
+  width: 250px;
 }
 
 
