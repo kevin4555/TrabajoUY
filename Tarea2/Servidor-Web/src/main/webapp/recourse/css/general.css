@@ -14,45 +14,26 @@ body {
 nav {
   background-color: rgb(58, 73, 214);
 }
+
+
 footer {
+  height: 4.875rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background-color: rgb(58, 73, 214);
   font-size: 1.485rem;
   padding: 2.025rem;
   color: white;
 }
 
-.footer {
-  height: 4.875rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.tablaKeyword {
+  height: 22rem;
 }
 
-.logo {
-  float: left;
-  text-transform: uppercase;
-  text-shadow: 0 0 0.3375rem #000;
-  font-weight: bold;
-  color: white;
-}
-
-.logo span {
-  color: #333;
-  text-shadow: 0 0 0.3375rem #ccc;
-}
-
-.home {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 2.025rem;
-}
-
-.keywords {
-  text-align: center;
-  padding: 0.675rem;
-  margin: 0.675rem;
+.cabezaTabla {
+  position: sticky;
+  top: 0;
 }
 
 .dropdown {
@@ -68,7 +49,7 @@ footer {
   box-shadow: 0px 0px 0.675rem rgba(0, 0, 0, 0.2);
 }
 
-.btn.btn-secondary {
+.btn .btn-secondary {
   background-color: rgb(58, 73, 214);
   border: #000 solid 0.0675rem;
 }
@@ -77,3 +58,33 @@ footer {
   position: absolute;
   top: 12%;
 }
+
+.login {
+  background-color: #40576d;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+
+}
+
+.formLogin {
+  max-width: 475px;
+  margin: 0 auto;
+  background-color: #a1a0a0;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.imgPerfil {
+  width: 40px;
+}
+
+.selectUsuario {
+  padding: 0.5px;
+}
+
+
+

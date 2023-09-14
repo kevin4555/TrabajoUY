@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <!--Instalación bootstrap-->
+    <link rel="stylesheet" href="../css/estilos.css" />
+    <!--Link archivo css-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--Para poder usar font-awesome-->
+    <title>Consulta Usuario</title>
+  </head>
+
+  <body>
+    <header>
+      <aside class="logo">Trabajo<span>.uy</span></aside>
+      <form class="d-flex">
+        <input
+          id="inputBuscar"
+          class="form-control me-2"
+          type="text"
+          placeholder="Buscar producto"
+        />
+        <button id="btnBuscar" class="btn btn-light" type="button">
+          <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+        </button>
+      </form>
+      <nav class="portada">
+        <ul class="menuRegistro">
+          <li><a href="../index.html">Inicio</a></li>
+          <li>
+            <img
+              style="width: 40px"
+              class="rounded-pill"
+              src="../img/ecoTechLogo.jpg"
+              alt="Foto de Perfil"
+            />
+            EcoTech
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="consultaUsuario">
+      <div class="keywords">
+        <section class="menuPerfil">
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+              <thead class="table-primary">
+                <tr>
+                  <th>Menú</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="dropdown">
+                      <button
+                        type="button"
+                        class="botonUsuarios btn dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                      >
+                        Usuarios
+                      </button>
+                      <ul class="dropdown-menu overflow-auto listaUsuarios">
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >EcoTech</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >lgarcia</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >valen25</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >sicam</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >matilo</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >maro</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href=".consultarMiPerfilEmpresa.html"
+                            >javierf</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >FusionTech</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >GlobalHealth</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >ANTEL</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >andepe12</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >MIEM</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >sebgon</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >isabel</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./onsultarMiPerfilEmpresa.html"
+                            >TechSolutions</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="dropdown">
+                      <button
+                        type="button"
+                        class="botonUsuarios btn dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                      >
+                        Consultas
+                      </button>
+                      <ul class="dropdown-menu overflow-auto listaConsultas">
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >Tipos de publicaciones</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >Tipos de paquetes</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item nombresUsuarios"
+                            href="./consultarMiPerfilEmpresa.html"
+                            >Tipos de ofertas laborales</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class="btn" href="./altaOferta.html"
+                      >Alta Oferta Laboral</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="">
+          <div class="tablaKeyword table-responsive overflow-auto">
+            <table class="table table-hover table-bordered">
+              <thead class="table-primary">
+                <tr>
+                  <th class="cabezaTabla">Keywords</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <button class="btnKeyword btn">Tiempo Completo</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Medio tiempo</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Remoto</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Freelance</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Temporal</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Permanente</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Computación</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="btnKeyword btn">Administración</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Logística</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Contabilidad</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <section class="perfilUsuario">
+        <div class="datosBasicos">
+          <img
+            class="fotoDePerfil"
+            src="../img/ecoTechLogo.jpg"
+            alt="Foto de Perfil"
+          />
+          <div>
+            <h2>Sophia Johnson</h2>
+            <label for="" class="labelNicknameEmail"
+              >EcoTech / info@EcoTech.com</label
+            >
+            <p><strong>Ultimo ingreso: 01/09/2023 14:26</strong></p>
+          </div>
+        </div>
+        <div class="menuMiPerfil container mt-3">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                data-bs-toggle="tab"
+                href="#perfilUsuario"
+                >Perfil</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-bs-toggle="tab"
+                href="#ofertaLaboralesEmpresa"
+                >Ofertas Laborales</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#paquetes"
+                >Paquetes comprados</a
+              >
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div id="perfilUsuario" class="container tab-pane active">
+              <br />
+              <section class="">
+                <table class="table table-hover table-bordered">
+                  <tr>
+                    <td><strong>Nickname</strong></td>
+                    <td>EcoTech</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Nombre</strong></td>
+                    <td>Sophia</td>
+                    <td>
+                      <button>
+                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Apellido</strong></td>
+                    <td>Johnson</td>
+                    <td>
+                      <button>
+                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>E-mail</strong></td>
+                    <td>info@EcoTech.com</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sitio web</strong></td>
+                    <td>http://www.EcoTechInnova</td>
+                    <td>
+                      <button>
+                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Descripción</strong></td>
+                    <td>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Accusamus doloribus numquam atque officiis obcaecati!
+                      Minus, corrupti inventore voluptatibus dolores ex ad enim
+                      molestiae ipsa cum quo in possimus voluptates dicta?
+                    </td>
+                    <td>
+                      <button>
+                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+              </section>
+            </div>
+            <div id="ofertaLaboralesEmpresa" class="container tab-pane fade">
+              <br />
+              <section class="">
+                <section class="">
+                  <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Horario</th>
+                        <th>Remuneración</th>
+                        <th>Descripción</th>
+                        <th>Departamento</th>
+                        <th>Ciudad</th>
+                        <th>Estado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <a href="./consultaOfertaLaboral.html"
+                            >Desarrollador Frontend</a
+                          >
+                        </td>
+                        <td>09:00 - 18:00</td>
+                        <td>90000</td>
+                        <td>
+                          Únete a nuestro equipo de desarrollo frontend y crea
+                          experiencias de usuario excepcionales.
+                        </td>
+                        <td>Montevideo</td>
+                        <td>Montevideo</td>
+                        <td>Confirmada</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a href="./consultaOfertaLaboral.html"
+                            >A. de Marketing Digital</a
+                          >
+                        </td>
+                        <td>10:00 - 19:00</td>
+                        <td>80000</td>
+                        <td>
+                          Únete a nuestro equipo de marketing y trabaja en
+                          estrategias digitales innovadoras.
+                        </td>
+                        <td>Flores</td>
+                        <td>Flores</td>
+                        <td>Ingresada</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+              </section>
+            </div>
+            <div id="paquetes" class="container tab-pane fade">
+              <br />
+              <section class="">
+                <section class="">
+                  <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Período</th>
+                        <th>Descuento</th>
+                        <th>Fecha de compra</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="">Básico</a></td>
+                        <td>
+                          Publica ofertas laborales en nuestra plataforma por un
+                          período de 30 días
+                        </td>
+                        <td>30 días</td>
+                        <td>20%</td>
+                        <td>16/08/2023</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a href="./consultaOfertaLaboral.html">Express</a>
+                        </td>
+                        <td>
+                          Publica ofertas laborales urgentes resaltada en color
+                          y se mostrará en la sección de urgente por 15 días.
+                        </td>
+                        <td>15 días</td>
+                        <td>5%</td>
+                        <td>13/08/2023</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/app.js"></script>
+    <!--link archivo js-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <!--Instalación bootstrap-->
+  </body>
+</html>

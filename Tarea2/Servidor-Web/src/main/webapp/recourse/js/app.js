@@ -7,6 +7,7 @@ const divNacionalidad = document.getElementById('divNacionalidad');
 const divFechaNacimiento = document.getElementById('divFechaNacimiento');
 const divSitioWeb = document.getElementById('divSitioWeb');
 const divDescripcionEmpresa = document.getElementById('divDescripcionEmpresa');
+const btnRegistrarUsuario = document.getElementById('btnRegistrarUsuario');
 
 
 
@@ -51,7 +52,16 @@ radioEmpresa.addEventListener('click', () => {
 
 });
 
+btnRegistrarUsuario.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (postulanteSeleccionado) {
+        document.location.assign('./indexPostulante.html');
+    }
+    if (empresaSeleccionado) {
+        document.location.assign('./indexEmpresa.html');
+    }
+});
 
 
 
-
+formularioAltaUsuario
