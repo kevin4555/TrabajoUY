@@ -1,48 +1,52 @@
-.paquetesConsulta {
+.oferta p {
+    width: 50%;
+    padding: 0.675rem;
+}
+
+.table {
+    border-color: #000;
+}
+
+.consultaTipoPublicacion {
+    width: 70%;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    text-align: center;
-    position: relative;
-    display: inline-block;
-    width: 75%;
-    height: auto;
-    margin: 0 auto;
-    padding: 1.35rem;
-    background-color: #fff;
-    border: 0.0675 solid #ccc;
-    border-radius: 0.3375rem;
-    box-shadow: 0rem 0rem 0.675rem rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos para el centro*/
-.mainCenter {
-    max-height: 51.3rem;
-    max-width: 54rem;
-    margin: 0 auto;
-    width: 54rem;
+.paqueteTipoPublicacion {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: auto;
+    padding: 0.675rem;
 }
 
-.h5 {
-    height: auto;
-    width: auto;
-    text-align: center;
+.paqueteTipoPublicacion a {
+    background-color: rgb(58, 73, 214);
+    text-decoration: none;
+    color: #fff;
+    padding: 0.675rem 1.35rem;
 }
 
-.espacio {
-    margin-top: 1.35rem;
+.paqueteTipoPublicacion a:hover {
+    background-color: #333;
 }
 
-.espacio3 {
-    margin-top: 5rem;
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 6.75rem);
+
 }
 
-.card {
-    width: 25rem;
-    margin-left: auto;
-    margin-right: auto;
+.formLogin {
+    max-width: 40.5rem;
 }
 
-.textoCard {
-    text-align: left;
+.camposForm {
+    margin-bottom: 1.0125;
 }

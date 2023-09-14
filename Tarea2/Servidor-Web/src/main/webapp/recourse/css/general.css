@@ -46,7 +46,7 @@ footer {
   background-color: white;
   border: 0.0675rem solid #ccc;
   border-radius: 0.3375rem;
-  box-shadow: 0px 0px 0.675rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0rem 0rem 0.675rem rgba(0, 0, 0, 0.2);
 }
 
 .btn .btn-secondary {
@@ -71,23 +71,23 @@ footer {
 }
 
 .formLogin {
-  max-width: 475px;
+  max-width: 32.0625rem;
   margin: 0 auto;
   background-color: #a1a0a0;
-  padding: 30px;
-  border-radius: 10px;
+  padding: 2.025rem;
+  border-radius: 0.675rem;
 }
 
 .imgPerfil {
-  width: 60px;
+  width: 4.05rem;
 }
 
 .selectUsuario {
-  padding: 0.5px;
+  padding: 0.03375rem;
 }
 
 .fotoDePerfil {
-  width: 250px;
+  width: 16.875rem;
 }
 
 
