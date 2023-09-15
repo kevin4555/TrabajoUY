@@ -52,23 +52,45 @@
           </div>
           <div class="col-3">
             <ul class="navbar-nav justify-content-evenly fs-3">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="../../index.html">Inicio</a>
-                </li>
-                <li class="nav-item"><img class="rounded-pill imgPerfil" src="../img/ecoTechLogo.jpg"
-                        alt="Foto de Perfil"></li>
-                <li class="nav-item">
-                    <div class="dropdown selectUsuario">
-                        <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
-                            EcoTech
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./consultarMiPerfilEmpresa.html">Perfil</a></li>
-                            <li><a class="dropdown-item" href="../../index.html">Cerrar Sessión</a></li>
-                        </ul>
-                    </div>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="../../index.html"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <img
+                  class="rounded-pill imgPerfil"
+                  src="../img/ecoTechLogo.jpg"
+                  alt="Foto de Perfil"
+                />
+              </li>
+              <li class="nav-item">
+                <div class="dropdown selectUsuario">
+                  <button
+                    type="button"
+                    class="btn dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                  >
+                    EcoTech
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="./consultarMiPerfilEmpresa.html"
+                        >Perfil</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="../../index.html"
+                        >Cerrar Sessión</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
             </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -97,12 +119,18 @@
                 <option value="Destacada">Destacada</option>
                 <option value="Estándar">Estándar</option>
                 <option value="Básica">Básica</option>
-              </select>              
+              </select>
             </div>
             <div>
-              <button id="botonRedireccionar" class="btn btn-primary" style="display: none;">Ver TipoPublicacion</button>
+              <button
+                id="botonRedireccionar"
+                class="btn btn-primary"
+                style="display: none"
+              >
+                Ver TipoPublicacion
+              </button>
             </div>
-            
+
             <div class="camposForm">
               <label for="inputNombreOferta" class="form-label">*Nombre</label>
               <input
@@ -330,20 +358,22 @@
     togglePaqueteSection();
   </script>
 
-<script>
-  const seleccionTipoPublicacion = document.getElementById('seleccionTipoPublicacion');
-  const botonRedireccionar = document.getElementById('botonRedireccionar');
+  <script>
+    const seleccionTipoPublicacion = document.getElementById(
+      "seleccionTipoPublicacion"
+    );
+    const botonRedireccionar = document.getElementById("botonRedireccionar");
 
-  seleccionTipoPublicacion.addEventListener('change', function () {
-    const tipoSeleccionado = seleccionTipoPublicacion.value;
-    if (tipoSeleccionado) {
-      botonRedireccionar.style.display = 'block';
-      botonRedireccionar.onclick = function () {
-        window.location.href = `${tipoSeleccionado}.html`;
-      };
-    } else {
-      botonRedireccionar.style.display = 'none';
-    }
-  });
-</script>
+    seleccionTipoPublicacion.addEventListener("change", function () {
+      const tipoSeleccionado = seleccionTipoPublicacion.value;
+      if (tipoSeleccionado) {
+        botonRedireccionar.style.display = "block";
+        botonRedireccionar.onclick = function () {
+          window.location.href = `${tipoSeleccionado}.html`;
+        };
+      } else {
+        botonRedireccionar.style.display = "none";
+      }
+    });
+  </script>
 </html>
