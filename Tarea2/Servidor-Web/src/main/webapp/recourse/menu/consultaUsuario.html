@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/x-icon" href="../img/Icon_Logo.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/general.css" />
+    <title>Trabajo.uy</title>
+  </head>
+
+  <body>
+    <!-- El cuerpo del body por lo general esta compuesto de tres etiquetas: header(portada), main, footer(pie de página, dónde por lo general van los contactos, redes sociales, etc)-->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <div class="row w-100 justify-content-between align-items-center">
+          <div class="col-2">
+            <a href="../../index.html"
+              ><img
+                src="../img/Logo.svg"
+                alt="Logo"
+                class="navbar-brand img-fluid"
+            /></a>
+          </div>
+
+          <div class="col">
+            <div class="row justify-content-center">
+              <div class="col-5">
+                <form class="form-inline">
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      type="search"
+                      placeholder="Buscar oferta"
+                      aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                      <i class="bi bi-search text-white"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <ul class="navbar-nav justify-content-evenly fs-3">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="./index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white"
+                  href="./recourse/menu/consultarMiPerfilEmpresa.html"
+                  >Perfil</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="home">
+      <!-- El cuerpo main del home va a contener dos secciones(section). A la izquierda una tabla(table) con las keywords. Y a la derecha varios contenedores(div) uno debajo del otro que contienen la imagen(img) y descripción(p) de las ofertas laborales.
+        El cuerpo de la tabla(tbody) contiene botones para que después al hacer click filtre por lo que corresponda -->
+      <div class="mainLeft">
+        <section class="menu">
+          <div class="dropdown">
+            <h5>Menu</h5>
+            <a
+              class="btn btn-secondary dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              id="dropdown-button"
+            >
+              Seleccionar Pagina
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="../menu/consultaUsuario.html"
+                  id="consultaUsuario"
+                  >Consultar Usuario</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="../menu/consultaDeTipoDePublicacionDeOfertaLaboral.html"
+                  id="consultaDeTipoDePublicacionDeOfertaLaboral"
+                  >Consultar tipo de publicacion</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="../menu/consultaDePaqueteDeTiposDePublicacionDeOfertaLaborl.html"
+                  id="consultaDePaqueteDeTiposDePublicacionDeOfertaLaboral"
+                  >Consultar tipo de paquetes</a
+                >
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="keywords">
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+              <thead class="table-primary">
+                <tr>
+                  <th>Keywords</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <button class="btnKeyword btn">Tiempo Completo</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Medio tiempo</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Remoto</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Freelance</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Temporal</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Permanente</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Computación</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="btnKeyword btn">Administración</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Logística</button></td>
+                </tr>
+                <tr>
+                  <td><button class="btnKeyword btn">Contabilidad</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      <div class="mainCenter">
+        <div class="espacio3"></div>
+        <section class="consultaUsuario">
+          <div class="container">
+            <h1>Usuarios registrados</h1>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="thClass">Perfil</th>
+                    <!-- Personaliza el ancho de la columna -->
+                    <th class="thClass">Nickname</th>
+                    <!-- Personaliza el ancho de la columna -->
+                    <th class="thClassLarge">Tipo de Usuario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="#">Perfil</a></td>
+                    <td>KevinBarraAmsterdam</td>
+                    <td>Empresa</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Perfil</a></td>
+                    <td>Benjamin</td>
+                    <td>Postulante</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Perfil</a></td>
+                    <td>EcoTech</td>
+                    <td>Empresa</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Perfil</a></td>
+                    <td>Meta</td>
+                    <td>Empresa</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Perfil</a></td>
+                    <td>CrisCanario</td>
+                    <td>Postulante</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Perfil</a></td>
+                    <td>Octobot</td>
+                    <td>Empresa</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Perfil</a></td>
+                    <td>MauroLombardo</td>
+                    <td>Postulante</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/tpgr04/Tarea2/Servidor-Web/src/main/webapp/recourse/js/dejarOpcionMarcada.js"></script>
+  </body>
+</html>

@@ -50,20 +50,25 @@
               </div>
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-3">
             <ul class="navbar-nav justify-content-evenly fs-3">
-              <li class="nav-item">
-                <a class="nav-link text-white" href="./index.html">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link text-white"
-                  href="./recourse/menu/consultarMiPerfilEmpresa.html"
-                  >Perfil</a
-                >
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="../../index.html">Inicio</a>
+                </li>
+                <li class="nav-item"><img class="rounded-pill imgPerfil" src="../img/ecoTechLogo.jpg"
+                        alt="Foto de Perfil"></li>
+                <li class="nav-item">
+                    <div class="dropdown selectUsuario">
+                        <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
+                            EcoTech
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./consultarMiPerfilEmpresa.html">Perfil</a></li>
+                            <li><a class="dropdown-item" href="../../index.html">Cerrar Sessión</a></li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
-          </div>
         </div>
       </div>
     </nav>
@@ -88,12 +93,16 @@
                 <option value="">
                   -- Selecciona un tipo de publicación --
                 </option>
-                <option value="Bronce">Bronce</option>
-                <option value="Plata">Plata</option>
-                <option value="Oro">Oro</option>
-              </select>
+                <option value="Premium">Premium</option>
+                <option value="Destacada">Destacada</option>
+                <option value="Estándar">Estándar</option>
+                <option value="Básica">Básica</option>
+              </select>              
             </div>
-
+            <div>
+              <button id="botonRedireccionar" class="btn btn-primary" style="display: none;">Ver TipoPublicacion</button>
+            </div>
+            
             <div class="camposForm">
               <label for="inputNombreOferta" class="form-label">*Nombre</label>
               <input
@@ -126,11 +135,15 @@
                 id="selecKeyword"
                 name="selecKeyword"
               >
-                <option>Keyword 1</option>
-                <option>Keyword 2</option>
-                <option>Keyword 3</option>
-                <option>Keyword 4</option>
-                <option>Keyword 5</option>
+                <option>Tiempo completo</option>
+                <option>Medio tiempo</option>
+                <option>Remoto</option>
+                <option>Freelance</option>
+                <option>Temporal</option>
+                <option>Permanente</option>
+                <option>Computación</option>
+                <option>Administración</option>
+                <option>Contabilidad</option>
               </select>
             </div>
           </div>
@@ -240,9 +253,10 @@
               <label for="listPaquetes">*Selecciona un paquete:</label>
               <select class="form-control" id="listPaquetes" required>
                 <option value="">-- Selecciona un paquete --</option>
-                <option value="Paquete 1">Paquete 1</option>
-                <option value="Paquete 2">Paquete 2</option>
-                <option value="Paquete 3">Paquete 3</option>
+                <option value="Paquete 1">Básico</option>
+                <option value="Paquete 2">Destacado</option>
+                <option value="Paquete 3">Premium</option>
+                <option value="Paquete 4">Express</option>
               </select>
               <div id="descuentoContainer" class="mt-3"></div>
             </div>
@@ -276,9 +290,10 @@
 
     // Define un objeto con los porcentajes de descuento para cada paquete
     const descuentos = {
-      "Paquete 1": "10%",
-      "Paquete 2": "15%",
-      "Paquete 3": "20%",
+      "Paquete 1": "20%",
+      "Paquete 2": "10%",
+      "Paquete 3": "15%",
+      "Paquete 4": "5%",
     };
 
     // Agrega un event listener para detectar cambios en la selección
@@ -314,4 +329,21 @@
     // Asegúrate de llamar a la función una vez al cargar la página para establecer el estado inicial
     togglePaqueteSection();
   </script>
+
+<script>
+  const seleccionTipoPublicacion = document.getElementById('seleccionTipoPublicacion');
+  const botonRedireccionar = document.getElementById('botonRedireccionar');
+
+  seleccionTipoPublicacion.addEventListener('change', function () {
+    const tipoSeleccionado = seleccionTipoPublicacion.value;
+    if (tipoSeleccionado) {
+      botonRedireccionar.style.display = 'block';
+      botonRedireccionar.onclick = function () {
+        window.location.href = `${tipoSeleccionado}.html`;
+      };
+    } else {
+      botonRedireccionar.style.display = 'none';
+    }
+  });
+</script>
 </html>
