@@ -3,10 +3,6 @@
     padding: 0.675rem;
 }
 
-.table {
-    border-color: #000;
-}
-
 .consultaPaqueteTipoPublicacion {
     width: 70%;
     display: flex;

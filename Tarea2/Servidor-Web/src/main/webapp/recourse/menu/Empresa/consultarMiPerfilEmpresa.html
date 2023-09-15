@@ -98,14 +98,99 @@
             </ul>
           </div>
         </div>
+
+        <div class="col-3">
+          <ul class="navbar-nav justify-content-evenly fs-3">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="./indexEmpresa.html"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <img
+                class="rounded-pill imgPerfil"
+                src="../../img/Usuarios/Empresas/Empresa01.jpg"
+                alt="Foto de Perfil"
+              />
+            </li>
+            <li class="nav-item">
+              <div class="dropdown selectUsuario">
+                <button
+                  type="button"
+                  class="btn dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                >
+                  EcoTech
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="./consultarMiPerfilEmpresa.html"
+                      >Perfil</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="../../../index.html"
+                      >Cerrar Sessión</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
 
     <main class="container pt-5">
       <div class="row">
-        <div class="col-3">
-          <section class="text-center">
-            <div class="table-responsive overflow-auto tablaKeyword">
+        <div class="col-4">
+          <img
+            class="fotoDePerfil"
+            src="../../img/Usuarios/Empresas/Empresa01.jpg"
+            alt="Foto de Perfil"
+          />
+        </div>
+        <div class="col-8">
+          <h2 class="mb-3">Sophia Johnson</h2>
+          <label for="" class="labelNicknameEmail mb-3"
+            >EcoTech / info@EcoTech.com</label
+          >
+          <p><strong>Ultimo ingreso: 01/09/2023 14:26</strong></p>
+        </div>
+      </div>
+      <div class="menuMiPerfil container mt-3">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              data-bs-toggle="tab"
+              href="#perfilUsuario"
+              >Perfil</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-bs-toggle="tab"
+              href="#ofertaLaboralesEmpresa"
+              >Ofertas Laborales</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#paquetes"
+              >Paquetes comprados</a
+            >
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="perfilUsuario" class="container tab-pane active">
+            <br />
+            <section class="">
               <table class="table table-hover table-bordered">
                 <thead class="table-primary">
                   <tr>
@@ -142,269 +227,279 @@
                   </tr>
                 </tbody>
               </table>
+            </section>
+            <section class="text-center">
+              <div class="tablaKeyword table-responsive overflow-auto">
+                <table class="table table-hover table-bordered">
+                  <thead class="table-primary">
+                    <tr>
+                      <th class="cabezaTabla">Keywords</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <button class="btnKeyword btn">Tiempo Completo</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button class="btnKeyword btn">Medio tiempo</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><button class="btnKeyword btn">Remoto</button></td>
+                    </tr>
+                    <tr>
+                      <td><button class="btnKeyword btn">Freelance</button></td>
+                    </tr>
+                    <tr>
+                      <td><button class="btnKeyword btn">Temporal</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button class="btnKeyword btn">Permanente</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button class="btnKeyword btn">Computación</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button class="btnKeyword btn">Administración</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><button class="btnKeyword btn">Logística</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button class="btnKeyword btn">Contabilidad</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <section class="col-8">
+            <div class="row">
+              <div class="col-4">
+                <img
+                  class="fotoDePerfil"
+                  src="../../img/ecoTechLogo.png"
+                  alt="Foto de Perfil"
+                />
+              </div>
+              <div class="col-8">
+                <h2 class="mb-3">Sophia Johnson</h2>
+                <label for="" class="labelNicknameEmail mb-3"
+                  >EcoTech / info@EcoTech.com</label
+                >
+                <p><strong>Ultimo ingreso: 01/09/2023 14:26</strong></p>
+              </div>
             </div>
-          </section>
-          <section class="text-center">
-            <div class="tablaKeyword table-responsive overflow-auto">
-              <table class="table table-hover table-bordered">
-                <thead class="table-primary">
-                  <tr>
-                    <th class="cabezaTabla">Keywords</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <button class="btnKeyword btn">Tiempo Completo</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button class="btnKeyword btn">Medio tiempo</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><button class="btnKeyword btn">Remoto</button></td>
-                  </tr>
-                  <tr>
-                    <td><button class="btnKeyword btn">Freelance</button></td>
-                  </tr>
-                  <tr>
-                    <td><button class="btnKeyword btn">Temporal</button></td>
-                  </tr>
-                  <tr>
-                    <td><button class="btnKeyword btn">Permanente</button></td>
-                  </tr>
-                  <tr>
-                    <td><button class="btnKeyword btn">Computación</button></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button class="btnKeyword btn">Administración</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><button class="btnKeyword btn">Logística</button></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button class="btnKeyword btn">Contabilidad</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="menuMiPerfil container mt-3">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    data-bs-toggle="tab"
+                    href="#perfilUsuario"
+                    >Perfil</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="tab"
+                    href="#ofertaLaboralesEmpresa"
+                    >Ofertas Laborales</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#paquetes"
+                    >Paquetes comprados</a
+                  >
+                </li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div id="perfilUsuario" class="container tab-pane active">
+                  <br />
+                  <section class="">
+                    <table class="table table-hover table-bordered">
+                      <tr>
+                        <td><strong>Nickname</strong></td>
+                        <td>EcoTech</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Nombre</strong></td>
+                        <td>Sophia</td>
+                        <td>
+                          <button>
+                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>Apellido</strong></td>
+                        <td>Johnson</td>
+                        <td>
+                          <button>
+                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>E-mail</strong></td>
+                        <td>info@EcoTech.com</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Sitio web</strong></td>
+                        <td>http://www.EcoTechInnova</td>
+                        <td>
+                          <button>
+                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>Descripción</strong></td>
+                        <td>
+                          EcoTech Innovations es una empresa líder en soluciones
+                          tecnológicas sostenibles. Nuestro enfoque se centra en
+                          desarrollar y comercializar productos y servicios que
+                          aborden los desafíos ambientales mías apremiantes de
+                          nuestro tiempo. Desde sistemas de energía renovable y
+                          dispositivos de monitorización ambiental hasta
+                          soluciones de gestión de residuos inteligentes,
+                          nuestra misión es proporcionar herramientas que
+                          permitan a las empresas y comunidades adoptar
+                          prácticas más ecológicas sin comprometer la
+                          eficiencia. Creemos en la convergencia armoniosa entre
+                          la tecnología y la naturaleza, y trabajamos
+                          incansablemente para impulsar un futuro más limpio y
+                          sostenible.
+                        </td>
+                        <td>
+                          <button>
+                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                  </section>
+                </div>
+                <div
+                  id="ofertaLaboralesEmpresa"
+                  class="container tab-pane fade"
+                >
+                  <br />
+                  <section class="">
+                    <section class="">
+                      <table class="table table-hover table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Nombre</th>
+                            <th>Horario</th>
+                            <th>Remuneración</th>
+                            <th>Descripción</th>
+                            <th>Departamento</th>
+                            <th>Ciudad</th>
+                            <th>Estado</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="./oferta.html">Desarrollador Frontend</a>
+                            </td>
+                            <td>09:00 - 18:00</td>
+                            <td>90000</td>
+                            <td>
+                              Únete a nuestro equipo de desarrollo frontend y
+                              crea experiencias de usuario excepcionales.
+                            </td>
+                            <td>Montevideo</td>
+                            <td>Montevideo</td>
+                            <td>Confirmada</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="./oferta.html"
+                                >A. de Marketing Digital</a
+                              >
+                            </td>
+                            <td>10:00 - 19:00</td>
+                            <td>80000</td>
+                            <td>
+                              Únete a nuestro equipo de marketing y trabaja en
+                              estrategias digitales innovadoras.
+                            </td>
+                            <td>Flores</td>
+                            <td>Flores</td>
+                            <td>Ingresada</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </section>
+                </div>
+                <div id="paquetes" class="container tab-pane fade">
+                  <br />
+                  <section class="">
+                    <section class="">
+                      <table class="table table-hover table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Período</th>
+                            <th>Descuento</th>
+                            <th>Fecha de compra</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a href="">Básico</a></td>
+                            <td>
+                              Publica ofertas laborales en nuestra plataforma
+                              por un período de 30 días
+                            </td>
+                            <td>30 días</td>
+                            <td>20%</td>
+                            <td>16/08/2023</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="">Express</a>
+                            </td>
+                            <td>
+                              Publica ofertas laborales urgentes resaltada en
+                              color y se mostrará en la sección de urgente por
+                              15 días.
+                            </td>
+                            <td>15 días</td>
+                            <td>5%</td>
+                            <td>13/08/2023</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </section>
+                </div>
+              </div>
             </div>
           </section>
         </div>
-
-        <section class="col-8">
-          <div class="row">
-            <div class="col-4">
-              <img
-                class="fotoDePerfil"
-                src="../../img/ecoTechLogo.png"
-                alt="Foto de Perfil"
-              />
-            </div>
-            <div class="col-8">
-              <h2 class="mb-3">Sophia Johnson</h2>
-              <label for="" class="labelNicknameEmail mb-3"
-                >EcoTech / info@EcoTech.com</label
-              >
-              <p><strong>Ultimo ingreso: 01/09/2023 14:26</strong></p>
-            </div>
-          </div>
-          <div class="menuMiPerfil container mt-3">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  data-bs-toggle="tab"
-                  href="#perfilUsuario"
-                  >Perfil</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  data-bs-toggle="tab"
-                  href="#ofertaLaboralesEmpresa"
-                  >Ofertas Laborales</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#paquetes"
-                  >Paquetes comprados</a
-                >
-              </li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <div id="perfilUsuario" class="container tab-pane active">
-                <br />
-                <section class="">
-                  <table class="table table-hover table-bordered">
-                    <tr>
-                      <td><strong>Nickname</strong></td>
-                      <td>EcoTech</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Nombre</strong></td>
-                      <td>Sophia</td>
-                      <td>
-                        <button>
-                          <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><strong>Apellido</strong></td>
-                      <td>Johnson</td>
-                      <td>
-                        <button>
-                          <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><strong>E-mail</strong></td>
-                      <td>info@EcoTech.com</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Sitio web</strong></td>
-                      <td>http://www.EcoTechInnova</td>
-                      <td>
-                        <button>
-                          <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><strong>Descripción</strong></td>
-                      <td>
-                        EcoTech Innovations es una empresa líder en soluciones
-                        tecnológicas sostenibles. Nuestro enfoque se centra en
-                        desarrollar y comercializar productos y servicios que
-                        aborden los desafíos ambientales mías apremiantes de
-                        nuestro tiempo. Desde sistemas de energía renovable y
-                        dispositivos de monitorización ambiental hasta
-                        soluciones de gestión de residuos inteligentes, nuestra
-                        misión es proporcionar herramientas que permitan a las
-                        empresas y comunidades adoptar prácticas más ecológicas
-                        sin comprometer la eficiencia. Creemos en la
-                        convergencia armoniosa entre la tecnología y la
-                        naturaleza, y trabajamos incansablemente para impulsar
-                        un futuro más limpio y sostenible.
-                      </td>
-                      <td>
-                        <button>
-                          <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </table>
-                </section>
-              </div>
-              <div id="ofertaLaboralesEmpresa" class="container tab-pane fade">
-                <br />
-                <section class="">
-                  <section class="">
-                    <table class="table table-hover table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Nombre</th>
-                          <th>Horario</th>
-                          <th>Remuneración</th>
-                          <th>Descripción</th>
-                          <th>Departamento</th>
-                          <th>Ciudad</th>
-                          <th>Estado</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <a href="./oferta.html">Desarrollador Frontend</a>
-                          </td>
-                          <td>09:00 - 18:00</td>
-                          <td>90000</td>
-                          <td>
-                            Únete a nuestro equipo de desarrollo frontend y crea
-                            experiencias de usuario excepcionales.
-                          </td>
-                          <td>Montevideo</td>
-                          <td>Montevideo</td>
-                          <td>Confirmada</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="./oferta.html">A. de Marketing Digital</a>
-                          </td>
-                          <td>10:00 - 19:00</td>
-                          <td>80000</td>
-                          <td>
-                            Únete a nuestro equipo de marketing y trabaja en
-                            estrategias digitales innovadoras.
-                          </td>
-                          <td>Flores</td>
-                          <td>Flores</td>
-                          <td>Ingresada</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </section>
-                </section>
-              </div>
-              <div id="paquetes" class="container tab-pane fade">
-                <br />
-                <section class="">
-                  <section class="">
-                    <table class="table table-hover table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Nombre</th>
-                          <th>Descripción</th>
-                          <th>Período</th>
-                          <th>Descuento</th>
-                          <th>Fecha de compra</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><a href="">Básico</a></td>
-                          <td>
-                            Publica ofertas laborales en nuestra plataforma por
-                            un período de 30 días
-                          </td>
-                          <td>30 días</td>
-                          <td>20%</td>
-                          <td>16/08/2023</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="">Express</a>
-                          </td>
-                          <td>
-                            Publica ofertas laborales urgentes resaltada en
-                            color y se mostrará en la sección de urgente por 15
-                            días.
-                          </td>
-                          <td>15 días</td>
-                          <td>5%</td>
-                          <td>13/08/2023</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </section>
-                </section>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </main>
 
