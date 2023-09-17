@@ -55,10 +55,10 @@ radioEmpresa.addEventListener('click', () => {
 btnRegistrarUsuario.addEventListener('click', (e) => {
     e.preventDefault();
     if (postulanteSeleccionado) {
-        document.location.assign('./indexPostulante.html');
+        document.location.assign('./Postulante/indexPostulante.html');
     }
     if (empresaSeleccionado) {
-        document.location.assign('./indexEmpresa.html');
+        document.location.assign('./Empresa/indexEmpresa.html');
     }
 });
 

@@ -9,12 +9,12 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-    <link rel="icon" type="image/x-icon" href="./recourse/img/Icon_Logo.svg" />
+    <link rel="icon" type="image/x-icon" href="../../img/Icon_Logo.svg" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="../css/general.css" />
+    <link rel="stylesheet" href="../../css/general.css" />
     <title>Consulta Oferta</title>
   </head>
 
@@ -23,9 +23,9 @@
       <div class="container">
         <div class="row w-100 justify-content-between align-items-center">
           <div class="col-2">
-            <a href="../../index.html"
+            <a href="../../../index.html"
               ><img
-                src="../img/Logo.svg"
+                src="../../img/Logo.svg"
                 alt="Logo"
                 class="navbar-brand img-fluid"
             /></a>
@@ -50,44 +50,17 @@
               </div>
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <ul class="navbar-nav justify-content-evenly fs-3">
               <li class="nav-item">
-                <a class="nav-link text-white" href="../../index.html"
+                <a class="nav-link text-white" href="../../../index.html"
                   >Inicio</a
                 >
               </li>
               <li class="nav-item">
-                <img
-                  class="rounded-pill imgPerfil"
-                  src="../img/Usuarios/Empresas/Empresa01.jpg"
-                  alt="Foto de Perfil"
-                />
-              </li>
-              <li class="nav-item">
-                <div class="dropdown selectUsuario">
-                  <button
-                    type="button"
-                    class="btn dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                  >
-                    EcoTech
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="./consultarMiPerfilEmpresa.html"
-                        >Perfil</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="../../index.html"
-                        >Cerrar Sessión</a
-                      >
-                    </li>
-                  </ul>
-                </div>
+                <a class="nav-link text-white" href="../inicioSession.html"
+                  >Acceder</a
+                >
               </li>
             </ul>
           </div>
@@ -109,39 +82,24 @@
                 <tbody>
                   <tr>
                     <td class="d-flex">
-                      <a class="btn" href="./altaOferta.html"
-                        >Alta oferta laboral</a
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="d-flex">
-                      <a class="btn" href="./Empresa/consultaUsuario.html"
+                      <a class="btn" href="./consultaUsuario.html"
                         >Consulta usuarios</a
                       >
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex">
-                      <a
-                        class="btn"
-                        href="./Empresa/consultaDeTipoDePublicacionDeOfertaLaboral.html"
-                        >Ver tipos de publicaciones</a
-                      >
+                      <a class="btn" href="./consultaDeTipoDePublicacionDeOfertaLaboral.html">Ver tipos de publicaciones</a>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex">
-                      <a
-                        class="btn"
-                        href="./Empresa/consultaDePaqueteDeTiposDePublicacionOfertaLaboral.html"
-                        >Ver tipos de paquetes</a
-                      >
+                      <a class="btn" href="./consultaDePaqueteDeTiposDePublicacionDeOfertaLaboral.html">Ver tipos de paquetes</a>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex">
-                      <a class="btn" href="">Consulta ofertas laborales</a>
+                      <a class="btn" href="./consultaOfertaLaboralVisitante.html">Consulta ofertas laborales</a>
                     </td>
                   </tr>
                 </tbody>
@@ -199,81 +157,41 @@
               </table>
             </div>
           </section>
-        </div>
-        <div class="col-8">
-          <section>
-            <select class="form-control">
-              <option selected>Seleccione una empresa</option>
-              <option value="1">EcoTech</option>
-            </select>
-            <div class="card">
-              <div class="row g-0">
-                <div
-                  class="col-md-4 justify-content-center align-items-center d-flex"
-                >
-                  <img
-                    src="../img/ofertas/Oferta01.png"
-                    class="img-fluid rounded-start"
-                    alt="Imagen Oferta"
-                  />
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-header p-0 border-0 bg-white text-start">
-                      Desarrollador Frontend
-                    </h5>
-                    <p class="card-text">
-                      Únete a nuestro equipo de desarrollo frontend y crea
-                      experiencias de usuario excepcionales.
-                    </p>
+        </div>  
+        <div class="col-9 d-flex flex-column align-items-center flex-grow-1">
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row g-0">
+              <div class="col">
+                <div class="card-body">
+                  <div class="card-header bg-white px-0">
+                    <h1 class="m-0 fs-2">Tipo Publicacion Premium</h1>
                   </div>
-                  <div class="card-footer border-0 bg-white text-end">
-                    <a href="./ofertaEmpresa.html" class="btn btn-primary"
-                      >Mas Info</a
-                    >
+                  <p class="card-text py-2 fst-italic">
+                    Obtén máxima visibilidad
+                  </p>
+                  <ul class="list-unstyled">
+                    <li class="text-secondary">
+                      <i class="bi bi-arrow-right-circle text-primary"></i>
+                      Exposición: 1
+                    </li>
+                    <li class="text-secondary">
+                      <i class="bi bi-arrow-right-circle text-primary"></i>
+                      Duración: 30 días
+                    </li>
+                    <li class="text-secondary">
+                      <i class="bi bi-arrow-right-circle text-primary"></i>
+                      Fecha de alta: 10/08/2023
+                    </li>
+                  </ul>
+                  <div class="text-start">
+                    <h2 class="">$4000 <sub>/Oferta laboral</sub></h2>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card">
-              <div class="row g-0">
-                <div
-                  class="col-md-4 justify-content-center align-items-center d-flex"
-                >
-                  <img
-                    src="../img/ofertas/Oferta07.jpeg"
-                    class="img-fluid rounded-start"
-                    alt="Imagen Oferta"
-                  />
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-header p-0 border-0 bg-white text-start">
-                      A. de Marketing Digital
-                    </h5>
-                    <p class="card-text">
-                      Únete a nuestro equipo de marketing y trabaja en
-                      estrategias digitales innovadoras.
-                    </p>
-                  </div>
-                  <div class="card-footer border-0 bg-white text-end">
-                    <a href="./ofertaEmpresa.html" class="btn btn-primary"
-                      >Mas Info</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          </div>
         </div>
       </div>
     </main>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
-    <script src="../js/dejarOpcionMarcada.js"></script>
   </body>
 </html>
