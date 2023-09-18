@@ -7,9 +7,9 @@ public class DTEmpresa extends DTUsuario{
 	private String sitioWeb;
 	private ArrayList<DTOfertaLaboral> ofertasLaborales;
 	
-	public DTEmpresa(String nickname, String nombre, String apellido, String email, 
-			String descripcion, String sitioWeb, ArrayList<DTOfertaLaboral> ofertasLaborales) {
-		super(nickname, nombre, apellido, email);
+	public DTEmpresa(String nickname, String nombre, String apellido, String email, String imagen, String contrasenia,
+			ArrayList<DTOfertaLaboral> ofertasColeccion, String descripcion, String sitioWeb, ArrayList<DTOfertaLaboral> ofertasLaborales) {
+		super(nickname, nombre, apellido, email, imagen, contrasenia, ofertasColeccion);
 		this.descripcion = descripcion;
 		this.sitioWeb = sitioWeb;
 		this.ofertasLaborales = ofertasLaborales;

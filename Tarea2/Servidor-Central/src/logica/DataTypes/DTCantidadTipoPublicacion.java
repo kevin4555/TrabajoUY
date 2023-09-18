@@ -2,11 +2,11 @@ package logica.DataTypes;
 
 public class DTCantidadTipoPublicacion {
 	String nombreTipoPublicacion;
-	int cantidad;
+	int cantidadRestante;
 
 	public DTCantidadTipoPublicacion(String nombre, int cantidad) {
 		this.nombreTipoPublicacion = nombre;
-		this.cantidad = cantidad;
+		this.cantidadRestante = cantidad;
 	}
 
 	public String getNombreTipoPublicacion() {
@@ -14,7 +14,7 @@ public class DTCantidadTipoPublicacion {
 	}
 
 	public int getCantidad() {
-		return cantidad;
+		return cantidadRestante;
 	}
 
 }
