@@ -7,6 +7,7 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
@@ -27,9 +28,9 @@ public interface IControladorUsuario {
 	
 	public  void registrarPostulacion(String cvReducido,String motivacion, Date fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
 	
-	public  void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
+	public  void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad, String imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
 	
-	public  void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
+	public  void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link, String imagen, String contrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
 	
 	public  Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException;
 	
@@ -41,9 +42,19 @@ public interface IControladorUsuario {
 
 	ArrayList<String> listarPostulantes();
 	
-	public void editarPostulante(String nickname, String nombre, String apellido, Date fechaNacimiento, String nacionalidad) throws UsuarioNoExisteException;
+	public void editarPostulante(String nickname, String nombre, String apellido, Date fechaNacimiento, String nacionalidad, String imagen, String contrasenia) throws UsuarioNoExisteException;
 	
-	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion ) throws UsuarioNoExisteException;
+	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion, String imagen, String contrasenia ) throws UsuarioNoExisteException;
 	
 	public DTPostulacion obtenerDTPostulacion(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException;
+
+	ArrayList<DTOfertaLaboral> obtenerDTOfertasIngresadasDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
+
+	ArrayList<DTOfertaLaboral> obtenerDTOfertasConfirmadasDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
+
+	ArrayList<DTOfertaLaboral> obtenerDTOfertasRechazadasDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
+
+	Boolean confirmarContrasenia(String clave, String contrasenia) throws UsuarioNoExisteException;
+
+	ArrayList<DTUsuario> obtenerDTUsuarios();
 }

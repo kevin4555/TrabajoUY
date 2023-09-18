@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DTPostulacion {
 
-	private DTUsuario usuario;
+	private DTPostulante postulante;
 
 	private String descripMotivacion;
 
@@ -12,15 +12,15 @@ public class DTPostulacion {
 
 	private String cvReducido;
 
-	public DTPostulacion(DTUsuario usuario, String descripMotivacion, Date fechaPostulacion, String cvReducido) {
-		this.usuario = usuario;
+	public DTPostulacion(DTPostulante postulante, String descripMotivacion, Date fechaPostulacion, String cvReducido) {
+		this.postulante = postulante;
 		this.descripMotivacion = descripMotivacion;
 		this.fechaPostulacion = fechaPostulacion;
 		this.cvReducido = cvReducido;
 	}
 
-	public DTUsuario getUsuario() {
-		return usuario;
+	public DTPostulante getPostulante() {
+		return postulante;
 	}
 
 	

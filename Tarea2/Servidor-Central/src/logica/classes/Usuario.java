@@ -9,13 +9,17 @@ public abstract class Usuario {
 	protected String nombre;
 	protected String apellido;
 	protected String email;
+	private String imagen;
+	private String contrasenia;
 
-	public Usuario(String nickname, String nombre, String apellido, String email) {
+	public Usuario(String nickname, String nombre, String apellido, String email, String imagen, String contrasenia) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
+		this.contrasenia = contrasenia;
+		this.imagen = imagen;
 	}
 
 	public String getNickname() {
@@ -40,6 +44,22 @@ public abstract class Usuario {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
 	abstract public ArrayList<String> listarOfertasUsuario();

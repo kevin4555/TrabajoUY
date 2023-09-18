@@ -49,4 +49,5 @@ public class DTUsuario {
 	public String getNickname() {
 		return nickname;
 	}
+	
 }

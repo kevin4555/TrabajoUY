@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
+import logica.DataTypes.EstadoOferta;
 
 public class OfertaLaboral {
 	private String nombre;
@@ -15,11 +16,15 @@ public class OfertaLaboral {
 	private String horarioFinal;
 	private float remuneracion;
 	private Date fechaAlta;
+	private Date fechaResolucion;
+	private String imagen;
+	private EstadoOferta estado;
 	private ArrayList<Keyword> listaKeywords;
 	private TipoPublicacion tipoPublicacion;
 	private ArrayList<Postulacion> postulaciones;
+	private CompraPaquete compraPaquete;
 	
-	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion) {
+	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion, String imagen) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
@@ -31,6 +36,11 @@ public class OfertaLaboral {
 		this.tipoPublicacion = tipoPublicacion;
 		this.postulaciones = new ArrayList<Postulacion>();
 		this.listaKeywords = new ArrayList<Keyword>();
+		this.estado = EstadoOferta.INGRESADA;
+		this.imagen = imagen;
+		this.compraPaquete = null;
+		this.fechaResolucion = null;
+		
 	}
 
 	public String getNombre() {
@@ -71,7 +81,7 @@ public class OfertaLaboral {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public ArrayList<Keyword> getKw() {
+	public ArrayList<Keyword> getKeywords() {
 		return listaKeywords;
 	}
 
@@ -133,4 +143,24 @@ public class OfertaLaboral {
 		this.horarioInicial = horarioInicial;
 	}
 	
+	public Boolean estaCompradaPorPaquete() {
+		return compraPaquete != null;
+	}
+	
+	public EstadoOferta getEstado() {
+		return estado;
+	}
+
+	public CompraPaquete getCompraPaquete() {
+		return compraPaquete;
+	}
+
+	public void setCompraPaquete(CompraPaquete compraPaquete) {
+		this.compraPaquete = compraPaquete;
+	}
+	
+	public void resolucionOferta(EstadoOferta estado, Date fechaResolucion) {
+		this.estado = estado;
+		this.fechaResolucion = fechaResolucion;
+	}
 }

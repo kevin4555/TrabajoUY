@@ -6,6 +6,7 @@ import java.util.HashMap;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
@@ -123,19 +124,37 @@ public class ManejadorUsuario {
 		return listaUsuarios;
 	}	
 	
-	public Usuario obtenerUsuario(String nicknameUsuario) throws UsuarioNoExisteException 
+	public Usuario obtenerUsuario(String clave) throws UsuarioNoExisteException 
 	{
-		if(colUsuarios.containsKey(nicknameUsuario)) 
+		if(colUsuarios.containsKey(clave)) 
 		{
-			return colUsuarios.get(nicknameUsuario);
+			return colUsuarios.get(clave);
+		}
+		else if (usuariosEmail.containsKey(clave)) {
+			return usuariosEmail.get(clave);
 		}
 		else
 		{
-			throw new UsuarioNoExisteException("Usuario: " + nicknameUsuario + " no existe");
+			throw new UsuarioNoExisteException("Usuario: " + clave + " no existe");
 		}
 	}
 	
 	public void clean() {
 		instancia = null;
+	}
+	
+	public ArrayList<DTUsuario> obtenerDTUsuarios(){
+		ArrayList<DTUsuario> listaResultado = new ArrayList<DTUsuario>();
+		for(Usuario usuario: colUsuarios.values()) {
+			if(usuario instanceof Postulante) {
+				Postulante postulante = (Postulante)usuario;
+				listaResultado.add(postulante.obtenerDTPostulante());
+			}
+			if(usuario instanceof Empresa) {
+				Empresa empresa = (Empresa)usuario;
+				listaResultado.add(empresa.obtenerDTEmpresa());
+			}
+		}
+		return listaResultado;
 	}
 }

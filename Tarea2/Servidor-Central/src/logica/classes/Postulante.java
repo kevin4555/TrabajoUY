@@ -3,6 +3,7 @@ package logica.classes;
 import java.util.ArrayList;
 import java.util.Date;
 
+import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTPostulante;
 import logica.DataTypes.DTUsuario;
@@ -13,8 +14,8 @@ public class Postulante extends Usuario{
 	private ArrayList<Postulacion> postulaciones;
 	
 	
-	public Postulante(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, String nacionalidad) {
-		super(nickname, nombre, apellido, email);
+	public Postulante(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, String nacionalidad, String imagen, String contrasenia) {
+		super(nickname, nombre, apellido, email, imagen, contrasenia);
 		setFechaNacimiento(fechaNacimiento);
 		setNacionalidad(nacionalidad);
 		this.postulaciones = new ArrayList<Postulacion>();
@@ -41,8 +42,8 @@ public class Postulante extends Usuario{
 	}
 	
 	public DTPostulante obtenerDTPostulante() {
-		return new DTPostulante(this.nickname, this.nombre, this.apellido, this.email,
-				this.fechaNacimiento, this.nacionalidad);
+		return new DTPostulante(this.nickname, this.nombre, this.apellido, this.email,  this.getImagen(),  this.getContrasenia(),
+				this.obtenerDTOfertas(),this.fechaNacimiento, this.nacionalidad);
 	}
 	
 	public void agregarPostulacion(Postulacion postulacion) {
@@ -74,4 +75,8 @@ public class Postulante extends Usuario{
 		return postulacionAOferta.obtenerDTPostulacion();
 	}
 	
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertas(){
+		/*implementar*/
+		return null;
+	}
 }

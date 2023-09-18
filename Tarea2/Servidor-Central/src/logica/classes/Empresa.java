@@ -8,14 +8,15 @@ import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTUsuario;
+import logica.DataTypes.EstadoOferta;
 
 public class Empresa extends Usuario {
 	private String descripcion;
 	private String sitioWeb;
 	private ArrayList<OfertaLaboral> ofertasLaborales;
 	
-	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb) {
-		super(nickname, nombre, apellido, email);
+	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb, String imagen, String contrasenia) {
+		super(nickname, nombre, apellido, email, imagen, contrasenia);
 		setDescripcion(descripcion);
 		setSitioWeb(sitioWeb);
 		this.ofertasLaborales = new ArrayList<OfertaLaboral>();
@@ -67,7 +68,7 @@ public class Empresa extends Usuario {
 		for(OfertaLaboral oferta : ofertasLaborales) {
 			listaDTOfertas.add(oferta.obtenerDTOfertaLaboral());
 		}
-		DTEmpresa resultado = new DTEmpresa(this.nickname, this.nombre, this.apellido, this.email, this.descripcion, this.sitioWeb, listaDTOfertas);
+		DTEmpresa resultado = new DTEmpresa(this.nickname, this.nombre, this.apellido, this.email, this.getImagen(), this.getContrasenia(),  listaDTOfertas, this.descripcion, this.sitioWeb);
 		return resultado;
 	}
 	
@@ -79,5 +80,35 @@ public class Empresa extends Usuario {
 	@Override
 	public DTUsuario obtenerDTUsuario() {
 		return this.obtenerDTEmpresa();
+	}
+	
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasIngresadas(){
+		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
+		for(OfertaLaboral oferta : ofertasLaborales) {
+			if(oferta.getEstado() == EstadoOferta.INGRESADA) {
+				listaResultado.add(oferta.obtenerDTOfertaLaboral());
+			}
+		}
+		return listaResultado;
+	}
+	
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasConfirmadas(){
+		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
+		for(OfertaLaboral oferta : ofertasLaborales) {
+			if(oferta.getEstado() == EstadoOferta.CONFIRMADA) {
+				listaResultado.add(oferta.obtenerDTOfertaLaboral());
+			}
+		}
+		return listaResultado;
+	}
+	
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasRechazadas(){
+		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
+		for(OfertaLaboral oferta : ofertasLaborales) {
+			if(oferta.getEstado() == EstadoOferta.RECHAZADA) {
+				listaResultado.add(oferta.obtenerDTOfertaLaboral());
+			}
+		}
+		return listaResultado;
 	}
 }

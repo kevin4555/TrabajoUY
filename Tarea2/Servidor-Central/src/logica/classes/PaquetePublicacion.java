@@ -2,6 +2,7 @@ package logica.classes;
 
 import java.util.ArrayList;
 
+import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTPaquetePublicacion;
 
 public class PaquetePublicacion {
@@ -11,15 +12,17 @@ public class PaquetePublicacion {
 	private int periodoValidez;
 	private float descuento;
 	private float costo;
+	private String imagen;
 	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
 
-	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento,
+	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento, String imagen,
 			ArrayList<CantidadTipoPublicacion> cantidadTipo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.cantidadPublicaciones = 0;
 		this.periodoValidez = periodoValidez;
 		this.descuento = descuento;
+		this.imagen = imagen;
 		this.cantidadTipoPublicaciones = cantidadTipo;
 		for (CantidadTipoPublicacion cantidad : cantidadTipo) {
 			this.cantidadPublicaciones = this.cantidadPublicaciones + cantidad.getCantidadRestante();
@@ -71,6 +74,14 @@ public class PaquetePublicacion {
 		return descuento;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	/**
 	 * Establece el descuento y recalcula el costo.
 	 * 
@@ -90,7 +101,11 @@ public class PaquetePublicacion {
 	}
 
 	public DTPaquetePublicacion obtenerDTPaquete() {
-		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo);
+		ArrayList<DTCantidadTipoPublicacion> listDTcantidad = new ArrayList<DTCantidadTipoPublicacion>();
+		for(CantidadTipoPublicacion cantidad : cantidadTipoPublicaciones) {
+			listDTcantidad.add(cantidad.obtenerDTCantidadTipoPublicacion());
+		}
+		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo, imagen, listDTcantidad );
 	}
 
 	public void crearCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) {
