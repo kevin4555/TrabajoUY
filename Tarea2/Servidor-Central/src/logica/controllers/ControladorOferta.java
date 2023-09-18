@@ -7,6 +7,7 @@ import java.util.Date;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
@@ -192,39 +193,50 @@ public class ControladorOferta implements IControladorOferta {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOfertaLab);
 		ArrayList<String> listaKeywords = new ArrayList<String>();
-		for (int i = 0; i < ofertaLaboral.getKw().size(); i++) {
-			listaKeywords.add(ofertaLaboral.getKw().get(i).getNombre());
+		for (int i = 0; i < ofertaLaboral.getKeywords().size(); i++) {
+			listaKeywords.add(ofertaLaboral.getKeywords().get(i).getNombre());
 		}
 		return listaKeywords;
 	}
 
-	// Falta implementar Cristhian
-	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta) {
+	@Override
+	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, Date fechaResolucion) throws OfertaLaboralNoExisteException {
+		OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+		oferta.resolucionOferta(estadoOferta, fechaResolucion);
 	}
 
-	// Falta implementar Cristhian
+	@Override
 	public ArrayList<DTOfertaLaboral> obtenerDtOfertasConfirmadas() {
-		return null;
+		return ManejadorOfertas.getInstance().obtenerDTOfertasConfirmadas();
 	}
 
-	// Falta implementar Cristhian
-	public ArrayList<DTOfertaLaboral> obtenerOfertasPorKeyword(String keyword) {
-		return null;
+	@Override
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasPorKeyword(String keyword) {
+		return ManejadorOfertas.getInstance().obtenerDTOfertasPorKeyword(keyword);
 	}
 
-	// Falta implementar Cristhian
-	public ArrayList<DTPostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta) {
-		return null;
+	@Override
+	public ArrayList<DTPostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta) throws OfertaLaboralNoExisteException {
+		OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+		return oferta.obtenerDTPostulacion();
+		
 	}
 
-	// Falta implementar Cristhian
-	public boolean estaCompradoPorPaqueteOferta(String nombreOferta) {
-		return false;
+	@Override
+	public boolean estaCompradoPorPaqueteOferta(String nombreOferta) throws OfertaLaboralNoExisteException {
+		OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+		return oferta.estaCompradaPorPaquete();
 	}
 
-	// Falta implementar Cristhian
-	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta) {
-		return null;
+	@Override
+	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta) throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete {
+		OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+		if(oferta.estaCompradaPorPaquete()) {
+			return oferta.obtenerDTPaquete();
+		}
+		else {
+			throw new OfertaLaboralNoTienePaquete("La oferta:" + nombreOferta + "no fue comprada por paquete" );
+		}
 	}
 
 	// Falta implementar Cristhian
@@ -237,9 +249,10 @@ public class ControladorOferta implements IControladorOferta {
 		return null;
 	}
 	
-	// Falta implementar Cristhian
-	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete){
-		return null;
+	@Override
+	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException{
+		PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
+		return paquete.obtenerNombresTipoPublicaciones();
 	}
 	
 }

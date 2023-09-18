@@ -53,5 +53,8 @@ public class CantidadTipoPublicacion {
 		return new DTCantidadTipoPublicacion(this.tipoPublicacion.getNombre(), this.cantidadRestante);
 		
 	}
-
+	
+	public String obtenerNombreTipoPublicacion() {
+		return tipoPublicacion.getNombre();
+	}
 }

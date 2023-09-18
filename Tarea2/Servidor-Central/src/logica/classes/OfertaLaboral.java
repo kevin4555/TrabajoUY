@@ -163,4 +163,19 @@ public class OfertaLaboral {
 		this.estado = estado;
 		this.fechaResolucion = fechaResolucion;
 	}
+	
+	public Boolean tieneKeyword(String keywordBuscada) {
+		Boolean resultado = false;
+		for(Keyword keyword : listaKeywords) {
+			if(keyword.getNombre() == keywordBuscada) {
+				resultado = true;
+				break;
+			}
+		}
+		return resultado;
+	}
+	
+	public DTPaquetePublicacion obtenerDTPaquete() {
+		return compraPaquete.obtenerDTPaquete();
+	}
 }

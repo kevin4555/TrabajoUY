@@ -31,15 +31,6 @@ public class ManejadorOfertas {
 		return instancia;
 	}
 
-	/*public ArrayList<String> listarTiposDePublicaciones() 
-	{
-		ArrayList<String> resultado = new ArrayList<String>();
-		for (Map.Entry<String, TipoPublicacion> entry : this.coleccionTipoPublicacion.entrySet()) 
-			{
-				resultado.add(entry.getKey());
-			}
-		return resultado;
-	}*/
 
 	public void agregarOferta(OfertaLaboral ofertaLaboral) throws OfertaLaboralYaExisteException 
 	{
@@ -89,5 +80,23 @@ public class ManejadorOfertas {
 	
 	public void clean() {
 		instancia = null;
+	}
+	
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasConfirmadas(){
+		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
+		for(OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
+			listaResultado.add(oferta.obtenerDTOfertaLaboral());
+		}
+		return listaResultado;
+	}
+	
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasPorKeyword(String keyword){
+		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
+		for(OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
+			if(oferta.tieneKeyword(keyword)) {
+				listaResultado.add(oferta.obtenerDTOfertaLaboral());
+			}
+		}
+		return listaResultado;
 	}
 }

@@ -119,4 +119,11 @@ public class PaquetePublicacion {
 		return cantidadTipoPublicaciones;
 	}
 
+	public ArrayList<String> obtenerNombresTipoPublicaciones(){
+		ArrayList<String> listaResultado = new ArrayList<String>();
+		for(CantidadTipoPublicacion cantidad : cantidadTipoPublicaciones) {
+			listaResultado.add(cantidad.obtenerNombreTipoPublicacion());
+		}
+		return listaResultado;
+	}
 }

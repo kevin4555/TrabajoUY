@@ -6,6 +6,7 @@ import java.util.Date;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
@@ -68,23 +69,29 @@ public interface IControladorOferta {
 	public boolean estaPostulado(String postulante, String nomOfertaLaboral)
 			throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
 
-	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta EstadoOferta);
+	void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, Date fechaResolucion)	throws OfertaLaboralNoExisteException;
 
 	public ArrayList<DTOfertaLaboral> obtenerDtOfertasConfirmadas();
 
-	public ArrayList<DTOfertaLaboral> obtenerOfertasPorKeyword(String keyword);
+	ArrayList<DTOfertaLaboral> obtenerDTOfertasPorKeyword(String keyword);
 	
-	public ArrayList<DTPostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta);
+	public ArrayList<DTPostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta) throws OfertaLaboralNoExisteException;
 	
-	public boolean estaCompradoPorPaqueteOferta (String nombreOferta);
+	public boolean estaCompradoPorPaqueteOferta (String nombreOferta) throws OfertaLaboralNoExisteException;
 	
-	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta);
+	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta) throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete;
 	
 	public ArrayList<DTPaquetePublicacion> obtenerDtPaquetesNoComprado();
 	
 	public ArrayList<String> listarPaquetesNoComprados();
 	
-	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete);
+	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException;
+
+	
+
+	
+	
+	
 	
 
 }
