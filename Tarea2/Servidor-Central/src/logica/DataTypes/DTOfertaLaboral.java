@@ -13,6 +13,13 @@ public class DTOfertaLaboral {
 	private Float remuneracion;
 	private Date fechaAlta;
 	private ArrayList<DTPostulacion> postulaciones;
+	private EstadoOferta estadoOferta;
+	private String imagen;
+	private DTPaquetePublicacion paqueteAsociado;
+	private ArrayList<String> Keywords;
+	
+	
+	
 	
 	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento, String horarioInicial, String horarioFinal, Float remuneracion, Date fechaAlta, ArrayList<DTPostulacion> postulaciones)
 	{

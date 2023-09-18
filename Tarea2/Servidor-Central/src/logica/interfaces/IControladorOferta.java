@@ -15,6 +15,9 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTPaquetePublicacion;
+import logica.DataTypes.DTPostulacion;
+import logica.DataTypes.EstadoOferta;
 import logica.classes.CantidadTipoPublicacion;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
@@ -24,19 +27,22 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.TipoPublicacion;
 
 public interface IControladorOferta {
-	
-	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
-			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion, String nicknameEmpresa, ArrayList<String> listakeywords)
-			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException;
 
+	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
+			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion,
+			String nicknameEmpresa, ArrayList<String> listakeywords, String imagen, String nombrePaquete)
+			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException,
+			UsuarioNoExisteException;
 
 	public ArrayList<String> listarTipoDePublicaciones();
 
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException;
+
 	public ArrayList<String> listarPaquetes();
-	
-	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException;
-	
+
+	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic)
+			throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException;
+
 	public Keyword obtenerKeywords(String nomKeyword) throws KeywordNoExisteException, TipoPublicacionNoExisteException;
 
 	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException;
@@ -54,10 +60,31 @@ public interface IControladorOferta {
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo,
 			Date fechaPub) throws TipoPublicacionYaExisteException;
 
-	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete) throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException;
+	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete)
+			throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException;
 
 	public PaquetePublicacion obtenerPaquetePublicacion(String string) throws PaquetePublicacionNoExisteException;
 
-	public boolean estaPostulado(String postulante, String nomOfertaLaboral) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
+	public boolean estaPostulado(String postulante, String nomOfertaLaboral)
+			throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
+
+	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta EstadoOferta);
+
+	public ArrayList<DTOfertaLaboral> obtenerDtOfertasConfirmadas();
+
+	public ArrayList<DTOfertaLaboral> obtenerOfertasPorKeyword(String keyword);
+	
+	public ArrayList<DTPostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta);
+	
+	public boolean estaCompradoPorPaqueteOferta (String nombreOferta);
+	
+	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta);
+	
+	public ArrayList<DTPaquetePublicacion> obtenerDtPaquetesNoComprado();
+	
+	public ArrayList<String> listarPaquetesNoComprados();
+	
+	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete);
+	
 
 }

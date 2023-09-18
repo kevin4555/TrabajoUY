@@ -9,13 +9,13 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-    <link rel="icon" type="image/x-icon" href="./recourse/img/Icon_Logo.svg" />
+    <link rel="icon" type="image/x-icon" href="../../img/Icon_Logo.svg" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="../css/general.css" />
-    <title>Consulta Oferta</title>
+    <link rel="stylesheet" href="../../css/general.css" />
+    <title>Oferta</title>
   </head>
 
   <body>
@@ -23,9 +23,9 @@
       <div class="container">
         <div class="row w-100 justify-content-between align-items-center">
           <div class="col-2">
-            <a href="../../index.html"
+            <a href="./indexEmpresa.html"
               ><img
-                src="../img/Logo.svg"
+                src="../../img/Logo.svg"
                 alt="Logo"
                 class="navbar-brand img-fluid"
             /></a>
@@ -53,14 +53,14 @@
           <div class="col-3">
             <ul class="navbar-nav justify-content-evenly fs-3">
               <li class="nav-item">
-                <a class="nav-link text-white" href="../../index.html"
+                <a class="nav-link text-white" href="./indexEmpresa.html"
                   >Inicio</a
                 >
               </li>
               <li class="nav-item">
                 <img
                   class="rounded-pill imgPerfil"
-                  src="../img/Usuarios/Postulantes/Postulante01.png"
+                  src="../../img/Usuarios/Empresas/Empresa01.jpg"
                   alt="Foto de Perfil"
                 />
               </li>
@@ -71,18 +71,18 @@
                     class="btn dropdown-toggle"
                     data-bs-toggle="dropdown"
                   >
-                    lgarcia
+                    EcoTech
                   </button>
                   <ul class="dropdown-menu">
                     <li>
                       <a
                         class="dropdown-item"
-                        href="./consultarMiPerfilPostulante.html"
+                        href="./consultarMiPerfilEmpresa.html"
                         >Perfil</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="../../index.html"
+                      <a class="dropdown-item" href="../../../index.html"
                         >Cerrar Sessión</a
                       >
                     </li>
@@ -109,6 +109,13 @@
                 <tbody>
                   <tr>
                     <td class="d-flex">
+                      <a class="btn" href="./altaOferta.html"
+                        >Alta oferta laboral</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="d-flex">
                       <a class="btn" href="./consultaUsuario.html"
                         >Consulta usuarios</a
                       >
@@ -116,17 +123,17 @@
                   </tr>
                   <tr>
                     <td class="d-flex">
-                      <a class="btn" href="">Ver tipos de publicaciones</a>
+                      <a class="btn" href="./consultaDeTipoDePublicacionDeOfertaLaboral.html">Ver tipos de publicaciones</a>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex">
-                      <a class="btn" href="">Ver tipos de paquetes</a>
+                      <a class="btn" href="./consultaDePaqueteDeTiposDePublicacionOfertaLaboral.html">Ver tipos de paquetes</a>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex">
-                      <a class="btn" href="">Consulta ofertas laborales</a>
+                      <a class="btn" href="./consultaOfertaLaboralEmpresa.html">Consulta ofertas laborales</a>
                     </td>
                   </tr>
                 </tbody>
@@ -187,126 +194,64 @@
         </div>
         <div class="col-8">
           <section>
-            <select class="form-control">
-              <option selected>Seleccione una empresa</option>
-              <option value="1">EcoTech</option>
-            </select>
-            <div class="card">
-              <div class="row g-0">
-                <div
-                  class="col-md-4 justify-content-center align-items-center d-flex"
-                >
-                  <img
-                    src="../img/ofertas/Oferta01.png"
-                    class="img-fluid rounded-start"
-                    alt="Imagen Oferta"
-                  />
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-header p-0 border-0 bg-white text-start">
-                      Desarrollador Frontend
-                    </h5>
-                    <p class="card-text">
-                      Únete a nuestro equipo de desarrollo frontend y crea
-                      experiencias de usuario excepcionales.
-                    </p>
-                  </div>
-                  <div class="card-footer border-0 bg-white text-end">
-                    <a href="./ofertaEmrpesa.html" class="btn btn-primary"
-                      >Mas Info</a
+            <div class="row">
+              <div class="col">
+                <div class="card">
+                  <div class="row g-0">
+                    <div
+                      class="col-md-4 justify-content-center align-items-center d-flex"
                     >
+                      <img
+                        src="../../img/ofertas/Oferta07.jpeg"
+                        class="img-fluid rounded-start"
+                        alt="Imagen Oferta"
+                      />
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5
+                          class="card-header p-0 border-0 bg-white text-start"
+                        >
+                            A. de Marketing Digital
+                        </h5>
+                        <p class="card-text">
+                            Únete a nuestro equipo de marketing y trabaja en
+                            estrategias digitales innovadoras.
+                        </p>
+                      </div>
+                      <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <b>Remuneración:</b> 80000 pesos uruguayos
+                          </li>
+                          <li class="list-group-item">
+                            <b>Horario:</b> 10:00-19:00
+                          </li>
+                          <li class="list-group-item">
+                            <b>Departamento:</b> Flores
+                          </li>
+                          <li class="list-group-item">
+                            <b>Ciudad:</b> Flores
+                          </li>
+                          <li class="list-group-item">
+                            <b>Fecha de alta:</b> 15/08/23
+                          </li>
+                          <li class="list-group-item"><b>Costo:</b> 4000</li>
+                          <li class="list-group-item">
+                            <b>Tipo de Publicacion:</b> <a href="./TipoPublicacion.html">Premium</a>
+                          </li>
+                          <li class="list-group-item">
+                                <b>Empresa:</b> <a href="./consultarMiPerfilEmpresa.html"> EcoTech</a>
+                              </li>
+                          <li class="list-group-item">
+                            <b>Keywords:</b> 
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="card">
-              <div class="row g-0">
-                <div
-                  class="col-md-4 justify-content-center align-items-center d-flex"
-                >
-                  <img
-                    src="../img/ofertas/Oferta07.jpeg"
-                    class="img-fluid rounded-start"
-                    alt="Imagen Oferta"
-                  />
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-header p-0 border-0 bg-white text-start">
-                      A. de Marketing Digital
-                    </h5>
-                    <p class="card-text">
-                      Únete a nuestro equipo de marketing y trabaja en
-                      estrategias digitales innovadoras.
-                    </p>
-                  </div>
-                  <div class="card-footer border-0 bg-white text-end">
-                    <a href="./ofertaEmrpesa.html" class="btn btn-primary"
-                      >Mas Info</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="row g-0">
-                <div
-                  class="col-md-4 justify-content-center align-items-center d-flex"
-                >
-                  <img
-                    src="../img/ofertas/OfertaGenerica.jpg"
-                    class="img-fluid rounded-start"
-                    alt="Imagen Oferta"
-                  />
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-header p-0 border-0 bg-white text-start">
-                      Estratega de Negocios
-                    </h5>
-                    <p class="card-text">
-                      Forma parte de nuestro equipo de estrategia y contribuye
-                      al crecimiento de las empresas clientes.
-                    </p>
-                  </div>
-                  <div class="card-footer border-0 bg-white text-end">
-                    <a href="./ofertaEmrpesa.html" class="btn btn-primary"
-                      >Mas Info</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="row g-0">
-                <div
-                  class="col-md-4 justify-content-center align-items-center d-flex"
-                >
-                  <img
-                    src="../img/ofertas/OfertaGenerica.jpg"
-                    class="img-fluid rounded-start"
-                    alt="Imagen Oferta"
-                  />
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-header p-0 border-0 bg-white text-start">
-                      Analista de Datos
-                    </h5>
-                    <p class="card-text">
-                      Ayuda a nuestros clientes a tomar decisiones informadas
-                      basadas en analisis y visualizaciones de datos.
-                    </p>
-                  </div>
-                  <div class="card-footer border-0 bg-white text-end">
-                    <a
-                      href="./consultaOfertaLaboral.html"
-                      class="btn btn-primary"
-                      >Mas Info</a
-                    >
-                  </div>
-                </div>
               </div>
             </div>
           </section>

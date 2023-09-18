@@ -1,5 +1,6 @@
 package logica.controllers;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,6 +16,9 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTPaquetePublicacion;
+import logica.DataTypes.DTPostulacion;
+import logica.DataTypes.EstadoOferta;
 import logica.classes.CantidadTipoPublicacion;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
@@ -40,10 +44,12 @@ public class ControladorOferta implements IControladorOferta {
 		return nombreTiposPublicacion;
 	}
 
+	// Falta implementar imagen/nombrePaquete Cristhian
 	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
 			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion,
-			String nicknameEmpresa, ArrayList<String> listakeywords) throws OfertaLaboralYaExisteException,
-			TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException {
+			String nicknameEmpresa, ArrayList<String> listakeywords, String imagen, String nombrePaquete)
+			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException,
+			UsuarioNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		Fabrica fabrica = Fabrica.getInstance();
@@ -53,12 +59,11 @@ public class ControladorOferta implements IControladorOferta {
 				ciudad, departamento, fechaAlta, manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion));
 		manejadorOfertas.agregarOferta(ofertaLaboral);
 		for (int i = 0; i < listakeywords.size(); i++) {
-            ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listakeywords.get(i)));
-        }
-		
-        contUsuario.obtenerEmpresa(nicknameEmpresa).agregarOferta(ofertaLaboral);
-        
-		
+			ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listakeywords.get(i)));
+		}
+
+		contUsuario.obtenerEmpresa(nicknameEmpresa).agregarOferta(ofertaLaboral);
+
 	}
 
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
@@ -119,7 +124,6 @@ public class ControladorOferta implements IControladorOferta {
 		return listKeywords;
 	}
 
-
 	public DTOfertaLaboral obtenerDtOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 
@@ -177,7 +181,8 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	@Override
-	public boolean estaPostulado(String postulante, String nomOfertaLaboral) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
+	public boolean estaPostulado(String postulante, String nomOfertaLaboral)
+			throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
 		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
 		Postulante post = controladorUsuario.obtenerPostulante(postulante);
 		return post.listarOfertasUsuario().contains(nomOfertaLaboral);
@@ -193,4 +198,48 @@ public class ControladorOferta implements IControladorOferta {
 		return listaKeywords;
 	}
 
+	// Falta implementar Cristhian
+	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta) {
+	}
+
+	// Falta implementar Cristhian
+	public ArrayList<DTOfertaLaboral> obtenerDtOfertasConfirmadas() {
+		return null;
+	}
+
+	// Falta implementar Cristhian
+	public ArrayList<DTOfertaLaboral> obtenerOfertasPorKeyword(String keyword) {
+		return null;
+	}
+
+	// Falta implementar Cristhian
+	public ArrayList<DTPostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta) {
+		return null;
+	}
+
+	// Falta implementar Cristhian
+	public boolean estaCompradoPorPaqueteOferta(String nombreOferta) {
+		return false;
+	}
+
+	// Falta implementar Cristhian
+	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta) {
+		return null;
+	}
+
+	// Falta implementar Cristhian
+	public ArrayList<DTPaquetePublicacion> obtenerDtPaquetesNoComprado() {
+		return null;
+	}
+	
+	// Falta implementar Cristhian
+	public ArrayList<String> listarPaquetesNoComprados(){
+		return null;
+	}
+	
+	// Falta implementar Cristhian
+	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete){
+		return null;
+	}
+	
 }
