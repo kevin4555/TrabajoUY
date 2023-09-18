@@ -76,7 +76,18 @@ public class Postulante extends Usuario{
 	}
 	
 	public ArrayList<DTOfertaLaboral> obtenerDTOfertas(){
-		/*implementar*/
-		return null;
+		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
+		for(Postulacion postulacion : postulaciones) {
+			listaResultado.add(postulacion.getOfertaLaboral().obtenerDTOfertaLaboral());
+		}
+		return listaResultado;
+	}
+	
+	public ArrayList<DTPostulacion> obtenerDTPostulaciones(){
+		ArrayList<DTPostulacion> listaResultado = new ArrayList<DTPostulacion>();
+		for(Postulacion postulacion : postulaciones) {
+			listaResultado.add(postulacion.obtenerDTPostulacion());
+		}
+		return listaResultado;
 	}
 }

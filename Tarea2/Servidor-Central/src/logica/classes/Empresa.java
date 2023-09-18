@@ -7,6 +7,7 @@ import java.util.Set;
 import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTUsuario;
 import logica.DataTypes.EstadoOferta;
 
@@ -14,12 +15,14 @@ public class Empresa extends Usuario {
 	private String descripcion;
 	private String sitioWeb;
 	private ArrayList<OfertaLaboral> ofertasLaborales;
+	private ArrayList<CompraPaquete> compraPaquetes;
 	
 	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb, String imagen, String contrasenia) {
 		super(nickname, nombre, apellido, email, imagen, contrasenia);
 		setDescripcion(descripcion);
 		setSitioWeb(sitioWeb);
 		this.ofertasLaborales = new ArrayList<OfertaLaboral>();
+		this.compraPaquetes = new ArrayList<CompraPaquete>();
 	}
 	
 	public String getDescripcion() {
@@ -111,4 +114,30 @@ public class Empresa extends Usuario {
 		}
 		return listaResultado;
 	}
+	
+	public void comprarPaquete(CompraPaquete compraPaquete) {
+		compraPaquetes.add(compraPaquete);
+	}
+	
+	public Boolean estaCompradoPaquete(String nombrePaquete) {
+		Boolean resultado = false;
+		for(CompraPaquete compraPaquete : compraPaquetes ) {
+			if(compraPaquete.obtenerNombrePaquete() == nombrePaquete) {
+				resultado = true;
+				break;
+			}
+		}
+		return resultado;
+	}
+	
+	public ArrayList<DTPaquetePublicacion> obtenerDTPaquetes(){
+		ArrayList<DTPaquetePublicacion> listaReultado = new ArrayList<DTPaquetePublicacion>();
+		for(CompraPaquete compraPaquete: compraPaquetes) {
+			listaReultado.add(compraPaquete.obtenerDTPaquete());
+		}
+		return listaReultado;
+	}
+	
+	
+	
 }

@@ -8,6 +8,7 @@ import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
@@ -81,7 +82,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	public void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac,
 			String nacionalidad, String imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
-		Postulante postulante = new Postulante(nickname, nombre, apellido, email, fechaNac, nacionalidad, imagen, constrasenia);
+		Postulante postulante = new Postulante(nickname, nombre, apellido, email.toLowerCase(), fechaNac, nacionalidad, imagen, constrasenia);
 		manejadorUsuario.agregarPostulante(postulante);
 	}
 
@@ -89,7 +90,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	public void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
 			String link, String imagen, String contrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
-		Empresa empresa = new Empresa(nickname, nombre, apellido, email, descripcion, link, imagen, contrasenia);
+		Empresa empresa = new Empresa(nickname, nombre, apellido, email.toLowerCase(), descripcion, link, imagen, contrasenia);
 		manejadorUsuarios.agregarEmpresa(empresa);
 
 	}
@@ -173,5 +174,24 @@ public class ControladorUsuario implements IControladorUsuario {
 	@Override
 	public ArrayList<DTUsuario> obtenerDTUsuarios(){
 		return ManejadorUsuario.getInstance().obtenerDTUsuarios();
+	}
+	
+	@Override
+	public DTPostulacion obtenerDTPostulacionDePostulanteAOferta(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException {
+		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nicknamePostulante);
+		return postulante.obtenerDTPostulacion(nombreOferta);
+	}
+	
+	@Override
+	public ArrayList<DTPaquetePublicacion> obtenerDTPaquetesDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException{
+		Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
+		return empresa.obtenerDTPaquetes();
+		
+	}
+	
+	@Override
+	public ArrayList<DTPostulacion> obtenerDTPostulacionesDePostulante(String nicknamePostulante) throws UsuarioNoExisteException{
+		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nicknamePostulante);
+		return postulante.obtenerDTPostulaciones();
 	}
 }

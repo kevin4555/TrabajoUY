@@ -2,6 +2,8 @@ package logica.classes;
 
 import java.util.Date;
 
+import logica.DataTypes.DTPaquetePublicacion;
+
 public class CompraPaquete {
 	private Date fehcaNacimiento;
 	private String nacionalidad;
@@ -28,5 +30,14 @@ public class CompraPaquete {
 		this.fehcaNacimiento = fehcaNacimiento;
 	};
 	
+	public String obtenerNombrePaquete() {
+		/*falta implementacion*/
+		
+		return null;
+	}
 	
+	public DTPaquetePublicacion obtenerDTPaquete() {
+		/*falta implementacion*/
+		return null;
+	}
 }

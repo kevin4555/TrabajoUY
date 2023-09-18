@@ -8,6 +8,7 @@ import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTUsuario;
 import logica.classes.Empresa;
@@ -57,4 +58,10 @@ public interface IControladorUsuario {
 	Boolean confirmarContrasenia(String clave, String contrasenia) throws UsuarioNoExisteException;
 
 	ArrayList<DTUsuario> obtenerDTUsuarios();
+
+	DTPostulacion obtenerDTPostulacionDePostulanteAOferta(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException;
+
+	ArrayList<DTPaquetePublicacion> obtenerDTPaquetesDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
+
+	ArrayList<DTPostulacion> obtenerDTPostulacionesDePostulante(String nicknamePostulante) throws UsuarioNoExisteException;
 }
