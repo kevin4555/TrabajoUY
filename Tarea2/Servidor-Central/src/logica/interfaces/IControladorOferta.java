@@ -19,7 +19,7 @@ import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.EstadoOferta;
-import logica.classes.CantidadTipoPublicacion;
+import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
 import logica.classes.Keyword;

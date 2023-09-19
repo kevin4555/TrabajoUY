@@ -8,39 +8,36 @@ import logica.DataTypes.DTPaquetePublicacion;
 public class PaquetePublicacion {
 	private String nombre;
 	private String descripcion;
-	private int cantidadPublicaciones;
+	private int cantidadPublicacionesPublicadas;
 	private int periodoValidez;
 	private float descuento;
 	private float costo;
 	private String imagen;
-	private ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones;
+	private ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones;
 
 	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento, String imagen,
-			ArrayList<CantidadTipoPublicacion> cantidadTipo) {
+			ArrayList<CantidadTotalTipoPublicacion> cantidadTipo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.cantidadPublicaciones = 0;
+		this.cantidadPublicacionesPublicadas = 0;
 		this.periodoValidez = periodoValidez;
 		this.descuento = descuento;
 		this.imagen = imagen;
 		this.cantidadTipoPublicaciones = cantidadTipo;
-		for (CantidadTipoPublicacion cantidad : cantidadTipo) {
-			this.cantidadPublicaciones = this.cantidadPublicaciones + cantidad.getCantidadRestante();
-		}
-		this.setCosto();
+		//this.setCosto();
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	private void setCosto() {
+	/*private void setCosto() {
 		float costoTotal = 0;
-		for (CantidadTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) {
+		for (CantidadTotalTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) {
 			costoTotal += cantidadTipoPublicacion.obtenerCostoPublicaciones();
 		}
 		this.costo = costoTotal * ((100 - descuento) / 100);
-	}
+	}*/
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -55,11 +52,11 @@ public class PaquetePublicacion {
 	}
 
 	public int getCantidadPublicaciones() {
-		return cantidadPublicaciones;
+		return cantidadPublicacionesPublicadas;
 	}
 
-	public void setCantidadPublicaciones(int cantidadPublicaciones) {
-		this.cantidadPublicaciones = cantidadPublicaciones;
+	public void setCantidadPublicaciones(int cantidadPublicacionesPublicadas) {
+		this.cantidadPublicacionesPublicadas = cantidadPublicacionesPublicadas;
 	}
 
 	public int getPeriodoValidez() {
@@ -82,48 +79,53 @@ public class PaquetePublicacion {
 		this.imagen = imagen;
 	}
 
-	/**
-	 * Establece el descuento y recalcula el costo.
-	 * 
-	 * @param descuento Descripción del primer parámetro.
-	 */
-	public void setDescuento(float descuento) {
+	/*public void setDescuento(float descuento) {
 		this.descuento = descuento;
 		setCosto();
-	}
+	}*/
 
 	public float getCosto() {
 		return costo;
 	}
 
-	public void setCantidadTipoPublicaciones(ArrayList<CantidadTipoPublicacion> cantidadTipoPublicaciones) {
+	public void setCantidadTotalTipoPublicaciones(ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones) {
 		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
 	}
 
 	public DTPaquetePublicacion obtenerDTPaquete() {
 		ArrayList<DTCantidadTipoPublicacion> listDTcantidad = new ArrayList<DTCantidadTipoPublicacion>();
-		for(CantidadTipoPublicacion cantidad : cantidadTipoPublicaciones) {
+		/*for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
 			listDTcantidad.add(cantidad.obtenerDTCantidadTipoPublicacion());
-		}
-		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicaciones, periodoValidez, descuento, costo, imagen, listDTcantidad );
+		}*/
+		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicacionesPublicadas, periodoValidez, descuento,
+				costo, imagen, listDTcantidad);
 	}
 
-	public void crearCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) {
-		CantidadTipoPublicacion nuevoCantidad = new CantidadTipoPublicacion(cantIncluida, tipoPublicacion);
-		nuevoCantidad.asociarPaquete(this);
-		cantidadTipoPublicaciones.add(nuevoCantidad);
-
-	}
-
-	public ArrayList<CantidadTipoPublicacion> getCantidadTipoPublicaciones() {
+	public ArrayList<CantidadTotalTipoPublicacion> obtenerCantidadTotalTipoPublicaciones() {
 		return cantidadTipoPublicaciones;
 	}
 
-	public ArrayList<String> obtenerNombresTipoPublicaciones(){
+	public ArrayList<String> obtenerNombresTipoPublicaciones() {
 		ArrayList<String> listaResultado = new ArrayList<String>();
-		for(CantidadTipoPublicacion cantidad : cantidadTipoPublicaciones) {
-			listaResultado.add(cantidad.obtenerNombreTipoPublicacion());
+		for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
+			listaResultado.add(cantidad.getTipoPublicacion().getNombre());
 		}
 		return listaResultado;
 	}
+
+	public void agregarTipoPublicacion(TipoPublicacion tipoPublicacion) {
+		CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion = tipoPublicacion.getCantidadTipoPublicacion();
+		cantidadTipoPublicaciones.add(cantidadTotalTipoPublicacion);
+	}
+
+	public ArrayList<String> listarTipoPublicacion() {
+		ArrayList<String> resultado = new ArrayList<>();
+		for (CantidadTotalTipoPublicacion tipoPublicacion : cantidadTipoPublicaciones) {
+			resultado.add(tipoPublicacion.getTipoPublicacion().getNombre());
+		}
+		return resultado;
+	}
+	
+	
+
 }
