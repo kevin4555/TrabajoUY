@@ -1,6 +1,7 @@
 package logica.classes;
 
 import java.util.Date;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
@@ -17,14 +18,14 @@ public class OfertaLaboral {
 	private float remuneracion;
 	private Date fechaAlta;
 	private Date fechaResolucion;
-	private String imagen;
+	private BufferedImage imagen;
 	private EstadoOferta estado;
 	private ArrayList<Keyword> listaKeywords;
 	private TipoPublicacion tipoPublicacion;
 	private ArrayList<Postulacion> postulaciones;
 	private CompraPaquete compraPaquete;
 	
-	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion, String imagen) {
+	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;

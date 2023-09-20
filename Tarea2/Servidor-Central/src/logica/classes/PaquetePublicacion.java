@@ -1,5 +1,6 @@
 package logica.classes;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import logica.DataTypes.DTCantidadTipoPublicacion;
@@ -8,36 +9,34 @@ import logica.DataTypes.DTPaquetePublicacion;
 public class PaquetePublicacion {
 	private String nombre;
 	private String descripcion;
-	private int cantidadPublicacionesPublicadas;
 	private int periodoValidez;
 	private float descuento;
 	private float costo;
-	private String imagen;
+	private BufferedImage imagen;
 	private ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones;
 
-	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento, String imagen,
+	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento, BufferedImage imagen,
 			ArrayList<CantidadTotalTipoPublicacion> cantidadTipo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.cantidadPublicacionesPublicadas = 0;
 		this.periodoValidez = periodoValidez;
 		this.descuento = descuento;
 		this.imagen = imagen;
 		this.cantidadTipoPublicaciones = cantidadTipo;
-		//this.setCosto();
+		this.setCosto();
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	/*private void setCosto() {
+	private void setCosto() {
 		float costoTotal = 0;
 		for (CantidadTotalTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) {
-			costoTotal += cantidadTipoPublicacion.obtenerCostoPublicaciones();
+			costoTotal += cantidadTipoPublicacion.obtenerCostoTotalPublicaciones();
 		}
 		this.costo = costoTotal * ((100 - descuento) / 100);
-	}*/
+	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -51,13 +50,7 @@ public class PaquetePublicacion {
 		this.descripcion = descripcion;
 	}
 
-	public int getCantidadPublicaciones() {
-		return cantidadPublicacionesPublicadas;
-	}
 
-	public void setCantidadPublicaciones(int cantidadPublicacionesPublicadas) {
-		this.cantidadPublicacionesPublicadas = cantidadPublicacionesPublicadas;
-	}
 
 	public int getPeriodoValidez() {
 		return periodoValidez;
@@ -71,18 +64,14 @@ public class PaquetePublicacion {
 		return descuento;
 	}
 
-	public String getImagen() {
+	public BufferedImage getImagen() {
 		return imagen;
 	}
 
-	public void setImagen(String imagen) {
+	public void setImagen(BufferedImage imagen) {
 		this.imagen = imagen;
 	}
 
-	/*public void setDescuento(float descuento) {
-		this.descuento = descuento;
-		setCosto();
-	}*/
 
 	public float getCosto() {
 		return costo;
@@ -94,13 +83,16 @@ public class PaquetePublicacion {
 
 	public DTPaquetePublicacion obtenerDTPaquete() {
 		ArrayList<DTCantidadTipoPublicacion> listDTcantidad = new ArrayList<DTCantidadTipoPublicacion>();
-		/*for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
+		for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
 			listDTcantidad.add(cantidad.obtenerDTCantidadTipoPublicacion());
-		}*/
-		return new DTPaquetePublicacion(nombre, descripcion, cantidadPublicacionesPublicadas, periodoValidez, descuento,
+		}
+		return new DTPaquetePublicacion(nombre, descripcion, periodoValidez, descuento,
 				costo, imagen, listDTcantidad);
 	}
 
+
+	
+	
 	public ArrayList<CantidadTotalTipoPublicacion> obtenerCantidadTotalTipoPublicaciones() {
 		return cantidadTipoPublicaciones;
 	}
@@ -124,6 +116,12 @@ public class PaquetePublicacion {
 			resultado.add(tipoPublicacion.getTipoPublicacion().getNombre());
 		}
 		return resultado;
+	}
+
+	public void crearCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) {
+		CantidadTotalTipoPublicacion cantidad = new CantidadTotalTipoPublicacion(cantIncluida, tipoPublicacion);
+		cantidadTipoPublicaciones.add(cantidad);
+		
 	}
 	
 	

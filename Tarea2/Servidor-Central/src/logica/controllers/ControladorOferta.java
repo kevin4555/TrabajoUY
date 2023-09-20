@@ -1,5 +1,6 @@
 package logica.controllers;
 
+import java.awt.image.BufferedImage;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,7 +49,7 @@ public class ControladorOferta implements IControladorOferta {
 	// Falta implementar imagen/nombrePaquete Cristhian
 	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
 			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion,
-			String nicknameEmpresa, ArrayList<String> listakeywords, String imagen, String nombrePaquete)
+			String nicknameEmpresa, ArrayList<String> listakeywords, BufferedImage imagen, String nombrePaquete)
 			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException,
 			UsuarioNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
@@ -62,8 +63,13 @@ public class ControladorOferta implements IControladorOferta {
 		for (int i = 0; i < listakeywords.size(); i++) {
 			ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listakeywords.get(i)));
 		}
-		/*hay que agregar si se compra por paquete*/
-		contUsuario.obtenerEmpresa(nicknameEmpresa).agregarOferta(ofertaLaboral);
+		
+		Empresa empresa = contUsuario.obtenerEmpresa(nicknameEmpresa);
+		empresa.agregarOferta(ofertaLaboral);
+		if(nombrePaquete!=null) {
+			empresa.comprarOfertaPorPaquete(nombre, nombrePaquete, nomTipoPublicacion, ofertaLaboral);
+			
+		}
 
 	}
 
@@ -146,12 +152,11 @@ public class ControladorOferta implements IControladorOferta {
 		return nombreOfertas;
 	}
 
-	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, float descuento, Date fechaAlta,
+	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, float descuento,BufferedImage imagen, Date fechaAlta,
 			ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException,
 			TipoPublicacionYaExisteException, TipoPublicacionNoExisteException {
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		String imagen = null;
 		ArrayList<CantidadTotalTipoPublicacion> arrayCantidad = new ArrayList<CantidadTotalTipoPublicacion>();
 
 		if (cantidadTipoPublicacion != null) {
@@ -167,9 +172,7 @@ public class ControladorOferta implements IControladorOferta {
 		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion, periodoValDias, descuento,
 				imagen, arrayCantidad);
 
-		for (CantidadTotalTipoPublicacion cantidadTipo : arrayCantidad) {
-			cantidadTipo.asociarPaquete(paquetePublicacion);
-		}
+		
 
 		manejadorPaquetes.agregarPaquete(paquetePublicacion);
 	}

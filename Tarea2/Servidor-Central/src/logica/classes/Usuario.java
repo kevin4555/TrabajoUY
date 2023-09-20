@@ -1,5 +1,6 @@
 package logica.classes;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import logica.DataTypes.DTUsuario;
@@ -9,10 +10,10 @@ public abstract class Usuario {
 	protected String nombre;
 	protected String apellido;
 	protected String email;
-	private String imagen;
+	private BufferedImage imagen;
 	private String contrasenia;
 
-	public Usuario(String nickname, String nombre, String apellido, String email, String imagen, String contrasenia) {
+	public Usuario(String nickname, String nombre, String apellido, String email, BufferedImage imagen, String contrasenia) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
@@ -46,11 +47,11 @@ public abstract class Usuario {
 		this.apellido = apellido;
 	}
 	
-	public String getImagen() {
+	public BufferedImage getImagen() {
 		return imagen;
 	}
 
-	public void setImagen(String imagen) {
+	public void setImagen(BufferedImage imagen) {
 		this.imagen = imagen;
 	}
 

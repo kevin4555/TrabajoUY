@@ -1,6 +1,6 @@
 module tpgr04
 {
-    requires java.desktop;
+    requires transitive  java.desktop;
     requires jcalendar;
     requires junit;
     exports presentacion;

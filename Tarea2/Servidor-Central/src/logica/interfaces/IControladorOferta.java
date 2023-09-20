@@ -1,5 +1,6 @@
 package logica.interfaces;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,7 +32,7 @@ public interface IControladorOferta {
 
 	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
 			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion,
-			String nicknameEmpresa, ArrayList<String> listakeywords, String imagen, String nombrePaquete)
+			String nicknameEmpresa, ArrayList<String> listakeywords, BufferedImage imagen, String nombrePaquete)
 			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException,
 			UsuarioNoExisteException;
 
@@ -54,7 +55,7 @@ public interface IControladorOferta {
 
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 
-	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, float descuento, Date fechaAlta,
+	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, float descuento,BufferedImage imagen, Date fechaAlta,
 			ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException,
 			TipoPublicacionYaExisteException, TipoPublicacionNoExisteException;
 

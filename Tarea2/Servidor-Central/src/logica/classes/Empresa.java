@@ -1,5 +1,6 @@
 package logica.classes;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +18,7 @@ public class Empresa extends Usuario {
 	private ArrayList<OfertaLaboral> ofertasLaborales;
 	private ArrayList<CompraPaquete> compraPaquetes;
 	
-	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb, String imagen, String contrasenia) {
+	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb, BufferedImage imagen, String contrasenia) {
 		super(nickname, nombre, apellido, email, imagen, contrasenia);
 		setDescripcion(descripcion);
 		setSitioWeb(sitioWeb);
@@ -145,6 +146,17 @@ public class Empresa extends Usuario {
 			listaResultado.add(compraPaquete.obtenerNombrePaquete());
 		}
 		return listaResultado;
+	}
+
+	public void comprarOfertaPorPaquete(String nombre, String nombrePaquete, String nomTipoPublicacion, OfertaLaboral oferta) {
+		for(CompraPaquete compra : compraPaquetes) {
+			if(compra.obtenerNombrePaquete() == nombrePaquete) {
+				compra.gastarTipoPublicacion(nomTipoPublicacion);
+				oferta.setCompraPaquete(compra);
+				break;
+			}
+		}
+		
 	}
 	
 	

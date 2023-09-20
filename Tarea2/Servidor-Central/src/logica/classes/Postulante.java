@@ -1,5 +1,6 @@
 package logica.classes;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ public class Postulante extends Usuario{
 	private ArrayList<Postulacion> postulaciones;
 	
 	
-	public Postulante(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, String nacionalidad, String imagen, String contrasenia) {
+	public Postulante(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, String nacionalidad, BufferedImage imagen, String contrasenia) {
 		super(nickname, nombre, apellido, email, imagen, contrasenia);
 		setFechaNacimiento(fechaNacimiento);
 		setNacionalidad(nacionalidad);

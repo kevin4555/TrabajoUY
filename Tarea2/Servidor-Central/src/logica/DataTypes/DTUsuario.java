@@ -1,5 +1,6 @@
 package logica.DataTypes;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class DTUsuario {
@@ -7,11 +8,11 @@ public class DTUsuario {
 	private String nombre;
 	private String apellido;
 	private String email;
-	private String imagen;
+	private BufferedImage imagen;
 	private String contrasenia;
 	private ArrayList<DTOfertaLaboral> ofertasColeccion;
 
-	public DTUsuario(String nickname, String nombre, String apellido, String email, String imagen, String contrasenia,
+	public DTUsuario(String nickname, String nombre, String apellido, String email, BufferedImage imagen, String contrasenia,
 			ArrayList<DTOfertaLaboral> ofertasColeccion) {
 		this.nickname = nickname;
 		this.nombre = nombre;
@@ -22,7 +23,7 @@ public class DTUsuario {
 		this.ofertasColeccion = ofertasColeccion;
 	}
 
-	public String getImagen() {
+	public BufferedImage getImagen() {
 		return imagen;
 	}
 

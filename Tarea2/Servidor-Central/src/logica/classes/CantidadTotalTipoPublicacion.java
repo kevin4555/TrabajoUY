@@ -23,11 +23,12 @@ public class CantidadTotalTipoPublicacion {
 		return this.tipoPublicacion.getCosto() * this.cantidadTotal;
 	}
 
-	/*
-	 * public DTCantidadTipoPublicacion obtenerDTCantidadTipoPublicacion() { return
-	 * new DTCantidadTipoPublicacion(this.tipoPublicacion.getNombre(),
-	 * this.cantidadTotal);
-	 * 
-	 * }
-	 */
+	
+	  public DTCantidadTipoPublicacion obtenerDTCantidadTipoPublicacion() { return
+	  new DTCantidadTipoPublicacion(this.tipoPublicacion.getNombre(),
+	  this.cantidadTotal);
+	  
+	  }
+
+	 
 }

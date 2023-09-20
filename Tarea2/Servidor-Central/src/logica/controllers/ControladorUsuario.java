@@ -1,6 +1,7 @@
 package logica.controllers;
 
 import java.util.Date;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import excepciones.OfertaLaboralNoExisteException;
@@ -80,7 +81,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac,
-			String nacionalidad, String imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
+			String nacionalidad, BufferedImage imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = new Postulante(nickname, nombre, apellido, email.toLowerCase(), fechaNac, nacionalidad, imagen, constrasenia);
 		manejadorUsuario.agregarPostulante(postulante);
@@ -88,7 +89,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String link, String imagen, String contrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
+			String link, BufferedImage imagen, String contrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
 		Empresa empresa = new Empresa(nickname, nombre, apellido, email.toLowerCase(), descripcion, link, imagen, contrasenia);
 		manejadorUsuarios.agregarEmpresa(empresa);
@@ -119,7 +120,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 	
 	@Override
-	public void editarPostulante(String nickname, String nombre, String apellido, Date fechaNacimiento, String nacionalidad, String imagen, String contrasenia) throws UsuarioNoExisteException {
+	public void editarPostulante(String nickname, String nombre, String apellido, Date fechaNacimiento, String nacionalidad, BufferedImage imagen, String contrasenia) throws UsuarioNoExisteException {
 		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nickname);
 		postulante.setNombre(nombre);
 		postulante.setApellido(apellido);
@@ -130,7 +131,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 	
 	@Override
-	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion, String imagen, String contrasenia) throws UsuarioNoExisteException {
+	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion, BufferedImage imagen, String contrasenia) throws UsuarioNoExisteException {
 		
 		Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nickname);
 		empresa.setNombre(nombre);
