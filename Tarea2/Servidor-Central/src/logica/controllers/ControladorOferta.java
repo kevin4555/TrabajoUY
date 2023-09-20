@@ -20,7 +20,7 @@ import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.EstadoOferta;
-import logica.classes.CantidadTipoPublicacion;
+import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
 import logica.classes.Keyword;
@@ -151,23 +151,23 @@ public class ControladorOferta implements IControladorOferta {
 			TipoPublicacionYaExisteException, TipoPublicacionNoExisteException {
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-
-		ArrayList<CantidadTipoPublicacion> arrayCantidad = new ArrayList<CantidadTipoPublicacion>();
+		String imagen = null;
+		ArrayList<CantidadTotalTipoPublicacion> arrayCantidad = new ArrayList<CantidadTotalTipoPublicacion>();
 
 		if (cantidadTipoPublicacion != null) {
 			for (DTCantidadTipoPublicacion dtCantidad : cantidadTipoPublicacion) {
 				TipoPublicacion publicacionParticularPublicacion = manejadorSettings
 						.obtenerTipoPublicacion(dtCantidad.getNombreTipoPublicacion());
-				CantidadTipoPublicacion nuevoTipo = new CantidadTipoPublicacion(dtCantidad.getCantidad(),
+				CantidadTotalTipoPublicacion nuevoTipo = new CantidadTotalTipoPublicacion(dtCantidad.getCantidad(),
 						publicacionParticularPublicacion);
 				arrayCantidad.add(nuevoTipo);
 			}
 		}
 
 		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion, periodoValDias, descuento,
-				arrayCantidad);
+				imagen, arrayCantidad);
 
-		for (CantidadTipoPublicacion cantidadTipo : arrayCantidad) {
+		for (CantidadTotalTipoPublicacion cantidadTipo : arrayCantidad) {
 			cantidadTipo.asociarPaquete(paquetePublicacion);
 		}
 
@@ -200,7 +200,8 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	@Override
-	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, Date fechaResolucion) throws OfertaLaboralNoExisteException {
+	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, Date fechaResolucion)
+			throws OfertaLaboralNoExisteException {
 		OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
 		oferta.resolucionOferta(estadoOferta, fechaResolucion);
 	}
@@ -216,10 +217,11 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	@Override
-	public ArrayList<DTPostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta) throws OfertaLaboralNoExisteException {
+	public ArrayList<DTPostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta)
+			throws OfertaLaboralNoExisteException {
 		OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
 		return oferta.obtenerDTPostulacion();
-		
+
 	}
 
 	@Override
@@ -229,22 +231,23 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	@Override
-	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta) throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete {
+	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta)
+			throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete {
 		OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
-		if(oferta.estaCompradaPorPaquete()) {
+		if (oferta.estaCompradaPorPaquete()) {
 			return oferta.obtenerDTPaquete();
-		}
-		else {
-			throw new OfertaLaboralNoTienePaquete("La oferta:" + nombreOferta + "no fue comprada por paquete" );
+		} else {
+			throw new OfertaLaboralNoTienePaquete("La oferta:" + nombreOferta + "no fue comprada por paquete");
 		}
 	}
 
 	
 	
 	@Override
-	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException{
+	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete)
+			throws PaquetePublicacionNoExisteException {
 		PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
 		return paquete.obtenerNombresTipoPublicaciones();
 	}
-	
+
 }

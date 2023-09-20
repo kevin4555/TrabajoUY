@@ -12,7 +12,7 @@ public class TipoPublicacion {
 	private int duracionDia;
 	private float costo;
 	private Date fechaAlta;
-	private CantidadTipoPublicacion cantTipo;
+	private CantidadTotalTipoPublicacion cantTipo;
 	
 	public TipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) {
 		this.setNombre(nombre);
@@ -61,7 +61,7 @@ public class TipoPublicacion {
 		this.fechaAlta = fechaAlta;
 	}
 	
-	public CantidadTipoPublicacion getCantidadTipoPublicacion()
+	public CantidadTotalTipoPublicacion getCantidadTipoPublicacion()
 	{
 		return cantTipo;
 	}

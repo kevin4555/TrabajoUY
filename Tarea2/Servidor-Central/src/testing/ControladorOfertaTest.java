@@ -29,7 +29,7 @@ import excepciones.UsuarioYaExisteException;
 import junit.framework.Assert;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
-import logica.classes.CantidadTipoPublicacion;
+import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.Empresa;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
@@ -222,8 +222,8 @@ public class ControladorOfertaTest {
 		manejadorSettings = ManejadorSettings.getInstance();
 		manejadorPaquetes = ManejadorPaquetes.getInstance();
 		controladorOferta = new ControladorOferta();
-		ArrayList<CantidadTipoPublicacion> arrayPrueba = new ArrayList<CantidadTipoPublicacion>();
-		ArrayList<CantidadTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTipoPublicacion>();
+		ArrayList<CantidadTotalTipoPublicacion> arrayPrueba = new ArrayList<CantidadTotalTipoPublicacion>();
+		ArrayList<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
 		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
 				50f, arrayPruebaSegundo);
 		PaquetePublicacion paquetePrueba = new PaquetePublicacion("nombrePrueba", "descripcionPrueba", 20, 50f,
@@ -279,7 +279,7 @@ public class ControladorOfertaTest {
 		manejadorSettings.addTipoPublicacion(publicacionPruebaSegunda);
 		controladorOferta.agregarTipoPublicacionAlPaquete(50, "tipoPublicacionPruebaSeguda", "paquetePrueba");
 		PaquetePublicacion encontrarPaquete = manejadorPaquetes.obtenerPaquete("paquetePrueba");
-		ArrayList<CantidadTipoPublicacion> coleccionCantidadTipo = encontrarPaquete.getCantidadTipoPublicaciones();
+		ArrayList<CantidadTotalTipoPublicacion> coleccionCantidadTipo = encontrarPaquete.getCantidadTipoPublicaciones();
 		boolean encontre = false;
 		String resultado = "";
 		for (int i = 0; (i < coleccionCantidadTipo.size()) && (!encontre); i++) {

@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import logica.classes.CantidadTipoPublicacion;
+import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
 import logica.classes.Keyword;
@@ -40,19 +40,19 @@ public class ClasesTest {
 	public void setCantidadRestanteClaseCantidadTipoPublicacion() {
 		TipoPublicacion nuevoTipoPublicacion = new TipoPublicacion("nombreTest", "descipcionTest", "exposicionTest", 12,
 				12f, fechaDate);
-		CantidadTipoPublicacion cantidadTipoPublicacion = new CantidadTipoPublicacion(5, nuevoTipoPublicacion);
+		CantidadTotalTipoPublicacion cantidadTipoPublicacion = new CantidadTotalTipoPublicacion(5, nuevoTipoPublicacion);
 		cantidadTipoPublicacion.setCantidadRestante(5);
 		Assert.assertEquals(5, cantidadTipoPublicacion.getCantidadRestante());
 	}
 
 	@Test
 	public void setPaquetePublicacionClaseCantidadTipoPublicacion() {
-		ArrayList<CantidadTipoPublicacion> nuevoCantidadTipoPublicacion = new ArrayList<CantidadTipoPublicacion>();
+		ArrayList<CantidadTotalTipoPublicacion> nuevoCantidadTipoPublicacion = new ArrayList<CantidadTotalTipoPublicacion>();
 		PaquetePublicacion nuevoPaquetePublicacion = new PaquetePublicacion("nombreTest", "descipcionTest", 5, 50f,
 				nuevoCantidadTipoPublicacion);
 		TipoPublicacion nuevoTipoPublicacion = new TipoPublicacion("nombreTest", "descipcionTest", "exposicionTest", 12,
 				12f, fechaDate);
-		CantidadTipoPublicacion cantidadTipoPublicacion = new CantidadTipoPublicacion(5, nuevoTipoPublicacion);
+		CantidadTotalTipoPublicacion cantidadTipoPublicacion = new CantidadTotalTipoPublicacion(5, nuevoTipoPublicacion);
 		cantidadTipoPublicacion.setPaquetePublicacion(nuevoPaquetePublicacion);
 		PaquetePublicacion resultadoPaquetePublicacion = cantidadTipoPublicacion.getPaquetePublicacion();
 		Assert.assertEquals(nuevoPaquetePublicacion, resultadoPaquetePublicacion);
@@ -63,7 +63,7 @@ public class ClasesTest {
 	public void setTipoPublicacionClaseCantidadTipoPublicacion() {
 		TipoPublicacion nuevoTipoPublicacion = new TipoPublicacion("nombreTest", "descipcionTest", "exposicionTest", 12,
 				12f, fechaDate);
-		CantidadTipoPublicacion cantidadTipoPublicacion = new CantidadTipoPublicacion(5, nuevoTipoPublicacion);
+		CantidadTotalTipoPublicacion cantidadTipoPublicacion = new CantidadTotalTipoPublicacion(5, nuevoTipoPublicacion);
 		TipoPublicacion tipoPublicacionPrueba = new TipoPublicacion("nombrePrueba", "descipcionTest", "exposicionTest",
 				12, 12f, fechaDate);
 
