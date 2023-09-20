@@ -194,4 +194,16 @@ public class ControladorUsuario implements IControladorUsuario {
 		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nicknamePostulante);
 		return postulante.obtenerDTPostulaciones();
 	}
+	
+	@Override
+	public ArrayList<String> listarPaquetesNoCompradosDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException{
+		Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
+		ArrayList<String> paquetesComprados = empresa.listarPaquetesComprados();
+		IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+		ArrayList<String> listaResultado = controladorOfertas.listarPaquetes();
+		for(String paquete : paquetesComprados) {
+			listaResultado.remove(paquete);
+		}
+		return listaResultado;
+	}
 }

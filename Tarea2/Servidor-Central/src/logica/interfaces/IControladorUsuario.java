@@ -64,4 +64,6 @@ public interface IControladorUsuario {
 	ArrayList<DTPaquetePublicacion> obtenerDTPaquetesDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 
 	ArrayList<DTPostulacion> obtenerDTPostulacionesDePostulante(String nicknamePostulante) throws UsuarioNoExisteException;
+
+	ArrayList<String> listarPaquetesNoCompradosDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 }

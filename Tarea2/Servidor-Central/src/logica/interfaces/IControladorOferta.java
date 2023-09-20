@@ -80,11 +80,7 @@ public interface IControladorOferta {
 	public boolean estaCompradoPorPaqueteOferta (String nombreOferta) throws OfertaLaboralNoExisteException;
 	
 	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta) throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete;
-	
-	public ArrayList<DTPaquetePublicacion> obtenerDtPaquetesNoComprado();
-	
-	public ArrayList<String> listarPaquetesNoComprados();
-	
+		
 	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException;
 
 	

@@ -57,12 +57,12 @@ public class ControladorOferta implements IControladorOferta {
 		IControladorUsuario contUsuario = fabrica.obtenerControladorUsuario();
 
 		OfertaLaboral ofertaLaboral = new OfertaLaboral(nombre, descripcion, horarioInicial, horarioFinal, remuneracion,
-				ciudad, departamento, fechaAlta, manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion));
+				ciudad, departamento, fechaAlta, manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion), imagen);
 		manejadorOfertas.agregarOferta(ofertaLaboral);
 		for (int i = 0; i < listakeywords.size(); i++) {
 			ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listakeywords.get(i)));
 		}
-
+		/*hay que agregar si se compra por paquete*/
 		contUsuario.obtenerEmpresa(nicknameEmpresa).agregarOferta(ofertaLaboral);
 
 	}
@@ -239,15 +239,7 @@ public class ControladorOferta implements IControladorOferta {
 		}
 	}
 
-	// Falta implementar Cristhian
-	public ArrayList<DTPaquetePublicacion> obtenerDtPaquetesNoComprado() {
-		return null;
-	}
 	
-	// Falta implementar Cristhian
-	public ArrayList<String> listarPaquetesNoComprados(){
-		return null;
-	}
 	
 	@Override
 	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException{

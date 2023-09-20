@@ -54,8 +54,9 @@ public class Empresa extends Usuario {
 		if(!ofertasLaborales.isEmpty())
 		{
 			for (OfertaLaboral oferta : this.ofertasLaborales) {
-				ofertas.add(oferta.getNombre());
-				
+				if(oferta.getEstado() == EstadoOferta.CONFIRMADA) {
+					ofertas.add(oferta.getNombre());
+				}
 			}
 		}
 		return ofertas;
@@ -138,6 +139,13 @@ public class Empresa extends Usuario {
 		return listaReultado;
 	}
 	
+	public ArrayList<String> listarPaquetesComprados(){
+		ArrayList<String> listaResultado = new ArrayList<String>();
+		for(CompraPaquete compraPaquete : compraPaquetes) {
+			listaResultado.add(compraPaquete.obtenerNombrePaquete());
+		}
+		return listaResultado;
+	}
 	
 	
 }
