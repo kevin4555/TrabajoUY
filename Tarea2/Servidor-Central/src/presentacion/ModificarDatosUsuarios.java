@@ -1,111 +1,83 @@
 package presentacion;
 
 import javax.swing.JInternalFrame;
-
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import logica.interfaces.IControladorUsuario;
-
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-
-import com.toedter.calendar.JDateChooser;
-
-import excepciones.UsuarioEmailRepetidoException;
-import excepciones.UsuarioYaExisteException;
-
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-
-import java.awt.GridBagLayout;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+
+import java.awt.CardLayout;
+import javax.swing.JTextField;
+import excepciones.UsuarioNoExisteException;
+import logica.DataTypes.DTEmpresa;
+import logica.DataTypes.DTPostulante;
+import logica.DataTypes.DTUsuario;
+import logica.interfaces.IControladorUsuario;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import com.toedter.calendar.JDateChooser;
 
 @SuppressWarnings("serial")
-public class CrearUsuario extends JInternalFrame {
-
+public class ModificarDatosUsuarios extends JInternalFrame {
 	private JTextField textFieldNickName;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldEmail;
 	private JTextField textFieldSitioWeb;
-
-	private JDateChooser fechaNacimientoChooser;
 	private JTextField textFieldNacionalidad;
+	private JDateChooser fechaNacimientoChooser;
 	private IControladorUsuario controladorUsuario;
-	private JComboBox<String> comboBoxSeleccionTipoUsuario;
+	private JComboBox<String> comboBoxSeleccionUsuario;
 	private JPanel panelEmpresa;
 	private JPanel panelPostulante;
 	private JLayeredPane layeredPane;
+	private String tipoUsuario = "";
 	private JScrollPane scrollPane;
-	private String tipoUsuarioSeleccionado;
 	private JTextArea textAreaDescripcion;
-	private JButton btnCancelar;
+	private String usuarioSeleccionado;
 	private JButton btnConfirmar;
+	private JButton btnCancelar;
 	private JPanel panelDatos;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
 
-	public CrearUsuario(IControladorUsuario contrUsuario) {
-		this.controladorUsuario = contrUsuario;
-
+	public ModificarDatosUsuarios(IControladorUsuario contrUsuario) {
+		setTitle("Modificar Datos Usuarios");
+		this.usuarioSeleccionado = "";
+		
 		setIconifiable(true);
 		setResizable(true);
 		setMaximizable(true);
-
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setTitle("Registrar Usuario");
-
+		this.controladorUsuario = contrUsuario;
+		getContentPane().setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 594, 502);
-		JPanel panelBotones = new JPanel();
-		getContentPane().add(panelBotones, BorderLayout.SOUTH);
-		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
 
-		this.btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (RegistrarUsuario()) {
-					limpiarTodosLosDatos();
-				}
-			}
-		});
-		panelBotones.add(btnConfirmar);
-
-		this.btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarTodosLosDatos();
-				dispose();
-			}
-		});
-		panelBotones.add(btnCancelar);
+		
 
 		this.panelDatos = new JPanel();
 		getContentPane().add(panelDatos, BorderLayout.CENTER);
 		GridBagLayout gbl_panelDatos = new GridBagLayout();
 		gbl_panelDatos.columnWidths = new int[] { 113, 739, 0 };
-		gbl_panelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_panelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gbl_panelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, Double.MIN_VALUE };
 		panelDatos.setLayout(gbl_panelDatos);
 
-		JLabel lblSeleccion = new JLabel("Tipo Usuario:");
+		JLabel lblSeleccion = new JLabel("Seleccionar Usuario:");
 		GridBagConstraints gbc_lblSeleccion = new GridBagConstraints();
 		gbc_lblSeleccion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSeleccion.anchor = GridBagConstraints.EAST;
@@ -113,24 +85,25 @@ public class CrearUsuario extends JInternalFrame {
 		gbc_lblSeleccion.gridy = 1;
 		panelDatos.add(lblSeleccion, gbc_lblSeleccion);
 
-		this.comboBoxSeleccionTipoUsuario = new JComboBox<String>();
-		DefaultComboBoxModel<String> model;
-		String[] tipoUsuarios = { "Postulante", "Empresa" };
-		model = new DefaultComboBoxModel<String>(tipoUsuarios);
-		this.tipoUsuarioSeleccionado = "Postulante";
-		this.comboBoxSeleccionTipoUsuario.setModel(model);
-		this.comboBoxSeleccionTipoUsuario.addActionListener(new ActionListener() {
+		this.comboBoxSeleccionUsuario = new JComboBox<String>();
+		this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarTipoUsuario(e);
+				try {
+					cargarDatosUsuarios(e);
+				} catch (UsuarioNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 
-		GridBagConstraints gbc_comboBoxSeleccionTipoUsuario = new GridBagConstraints();
-		gbc_comboBoxSeleccionTipoUsuario.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBoxSeleccionTipoUsuario.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxSeleccionTipoUsuario.gridx = 1;
-		gbc_comboBoxSeleccionTipoUsuario.gridy = 1;
-		panelDatos.add(this.comboBoxSeleccionTipoUsuario, gbc_comboBoxSeleccionTipoUsuario);
+		GridBagConstraints gbc_comboBoxSeleccionUsuario = new GridBagConstraints();
+		gbc_comboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBoxSeleccionUsuario.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxSeleccionUsuario.gridx = 1;
+		gbc_comboBoxSeleccionUsuario.gridy = 1;
+		panelDatos.add(this.comboBoxSeleccionUsuario, gbc_comboBoxSeleccionUsuario);
 
 		JLabel lblNickname = new JLabel("Nickname:");
 		GridBagConstraints gbc_lblNickname = new GridBagConstraints();
@@ -141,7 +114,7 @@ public class CrearUsuario extends JInternalFrame {
 		panelDatos.add(lblNickname, gbc_lblNickname);
 
 		this.textFieldNickName = new JTextField();
-		this.textFieldNickName.setEditable(true);
+		this.textFieldNickName.setEditable(false);
 		GridBagConstraints gbc_textFieldNickName = new GridBagConstraints();
 		gbc_textFieldNickName.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldNickName.fill = GridBagConstraints.HORIZONTAL;
@@ -195,7 +168,7 @@ public class CrearUsuario extends JInternalFrame {
 		panelDatos.add(lblEmail, gbc_lblEmail);
 
 		this.textFieldEmail = new JTextField();
-		this.textFieldEmail.setEditable(true);
+		this.textFieldEmail.setEditable(false);
 		GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
 		gbc_textFieldEmail.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldEmail.fill = GridBagConstraints.HORIZONTAL;
@@ -203,40 +176,6 @@ public class CrearUsuario extends JInternalFrame {
 		gbc_textFieldEmail.gridy = 5;
 		panelDatos.add(this.textFieldEmail, gbc_textFieldEmail);
 		this.textFieldEmail.setColumns(10);
-		
-		lblNewLabel = new JLabel("Contraseña:");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 6;
-		panelDatos.add(lblNewLabel, gbc_lblNewLabel);
-		
-		passwordField = new JPasswordField();
-		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_passwordField.gridx = 1;
-		gbc_passwordField.gridy = 6;
-		panelDatos.add(passwordField, gbc_passwordField);
-		
-		lblNewLabel_1 = new JLabel("Confirmar contraseña:");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 7;
-		panelDatos.add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
-		passwordField_1 = new JPasswordField();
-		GridBagConstraints gbc_passwordField_1 = new GridBagConstraints();
-		gbc_passwordField_1.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_passwordField_1.gridx = 1;
-		gbc_passwordField_1.gridy = 7;
-		panelDatos.add(passwordField_1, gbc_passwordField_1);
-		
-		
 
 		layeredPane = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane = new GridBagConstraints();
@@ -245,10 +184,9 @@ public class CrearUsuario extends JInternalFrame {
 		gbc_layeredPane.insets = new Insets(0, 0, 5, 0);
 		gbc_layeredPane.fill = GridBagConstraints.BOTH;
 		gbc_layeredPane.gridx = 0;
-		gbc_layeredPane.gridy = 8;
+		gbc_layeredPane.gridy = 6;
 		panelDatos.add(layeredPane, gbc_layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
-		
 
 		panelEmpresa = new JPanel();
 		layeredPane.add(panelEmpresa, "name_918030925291900");
@@ -344,126 +282,158 @@ public class CrearUsuario extends JInternalFrame {
 		gbc_textFieldNacionalidad.gridy = 1;
 		panelPostulante.add(this.textFieldNacionalidad, gbc_textFieldNacionalidad);
 		this.textFieldNacionalidad.setColumns(10);
-		cambiarPanel(panelPostulante);
-	}
+		
+		JPanel panelBotones = new JPanel();
+		getContentPane().add(panelBotones, BorderLayout.SOUTH);
+		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
 
-	protected boolean RegistrarUsuario() {
-		String nickname = this.textFieldNickName.getText();
-		String nombre = this.textFieldNombre.getText();
-		String apellido = this.textFieldApellido.getText();
-		String email = this.textFieldEmail.getText();
-		String contrasenia = this.passwordField.getPassword().toString();
-		String confirmarContrasenia = this.passwordField_1.getPassword().toString();
-
-		String descripcion = this.textAreaDescripcion.getText();
-		String sitioWeb = this.textFieldSitioWeb.getText();
-
-		String nacionalidad = this.textFieldNacionalidad.getText();
-		Date fechaNacimienito = this.fechaNacimientoChooser.getDate();
-
-		if (checkFormulario()) {
-			try {
-				if (tipoUsuarioSeleccionado.equals("Postulante")) {
-					this.controladorUsuario.altaPostulante(nickname, nombre, apellido, email, fechaNacimienito,
-							nacionalidad);
-					JOptionPane.showMessageDialog(this, "El Postulante se ha creado con éxito", "Registrar Usuario",
-							JOptionPane.INFORMATION_MESSAGE);
-					return true;
-				} else {
-					this.controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descripcion, sitioWeb);
-					JOptionPane.showMessageDialog(this, "La Empresa se ha creado con éxito", "Registrar Usuario",
-							JOptionPane.INFORMATION_MESSAGE);
-					return true;
-				}
-			} catch (UsuarioYaExisteException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-				return false;
-			} catch (UsuarioEmailRepetidoException e2) {
-				JOptionPane.showMessageDialog(this, e2.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-				return false;
+		this.btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modificarDatosUsuarios();
 			}
-		}
-		return false;
+		});
+		panelBotones.add(btnConfirmar);
+
+		this.btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarTodosLosDatos();
+				dispose();
+			}
+		});
+		panelBotones.add(btnCancelar);
+
+		
+
 	}
 
-	@SuppressWarnings("exports")
-	public void cambiarTipoUsuario(ActionEvent e) {
+	
 
-		String tipoSeleccionado = comboBoxSeleccionTipoUsuario.getSelectedItem().toString();
-		if (!tipoSeleccionado.equals(tipoUsuarioSeleccionado)) {
-			tipoUsuarioSeleccionado = tipoSeleccionado;
-
-			if (tipoUsuarioSeleccionado.equals("Empresa")) {
+	public void cargarUsuarios() {
+		try {
+			ArrayList<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
+			String [] arrayUsuarios;
+			arrayUsuarios = listaUsuarios.toArray(new String [0]);
+			Arrays.sort(arrayUsuarios);
+			DefaultComboBoxModel<String> model;
+			model = new DefaultComboBoxModel<String>(arrayUsuarios);
+			this.comboBoxSeleccionUsuario.setModel(model);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	@SuppressWarnings({ "deprecation", "exports" })
+	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
+		
+		String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
+		if (nicknameUsuario != usuarioSeleccionado) {
+			usuarioSeleccionado = nicknameUsuario;
+			DTUsuario dtUsuario = this.controladorUsuario.obtenerDTUsuario(nicknameUsuario);
+			
+		
+			this.textFieldNickName.setText(nicknameUsuario);
+			this.textFieldNombre.setText(dtUsuario.getNombre());
+			this.textFieldApellido.setText(dtUsuario.getApellido());
+			this.textFieldEmail.setText(dtUsuario.getEmail());
+			if (dtUsuario instanceof DTEmpresa) {
+				tipoUsuario = "Empresa";
+				DTEmpresa dtEmpresa = (DTEmpresa) dtUsuario;
+				this.textAreaDescripcion.setText(dtEmpresa.getDescripcion());
+				this.textFieldSitioWeb.setText(dtEmpresa.getSitioWeb());
 				cambiarPanel(panelEmpresa);
 			}
-			if (tipoUsuarioSeleccionado.equals("Postulante")) {
+			if (dtUsuario instanceof DTPostulante) {
+				tipoUsuario = "Postulante";
+				DTPostulante dtPostulante = (DTPostulante) dtUsuario;
+				this.textFieldNacionalidad.setText(dtPostulante.getNacionalidad());
+				this.fechaNacimientoChooser.setDate(dtPostulante.getFechaNacimiento());
 				cambiarPanel(panelPostulante);
 			}
-		}
 
-	}
-
-	private boolean checkFormulario() {
-		if (this.textFieldNickName.getText().isEmpty() || this.textFieldNombre.getText().isEmpty()
-				|| this.textFieldApellido.getText().isEmpty() || this.textFieldEmail.getText().isEmpty() || this.passwordField_1.getPassword().toString().isEmpty() || this.passwordField.getPassword().toString().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Usuario",
-					JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-	
-		if(!this.textFieldEmail.getText().contains("@")) {
-			JOptionPane.showMessageDialog(this, "Debe ingresar un mail con el valor @", "Registrar Usuario",
-					JOptionPane.ERROR_MESSAGE);
-			return false;
 		}
 		
-		if (this.passwordField_1.getPassword().toString() != this.passwordField.getPassword().toString()) {
-			JOptionPane.showMessageDialog(this, "Las contraseñas son coinciden", "Registrar Usuario",
-					JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-
-		if (this.tipoUsuarioSeleccionado.equals("Postulante")) {
-			if (this.textFieldNacionalidad.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(this, "Debe ingresar una Nacionalidad", "Registrar Usuario",
-						JOptionPane.ERROR_MESSAGE);
-				return false;
-			}
-			Date fechaNacimiento = fechaNacimientoChooser.getDate();
-			if (fechaNacimiento == null) {
-				JOptionPane.showMessageDialog(this, "Debe ingresar una Fecha de Nacimiento", "Registrar Usuario",
-						JOptionPane.ERROR_MESSAGE);
-				return false;
-			}
-		} else {
-			if (this.textAreaDescripcion.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(this, "Debe ingresar una Descripcion", "Registrar Usuario",
-						JOptionPane.ERROR_MESSAGE);
-				return false;
-			}
-		}
-		return true;
 	}
-
+	
+	public void modificarDatosUsuarios() {
+		String nombre =  this.textFieldNombre.getText();
+		String apelliido =  this.textFieldApellido.getText();
+		String sitioWeb = this.textFieldSitioWeb.getText();
+		Date fechaNac = this.fechaNacimientoChooser.getDate();
+		String nacionalidadPos = this.textFieldNacionalidad.getText();
+		String descripcionEmpresa = this.textAreaDescripcion.getText();
+		if (checkFormulario(nombre, apelliido, fechaNac, nacionalidadPos, descripcionEmpresa)) {
+		try {
+			if (tipoUsuario.equals("Postulante")) {
+				controladorUsuario.editarPostulante(usuarioSeleccionado, nombre,  apelliido, fechaNac, nacionalidadPos);
+			} else if (tipoUsuario.equals("Empresa")) {
+				controladorUsuario.editarEmpresa(usuarioSeleccionado, nombre, apelliido, sitioWeb, descripcionEmpresa);
+			}
+			
+			JOptionPane.showMessageDialog(this, "Los datos se actualizaron con éxito",
+					"Modificar datos de usuario", JOptionPane.INFORMATION_MESSAGE);
+			limpiarTodosLosDatos();
+		} catch (UsuarioNoExisteException e) {
+			
+		}
+			
+		}
+		
+	}
+	
+	
 	@SuppressWarnings("exports")
 	public void cambiarPanel(JPanel panel) {
-		limpiarTodosLosDatos();
 		layeredPane.removeAll();
 		layeredPane.add(panel);
 		layeredPane.repaint();
 		layeredPane.revalidate();
 	}
+	
+	public boolean checkFormulario(String nombre, String apellido, Date fechaNacPostulante, String nacionalidadPostulante, String descripEmpresa) {
+		if (nombre.isEmpty() || apellido.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Modificar Datos Usuario",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if (tipoUsuario.equals("Postulante")) {
+			if (nacionalidadPostulante.isEmpty()) {
+				JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Modificar Datos Usuario",
+						JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			if (fechaNacPostulante == null) {
+				JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
+						 "Modificar Datos Usuario", JOptionPane.ERROR_MESSAGE);
+				return false;
+			
+		} else if (tipoUsuario.equals("Empresa")) {
+			if (descripEmpresa.isEmpty()) {
+				JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
+						 "Modificar Datos Usuario", JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+		}
+	}
+		return true;
+	}
 
+	
 	public void limpiarTodosLosDatos() {
+		
+		this.usuarioSeleccionado = "";
 		this.textFieldNickName.setText("");
 		this.textFieldNombre.setText("");
 		this.textFieldApellido.setText("");
 		this.textFieldEmail.setText("");
-
 		this.textFieldNacionalidad.setText("");
-		this.fechaNacimientoChooser.setDate(null);
 		this.textAreaDescripcion.setText("");
 		this.textFieldSitioWeb.setText("");
-
+		
 	}
+	
+	 
+	
 }

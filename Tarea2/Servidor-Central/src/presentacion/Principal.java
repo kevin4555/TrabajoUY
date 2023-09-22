@@ -55,6 +55,7 @@ public class Principal extends JFrame {
     private ConsultaOfertaLaboral consultarOfertaInternalFrame;
     private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
     private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
+    private ModificarDatosUsuarios modificarDatosUsuarios;
     private Date fecha;
     private String fechaS = "23/02/1923";
 
@@ -107,17 +108,19 @@ public class Principal extends JFrame {
 		postulacionOfertaLabInternalFrame.setBackground(new Color(240, 240, 240));
 		postulacionOfertaLabInternalFrame.setResizable(false);
 		postulacionOfertaLabInternalFrame.setVisible(false);
+		
+		modificarDatosUsuarios = new ModificarDatosUsuarios(ICU);
+		modificarDatosUsuarios.setVisible(false);
+		
 
 		ventanaPrincipal.getContentPane().setLayout(null);
 		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
 		ventanaPrincipal.getContentPane().add(crearUsuInternalFrame);
-
-		
-		
 		ventanaPrincipal.getContentPane().add(crearOfertaLaboralInternalFrame);
 		ventanaPrincipal.getContentPane().add(consultarOfertaInternalFrame);
 		ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
 		ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame);
+		ventanaPrincipal.getContentPane().add(modificarDatosUsuarios);
 	}
 
 	private void initialize() {
@@ -181,6 +184,16 @@ public class Principal extends JFrame {
 			}
 		});
 		menuUsuarios.add(menuConsultaUsuario);
+		
+		JMenuItem menuModificaraUsuario = new JMenuItem("Modificar Datos de Usuario");
+		menuModificaraUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para ver información de un usuario
+				modificarDatosUsuarios.cargarUsuarios();
+				modificarDatosUsuarios.setVisible(true);
+			}
+		});
+		menuUsuarios.add(menuModificaraUsuario);
 
 		JMenu menuOfertaLaboral = new JMenu("Ofertas Laborales");
 		menuBar.add(menuOfertaLaboral);
