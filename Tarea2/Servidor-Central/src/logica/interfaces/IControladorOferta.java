@@ -1,6 +1,7 @@
 package logica.interfaces;
 
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,7 +32,7 @@ import logica.classes.TipoPublicacion;
 public interface IControladorOferta {
 
 	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
-			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion,
+			float remuneracion, String ciudad, String departamento, LocalDate fechaAlta, String nomTipoPublicacion,
 			String nicknameEmpresa, ArrayList<String> listakeywords, BufferedImage imagen, String nombrePaquete)
 			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException,
 			UsuarioNoExisteException;
@@ -55,12 +56,12 @@ public interface IControladorOferta {
 
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 
-	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, float descuento,BufferedImage imagen, Date fechaAlta,
+	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, float descuento,BufferedImage imagen, LocalDate fechaAlta,
 			ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException,
 			TipoPublicacionYaExisteException, TipoPublicacionNoExisteException;
 
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo,
-			Date fechaPub) throws TipoPublicacionYaExisteException;
+			LocalDate fechaPub) throws TipoPublicacionYaExisteException;
 
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete)
 			throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException;
@@ -70,7 +71,7 @@ public interface IControladorOferta {
 	public boolean estaPostulado(String postulante, String nomOfertaLaboral)
 			throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
 
-	void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, Date fechaResolucion)	throws OfertaLaboralNoExisteException;
+	void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, LocalDate fechaResolucion)	throws OfertaLaboralNoExisteException;
 
 	public ArrayList<DTOfertaLaboral> obtenerDtOfertasConfirmadas();
 
@@ -83,6 +84,8 @@ public interface IControladorOferta {
 	public DTPaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta) throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete;
 		
 	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException;
+
+	ArrayList<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab) throws OfertaLaboralNoExisteException;
 
 	
 

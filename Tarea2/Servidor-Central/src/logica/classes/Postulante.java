@@ -1,6 +1,7 @@
 package logica.classes;
 
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,23 +11,23 @@ import logica.DataTypes.DTPostulante;
 import logica.DataTypes.DTUsuario;
 
 public class Postulante extends Usuario{
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	private String nacionalidad;
 	private ArrayList<Postulacion> postulaciones;
 	
 	
-	public Postulante(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, String nacionalidad, BufferedImage imagen, String contrasenia) {
+	public Postulante(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String nacionalidad, BufferedImage imagen, String contrasenia) {
 		super(nickname, nombre, apellido, email, imagen, contrasenia);
 		setFechaNacimiento(fechaNacimiento);
 		setNacionalidad(nacionalidad);
 		this.postulaciones = new ArrayList<Postulacion>();
 	}
 	
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 	
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	

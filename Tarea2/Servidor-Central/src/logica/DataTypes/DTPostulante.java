@@ -1,15 +1,16 @@
 package logica.DataTypes;
 
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class DTPostulante extends DTUsuario {
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	private String nacionalidad;
 
 	public DTPostulante(String nickname, String nombre, String apellido, String email, BufferedImage imagen,
-			String contrasenia, ArrayList<DTOfertaLaboral> ofertasColeccion, Date fechaNacimiento,
+			String contrasenia, ArrayList<DTOfertaLaboral> ofertasColeccion, LocalDate fechaNacimiento,
 			String nacionalidad) {
 		super(nickname, nombre, apellido, email, imagen, contrasenia, ofertasColeccion);
 		this.fechaNacimiento = fechaNacimiento;
@@ -20,7 +21,7 @@ public class DTPostulante extends DTUsuario {
 		return nacionalidad;
 	}
 
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 }

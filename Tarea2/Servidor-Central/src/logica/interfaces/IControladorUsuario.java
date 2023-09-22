@@ -2,6 +2,7 @@ package logica.interfaces;
 
 import java.util.Date;
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excepciones.OfertaLaboralNoExisteException;
@@ -30,7 +31,7 @@ public interface IControladorUsuario {
 	
 	public  void registrarPostulacion(String cvReducido,String motivacion, Date fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
 	
-	public  void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac, String nacionalidad, BufferedImage imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
+	public  void altaPostulante(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String nacionalidad, BufferedImage imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
 	
 	public  void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion, String link, BufferedImage imagen, String contrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
 	
@@ -44,7 +45,7 @@ public interface IControladorUsuario {
 
 	ArrayList<String> listarPostulantes();
 	
-	public void editarPostulante(String nickname, String nombre, String apellido, Date fechaNacimiento, String nacionalidad, BufferedImage imagen, String contrasenia) throws UsuarioNoExisteException;
+	public void editarPostulante(String nickname, String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad, BufferedImage imagen, String contrasenia) throws UsuarioNoExisteException;
 	
 	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion, BufferedImage imagen, String contrasenia ) throws UsuarioNoExisteException;
 	

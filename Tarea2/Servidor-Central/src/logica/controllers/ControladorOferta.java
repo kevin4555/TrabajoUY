@@ -2,6 +2,7 @@ package logica.controllers;
 
 import java.awt.image.BufferedImage;
 import java.security.PublicKey;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -46,9 +47,9 @@ public class ControladorOferta implements IControladorOferta {
 		return nombreTiposPublicacion;
 	}
 
-	// Falta implementar imagen/nombrePaquete Cristhian
+	@Override
 	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
-			float remuneracion, String ciudad, String departamento, Date fechaAlta, String nomTipoPublicacion,
+			float remuneracion, String ciudad, String departamento, LocalDate fechaAlta, String nomTipoPublicacion,
 			String nicknameEmpresa, ArrayList<String> listakeywords, BufferedImage imagen, String nombrePaquete)
 			throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException,
 			UsuarioNoExisteException {
@@ -97,20 +98,23 @@ public class ControladorOferta implements IControladorOferta {
 		return manejadorPaquetes.listarPaquetes();
 	}
 
+	@Override
 	public void altaTipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, float costo,
-			Date fechaPub) throws TipoPublicacionYaExisteException {
+			LocalDate fechaPub) throws TipoPublicacionYaExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		TipoPublicacion tipoPublicacion = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo,
 				fechaPub);
 		manejadorSettings.addTipoPublicacion(tipoPublicacion);
 	}
 
+	@Override
 	public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic) throws TipoPublicacionNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		TipoPublicacion tpoPublic = manejadorSettings.obtenerTipoPublicacion(nomTpoPublic);
 		return tpoPublic;
 	}
 
+	@Override
 	public void altaKeyword(String nomKeyword) throws KeywordYaExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
 		Keyword keyword = new Keyword(nomKeyword);
@@ -152,7 +156,8 @@ public class ControladorOferta implements IControladorOferta {
 		return nombreOfertas;
 	}
 
-	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, float descuento,BufferedImage imagen, Date fechaAlta,
+	@Override
+	public void registrarPaquete(String nombre, String descripcion, int periodoValDias, float descuento,BufferedImage imagen, LocalDate fechaAlta,
 			ArrayList<DTCantidadTipoPublicacion> cantidadTipoPublicacion) throws PaquetePublicacionYaExisteException,
 			TipoPublicacionYaExisteException, TipoPublicacionNoExisteException {
 		ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
@@ -192,6 +197,7 @@ public class ControladorOferta implements IControladorOferta {
 		return post.listarOfertasUsuario().contains(nomOfertaLaboral);
 	}
 
+	@Override
 	public ArrayList<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab) throws OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOfertaLab);
@@ -203,7 +209,7 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 	@Override
-	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, Date fechaResolucion)
+	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, LocalDate fechaResolucion)
 			throws OfertaLaboralNoExisteException {
 		OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
 		oferta.resolucionOferta(estadoOferta, fechaResolucion);

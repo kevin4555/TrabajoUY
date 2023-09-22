@@ -2,6 +2,7 @@ package logica.controllers;
 
 import java.util.Date;
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excepciones.OfertaLaboralNoExisteException;
@@ -80,7 +81,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 
 	@Override
-	public void altaPostulante(String nickname, String nombre, String apellido, String email, Date fechaNac,
+	public void altaPostulante(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
 			String nacionalidad, BufferedImage imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = new Postulante(nickname, nombre, apellido, email.toLowerCase(), fechaNac, nacionalidad, imagen, constrasenia);
@@ -120,7 +121,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 	
 	@Override
-	public void editarPostulante(String nickname, String nombre, String apellido, Date fechaNacimiento, String nacionalidad, BufferedImage imagen, String contrasenia) throws UsuarioNoExisteException {
+	public void editarPostulante(String nickname, String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad, BufferedImage imagen, String contrasenia) throws UsuarioNoExisteException {
 		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nickname);
 		postulante.setNombre(nombre);
 		postulante.setApellido(apellido);

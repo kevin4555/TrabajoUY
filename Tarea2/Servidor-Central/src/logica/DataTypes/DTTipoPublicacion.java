@@ -1,6 +1,7 @@
 package logica.DataTypes;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class DTTipoPublicacion {
 	private String nombre;
@@ -8,10 +9,10 @@ public class DTTipoPublicacion {
 	private String exposicion;
 	private int duracionDia;
 	private float costo;
-	private Date fechaAlta;
+	private LocalDate fechaAlta;
 	
 	public DTTipoPublicacion(String nombre, String descripcion, String exposicion, int duracionDia, float costo,
-			Date fechaAlta) {
+			LocalDate fechaAlta) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.exposicion = exposicion;
@@ -40,7 +41,7 @@ public class DTTipoPublicacion {
 		return costo;
 	}
 	
-	public Date getFechaAlta() {
+	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	} 
 	

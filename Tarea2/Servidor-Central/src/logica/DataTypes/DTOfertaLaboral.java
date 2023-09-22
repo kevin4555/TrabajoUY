@@ -1,5 +1,6 @@
 package logica.DataTypes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ public class DTOfertaLaboral {
 	private String horarioInicio;
 	private String horarioFinal;
 	private Float remuneracion;
-	private Date fechaAlta;
+	private LocalDate fechaAlta;
 	private ArrayList<DTPostulacion> postulaciones;
 	private EstadoOferta estadoOferta;
 	private String imagen;
@@ -21,7 +22,7 @@ public class DTOfertaLaboral {
 	
 	
 	
-	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento, String horarioInicial, String horarioFinal, Float remuneracion, Date fechaAlta, ArrayList<DTPostulacion> postulaciones)
+	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento, String horarioInicial, String horarioFinal, Float remuneracion, LocalDate fechaAlta, ArrayList<DTPostulacion> postulaciones)
 	{
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -54,7 +55,7 @@ public class DTOfertaLaboral {
 		return remuneracion;
 	}
 	
-	public Date getFechaAlta() {
+	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}
 

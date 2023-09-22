@@ -1,5 +1,6 @@
 package logica.classes;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import logica.DataTypes.DTTipoPublicacion;
@@ -11,10 +12,10 @@ public class TipoPublicacion {
 	private String exposicion;
 	private int duracionDia;
 	private float costo;
-	private Date fechaAlta;
+	private LocalDate fechaAlta;
 	private CantidadTotalTipoPublicacion cantTipo;
 	
-	public TipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, Date fechaPub) {
+	public TipoPublicacion(String nombre, String descripcion, String exposicion, int duracion, Float costo, LocalDate fechaPub) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setExposicion(exposicion);
@@ -54,10 +55,10 @@ public class TipoPublicacion {
 	public void setCosto(float costo) {
 		this.costo = costo;
 	}
-	public Date getFechaAlta() {
+	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}
-	public void setFechaAlta(Date fechaAlta) {
+	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 	

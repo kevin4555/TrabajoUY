@@ -2,6 +2,7 @@ package logica.classes;
 
 import java.util.Date;
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
@@ -16,8 +17,8 @@ public class OfertaLaboral {
 	private String horarioInicial;
 	private String horarioFinal;
 	private float remuneracion;
-	private Date fechaAlta;
-	private Date fechaResolucion;
+	private LocalDate fechaAlta;
+	private LocalDate fechaResolucion;
 	private BufferedImage imagen;
 	private EstadoOferta estado;
 	private ArrayList<Keyword> listaKeywords;
@@ -25,7 +26,7 @@ public class OfertaLaboral {
 	private ArrayList<Postulacion> postulaciones;
 	private CompraPaquete compraPaquete;
 	
-	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, Date fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen) {
+	public OfertaLaboral(String nombre,String descripcion,String horarioInicial, String horarioFinal, float remuneracion, String ciudad, String departamento, LocalDate fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.ciudad = ciudad;
@@ -75,10 +76,10 @@ public class OfertaLaboral {
 		this.remuneracion = remuneracion;
 	}
 
-	public Date getFechaAlta() {
+	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}
-	public void setFechaAlta(Date fechaAlta) {
+	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
@@ -160,7 +161,7 @@ public class OfertaLaboral {
 		this.compraPaquete = compraPaquete;
 	}
 	
-	public void resolucionOferta(EstadoOferta estado, Date fechaResolucion) {
+	public void resolucionOferta(EstadoOferta estado, LocalDate fechaResolucion) {
 		this.estado = estado;
 		this.fechaResolucion = fechaResolucion;
 	}
