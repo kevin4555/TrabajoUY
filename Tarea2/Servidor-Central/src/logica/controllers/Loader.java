@@ -1,8 +1,7 @@
 package logica.controllers;
 
-import java.text.DateFormat;
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -32,7 +31,6 @@ public class Loader {
 		IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
 		
 		
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 		controladorUsuario.altaPostulante("lgarcia", "Lucía", "García", "lgarcia85@gmail.com", LocalDate.parse("1985-03-15"),
 				"Uruguaya", null, "1234");
@@ -161,32 +159,32 @@ public class Loader {
 		controladorUsuario.registrarPostulacion(
 				"Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos Microsoft Office.",
 				"Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.",
-				dateFormat.parse("16/08/2023"), "lgarcia", "Desarrollador Frontend");
+				LocalDate.parse("2023-08-16"), "lgarcia", "Desarrollador Frontend");
 
 		controladorUsuario.registrarPostulacion(
 				"Estudiante de Comunicación, habilidades en redacción y manejo de redes sociales. Experiencia en prácticas en medios locales.",
 				"Me encantaría formar parte de un equipo que me permita desarrollar mis habilidades en comunicación y marketing.",
-				dateFormat.parse("15/08/2023"), "matilo", "Estratega de Negocios");
+				LocalDate.parse("2023-08-15"), "matilo", "Estratega de Negocios");
 
 		controladorUsuario.registrarPostulacion(
 				"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.",
 				"Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
-				dateFormat.parse("14/08/2023"), "maro", "Desarrollador Frontend");
+				LocalDate.parse("2023-08-14"), "maro", "Desarrollador Frontend");
 
 		controladorUsuario.registrarPostulacion(
 				"Técnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos eléctricos.",
 				"Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades técnicas y contribuir al mantenimiento eficiente.",
-				dateFormat.parse("13/08/2023"), "javierf", "Diseñador UX/UI");
+				LocalDate.parse("2023-08-13"), "javierf", "Diseñador UX/UI");
 
 		controladorUsuario.registrarPostulacion(
 				"Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.",
 				"Me gustaría combinar mi pasión por la música con una oportunidad laboral que me permita seguir creciendo como artista.",
-				dateFormat.parse("12/08/2023"), "valen25", "Estratega de Negocios");
+				LocalDate.parse("2023-08-12"), "valen25", "Estratega de Negocios");
 
 		controladorUsuario.registrarPostulacion(
 				"Licenciada en Administración, me considero genia, experiencia en gestión de equipos y proyectos. Conocimientos en Microsoft Office.",
 				"Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.",
-				dateFormat.parse("16/08/2023"), "lgarcia", "Estratega de Negocios");
+				LocalDate.parse("2023-08-16"), "lgarcia", "Estratega de Negocios");
 
 		ArrayList<DTCantidadTipoPublicacion> paquete1 = new ArrayList<DTCantidadTipoPublicacion>();
 		ArrayList<DTCantidadTipoPublicacion> paquete2 = new ArrayList<DTCantidadTipoPublicacion>();

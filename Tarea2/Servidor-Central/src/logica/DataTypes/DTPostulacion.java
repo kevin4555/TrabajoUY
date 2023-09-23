@@ -1,14 +1,15 @@
 package logica.DataTypes;
 
-import java.util.Date;
+import java.time.LocalDate;
+;
 
 public class DTPostulacion {
 
-	private DTPostulante postulante;
+	private String nicknamePostulante;
 
 	private String descripMotivacion;
 
-	private Date fechaPostulacion;
+	private LocalDate fechaPostulacion;
 
 	private String cvReducido;
 	
@@ -16,15 +17,15 @@ public class DTPostulacion {
 		
 	}
 
-	public DTPostulacion(DTPostulante postulante, String descripMotivacion, Date fechaPostulacion, String cvReducido) {
-		this.postulante = postulante;
+	public DTPostulacion(String postulante, String descripMotivacion, LocalDate fechaPostulacion, String cvReducido) {
+		this.nicknamePostulante = postulante;
 		this.descripMotivacion = descripMotivacion;
 		this.fechaPostulacion = fechaPostulacion;
 		this.cvReducido = cvReducido;
 	}
 
-	public DTPostulante getPostulante() {
-		return postulante;
+	public String getnicknamePostulante() {
+		return nicknamePostulante;
 	}
 
 	
@@ -32,7 +33,7 @@ public class DTPostulacion {
 		return descripMotivacion;
 	}
 
-	public Date getFechaPostulacion() {
+	public LocalDate getFechaPostulacion() {
 		return fechaPostulacion;
 	}
 

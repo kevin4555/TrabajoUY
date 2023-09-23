@@ -1,5 +1,6 @@
 package logica.classes;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import logica.DataTypes.DTPostulacion;
@@ -10,10 +11,10 @@ public class Postulacion {
 	private Postulante postulante;
 	private OfertaLaboral ofertaLaboral;
 	private String descrpMotivacion;
-	private Date fechaPostulacion;
+	private LocalDate fechaPostulacion;
 	private String cvReducido;
 	
-	public Postulacion(String descrpMotivacion, Date fechaPostulacion, String cvReducido, Postulante postulante, OfertaLaboral ofertaLaboral) {
+	public Postulacion(String descrpMotivacion, LocalDate fechaPostulacion, String cvReducido, Postulante postulante, OfertaLaboral ofertaLaboral) {
 		super();
 		setDescrpMotivacion(descrpMotivacion);
 		setFechaPostulacion(fechaPostulacion);
@@ -30,11 +31,11 @@ public class Postulacion {
 		this.descrpMotivacion = descrpMotivacion;
 	}
 	
-	public Date getFechaPostulacion() {
+	public LocalDate getFechaPostulacion() {
 		return fechaPostulacion;
 	}
 	
-	public void setFechaPostulacion(Date fechaPostulacion) {
+	public void setFechaPostulacion(LocalDate fechaPostulacion) {
 		this.fechaPostulacion = fechaPostulacion;
 	}
 	
@@ -56,13 +57,9 @@ public class Postulacion {
 	
 	public DTPostulacion obtenerDTPostulacion()
 	{
+						
 		
-		DTPostulante dtPostulante = new DTPostulante(this.postulante.getNickname(), this.postulante.getNombre(), this.postulante.getApellido(), this.postulante.getEmail(),
-				this.postulante.getImagen(), this.postulante.getContrasenia(), this.postulante.obtenerDTOfertas(), this.postulante.getFechaNacimiento(), this.postulante.getNacionalidad() );
-		
-				
-		
-		DTPostulacion dtPostulacion = new DTPostulacion(dtPostulante, this.getDescrpMotivacion(), this.getFechaPostulacion(), this.getCvReducido());
+		DTPostulacion dtPostulacion = new DTPostulacion(this.postulante.getNickname(), this.getDescrpMotivacion(), this.getFechaPostulacion(), this.getCvReducido());
 		return dtPostulacion;
 	}
 	

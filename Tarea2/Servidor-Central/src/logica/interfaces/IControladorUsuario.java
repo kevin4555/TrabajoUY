@@ -29,7 +29,7 @@ public interface IControladorUsuario {
 	
 	public  ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
-	public  void registrarPostulacion(String cvReducido,String motivacion, Date fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
+	public  void registrarPostulacion(String cvReducido,String motivacion, LocalDate fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
 	
 	public  void altaPostulante(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String nacionalidad, BufferedImage imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
 	

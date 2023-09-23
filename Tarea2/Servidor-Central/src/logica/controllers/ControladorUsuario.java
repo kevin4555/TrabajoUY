@@ -67,7 +67,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 
 	@Override
-	public void registrarPostulacion(String cvReducido, String motivacion, Date fechaPostulacion, String nickname,
+	public void registrarPostulacion(String cvReducido, String motivacion, LocalDate fechaPostulacion, String nickname,
 			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = manejadorUsuario.obtenerPostulante(nickname);
