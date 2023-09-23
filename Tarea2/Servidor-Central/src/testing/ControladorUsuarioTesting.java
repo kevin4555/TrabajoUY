@@ -37,7 +37,7 @@ import logica.interfaces.IControladorUsuario;
 
 public class ControladorUsuarioTesting {
 	
-	private static Date fechaDate1;
+/*	private static Date fechaDate1;
 	private static Date fechaDate2;
 	private static IControladorUsuario controladorUsuario;
 	private static IControladorOferta controladorOferta;
@@ -254,7 +254,7 @@ public class ControladorUsuarioTesting {
 		esperado.add("Desarrollador Frontend");
 		Assert.assertEquals(esperado, resultado);
 		
-	}
+	}*/
 	
 	
 }

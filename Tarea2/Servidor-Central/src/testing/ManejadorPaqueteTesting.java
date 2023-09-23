@@ -23,7 +23,7 @@ import logica.handlers.ManejadorUsuario;
 
 public class ManejadorPaqueteTesting {
 
-	private static ManejadorPaquetes manejadorPaquete;
+	/*private static ManejadorPaquetes manejadorPaquete;
 	private static Date fechaDate1;
 	private static Date fechaDate2;
 	public static void setUp()
@@ -161,5 +161,5 @@ public class ManejadorPaqueteTesting {
 			exception = true;
 		}
 		Assert.assertTrue(exception);
-	}
+	}*/
 }

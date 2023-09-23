@@ -12,7 +12,7 @@ public class CompraPaquete {
 	private PaquetePublicacion paquete;
 	
 
-	public CompraPaquete( LocalDate fechaCompra, PaquetePublicacion paquete) {
+	public CompraPaquete(LocalDate fechaCompra, PaquetePublicacion paquete) {
 		this.fechaCompra = fechaCompra;
 		this.fechaVencimiento = fechaCompra.withDayOfMonth(fechaCompra.getDayOfMonth() + paquete.getPeriodoValidez());
 		this.paquete = paquete;

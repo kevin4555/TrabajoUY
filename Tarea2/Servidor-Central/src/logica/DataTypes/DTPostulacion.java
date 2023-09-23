@@ -11,6 +11,10 @@ public class DTPostulacion {
 	private Date fechaPostulacion;
 
 	private String cvReducido;
+	
+	public DTPostulacion() {
+		
+	}
 
 	public DTPostulacion(DTPostulante postulante, String descripMotivacion, Date fechaPostulacion, String cvReducido) {
 		this.postulante = postulante;

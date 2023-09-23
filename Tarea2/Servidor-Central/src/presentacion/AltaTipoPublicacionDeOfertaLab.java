@@ -154,7 +154,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 		String costo = this.textFieldCosto.getText();
 		Date fecha = this.dateChooser.getDate();
 		String valorString = "";
-		if (checkFormulario()) {
+		/*if (checkFormulario()) {
 			try {
 				Integer duracionFinal = Integer.parseInt(this.textFieldDuracion.getText());
 				Float costoFinal = Float.parseFloat(this.textFieldCosto.getText());
@@ -173,7 +173,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 			// Limpio el internal frame antes de cerrar la ventana
 			limpiarInformacion();
 			setVisible(true);
-		}
+		}*/
 
 	}
 

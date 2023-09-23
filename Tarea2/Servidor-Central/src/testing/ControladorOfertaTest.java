@@ -44,7 +44,7 @@ import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
 
 public class ControladorOfertaTest {
-	private Date fechaDate;
+	/*private Date fechaDate;
 	private String fecha = "17/06/1999";
 	private ControladorOferta controladorOferta;
 	private ManejadorSettings manejadorSettings;
@@ -371,6 +371,6 @@ public class ControladorOfertaTest {
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 
 }

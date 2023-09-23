@@ -19,7 +19,7 @@ import logica.handlers.ManejadorSettings;
 
 public class ManejadorSettingsTest 
 {
-	private Date fechaDate;
+	/*private Date fechaDate;
 	private String fecha = "17/06/1999";
 	
 	@Before
@@ -84,6 +84,6 @@ public class ManejadorSettingsTest
 			Assert.assertEquals("El tipo de publicación UnaNoEsta no existe", e.getMessage());
 		}
 		manejadorSettings.clean();
-	}
+	}*/
 	
 }

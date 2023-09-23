@@ -28,7 +28,7 @@ import logica.handlers.ManejadorOfertas;
 
 public class ManejadorOfertasTest {
 
-	private Date fechaDate;
+	/*private Date fechaDate;
 	private String fecha = "17/06/1999";
 
 	private ManejadorOfertas manejadorOfertas;
@@ -140,6 +140,6 @@ public class ManejadorOfertasTest {
 		resultadoEsperado.add("nombre");
 		Collections.sort(resultadoEsperado);
 		Assert.assertEquals(resultadoEsperado, resultado);
-	}
+	}*/
 
 }

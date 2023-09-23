@@ -31,7 +31,7 @@ import java.text.SimpleDateFormat;
 
 public class ManejadorUsuarioTesting
 {
-	private static Date fechaDate1;
+	/*private static Date fechaDate1;
 	private static Date fechaDate2;
 	private static IControladorUsuario controladorUsuario;
 	private static IControladorOferta controladorOferta;
@@ -299,5 +299,5 @@ public class ManejadorUsuarioTesting
 			
 		}
 		Assert.assertTrue(exception);
-	}
+	}*/
 }

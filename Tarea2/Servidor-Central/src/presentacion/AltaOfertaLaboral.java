@@ -274,16 +274,16 @@ public class AltaOfertaLaboral extends JInternalFrame {
 			keywordSeleccionadas = (ArrayList<String>) this.listaKeyword.getSelectedValuesList();
 		}
 
-		if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab,
+		/*if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab,
 				horaIniOfertaLab, horaFinOfertaLab, fechaAlta, nomTipoPublic, nicknameEmpresa, noHayTipoPublic,
 				noHayEmpresa)) {
 			try {
 				controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab,
 						Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta,
 						nomTipoPublic, nicknameEmpresa, keywordSeleccionadas);
-				/*controlUsu.obtenerEmpresa(nicknameEmpresa)
+				controlUsu.obtenerEmpresa(nicknameEmpresa)
 						.agregarOferta(controlOferta.obtenerOfertaLaboral(nombreOfertaLab));
-				controlOferta.agregarKeywordEnOfertaLaboral(keywordSeleccionadas, nombreOfertaLab);*/
+				controlOferta.agregarKeywordEnOfertaLaboral(keywordSeleccionadas, nombreOfertaLab);
 				// falta asociar keywords.
 				// Muestro éxito de la operación
 				JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito",
@@ -309,7 +309,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 						JOptionPane.ERROR_MESSAGE);
 
 			}
-		}
+		}*/
 
 	}
 

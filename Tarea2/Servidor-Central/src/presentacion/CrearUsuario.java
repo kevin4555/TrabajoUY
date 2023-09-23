@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JFileChooser;
 import logica.interfaces.IControladorUsuario;
 
 import javax.swing.JTextField;
@@ -24,6 +25,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
@@ -33,6 +35,17 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.Base64;
+import javax.swing.JTextPane;
 
 @SuppressWarnings("serial")
 public class CrearUsuario extends JInternalFrame {
@@ -60,6 +73,15 @@ public class CrearUsuario extends JInternalFrame {
 	private JLabel lblNewLabel_1;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
+	private JLabel lblNewLabel_2;
+	private JTextField textField;
+	private JButton selectImageButton;
+    private JLabel imageLabel;
+    private BufferedImage fotoPerfilUsuario = null;
+    private Image resizedImage;
+    private String imagePath;
+    private GridBagConstraints gbc_textField;
+    private JTextPane textPane;
 
 	public CrearUsuario(IControladorUsuario contrUsuario) {
 		this.controladorUsuario = contrUsuario;
@@ -99,9 +121,9 @@ public class CrearUsuario extends JInternalFrame {
 		getContentPane().add(panelDatos, BorderLayout.CENTER);
 		GridBagLayout gbl_panelDatos = new GridBagLayout();
 		gbl_panelDatos.columnWidths = new int[] { 113, 739, 0 };
-		gbl_panelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_panelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gbl_panelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, Double.MIN_VALUE };
 		panelDatos.setLayout(gbl_panelDatos);
 
@@ -236,6 +258,57 @@ public class CrearUsuario extends JInternalFrame {
 		gbc_passwordField_1.gridy = 7;
 		panelDatos.add(passwordField_1, gbc_passwordField_1);
 		
+		lblNewLabel_2 = new JLabel("Foto de perfil:");
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 0;
+		gbc_lblNewLabel_2.gridy = 8;
+		panelDatos.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+        selectImageButton = new JButton("Seleccionar Imagen");
+        imageLabel = new JLabel();
+        
+     
+		gbc_textField = new GridBagConstraints();
+		gbc_textField.anchor = GridBagConstraints.WEST;
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 8;
+		panelDatos.add(selectImageButton, gbc_textField);
+		
+		selectImageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(null);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                	
+                	File fotoPerfil = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                	obtenerImagen(fotoPerfil);
+                	
+                	
+                
+                    
+                }
+            }
+        });
+		
+		textPane = new JTextPane();
+		GridBagConstraints gbc_textPane = new GridBagConstraints();
+		gbc_textPane.insets = new Insets(0, 0, 5, 0);
+		gbc_textPane.fill = GridBagConstraints.BOTH;
+		gbc_textPane.gridx = 1;
+		gbc_textPane.gridy = 9;
+		panelDatos.add(textPane, gbc_textPane);
+		
+		
+		
+		
+		
+		
+		
 		
 
 		layeredPane = new JLayeredPane();
@@ -245,7 +318,7 @@ public class CrearUsuario extends JInternalFrame {
 		gbc_layeredPane.insets = new Insets(0, 0, 5, 0);
 		gbc_layeredPane.fill = GridBagConstraints.BOTH;
 		gbc_layeredPane.gridx = 0;
-		gbc_layeredPane.gridy = 8;
+		gbc_layeredPane.gridy = 10;
 		panelDatos.add(layeredPane, gbc_layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
@@ -354,35 +427,44 @@ public class CrearUsuario extends JInternalFrame {
 		String email = this.textFieldEmail.getText();
 		String contrasenia = this.passwordField.getPassword().toString();
 		String confirmarContrasenia = this.passwordField_1.getPassword().toString();
-
 		String descripcion = this.textAreaDescripcion.getText();
 		String sitioWeb = this.textFieldSitioWeb.getText();
-
 		String nacionalidad = this.textFieldNacionalidad.getText();
-		Date fechaNacimienito = this.fechaNacimientoChooser.getDate();
-
-		if (checkFormulario()) {
-			try {
-				if (tipoUsuarioSeleccionado.equals("Postulante")) {
-					this.controladorUsuario.altaPostulante(nickname, nombre, apellido, email, fechaNacimienito,
-							nacionalidad);
-					JOptionPane.showMessageDialog(this, "El Postulante se ha creado con éxito", "Registrar Usuario",
-							JOptionPane.INFORMATION_MESSAGE);
-					return true;
-				} else {
-					this.controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descripcion, sitioWeb);
-					JOptionPane.showMessageDialog(this, "La Empresa se ha creado con éxito", "Registrar Usuario",
-							JOptionPane.INFORMATION_MESSAGE);
-					return true;
+		
+		Date fechaNacimienito  = this.fechaNacimientoChooser.getDate();
+	
+			if (checkFormulario()) {
+				try {
+					if (this.textPane.getText() == "") {
+						fotoPerfilUsuario = null;
+					}
+					if (tipoUsuarioSeleccionado.equals("Postulante")) {
+						LocalDate fechaNac = this.fechaNacimientoChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						this.controladorUsuario.altaPostulante(nickname, nombre, apellido, email, fechaNac,
+								nacionalidad, fotoPerfilUsuario, contrasenia);
+						JOptionPane.showMessageDialog(this, "El Postulante se ha creado con éxito", "Registrar Usuario",
+								JOptionPane.INFORMATION_MESSAGE);
+						return true;
+					} else {
+						this.controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descripcion, sitioWeb, fotoPerfilUsuario, contrasenia);
+						JOptionPane.showMessageDialog(this, "La Empresa se ha creado con éxito", "Registrar Usuario",
+								JOptionPane.INFORMATION_MESSAGE);
+						return true;
+					}
+				} catch (UsuarioYaExisteException e) {
+					JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+					return false;
+				} catch (UsuarioEmailRepetidoException e2) {
+					JOptionPane.showMessageDialog(this, e2.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
+					return false;
 				}
-			} catch (UsuarioYaExisteException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-				return false;
-			} catch (UsuarioEmailRepetidoException e2) {
-				JOptionPane.showMessageDialog(this, e2.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-				return false;
-			}
-		}
+			
+		};
+		
+		
+		
+
+		
 		return false;
 	}
 
@@ -402,6 +484,8 @@ public class CrearUsuario extends JInternalFrame {
 		}
 
 	}
+	
+	
 
 	private boolean checkFormulario() {
 		if (this.textFieldNickName.getText().isEmpty() || this.textFieldNombre.getText().isEmpty()
@@ -417,11 +501,14 @@ public class CrearUsuario extends JInternalFrame {
 			return false;
 		}
 		
-		if (this.passwordField_1.getPassword().toString() != this.passwordField.getPassword().toString()) {
-			JOptionPane.showMessageDialog(this, "Las contraseñas son coinciden", "Registrar Usuario",
+		char[] password1 = passwordField_1.getPassword();
+        char[] password2 = passwordField.getPassword();
+		
+        if (!Arrays.equals(password1, password2)) {
+        	JOptionPane.showMessageDialog(this, "Las contraseñas no son iguales", "Registrar Usuario",
 					JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
+        	return false;
+        } 
 
 		if (this.tipoUsuarioSeleccionado.equals("Postulante")) {
 			if (this.textFieldNacionalidad.getText().isEmpty()) {
@@ -444,6 +531,27 @@ public class CrearUsuario extends JInternalFrame {
 		}
 		return true;
 	}
+	
+	public void obtenerImagen(File imagenPerfil) {
+		try {
+			BufferedImage originalImage  = ImageIO.read(imagenPerfil);
+			int newWidth = 100; // Ancho deseado
+			int newHeight = 100; // Alto deseado
+			Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+			fotoPerfilUsuario = originalImage;
+			this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+			this.textPane.setText("");
+	        ImageIcon icono = new ImageIcon(scaledImage);
+	        this.textPane.insertIcon(icono);
+			
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(this, "No se cargo la imagen", "Registrar Usuario",
+					JOptionPane.ERROR_MESSAGE);
+		} catch (java.lang.NullPointerException e2) {
+			JOptionPane.showMessageDialog(this, "Debe ingresar una imagen valida", "Registrar Usuario",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
 
 	@SuppressWarnings("exports")
 	public void cambiarPanel(JPanel panel) {
@@ -459,11 +567,13 @@ public class CrearUsuario extends JInternalFrame {
 		this.textFieldNombre.setText("");
 		this.textFieldApellido.setText("");
 		this.textFieldEmail.setText("");
-
+		this.passwordField_1.setText("");
+		this.passwordField.setText("");
 		this.textFieldNacionalidad.setText("");
 		this.fechaNacimientoChooser.setDate(null);
 		this.textAreaDescripcion.setText("");
 		this.textFieldSitioWeb.setText("");
+		this.textPane.setText("");
 
 	}
 }

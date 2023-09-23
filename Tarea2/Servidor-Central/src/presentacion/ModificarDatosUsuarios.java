@@ -4,15 +4,24 @@ import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
+
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -25,12 +34,18 @@ import logica.DataTypes.DTPostulante;
 import logica.DataTypes.DTUsuario;
 import logica.interfaces.IControladorUsuario;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JTextPane;
 
 @SuppressWarnings("serial")
 public class ModificarDatosUsuarios extends JInternalFrame {
@@ -53,6 +68,13 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 	private JButton btnConfirmar;
 	private JButton btnCancelar;
 	private JPanel panelDatos;
+	private JLabel lblNewLabel;
+	private JTextField textFieldContrasenia;
+	private JLabel lblNewLabel_1;
+	private JTextPane textPane;
+	private JButton selectImageButton;
+    private JLabel imageLabel;
+    private BufferedImage fotoPerfilUsuario = null;
 
 	public ModificarDatosUsuarios(IControladorUsuario contrUsuario) {
 		setTitle("Modificar Datos Usuarios");
@@ -71,9 +93,9 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		getContentPane().add(panelDatos, BorderLayout.CENTER);
 		GridBagLayout gbl_panelDatos = new GridBagLayout();
 		gbl_panelDatos.columnWidths = new int[] { 113, 739, 0 };
-		gbl_panelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_panelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gbl_panelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, Double.MIN_VALUE };
 		panelDatos.setLayout(gbl_panelDatos);
 
@@ -176,6 +198,66 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		gbc_textFieldEmail.gridy = 5;
 		panelDatos.add(this.textFieldEmail, gbc_textFieldEmail);
 		this.textFieldEmail.setColumns(10);
+		
+		lblNewLabel = new JLabel("Contraseña:");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 6;
+		panelDatos.add(lblNewLabel, gbc_lblNewLabel);
+		
+		textFieldContrasenia = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 6;
+		panelDatos.add(textFieldContrasenia, gbc_textField);
+		textFieldContrasenia.setColumns(10);
+		
+		lblNewLabel_1 = new JLabel("Foto de perfil:");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 7;
+		panelDatos.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		selectImageButton = new JButton("Seleccionar Imagen");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.anchor = GridBagConstraints.WEST;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 7;
+		panelDatos.add(selectImageButton, gbc_btnNewButton);
+		
+        imageLabel = new JLabel();
+        
+        selectImageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(null);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                	
+                	File fotoPerfil = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                	obtenerImagen(fotoPerfil);
+                	
+                	
+                
+                    
+                }
+            }
+        });
+		
+		textPane = new JTextPane();
+		GridBagConstraints gbc_textPane = new GridBagConstraints();
+		gbc_textPane.insets = new Insets(0, 0, 5, 0);
+		gbc_textPane.fill = GridBagConstraints.BOTH;
+		gbc_textPane.gridx = 1;
+		gbc_textPane.gridy = 8;
+		panelDatos.add(textPane, gbc_textPane);
 
 		layeredPane = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane = new GridBagConstraints();
@@ -184,7 +266,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		gbc_layeredPane.insets = new Insets(0, 0, 5, 0);
 		gbc_layeredPane.fill = GridBagConstraints.BOTH;
 		gbc_layeredPane.gridx = 0;
-		gbc_layeredPane.gridy = 6;
+		gbc_layeredPane.gridy = 9;
 		panelDatos.add(layeredPane, gbc_layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 
@@ -338,6 +420,16 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 			this.textFieldNombre.setText(dtUsuario.getNombre());
 			this.textFieldApellido.setText(dtUsuario.getApellido());
 			this.textFieldEmail.setText(dtUsuario.getEmail());
+			this.textFieldContrasenia.setText(dtUsuario.getContrasenia());
+			BufferedImage originalImage  = dtUsuario.getImagen();
+			if (originalImage != null) {
+				int newWidth = 100; // Ancho deseado
+				int newHeight = 100; // Alto deseado
+				Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+				this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+		        ImageIcon icono = new ImageIcon(scaledImage);
+		        this.textPane.insertIcon(icono);
+			}
 			if (dtUsuario instanceof DTEmpresa) {
 				tipoUsuario = "Empresa";
 				DTEmpresa dtEmpresa = (DTEmpresa) dtUsuario;
@@ -349,7 +441,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 				tipoUsuario = "Postulante";
 				DTPostulante dtPostulante = (DTPostulante) dtUsuario;
 				this.textFieldNacionalidad.setText(dtPostulante.getNacionalidad());
-				this.fechaNacimientoChooser.setDate(dtPostulante.getFechaNacimiento());
+				this.fechaNacimientoChooser.setDate(Date.from(dtPostulante.getFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 				cambiarPanel(panelPostulante);
 			}
 
@@ -364,12 +456,17 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		Date fechaNac = this.fechaNacimientoChooser.getDate();
 		String nacionalidadPos = this.textFieldNacionalidad.getText();
 		String descripcionEmpresa = this.textAreaDescripcion.getText();
-		if (checkFormulario(nombre, apelliido, fechaNac, nacionalidadPos, descripcionEmpresa)) {
+		String contrasenia = this.textFieldContrasenia.getText();
+		if (checkFormulario(nombre, apelliido, fechaNac, nacionalidadPos, descripcionEmpresa, contrasenia)) {
 		try {
+			if (this.textPane.getText() == "") {
+				fotoPerfilUsuario = null;
+			}
 			if (tipoUsuario.equals("Postulante")) {
-				controladorUsuario.editarPostulante(usuarioSeleccionado, nombre,  apelliido, fechaNac, nacionalidadPos);
+				LocalDate fechaNacimiento = this.fechaNacimientoChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				controladorUsuario.editarPostulante(usuarioSeleccionado, nombre,  apelliido, fechaNacimiento, nacionalidadPos, fotoPerfilUsuario, contrasenia);
 			} else if (tipoUsuario.equals("Empresa")) {
-				controladorUsuario.editarEmpresa(usuarioSeleccionado, nombre, apelliido, sitioWeb, descripcionEmpresa);
+				controladorUsuario.editarEmpresa(usuarioSeleccionado, nombre, apelliido, sitioWeb, descripcionEmpresa, fotoPerfilUsuario, contrasenia);
 			}
 			
 			JOptionPane.showMessageDialog(this, "Los datos se actualizaron con éxito",
@@ -392,8 +489,29 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		layeredPane.revalidate();
 	}
 	
-	public boolean checkFormulario(String nombre, String apellido, Date fechaNacPostulante, String nacionalidadPostulante, String descripEmpresa) {
-		if (nombre.isEmpty() || apellido.isEmpty()) {
+	public void obtenerImagen(File imagenPerfil) {
+		try {
+			BufferedImage originalImage  = ImageIO.read(imagenPerfil);
+			int newWidth = 100; // Ancho deseado
+			int newHeight = 100; // Alto deseado
+			Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+			fotoPerfilUsuario = originalImage;
+			this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+			this.textPane.setText("");
+	        ImageIcon icono = new ImageIcon(scaledImage);
+	        this.textPane.insertIcon(icono);
+			
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(this, "No se cargo la imagen", "Registrar Usuario",
+					JOptionPane.ERROR_MESSAGE);
+		} catch (java.lang.NullPointerException e2) {
+			JOptionPane.showMessageDialog(this, "Debe ingresar una imagen valida", "Registrar Usuario",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public boolean checkFormulario(String nombre, String apellido, Date fechaNacPostulante, String nacionalidadPostulante, String descripEmpresa, String contrasenia) {
+		if (nombre.isEmpty() || apellido.isEmpty() || contrasenia.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Modificar Datos Usuario",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
@@ -431,6 +549,9 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		this.textFieldNacionalidad.setText("");
 		this.textAreaDescripcion.setText("");
 		this.textFieldSitioWeb.setText("");
+		this.textFieldContrasenia.setText("");
+		this.fechaNacimientoChooser.setDate(null);
+		this.textPane.setText("");
 		
 	}
 	

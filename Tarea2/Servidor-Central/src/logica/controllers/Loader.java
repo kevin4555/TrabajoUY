@@ -50,7 +50,7 @@ public class Loader {
 				"Uruguaya", null, "1234");
 		controladorUsuario.altaPostulante("isabel", "Isabella", "López", "loisa@gmail.com", LocalDate.parse("1991-07-07"),
 				"Uruguaya", null, "1234");
-		controladorUsuario.altaPostulante("marram02", "Martín", "Ramírez", "marram@hotmail.com", LocalDate.parse("11986-12-02"),
+		controladorUsuario.altaPostulante("marram02", "Martín", "Ramírez", "marram@hotmail.com", LocalDate.parse("1986-12-02"),
 				"Argentina", null, "1234");
 
 		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",

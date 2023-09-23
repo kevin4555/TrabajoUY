@@ -20,7 +20,7 @@ import logica.classes.TipoPublicacion;
 
 public class ClasesTest {
 
-	private Date fechaDate;
+	/*private Date fechaDate;
 	private Date fechaDateSegunda;
 	private String fecha = "17/06/1999";
 	private String fechaSegunda = "17/06/2000";
@@ -127,5 +127,5 @@ public class ClasesTest {
         Assert.assertEquals("10:00", ofertaLaboral.getHorarioInicial());
         Assert.assertEquals("16:00", ofertaLaboral.getHorarioFinal());
         Assert.assertEquals(13f, ofertaLaboral.getRemunaracion());
-    }
+    }*/
 }

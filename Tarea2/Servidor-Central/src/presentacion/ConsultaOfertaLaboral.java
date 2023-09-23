@@ -259,7 +259,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
 			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemuneracion())));
 			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
 			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
-			(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));
+			//(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));
 		} catch (OfertaLaboralNoExisteException e1) {
 
     	}
