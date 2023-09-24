@@ -233,6 +233,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_textPane.fill = GridBagConstraints.BOTH;
 		gbc_textPane.gridx = 1;
 		gbc_textPane.gridy = 7;
+		textPane.setEditable(false);
 		panelDatos.add(textPane, gbc_textPane);
 
 		layeredPane = new JLayeredPane();

@@ -3,6 +3,8 @@ package presentacion;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.GridBagLayout;
 import java.awt.Image;
 
@@ -69,7 +71,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 	private JButton btnCancelar;
 	private JPanel panelDatos;
 	private JLabel lblNewLabel;
-	private JTextField textFieldContrasenia;
+	private JPasswordField textFieldContrasenia;
 	private JLabel lblNewLabel_1;
 	private JTextPane textPane;
 	private JButton selectImageButton;
@@ -207,7 +209,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		gbc_lblNewLabel.gridy = 6;
 		panelDatos.add(lblNewLabel, gbc_lblNewLabel);
 		
-		textFieldContrasenia = new JTextField();
+		textFieldContrasenia = new JPasswordField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -257,6 +259,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		gbc_textPane.fill = GridBagConstraints.BOTH;
 		gbc_textPane.gridx = 1;
 		gbc_textPane.gridy = 8;
+		textPane.setEditable(false);
 		panelDatos.add(textPane, gbc_textPane);
 
 		layeredPane = new JLayeredPane();
@@ -456,7 +459,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		Date fechaNac = this.fechaNacimientoChooser.getDate();
 		String nacionalidadPos = this.textFieldNacionalidad.getText();
 		String descripcionEmpresa = this.textAreaDescripcion.getText();
-		String contrasenia = this.textFieldContrasenia.getText();
+		String contrasenia = this.textFieldContrasenia.getPassword().toString();
 		if (checkFormulario(nombre, apelliido, fechaNac, nacionalidadPos, descripcionEmpresa, contrasenia)) {
 		try {
 			if (this.textPane.getText() == "") {
