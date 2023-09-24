@@ -64,7 +64,7 @@ public class ControladorOferta implements IControladorOferta {
 		Empresa empresa = contUsuario.obtenerEmpresa(nicknameEmpresa);
 		empresa.agregarOferta(ofertaLaboral);
 		if(nombrePaquete!=null) {
-			empresa.comprarOfertaPorPaquete(nombre, nombrePaquete, nomTipoPublicacion, ofertaLaboral);
+			empresa.comprarOfertaPorPaquete(nombrePaquete, nomTipoPublicacion, ofertaLaboral);
 			
 		}
 
