@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
@@ -13,8 +14,10 @@ import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTUsuario;
+import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
 import logica.classes.OfertaLaboral;
+import logica.classes.PaquetePublicacion;
 import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
@@ -183,9 +186,13 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 	
 	@Override
-	public DTPostulacion obtenerDTPostulacionDePostulanteAOferta(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException {
-		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nicknamePostulante);
-		return postulante.obtenerDTPostulacion(nombreOferta);
+	public void comprarPaquete(String nicknameEmpresa, String nombrePaquete, LocalDate fechaCompra) throws UsuarioNoExisteException, PaquetePublicacionNoExisteException {
+		Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
+		IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+		PaquetePublicacion paquete = controladorOferta.obtenerPaquetePublicacion(nombrePaquete);
+		CompraPaquete compra = new CompraPaquete(fechaCompra, paquete);
+		empresa.comprarPaquete(compra);
+		
 	}
 	
 	@Override
