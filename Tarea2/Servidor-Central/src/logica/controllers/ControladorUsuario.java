@@ -24,12 +24,14 @@ import logica.interfaces.IControladorUsuario;
 
 public class ControladorUsuario implements IControladorUsuario {
 
+	@Override
 	public Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException {
 		ManejadorUsuario manejUsu = ManejadorUsuario.getInstance();
 		Empresa emp = manejUsu.obtenerEmpresa(nicknameEmpresa);
 		return emp;
 	}
 
+	@Override
 	public ArrayList<String> listarEmpresas() {
 		ManejadorUsuario manejUsu = ManejadorUsuario.getInstance();
 		ArrayList<String> nomEmpresas = manejUsu.listarEmpresas();
@@ -92,11 +94,12 @@ public class ControladorUsuario implements IControladorUsuario {
 	public void altaEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
 			String link, BufferedImage imagen, String contrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
 		ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
-		Empresa empresa = new Empresa(nickname, nombre, apellido, email.toLowerCase(), descripcion, link, imagen, contrasenia);
+		Empresa empresa = new Empresa(nickname, nombre, apellido, email.toLowerCase(), descripcion, link.toLowerCase(), imagen, contrasenia);
 		manejadorUsuarios.agregarEmpresa(empresa);
 
 	}
-
+	
+	@Override
 	public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Usuario usuario = manejadorUsuario.obtenerUsuario(nickname);
@@ -108,7 +111,8 @@ public class ControladorUsuario implements IControladorUsuario {
 		Usuario usuario = this.obtenerUsuario(nickname);
 		return usuario.obtenerDTUsuario();
 	}
-
+	
+	@Override
 	public ArrayList<String> listaOfertasUsuario(String nickname) throws UsuarioNoExisteException {
 		Usuario usuario = this.obtenerUsuario(nickname);
 		return usuario.listarOfertasUsuario();
@@ -137,7 +141,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nickname);
 		empresa.setNombre(nombre);
 		empresa.setApellido(apellido);
-		empresa.setSitioWeb(sitioWeb);
+		empresa.setSitioWeb(sitioWeb.toLowerCase());
 		empresa.setDescripcion(descripcion);
 		empresa.setImagen(imagen);
 		empresa.setContrasenia(contrasenia);

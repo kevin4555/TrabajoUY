@@ -121,6 +121,7 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorSettings.addKeyword(keyword);
 	}
 
+	@Override
 	public Keyword obtenerKeywords(String nomKeyword)
 			throws KeywordNoExisteException, TipoPublicacionNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
@@ -135,6 +136,7 @@ public class ControladorOferta implements IControladorOferta {
 		return listKeywords;
 	}
 
+	@Override
 	public DTOfertaLaboral obtenerDtOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 
@@ -143,6 +145,7 @@ public class ControladorOferta implements IControladorOferta {
 		return dtOfertaLaboral;
 	}
 
+	@Override
 	public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 
