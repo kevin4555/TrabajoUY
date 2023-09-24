@@ -44,9 +44,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     private IControladorUsuario controlUsuarioLab;
     private JComboBox<String> comboBoxEmpresasRegistradas;
     private JComboBox<String> comboBoxOfertasLaborales;
-    private JTextField textFieldNombre;
-    private JTextField textFieldHoraInicio;
-    private JTextField textFieldHoraFin;
+    private JTextField textFieldHorarioOferta;
     private JTextField textFieldRemuneracion;
     private JTextField textFieldCiudad;
     private JTextField textFieldDepartamento;
@@ -66,7 +64,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Consultar Oferta Laboral");
-        setBounds(30, 30, 508, 380);
+        setBounds(30, 30, 500, 547);
         
         JPanel ubicacionSur = new JPanel();
         getContentPane().add(ubicacionSur, BorderLayout.SOUTH);
@@ -104,28 +102,25 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         
         JPanel ubicacionCentro = new JPanel();
         getContentPane().add(ubicacionCentro, BorderLayout.CENTER);
-        ubicacionCentro.setLayout(new GridLayout(1, 2, 0, 0));
+        ubicacionCentro.setLayout(new GridLayout(1, 2, 30, 30));
         ubicacionCentro.setVisible(false);
         
         JPanel ubicacionEtiquetas = new JPanel();
         ubicacionCentro.add(ubicacionEtiquetas);
-        ubicacionEtiquetas.setLayout(new GridLayout(8, 1, 0, 0));
+        ubicacionEtiquetas.setLayout(new GridLayout(7, 1, 0, 0));
         
-        JLabel lblNombre = new JLabel("  Nombre");
-        lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-        ubicacionEtiquetas.add(lblNombre);
+        JLabel labelEspacio = new JLabel("---------");
+        labelEspacio.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionEtiquetas.add(labelEspacio);
         
         JLabel lblDescripcion = new JLabel("  Descripción");
         lblDescripcion.setHorizontalAlignment(SwingConstants.CENTER);
         ubicacionEtiquetas.add(lblDescripcion);
         
-        JLabel lblHoraInicio = new JLabel("  Hora Inicio");
+        JLabel lblHoraInicio = new JLabel("  Horario");
         lblHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
         ubicacionEtiquetas.add(lblHoraInicio);
         
-        JLabel lblHoraFin = new JLabel("  Hora Fin");
-        lblHoraFin.setHorizontalAlignment(SwingConstants.CENTER);
-        ubicacionEtiquetas.add(lblHoraFin);
         
         JLabel lblRemuneracin = new JLabel("  Remuneración");
         lblRemuneracin.setHorizontalAlignment(SwingConstants.CENTER);
@@ -145,28 +140,26 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         
         JPanel ubicacionTextos = new JPanel();
         ubicacionCentro.add(ubicacionTextos);
-        ubicacionTextos.setLayout(new GridLayout(8, 1, 0, 0));
+        ubicacionTextos.setLayout(new GridLayout(7, 1, 0, 0));
         
-        this.textFieldNombre = new JTextField();
-        this.textFieldNombre.setEditable(false);
-        this.textFieldNombre.setHorizontalAlignment(SwingConstants.CENTER);
-        ubicacionTextos.add(this.textFieldNombre);
+        JLabel labelEspacio2 = new JLabel("---------");
+        labelEspacio2.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionTextos.add(labelEspacio2);
         
         JScrollPane scrollPaneDescripcion = new JScrollPane();
         ubicacionTextos.add(scrollPaneDescripcion);
         
         this.textAreaDescripcion = new JTextArea();
+        textAreaDescripcion.setWrapStyleWord(true);
+        textAreaDescripcion.setLineWrap(true);
+        textAreaDescripcion.setEditable(false);
         scrollPaneDescripcion.setViewportView(this.textAreaDescripcion);
         
-        this.textFieldHoraInicio = new JTextField();
-        this.textFieldHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
-        this.textFieldHoraInicio.setEditable(false);
-        ubicacionTextos.add(this.textFieldHoraInicio);
+        this.textFieldHorarioOferta = new JTextField();
+		this.textFieldHorarioOferta.setEditable(false);
+        this.textFieldHorarioOferta.setHorizontalAlignment(SwingConstants.CENTER);
+        ubicacionTextos.add(this.textFieldHorarioOferta);
         
-        this.textFieldHoraFin = new JTextField();
-        this.textFieldHoraFin.setHorizontalAlignment(SwingConstants.CENTER);
-        this.textFieldHoraFin.setEditable(false);
-        ubicacionTextos.add(this.textFieldHoraFin);
         
         this.textFieldRemuneracion = new JTextField();
         this.textFieldRemuneracion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -252,11 +245,9 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
 	    try {
 			dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
 		
-			(this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
 			(this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());	   
-			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicio());
-			(this.textFieldHoraFin).setText(dtOfertaLaboral.getHorarioFinal());
-			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemuneracion())));
+			(this.textFieldHorarioOferta).setText(dtOfertaLaboral.getHorarioInicio() + " - " + dtOfertaLaboral.getHorarioFinal());
+			(this.textFieldRemuneracion).setText(dtOfertaLaboral.getRemuneracion().toString());
 			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
 			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
 			(this.textFieldFechaAlta).setText(dtOfertaLaboral.getFechaAlta().toString());
@@ -267,10 +258,8 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     
     public void limpiarInformacion()
     {
-    	this.textFieldNombre.setText("");
     	this.textAreaDescripcion.setText("");	   
-    	this.textFieldHoraInicio.setText("");
-    	this.textFieldHoraFin.setText("");
+    	this.textFieldHorarioOferta.setText("");
     	this.textFieldRemuneracion.setText("");
     	this.textFieldCiudad.setText("");
     	this.textFieldDepartamento.setText("");

@@ -58,6 +58,7 @@ public class Principal extends JFrame {
     private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
     private ModificarDatosUsuarios modificarDatosUsuarios;
     private Aceptar_Rechazar_Oferta aceptarRechazarOferta;
+    private AgregarTipoPublicacionAlPaquete agregarTipoPublicacionAlPaquete;
     private Date fecha;
     private String fechaS = "23/02/1923";
 
@@ -117,6 +118,9 @@ public class Principal extends JFrame {
 		aceptarRechazarOferta = new Aceptar_Rechazar_Oferta(ICO, ICU);
 		aceptarRechazarOferta.setVisible(false);
 		
+		agregarTipoPublicacionAlPaquete = new AgregarTipoPublicacionAlPaquete(ICO);
+		agregarTipoPublicacionAlPaquete.setVisible(false);
+		
 
 		ventanaPrincipal.getContentPane().setLayout(null);
 		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
@@ -127,6 +131,7 @@ public class Principal extends JFrame {
 		ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame);
 		ventanaPrincipal.getContentPane().add(modificarDatosUsuarios);
 		ventanaPrincipal.getContentPane().add(aceptarRechazarOferta);
+		ventanaPrincipal.getContentPane().add(agregarTipoPublicacionAlPaquete);
 	}
 
 	private void initialize() {
@@ -254,6 +259,18 @@ public class Principal extends JFrame {
 			}
 		});
 		menuOfertaLaboral.add(menuItemaceptarRechazarOferta);
+		
+		JMenuItem menuItemAgregarTipoPublicacionAlPaquete = new JMenuItem("Agregar tipo de publicacion al paquete");
+		menuItemAgregarTipoPublicacionAlPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para postularse a una oferta laboral
+				agregarTipoPublicacionAlPaquete.cargarPaquetes();
+				agregarTipoPublicacionAlPaquete.setVisible(true);
+			}
+		});
+		menuOfertaLaboral.add(menuItemAgregarTipoPublicacionAlPaquete);
+		
+
 		
 		
 

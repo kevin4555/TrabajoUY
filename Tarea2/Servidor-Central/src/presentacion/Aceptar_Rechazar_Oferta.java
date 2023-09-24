@@ -7,6 +7,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
@@ -85,7 +86,7 @@ public class Aceptar_Rechazar_Oferta extends JInternalFrame {
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Aceptar/Rechazar Oferta laboral");
-        setBounds(30, 30, 613, 380);
+        setBounds(30, 30, 713, 380);
         
         JPanel panelBotones = new JPanel();
 		getContentPane().add(panelBotones, BorderLayout.SOUTH);
@@ -94,9 +95,7 @@ public class Aceptar_Rechazar_Oferta extends JInternalFrame {
 		this.btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//confirmarOfertaLaboral();
-				limpiarTodosLosDatos();
-				dispose();
+				confirmarOfertaLaboral();
 				
 			}
 		});
@@ -105,14 +104,13 @@ public class Aceptar_Rechazar_Oferta extends JInternalFrame {
 		this.btnRechazar = new JButton("Rechazar");
 		btnRechazar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				limpiarTodosLosDatos();
-				dispose();
+				rechazarOfertaLaboral();
 				
 			}
 		});
 		panelBotones.add(btnRechazar);
 		
-		this.btnCerrar = new JButton("Cerrar");
+		this.btnCerrar = new JButton("Cancelar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarTodosLosDatos();
@@ -277,6 +275,42 @@ public class Aceptar_Rechazar_Oferta extends JInternalFrame {
 	}
     
     
+    public void confirmarOfertaLaboral() {
+    	String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
+    	if (ofertaSeleccionada != oferta) {
+			try {
+				DTOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
+				
+				//CAMBIAR ESTADO OFERTA
+				
+				JOptionPane.showMessageDialog(this, "Falta agregar el cambio de estado",
+						"Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+				limpiarTodosLosDatos();
+			} catch (OfertaLaboralNoExisteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+    }
+    
+    public void rechazarOfertaLaboral() {
+    	String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
+    	if (ofertaSeleccionada != oferta) {
+			try {
+				DTOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
+				
+				//CAMBIAR ESTADO OFERTA
+				
+				JOptionPane.showMessageDialog(this, "Falta agregar el cambio de estado",
+						"Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+				limpiarTodosLosDatos();
+			} catch (OfertaLaboralNoExisteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+    }
+    
     @SuppressWarnings({ "deprecation", "exports" })
 	public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
 		
@@ -312,14 +346,14 @@ public void limpiarTodosLosDatos() {
 		this.textFieldHorarioOferta.setText("");
 		this.textFieldRemuneracion.setText("");
 		
-		ArrayList<String> listaOfertas = new ArrayList<String>();
+		/*ArrayList<String> listaOfertas = new ArrayList<String>();
 		String [] arrayOfertas = listaOfertas.toArray(new String[0]);
 		Arrays.sort(arrayOfertas);
 		DefaultComboBoxModel<String> model;
 		model = new DefaultComboBoxModel<String>(arrayOfertas);
 		this.comboBoxSeleccionOferta.setModel(model);
 		
-		this.comboBoxSeleccionUsuario.setModel(model);
+		this.comboBoxSeleccionUsuario.setModel(model);*/
 		
 	}
 }
