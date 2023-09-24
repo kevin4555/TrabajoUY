@@ -11,6 +11,8 @@ import logica.interfaces.IControladorOferta;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
@@ -108,7 +110,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 		ubicacionBotones.add(btnCancelar);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// limpiarInformacion();
+				limpiarInformacion();
 				setVisible(false);
 			}
 		});
@@ -154,11 +156,12 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 		String costo = this.textFieldCosto.getText();
 		Date fecha = this.dateChooser.getDate();
 		String valorString = "";
-		/*if (checkFormulario()) {
+		if (checkFormulario()) {
 			try {
 				Integer duracionFinal = Integer.parseInt(this.textFieldDuracion.getText());
 				Float costoFinal = Float.parseFloat(this.textFieldCosto.getText());
-				controlOfertaLab.altaTipoPublicacion(nombre, descipcion, exposicion, duracionFinal, costoFinal, fecha);
+				LocalDate fechaAltaTipoPublicacion = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				controlOfertaLab.altaTipoPublicacion(nombre, descipcion, exposicion, duracionFinal, costoFinal, fechaAltaTipoPublicacion);
 
 				// Muestro éxito de la operación
 				JOptionPane.showMessageDialog(this, "La publicacion se creo con exito",
@@ -173,7 +176,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 			// Limpio el internal frame antes de cerrar la ventana
 			limpiarInformacion();
 			setVisible(true);
-		}*/
+		}
 
 	}
 

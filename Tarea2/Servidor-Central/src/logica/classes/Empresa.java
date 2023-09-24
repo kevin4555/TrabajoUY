@@ -17,48 +17,44 @@ public class Empresa extends Usuario {
 	private String sitioWeb;
 	private ArrayList<OfertaLaboral> ofertasLaborales;
 	private ArrayList<CompraPaquete> compraPaquetes;
-	
-	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb, BufferedImage imagen, String contrasenia) {
+
+	public Empresa(String nickname, String nombre, String apellido, String email, String descripcion, String sitioWeb,
+			BufferedImage imagen, String contrasenia) {
 		super(nickname, nombre, apellido, email, imagen, contrasenia);
 		setDescripcion(descripcion);
 		setSitioWeb(sitioWeb);
 		this.ofertasLaborales = new ArrayList<OfertaLaboral>();
 		this.compraPaquetes = new ArrayList<CompraPaquete>();
 	}
-	
+
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
 	public String getSitioWeb() {
 		return sitioWeb;
 	}
-	
+
 	public void setSitioWeb(String sitioWeb) {
 		this.sitioWeb = sitioWeb;
 	}
-	
-	
+
 	public void agregarOferta(OfertaLaboral ol) throws OfertaLaboralYaExisteException {
 		if (ofertasLaborales.indexOf(ol) != -1) {
-			throw new OfertaLaboralYaExisteException("La Oferta Laboral " + ol.getNombre() + " ya esta asociada a la Empresa " + this.nickname);
+			throw new OfertaLaboralYaExisteException(
+					"La Oferta Laboral " + ol.getNombre() + " ya esta asociada a la Empresa " + this.nickname);
 		}
 		this.ofertasLaborales.add(ol);
 	}
-	
-	public ArrayList<String> obtenerNombresOfertas(){
+
+	public ArrayList<String> obtenerNombresOfertas() {
 		ArrayList<String> ofertas = new ArrayList<String>();
-		if(!ofertasLaborales.isEmpty())
-		{
-			for (OfertaLaboral oferta : this.ofertasLaborales) {
-				if(oferta.getEstado() == EstadoOferta.CONFIRMADA) {
-					ofertas.add(oferta.getNombre());
-				}
-			}
+		for (OfertaLaboral oferta : this.ofertasLaborales) {
+			ofertas.add(oferta.getNombre());
 		}
 		return ofertas;
 	}
@@ -66,19 +62,20 @@ public class Empresa extends Usuario {
 	public ArrayList<OfertaLaboral> getOfertasLaborales() {
 		return ofertasLaborales;
 	}
-	
+
 	public DTEmpresa obtenerDTEmpresa() {
-		
+
 		ArrayList<DTOfertaLaboral> listaDTOfertas = new ArrayList<DTOfertaLaboral>();
-		for(OfertaLaboral oferta : ofertasLaborales) {
+		for (OfertaLaboral oferta : ofertasLaborales) {
 			listaDTOfertas.add(oferta.obtenerDTOfertaLaboral());
 		}
-		DTEmpresa resultado = new DTEmpresa(this.nickname, this.nombre, this.apellido, this.email, this.getImagen(), this.getContrasenia(),  listaDTOfertas, this.descripcion, this.sitioWeb);
+		DTEmpresa resultado = new DTEmpresa(this.nickname, this.nombre, this.apellido, this.email, this.getImagen(),
+				this.getContrasenia(), listaDTOfertas, this.descripcion, this.sitioWeb);
 		return resultado;
 	}
-	
+
 	@Override
-	public ArrayList<String> listarOfertasUsuario(){
+	public ArrayList<String> listarOfertasUsuario() {
 		return this.obtenerNombresOfertas();
 	}
 
@@ -86,78 +83,78 @@ public class Empresa extends Usuario {
 	public DTUsuario obtenerDTUsuario() {
 		return this.obtenerDTEmpresa();
 	}
-	
-	public ArrayList<DTOfertaLaboral> obtenerDTOfertasIngresadas(){
+
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasIngresadas() {
 		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
-		for(OfertaLaboral oferta : ofertasLaborales) {
-			if(oferta.getEstado() == EstadoOferta.INGRESADA) {
+		for (OfertaLaboral oferta : ofertasLaborales) {
+			if (oferta.getEstado() == EstadoOferta.INGRESADA) {
 				listaResultado.add(oferta.obtenerDTOfertaLaboral());
 			}
 		}
 		return listaResultado;
 	}
-	
-	public ArrayList<DTOfertaLaboral> obtenerDTOfertasConfirmadas(){
+
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasConfirmadas() {
 		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
-		for(OfertaLaboral oferta : ofertasLaborales) {
-			if(oferta.getEstado() == EstadoOferta.CONFIRMADA) {
+		for (OfertaLaboral oferta : ofertasLaborales) {
+			if (oferta.getEstado() == EstadoOferta.CONFIRMADA) {
 				listaResultado.add(oferta.obtenerDTOfertaLaboral());
 			}
 		}
 		return listaResultado;
 	}
-	
-	public ArrayList<DTOfertaLaboral> obtenerDTOfertasRechazadas(){
+
+	public ArrayList<DTOfertaLaboral> obtenerDTOfertasRechazadas() {
 		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
-		for(OfertaLaboral oferta : ofertasLaborales) {
-			if(oferta.getEstado() == EstadoOferta.RECHAZADA) {
+		for (OfertaLaboral oferta : ofertasLaborales) {
+			if (oferta.getEstado() == EstadoOferta.RECHAZADA) {
 				listaResultado.add(oferta.obtenerDTOfertaLaboral());
 			}
 		}
 		return listaResultado;
 	}
-	
+
 	public void comprarPaquete(CompraPaquete compraPaquete) {
 		compraPaquetes.add(compraPaquete);
 	}
-	
+
 	public Boolean estaCompradoPaquete(String nombrePaquete) {
 		Boolean resultado = false;
-		for(CompraPaquete compraPaquete : compraPaquetes ) {
-			if(compraPaquete.obtenerNombrePaquete() == nombrePaquete) {
+		for (CompraPaquete compraPaquete : compraPaquetes) {
+			if (compraPaquete.obtenerNombrePaquete() == nombrePaquete) {
 				resultado = true;
 				break;
 			}
 		}
 		return resultado;
 	}
-	
-	public ArrayList<DTPaquetePublicacion> obtenerDTPaquetes(){
+
+	public ArrayList<DTPaquetePublicacion> obtenerDTPaquetes() {
 		ArrayList<DTPaquetePublicacion> listaReultado = new ArrayList<DTPaquetePublicacion>();
-		for(CompraPaquete compraPaquete: compraPaquetes) {
+		for (CompraPaquete compraPaquete : compraPaquetes) {
 			listaReultado.add(compraPaquete.obtenerDTPaquete());
 		}
 		return listaReultado;
 	}
-	
-	public ArrayList<String> listarPaquetesComprados(){
+
+	public ArrayList<String> listarPaquetesComprados() {
 		ArrayList<String> listaResultado = new ArrayList<String>();
-		for(CompraPaquete compraPaquete : compraPaquetes) {
+		for (CompraPaquete compraPaquete : compraPaquetes) {
 			listaResultado.add(compraPaquete.obtenerNombrePaquete());
 		}
 		return listaResultado;
 	}
 
-	public void comprarOfertaPorPaquete(String nombre, String nombrePaquete, String nomTipoPublicacion, OfertaLaboral oferta) {
-		for(CompraPaquete compra : compraPaquetes) {
-			if(compra.obtenerNombrePaquete() == nombrePaquete) {
+	public void comprarOfertaPorPaquete(String nombre, String nombrePaquete, String nomTipoPublicacion,
+			OfertaLaboral oferta) {
+		for (CompraPaquete compra : compraPaquetes) {
+			if (compra.obtenerNombrePaquete() == nombrePaquete) {
 				compra.gastarTipoPublicacion(nomTipoPublicacion);
 				oferta.setCompraPaquete(compra);
 				break;
 			}
 		}
-		
+
 	}
-	
-	
+
 }
