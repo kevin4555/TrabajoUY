@@ -18,6 +18,7 @@ import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
+import logica.DataTypes.DTTipoPublicacion;
 import logica.DataTypes.EstadoOferta;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.Empresa;
@@ -260,4 +261,15 @@ public class ControladorOferta implements IControladorOferta {
 		return paquete.obtenerNombresTipoPublicaciones();
 	}
 
+	@Override
+	public DTPaquetePublicacion obtenerDTPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException {
+		PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
+		return paquete.obtenerDTPaquete();
+	}
+	
+	@Override
+	public DTTipoPublicacion obtenerDTTipoPublicacion(String nombreTipo) throws TipoPublicacionNoExisteException {
+		TipoPublicacion tipoPublicacion = ManejadorSettings.getInstance().obtenerTipoPublicacion(nombreTipo);
+		return tipoPublicacion.obtenerDTTipoPublicacion();
+	}
 }
