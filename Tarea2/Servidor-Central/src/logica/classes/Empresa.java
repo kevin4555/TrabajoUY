@@ -2,8 +2,7 @@ package logica.classes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
 
 import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;
@@ -52,13 +51,8 @@ public class Empresa extends Usuario {
 	
 	public ArrayList<String> obtenerNombresOfertas(){
 		ArrayList<String> ofertas = new ArrayList<String>();
-		if(!ofertasLaborales.isEmpty())
-		{
-			for (OfertaLaboral oferta : this.ofertasLaborales) {
-				if(oferta.getEstado() == EstadoOferta.CONFIRMADA) {
-					ofertas.add(oferta.getNombre());
-				}
-			}
+		for (OfertaLaboral oferta : this.ofertasLaborales) {
+			ofertas.add(oferta.getNombre());
 		}
 		return ofertas;
 	}
