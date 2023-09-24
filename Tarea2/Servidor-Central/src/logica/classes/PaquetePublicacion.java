@@ -74,7 +74,7 @@ public class PaquetePublicacion {
 
 
 	public float getCosto() {
-		return costo;
+		return this.costo;
 	}
 
 	public void setCantidadTotalTipoPublicaciones(ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones) {

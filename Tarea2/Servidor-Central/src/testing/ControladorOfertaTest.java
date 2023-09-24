@@ -50,8 +50,11 @@ import logica.handlers.ManejadorUsuario;
 
 public class ControladorOfertaTest {
 	private Date fechaDateParse;
+	private Date fechaDateParseSecundaria;
 	private LocalDate fechaDate;
-	private String fecha = "17/06/1999";
+	private LocalDate fechaDateSecundaria;
+	private String fecha = "24/08/2023";
+	private String fechaSecuandaria = "24/09/2023";
 	private ControladorOferta controladorOferta;
 	private ManejadorSettings manejadorSettings;
 	private ManejadorOfertas manejadorOfertas;
@@ -73,8 +76,10 @@ public class ControladorOfertaTest {
 		manejadorPaquetes.clean();
 
 		try {
+			this.fechaDateParseSecundaria = dateFormat.parse(fechaSecuandaria);
 			this.fechaDateParse = dateFormat.parse(fecha);
 			fechaDate = fechaDateParse.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			fechaDateSecundaria = fechaDateParseSecundaria.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 		} catch (ParseException e) {
 			e.getMessage();
@@ -426,12 +431,11 @@ public class ControladorOfertaTest {
 		Assert.assertEquals(paquetePruebaPrimero, paqueteEncontrado);
 	}
 
-	//Falta funcion Compra de Paquete
-	/*@Test
+	@Test
 	public void testObtenerDtPaquetePublicacion() throws TipoPublicacionYaExisteException, UsuarioYaExisteException,
 			UsuarioEmailRepetidoException, PaquetePublicacionYaExisteException, TipoPublicacionNoExisteException,
 			KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException,
-			UsuarioNoExisteException, OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete {
+			UsuarioNoExisteException, OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete, PaquetePublicacionNoExisteException {
 		manejadorOfertas = ManejadorOfertas.getInstance();
 		manejadorPaquetes = ManejadorPaquetes.getInstance();
 		controladorOferta = new ControladorOferta();
@@ -449,25 +453,31 @@ public class ControladorOfertaTest {
 
 		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
 				"sitioWeb1", null, "nuevaContraseña");
+		controladorUsuario.comprarPaquete("nicknameEmpresa1", "nombrePruebaPrimero", fechaDateSecundaria);
 		
 		ArrayList<String> listaKeyword = new ArrayList<String>();
 		listaKeyword.add("Keyword1");
-		listaKeyword.add("Keyword2");
-		Collections.sort(listaKeyword);
 		controladorOferta.altaKeyword("Keyword1");
-		controladorOferta.altaKeyword("Keyword2");
+
 		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
 				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, "nombrePruebaPrimero");
-		controladorUsuario.comprarPaquete("nicknameEmpresa1", )
 		DTPaquetePublicacion paquetePublicacionDt = controladorOferta.obtenerDtPaquetePublicacion("test");
-        Assert.assertEquals(paquetePublicacionDt.getCosto(), 50f);
+		ArrayList<DTCantidadTipoPublicacion> resultado = new ArrayList<DTCantidadTipoPublicacion>();
+		
+		for(CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion : arrayPruebaSegundo) {
+			DTCantidadTipoPublicacion dtCantidadTipoPublicacion = cantidadTotalTipoPublicacion.obtenerDTCantidadTipoPublicacion();
+			resultado.add(dtCantidadTipoPublicacion);
+		}
+		
+        Assert.assertEquals(paquetePublicacionDt.getCosto(), paquetePruebaPrimero.getCosto());
         Assert.assertEquals(paquetePublicacionDt.getDescuento(), paquetePruebaPrimero.getDescuento());
         Assert.assertEquals(paquetePublicacionDt.getPeriodoValidez(), 20);
         Assert.assertEquals(paquetePublicacionDt.getDescripcion(), "descripcionPrueba");
-        Assert.assertEquals(paquetePublicacionDt.getNombre(), "nicknameEmpresa1");
-        //Assert.assertEquals(paquetePublicacionDt.getCantidadPublicacionesColeccion(), arrayPruebaSegundo);
+        Assert.assertEquals(paquetePublicacionDt.getNombre(), "nombrePruebaPrimero");
+        Assert.assertEquals(paquetePublicacionDt.getCantidadPublicacionesColeccion().get(0).getNombreTipoPublicacion(), resultado.get(0).getNombreTipoPublicacion());
+        Assert.assertEquals(paquetePublicacionDt.getCantidadPublicacionesColeccion().get(0).getCantidad(), resultado.get(0).getCantidad());
         Assert.assertEquals(paquetePublicacionDt.getImagen(), null);
-	}*/
+	}
 	
 	
 	@Test
