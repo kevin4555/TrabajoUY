@@ -74,12 +74,14 @@ public class ControladorOferta implements IControladorOferta {
 
 	}
 
+	@Override
 	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException {
 		ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
 		OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
 		return ofertaLaboral;
 	}
 
+	@Override
 	public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion, String nomTipoPaquete)
 			throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
