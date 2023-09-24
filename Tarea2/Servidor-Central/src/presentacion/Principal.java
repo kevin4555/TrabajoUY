@@ -57,6 +57,7 @@ public class Principal extends JFrame {
     private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
     private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
     private ModificarDatosUsuarios modificarDatosUsuarios;
+    private Aceptar_Rechazar_Oferta aceptarRechazarOferta;
     private Date fecha;
     private String fechaS = "23/02/1923";
 
@@ -113,6 +114,9 @@ public class Principal extends JFrame {
 		modificarDatosUsuarios = new ModificarDatosUsuarios(ICU);
 		modificarDatosUsuarios.setVisible(false);
 		
+		aceptarRechazarOferta = new Aceptar_Rechazar_Oferta(ICO, ICU);
+		aceptarRechazarOferta.setVisible(false);
+		
 
 		ventanaPrincipal.getContentPane().setLayout(null);
 		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
@@ -122,6 +126,7 @@ public class Principal extends JFrame {
 		ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
 		ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame);
 		ventanaPrincipal.getContentPane().add(modificarDatosUsuarios);
+		ventanaPrincipal.getContentPane().add(aceptarRechazarOferta);
 	}
 
 	private void initialize() {
@@ -239,6 +244,18 @@ public class Principal extends JFrame {
 			}
 		});
 		menuOfertaLaboral.add(menuItemPostulacionOfertaLab);
+		
+		JMenuItem menuItemaceptarRechazarOferta = new JMenuItem("Aceptar/Rechazar Oferta Laboral");
+		menuItemaceptarRechazarOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para postularse a una oferta laboral
+				aceptarRechazarOferta.cargarEmpresas();
+				aceptarRechazarOferta.setVisible(true);
+			}
+		});
+		menuOfertaLaboral.add(menuItemaceptarRechazarOferta);
+		
+		
 
 	}
 

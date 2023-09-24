@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import javax.swing.SwingConstants;
@@ -405,7 +407,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemuneracion())));
 			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
 			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
-		//	(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));
+		    (this.textFieldFechaAlta).setText(dtOfertaLaboral.getFechaAlta().toString());
 		} catch (OfertaLaboralNoExisteException e1) {
 
     	}
@@ -427,7 +429,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 				if(!controlOfertaLab.estaPostulado(this.postulante, this.nomOfertaLaboral))
 				{
 					nombrePostulante = (controlUsuarioLab.obtenerPostulante(this.postulante)).getNickname();
-					controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, this.fechaPostulacion, nombrePostulante , this.nomOfertaLaboral);
+					LocalDate fechaPos = this.dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, fechaPos, nombrePostulante , this.nomOfertaLaboral);
 					JOptionPane.showMessageDialog(this, "La postulacion fue hecha con exito", "Registrar Usuario", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else

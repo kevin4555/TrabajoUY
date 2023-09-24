@@ -21,6 +21,8 @@ import java.util.Date;
 
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+
 import javax.swing.JTextField;
 
 import excepciones.OfertaLaboralNoExisteException;
@@ -45,7 +47,7 @@ import javax.swing.JTextPane;
 
 @SuppressWarnings("serial")
 public class ConsultarUsuario extends JInternalFrame {
-	private JTextField textFieldNickName;
+	//private JTextField textFieldNickName;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldEmail;
@@ -78,6 +80,8 @@ public class ConsultarUsuario extends JInternalFrame {
 	private JTextField textFieldFechaPostulacion;
 	private JLabel lblNewLabel_1;
 	private JTextPane textPane;
+	private JTextPane textPaneMotivacion;
+	private JTextPane textPaneCVReducido;
 
 	public ConsultarUsuario(IControladorUsuario contrUsuario, IControladorOferta contrOferta) {
 		setTitle("Consulta de Usuarios");
@@ -90,7 +94,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.controladorUsuario = contrUsuario;
 		controladorOferta = contrOferta;
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		setBounds(100, 100, 610, 502);
+		setBounds(80, 80, 644, 544);
 
 		JPanel panelBotones = new JPanel();
 		getContentPane().add(panelBotones, BorderLayout.SOUTH);
@@ -113,7 +117,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbl_panelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_panelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
 		gbl_panelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, Double.MIN_VALUE };
+				0.0, 1.0, 1.0 };
 		panelDatos.setLayout(gbl_panelDatos);
 
 		JLabel lblSeleccion = new JLabel("Seleccionar Usuario:");
@@ -144,7 +148,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_comboBoxSeleccionUsuario.gridy = 1;
 		panelDatos.add(this.comboBoxSeleccionUsuario, gbc_comboBoxSeleccionUsuario);
 
-		JLabel lblNickname = new JLabel("Nickname:");
+		/*JLabel lblNickname = new JLabel("Nickname:");
 		GridBagConstraints gbc_lblNickname = new GridBagConstraints();
 		gbc_lblNickname.anchor = GridBagConstraints.EAST;
 		gbc_lblNickname.insets = new Insets(0, 0, 5, 5);
@@ -160,7 +164,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_textFieldNickName.gridx = 1;
 		gbc_textFieldNickName.gridy = 2;
 		panelDatos.add(textFieldNickName, gbc_textFieldNickName);
-		this.textFieldNickName.setColumns(10);
+		this.textFieldNickName.setColumns(10);*/
 
 		JLabel lblNombre = new JLabel("Nombre:");
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
@@ -250,7 +254,10 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbl_panelEmpresa.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
 		gbl_panelEmpresa.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		panelEmpresa.setLayout(gbl_panelEmpresa);
+		panelEmpresa.setPreferredSize(new Dimension(200, 200));
 
+		
+		
 		JLabel lblSitioWeb = new JLabel("Sitio Web:");
 		GridBagConstraints gbc_lblSitioWeb = new GridBagConstraints();
 		gbc_lblSitioWeb.anchor = GridBagConstraints.EAST;
@@ -268,6 +275,11 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_textFieldSitioWeb.gridy = 1;
 		panelEmpresa.add(this.textFieldSitioWeb, gbc_textFieldSitioWeb);
 		this.textFieldSitioWeb.setColumns(10);
+		
+		
+		
+		
+		
 
 		JLabel lblDescripcionEmpresa = new JLabel("Descripcion:");
 		GridBagConstraints gbc_lblDescripcionEmpresa = new GridBagConstraints();
@@ -288,6 +300,8 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 2;
 		panelEmpresa.add(scrollPane, gbc_scrollPane);
+		
+		
 
 		textAreaDescripcion = new JTextArea();
 		textAreaDescripcion.setLineWrap(true);
@@ -449,16 +463,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		panelDatos.add(this.lblMotivacion, gbc_lblMotivacion);
 		
 
-		this.textFieldMotivacion = new JTextField();
-		this.textFieldMotivacion.setEditable(false);
-		GridBagConstraints gbc_textFiedMotivacion = new GridBagConstraints();
-		gbc_textFiedMotivacion.insets = new Insets(0, 0, 5, 0);
-		gbc_textFiedMotivacion.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFiedMotivacion.gridx = 1;
-		gbc_textFiedMotivacion.gridy = 17;
-		panelDatos.add(this.textFieldMotivacion, gbc_textFiedMotivacion);
-		this.textFieldMotivacion.setColumns(10);
-		this.textFieldMotivacion.setVisible(false);
+		
 		
 		
 		GridBagConstraints gbc_labelCVReducido = new GridBagConstraints();
@@ -467,10 +472,31 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_labelCVReducido.gridx = 0;
 		gbc_labelCVReducido.gridy = 18;
 		this.labelCVReducido.setVisible(false);
+		
+		/*this.textFieldMotivacion = new JTextField();
+		this.textFieldMotivacion.setEditable(false);
+		GridBagConstraints gbc_textFiedMotivacion = new GridBagConstraints();
+		gbc_textFiedMotivacion.insets = new Insets(0, 0, 5, 0);
+		gbc_textFiedMotivacion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFiedMotivacion.gridx = 1;
+		gbc_textFiedMotivacion.gridy = 17;
+		panelDatos.add(this.textFieldMotivacion, gbc_textFiedMotivacion);
+		this.textFieldMotivacion.setColumns(10);
+		this.textFieldMotivacion.setVisible(false);*/
+		
+		textPaneMotivacion= new JTextPane();
+		GridBagConstraints gbc_textPane_1 = new GridBagConstraints();
+		gbc_textPane_1.insets = new Insets(0, 0, 5, 0);
+		gbc_textPane_1.fill = GridBagConstraints.BOTH;
+		gbc_textPane_1.gridx = 1;
+		gbc_textPane_1.gridy = 17;
+		panelDatos.add(textPaneMotivacion, gbc_textPane_1);
+		this.textPaneMotivacion.setVisible(false);
+		this.textPaneMotivacion.setEditable(false);
 		panelDatos.add(this.labelCVReducido, gbc_labelCVReducido);
 		
 
-		this.textFieldlabelCVReducido = new JTextField();
+		/*this.textFieldlabelCVReducido = new JTextField();
 		this.textFieldlabelCVReducido.setEditable(false);
 		GridBagConstraints gbc_textFiedCVReducido = new GridBagConstraints();
 		gbc_textFiedCVReducido.insets = new Insets(0, 0, 5, 0);
@@ -479,7 +505,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_textFiedCVReducido.gridy = 18;
 		panelDatos.add(this.textFieldlabelCVReducido, gbc_textFiedCVReducido);
 		this.textFieldlabelCVReducido.setColumns(10);
-		this.textFieldlabelCVReducido.setVisible(false);
+		this.textFieldlabelCVReducido.setVisible(false);*/
 		
 		//private JLabel labelFechaPostulacion = new JLabel("Fecha Postulacion");
 		//private JTextField textFieldFechaPostulacion;
@@ -489,6 +515,16 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_labelFechaPostulaciono.gridx = 0;
 		gbc_labelFechaPostulaciono.gridy = 19;
 		this.labelFechaPostulacion.setVisible(false);
+		
+		textPaneCVReducido = new JTextPane();
+		GridBagConstraints gbc_textPane_2 = new GridBagConstraints();
+		gbc_textPane_2.insets = new Insets(0, 0, 5, 0);
+		gbc_textPane_2.fill = GridBagConstraints.BOTH;
+		gbc_textPane_2.gridx = 1;
+		gbc_textPane_2.gridy = 18;
+		panelDatos.add(textPaneCVReducido, gbc_textPane_2);
+		this.textPaneCVReducido.setVisible(false);
+		this.textPaneCVReducido.setEditable(false);
 		panelDatos.add(this.labelFechaPostulacion, gbc_labelFechaPostulaciono);
 		
 
@@ -521,11 +557,11 @@ public class ConsultarUsuario extends JInternalFrame {
 					// TODO Auto-generated catch block
 					
 				}
-				this.textFieldMotivacion.setText(dtPostulacion.getDescripMotivacion());
-				this.textFieldMotivacion.setVisible(true);
+				this.textPaneMotivacion.setText(dtPostulacion.getDescripMotivacion());
+				this.textPaneMotivacion.setVisible(true);
 				this.lblMotivacion.setVisible(true);
-				this.textFieldlabelCVReducido.setText(dtPostulacion.getCvReducido());
-				this.textFieldlabelCVReducido.setVisible(true);
+				this.textPaneCVReducido.setText(dtPostulacion.getCvReducido());
+				this.textPaneCVReducido.setVisible(true);
 				this.labelCVReducido.setVisible(true);
 				
 				this.textFieldFechaPostulacion.setText(dtPostulacion.getFechaPostulacion().toString());
@@ -560,7 +596,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			DTUsuario dtUsuario = this.controladorUsuario.obtenerDTUsuario(nicknameUsuario);
 			
 		
-			this.textFieldNickName.setText(nicknameUsuario);
+			//this.textFieldNickName.setText(nicknameUsuario);
 			this.textFieldNombre.setText(dtUsuario.getNombre());
 			this.textFieldApellido.setText(dtUsuario.getApellido());
 			this.textFieldEmail.setText(dtUsuario.getEmail());
@@ -613,11 +649,11 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.textFieldCiudad.setText("");
 		this.textFieldHorarioOferta.setText("");
 		this.textFieldRemuneracion.setText("");
-		this.textFieldMotivacion.setText("");
-		this.textFieldMotivacion.setVisible(false);
+		this.textPaneMotivacion.setText("");
+		this.textPaneMotivacion.setVisible(false);
 		this.lblMotivacion.setVisible(false);
-		this.textFieldlabelCVReducido.setText("");
-		this.textFieldlabelCVReducido.setVisible(false);
+		this.textPaneCVReducido.setText("");
+		this.textPaneCVReducido.setVisible(false);
 		this.labelCVReducido.setVisible(false);
 		this.textFieldFechaPostulacion.setText("");
 		this.textFieldFechaPostulacion.setVisible(false);
@@ -629,7 +665,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		
 		this.ofertaSeleccionada = "";
 		this.usuarioSeleccionado ="";
-		this.textFieldNickName.setText("");
+		//this.textFieldNickName.setText("");
 		this.textFieldNombre.setText("");
 		this.textFieldApellido.setText("");
 		this.textFieldEmail.setText("");
@@ -643,11 +679,11 @@ public class ConsultarUsuario extends JInternalFrame {
 		this.textFieldCiudad.setText("");
 		this.textFieldHorarioOferta.setText("");
 		this.textFieldRemuneracion.setText("");
-		this.textFieldMotivacion.setText("");
-		this.textFieldMotivacion.setVisible(false);
+		this.textPaneMotivacion.setText("");
+		this.textPaneMotivacion.setVisible(false);
 		this.lblMotivacion.setVisible(false);
-		this.textFieldlabelCVReducido.setText("");
-		this.textFieldlabelCVReducido.setVisible(false);
+		this.textPaneCVReducido.setText("");
+		this.textPaneCVReducido.setVisible(false);
 		this.labelCVReducido.setVisible(false);
 		this.textFieldFechaPostulacion.setText("");
 		this.textFieldFechaPostulacion.setVisible(false);
