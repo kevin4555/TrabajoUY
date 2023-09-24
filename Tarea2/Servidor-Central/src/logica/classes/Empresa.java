@@ -2,8 +2,7 @@ package logica.classes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
 
 import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;

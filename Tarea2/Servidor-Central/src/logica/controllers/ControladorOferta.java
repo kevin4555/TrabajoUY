@@ -1,16 +1,13 @@
 package logica.controllers;
 
 import java.awt.image.BufferedImage;
-import java.security.PublicKey;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralNoTienePaquete;
-import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
@@ -23,12 +20,10 @@ import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.EstadoOferta;
 import logica.classes.CantidadTotalTipoPublicacion;
-import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
 import logica.classes.PaquetePublicacion;
-import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
 import logica.handlers.ManejadorOfertas;
@@ -43,7 +38,8 @@ public class ControladorOferta implements IControladorOferta {
 	@Override
 	public ArrayList<String> listarTipoDePublicaciones() {
 		ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-		ArrayList<String> nombreTiposPublicacion = manejadorSettings.listarTipoDePublicaciones();
+		ArrayList<String> nombreTiposPublicacion = 
+				manejadorSettings.listarTipoDePublicaciones();
 		return nombreTiposPublicacion;
 	}
 
