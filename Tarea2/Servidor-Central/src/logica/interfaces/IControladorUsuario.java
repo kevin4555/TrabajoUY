@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
@@ -61,11 +62,12 @@ public interface IControladorUsuario {
 
 	ArrayList<DTUsuario> obtenerDTUsuarios();
 
-	DTPostulacion obtenerDTPostulacionDePostulanteAOferta(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException;
-
 	ArrayList<DTPaquetePublicacion> obtenerDTPaquetesDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 
 	ArrayList<DTPostulacion> obtenerDTPostulacionesDePostulante(String nicknamePostulante) throws UsuarioNoExisteException;
 
 	ArrayList<String> listarPaquetesNoCompradosDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
+
+	void comprarPaquete(String nicknameEmpresa, String nombrePaquete, LocalDate fechaCompra)
+			throws UsuarioNoExisteException, PaquetePublicacionNoExisteException;
 }
