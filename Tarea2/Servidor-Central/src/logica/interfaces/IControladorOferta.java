@@ -20,6 +20,7 @@ import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
+import logica.DataTypes.DTTipoPublicacion;
 import logica.DataTypes.EstadoOferta;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.CompraPaquete;
@@ -86,6 +87,12 @@ public interface IControladorOferta {
 	public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException;
 
 	ArrayList<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab) throws OfertaLaboralNoExisteException;
+
+	DTPaquetePublicacion obtenerDTPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException;
+
+	DTTipoPublicacion obtenerDTTipoPublicacion(String nombreTipo) throws TipoPublicacionNoExisteException;
+
+	ArrayList<String> listarPaquetesNoComprados();
 
 	
 

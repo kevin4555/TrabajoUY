@@ -1,6 +1,7 @@
 package logica.classes;
 
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import logica.DataTypes.DTCantidadTipoPublicacion;
@@ -14,15 +15,19 @@ public class PaquetePublicacion {
 	private float costo;
 	private BufferedImage imagen;
 	private ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones;
+	private Boolean estaComprado;
+	private LocalDate fechaAlta;
 
 	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento, BufferedImage imagen,
-			ArrayList<CantidadTotalTipoPublicacion> cantidadTipo) {
+			ArrayList<CantidadTotalTipoPublicacion> cantidadTipo, LocalDate fechaAlta) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.periodoValidez = periodoValidez;
 		this.descuento = descuento;
 		this.imagen = imagen;
 		this.cantidadTipoPublicaciones = cantidadTipo;
+		this.estaComprado = false;
+		this.fechaAlta = fechaAlta;
 		this.setCosto();
 	}
 
@@ -77,6 +82,15 @@ public class PaquetePublicacion {
 		return this.costo;
 	}
 
+	
+	public void setEstaComprado(Boolean estaComprado) {
+		this.estaComprado = estaComprado;
+	}
+
+	public Boolean getEstaComprado() {
+		return estaComprado;
+	}
+
 	public void setCantidadTotalTipoPublicaciones(ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones) {
 		this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
 	}
@@ -87,7 +101,7 @@ public class PaquetePublicacion {
 			listDTcantidad.add(cantidad.obtenerDTCantidadTipoPublicacion());
 		}
 		return new DTPaquetePublicacion(nombre, descripcion, periodoValidez, descuento,
-				costo, imagen, listDTcantidad);
+				costo, imagen, listDTcantidad, fechaAlta);
 	}
 
 
