@@ -59,6 +59,7 @@ public class Principal extends JFrame {
     private Aceptar_Rechazar_Oferta aceptarRechazarOferta;
     private AgregarTipoPublicacionAlPaquete agregarTipoPublicacionAlPaquete;
     private RegistrarPaquete registrarPaquete;
+    private ConsultaPaquete consultaPaquete;
 
     /**
      * Launch the application.
@@ -121,6 +122,9 @@ public class Principal extends JFrame {
 		registrarPaquete = new RegistrarPaquete(ICO);
 		registrarPaquete.setVisible(false);
 		
+		consultaPaquete = new ConsultaPaquete(ICO);
+		consultaPaquete.setVisible(false);
+		
 
 		ventanaPrincipal.getContentPane().setLayout(null);
 		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
@@ -133,6 +137,7 @@ public class Principal extends JFrame {
 		ventanaPrincipal.getContentPane().add(aceptarRechazarOferta);
 		ventanaPrincipal.getContentPane().add(agregarTipoPublicacionAlPaquete);
 		ventanaPrincipal.getContentPane().add(registrarPaquete);
+		ventanaPrincipal.getContentPane().add(consultaPaquete);
 	}
 
 	private void initialize() {
@@ -284,6 +289,16 @@ public class Principal extends JFrame {
 			}
 		});
 		menuPaquete.add(menuItemRegistarPaquete);
+		
+		JMenuItem menuItemConsultaPaquete = new JMenuItem("Agregar tipo de publicacion al paquete");
+		menuItemConsultaPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para postularse a una oferta laboral
+				consultaPaquete.cargarPaquetes();
+				consultaPaquete.setVisible(true);
+			}
+		});
+		menuPaquete.add(menuItemConsultaPaquete);
 	}
 
 	@SuppressWarnings("deprecation")

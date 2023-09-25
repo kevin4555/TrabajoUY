@@ -257,7 +257,7 @@ public class RegistrarPaquete extends JInternalFrame {
 				LocalDate fechaAltaPaquete = this.fechaAltaChooser.getDate().toInstant().atZone(ZoneId.systemDefault())
 						.toLocalDate();
 				this.controladorOferta.registrarPaquete(nombre, descripcion, Integer.parseInt(validez),
-						Float.parseFloat(descuento) / 100, fotoPaquete, fechaAltaPaquete, null);
+						Float.parseFloat(descuento), fotoPaquete, fechaAltaPaquete, null);
 				JOptionPane.showMessageDialog(this, "El paquete se ha creado con éxito", "Registrar Paquete",
 						JOptionPane.INFORMATION_MESSAGE);
 				return true;
