@@ -92,6 +92,8 @@ public interface IControladorOferta {
 
 	DTTipoPublicacion obtenerDTTipoPublicacion(String nombreTipo) throws TipoPublicacionNoExisteException;
 
+	ArrayList<String> listarPaquetesNoComprados();
+
 	
 
 	

@@ -14,6 +14,7 @@ public class PaquetePublicacion {
 	private float costo;
 	private BufferedImage imagen;
 	private ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones;
+	private Boolean estaComprado;
 
 	public PaquetePublicacion(String nombre, String descripcion, int periodoValidez, float descuento, BufferedImage imagen,
 			ArrayList<CantidadTotalTipoPublicacion> cantidadTipo) {
@@ -23,6 +24,7 @@ public class PaquetePublicacion {
 		this.descuento = descuento;
 		this.imagen = imagen;
 		this.cantidadTipoPublicaciones = cantidadTipo;
+		this.estaComprado = false;
 		this.setCosto();
 	}
 
@@ -75,6 +77,15 @@ public class PaquetePublicacion {
 
 	public float getCosto() {
 		return costo;
+	}
+
+	
+	public void setEstaComprado(Boolean estaComprado) {
+		this.estaComprado = estaComprado;
+	}
+
+	public Boolean getEstaComprado() {
+		return estaComprado;
 	}
 
 	public void setCantidadTotalTipoPublicaciones(ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones) {

@@ -55,6 +55,16 @@ public class ManejadorPaquetes {
 		}
 	}
 	
+	public ArrayList<String> listarPaquetesNoComprados(){
+		ArrayList<String> listaResultado = new ArrayList<String>();
+		for(PaquetePublicacion paquete : colPaquetes.values()) {
+			if(!paquete.getEstaComprado()) {
+				listaResultado.add(paquete.getNombre());
+			}
+		}
+		return listaResultado;
+	}
+	
 	public void clean() {
 		instancia = null;
 	}

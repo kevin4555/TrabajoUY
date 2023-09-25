@@ -272,4 +272,9 @@ public class ControladorOferta implements IControladorOferta {
 		TipoPublicacion tipoPublicacion = ManejadorSettings.getInstance().obtenerTipoPublicacion(nombreTipo);
 		return tipoPublicacion.obtenerDTTipoPublicacion();
 	}
+	
+	@Override
+	public ArrayList<String> listarPaquetesNoComprados(){
+		return ManejadorPaquetes.getInstance().listarPaquetesNoComprados();
+	}
 }

@@ -192,6 +192,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		PaquetePublicacion paquete = controladorOferta.obtenerPaquetePublicacion(nombrePaquete);
 		CompraPaquete compra = new CompraPaquete(fechaCompra, paquete);
 		empresa.comprarPaquete(compra);
+		paquete.setEstaComprado(true);
 		
 	}
 	
