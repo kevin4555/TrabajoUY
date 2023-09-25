@@ -42,6 +42,7 @@ import javax.swing.SwingConstants;
 import java.text.SimpleDateFormat;
 
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
@@ -77,7 +78,12 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
 	private JPanel panelDatos;
 	private JScrollPane scrollPane;
 	private JTextArea textAreaDescripcion;
+	private JScrollPane scrollPane2;
+	private JTextArea textAreaDescripcionPaquete;
 	private JTextField textFieldCantidadIncluida;
+	private JTextField textFieldValidez;
+	private JTextField textFieldDescuento;
+	private JTextField textFieldFechaAltaPaquete;
 
     /**
      * Create the frame.
@@ -145,6 +151,28 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
 				
 			}
 		});
+		
+		/*
+		 
+		 JLabel lblNombre = new JLabel("Nombre:");
+		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
+		gbc_lblNombre.anchor = GridBagConstraints.EAST;
+		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombre.gridx = 0;
+		gbc_lblNombre.gridy = 3;
+		panelDatos.add(lblNombre, gbc_lblNombre);
+
+		this.textFieldNombre = new JTextField();
+		this.textFieldNombre.setEditable(false);
+		GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
+		gbc_textFieldNombre.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNombre.gridx = 1;
+		gbc_textFieldNombre.gridy = 3;
+		panelDatos.add(textFieldNombre, gbc_textFieldNombre);
+		textFieldNombre.setColumns(10);
+		 
+		 */
 
 		GridBagConstraints gbc_comboBoxSeleccionUsuario = new GridBagConstraints();
 		gbc_comboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
@@ -152,6 +180,94 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
 		gbc_comboBoxSeleccionUsuario.gridx = 1;
 		gbc_comboBoxSeleccionUsuario.gridy = 1;
 		panelDatos.add(this.comboBoxSeleccionPaquete, gbc_comboBoxSeleccionUsuario);
+		
+		
+	/*	JLabel lblDescuento = new JLabel("Descuento");
+		GridBagConstraints gbc_lblDescuento = new GridBagConstraints();
+		gbc_lblDescuento.anchor = GridBagConstraints.EAST;
+		gbc_lblDescuento.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDescuento.gridx = 0;
+		gbc_lblDescuento.gridy = 2;
+		panelDatos.add(lblDescuento, gbc_lblDescuento);
+		
+		this.textFieldDescuento = new JTextField();
+		this.textFieldDescuento.setEditable(false);
+		GridBagConstraints gbc_textFieldDescuento = new GridBagConstraints();
+		gbc_textFieldDescuento.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldDescuento.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldDescuento.gridx = 1;
+		gbc_textFieldDescuento.gridy = 2;
+		panelDatos.add(textFieldDescuento, gbc_textFieldDescuento);
+		textFieldDescuento.setColumns(10);
+
+		JLabel lblValidez = new JLabel("Período de validez");
+		GridBagConstraints gbc_lblValidez = new GridBagConstraints();
+		gbc_lblValidez.anchor = GridBagConstraints.EAST;
+		gbc_lblValidez.insets = new Insets(0, 0, 5, 5);
+		gbc_lblValidez.gridx = 0;
+		gbc_lblValidez.gridy = 3;
+		panelDatos.add(lblValidez, gbc_lblValidez);
+		
+		this.textFieldValidez = new JTextField();
+		this.textFieldValidez.setEditable(false);
+		GridBagConstraints gbc_textFieldValidez = new GridBagConstraints();
+		gbc_textFieldValidez.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldValidez.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldValidez.gridx = 1;
+		gbc_textFieldValidez.gridy = 3;
+		panelDatos.add(textFieldValidez, gbc_textFieldValidez);
+		textFieldValidez.setColumns(10);*/
+		
+		
+		
+		
+		/*JLabel lblDescripcionPaquete = new JLabel("Descripcion");
+		GridBagConstraints gbc_lblDescripcionPaquete = new GridBagConstraints();
+		gbc_lblDescripcionPaquete.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDescripcionPaquete.anchor = GridBagConstraints.EAST;
+		gbc_lblDescripcionPaquete.gridx = 0;
+		gbc_lblDescripcionPaquete.gridy = 4;
+		panelDatos.add(lblDescripcionPaquete, gbc_lblDescripcionPaquete);
+
+		scrollPane2 = new JScrollPane();
+		scrollPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane2.setEnabled(false);
+		scrollPane2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		GridBagConstraints gbc_scrollPane2 = new GridBagConstraints();
+		gbc_scrollPane2.gridheight = 2;
+		gbc_scrollPane2.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane2.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane2.gridx = 1;
+		gbc_scrollPane2.gridy = 4;
+		panelDatos.add(scrollPane2, gbc_scrollPane2);
+		
+	
+		textAreaDescripcionPaquete = new JTextArea();
+		textAreaDescripcionPaquete.setLineWrap(true);
+		textAreaDescripcionPaquete.setWrapStyleWord(true);
+		textAreaDescripcionPaquete.setEditable(false);
+		scrollPane2.setViewportView(textAreaDescripcionPaquete);*/
+		
+		
+		/*JLabel lblFechaAltaPaquete = new JLabel("Fecha de alta");
+		GridBagConstraints gbc_lblFechaAltaPaquete = new GridBagConstraints();
+		gbc_lblFechaAltaPaquete.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaAltaPaquete.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaAltaPaquete.gridx = 0;
+		gbc_lblFechaAltaPaquete.gridy = 7;
+		panelDatos.add(lblFechaAltaPaquete, gbc_lblFechaAltaPaquete);
+
+		this.textFieldFechaAltaPaquete = new JTextField();
+		this.textFieldFechaAltaPaquete.setEditable(false);
+		GridBagConstraints gbc_textFieldFechaAltaPaquete = new GridBagConstraints();
+		gbc_textFieldFechaAltaPaquete.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldFechaAltaPaquete.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldFechaAltaPaquete.gridx = 1;
+		gbc_textFieldFechaAltaPaquete.gridy = 7;
+		panelDatos.add(this.textFieldFechaAltaPaquete, gbc_textFieldFechaAltaPaquete);
+		this.textFieldFechaAltaPaquete.setColumns(10);*/
+		
+		
 		
 		JLabel lblTiposPublicaciones = new JLabel("Tipos de publicaciones:");
 		GridBagConstraints gbc_lblOfertas = new GridBagConstraints();
@@ -321,13 +437,16 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
 			try {
 				String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
 				
-				if (nombrePaquete != paqueteSeleccionado) {
+				/*if (nombrePaquete != paqueteSeleccionado) {
 					paqueteSeleccionado = nombrePaquete;
 					limpiarDatosPublicaciones();
-					//DTPaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral.obtenerDtPaquetePublicacion(nombrePaquete);
-					
+					DTPaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral.obtenerDTPaquete(nombrePaquete);
+					this.textFieldDescuento.setText(String.valueOf(dtPaquetePublicaciones.getDescuento()));
+					this.textFieldValidez.setText(String.valueOf(dtPaquetePublicaciones.getPeriodoValidez()));
+					//this.textFieldFechaAltaPaquete.setText(dtPaquetePublicaciones.getFecha);
+					this.textAreaDescripcionPaquete.setText(dtPaquetePublicaciones.getDescripcion());
 
-				}
+				}*/
 				
 				ArrayList<String> listaTipoDePublicaciones = this.controladorOfertaLaboral.listarTipoDePublicaciones();
 				ArrayList<String> listaTipoDePublicacionesDePaquete;
@@ -348,7 +467,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
 			} catch (PaquetePublicacionNoExisteException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
+			} 
 			
 		}
     
@@ -358,9 +477,9 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
 			
 			try {
 				DTTipoPublicacion dtTipoPublicacion;
-				dtTipoPublicacion = controladorOfertaLaboral.obtenerTipoPublicacion(tipoPublicacion).obtenerDTTipoPublicacion();
+				dtTipoPublicacion = controladorOfertaLaboral.obtenerDTTipoPublicacion(tipoPublicacion);
 				this.textFieldExposicion.setText(dtTipoPublicacion.getExposicion());
-				this.textFieldCosto.setText(dtTipoPublicacion.getCosto().toString());
+				this.textFieldCosto.setText(String.valueOf(dtTipoPublicacion.getCosto()));
 				this.textFieldDuracion.setText(String.valueOf(dtTipoPublicacion.getDuracionDia()) + " días");
 				this.textFieldFechaAlta.setText(dtTipoPublicacion.getFechaAlta().toString());
 				this.textAreaDescripcion.setText(dtTipoPublicacion.getDescripcion());
@@ -368,10 +487,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
 			} catch (TipoPublicacionNoExisteException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			} catch (TipoPublicacionYaExisteException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			} 
 			
 		}
 	}
@@ -431,6 +547,9 @@ public void limpiarTodosLosDatos() {
 		this.textFieldFechaAlta.setText("");
 		this.textAreaDescripcion.setText("");
 		this.textFieldCantidadIncluida.setText("");
+		/*this.textFieldDescuento.setText("");
+		this.textFieldValidez.setText("");
+		this.textAreaDescripcionPaquete.setText("");*/
 
 		/*ArrayList<String> listaOfertas = new ArrayList<String>();
 		String [] arrayOfertas = listaOfertas.toArray(new String[0]);
