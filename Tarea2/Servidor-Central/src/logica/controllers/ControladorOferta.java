@@ -177,7 +177,7 @@ public class ControladorOferta implements IControladorOferta {
 		}
 
 		PaquetePublicacion paquetePublicacion = new PaquetePublicacion(nombre, descripcion, periodoValDias, descuento,
-				imagen, arrayCantidad);
+				imagen, arrayCantidad, fechaAlta);
 
 		
 
