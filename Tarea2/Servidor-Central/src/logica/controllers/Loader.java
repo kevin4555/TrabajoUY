@@ -16,12 +16,13 @@ import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import logica.DataTypes.DTCantidadTipoPublicacion;
+import logica.DataTypes.EstadoOferta;
 import logica.classes.Keyword;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
 public class Loader {
-
+	private static Boolean datosCargados = false;
 	public Loader() {
 		
 	}
@@ -225,5 +226,24 @@ public class Loader {
 		controladorOferta.registrarPaquete("Express",
 				"Publica ofertas laborales urgentes resaltada en color y se mostrará en la sección de urgente por 15 días.",
 				15, 5f, null, LocalDate.parse("2023-08-13"), paquete4);
+		
+		datosCargados = true;
+	}
+	
+	public void confirmarOfertas() throws OfertaLaboralNoExisteException {
+		IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+		controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend", EstadoOferta.CONFIRMADA, LocalDate.now());
+		controladorOferta.aceptarRechazarOfertaLaboral("Estratega de Negocios", EstadoOferta.CONFIRMADA, LocalDate.now());
+		controladorOferta.aceptarRechazarOfertaLaboral("Diseñador UX/UI", EstadoOferta.CONFIRMADA, LocalDate.now());
+		controladorOferta.aceptarRechazarOfertaLaboral("Analista de Datos", EstadoOferta.CONFIRMADA, LocalDate.now());
+		controladorOferta.aceptarRechazarOfertaLaboral("Content Manager", EstadoOferta.CONFIRMADA, LocalDate.now());
+		controladorOferta.aceptarRechazarOfertaLaboral("Soporte Técnico", EstadoOferta.CONFIRMADA, LocalDate.now());
+		controladorOferta.aceptarRechazarOfertaLaboral("A. de Marketing Digital", EstadoOferta.CONFIRMADA, LocalDate.now());
+		controladorOferta.aceptarRechazarOfertaLaboral("Contador Senior", EstadoOferta.CONFIRMADA, LocalDate.now());
+		
+	}
+	
+	public static Boolean datosCargados() {
+		return datosCargados;
 	}
 }

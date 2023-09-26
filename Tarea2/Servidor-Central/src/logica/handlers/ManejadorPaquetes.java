@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import logica.DataTypes.DTPaquetePublicacion;
 import logica.classes.PaquetePublicacion;
 
 public class ManejadorPaquetes {
@@ -67,5 +68,13 @@ public class ManejadorPaquetes {
 	
 	public void clean() {
 		instancia = null;
+	}
+	
+	public ArrayList<DTPaquetePublicacion> listarDTPaquetes(){
+		ArrayList<DTPaquetePublicacion> listaResultado = new ArrayList<DTPaquetePublicacion>();
+		for(PaquetePublicacion paquete : colPaquetes.values()) {
+			listaResultado.add(paquete.obtenerDTPaquete());
+		}
+		return listaResultado;
 	}
 }

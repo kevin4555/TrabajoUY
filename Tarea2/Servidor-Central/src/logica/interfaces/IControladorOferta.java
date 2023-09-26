@@ -94,6 +94,8 @@ public interface IControladorOferta {
 
 	ArrayList<String> listarPaquetesNoComprados();
 
+	ArrayList<DTPaquetePublicacion> listarDTPaquetes();
+
 	
 
 	

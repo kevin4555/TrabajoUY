@@ -277,4 +277,9 @@ public class ControladorOferta implements IControladorOferta {
 	public ArrayList<String> listarPaquetesNoComprados(){
 		return ManejadorPaquetes.getInstance().listarPaquetesNoComprados();
 	}
+	
+	@Override
+	public ArrayList<DTPaquetePublicacion> listarDTPaquetes(){
+		return ManejadorPaquetes.getInstance().listarDTPaquetes();
+	}
 }
