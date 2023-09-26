@@ -290,7 +290,7 @@ public class Principal extends JFrame {
 		});
 		menuPaquete.add(menuItemRegistarPaquete);
 		
-		JMenuItem menuItemConsultaPaquete = new JMenuItem("Agregar tipo de publicacion al paquete");
+		JMenuItem menuItemConsultaPaquete = new JMenuItem("Consultar paquete");
 		menuItemConsultaPaquete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Muestro el InternalFrame para postularse a una oferta laboral
