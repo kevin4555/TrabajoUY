@@ -46,7 +46,6 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
 
-    private JPanel contentPane;
     private JFrame ventanaPrincipal;
     private IControladorUsuario ICU;
     private IControladorOferta ICO;
@@ -59,8 +58,8 @@ public class Principal extends JFrame {
     private ModificarDatosUsuarios modificarDatosUsuarios;
     private Aceptar_Rechazar_Oferta aceptarRechazarOferta;
     private AgregarTipoPublicacionAlPaquete agregarTipoPublicacionAlPaquete;
-    private Date fecha;
-    private String fechaS = "23/02/1923";
+    private RegistrarPaquete registrarPaquete;
+    private ConsultaPaquete consultaPaquete;
 
     /**
      * Launch the application.
@@ -87,7 +86,6 @@ public class Principal extends JFrame {
 		Fabrica fabrica = Fabrica.getInstance();
 		ICU = fabrica.obtenerControladorUsuario();
 		ICO = fabrica.obtenerControladorOferta();
-		this.fecha = new Date();
 		// Se crean los InternalFrame y se incluyen al Frame principal ocultos.
 		// De esta forma, no es necesario crear y destruir objetos lo que enlentece la
 		// ejecución.
@@ -121,6 +119,12 @@ public class Principal extends JFrame {
 		agregarTipoPublicacionAlPaquete = new AgregarTipoPublicacionAlPaquete(ICO);
 		agregarTipoPublicacionAlPaquete.setVisible(false);
 		
+		registrarPaquete = new RegistrarPaquete(ICO);
+		registrarPaquete.setVisible(false);
+		
+		consultaPaquete = new ConsultaPaquete(ICO);
+		consultaPaquete.setVisible(false);
+		
 
 		ventanaPrincipal.getContentPane().setLayout(null);
 		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
@@ -132,6 +136,8 @@ public class Principal extends JFrame {
 		ventanaPrincipal.getContentPane().add(modificarDatosUsuarios);
 		ventanaPrincipal.getContentPane().add(aceptarRechazarOferta);
 		ventanaPrincipal.getContentPane().add(agregarTipoPublicacionAlPaquete);
+		ventanaPrincipal.getContentPane().add(registrarPaquete);
+		ventanaPrincipal.getContentPane().add(consultaPaquete);
 	}
 
 	private void initialize() {
@@ -260,6 +266,12 @@ public class Principal extends JFrame {
 		});
 		menuOfertaLaboral.add(menuItemaceptarRechazarOferta);
 		
+		
+		
+
+		JMenu menuPaquete = new JMenu("Paquetes");
+		menuBar.add(menuPaquete);
+		
 		JMenuItem menuItemAgregarTipoPublicacionAlPaquete = new JMenuItem("Agregar tipo de publicacion al paquete");
 		menuItemAgregarTipoPublicacionAlPaquete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -268,12 +280,25 @@ public class Principal extends JFrame {
 				agregarTipoPublicacionAlPaquete.setVisible(true);
 			}
 		});
-		menuOfertaLaboral.add(menuItemAgregarTipoPublicacionAlPaquete);
+		menuPaquete.add(menuItemAgregarTipoPublicacionAlPaquete);
 		
-
+		JMenuItem menuItemRegistarPaquete = new JMenuItem("Registrar paquete");
+		menuItemRegistarPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				registrarPaquete.setVisible(true);
+			}
+		});
+		menuPaquete.add(menuItemRegistarPaquete);
 		
-		
-
+		JMenuItem menuItemConsultaPaquete = new JMenuItem("Consultar paquete");
+		menuItemConsultaPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para postularse a una oferta laboral
+				consultaPaquete.cargarPaquetes();
+				consultaPaquete.setVisible(true);
+			}
+		});
+		menuPaquete.add(menuItemConsultaPaquete);
 	}
 
 	@SuppressWarnings("deprecation")
