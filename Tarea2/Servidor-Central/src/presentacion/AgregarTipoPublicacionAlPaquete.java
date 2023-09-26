@@ -360,7 +360,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
 				DTTipoPublicacion dtTipoPublicacion;
 				dtTipoPublicacion = controladorOfertaLaboral.obtenerTipoPublicacion(tipoPublicacion).obtenerDTTipoPublicacion();
 				this.textFieldExposicion.setText(dtTipoPublicacion.getExposicion());
-				this.textFieldCosto.setText(dtTipoPublicacion.getCosto().toString());
+				this.textFieldCosto.setText(String.valueOf(dtTipoPublicacion.getCosto()));
 				this.textFieldDuracion.setText(String.valueOf(dtTipoPublicacion.getDuracionDia()) + " días");
 				this.textFieldFechaAlta.setText(dtTipoPublicacion.getFechaAlta().toString());
 				this.textAreaDescripcion.setText(dtTipoPublicacion.getDescripcion());

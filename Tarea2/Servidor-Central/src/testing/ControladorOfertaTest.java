@@ -238,10 +238,10 @@ public class ControladorOfertaTest {
 		ArrayList<CantidadTotalTipoPublicacion> arrayPrueba = new ArrayList<CantidadTotalTipoPublicacion>();
 		ArrayList<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
 		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
-				50f, null, arrayPruebaSegundo);
+				50f, null, arrayPruebaSegundo, fechaDate);
 
 		PaquetePublicacion paquetePrueba = new PaquetePublicacion("nombrePrueba", "descripcionPrueba", 20, 50f, null,
-				arrayPrueba);
+				arrayPrueba, fechaDate);
 		manejadorPaquetes.agregarPaquete(paquetePrueba);
 		manejadorPaquetes.agregarPaquete(paquetePruebaPrimero);
 		ArrayList<String> resultadoPaquete = controladorOferta.listarPaquetes();
@@ -403,7 +403,7 @@ public class ControladorOfertaTest {
 				tipoEncontrado);
 		arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
 		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
-				50f, null, arrayPruebaSegundo);
+				50f, null, arrayPruebaSegundo, fechaDate);
 		manejadorPaquetes.agregarPaquete(paquetePruebaPrimero);
 		ArrayList<String> resultadoEsperado = new ArrayList<String>();
 		resultadoEsperado.add("tipoTesting");
@@ -425,7 +425,7 @@ public class ControladorOfertaTest {
 				tipoEncontrado);
 		arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
 		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
-				50f, null, arrayPruebaSegundo);
+				50f, null, arrayPruebaSegundo, fechaDate);
 		manejadorPaquetes.agregarPaquete(paquetePruebaPrimero);
 		PaquetePublicacion paqueteEncontrado = controladorOferta.obtenerPaquetePublicacion("nombrePruebaPrimero");
 		Assert.assertEquals(paquetePruebaPrimero, paqueteEncontrado);
@@ -448,7 +448,7 @@ public class ControladorOfertaTest {
 				tipoEncontrado);
 		arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
 		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
-				50f, null, arrayPruebaSegundo);
+				50f, null, arrayPruebaSegundo, fechaDate);
 		manejadorPaquetes.agregarPaquete(paquetePruebaPrimero);
 
 		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
@@ -478,7 +478,7 @@ public class ControladorOfertaTest {
         Assert.assertEquals(paquetePublicacionDt.getCantidadPublicacionesColeccion().get(0).getCantidad(), resultado.get(0).getCantidad());
         Assert.assertEquals(paquetePublicacionDt.getImagen(), null);
 	}
-	
+	 
 	
 	@Test
 	public void testEstaCompradoPorPaqueteOferta () throws TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
