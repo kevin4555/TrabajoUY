@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import excepciones.UsuarioNoExistePostulacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTPostulante;
@@ -91,5 +92,17 @@ public class Postulante extends Usuario{
 			listaResultado.add(postulacion.obtenerDTPostulacion());
 		}
 		return listaResultado;
+	}
+	
+	public Boolean estaPostulado(String nombreOferta) {
+		Boolean resultado = false;
+		for(Postulacion postulacion : postulaciones) {
+			if(postulacion.getOfertaLaboral().getNombre() == nombreOferta) {
+				resultado = true;
+				break;
+			}
+		}
+		return resultado;
+		
 	}
 }

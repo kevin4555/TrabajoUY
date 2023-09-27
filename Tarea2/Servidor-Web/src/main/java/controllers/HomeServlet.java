@@ -27,6 +27,7 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
 
 
 
@@ -53,7 +54,7 @@ public class HomeServlet extends HttpServlet {
 			} catch (UsuarioNoExisteException | OfertaLaboralNoExisteException | ParseException
 					| UsuarioYaExisteException | UsuarioEmailRepetidoException | TipoPublicacionYaExisteException
 					| KeywordYaExisteException | KeywordNoExisteException | TipoPublicacionNoExisteException
-					| OfertaLaboralYaExisteException | PaquetePublicacionYaExisteException e) {
+					| OfertaLaboralYaExisteException | PaquetePublicacionYaExisteException | UsuarioYaExistePostulacion e) {
 				// COMPLETAR con paginas de errores
 				e.printStackTrace();
 			}

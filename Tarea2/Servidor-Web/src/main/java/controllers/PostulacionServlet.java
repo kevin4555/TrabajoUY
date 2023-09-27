@@ -19,6 +19,7 @@ import java.time.LocalDate;
 
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExistePostulacion;
 
 /**
  * Servlet implementation class PostulacionServlet
@@ -37,10 +38,10 @@ public class PostulacionServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession sesion = request.getSession();
-    	if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO || sesion.getAttribute("tipoUsuario") != TipoUsuario.POSTULANTE){
+    	if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO || request.getAttribute("nombreOferta") == null){
     		//agregar pagina de error
     	}
-    	if(request.getAttribute("oferta") == null) {
+    	if(request.getAttribute("nombreOferta") != null && request.getAttribute("accion") != "postularse" ) {
     		String nombreOferta = request.getParameter("nombreOferta");
     		IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
     		try {
@@ -52,7 +53,7 @@ public class PostulacionServlet extends HttpServlet {
 				e.printStackTrace();
 			}
     	}
-    	else {
+    	if(sesion.getAttribute("tipoUsuario") == TipoUsuario.POSTULANTE &&  request.getAttribute("accion") == "postularse" ) {
     		String cVReducido = request.getParameter("cVReducido");
     		String motivacion = request.getParameter("motivacion");
     		DTUsuario usuario = (DTUsuario) sesion.getAttribute("usuarioLogueado");
@@ -60,7 +61,8 @@ public class PostulacionServlet extends HttpServlet {
     		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		try {
 				controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(), usuario.getNickname(), oferta.getNombre());
-			} catch (UsuarioNoExisteException | OfertaLaboralNoExisteException e) {
+				request.getRequestDispatcher("/home").forward(request, response);
+			} catch (UsuarioNoExisteException | OfertaLaboralNoExisteException | UsuarioYaExistePostulacion e) {
 				// agregar pagina error
 				e.printStackTrace();
 			}

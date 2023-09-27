@@ -9,7 +9,9 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioNoExistePostulacion;
 import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
@@ -30,7 +32,7 @@ public interface IControladorUsuario {
 	
 	public  ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 	
-	public  void registrarPostulacion(String cvReducido,String motivacion, LocalDate fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException;
+	public  void registrarPostulacion(String cvReducido,String motivacion, LocalDate fechaPostulacion, String nickname, String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioYaExistePostulacion;
 	
 	public  void altaPostulante(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String nacionalidad, BufferedImage imagen, String constrasenia) throws UsuarioYaExisteException, UsuarioEmailRepetidoException;
 	
@@ -50,7 +52,7 @@ public interface IControladorUsuario {
 	
 	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion, BufferedImage imagen, String contrasenia ) throws UsuarioNoExisteException;
 	
-	public DTPostulacion obtenerDTPostulacion(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException;
+	public DTPostulacion obtenerDTPostulacion(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException, UsuarioNoExistePostulacion;
 
 	ArrayList<DTOfertaLaboral> obtenerDTOfertasIngresadasDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
 

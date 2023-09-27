@@ -5,62 +5,52 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTUsuario;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import excepciones.UsuarioNoExisteException;
 
 /**
- * Servlet implementation class OfertasServlet
+ * Servlet implementation class ConsultaUsuariosServlet
  */
-@WebServlet("/consultaOfertas")
-public class ConsultaOfertasServlet extends HttpServlet {
+@WebServlet("/consultaUsuarios")
+public class ConsultaUsuariosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConsultaOfertasServlet() {
+    public ConsultaUsuariosServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    	IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	ArrayList<String> listaEmpresas = controladorUsuario.listarEmpresas();
-    	request.setAttribute("listaEmpresas", listaEmpresas);
-    	String nicknameEmpresa = request.getParameter("empresaSeleccionada");
-    	String keyword = request.getParameter("keyword");
-    	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
+    	ArrayList<String> listaUsuarios = controladorUsuario.listaDeUsuarios();
+    	Collections.sort(listaUsuarios);
+    	ArrayList<DTUsuario> listaResultado = new ArrayList<DTUsuario>();
+    	for(String nick : listaUsuarios) {
     		try {
-				ArrayList<DTOfertaLaboral> ofertas = controladorUsuario.obtenerDTOfertasConfirmadasDeEmpresa(nicknameEmpresa);
-				request.setAttribute("listaOfertas", ofertas);
-				request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
+				listaResultado.add(controladorUsuario.obtenerDTUsuario(nick));
 			} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
 				e.printStackTrace();
 			}
     	}
-    	else if(keyword != null && keyword != "") {
-    		ArrayList<DTOfertaLaboral> ofertas = controladorOfertas.obtenerDTOfertasPorKeyword(keyword);
-    		request.setAttribute("listaOfertas", ofertas);
-    		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
-    	}
+    	request.setAttribute("listaUsuarios", listaResultado);
+    	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaUsuarios.jsp").forward(request, response);
     	
     }
-    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		procesarRequest(request, response);
 	}
 

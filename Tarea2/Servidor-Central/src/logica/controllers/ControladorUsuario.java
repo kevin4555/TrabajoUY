@@ -9,7 +9,9 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioNoExistePostulacion;
 import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
@@ -73,11 +75,14 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void registrarPostulacion(String cvReducido, String motivacion, LocalDate fechaPostulacion, String nickname,
-			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
+			String nomOferta) throws UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioYaExistePostulacion {
 		ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
 		Postulante postulante = manejadorUsuario.obtenerPostulante(nickname);
+		if(postulante.estaPostulado(nomOferta))
+			throw new UsuarioYaExistePostulacion("el usuario ya esta postulado a " + nomOferta);
 		Fabrica fabrica = Fabrica.getInstance();
 		IControladorOferta controladorOferta = fabrica.obtenerControladorOferta();
+		
 		OfertaLaboral oferta = controladorOferta.obtenerOfertaLaboral(nomOferta);
 		Postulacion postulacion = new Postulacion(motivacion, fechaPostulacion, cvReducido, postulante, oferta);
 		postulante.agregarPostulacion(postulacion);
@@ -151,8 +156,10 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 	
 	@Override
-	public DTPostulacion obtenerDTPostulacion(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException {
+	public DTPostulacion obtenerDTPostulacion(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException, UsuarioNoExistePostulacion {
 		Postulante postulante = ManejadorUsuario.getInstance().obtenerPostulante(nicknamePostulante);
+		if(!postulante.estaPostulado(nombreOferta))
+			throw new UsuarioNoExistePostulacion("el usuario no tiene postulacion a " + nombreOferta);
 		return postulante.obtenerDTPostulacion(nombreOferta);
 	}
 	
