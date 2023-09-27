@@ -220,7 +220,8 @@ public class Principal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar una oferta laboral
             	crearOfertaLaboralInternalFrame.cargarEmpresas();
-            	crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
+            	//crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
+            	crearOfertaLaboralInternalFrame.cargarComboBoxFormaDePago();
                 crearOfertaLaboralInternalFrame.cargarKeywords();
             	crearOfertaLaboralInternalFrame.setVisible(true);
             }
