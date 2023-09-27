@@ -1,31 +1,5 @@
 package testing;
 
-import static org.junit.Assert.assertEquals;
-
-import java.security.PublicKey;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import excepciones.DtOfertaNoExisteException;
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.OfertaLaboralYaExisteException;
-import excepciones.TipoPublicacionNoExisteException;
-import excepciones.TipoPublicacionYaExisteException;
-import junit.framework.Assert;
-import logica.DataTypes.DTOfertaLaboral;
-import logica.DataTypes.DTPostulacion;
-import logica.classes.OfertaLaboral;
-import logica.classes.TipoPublicacion;
-import logica.controllers.Fabrica;
-import logica.handlers.ManejadorOfertas;
-
 public class ManejadorOfertasTest {
 
 	/*private Date fechaDate;

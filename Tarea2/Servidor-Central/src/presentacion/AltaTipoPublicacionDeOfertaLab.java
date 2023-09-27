@@ -1,40 +1,25 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
-import logica.interfaces.IControladorOferta;
-
-import javax.swing.JButton;
+import com.toedter.calendar.JDateChooser;
+import excepciones.TipoPublicacionYaExisteException;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import java.awt.Button;
-
-import java.awt.CardLayout;
-
 import javax.swing.JTextArea;
-import java.awt.TextArea;
-import javax.swing.JScrollPane;
-import java.awt.Choice;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.DropMode;
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDateChooser;
-
-import excepciones.TipoPublicacionYaExisteException;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import logica.interfaces.IControladorOferta;
 
 @SuppressWarnings("serial")
 public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {

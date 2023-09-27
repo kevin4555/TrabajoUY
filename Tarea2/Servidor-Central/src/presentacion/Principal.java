@@ -1,47 +1,29 @@
 package presentacion;
 
-import java.awt.EventQueue;
-import java.text.DateFormat;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
-import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
-import logica.DataTypes.DTCantidadTipoPublicacion;
-import logica.classes.Keyword;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import logica.controllers.Fabrica;
 import logica.controllers.Loader;
-import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
-import java.awt.BorderLayout;
-import javax.swing.JInternalFrame;
-import java.awt.Color;
-import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class Principal extends JFrame {

@@ -3,8 +3,6 @@ package logica.classes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTPostulante;

@@ -1,10 +1,8 @@
 package logica.classes;
 
+import excepciones.OfertaLaboralYaExisteException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
-
-import excepciones.OfertaLaboralYaExisteException;
 import logica.DataTypes.DTEmpresa;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;

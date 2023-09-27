@@ -1,45 +1,36 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JFileChooser;
-
-import logica.interfaces.IControladorOferta;
-
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-
 import com.toedter.calendar.JDateChooser;
-
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
-import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
-import javax.imageio.ImageIO;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.DropMode;
+import javax.swing.ScrollPaneConstants;
+import logica.interfaces.IControladorOferta;
 
 @SuppressWarnings("serial")
 public class RegistrarPaquete extends JInternalFrame {

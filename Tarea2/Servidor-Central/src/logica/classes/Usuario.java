@@ -2,7 +2,6 @@ package logica.classes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import logica.DataTypes.DTUsuario;
 
 public abstract class Usuario {

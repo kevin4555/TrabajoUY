@@ -1,60 +1,31 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-
-import logica.DataTypes.DTCantidadTipoPublicacion;
-import logica.DataTypes.DTEmpresa;
-import logica.DataTypes.DTOfertaLaboral;
-import logica.DataTypes.DTPaquetePublicacion;
-import logica.DataTypes.DTPostulacion;
-import logica.DataTypes.DTPostulante;
-import logica.DataTypes.DTTipoPublicacion;
-import logica.DataTypes.DTUsuario;
-import logica.classes.OfertaLaboral;
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-
-import javax.swing.JComboBox;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-
-import javax.swing.SwingConstants;
-
-import java.text.SimpleDateFormat;
-
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.TipoPublicacionNoExisteException;
-import excepciones.TipoPublicacionYaExisteException;
-import excepciones.UsuarioNoExisteException;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import logica.DataTypes.DTCantidadTipoPublicacion;
+import logica.DataTypes.DTPaquetePublicacion;
+import logica.DataTypes.DTTipoPublicacion;
+import logica.interfaces.IControladorOferta;
 
 @SuppressWarnings("serial")
 public class ConsultaPaquete extends JInternalFrame {

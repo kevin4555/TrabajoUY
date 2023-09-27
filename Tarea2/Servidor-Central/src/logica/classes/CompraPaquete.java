@@ -1,8 +1,7 @@
 package logica.classes;
 
-import java.util.ArrayList;
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 import logica.DataTypes.DTPaquetePublicacion;
 
 public class CompraPaquete {

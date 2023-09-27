@@ -1,53 +1,45 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
+import com.toedter.calendar.JDateChooser;
+import excepciones.UsuarioNoExisteException;
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-
-import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-
-import java.awt.CardLayout;
-import javax.swing.JTextField;
-import excepciones.UsuarioNoExisteException;
-import logica.DataTypes.DTEmpresa;
-import logica.DataTypes.DTPostulante;
-import logica.DataTypes.DTUsuario;
-import logica.interfaces.IControladorUsuario;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import com.toedter.calendar.JDateChooser;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
+import logica.DataTypes.DTEmpresa;
+import logica.DataTypes.DTPostulante;
+import logica.DataTypes.DTUsuario;
+import logica.interfaces.IControladorUsuario;
 
 @SuppressWarnings("serial")
 public class ModificarDatosUsuarios extends JInternalFrame {

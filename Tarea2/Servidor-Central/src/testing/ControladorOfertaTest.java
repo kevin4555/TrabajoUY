@@ -1,22 +1,5 @@
 package testing;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.isArray;
-
-import java.awt.image.BufferedImage;
-import java.io.InterruptedIOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -27,19 +10,24 @@ import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
-import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import junit.framework.Assert;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
 import logica.classes.CantidadTotalTipoPublicacion;
-import logica.classes.Empresa;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
 import logica.classes.PaquetePublicacion;
-import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
 import logica.controllers.ControladorOferta;
 import logica.controllers.ControladorUsuario;
@@ -47,6 +35,8 @@ import logica.handlers.ManejadorOfertas;
 import logica.handlers.ManejadorPaquetes;
 import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ControladorOfertaTest {
 	private Date fechaDateParse;
