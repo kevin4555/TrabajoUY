@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,14 +15,8 @@ import logica.DataTypes.DTPaquetePublicacion;
 import logica.DataTypes.DTPostulacion;
 import logica.DataTypes.DTPostulante;
 import logica.DataTypes.DTUsuario;
-import logica.classes.Postulante;
 import logica.controllers.Fabrica;
 import logica.interfaces.IControladorUsuario;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-import excepciones.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class PerfilSerlvlet

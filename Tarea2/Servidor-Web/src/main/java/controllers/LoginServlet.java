@@ -1,5 +1,8 @@
 package controllers;
 
+import java.io.IOException;
+
+import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,10 +16,6 @@ import logica.controllers.Fabrica;
 import logica.interfaces.IControladorUsuario;
 import model.EstadoSesion;
 import model.TipoUsuario;
-
-import java.io.IOException;
-
-import excepciones.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class LoginServlet

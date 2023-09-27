@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import excepciones.TipoPublicacionNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,11 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import logica.DataTypes.DTTipoPublicacion;
 import logica.controllers.Fabrica;
 import logica.interfaces.IControladorOferta;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-import excepciones.TipoPublicacionNoExisteException;
 
 /**
  * Servlet implementation class ConsultaTipoPostulacionServlet

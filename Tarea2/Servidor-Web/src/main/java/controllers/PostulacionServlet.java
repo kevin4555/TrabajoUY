@@ -1,5 +1,10 @@
 package controllers;
 
+import java.io.IOException;
+import java.time.LocalDate;
+
+import excepciones.OfertaLaboralNoExisteException;
+import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,12 +18,6 @@ import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
 import model.EstadoSesion;
 import model.TipoUsuario;
-
-import java.io.IOException;
-import java.time.LocalDate;
-
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class PostulacionServlet

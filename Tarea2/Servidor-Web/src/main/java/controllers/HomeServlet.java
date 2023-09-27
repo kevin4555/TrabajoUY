@@ -1,21 +1,10 @@
 package controllers;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import logica.DataTypes.DTOfertaLaboral;
-import logica.controllers.Fabrica;
-import logica.controllers.Loader;
-import logica.interfaces.IControladorOferta;
-import model.EstadoSesion;
-import model.TipoUsuario;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.apache.catalina.Loader;
 
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
@@ -27,6 +16,17 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import logica.DataTypes.DTOfertaLaboral;
+import logica.controllers.Fabrica;
+import logica.interfaces.IControladorOferta;
+import model.EstadoSesion;
+import model.TipoUsuario;
 
 
 
@@ -45,7 +45,8 @@ public class HomeServlet extends HttpServlet {
 
 
 	private static void initSesion(HttpServletRequest request) {
-		if (!Loader.datosCargados()) {
+		/**
+		 * if (!Loader.datosCargados()) {
 			Loader loader = new Loader();
 			try {
 				loader.cargarDatos();
@@ -57,7 +58,8 @@ public class HomeServlet extends HttpServlet {
 				// COMPLETAR con paginas de errores
 				e.printStackTrace();
 			}
-		}
+			
+		}*/
 		HttpSession sesion = request.getSession();
 		if (sesion.getAttribute("estadoSesion") == null) {
 			sesion.setAttribute("estadoSesion", EstadoSesion.NO_LOGIN);

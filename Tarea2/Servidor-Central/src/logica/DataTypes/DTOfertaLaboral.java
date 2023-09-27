@@ -2,7 +2,6 @@ package logica.DataTypes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DTOfertaLaboral {
 	private String nombre;

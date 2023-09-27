@@ -427,7 +427,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 				if(!controlOfertaLab.estaPostulado(this.postulante, this.nomOfertaLaboral))
 				{
 					nombrePostulante = (controlUsuarioLab.obtenerPostulante(this.postulante)).getNickname();
-					controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, this.fechaPostulacion, nombrePostulante , this.nomOfertaLaboral);
+					//controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, this.fechaPostulacion, nombrePostulante , this.nomOfertaLaboral);
 					JOptionPane.showMessageDialog(this, "La postulacion fue hecha con exito", "Registrar Usuario", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
