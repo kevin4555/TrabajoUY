@@ -2,6 +2,8 @@ package presentacion;
 
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioNoExistePostulacion;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -360,7 +362,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					cargarDatosOferta(e);
-				} catch (OfertaLaboralNoExisteException e1) {
+				} catch (OfertaLaboralNoExisteException | UsuarioNoExistePostulacion e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -534,7 +536,7 @@ public class ConsultarUsuario extends JInternalFrame {
 
 	}
 
-	protected void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException {
+	protected void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException, UsuarioNoExistePostulacion {
 		String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
 		String nicknameUsu = comboBoxSeleccionUsuario.getSelectedItem().toString();
 		if (ofertaSeleccionada != oferta) {

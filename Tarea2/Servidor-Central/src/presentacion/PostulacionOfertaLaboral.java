@@ -3,6 +3,8 @@ package presentacion;
 import com.toedter.calendar.JDateChooser;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExistePostulacion;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -317,7 +319,12 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         btnBotonAceptar.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e)
         	{
-        		registrarPostulacion(e);
+        		try {
+					registrarPostulacion(e);
+				} catch (UsuarioYaExistePostulacion e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
         	}
         });
         
@@ -413,7 +420,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	this.comboBoxPostulantesRegistrados.setModel(model);
     }
     
-    public void registrarPostulacion(ActionEvent e)
+    public void registrarPostulacion(ActionEvent e) throws UsuarioYaExistePostulacion
     {
     	if(chequearDatos())
     	{	

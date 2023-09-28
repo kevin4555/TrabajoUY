@@ -10,6 +10,8 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -154,7 +156,7 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					cargarDatosDePrueba(arg0);
-				} catch (ParseException | KeywordNoExisteException | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException e) {
+				} catch (ParseException | KeywordNoExisteException | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException | UsuarioYaExistePostulacion e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} // Esta funcion carga los datos de prueba
@@ -285,7 +287,7 @@ public class Principal extends JFrame {
 
 	@SuppressWarnings("deprecation")
 	protected void cargarDatosDePrueba(ActionEvent arg0)
-			throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException, UsuarioEmailRepetidoException {
+			throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException, UsuarioEmailRepetidoException, UsuarioYaExistePostulacion {
 		try {
 
 			Loader loader = new Loader();

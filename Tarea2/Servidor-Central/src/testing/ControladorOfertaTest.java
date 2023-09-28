@@ -12,6 +12,8 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -332,7 +334,7 @@ public class ControladorOfertaTest {
 	@Test
 	public void testRegistrarPostulacion() throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException,
 			UsuarioYaExisteException, UsuarioNoExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
-			TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException {
+			TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioYaExistePostulacion {
 		manejadorOfertas = ManejadorOfertas.getInstance();
 		manejadorSettings = ManejadorSettings.getInstance();
 		manejadorPaquetes = ManejadorPaquetes.getInstance();
@@ -543,7 +545,7 @@ public class ControladorOfertaTest {
 	}
 	
 	@Test
-	public void testSiEstaPostualdo() throws TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
+	public void testSiEstaPostualdo() throws TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioYaExistePostulacion {
 		manejadorOfertas = ManejadorOfertas.getInstance();
 		manejadorPaquetes = ManejadorPaquetes.getInstance();
 		controladorOferta = new ControladorOferta();
