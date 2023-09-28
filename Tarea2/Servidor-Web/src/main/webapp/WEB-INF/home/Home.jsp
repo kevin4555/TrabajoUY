@@ -40,7 +40,6 @@
 		<h2>Descripción</h2>
 		${oferta.descripcion}<br>
 
-
 	</c:forEach>
 
 
