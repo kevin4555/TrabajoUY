@@ -1,10 +1,35 @@
 package presentacion;
 
-import com.toedter.calendar.JDateChooser;
-import excepciones.KeywordNoExisteException;
-import excepciones.OfertaLaboralYaExisteException;
-import excepciones.TipoPublicacionNoExisteException;
-import excepciones.UsuarioNoExisteException;
+import javax.swing.JInternalFrame;
+
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import logica.DataTypes.DTPaquetePublicacion;
+import logica.interfaces.IControladorOferta;
+import logica.interfaces.IControladorUsuario;
+
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -17,37 +42,31 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
-import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.border.EmptyBorder;
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
+import java.util.List;
+import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
+
+import excepciones.KeywordNoExisteException;
+import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralYaExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.TipoPublicacionNoExisteException;
+import excepciones.TipoPublicacionYaExisteException;
+import excepciones.UsuarioNoExisteException;
+import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
 public class AltaOfertaLaboral extends JInternalFrame {
 
 	// Controlador de usuarios que se utilizará para las acciones del JFrame
-	private IControladorOferta controlOferta;
-	private IControladorUsuario controlUsu;
+	private IControladorOferta controladorOfertaLaboral;
+	private IControladorUsuario controladorUsuario;
 
 	// Los componentes gráficos se agregan como atributos de la clase
 	// para facilitar su acceso desde diferentes métodos de la misma.
-	private JPanel ubicacionBotones;
+	private JPanel panelDatos;
 	private JPanel ubicacionEtiquetas;
 	private JPanel ubicacionTexto;
 	private JLabel lblEmpresa;
@@ -57,7 +76,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JLabel lblNombre;
 	private JTextField textFieldNombre;
 	private JLabel lblDescripcion;
-	private JTextField textFieldDescripcion;
+	private JTextArea textFieldDescripcion;
 	private JLabel lblHoraInicio;
 	private JTextField textFieldHoraInicio;
 	private JLabel lblHoraFin;
@@ -83,18 +102,30 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-	private BufferedImage fotoPerfilUsuario = null;
 	private JTextPane textPane;
 	private JButton selectImageButton;
 	private JLabel imageLabel;
+	private JScrollPane scrollPane;
+	private JLabel lblNewLabel;
+	private JList list;
+	private JLabel lblNewLabel_1;
+	private JComboBox comboBoxFormaDePago;
+	private JComboBox<String> comboBoxSeleccionTiposPublicaciones;
+	private JLabel lblTiposPublicaciones;
+	private JLabel lblSeleccionPaquete;
+	private JComboBox<String> comboBoxSeleccionPaquete;
+	private String paqueteSeleccionado;
+	private BufferedImage fotoOferta = null;
+	private GridBagConstraints gbc_textField;
 
 	/**
 	 * Create the frame.
 	 */
 	public AltaOfertaLaboral(IControladorOferta icontOfer, IControladorUsuario icontUsu) {
-		// Se inicializa con el controlador de usuarios
-		controlOferta = icontOfer;
-		controlUsu = icontUsu;
+
+		controladorOfertaLaboral = icontOfer;
+		controladorUsuario = icontUsu;
+		this.paqueteSeleccionado = "";
 
 		// Propiedades del JInternalFrame como dimensión, posición dentro del frame,
 		// etc.
@@ -102,112 +133,307 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setTitle("Registrar Oferta Laboral");
-		setBounds(30, 30, 443, 572);
+		setTitle("Alta Oferta Laboral");
+		setBounds(30, 30, 513, 580);
 
-		ubicacionBotones = new JPanel();
-		ubicacionBotones.setBorder(new EmptyBorder(5, 5, 5, 5));
+		JPanel panelBotones = new JPanel();
+		getContentPane().add(panelBotones, BorderLayout.SOUTH);
+		panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
 
-		ubicacionEtiquetas = new JPanel();
-		ubicacionEtiquetas.setBorder(new EmptyBorder(5, 5, 5, 5));
+		btnConfirmar = new JButton("Confirmar");
+		panelBotones.add(btnConfirmar);
 
-		ubicacionTexto = new JPanel();
-		ubicacionTexto.setBorder(new EmptyBorder(5, 5, 5, 5));
+		btnCancelar = new JButton("Cancelar");
+		panelBotones.add(btnCancelar);
 
-		getContentPane().add(ubicacionBotones, BorderLayout.SOUTH); // Establezco ubicacion de los botones al sur del
-																	// Panle
-		ubicacionBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarFormulario();
+				dispose();
+			}
+		});
 
-		getContentPane().add(ubicacionEtiquetas, BorderLayout.WEST); // Establezco ubicacion de los botones al oeste del
-																		// Panel
-		ubicacionEtiquetas.setLayout(new GridLayout(13, 1, 10, 10));
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cmdRegistroOfertaLaboralActionPerformed(arg0);
+			}
+		});
 
-		getContentPane().add(ubicacionTexto, BorderLayout.CENTER); // Establezco ubicacion de los botones al centro del
-																	// Panel
-		ubicacionTexto.setLayout(new GridLayout(13, 1, 0, 5));
+		this.panelDatos = new JPanel();
+		getContentPane().add(panelDatos, BorderLayout.CENTER);
+		GridBagLayout gbl_panelDatos = new GridBagLayout();
+		gbl_panelDatos.columnWidths = new int[] { 113, 739, 0 };
+		gbl_panelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+				0.0, 0.0, 0.0, 1.0, 1.0 };
+		panelDatos.setLayout(gbl_panelDatos);
 
-		lblEmpresa = new JLabel("  Empresa");
-		ubicacionEtiquetas.add(lblEmpresa);
+		JLabel lblSeleccion = new JLabel("Seleccionar Empresa:");
+		GridBagConstraints gbc_lblSeleccion = new GridBagConstraints();
+		gbc_lblSeleccion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSeleccion.anchor = GridBagConstraints.EAST;
+		gbc_lblSeleccion.gridx = 0;
+		gbc_lblSeleccion.gridy = 1;
+		panelDatos.add(lblSeleccion, gbc_lblSeleccion);
 
-		comboBoxEmpresa = new JComboBox();
-		ubicacionTexto.add(comboBoxEmpresa);
+		this.comboBoxEmpresa = new JComboBox<String>();
+		GridBagConstraints gbc_comboBoxSeleccionUsuario = new GridBagConstraints();
+		gbc_comboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBoxSeleccionUsuario.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxSeleccionUsuario.gridx = 1;
+		gbc_comboBoxSeleccionUsuario.gridy = 1;
+		panelDatos.add(this.comboBoxEmpresa, gbc_comboBoxSeleccionUsuario);
 
-		JLabel lblTipoPublicacion = new JLabel("  Tipo de publicación");
-		ubicacionEtiquetas.add(lblTipoPublicacion);
+		JLabel lblNombre = new JLabel("Nombre");
+		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
+		gbc_lblNombre.anchor = GridBagConstraints.EAST;
+		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombre.gridx = 0;
+		gbc_lblNombre.gridy = 2;
+		panelDatos.add(lblNombre, gbc_lblNombre);
 
-		comboBoxTpoPublicacion = new JComboBox();
-		ubicacionTexto.add(comboBoxTpoPublicacion);
+		this.textFieldNombre = new JTextField();
+		GridBagConstraints gbc_textFieldNombreOferta = new GridBagConstraints();
+		gbc_textFieldNombreOferta.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldNombreOferta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNombreOferta.gridx = 1;
+		gbc_textFieldNombreOferta.gridy = 2;
+		panelDatos.add(this.textFieldNombre, gbc_textFieldNombreOferta);
+		this.textFieldNombre.setColumns(10);
+		
+		JLabel lblRemuneracion = new JLabel("Remuneracion");
+		GridBagConstraints gbc_lblRemuneracion = new GridBagConstraints();
+		gbc_lblRemuneracion.anchor = GridBagConstraints.EAST;
+		gbc_lblRemuneracion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRemuneracion.gridx = 0;
+		gbc_lblRemuneracion.gridy = 3;
+		panelDatos.add(lblRemuneracion, gbc_lblRemuneracion);
 
-		lblNombre = new JLabel("  Nombre");
-		ubicacionEtiquetas.add(lblNombre);
+		this.textFieldRemuneracion = new JTextField();
+		GridBagConstraints gbc_textFieldRemuneracion = new GridBagConstraints();
+		gbc_textFieldRemuneracion.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldRemuneracion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldRemuneracion.gridx = 1;
+		gbc_textFieldRemuneracion.gridy = 3;
+		panelDatos.add(this.textFieldRemuneracion, gbc_textFieldRemuneracion);
+		this.textFieldRemuneracion.setColumns(10);
 
-		textFieldNombre = new JTextField();
-		ubicacionTexto.add(textFieldNombre);
+		JLabel lblCiudad = new JLabel("Ciudad");
+		GridBagConstraints gbc_lblCiudad = new GridBagConstraints();
+		gbc_lblCiudad.anchor = GridBagConstraints.EAST;
+		gbc_lblCiudad.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCiudad.gridx = 0;
+		gbc_lblCiudad.gridy = 4;
+		panelDatos.add(lblCiudad, gbc_lblCiudad);
 
-		lblDescripcion = new JLabel("  Descripción");
-		ubicacionEtiquetas.add(lblDescripcion);
+		this.textFieldCiudad = new JTextField();
+		GridBagConstraints gbc_textFieldCiudad = new GridBagConstraints();
+		gbc_textFieldCiudad.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldCiudad.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCiudad.gridx = 1;
+		gbc_textFieldCiudad.gridy = 4;
+		panelDatos.add(this.textFieldCiudad, gbc_textFieldCiudad);
+		this.textFieldCiudad.setColumns(10);
 
-		textFieldDescripcion = new JTextField();
-		ubicacionTexto.add(textFieldDescripcion);
+		JLabel lblDepartamento = new JLabel("Departamento");
+		GridBagConstraints gbc_lblDepartamento = new GridBagConstraints();
+		gbc_lblDepartamento.anchor = GridBagConstraints.EAST;
+		gbc_lblDepartamento.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDepartamento.gridx = 0;
+		gbc_lblDepartamento.gridy = 5;
+		panelDatos.add(lblDepartamento, gbc_lblDepartamento);
 
-		lblHoraInicio = new JLabel("  Hora Inicio");
-		ubicacionEtiquetas.add(lblHoraInicio);
+		this.textFieldDepartamento = new JTextField();
+		GridBagConstraints gbc_textFieldDepartamento = new GridBagConstraints();
+		gbc_textFieldDepartamento.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldDepartamento.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldDepartamento.gridx = 1;
+		gbc_textFieldDepartamento.gridy = 5;
+		panelDatos.add(this.textFieldDepartamento, gbc_textFieldDepartamento);
+		this.textFieldDepartamento.setColumns(10);
+		
+		JLabel lblHorarioInicio = new JLabel("Horario Inicio");
+		GridBagConstraints gbc_lblHorarioInicio = new GridBagConstraints();
+		gbc_lblHorarioInicio.anchor = GridBagConstraints.EAST;
+		gbc_lblHorarioInicio.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHorarioInicio.gridx = 0;
+		gbc_lblHorarioInicio.gridy = 6;
+		panelDatos.add(lblHorarioInicio, gbc_lblHorarioInicio);
 
-		textFieldHoraInicio = new JTextField();
-		ubicacionTexto.add(textFieldHoraInicio);
+		this.textFieldHoraInicio = new JTextField();
+		GridBagConstraints gbc_textFieldHorarioInicio = new GridBagConstraints();
+		gbc_textFieldHorarioInicio.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldHorarioInicio.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldHorarioInicio.gridx = 1;
+		gbc_textFieldHorarioInicio.gridy = 6;
+		panelDatos.add(this.textFieldHoraInicio, gbc_textFieldHorarioInicio);
+		this.textFieldHoraInicio.setColumns(10);
+		
+		JLabel lblHorarioFin = new JLabel("Horario Fin");
+		GridBagConstraints gbc_lblHorarioFin = new GridBagConstraints();
+		gbc_lblHorarioFin.anchor = GridBagConstraints.EAST;
+		gbc_lblHorarioFin.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHorarioFin.gridx = 0;
+		gbc_lblHorarioFin.gridy = 7;
+		panelDatos.add(lblHorarioFin, gbc_lblHorarioFin);
 
-		lblHoraFin = new JLabel("  Hora Fin");
-		ubicacionEtiquetas.add(lblHoraFin);
+		this.textFieldHoraFin = new JTextField();
+		GridBagConstraints gbc_textFieldHorarioFin = new GridBagConstraints();
+		gbc_textFieldHorarioFin.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldHorarioFin.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldHorarioFin.gridx = 1;
+		gbc_textFieldHorarioFin.gridy = 7;
+		panelDatos.add(this.textFieldHoraFin, gbc_textFieldHorarioFin);
+		this.textFieldHoraFin.setColumns(10);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion:");
+		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
+		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDescripcion.anchor = GridBagConstraints.EAST;
+		gbc_lblDescripcion.gridx = 0;
+		gbc_lblDescripcion.gridy = 8;
+		panelDatos.add(lblDescripcion, gbc_lblDescripcion);
 
-		textFieldHoraFin = new JTextField();
-		ubicacionTexto.add(textFieldHoraFin);
+		scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setEnabled(false);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 2;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 8;
+		panelDatos.add(scrollPane, gbc_scrollPane);
 
-		lblRemuneracin = new JLabel("  Remuneración");
-		ubicacionEtiquetas.add(lblRemuneracin);
+		textFieldDescripcion = new JTextArea();
+		textFieldDescripcion.setLineWrap(true);
+		textFieldDescripcion.setWrapStyleWord(true);
+		textFieldDescripcion.setEditable(true);
+		scrollPane.setViewportView(textFieldDescripcion);
+		
+		JLabel lblFechaAlta = new JLabel("Fecha de Alta");
+		GridBagConstraints gbc_lblFechaAlta = new GridBagConstraints();
+		gbc_lblFechaAlta.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaAlta.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaAlta.gridx = 0;
+		gbc_lblFechaAlta.gridy = 10;
+		panelDatos.add(lblFechaAlta, gbc_lblFechaAlta);
 
-		textFieldRemuneracion = new JTextField();
-		ubicacionTexto.add(textFieldRemuneracion);
-
-		lblCiudad = new JLabel("  Ciudad");
-		ubicacionEtiquetas.add(lblCiudad);
-
-		textFieldCiudad = new JTextField();
-		ubicacionTexto.add(textFieldCiudad);
-
-		lblDepartamento = new JLabel("  Departamento");
-		ubicacionEtiquetas.add(lblDepartamento);
-
-		textFieldDepartamento = new JTextField();
-		ubicacionTexto.add(textFieldDepartamento);
-
-		lblFechaDeAlta = new JLabel("  Fecha de Alta");
-		ubicacionEtiquetas.add(lblFechaDeAlta);
-
-		dateChooser = new JDateChooser();
-		ubicacionTexto.add(dateChooser);
-
-		/*
-		 * JLabel lblFotoOferta = new JLabel("  Imagen oferta");
-		 * ubicacionEtiquetas.add(lblFotoOferta);
-		 * 
-		 * textPane = new JTextPane(); ubicacionTexto.add(textPane);
-		 */
-
-		JLabel lblKeyword = new JLabel("  Keyword");
-		ubicacionEtiquetas.add(lblKeyword);
-
-		// JList<String> listaKeyword = new JList<>();
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportView(listaKeyword);
-		ubicacionTexto.add(scrollPane);
+		this.dateChooser = new JDateChooser();
+		GridBagConstraints gbc_FechaAlta = new GridBagConstraints();
+		gbc_FechaAlta.insets = new Insets(0, 0, 5, 0);
+		gbc_FechaAlta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_FechaAlta.gridx = 1;
+		gbc_FechaAlta.gridy = 10;
+		panelDatos.add(dateChooser, gbc_FechaAlta);
+		
+		lblNewLabel = new JLabel("Keywords");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 11;
+		panelDatos.add(lblNewLabel, gbc_lblNewLabel);
+		
+		
+		listaKeyword = new JList<>();
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.insets = new Insets(0, 0, 5, 0);
+		gbc_list.fill = GridBagConstraints.BOTH;
+		gbc_list.gridx = 1;
+		gbc_list.gridy = 11;
+		
+		
+		JScrollPane scrollPaneList = new JScrollPane(); 
+		scrollPaneList.setViewportView(listaKeyword);
 		listaKeyword.setVisibleRowCount(4);
+		panelDatos.add(scrollPaneList, gbc_list);
+		
+		lblNewLabel_1 = new JLabel("Forma de pago");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 15;
+		panelDatos.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		comboBoxFormaDePago = new JComboBox();
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 15;
+		panelDatos.add(comboBoxFormaDePago, gbc_comboBox);
+		
+		this.comboBoxFormaDePago.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarDatosTipoPublicacion(e);
+
+			}
+		});
+		
+		lblTiposPublicaciones = new JLabel("Tipos de publicaciones:");
+		GridBagConstraints gbc_lblOfertas = new GridBagConstraints();
+		gbc_lblOfertas.anchor = GridBagConstraints.EAST;
+		gbc_lblOfertas.insets = new Insets(0, 0, 5, 5);
+		gbc_lblOfertas.gridx = 0;
+		gbc_lblOfertas.gridy = 17;
+		panelDatos.add(lblTiposPublicaciones, gbc_lblOfertas);
+		lblTiposPublicaciones.setVisible(false);
+
+		this.comboBoxSeleccionTiposPublicaciones = new JComboBox<String>();
+		GridBagConstraints gbc_comboBoxSeleccionOferta = new GridBagConstraints();
+		gbc_comboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxSeleccionOferta.gridx = 1;
+		gbc_comboBoxSeleccionOferta.gridy = 17;
+		panelDatos.add(this.comboBoxSeleccionTiposPublicaciones, gbc_comboBoxSeleccionOferta);
+		comboBoxSeleccionTiposPublicaciones.setVisible(false);
+		
+		lblSeleccionPaquete = new JLabel("Seleccionar Paquete:");
+		GridBagConstraints gbc_lblSeleccionPAquete = new GridBagConstraints();
+		gbc_lblSeleccionPAquete.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSeleccionPAquete.anchor = GridBagConstraints.EAST;
+		gbc_lblSeleccionPAquete.gridx = 0;
+		gbc_lblSeleccionPAquete.gridy = 16;
+		panelDatos.add(lblSeleccionPaquete, gbc_lblSeleccionPAquete);
+		lblSeleccionPaquete.setVisible(false);
+
+		this.comboBoxSeleccionPaquete = new JComboBox<String>();
+		this.comboBoxSeleccionPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarTipoPublicacionEnPaquete(e);
+
+			}
+		});
+
+		GridBagConstraints gbc_comboBoxSeleccionPaquete = new GridBagConstraints();
+		gbc_comboBoxSeleccionPaquete.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBoxSeleccionPaquete.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxSeleccionPaquete.gridx = 1;
+		gbc_comboBoxSeleccionPaquete.gridy = 16;
+		panelDatos.add(this.comboBoxSeleccionPaquete, gbc_comboBoxSeleccionPaquete);
+		this.comboBoxSeleccionPaquete.setVisible(false);
+		
+		JLabel imagenOferta = new JLabel("Imagen Oferta:");
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 0;
+		gbc_lblNewLabel_2.gridy = 13;
+		panelDatos.add(imagenOferta, gbc_lblNewLabel_2);
 
 		selectImageButton = new JButton("Seleccionar Imagen");
-		imageLabel = new JLabel();
+		JLabel imageLabel = new JLabel();
 
-		JLabel lblFotoOferta = new JLabel("  Imagen oferta");
-		ubicacionEtiquetas.add(lblFotoOferta);
-		ubicacionTexto.add(selectImageButton);
+		gbc_textField = new GridBagConstraints();
+		gbc_textField.anchor = GridBagConstraints.WEST;
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 13;
+		panelDatos.add(selectImageButton, gbc_textField);
 
 		selectImageButton.addActionListener(new ActionListener() {
 			@Override
@@ -225,63 +451,117 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		});
 
 		textPane = new JTextPane();
-		ubicacionTexto.add(textPane);
-
-		btnConfirmar = new JButton("Confirmar");
-		ubicacionBotones.add(btnConfirmar);
-
-		btnCancelar = new JButton("Cancelar");
-		ubicacionBotones.add(btnCancelar);
-
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarFormulario();
-				setVisible(false);
-			}
-		});
-
-		btnConfirmar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				cmdRegistroOfertaLaboralActionPerformed(arg0);
-			}
-		});
+		GridBagConstraints gbc_textPane = new GridBagConstraints();
+		gbc_textPane.insets = new Insets(0, 0, 5, 0);
+		gbc_textPane.fill = GridBagConstraints.BOTH;
+		gbc_textPane.gridx = 1;
+		gbc_textPane.gridy = 14;
+		panelDatos.add(textPane, gbc_textPane);
+		textPane.setEditable(false);
+		
+		
 
 	}
 
 	@SuppressWarnings("unchecked")
 	public void cargarEmpresas() {
+
+		ArrayList<String> listaEmpresas = this.controladorUsuario.listarEmpresas();
+		String[] arrayEmpresas;
+		arrayEmpresas = listaEmpresas.toArray(new String[0]);
+		Arrays.sort(arrayEmpresas);
 		DefaultComboBoxModel<String> model;
-		String[] empresas = (controlUsu.listarEmpresas()).toArray(new String[0]);
-		model = new DefaultComboBoxModel<String>(empresas);
-		comboBoxEmpresa.setModel(model);
+		model = new DefaultComboBoxModel<String>(arrayEmpresas);
+		this.comboBoxEmpresa.setModel(model);
+
 	}
 
-	@SuppressWarnings("unchecked")
-	public void cargarTipoPublicaciones() {
-		DefaultComboBoxModel<String> model;
-		String[] tiposPublicaciones = (controlOferta.listarTipoDePublicaciones()).toArray(new String[0]);
-		model = new DefaultComboBoxModel<String>(tiposPublicaciones);
-		comboBoxTpoPublicacion.setModel(model);
-	}
+	
 
 	public void cargarKeywords() {
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		listaKeyword.setModel(listModel);
 
 		// Recorrer el contenido del ArrayList
-		for (int i = 0; i < controlOferta.listarKeywords().size(); i++) {
+		for (int i = 0; i < controladorOfertaLaboral.listarKeywords().size(); i++) {
 			// Añadir cada elemento del ArrayList en el modelo de la lista
-			listModel.addElement(controlOferta.listarKeywords().get(i));
+			listModel.addElement(controladorOfertaLaboral.listarKeywords().get(i));
 		}
+	}
+	
+	public void cargarComboBoxFormaDePago() {
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
+		model.addElement("Seleccione:");
+		model.addElement("General");
+		model.addElement("Por paquete");
+		comboBoxFormaDePago.setModel(model);
+	}
+	
+	public void cargarDatosTipoPublicacion(ActionEvent e)  {
+		
+		
+		try {
+			DefaultComboBoxModel<String> modelPublicaciones;
+			DefaultComboBoxModel<String> modelPaquetes;
+			if (this.comboBoxFormaDePago.getSelectedItem().equals("General")) {
+				lblTiposPublicaciones.setVisible(true);
+				comboBoxSeleccionTiposPublicaciones.setVisible(true);
+				this.comboBoxSeleccionPaquete.setVisible(false);
+				lblSeleccionPaquete.setVisible(false);
+				ArrayList<String> listaTipoDePublicaciones = this.controladorOfertaLaboral.listarTipoDePublicaciones();
+				String [] arrayTiposPublicaciones = listaTipoDePublicaciones.toArray(new String[0]);
+				Arrays.sort(arrayTiposPublicaciones);
+				modelPublicaciones = new DefaultComboBoxModel<String>(arrayTiposPublicaciones);
+				this.comboBoxSeleccionTiposPublicaciones.setModel(modelPublicaciones);
+			}
+			if (this.comboBoxFormaDePago.getSelectedItem().equals("Por paquete")) {
+				String nicknameEmpresa = "";
+				if (this.comboBoxEmpresa.getSelectedIndex() != -1) {
+					nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+					lblTiposPublicaciones.setVisible(true);
+					comboBoxSeleccionTiposPublicaciones.setVisible(true);
+					this.comboBoxSeleccionPaquete.setVisible(true);
+					lblSeleccionPaquete.setVisible(true);
+					
+					
+					ArrayList<DTPaquetePublicacion> dtPaquetesComprados = this.controladorUsuario.obtenerDTPaquetesDeEmpresa(nicknameEmpresa);
+					ArrayList<String> nombrePaquetesComprados = new ArrayList<String>();
+					for (DTPaquetePublicacion dtPaquete : dtPaquetesComprados) {
+						nombrePaquetesComprados.add(dtPaquete.getNombre());
+					}
+					String [] arrayPaquetes = nombrePaquetesComprados.toArray(new String[0]);
+					if (arrayPaquetes.length == 0) {
+						this.comboBoxSeleccionTiposPublicaciones.removeAllItems();
+						lblTiposPublicaciones.setVisible(false);
+						comboBoxSeleccionTiposPublicaciones.setVisible(false);
+						this.comboBoxSeleccionPaquete.setVisible(false);
+						lblSeleccionPaquete.setVisible(false);
+						JOptionPane.showMessageDialog(this, "La empresa no tiene ningún paquete comprado", "Registrar Oferta Laboral",
+								JOptionPane.ERROR_MESSAGE);
+					}
+					Arrays.sort(arrayPaquetes);
+					modelPaquetes = new DefaultComboBoxModel<String>(arrayPaquetes);
+					this.comboBoxSeleccionPaquete.setModel(modelPaquetes);
+				} else {
+					JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa", "Registrar Oferta Laboral",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}			
+		} catch (UsuarioNoExisteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+		
 	}
 
 	public void obtenerImagen(File imagenPerfil) {
 		try {
 			BufferedImage originalImage = ImageIO.read(imagenPerfil);
-			int newWidth = 50; // Ancho deseado
-			int newHeight = 50; // Alto deseado
+			int newWidth = 100; // Ancho deseado
+			int newHeight = 100; // Alto deseado
 			Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-			fotoPerfilUsuario = originalImage;
+			fotoOferta = originalImage;
 			this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
 			this.textPane.setText("");
 			ImageIcon icono = new ImageIcon(scaledImage);
@@ -295,6 +575,25 @@ public class AltaOfertaLaboral extends JInternalFrame {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	public void cargarTipoPublicacionEnPaquete(ActionEvent e) {
+
+		try {
+			String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
+			ArrayList<String> listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
+					.listarTipoPublicacionDePaquete(nombrePaquete);
+
+			String[] arrayTiposPublicacionesPaquete = listaTipoDePublicacionesDePaquete.toArray(new String[0]);
+			Arrays.sort(arrayTiposPublicacionesPaquete);
+			DefaultComboBoxModel<String> model;
+			model = new DefaultComboBoxModel<String>(arrayTiposPublicacionesPaquete);
+			this.comboBoxSeleccionTiposPublicaciones.setModel(model);
+		} catch (PaquetePublicacionNoExisteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+	}
 
 	protected void cmdRegistroOfertaLaboralActionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -305,17 +604,13 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		String remuneracionOfertaLab = this.textFieldRemuneracion.getText();
 		String ciudadOfertaLab = this.textFieldCiudad.getText();
 		String departOfertaLab = this.textFieldDepartamento.getText();
-		String nomTipoPublic = "";
-		boolean noHayTipoPublic = true;
-		boolean noHayEmpresa = true;
-		if (this.comboBoxTpoPublicacion.getSelectedIndex() != -1) {
-			nomTipoPublic = this.comboBoxTpoPublicacion.getSelectedItem().toString();
-			noHayTipoPublic = false;
-		}
 		String nicknameEmpresa = "";
 		if (this.comboBoxEmpresa.getSelectedIndex() != -1) {
 			nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
-			noHayEmpresa = false;
+		}
+		String nomPaquete = null;
+		if (this.comboBoxSeleccionPaquete.getSelectedIndex() != -1) {
+			nomPaquete = this.comboBoxSeleccionPaquete.getSelectedItem().toString();
 		}
 
 		Date fechaAlta = this.dateChooser.getDate();
@@ -328,17 +623,17 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		}
 
 		if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab,
-				horaIniOfertaLab, horaFinOfertaLab, fechaAlta, nomTipoPublic, nicknameEmpresa, noHayTipoPublic,
-				noHayEmpresa)) {
+				horaIniOfertaLab, horaFinOfertaLab, fechaAlta, nicknameEmpresa
+				)) {
 			try {
 				if (this.textPane.getText() == "") {
-					fotoPerfilUsuario = null;
+					fotoOferta = null;
 				}
 				LocalDate fechaAltaOferta = this.dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault())
 						.toLocalDate();
-				controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab,
+				controladorOfertaLaboral.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab,
 						Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAltaOferta,
-						nomTipoPublic, nicknameEmpresa, keywordSeleccionadas, fotoPerfilUsuario, null);
+						this.comboBoxSeleccionTiposPublicaciones.getSelectedItem().toString(), nicknameEmpresa, keywordSeleccionadas, fotoOferta, nomPaquete);
 				// Muestro éxito de la operación
 				JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito",
 						"Registrar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
@@ -377,8 +672,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	// a otro campo.
 	private boolean checkFormulario(String nombreOfertaLab, String descripOfertaLab, String remuneracionOfertaLab,
 			String ciudadOfertaLab, String departOfertaLab, String horaIniOfertaLab, String horaFinOfertaLab,
-			Date fechaAlta, String nomTipoPublic, String nicknameEmpresa, boolean noHayEmpresa,
-			boolean noHayTipoPublic) {
+			Date fechaAlta, String nicknameEmpresa
+			 ) {
 
 		if (nombreOfertaLab.isEmpty() || descripOfertaLab.isEmpty() || remuneracionOfertaLab.isEmpty()
 				|| ciudadOfertaLab.isEmpty() || departOfertaLab.isEmpty() || horaIniOfertaLab.isEmpty()
@@ -387,27 +682,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
-		if (nomTipoPublic.equals("Seleccione:")) {
-			JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de publicacion", "Registrar Oferta Laboral",
+		if (this.comboBoxSeleccionTiposPublicaciones.getSelectedIndex() == -1) {
+			JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de publicación", "Registrar Oferta Laboral",
 					JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		if (nicknameEmpresa.equals("Seleccione:")) {
-			JOptionPane.showMessageDialog(this, "Debe seleccionar una Empresa", "Registrar Oferta Laboral",
-					JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		if (noHayTipoPublic) {
-			JOptionPane.showMessageDialog(this,
-					"No se puede registrar un Oferta Laboral sin estar asociada a un Tipo de Publicación",
-					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		if (noHayEmpresa) {
-			JOptionPane.showMessageDialog(this,
-					"No se puede registrar un Oferta Laboral sin estar asociada a una Empresa",
-					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-			return false;
 		}
 		if (fechaAlta == null) {
 			JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Registrar Oferta Laboral",
@@ -485,6 +762,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	// no aparezca al mostrarlas nuevamente.
 	private void limpiarFormulario() {
 		textFieldNombre.setText("");
+		this.paqueteSeleccionado = "";
 		textFieldDescripcion.setText("");
 		textFieldRemuneracion.setText("");
 		textFieldCiudad.setText("");
@@ -493,5 +771,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		textFieldHoraInicio.setText("");
 		textFieldHoraFin.setText("");
 		this.textPane.setText("");
+		lblTiposPublicaciones.setVisible(false);
+		comboBoxSeleccionTiposPublicaciones.setVisible(false);
+		this.comboBoxSeleccionPaquete.setVisible(false);
+		lblSeleccionPaquete.setVisible(false);
 	}
 }
