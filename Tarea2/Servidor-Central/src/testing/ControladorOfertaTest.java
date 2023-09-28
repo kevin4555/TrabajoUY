@@ -1,40 +1,33 @@
 package testing;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.isArray;
-
-import java.io.InterruptedIOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
-import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import junit.framework.Assert;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTPaquetePublicacion;
 import logica.classes.CantidadTotalTipoPublicacion;
-import logica.classes.Empresa;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
 import logica.classes.PaquetePublicacion;
-import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
 import logica.controllers.ControladorOferta;
 import logica.controllers.ControladorUsuario;
@@ -42,10 +35,16 @@ import logica.handlers.ManejadorOfertas;
 import logica.handlers.ManejadorPaquetes;
 import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ControladorOfertaTest {
-	/*private Date fechaDate;
-	private String fecha = "17/06/1999";
+	private Date fechaDateParse;
+	private Date fechaDateParseSecundaria;
+	private LocalDate fechaDate;
+	private LocalDate fechaDateSecundaria;
+	private String fecha = "24/08/2023";
+	private String fechaSecuandaria = "24/09/2023";
 	private ControladorOferta controladorOferta;
 	private ManejadorSettings manejadorSettings;
 	private ManejadorOfertas manejadorOfertas;
@@ -67,7 +66,11 @@ public class ControladorOfertaTest {
 		manejadorPaquetes.clean();
 
 		try {
-			this.fechaDate = dateFormat.parse(fecha);
+			this.fechaDateParseSecundaria = dateFormat.parse(fechaSecuandaria);
+			this.fechaDateParse = dateFormat.parse(fecha);
+			fechaDate = fechaDateParse.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			fechaDateSecundaria = fechaDateParseSecundaria.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
 		} catch (ParseException e) {
 			e.getMessage();
 		}
@@ -128,7 +131,7 @@ public class ControladorOfertaTest {
 		controladorOferta = new ControladorOferta();
 		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
 		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
-				"sitioWeb1");
+				"sitioWeb1", null, "nuevaContraseña");
 
 		ArrayList<String> listaKeyword = new ArrayList<String>();
 		listaKeyword.add("Keyword1");
@@ -138,11 +141,11 @@ public class ControladorOfertaTest {
 		controladorOferta.altaKeyword("Keyword2");
 
 		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
-				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword);
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
 
 		OfertaLaboral resultado = controladorOferta.obtenerOfertaLaboral("test");
 
-		ArrayList<Keyword> listaKeywords = resultado.getKw();
+		ArrayList<Keyword> listaKeywords = resultado.getKeywords();
 		ArrayList<String> listaCasteada = new ArrayList<String>();
 		for (Keyword unidad : listaKeywords) {
 			listaCasteada.add(unidad.getNombre());
@@ -175,7 +178,7 @@ public class ControladorOfertaTest {
 
 		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
 		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
-				"sitioWeb1");
+				"sitioWeb1", null, "nuevaContraseña");
 
 		ArrayList<String> listaKeyword = new ArrayList<String>();
 		listaKeyword.add("Keyword1");
@@ -185,7 +188,7 @@ public class ControladorOfertaTest {
 		controladorOferta.altaKeyword("Keyword2");
 
 		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
-				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword);
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
 
 		DTOfertaLaboral resultado = controladorOferta.obtenerDtOfertaLaboral("test");
 
@@ -225,9 +228,10 @@ public class ControladorOfertaTest {
 		ArrayList<CantidadTotalTipoPublicacion> arrayPrueba = new ArrayList<CantidadTotalTipoPublicacion>();
 		ArrayList<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
 		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
-				50f, arrayPruebaSegundo);
-		PaquetePublicacion paquetePrueba = new PaquetePublicacion("nombrePrueba", "descripcionPrueba", 20, 50f,
-				arrayPrueba);
+				50f, null, arrayPruebaSegundo, fechaDate);
+
+		PaquetePublicacion paquetePrueba = new PaquetePublicacion("nombrePrueba", "descripcionPrueba", 20, 50f, null,
+				arrayPrueba, fechaDate);
 		manejadorPaquetes.agregarPaquete(paquetePrueba);
 		manejadorPaquetes.agregarPaquete(paquetePruebaPrimero);
 		ArrayList<String> resultadoPaquete = controladorOferta.listarPaquetes();
@@ -253,7 +257,8 @@ public class ControladorOfertaTest {
 		DTCantidadTipoPublicacion nuevoDt = new DTCantidadTipoPublicacion("tipoPublicacionPrueba", 5);
 		ArrayList<DTCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DTCantidadTipoPublicacion>();
 		arrayDtCantidad.add(nuevoDt);
-		controladorOferta.registrarPaquete("paquetePrueba", "descripcionPrueba", 20, 50f, fechaDate, arrayDtCantidad);
+		controladorOferta.registrarPaquete("paquetePrueba", "descripcionPrueba", 20, 50f, null, fechaDate,
+				arrayDtCantidad);
 		ArrayList<String> nombrePaquete = controladorOferta.listarPaquetes();
 		Assert.assertEquals("paquetePrueba", nombrePaquete.get(0));
 
@@ -273,13 +278,15 @@ public class ControladorOfertaTest {
 		DTCantidadTipoPublicacion nuevoDt = new DTCantidadTipoPublicacion("tipoPublicacionPrueba", 5);
 		ArrayList<DTCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DTCantidadTipoPublicacion>();
 		arrayDtCantidad.add(nuevoDt);
-		controladorOferta.registrarPaquete("paquetePrueba", "descripcionPrueba", 20, 50f, fechaDate, arrayDtCantidad);
+		controladorOferta.registrarPaquete("paquetePrueba", "descripcionPrueba", 20, 50f, null, fechaDate,
+				arrayDtCantidad);
 		TipoPublicacion publicacionPruebaSegunda = new TipoPublicacion("tipoPublicacionPruebaSeguda",
 				"descripcionPrueba", "alta", 20, 50f, fechaDate);
 		manejadorSettings.addTipoPublicacion(publicacionPruebaSegunda);
 		controladorOferta.agregarTipoPublicacionAlPaquete(50, "tipoPublicacionPruebaSeguda", "paquetePrueba");
 		PaquetePublicacion encontrarPaquete = manejadorPaquetes.obtenerPaquete("paquetePrueba");
-		ArrayList<CantidadTotalTipoPublicacion> coleccionCantidadTipo = encontrarPaquete.getCantidadTipoPublicaciones();
+		ArrayList<CantidadTotalTipoPublicacion> coleccionCantidadTipo = encontrarPaquete
+				.obtenerCantidadTotalTipoPublicaciones();
 		boolean encontre = false;
 		String resultado = "";
 		for (int i = 0; (i < coleccionCantidadTipo.size()) && (!encontre); i++) {
@@ -305,7 +312,7 @@ public class ControladorOfertaTest {
 
 		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
 		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
-				"sitioWeb1");
+				"sitioWeb1", null, "nuevaContraseña");
 
 		ArrayList<String> listaKeyword = new ArrayList<String>();
 		listaKeyword.add("Keyword1");
@@ -315,7 +322,7 @@ public class ControladorOfertaTest {
 		controladorOferta.altaKeyword("Keyword2");
 
 		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
-				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword);
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
 
 		ArrayList<String> resultado = controladorOferta.obtenerOfertasEmpresa("nicknameEmpresa1");
 		Assert.assertEquals("test", resultado.get(0));
@@ -334,7 +341,7 @@ public class ControladorOfertaTest {
 		controladorUsuario = new ControladorUsuario();
 		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
 		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
-				"sitioWeb1");
+				"sitioWeb1", null, "nuevaContraseña");
 
 		ArrayList<String> listaKeyword = new ArrayList<String>();
 		listaKeyword.add("Keyword1");
@@ -344,10 +351,10 @@ public class ControladorOfertaTest {
 		controladorOferta.altaKeyword("Keyword2");
 
 		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
-				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword);
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
 
 		controladorUsuario.altaPostulante("nicknameTesting", "nombreTesting", "apellidoTesting", "email", fechaDate,
-				"Montevideo");
+				"Montevideo", null, "nuevaContraseña");
 
 		controladorUsuario.registrarPostulacion("cvReducidoString", "MotivacionTesting", fechaDate, "nicknameTesting",
 				"test");
@@ -371,6 +378,228 @@ public class ControladorOfertaTest {
 			e.printStackTrace();
 		}
 
-	}*/
+	}
 
+	@Test
+	public void testListarTipoPublicacionDePaquete() throws TipoPublicacionYaExisteException,
+			TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException, PaquetePublicacionYaExisteException {
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorPaquetes = ManejadorPaquetes.getInstance();
+		controladorOferta = new ControladorOferta();
+		ArrayList<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
+		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
+		TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
+		CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(2,
+				tipoEncontrado);
+		arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
+		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
+				50f, null, arrayPruebaSegundo, fechaDate);
+		manejadorPaquetes.agregarPaquete(paquetePruebaPrimero);
+		ArrayList<String> resultadoEsperado = new ArrayList<String>();
+		resultadoEsperado.add("tipoTesting");
+		ArrayList<String> resultadoEncontrado = controladorOferta.listarTipoPublicacionDePaquete("nombrePruebaPrimero");
+		Assert.assertEquals(resultadoEsperado, resultadoEncontrado);
+	}
+
+	@Test
+	public void testObtenerPaquetePublicacion() throws TipoPublicacionYaExisteException,
+			TipoPublicacionNoExisteException, PaquetePublicacionYaExisteException, PaquetePublicacionNoExisteException {
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorPaquetes = ManejadorPaquetes.getInstance();
+		controladorOferta = new ControladorOferta();
+
+		ArrayList<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
+		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
+		TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
+		CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(2,
+				tipoEncontrado);
+		arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
+		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
+				50f, null, arrayPruebaSegundo, fechaDate);
+		manejadorPaquetes.agregarPaquete(paquetePruebaPrimero);
+		PaquetePublicacion paqueteEncontrado = controladorOferta.obtenerPaquetePublicacion("nombrePruebaPrimero");
+		Assert.assertEquals(paquetePruebaPrimero, paqueteEncontrado);
+	}
+
+	@Test
+	public void testObtenerDtPaquetePublicacion() throws TipoPublicacionYaExisteException, UsuarioYaExisteException,
+			UsuarioEmailRepetidoException, PaquetePublicacionYaExisteException, TipoPublicacionNoExisteException,
+			KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException,
+			UsuarioNoExisteException, OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete, PaquetePublicacionNoExisteException {
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorPaquetes = ManejadorPaquetes.getInstance();
+		controladorOferta = new ControladorOferta();
+		controladorUsuario = new ControladorUsuario();
+
+		ArrayList<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
+		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
+		TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
+		CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(2,
+				tipoEncontrado);
+		arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
+		PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero", "descripcionPrueba", 20,
+				50f, null, arrayPruebaSegundo, fechaDate);
+		manejadorPaquetes.agregarPaquete(paquetePruebaPrimero);
+
+		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
+				"sitioWeb1", null, "nuevaContraseña");
+		controladorUsuario.comprarPaquete("nicknameEmpresa1", "nombrePruebaPrimero", fechaDateSecundaria);
+		
+		ArrayList<String> listaKeyword = new ArrayList<String>();
+		listaKeyword.add("Keyword1");
+		controladorOferta.altaKeyword("Keyword1");
+
+		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, "nombrePruebaPrimero");
+		DTPaquetePublicacion paquetePublicacionDt = controladorOferta.obtenerDtPaquetePublicacion("test");
+		ArrayList<DTCantidadTipoPublicacion> resultado = new ArrayList<DTCantidadTipoPublicacion>();
+		
+		for(CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion : arrayPruebaSegundo) {
+			DTCantidadTipoPublicacion dtCantidadTipoPublicacion = cantidadTotalTipoPublicacion.obtenerDTCantidadTipoPublicacion();
+			resultado.add(dtCantidadTipoPublicacion);
+		}
+		
+        Assert.assertEquals(paquetePublicacionDt.getCosto(), paquetePruebaPrimero.getCosto());
+        Assert.assertEquals(paquetePublicacionDt.getDescuento(), paquetePruebaPrimero.getDescuento());
+        Assert.assertEquals(paquetePublicacionDt.getPeriodoValidez(), 20);
+        Assert.assertEquals(paquetePublicacionDt.getDescripcion(), "descripcionPrueba");
+        Assert.assertEquals(paquetePublicacionDt.getNombre(), "nombrePruebaPrimero");
+        Assert.assertEquals(paquetePublicacionDt.getCantidadPublicacionesColeccion().get(0).getNombreTipoPublicacion(), resultado.get(0).getNombreTipoPublicacion());
+        Assert.assertEquals(paquetePublicacionDt.getCantidadPublicacionesColeccion().get(0).getCantidad(), resultado.get(0).getCantidad());
+        Assert.assertEquals(paquetePublicacionDt.getImagen(), null);
+	}
+	 
+	
+	@Test
+	public void testEstaCompradoPorPaqueteOferta () throws TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorPaquetes = ManejadorPaquetes.getInstance();
+		controladorOferta = new ControladorOferta();
+		controladorUsuario = new ControladorUsuario();
+
+		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
+		TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
+		CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(2,
+				tipoEncontrado);
+		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
+				"sitioWeb1", null, "nuevaContraseña");
+		ArrayList<String> listaKeyword = new ArrayList<String>();
+		listaKeyword.add("Keyword1");
+		controladorOferta.altaKeyword("Keyword1");
+		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
+		
+		Assert.assertEquals(controladorOferta.estaCompradoPorPaqueteOferta("test"), false);
+	}
+	
+	
+	@Test
+	public void testObtenerKeywordsDeOfertaLaboral() throws OfertaLaboralNoExisteException, TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException, UsuarioNoExisteException {
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorPaquetes = ManejadorPaquetes.getInstance();
+		controladorOferta = new ControladorOferta();
+		controladorUsuario = new ControladorUsuario();
+
+		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
+		TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
+		CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(2,
+				tipoEncontrado);
+		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
+				"sitioWeb1", null, "nuevaContraseña");
+		ArrayList<String> listaKeyword = new ArrayList<String>();
+		listaKeyword.add("Keyword1");
+		controladorOferta.altaKeyword("Keyword1");
+		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
+		
+		Assert.assertEquals(controladorOferta.obtenerKeywordsDeOfertaLaboral("test").get(0), "Keyword1");
+	}
+	
+	
+	
+	@Test
+	public void testNoEstaPostualdo() throws TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorPaquetes = ManejadorPaquetes.getInstance();
+		controladorOferta = new ControladorOferta();
+		controladorUsuario = new ControladorUsuario();
+
+		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
+		TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
+		CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(2,
+				tipoEncontrado);
+		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
+				"sitioWeb1", null, "nuevaContraseña");
+		ArrayList<String> listaKeyword = new ArrayList<String>();
+		listaKeyword.add("Keyword1");
+		controladorOferta.altaKeyword("Keyword1");
+		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
+		
+		controladorUsuario.altaPostulante("nicknameTesting", "nombreTesting", "apellidoTesting", "email", fechaDate,
+				"Montevideo", null, "nuevaContraseña");
+		
+		Assert.assertEquals(controladorOferta.estaPostulado("nicknameTesting", "test"), false);
+	}
+	
+	@Test
+	public void testSiEstaPostualdo() throws TipoPublicacionYaExisteException, TipoPublicacionNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorPaquetes = ManejadorPaquetes.getInstance();
+		controladorOferta = new ControladorOferta();
+		controladorUsuario = new ControladorUsuario();
+
+		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
+		TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
+		CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(2,
+				tipoEncontrado);
+		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
+				"sitioWeb1", null, "nuevaContraseña");
+		ArrayList<String> listaKeyword = new ArrayList<String>();
+		listaKeyword.add("Keyword1");
+		controladorOferta.altaKeyword("Keyword1");
+		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
+		
+		controladorUsuario.altaPostulante("nicknameTesting", "nombreTesting", "apellidoTesting", "email", fechaDate,
+				"Montevideo", null, "nuevaContraseña");
+		
+		controladorUsuario.registrarPostulacion("cvReducido", "motivacion", fechaDate, "nicknameTesting", "test");
+		
+		Assert.assertEquals(controladorOferta.estaPostulado("nicknameTesting", "test"), true);
+	}
+	
+
+	@Test
+	public void testObtenerDTOfertasPorKeyword() throws TipoPublicacionYaExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException, TipoPublicacionNoExisteException, KeywordYaExisteException, OfertaLaboralYaExisteException, KeywordNoExisteException, UsuarioNoExisteException {
+		
+		manejadorOfertas = ManejadorOfertas.getInstance();
+		manejadorPaquetes = ManejadorPaquetes.getInstance();
+		controladorOferta = new ControladorOferta();
+		controladorUsuario = new ControladorUsuario();
+
+		controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f, fechaDate);
+		TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
+		CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(2,
+				tipoEncontrado);
+		controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1",
+				"sitioWeb1", null, "nuevaContraseña");
+		ArrayList<String> listaKeyword = new ArrayList<String>();
+		listaKeyword.add("Keyword1");
+		controladorOferta.altaKeyword("Keyword1");
+		controladorOferta.altaOfertaLaboral("test", "descipcionTest", "09:00", "15:00", 500f, "Montevideo",
+				"Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword, null, null);
+		
+		ArrayList<DTOfertaLaboral> resultadoOfertaLaboralDT = controladorOferta.obtenerDTOfertasPorKeyword("Keyword1");
+		
+		Assert.assertEquals(resultadoOfertaLaboralDT.get(0).getNombre(), "test");
+		Assert.assertEquals(resultadoOfertaLaboralDT.get(0).getRemuneracion(), 500f);
+		
+		
+	}
+	
+	
+	
+
+	
 }

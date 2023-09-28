@@ -1,22 +1,5 @@
 package testing;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import excepciones.KeywordNoExisteException;
-import excepciones.KeywordYaExisteException;
-import excepciones.TipoPublicacionNoExisteException;
-import excepciones.TipoPublicacionYaExisteException;
-import junit.framework.Assert;
-import logica.classes.Keyword;
-import logica.classes.TipoPublicacion;
-import logica.handlers.ManejadorSettings;
-
 public class ManejadorSettingsTest 
 {
 	/*private Date fechaDate;

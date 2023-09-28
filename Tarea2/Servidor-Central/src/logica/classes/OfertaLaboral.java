@@ -1,6 +1,5 @@
 package logica.classes;
 
-import java.util.Date;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;

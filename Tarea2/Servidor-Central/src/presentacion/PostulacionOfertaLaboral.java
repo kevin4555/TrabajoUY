@@ -1,38 +1,33 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import logica.DataTypes.DTOfertaLaboral;
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
-import javax.swing.DefaultComboBoxModel;
+import com.toedter.calendar.JDateChooser;
+import excepciones.OfertaLaboralNoExisteException;
+import excepciones.UsuarioNoExisteException;
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
-
-import javax.swing.SwingConstants;
-
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioNoExisteException;
-
-import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import com.toedter.calendar.JDateChooser;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import logica.DataTypes.DTOfertaLaboral;
+import logica.interfaces.IControladorOferta;
+import logica.interfaces.IControladorUsuario;
 
 @SuppressWarnings("serial")
 public class PostulacionOfertaLaboral extends JInternalFrame {
@@ -405,7 +400,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 			(this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemuneracion())));
 			(this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
 			(this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
-		//	(this.textFieldFechaAlta).setText(dateToString(dtOfertaLaboral.getFechaAlta()));
+		    (this.textFieldFechaAlta).setText(dtOfertaLaboral.getFechaAlta().toString());
 		} catch (OfertaLaboralNoExisteException e1) {
 
     	}
@@ -427,7 +422,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 				if(!controlOfertaLab.estaPostulado(this.postulante, this.nomOfertaLaboral))
 				{
 					nombrePostulante = (controlUsuarioLab.obtenerPostulante(this.postulante)).getNickname();
-					controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, this.fechaPostulacion, nombrePostulante , this.nomOfertaLaboral);
+					LocalDate fechaPos = this.dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					controlUsuarioLab.registrarPostulacion(this.cvReducido, this.motivacion, fechaPos, nombrePostulante , this.nomOfertaLaboral);
 					JOptionPane.showMessageDialog(this, "La postulacion fue hecha con exito", "Registrar Usuario", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else

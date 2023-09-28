@@ -1,33 +1,5 @@
 package testing;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import excepciones.DtOfertaNoExisteException;
-import excepciones.OfertaLaboralYaExisteException;
-import junit.framework.Assert;
-import logica.DataTypes.DTCantidadTipoPublicacion;
-import logica.DataTypes.DTEmpresa;
-import logica.DataTypes.DTOfertaLaboral;
-import logica.DataTypes.DTPaquetePublicacion;
-import logica.DataTypes.DTPostulacion;
-import logica.DataTypes.DTPostulante;
-import logica.DataTypes.DTTipoPublicacion;
-import logica.classes.CantidadTipoPublicacionRestante;
-import logica.classes.Empresa;
-import logica.classes.OfertaLaboral;
-import logica.classes.PaquetePublicacion;
-import logica.classes.Postulacion;
-import logica.classes.Postulante;
-import logica.classes.TipoPublicacion;
-import logica.handlers.ManejadorOfertas;
-
 public class DataTypesTest {
 	
 	/*private Date fechaDate;

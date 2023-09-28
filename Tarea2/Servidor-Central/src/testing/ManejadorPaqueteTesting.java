@@ -1,26 +1,5 @@
 package testing;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import excepciones.PaquetePublicacionNoExisteException;
-import excepciones.PaquetePublicacionYaExisteException;
-import junit.framework.Assert;
-import logica.classes.CantidadTotalTipoPublicacion;
-import logica.classes.Empresa;
-import logica.classes.PaquetePublicacion;
-import logica.classes.Postulante;
-import logica.classes.TipoPublicacion;
-import logica.handlers.ManejadorPaquetes;
-import logica.handlers.ManejadorUsuario;
-
 public class ManejadorPaqueteTesting {
 
 	/*private static ManejadorPaquetes manejadorPaquete;

@@ -1,51 +1,43 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
-
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JFileChooser;
-import logica.interfaces.IControladorUsuario;
-
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-
 import com.toedter.calendar.JDateChooser;
-
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioYaExisteException;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-
-import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.util.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
-import javax.swing.ImageIcon;
-import javax.imageio.ImageIO;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
-import java.util.Base64;
+import java.util.Date;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
+import logica.interfaces.IControladorUsuario;
 
 @SuppressWarnings("serial")
 public class CrearUsuario extends JInternalFrame {

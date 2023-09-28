@@ -1,34 +1,5 @@
 package testing;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import excepciones.UsuarioEmailRepetidoException;
-import excepciones.UsuarioNoExisteException;
-import excepciones.UsuarioYaExisteException;
-import junit.framework.Assert;
-import logica.classes.Empresa;
-import logica.classes.Postulante;
-import logica.classes.Usuario;
-import logica.controllers.Fabrica;
-import logica.handlers.ManejadorOfertas;
-import logica.handlers.ManejadorSettings;
-import logica.handlers.ManejadorUsuario;
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 public class ManejadorUsuarioTesting
 {
 	/*private static Date fechaDate1;

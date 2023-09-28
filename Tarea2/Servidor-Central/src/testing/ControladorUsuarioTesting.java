@@ -1,14 +1,5 @@
 package testing;
 
-import java.awt.image.BufferedImage;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -22,6 +13,9 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioNoExistePostulacion;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import junit.framework.Assert;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
@@ -39,6 +33,9 @@ import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class ControladorUsuarioTesting {
 

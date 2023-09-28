@@ -3,7 +3,6 @@ package logica.classes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTPaquetePublicacion;
 
@@ -79,7 +78,7 @@ public class PaquetePublicacion {
 
 
 	public float getCosto() {
-		return costo;
+		return this.costo;
 	}
 
 	

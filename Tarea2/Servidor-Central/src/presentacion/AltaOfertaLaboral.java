@@ -1,46 +1,42 @@
 package presentacion;
 
+import com.toedter.calendar.JDateChooser;
+import excepciones.KeywordNoExisteException;
+import excepciones.OfertaLaboralYaExisteException;
+import excepciones.TipoPublicacionNoExisteException;
+import excepciones.UsuarioNoExisteException;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
-
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
-
-import javax.swing.JTextField;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
-
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JFrame;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.awt.event.ActionEvent;
-import com.toedter.calendar.JDateChooser;
-
-import excepciones.KeywordNoExisteException;
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.OfertaLaboralYaExisteException;
-import excepciones.TipoPublicacionNoExisteException;
-import excepciones.TipoPublicacionYaExisteException;
-import excepciones.UsuarioNoExisteException;
 
 @SuppressWarnings("serial")
 public class AltaOfertaLaboral extends JInternalFrame {
@@ -87,6 +83,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private BufferedImage fotoPerfilUsuario = null;
+	private JTextPane textPane;
+	private JButton selectImageButton;
+	private JLabel imageLabel;
 
 	/**
 	 * Create the frame.
@@ -103,7 +103,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		setMaximizable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Registrar Oferta Laboral");
-		setBounds(30, 30, 600, 502);
+		setBounds(30, 30, 443, 572);
 
 		ubicacionBotones = new JPanel();
 		ubicacionBotones.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -120,11 +120,11 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
 		getContentPane().add(ubicacionEtiquetas, BorderLayout.WEST); // Establezco ubicacion de los botones al oeste del
 																		// Panel
-		ubicacionEtiquetas.setLayout(new GridLayout(11, 1, 10, 10));
+		ubicacionEtiquetas.setLayout(new GridLayout(13, 1, 10, 10));
 
 		getContentPane().add(ubicacionTexto, BorderLayout.CENTER); // Establezco ubicacion de los botones al centro del
 																	// Panel
-		ubicacionTexto.setLayout(new GridLayout(11, 1, 0, 5));
+		ubicacionTexto.setLayout(new GridLayout(13, 1, 0, 5));
 
 		lblEmpresa = new JLabel("  Empresa");
 		ubicacionEtiquetas.add(lblEmpresa);
@@ -186,6 +186,13 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		dateChooser = new JDateChooser();
 		ubicacionTexto.add(dateChooser);
 
+		/*
+		 * JLabel lblFotoOferta = new JLabel("  Imagen oferta");
+		 * ubicacionEtiquetas.add(lblFotoOferta);
+		 * 
+		 * textPane = new JTextPane(); ubicacionTexto.add(textPane);
+		 */
+
 		JLabel lblKeyword = new JLabel("  Keyword");
 		ubicacionEtiquetas.add(lblKeyword);
 
@@ -194,6 +201,31 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		scrollPane.setViewportView(listaKeyword);
 		ubicacionTexto.add(scrollPane);
 		listaKeyword.setVisibleRowCount(4);
+
+		selectImageButton = new JButton("Seleccionar Imagen");
+		imageLabel = new JLabel();
+
+		JLabel lblFotoOferta = new JLabel("  Imagen oferta");
+		ubicacionEtiquetas.add(lblFotoOferta);
+		ubicacionTexto.add(selectImageButton);
+
+		selectImageButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				int result = fileChooser.showOpenDialog(null);
+
+				if (result == JFileChooser.APPROVE_OPTION) {
+
+					File fotoPerfil = new File(fileChooser.getSelectedFile().getAbsolutePath());
+					obtenerImagen(fotoPerfil);
+
+				}
+			}
+		});
+
+		textPane = new JTextPane();
+		ubicacionTexto.add(textPane);
 
 		btnConfirmar = new JButton("Confirmar");
 		ubicacionBotones.add(btnConfirmar);
@@ -243,6 +275,27 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		}
 	}
 
+	public void obtenerImagen(File imagenPerfil) {
+		try {
+			BufferedImage originalImage = ImageIO.read(imagenPerfil);
+			int newWidth = 50; // Ancho deseado
+			int newHeight = 50; // Alto deseado
+			Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+			fotoPerfilUsuario = originalImage;
+			this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+			this.textPane.setText("");
+			ImageIcon icono = new ImageIcon(scaledImage);
+			this.textPane.insertIcon(icono);
+
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(this, "No se cargo la imagen", "Registrar Usuario",
+					JOptionPane.ERROR_MESSAGE);
+		} catch (java.lang.NullPointerException e2) {
+			JOptionPane.showMessageDialog(this, "Debe ingresar una imagen valida", "Registrar Usuario",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	protected void cmdRegistroOfertaLaboralActionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 
@@ -274,17 +327,18 @@ public class AltaOfertaLaboral extends JInternalFrame {
 			keywordSeleccionadas = (ArrayList<String>) this.listaKeyword.getSelectedValuesList();
 		}
 
-		/*if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab,
+		if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab,
 				horaIniOfertaLab, horaFinOfertaLab, fechaAlta, nomTipoPublic, nicknameEmpresa, noHayTipoPublic,
 				noHayEmpresa)) {
 			try {
+				if (this.textPane.getText() == "") {
+					fotoPerfilUsuario = null;
+				}
+				LocalDate fechaAltaOferta = this.dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
 				controlOferta.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab, horaFinOfertaLab,
-						Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAlta,
-						nomTipoPublic, nicknameEmpresa, keywordSeleccionadas);
-				controlUsu.obtenerEmpresa(nicknameEmpresa)
-						.agregarOferta(controlOferta.obtenerOfertaLaboral(nombreOfertaLab));
-				controlOferta.agregarKeywordEnOfertaLaboral(keywordSeleccionadas, nombreOfertaLab);
-				// falta asociar keywords.
+						Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab, fechaAltaOferta,
+						nomTipoPublic, nicknameEmpresa, keywordSeleccionadas, fotoPerfilUsuario, null);
 				// Muestro éxito de la operación
 				JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito",
 						"Registrar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
@@ -300,16 +354,16 @@ public class AltaOfertaLaboral extends JInternalFrame {
 				// no imprime nada
 			} catch (OfertaLaboralYaExisteException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			}  catch (NumberFormatException e) {
+			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
-			}  catch (KeywordNoExisteException e) {
+			} catch (KeywordNoExisteException e) {
 				// no imprime nada
 			} catch (java.lang.ClassCastException e) {
 				JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Trabajo.uy",
 						JOptionPane.ERROR_MESSAGE);
 
 			}
-		}*/
+		}
 
 	}
 
@@ -323,7 +377,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
 	// a otro campo.
 	private boolean checkFormulario(String nombreOfertaLab, String descripOfertaLab, String remuneracionOfertaLab,
 			String ciudadOfertaLab, String departOfertaLab, String horaIniOfertaLab, String horaFinOfertaLab,
-			Date fechaAlta, String nomTipoPublic, String nicknameEmpresa, boolean noHayEmpresa, boolean noHayTipoPublic) {
+			Date fechaAlta, String nomTipoPublic, String nicknameEmpresa, boolean noHayEmpresa,
+			boolean noHayTipoPublic) {
 
 		if (nombreOfertaLab.isEmpty() || descripOfertaLab.isEmpty() || remuneracionOfertaLab.isEmpty()
 				|| ciudadOfertaLab.isEmpty() || departOfertaLab.isEmpty() || horaIniOfertaLab.isEmpty()
@@ -343,18 +398,20 @@ public class AltaOfertaLaboral extends JInternalFrame {
 			return false;
 		}
 		if (noHayTipoPublic) {
-			JOptionPane.showMessageDialog(this, "No se puede registrar un Oferta Laboral sin estar asociada a un Tipo de Publicación", "Registrar Oferta Laboral",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this,
+					"No se puede registrar un Oferta Laboral sin estar asociada a un Tipo de Publicación",
+					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		if (noHayEmpresa) {
-			JOptionPane.showMessageDialog(this, "No se puede registrar un Oferta Laboral sin estar asociada a una Empresa", "Registrar Oferta Laboral",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this,
+					"No se puede registrar un Oferta Laboral sin estar asociada a una Empresa",
+					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		if (fechaAlta == null) {
-			JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
-					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Registrar Oferta Laboral",
+					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		if (chequeoHoraValida(horaIniOfertaLab)) {
@@ -367,10 +424,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
 					"Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
-		
-		/*char data[] = {'a', 'b', 'c'};
-	     String str = new String(data);*/
-		
+
+		/*
+		 * char data[] = {'a', 'b', 'c'}; String str = new String(data);
+		 */
 
 		try {
 			Float.parseFloat(remuneracionOfertaLab);
@@ -379,8 +436,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
-		
-		if(Float.parseFloat(remuneracionOfertaLab) <= 0) {
+
+		if (Float.parseFloat(remuneracionOfertaLab) <= 0) {
 			JOptionPane.showMessageDialog(this, "La remuneración debe ser mayor a cero", "Registrar Oferta Laboral",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
@@ -388,9 +445,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
 
 		return true;
 	}
-	
+
 	private boolean chequeoHoraValida(String horario) {
-		char[] horaChar =  horario.toCharArray();
+		char[] horaChar = horario.toCharArray();
 		if (horaChar.length != 5) {
 			return true;
 		}
@@ -401,7 +458,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 				if (i != 2) {
 					Integer.parseInt(String.valueOf(horaChar[i]));
 					if (i < 2) {
-						hora = hora + horaChar[i]; 
+						hora = hora + horaChar[i];
 					} else if (i > 2) {
 						minuto = minuto + horaChar[i];
 					}
@@ -416,7 +473,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
 				return true;
 			}
 			return false;
-			 
+
 		} catch (NumberFormatException e) {
 			return true;
 		}
@@ -435,5 +492,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
 		dateChooser.setDate(null);
 		textFieldHoraInicio.setText("");
 		textFieldHoraFin.setText("");
+		this.textPane.setText("");
 	}
 }
