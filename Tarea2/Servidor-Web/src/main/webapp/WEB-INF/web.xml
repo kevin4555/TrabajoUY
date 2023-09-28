@@ -31,16 +31,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>OfertasServlet</display-name>
-    <servlet-name>OfertasServlet</servlet-name>
-    <servlet-class>controllers.OfertasServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>OfertasServlet</servlet-name>
-    <url-pattern>/OfertasServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>OfertaServlet</display-name>
     <servlet-name>OfertaServlet</servlet-name>
     <servlet-class>controllers.OfertaServlet</servlet-class>

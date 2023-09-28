@@ -35,7 +35,7 @@ public class OfertaServlet extends HttpServlet {
     	try {
 			DTOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
 			request.setAttribute("oferta", oferta);
-			request.getRequestDispatcher("/WEB-INF/consulta/Oferta.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/consultas/Oferta.jsp").forward(request, response);
 			
 		} catch (OfertaLaboralNoExisteException e) {
 			// agregar pagina de error

@@ -25,7 +25,11 @@
 	<c:forEach var="oferta" items="${listaOfertasConfirmadas}">
 
 		<h2>Nombre Oferta</h2>
-		<a href="/oferta?nombreOferta=${oferta.nombre}">${oferta.nombre}</a>
+		<c:url var="ofertaUrl" value="/oferta">
+			<c:param name="nombreOferta" value="${oferta.nombre}" />
+		</c:url>
+
+		<a href="${ofertaUrl}">${oferta.nombre}</a>
 		<br>
 		<h3>Kewords</h3>
 		<c:forEach var="keyword" items="${oferta.keywords}">
@@ -39,6 +43,6 @@
 
 	</c:forEach>
 
-<a href="/oferta">a ver si anda</a>
+
 </body>
 </html>
