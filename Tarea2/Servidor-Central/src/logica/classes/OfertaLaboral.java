@@ -125,7 +125,16 @@ public class OfertaLaboral {
 	}
 	
 	public DTOfertaLaboral obtenerDTOfertaLaboral() {
-		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(),this.getDepartamento(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), this.obtenerDTPostulacion());
+		DTPaquetePublicacion paquete = null;
+		if(compraPaquete != null)
+			paquete = compraPaquete.obtenerDTPaquete();
+		
+		ArrayList<String> keywords = new ArrayList<String>();
+		for(Keyword keyword : listaKeywords) {
+			keywords.add(keyword.getNombre());
+		}
+		
+		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(),this.getDepartamento(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), this.obtenerDTPostulacion(), fechaResolucion, estado, imagen, paquete, keywords);
 		return dtOfertaLaboral;
 	}
 

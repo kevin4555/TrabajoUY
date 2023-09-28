@@ -1,8 +1,9 @@
 package logica.DataTypes;
 
+import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class DTOfertaLaboral {
 	private String nombre;
@@ -13,16 +14,17 @@ public class DTOfertaLaboral {
 	private String horarioFinal;
 	private Float remuneracion;
 	private LocalDate fechaAlta;
+	private LocalDate fechaResolucion;
 	private ArrayList<DTPostulacion> postulaciones;
 	private EstadoOferta estadoOferta;
-	private String imagen;
+	private BufferedImage imagen;
 	private DTPaquetePublicacion paqueteAsociado;
-	private ArrayList<String> Keywords;
+	private ArrayList<String> keywords;
 	
 	
 	
 	
-	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento, String horarioInicial, String horarioFinal, Float remuneracion, LocalDate fechaAlta, ArrayList<DTPostulacion> postulaciones)
+	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento, String horarioInicial, String horarioFinal, Float remuneracion, LocalDate fechaAlta, ArrayList<DTPostulacion> postulaciones, LocalDate fechaResolucion, EstadoOferta estado, BufferedImage imagen, DTPaquetePublicacion paquete, ArrayList<String> keywords)
 	{
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -32,7 +34,13 @@ public class DTOfertaLaboral {
 		this.horarioFinal = horarioFinal;
 		this.remuneracion = remuneracion;
 		this.fechaAlta = fechaAlta;
+		this.fechaResolucion = fechaResolucion;
 		this.postulaciones = postulaciones;
+		this.estadoOferta = estado;
+		this.imagen = imagen;
+		this.paqueteAsociado = paquete;
+		this.keywords = keywords;
+		
 	}
 	
 	public String getNombre() {
@@ -71,4 +79,26 @@ public class DTOfertaLaboral {
 	public String getHorarioFinal() {
 		return horarioFinal;
 	}
+
+	public ArrayList<String> getKeywords() {
+		return keywords;
+	}
+
+	public EstadoOferta getEstadoOferta() {
+		return estadoOferta;
+	}
+
+	public BufferedImage getImagen() {
+		return imagen;
+	}
+
+	public DTPaquetePublicacion getPaqueteAsociado() {
+		return paqueteAsociado;
+	}
+
+	public LocalDate getFechaResolucion() {
+		return fechaResolucion;
+	}
+	
+
 }
