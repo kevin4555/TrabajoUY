@@ -55,7 +55,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     private JDateChooser dateChooser;
     private String cvReducido;
 	private String motivacion;
-	private Date fechaPostulacion;
+	private LocalDate fechaPostulacion;
 	private JLabel lblOfertasLaborales;
 	private JComponent ubicacionDatosOferta;
 	private JComponent ubicacionEtiqueta;
@@ -67,6 +67,10 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
 	private JComponent ubicacionCentro;
 	private JComponent postulanteEIngreso;
 	private String nomOfertaLaboral;
+	private LocalDate fechaAlta;
+	{
+		
+	}
     /**
      * Create the frame.
      */
@@ -351,25 +355,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         });
     }
     
-    public String dateToString(Date date)
-    {
-    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    	return formatter.format(date);
-    }
-    
-    public Date stringToDate(String Fecha)
-    {
-    	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	try {
-    		Date fechaParseada;
-    		fechaParseada = (Date) inputFormat.parse(Fecha);
-    		return fechaParseada;
-    	}catch(ParseException e)
-    	{
-    		return null;
-    	}
-    }
-    
     public void cargarEmpresasPostulacion()
     {
     	String[] empresas;
@@ -399,7 +384,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     	DTOfertaLaboral dtOfertaLaboral;
 	    try {
 			dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(this.nomOfertaLaboral);
-			
+			this.fechaAlta = dtOfertaLaboral.getFechaAlta();
 			(this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
 			(this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());	   
 			(this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicio());
@@ -460,13 +445,13 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     {
     	this.cvReducido = this.textFieldCVReducido.getText();
     	this.motivacion = this.textFieldMotivacion.getText();
-    	this.fechaPostulacion = this.dateChooser.getDate();
+    	this.fechaPostulacion = this.dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		if(cvReducido.isEmpty() || motivacion.isEmpty())
 		    {
 		    	JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos.", "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
 		        return false;
 		    }
-		    else if(this.fechaPostulacion == null)
+		    else if((this.fechaPostulacion == null)||(this.fechaPostulacion.isBefore(fechaAlta)))
 		    {
 		    	JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha válida", "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
 				return false;
