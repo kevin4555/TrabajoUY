@@ -119,4 +119,24 @@
     <servlet-name>ConsultaUsuariosServlet</servlet-name>
     <url-pattern>/ConsultaUsuariosServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AltaUsuario</display-name>
+    <servlet-name>AltaUsuario</servlet-name>
+    <servlet-class>controllers.AltaUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AltaUsuario</servlet-name>
+    <url-pattern>/AltaUsuario</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AltaOfertaServlet</display-name>
+    <servlet-name>AltaOfertaServlet</servlet-name>
+    <servlet-class>controllers.AltaOfertaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AltaOfertaServlet</servlet-name>
+    <url-pattern>/AltaOfertaServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
