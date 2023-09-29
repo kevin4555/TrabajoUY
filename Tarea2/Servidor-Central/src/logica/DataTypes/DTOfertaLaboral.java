@@ -20,11 +20,12 @@ public class DTOfertaLaboral {
 	private BufferedImage imagen;
 	private DTPaquetePublicacion paqueteAsociado;
 	private ArrayList<String> keywords;
+	private Boolean estaVencida;
 	
 	
 	
 	
-	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento, String horarioInicial, String horarioFinal, Float remuneracion, LocalDate fechaAlta, ArrayList<DTPostulacion> postulaciones, LocalDate fechaResolucion, EstadoOferta estado, BufferedImage imagen, DTPaquetePublicacion paquete, ArrayList<String> keywords)
+	public DTOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento, String horarioInicial, String horarioFinal, Float remuneracion, LocalDate fechaAlta, ArrayList<DTPostulacion> postulaciones, LocalDate fechaResolucion, EstadoOferta estado, BufferedImage imagen, DTPaquetePublicacion paquete, ArrayList<String> keywords, Boolean estaVencida)
 	{
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -40,6 +41,7 @@ public class DTOfertaLaboral {
 		this.imagen = imagen;
 		this.paqueteAsociado = paquete;
 		this.keywords = keywords;
+		this.estaVencida = estaVencida;
 		
 	}
 	
@@ -98,6 +100,10 @@ public class DTOfertaLaboral {
 
 	public LocalDate getFechaResolucion() {
 		return fechaResolucion;
+	}
+
+	public Boolean getEstaVencida() {
+		return estaVencida;
 	}
 	
 

@@ -132,8 +132,12 @@ public class OfertaLaboral {
 		for(Keyword keyword : listaKeywords) {
 			keywords.add(keyword.getNombre());
 		}
+		Boolean estaVencida = null;
+		if (estado == EstadoOferta.CONFIRMADA) {
+			estaVencida = this.estaVencida();
+		}
 		
-		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(),this.getDepartamento(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), this.obtenerDTPostulacion(), fechaResolucion, estado, imagen, paquete, keywords);
+		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(),this.getDepartamento(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), this.obtenerDTPostulacion(), fechaResolucion, estado, imagen, paquete, keywords, estaVencida);
 		return dtOfertaLaboral;
 	}
 
@@ -187,5 +191,11 @@ public class OfertaLaboral {
 	
 	public DTPaquetePublicacion obtenerDTPaquete() {
 		return compraPaquete.obtenerDTPaquete();
+	}
+	
+	public Boolean estaVencida() {
+		LocalDate fechaActual = LocalDate.now();
+		LocalDate fechaVencimiento = LocalDate.of(fechaResolucion.getYear(), fechaResolucion.getMonthValue(), fechaResolucion.getDayOfMonth()).plusDays(tipoPublicacion.getDuracionDia());
+		return fechaActual.isAfter(fechaVencimiento);
 	}
 }
