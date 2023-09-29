@@ -111,6 +111,10 @@ public class DTOfertaLaboral {
 	public Boolean getEstaVencida() {
 		return estaVencida;
 	}
+
+	public String getNombreTipoPublicacion() {
+		return nombreTipoPublicacion;
+	}
 	
 
 }
