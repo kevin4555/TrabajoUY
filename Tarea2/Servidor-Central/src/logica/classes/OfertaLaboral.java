@@ -137,7 +137,11 @@ public class OfertaLaboral {
 			estaVencida = this.estaVencida();
 		}
 		
-		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), this.getCiudad(),this.getDepartamento(), this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), this.obtenerDTPostulacion(), fechaResolucion, estado, imagen, paquete, keywords, estaVencida);
+		DTOfertaLaboral dtOfertaLaboral = new DTOfertaLaboral(this.getNombre(), this.getDescripcion(), 
+				this.getCiudad(),this.getDepartamento(), this.getHorarioInicial(), 
+				this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), 
+				this.obtenerDTPostulacion(), fechaResolucion, estado, imagen, 
+				paquete, keywords, estaVencida, this.tipoPublicacion.getNombre());
 		return dtOfertaLaboral;
 	}
 

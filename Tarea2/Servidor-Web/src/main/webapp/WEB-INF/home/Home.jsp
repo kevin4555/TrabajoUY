@@ -40,7 +40,7 @@
 		${oferta.descripcion}<br>
 
 	</c:forEach>
-
-
+	<c:url var="loginUrl" value="/home/Login.jsp"></c:url>
+	<a href = "${loginUrl}" >login</a>
 </body>
 </html>
