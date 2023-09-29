@@ -133,7 +133,7 @@ public class OfertaLaboral {
 			keywords.add(keyword.getNombre());
 		}
 		Boolean estaVencida = null;
-		if (fechaResolucion != null) {
+		if (estado == EstadoOferta.CONFIRMADA) {
 			estaVencida = this.estaVencida();
 		}
 		
