@@ -139,4 +139,14 @@
     <servlet-name>AltaOfertaServlet</servlet-name>
     <url-pattern>/AltaOfertaServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarDatosServlet</display-name>
+    <servlet-name>ModificarDatosServlet</servlet-name>
+    <servlet-class>controllers.ModificarDatosServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarDatosServlet</servlet-name>
+    <url-pattern>/ModificarDatosServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
