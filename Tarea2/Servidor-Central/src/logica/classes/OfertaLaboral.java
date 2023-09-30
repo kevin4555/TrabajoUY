@@ -200,4 +200,10 @@ public class OfertaLaboral {
   public DtpaquetePublicacion obtenerDtpaquete() {
     return compraPaquete.obtenerDtpaquete();
   }
+
+  public Boolean estaVencida() {
+		LocalDate fechaActual = LocalDate.now();
+		LocalDate fechaVencimiento = LocalDate.of(fechaResolucion.getYear(), fechaResolucion.getMonthValue(), fechaResolucion.getDayOfMonth()).plusDays(tipoPublicacion.getDuracionDia());
+		return fechaActual.isAfter(fechaVencimiento);
+	}
 }

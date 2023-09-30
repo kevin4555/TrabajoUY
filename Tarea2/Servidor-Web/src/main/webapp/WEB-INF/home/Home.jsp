@@ -1,7 +1,6 @@
 <%@page import="logica.DataTypes.DTOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     
 <!DOCTYPE html>
@@ -37,11 +36,11 @@
 		</c:forEach>
 
 
-		<h2>Descripción</h2>
+		<h2>DescripciÃ³n</h2>
 		${oferta.descripcion}<br>
 
 	</c:forEach>
-
-
+	<c:url var="loginUrl" value="/home/Login.jsp"></c:url>
+	<a href = "${loginUrl}" >login</a>
 </body>
 </html>
