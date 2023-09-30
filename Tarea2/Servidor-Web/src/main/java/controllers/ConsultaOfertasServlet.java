@@ -5,10 +5,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTOfertaLaboral;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
+import logica.datatypes.DtofertaLaboral;
+import logica.interfaces.IcontroladorOferta;
+import logica.interfaces.IcontroladorUsuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,15 +32,15 @@ public class ConsultaOfertasServlet extends HttpServlet {
 
     
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    	IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
     	ArrayList<String> listaEmpresas = controladorUsuario.listarEmpresas();
     	request.setAttribute("listaEmpresas", listaEmpresas);
     	String nicknameEmpresa = request.getParameter("empresaSeleccionada");
     	String keyword = request.getParameter("keyword");
     	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
     		try {
-				ArrayList<DTOfertaLaboral> ofertas = controladorUsuario.obtenerDTOfertasConfirmadasDeEmpresa(nicknameEmpresa);
+				ArrayList<DtofertaLaboral> ofertas = controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
 				request.setAttribute("listaOfertas", ofertas);
 				request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
 			} catch (UsuarioNoExisteException e) {
@@ -49,7 +49,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
 			}
     	}
     	else if(keyword != null && keyword != "") {
-    		ArrayList<DTOfertaLaboral> ofertas = controladorOfertas.obtenerDTOfertasPorKeyword(keyword);
+    		ArrayList<DtofertaLaboral> ofertas = controladorOfertas.obtenerDtofertasPorKeyword(keyword);
     		request.setAttribute("listaOfertas", ofertas);
     		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
     	}

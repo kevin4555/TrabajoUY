@@ -1,80 +1,113 @@
 package logica.handlers;
 
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
-import logica.DataTypes.DTPaquetePublicacion;
+import java.util.ArrayList;
+import java.util.HashMap;
 import logica.classes.PaquetePublicacion;
+import logica.datatypes.DtpaquetePublicacion;
+
+/**
+ * Clase Manejador Paquetes .
+ */
 
 public class ManejadorPaquetes {
-	private static ManejadorPaquetes instancia = null;
-	private HashMap<String, PaquetePublicacion> colPaquetes;
-
-	private ManejadorPaquetes() {
-		this.colPaquetes = new HashMap<String, PaquetePublicacion>();
-	}
-
-	public static ManejadorPaquetes getInstance() {
-		if (instancia == null)
-			instancia = new ManejadorPaquetes();
-		return instancia;
-	}
-
-	public PaquetePublicacion obtenerPaquete(String nomPaquete) throws PaquetePublicacionNoExisteException {
-		if (colPaquetes.containsKey(nomPaquete)) {
-			return colPaquetes.get(nomPaquete);
-		} else {
-			throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + " no existe");
-		}
-	}
-
-
-	public ArrayList<String> listarPaquetes() {
-		ArrayList<String> listaPaquetes = new ArrayList<String>();
-		for (String key : colPaquetes.keySet()) {
-			listaPaquetes.add(key);
-		}
-		return listaPaquetes;
-	}
-
-	public void agregarPaquete(PaquetePublicacion paquete) throws PaquetePublicacionYaExisteException {
-		if (!colPaquetes.containsKey(paquete.getNombre())) {
-			colPaquetes.put(paquete.getNombre(), paquete);
-		} else {
-			throw new PaquetePublicacionYaExisteException("El paquete" + paquete.getNombre() + "ya existe");
-		}
-	}
-
-	public void eliminarPaquete(String nomPaquete) throws PaquetePublicacionNoExisteException {
-		if (colPaquetes.get(nomPaquete) != null) {
-			colPaquetes.remove(nomPaquete);
-		} else {
-			throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + "no existe");
-		}
-	}
-	
-	public ArrayList<String> listarPaquetesNoComprados(){
-		ArrayList<String> listaResultado = new ArrayList<String>();
-		for(PaquetePublicacion paquete : colPaquetes.values()) {
-			if(!paquete.getEstaComprado()) {
-				listaResultado.add(paquete.getNombre());
-			}
-		}
-		return listaResultado;
-	}
-	
-	public void clean() {
-		instancia = null;
-	}
-	
-	public ArrayList<DTPaquetePublicacion> listarDTPaquetes(){
-		ArrayList<DTPaquetePublicacion> listaResultado = new ArrayList<DTPaquetePublicacion>();
-		for(PaquetePublicacion paquete : colPaquetes.values()) {
-			listaResultado.add(paquete.obtenerDTPaquete());
-		}
-		return listaResultado;
-	}
+  private static ManejadorPaquetes instancia = null;
+  private HashMap<String, PaquetePublicacion> colPaquetes;
+  
+  private ManejadorPaquetes() {
+    this.colPaquetes = new HashMap<String, PaquetePublicacion>();
+  }
+  
+  /**
+   * Obtener instancia .
+   */
+  
+  public static ManejadorPaquetes getInstance() {
+    if (instancia == null) {
+      instancia = new ManejadorPaquetes();
+    }
+    return instancia;
+  }
+  
+  /**
+   * Metodo obtener paquete .
+   */
+  
+  public PaquetePublicacion obtenerPaquete(String nomPaquete)
+      throws PaquetePublicacionNoExisteException {
+    if (colPaquetes.containsKey(nomPaquete)) {
+      return colPaquetes.get(nomPaquete);
+    } else {
+      throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + " no existe");
+    }
+  }
+  
+  /**
+   * Obtener lista de paquetes .
+   */
+  
+  public ArrayList<String> listarPaquetes() {
+    ArrayList<String> listaPaquetes = new ArrayList<String>();
+    for (String key : colPaquetes.keySet()) {
+      listaPaquetes.add(key);
+    }
+    return listaPaquetes;
+  }
+  
+  /**
+   * Agregar paquete .
+   */
+  
+  public void agregarPaquete(PaquetePublicacion paquete)
+      throws PaquetePublicacionYaExisteException {
+    if (!colPaquetes.containsKey(paquete.getNombre())) {
+      colPaquetes.put(paquete.getNombre(), paquete);
+    } else {
+      throw new PaquetePublicacionYaExisteException(
+          "El paquete" + paquete.getNombre() + "ya existe");
+    }
+  }
+  
+  /**
+   * Eliminar paquete .
+   */
+  
+  public void eliminarPaquete(String nomPaquete) throws PaquetePublicacionNoExisteException {
+    if (colPaquetes.get(nomPaquete) != null) {
+      colPaquetes.remove(nomPaquete);
+    } else {
+      throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + "no existe");
+    }
+  }
+  
+  /**
+   * Lista paquetes no comprados .
+   */
+  
+  public ArrayList<String> listarPaquetesNoComprados() {
+    ArrayList<String> listaResultado = new ArrayList<String>();
+    for (PaquetePublicacion paquete : colPaquetes.values()) {
+      if (!paquete.getEstaComprado()) {
+        listaResultado.add(paquete.getNombre());
+      }
+    }
+    return listaResultado;
+  }
+  
+  public void clean() {
+    instancia = null;
+  }
+  
+  /**
+   * Lista de DTPaquetesPublicacion .
+   */
+  
+  public ArrayList<DtpaquetePublicacion> listarDtpaquetes() {
+    ArrayList<DtpaquetePublicacion> listaResultado = new ArrayList<DtpaquetePublicacion>();
+    for (PaquetePublicacion paquete : colPaquetes.values()) {
+      listaResultado.add(paquete.obtenerDTPaquete());
+    }
+    return listaResultado;
+  }
 }

@@ -5,9 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTOfertaLaboral;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
+import logica.datatypes.DtofertaLaboral;
+import logica.interfaces.IcontroladorOferta;
 
 import java.io.IOException;
 
@@ -30,10 +30,10 @@ public class OfertaServlet extends HttpServlet {
     
     
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    	IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
     	String nombreOferta = request.getParameter("nombreOferta");
     	try {
-			DTOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
+			DtofertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
 			request.setAttribute("oferta", oferta);
 			request.getRequestDispatcher("/WEB-INF/consultas/Oferta.jsp").forward(request, response);
 			

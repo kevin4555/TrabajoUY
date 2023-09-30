@@ -1,10 +1,14 @@
 package excepciones;
 
-@SuppressWarnings("serial")
-public class KeywordNoExisteException extends Exception{
+/**
+ * Excepción KeywordNoExisteException.
+ */
 
-	public KeywordNoExisteException(String message) {
-		super(message);
-	}
-	
+@SuppressWarnings("serial")
+public class KeywordNoExisteException extends Exception {
+  
+  public KeywordNoExisteException(String message) {
+    super(message);
+  }
+  
 }

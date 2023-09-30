@@ -6,10 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.DataTypes.DTOfertaLaboral;
 import logica.controllers.Fabrica;
 import logica.controllers.Loader;
-import logica.interfaces.IControladorOferta;
+import logica.datatypes.DtofertaLaboral;
+import logica.interfaces.IcontroladorOferta;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -60,7 +60,7 @@ public class HomeServlet extends HttpServlet {
 			}
 		}
 		HttpSession sesion = request.getSession();
-		IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
 		ArrayList<String> listaKeywords = controladorOferta.listarKeywords();
 		sesion.setAttribute("listaKeywords", listaKeywords);
 		
@@ -74,8 +74,8 @@ public class HomeServlet extends HttpServlet {
 
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		initSesion(request);
-		IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		ArrayList<DTOfertaLaboral> dTOfertas = controladorOferta.obtenerDtOfertasConfirmadas();
+		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+		ArrayList<DtofertaLaboral> dTOfertas = controladorOferta.obtenerDtOfertasConfirmadas();
 		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 		request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
 	}

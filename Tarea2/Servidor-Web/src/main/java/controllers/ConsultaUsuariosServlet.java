@@ -5,9 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTUsuario;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorUsuario;
+import logica.datatypes.Dtusuario;
+import logica.interfaces.IcontroladorUsuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,13 +31,13 @@ public class ConsultaUsuariosServlet extends HttpServlet {
     }
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	ArrayList<String> listaUsuarios = controladorUsuario.listaDeUsuarios();
     	Collections.sort(listaUsuarios);
-    	ArrayList<DTUsuario> listaResultado = new ArrayList<DTUsuario>();
+    	ArrayList<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
     	for(String nick : listaUsuarios) {
     		try {
-				listaResultado.add(controladorUsuario.obtenerDTUsuario(nick));
+				listaResultado.add(controladorUsuario.obtenerDtusuario(nick));
 			} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
 				e.printStackTrace();

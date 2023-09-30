@@ -1,102 +1,122 @@
 package logica.handlers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
-import logica.DataTypes.DTOfertaLaboral;
-import logica.classes.Keyword;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import logica.classes.OfertaLaboral;
-import logica.classes.TipoPublicacion;
+import logica.datatypes.DtofertaLaboral;
+
+/**
+ * Clase Manejador de ofertas.
+ */
 
 public class ManejadorOfertas {
-
-	private static ManejadorOfertas instancia = null;
-
-	//private HashMap<String, TipoPublicacion> coleccionTipoPublicacion;
-	private HashMap<String, OfertaLaboral> coleccionOfertaLaboral;
-	
-	private ManejadorOfertas() {
-		//coleccionTipoPublicacion = new HashMap<String, TipoPublicacion>();
-		coleccionOfertaLaboral = new HashMap<String, OfertaLaboral>();
-	}
-
-	public static ManejadorOfertas getInstance() {
-		if (instancia == null) {
-			instancia = new ManejadorOfertas();
-		}
-		return instancia;
-	}
-
-
-	public void agregarOferta(OfertaLaboral ofertaLaboral) throws OfertaLaboralYaExisteException 
-	{
-		if (!coleccionOfertaLaboral.containsKey(ofertaLaboral.getNombre())) 
-		{
-			coleccionOfertaLaboral.put(ofertaLaboral.getNombre(), ofertaLaboral);
-		} 
-		else 
-		{
-			throw new OfertaLaboralYaExisteException("La oferta laboral que desea ingresar ya existe");
-		}
-	}
-
-	public DTOfertaLaboral obtenerDTOfertaLaboral(String nombreOferta) throws DtOfertaNoExisteException 
-	{
-		if (!coleccionOfertaLaboral.containsKey(nombreOferta)) 
-		{
-			throw new DtOfertaNoExisteException("No existe la oferta solicitada");
-		} 
-		else
-		{
-			return coleccionOfertaLaboral.get(nombreOferta).obtenerDTOfertaLaboral();
-		}
-	}
-
-	public OfertaLaboral obtenerOfertaLaboral(String nomOferta) throws OfertaLaboralNoExisteException 
-		{
-		if (coleccionOfertaLaboral.containsKey(nomOferta)) 
-		{
-			return coleccionOfertaLaboral.get(nomOferta);
-		}
-		else 
-		{
-			throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
-		}
-	}
-	
-	public ArrayList<String> listarOfertasLaborales() 
-	{
-		ArrayList<String> resultado = new ArrayList<String>();
-		for (Map.Entry<String, OfertaLaboral> entry : this.coleccionOfertaLaboral.entrySet()) 
-			{
-				resultado.add(entry.getKey());
-			}
-		return resultado;
-	}
-	
-	public void clean() {
-		instancia = null;
-	}
-	
-	public ArrayList<DTOfertaLaboral> obtenerDTOfertasConfirmadas(){
-		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
-		for(OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
-			listaResultado.add(oferta.obtenerDTOfertaLaboral());
-		}
-		return listaResultado;
-	}
-	
-	public ArrayList<DTOfertaLaboral> obtenerDTOfertasPorKeyword(String keyword){
-		ArrayList<DTOfertaLaboral> listaResultado = new ArrayList<DTOfertaLaboral>();
-		for(OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
-			if(oferta.tieneKeyword(keyword)) {
-				listaResultado.add(oferta.obtenerDTOfertaLaboral());
-			}
-		}
-		return listaResultado;
-	}
+  
+  private static ManejadorOfertas instancia = null;
+  
+  // private HashMap<String, TipoPublicacion>
+  // coleccionTipoPublicacion;
+  private HashMap<String, OfertaLaboral> coleccionOfertaLaboral;
+  
+  private ManejadorOfertas() {
+    // coleccionTipoPublicacion = new HashMap<String,
+    // TipoPublicacion>();
+    coleccionOfertaLaboral = new HashMap<String, OfertaLaboral>();
+  }
+  
+  /**
+   * Obtener instancia Manejador de ofertas.
+   */
+  
+  public static ManejadorOfertas getInstance() {
+    if (instancia == null) {
+      instancia = new ManejadorOfertas();
+    }
+    return instancia;
+  }
+  
+  /**
+   * Metodo agregar oferta laboral .
+   */
+  
+  public void agregarOferta(OfertaLaboral ofertaLaboral)
+      throws OfertaLaboralYaExisteException {
+    if (!coleccionOfertaLaboral.containsKey(ofertaLaboral.getNombre())) {
+      coleccionOfertaLaboral.put(ofertaLaboral.getNombre(), ofertaLaboral);
+    } else {
+      throw new OfertaLaboralYaExisteException(
+          "La oferta laboral que desea ingresar ya existe");
+    }
+  }
+  
+  /**
+   * Obtener DTOfertaLaboral .
+   */
+  
+  public DtofertaLaboral obtenerDtofertaLaboral(String nombreOferta)
+      throws DtOfertaNoExisteException {
+    if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
+      throw new DtOfertaNoExisteException("No existe la oferta solicitada");
+    } else {
+      return coleccionOfertaLaboral.get(nombreOferta).obtenerDtofertaLaboral();
+    }
+  }
+  
+  /**
+   * Obtener oferta laboral .
+   */
+  
+  public OfertaLaboral obtenerOfertaLaboral(String nomOferta)
+      throws OfertaLaboralNoExisteException {
+    if (coleccionOfertaLaboral.containsKey(nomOferta)) {
+      return coleccionOfertaLaboral.get(nomOferta);
+    } else {
+      throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
+    }
+  }
+  
+  /**
+   * Obtener lista de ofertas laborales .
+   */
+  
+  public ArrayList<String> listarOfertasLaborales() {
+    ArrayList<String> resultado = new ArrayList<String>();
+    for (Map.Entry<String, OfertaLaboral> entry : this.coleccionOfertaLaboral.entrySet()) {
+      resultado.add(entry.getKey());
+    }
+    return resultado;
+  }
+  
+  public void clean() {
+    instancia = null;
+  }
+  
+  /**
+   * Obtener DTOfertasLaboralesConfirmadas .
+   */
+  
+  public ArrayList<DtofertaLaboral> obtenerDtofertasConfirmadas() {
+    ArrayList<DtofertaLaboral> listaResultado = new ArrayList<DtofertaLaboral>();
+    for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
+      listaResultado.add(oferta.obtenerDtofertaLaboral());
+    }
+    return listaResultado;
+  }
+  
+  /**
+   * Obtener obtenerDTOfertasPorKeyword .
+   */
+  
+  public ArrayList<DtofertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
+    ArrayList<DtofertaLaboral> listaResultado = new ArrayList<DtofertaLaboral>();
+    for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
+      if (oferta.tieneKeyword(keyword)) {
+        listaResultado.add(oferta.obtenerDtofertaLaboral());
+      }
+    }
+    return listaResultado;
+  }
 }
