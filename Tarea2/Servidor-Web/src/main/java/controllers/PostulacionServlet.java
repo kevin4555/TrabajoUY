@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import logica.controllers.Fabrica;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
@@ -45,7 +45,7 @@ public class PostulacionServlet extends HttpServlet {
     		String nombreOferta = request.getParameter("nombreOferta");
     		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
     		try {
-				DtofertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
+				DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
 				request.setAttribute("oferta", oferta);
 				request.getRequestDispatcher("/WEB-INF/registros/Postulacion.jsp").forward(request, response);
 			} catch (OfertaLaboralNoExisteException e) {
@@ -57,7 +57,7 @@ public class PostulacionServlet extends HttpServlet {
     		String cVReducido = request.getParameter("cVReducido");
     		String motivacion = request.getParameter("motivacion");
     		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
-    		DtofertaLaboral oferta = (DtofertaLaboral) request.getAttribute("oferta");
+    		DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
     		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		try {
 				controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(), usuario.getNickname(), oferta.getNombre());

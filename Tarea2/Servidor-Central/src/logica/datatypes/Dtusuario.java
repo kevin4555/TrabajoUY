@@ -14,7 +14,7 @@ public class Dtusuario {
   private String email;
   private BufferedImage imagen;
   private String contrasenia;
-  private ArrayList<DtofertaLaboral> ofertasColeccion;
+  private ArrayList<DtOfertaLaboral> ofertasColeccion;
   
   /**
    * Contructor.
@@ -22,7 +22,7 @@ public class Dtusuario {
   
   public Dtusuario(String nickname, String nombre, String apellido, 
       String email, BufferedImage imagen,
-      String contrasenia, ArrayList<DtofertaLaboral> ofertasColeccion) {
+      String contrasenia, ArrayList<DtOfertaLaboral> ofertasColeccion) {
     this.nickname = nickname;
     this.nombre = nombre;
     this.apellido = apellido;
@@ -40,7 +40,7 @@ public class Dtusuario {
     return contrasenia;
   }
   
-  public ArrayList<DtofertaLaboral> getOfertasColeccion() {
+  public ArrayList<DtOfertaLaboral> getOfertasColeccion() {
     return ofertasColeccion;
   }
   

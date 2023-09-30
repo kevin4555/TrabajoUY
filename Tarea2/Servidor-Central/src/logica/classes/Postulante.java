@@ -3,7 +3,7 @@ package logica.classes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
 import logica.datatypes.Dtusuario;
@@ -90,8 +90,8 @@ public class Postulante extends Usuario {
    * Obtener DTOfertaLaboral.
    */
   
-  public ArrayList<DtofertaLaboral> obtenerDtofertas() {
-    ArrayList<DtofertaLaboral> listaResultado = new ArrayList<DtofertaLaboral>();
+  public ArrayList<DtOfertaLaboral> obtenerDtofertas() {
+    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (Postulacion postulacion : postulaciones) {
       listaResultado.add(postulacion.getOfertaLaboral().obtenerDtofertaLaboral());
     }

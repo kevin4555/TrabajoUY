@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
@@ -247,7 +247,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
   
   public void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException {
     String ofertaLaboral = (String) (this.comboBoxOfertasLaborales).getSelectedItem();
-    DtofertaLaboral dtOfertaLaboral;
+    DtOfertaLaboral dtOfertaLaboral;
     
     dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
     

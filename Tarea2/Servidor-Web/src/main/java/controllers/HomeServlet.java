@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import logica.controllers.Fabrica;
 import logica.controllers.Loader;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.interfaces.IcontroladorOferta;
 import model.EstadoSesion;
 import model.TipoUsuario;
@@ -75,7 +75,7 @@ public class HomeServlet extends HttpServlet {
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		initSesion(request);
 		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		ArrayList<DtofertaLaboral> dTOfertas = controladorOferta.obtenerDtOfertasConfirmadas();
+		ArrayList<DtOfertaLaboral> dTOfertas = controladorOferta.obtenerDtOfertasConfirmadas();
 		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 		request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
 	}

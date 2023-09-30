@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtusuario;
@@ -75,15 +75,15 @@ public interface IcontroladorUsuario {
       String nombreOferta)
       throws UsuarioNoExisteException, UsuarioNoExistePostulacion;
   
-  ArrayList<DtofertaLaboral> obtenerDtofertasIngresadasDeEmpresa(
+  ArrayList<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException;
   
-  ArrayList<DtofertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
+  ArrayList<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException;
   
-  ArrayList<DtofertaLaboral> obtenerDtofertasRechazadasDeEmpresa(
+  ArrayList<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException;
   

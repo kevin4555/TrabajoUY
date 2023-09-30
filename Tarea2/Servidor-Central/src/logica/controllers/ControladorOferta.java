@@ -21,7 +21,7 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
 import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.DttipoPublicacion;
@@ -144,12 +144,12 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public DtofertaLaboral obtenerDtOfertaLaboral(String nomOferta)
+  public DtOfertaLaboral obtenerDtOfertaLaboral(String nomOferta)
       throws OfertaLaboralNoExisteException {
     ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
     
     OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
-    DtofertaLaboral dtOfertaLaboral = ofertaLaboral.obtenerDtofertaLaboral();
+    DtOfertaLaboral dtOfertaLaboral = ofertaLaboral.obtenerDtofertaLaboral();
     return dtOfertaLaboral;
   }
   
@@ -231,12 +231,12 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public ArrayList<DtofertaLaboral> obtenerDtOfertasConfirmadas() {
+  public ArrayList<DtOfertaLaboral> obtenerDtOfertasConfirmadas() {
     return ManejadorOfertas.getInstance().obtenerDtofertasConfirmadas();
   }
   
   @Override
-  public ArrayList<DtofertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
     return ManejadorOfertas.getInstance().obtenerDtofertasPorKeyword(keyword);
   }
   

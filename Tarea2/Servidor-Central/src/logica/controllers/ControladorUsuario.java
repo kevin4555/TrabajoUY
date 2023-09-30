@@ -17,7 +17,7 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtusuario;
@@ -184,21 +184,21 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<DtofertaLaboral> obtenerDtofertasIngresadasDeEmpresa(String nicknameEmpresa)
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasIngresadas();
   }
   
   @Override
-  public ArrayList<DtofertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
       String nicknameEmpresa) throws UsuarioNoExisteException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasConfirmadas();
   }
   
   @Override
-  public ArrayList<DtofertaLaboral> obtenerDtofertasRechazadasDeEmpresa(String nicknameEmpresa)
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasRechazadas();

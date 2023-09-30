@@ -3,7 +3,7 @@ package logica.classes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.EstadoOferta;
@@ -131,7 +131,7 @@ public class OfertaLaboral {
     return listaDtpostulaciones;
   }
   
-  public DtofertaLaboral obtenerDtofertaLaboral() {
+  public DtOfertaLaboral obtenerDtofertaLaboral() {
     DtpaquetePublicacion paquete = null;
     if (compraPaquete != null) {
       paquete = compraPaquete.obtenerDtpaquete();
@@ -142,7 +142,7 @@ public class OfertaLaboral {
       keywords.add(keyword.getNombre());
     }
     
-    DtofertaLaboral dtOfertaLaboral = new DtofertaLaboral(this.getNombre(), 
+    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(this.getNombre(), 
         this.getDescripcion(), this.getCiudad(), this.getDepartamento(), this.getHorarioInicial(),
         this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), 
         this.obtenerDTPostulacion(), fechaResolucion, estado, imagen, paquete, keywords);

@@ -22,7 +22,7 @@ import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtusuario;
@@ -463,10 +463,10 @@ public class ControladorUsuarioTesting {
         + "experiencias de usuario excepcionales.",
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
-    ArrayList<DtofertaLaboral> listaResultado = controladorUsuario
+    ArrayList<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasIngresadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
-    DtofertaLaboral oferta = listaResultado.get(0);
+    DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
     Assert.assertEquals(
         "Únete a nuestro equipo de desarrollo frontend y crea "
@@ -512,10 +512,10 @@ public class ControladorUsuarioTesting {
         keywords, null, null);
     controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend",
         EstadoOferta.CONFIRMADA, fechaDate1);
-    ArrayList<DtofertaLaboral> listaResultado = controladorUsuario
+    ArrayList<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasConfirmadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
-    DtofertaLaboral oferta = listaResultado.get(0);
+    DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
     Assert.assertEquals(
         "Únete a nuestro equipo de desarrollo frontend y crea "
@@ -560,10 +560,10 @@ public class ControladorUsuarioTesting {
         keywords, null, null);
     controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend",
         EstadoOferta.RECHAZADA, fechaDate1);
-    ArrayList<DtofertaLaboral> listaResultado = controladorUsuario
+    ArrayList<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasRechazadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
-    DtofertaLaboral oferta = listaResultado.get(0);
+    DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
     Assert.assertEquals(
         "Únete a nuestro equipo de desarrollo frontend y crea experiencias "

@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
@@ -265,7 +265,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
       try {
-        DtofertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
+        DtOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
         
         // CAMBIAR ESTADO OFERTA
         
@@ -287,7 +287,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
       try {
-        DtofertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
+        DtOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
         
         // CAMBIAR ESTADO OFERTA
         
@@ -321,7 +321,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
   protected void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
-      DtofertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
+      DtOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
       this.textFieldHorarioOferta
           .setText(dtOferta.getHorarioInicio() + " - " + dtOferta.getHorarioFinal());
       this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());

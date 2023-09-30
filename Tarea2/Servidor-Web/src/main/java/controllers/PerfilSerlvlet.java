@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import logica.classes.Postulante;
 import logica.controllers.Fabrica;
 import logica.datatypes.Dtempresa;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
@@ -42,9 +42,9 @@ public class PerfilSerlvlet extends HttpServlet {
 			Dtusuario usuario = controladorUsuario.obtenerDtusuario(nicknameUsuario);
 			request.setAttribute("usuario", usuario);
 			if(usuario instanceof Dtempresa) {
-				ArrayList<DtofertaLaboral> ofertasConfirmadas = controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameUsuario);
-				ArrayList<DtofertaLaboral> ofertasIngresadas = controladorUsuario.obtenerDtofertasIngresadasDeEmpresa(nicknameUsuario);
-				ArrayList<DtofertaLaboral> ofertasRechazadas = controladorUsuario.obtenerDtofertasRechazadasDeEmpresa(nicknameUsuario);
+				ArrayList<DtOfertaLaboral> ofertasConfirmadas = controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameUsuario);
+				ArrayList<DtOfertaLaboral> ofertasIngresadas = controladorUsuario.obtenerDtofertasIngresadasDeEmpresa(nicknameUsuario);
+				ArrayList<DtOfertaLaboral> ofertasRechazadas = controladorUsuario.obtenerDtofertasRechazadasDeEmpresa(nicknameUsuario);
 				ArrayList<DtpaquetePublicacion> paquetes = controladorUsuario.obtenerDtpaquetesDeEmpresa(nicknameUsuario);
 				request.setAttribute("ofertasConfirmadas", ofertasConfirmadas);
 				request.setAttribute("ofertasIngresadas", ofertasIngresadas);

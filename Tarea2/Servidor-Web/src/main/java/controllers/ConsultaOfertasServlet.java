@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import logica.controllers.Fabrica;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
@@ -40,7 +40,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
     	String keyword = request.getParameter("keyword");
     	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
     		try {
-				ArrayList<DtofertaLaboral> ofertas = controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
+				ArrayList<DtOfertaLaboral> ofertas = controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
 				request.setAttribute("listaOfertas", ofertas);
 				request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
 			} catch (UsuarioNoExisteException e) {
@@ -49,7 +49,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
 			}
     	}
     	else if(keyword != null && keyword != "") {
-    		ArrayList<DtofertaLaboral> ofertas = controladorOfertas.obtenerDtofertasPorKeyword(keyword);
+    		ArrayList<DtOfertaLaboral> ofertas = controladorOfertas.obtenerDtofertasPorKeyword(keyword);
     		request.setAttribute("listaOfertas", ofertas);
     		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
     	}

@@ -18,7 +18,7 @@ public class Dtempresa extends Dtusuario {
   
   public Dtempresa(String nickname, String nombre, String apellido, 
       String email, BufferedImage imagen, String contrasenia, 
-      ArrayList<DtofertaLaboral> ofertasColeccion, String descripcion, String sitioWeb) {
+      ArrayList<DtOfertaLaboral> ofertasColeccion, String descripcion, String sitioWeb) {
     super(nickname, nombre, apellido, email, imagen, contrasenia, ofertasColeccion);
     this.descripcion = descripcion;
     this.sitioWeb = sitioWeb;
@@ -32,7 +32,7 @@ public class Dtempresa extends Dtusuario {
     return sitioWeb;
   }
   
-  public ArrayList<DtofertaLaboral> getOfertasLaborales() {
+  public ArrayList<DtOfertaLaboral> getOfertasLaborales() {
     return getOfertasColeccion();
   }
 }

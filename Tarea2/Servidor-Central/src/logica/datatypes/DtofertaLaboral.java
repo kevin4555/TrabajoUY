@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Clase DTOfertaLaboral.
  */
 
-public class DtofertaLaboral {
+public class DtOfertaLaboral {
   private String nombre;
   private String descripcion;
   private String ciudad;
@@ -28,7 +28,7 @@ public class DtofertaLaboral {
    * Contructor.
    */
   
-  public DtofertaLaboral(String nombre, String descripcion, 
+  public DtOfertaLaboral(String nombre, String descripcion, 
       String ciudad, String departamento, String horarioInicial, String horarioFinal, 
       Float remuneracion, LocalDate fechaAlta, ArrayList<Dtpostulacion> postulaciones,
       LocalDate fechaResolucion, EstadoOferta estado, BufferedImage imagen, 

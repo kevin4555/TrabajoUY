@@ -30,7 +30,7 @@ import logica.classes.TipoPublicacion;
 import logica.controllers.ControladorOferta;
 import logica.controllers.ControladorUsuario;
 import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.handlers.ManejadorOfertas;
 import logica.handlers.ManejadorPaquetes;
@@ -207,7 +207,7 @@ public class ControladorOfertaTest {
         "Montevideo", "Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword,
         null, null);
     
-    DtofertaLaboral resultado = controladorOferta.obtenerDtOfertaLaboral("test");
+    DtOfertaLaboral resultado = controladorOferta.obtenerDtOfertaLaboral("test");
     
     Assert.assertEquals("test", resultado.getNombre());
     Assert.assertEquals("descipcionTest", resultado.getDescripcion());
@@ -657,7 +657,7 @@ public class ControladorOfertaTest {
         "Montevideo", "Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword,
         null, null);
     
-    ArrayList<DtofertaLaboral> resultadoOfertaLaboralDt = 
+    ArrayList<DtOfertaLaboral> resultadoOfertaLaboralDt = 
         controladorOferta
         .obtenerDtofertasPorKeyword("Keyword1");
     

@@ -32,7 +32,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import logica.datatypes.Dtempresa;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
 import logica.datatypes.Dtusuario;
@@ -564,7 +564,7 @@ public class ConsultarUsuario extends JInternalFrame {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     String nicknameUsu = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
-      DtofertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
+      DtOfertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
       Dtpostulacion dtPostulacion = new Dtpostulacion();
       this.textFieldHorarioOferta
           .setText(dtOferta.getHorarioInicio() + " - " + dtOferta.getHorarioFinal());

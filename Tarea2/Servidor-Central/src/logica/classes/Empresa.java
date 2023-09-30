@@ -4,7 +4,7 @@ import excepciones.OfertaLaboralYaExisteException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import logica.datatypes.Dtempresa;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtusuario;
 import logica.datatypes.EstadoOferta;
@@ -84,7 +84,7 @@ public class Empresa extends Usuario {
   
   public Dtempresa obtenerDtempresa() {
     
-    ArrayList<DtofertaLaboral> listaDtofertas = new ArrayList<DtofertaLaboral>();
+    ArrayList<DtOfertaLaboral> listaDtofertas = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       listaDtofertas.add(oferta.obtenerDtofertaLaboral());
     }
@@ -108,8 +108,8 @@ public class Empresa extends Usuario {
    * Obtener DTOfertaLaboral.
    */
   
-  public ArrayList<DtofertaLaboral> obtenerDtofertasIngresadas() {
-    ArrayList<DtofertaLaboral> listaResultado = new ArrayList<DtofertaLaboral>();
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasIngresadas() {
+    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.INGRESADA) {
         listaResultado.add(oferta.obtenerDtofertaLaboral());
@@ -122,8 +122,8 @@ public class Empresa extends Usuario {
    * Obtener DTOfertaLaboralConfirmadas.
    */
   
-  public ArrayList<DtofertaLaboral> obtenerDtofertasConfirmadas() {
-    ArrayList<DtofertaLaboral> listaResultado = new ArrayList<DtofertaLaboral>();
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasConfirmadas() {
+    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.CONFIRMADA) {
         listaResultado.add(oferta.obtenerDtofertaLaboral());
@@ -136,8 +136,8 @@ public class Empresa extends Usuario {
    * Obtener DTOfertaLaboralRechazadas.
    */
   
-  public ArrayList<DtofertaLaboral> obtenerDtofertasRechazadas() {
-    ArrayList<DtofertaLaboral> listaResultado = new ArrayList<DtofertaLaboral>();
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasRechazadas() {
+    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.RECHAZADA) {
         listaResultado.add(oferta.obtenerDtofertaLaboral());

@@ -18,7 +18,7 @@ public class Dtpostulante extends Dtusuario {
   
   public Dtpostulante(String nickname, String nombre, String apellido, 
       String email, BufferedImage imagen, String contrasenia, 
-      ArrayList<DtofertaLaboral> ofertasColeccion, LocalDate fechaNacimiento, 
+      ArrayList<DtOfertaLaboral> ofertasColeccion, LocalDate fechaNacimiento, 
       String nacionalidad) {
     super(nickname, nombre, apellido, email, imagen, contrasenia, ofertasColeccion);
     this.fechaNacimiento = fechaNacimiento;

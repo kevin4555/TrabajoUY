@@ -24,7 +24,7 @@ import logica.classes.OfertaLaboral;
 import logica.classes.PaquetePublicacion;
 import logica.classes.TipoPublicacion;
 import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.DttipoPublicacion;
@@ -60,7 +60,7 @@ public interface IcontroladorOferta {
   
   public ArrayList<String> listarKeywords();
   
-  public DtofertaLaboral obtenerDtOfertaLaboral(String nomOferta) 
+  public DtOfertaLaboral obtenerDtOfertaLaboral(String nomOferta) 
       throws OfertaLaboralNoExisteException;
   
   public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) 
@@ -90,9 +90,9 @@ public interface IcontroladorOferta {
       EstadoOferta estadoOferta, LocalDate fechaResolucion)
       throws OfertaLaboralNoExisteException;
   
-  public ArrayList<DtofertaLaboral> obtenerDtOfertasConfirmadas();
+  public ArrayList<DtOfertaLaboral> obtenerDtOfertasConfirmadas();
   
-  ArrayList<DtofertaLaboral> obtenerDtofertasPorKeyword(String keyword);
+  ArrayList<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword);
   
   public ArrayList<Dtpostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta)
       throws OfertaLaboralNoExisteException;

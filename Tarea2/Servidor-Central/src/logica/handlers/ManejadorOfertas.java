@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import logica.classes.OfertaLaboral;
-import logica.datatypes.DtofertaLaboral;
+import logica.datatypes.DtOfertaLaboral;
 
 /**
  * Clase Manejador de ofertas.
@@ -56,7 +56,7 @@ public class ManejadorOfertas {
    * Obtener DTOfertaLaboral .
    */
   
-  public DtofertaLaboral obtenerDtofertaLaboral(String nombreOferta)
+  public DtOfertaLaboral obtenerDtofertaLaboral(String nombreOferta)
       throws DtOfertaNoExisteException {
     if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
       throw new DtOfertaNoExisteException("No existe la oferta solicitada");
@@ -98,8 +98,8 @@ public class ManejadorOfertas {
    * Obtener DTOfertasLaboralesConfirmadas .
    */
   
-  public ArrayList<DtofertaLaboral> obtenerDtofertasConfirmadas() {
-    ArrayList<DtofertaLaboral> listaResultado = new ArrayList<DtofertaLaboral>();
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasConfirmadas() {
+    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
       listaResultado.add(oferta.obtenerDtofertaLaboral());
     }
@@ -110,8 +110,8 @@ public class ManejadorOfertas {
    * Obtener obtenerDTOfertasPorKeyword .
    */
   
-  public ArrayList<DtofertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
-    ArrayList<DtofertaLaboral> listaResultado = new ArrayList<DtofertaLaboral>();
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
+    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
       if (oferta.tieneKeyword(keyword)) {
         listaResultado.add(oferta.obtenerDtofertaLaboral());
