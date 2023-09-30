@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import logica.datatypes.DtcantidadTipoPublicacion;
 import logica.datatypes.DtpaquetePublicacion;
 
+/**
+ * Clase Paquete publicacion .
+ */
+
 public class PaquetePublicacion {
   private String nombre;
   private String descripcion;
@@ -16,6 +20,10 @@ public class PaquetePublicacion {
   private ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones;
   private Boolean estaComprado;
   private LocalDate fechaAlta;
+  
+  /**
+   * Constructor  .
+   */
   
   public PaquetePublicacion(String nombre, String descripcion, 
       int periodoValidez, float descuento, BufferedImage imagen, 
@@ -92,7 +100,11 @@ public class PaquetePublicacion {
     this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
   }
   
-  public DtpaquetePublicacion obtenerDTPaquete() {
+  /**
+   * Metodo obtener DTPaquete .
+   */
+  
+  public DtpaquetePublicacion obtenerDtPaquete() {
     ArrayList<DtcantidadTipoPublicacion> listDtcantidad = 
         new ArrayList<DtcantidadTipoPublicacion>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
@@ -107,6 +119,10 @@ public class PaquetePublicacion {
     return cantidadTipoPublicaciones;
   }
   
+  /**
+   * Metodo obtener nombres de tipo de publicaciones .
+   */
+  
   public ArrayList<String> obtenerNombresTipoPublicaciones() {
     ArrayList<String> listaResultado = new ArrayList<String>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
@@ -115,11 +131,19 @@ public class PaquetePublicacion {
     return listaResultado;
   }
   
+  /**
+   * Metodo agregar tipo de publicacion .
+   */
+  
   public void agregarTipoPublicacion(TipoPublicacion tipoPublicacion) {
     CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion = 
         tipoPublicacion.getCantidadTipoPublicacion();
     cantidadTipoPublicaciones.add(cantidadTotalTipoPublicacion);
   }
+  
+  /**
+   * Metodo listar tipo de publicacion .
+   */
   
   public ArrayList<String> listarTipoPublicacion() {
     ArrayList<String> resultado = new ArrayList<>();
@@ -128,6 +152,10 @@ public class PaquetePublicacion {
     }
     return resultado;
   }
+  
+  /**
+   * Metodo crear cantidad tipo de publicacion .
+   */
   
   public void crearCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) {
     CantidadTotalTipoPublicacion cantidad = 

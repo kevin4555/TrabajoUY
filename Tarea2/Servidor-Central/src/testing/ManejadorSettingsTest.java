@@ -1,7 +1,7 @@
 package testing;
 
-public class ManejadorSettingsTest 
-{
+public class ManejadorSettingsTest {
+  
 	/*private Date fechaDate;
 	private String fecha = "17/06/1999";
 	

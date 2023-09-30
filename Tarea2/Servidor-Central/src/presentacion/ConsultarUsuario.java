@@ -31,8 +31,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
-import logica.datatypes.Dtempresa;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtempresa;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
 import logica.datatypes.Dtusuario;
@@ -119,10 +119,9 @@ public class ConsultarUsuario extends JInternalFrame {
     gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0 };
     gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblPanelDatos);
-    
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
     gbcLblSeleccion.insets = new Insets(0, 0, 5, 5);
@@ -175,7 +174,6 @@ public class ConsultarUsuario extends JInternalFrame {
      * this.textFieldNickName.setColumns(10);
      */
     
-    
     GridBagConstraints gbcLblNombre = new GridBagConstraints();
     gbcLblNombre.anchor = GridBagConstraints.EAST;
     gbcLblNombre.insets = new Insets(0, 0, 5, 5);
@@ -194,7 +192,6 @@ public class ConsultarUsuario extends JInternalFrame {
     panelDatos.add(textFieldNombre, gbcTextFieldNombre);
     textFieldNombre.setColumns(10);
     
-    
     GridBagConstraints gbcLblApellido = new GridBagConstraints();
     gbcLblApellido.anchor = GridBagConstraints.EAST;
     gbcLblApellido.insets = new Insets(0, 0, 5, 5);
@@ -212,7 +209,6 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldApellido.gridy = 4;
     panelDatos.add(this.textFieldApellido, gbcTextFieldApellido);
     this.textFieldApellido.setColumns(10);
-    
     
     GridBagConstraints gbcLblEmail = new GridBagConstraints();
     gbcLblEmail.anchor = GridBagConstraints.EAST;
@@ -269,7 +265,6 @@ public class ConsultarUsuario extends JInternalFrame {
     panelEmpresa.setLayout(gblPanelEmpresa);
     panelEmpresa.setPreferredSize(new Dimension(200, 200));
     
-    
     GridBagConstraints gbcLblSitioWeb = new GridBagConstraints();
     gbcLblSitioWeb.anchor = GridBagConstraints.EAST;
     gbcLblSitioWeb.insets = new Insets(0, 0, 5, 5);
@@ -287,7 +282,6 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldSitioWeb.gridy = 1;
     panelEmpresa.add(this.textFieldSitioWeb, gbcTextFieldSitioWeb);
     this.textFieldSitioWeb.setColumns(10);
-    
     
     GridBagConstraints gbcLblDescripcionEmpresa = new GridBagConstraints();
     gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
@@ -324,7 +318,6 @@ public class ConsultarUsuario extends JInternalFrame {
     gblPanelPostulante.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
     panelPostulante.setLayout(gblPanelPostulante);
     
-    
     GridBagConstraints gbcLblFechaNacimiento = new GridBagConstraints();
     gbcLblFechaNacimiento.insets = new Insets(0, 0, 5, 5);
     gbcLblFechaNacimiento.anchor = GridBagConstraints.EAST;
@@ -343,7 +336,6 @@ public class ConsultarUsuario extends JInternalFrame {
     panelPostulante.add(this.textFieldFechaNacimiento, gbcTextFieldFechaNacimiento);
     this.textFieldFechaNacimiento.setColumns(10);
     
-    
     GridBagConstraints gbcLblNacionalidad = new GridBagConstraints();
     gbcLblNacionalidad.anchor = GridBagConstraints.EAST;
     gbcLblNacionalidad.insets = new Insets(0, 0, 0, 5);
@@ -360,7 +352,6 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldNacionalidad.gridy = 1;
     panelPostulante.add(this.textFieldNacionalidad, gbcTextFieldNacionalidad);
     this.textFieldNacionalidad.setColumns(10);
-    
     
     GridBagConstraints gbcLblOfertas = new GridBagConstraints();
     gbcLblOfertas.anchor = GridBagConstraints.EAST;
@@ -388,7 +379,6 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcComboBoxSeleccionOferta.gridy = 12;
     panelDatos.add(this.comboBoxSeleccionOferta, gbcComboBoxSeleccionOferta);
     
-    
     GridBagConstraints gbcLblHorarioOferta = new GridBagConstraints();
     gbcLblHorarioOferta.anchor = GridBagConstraints.EAST;
     gbcLblHorarioOferta.insets = new Insets(0, 0, 5, 5);
@@ -406,7 +396,6 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldNombreOferta.gridy = 13;
     panelDatos.add(this.textFieldHorarioOferta, gbcTextFieldNombreOferta);
     this.textFieldHorarioOferta.setColumns(10);
-    
     
     GridBagConstraints gbcLblRemuneracion = new GridBagConstraints();
     gbcLblRemuneracion.anchor = GridBagConstraints.EAST;
@@ -426,7 +415,6 @@ public class ConsultarUsuario extends JInternalFrame {
     panelDatos.add(this.textFieldRemuneracion, gbcTextFieldRemuneracion);
     this.textFieldRemuneracion.setColumns(10);
     
-    
     GridBagConstraints gbcLblCiudad = new GridBagConstraints();
     gbcLblCiudad.anchor = GridBagConstraints.EAST;
     gbcLblCiudad.insets = new Insets(0, 0, 5, 5);
@@ -444,7 +432,6 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldCiudad.gridy = 15;
     panelDatos.add(this.textFieldCiudad, gbcTextFieldCiudad);
     this.textFieldCiudad.setColumns(10);
-    
     
     GridBagConstraints gbcLblDepartamento = new GridBagConstraints();
     gbcLblDepartamento.anchor = GridBagConstraints.EAST;
@@ -655,8 +642,6 @@ public class ConsultarUsuario extends JInternalFrame {
       }
       ArrayList<String> listaOfertas = this.controladorUsuario
           .listaOfertasUsuario(nicknameUsuario);
-      if (listaOfertas.isEmpty()) {
-      }
       String[] arrayOfertas = listaOfertas.toArray(new String[0]);
       Arrays.sort(arrayOfertas);
       DefaultComboBoxModel<String> model;

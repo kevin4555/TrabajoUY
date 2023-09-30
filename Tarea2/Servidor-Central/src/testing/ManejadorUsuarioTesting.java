@@ -1,7 +1,7 @@
 package testing;
 
-public class ManejadorUsuarioTesting
-{
+public class ManejadorUsuarioTesting{
+  
 	/*private static Date fechaDate1;
 	private static Date fechaDate2;
 	private static IControladorUsuario controladorUsuario;

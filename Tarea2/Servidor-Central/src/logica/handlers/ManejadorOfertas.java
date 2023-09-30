@@ -61,7 +61,7 @@ public class ManejadorOfertas {
     if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
       throw new DtOfertaNoExisteException("No existe la oferta solicitada");
     } else {
-      return coleccionOfertaLaboral.get(nombreOferta).obtenerDtofertaLaboral();
+      return coleccionOfertaLaboral.get(nombreOferta).obtenerDtOfertaLaboral();
     }
   }
   
@@ -101,7 +101,7 @@ public class ManejadorOfertas {
   public ArrayList<DtOfertaLaboral> obtenerDtofertasConfirmadas() {
     ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
-      listaResultado.add(oferta.obtenerDtofertaLaboral());
+      listaResultado.add(oferta.obtenerDtOfertaLaboral());
     }
     return listaResultado;
   }
@@ -114,7 +114,7 @@ public class ManejadorOfertas {
     ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
       if (oferta.tieneKeyword(keyword)) {
-        listaResultado.add(oferta.obtenerDtofertaLaboral());
+        listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }
     }
     return listaResultado;

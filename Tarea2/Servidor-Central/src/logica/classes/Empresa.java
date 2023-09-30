@@ -3,8 +3,8 @@ package logica.classes;
 import excepciones.OfertaLaboralYaExisteException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import logica.datatypes.Dtempresa;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtusuario;
 import logica.datatypes.EstadoOferta;
@@ -23,9 +23,8 @@ public class Empresa extends Usuario {
    * Constructor.
    */
   
-  public Empresa(String nickname, String nombre, String apellido, 
-      String email, String descripcion, String sitioWeb,
-      BufferedImage imagen, String contrasenia) {
+  public Empresa(String nickname, String nombre, String apellido, String email,
+      String descripcion, String sitioWeb, BufferedImage imagen, String contrasenia) {
     super(nickname, nombre, apellido, email, imagen, contrasenia);
     setDescripcion(descripcion);
     setSitioWeb(sitioWeb);
@@ -55,8 +54,7 @@ public class Empresa extends Usuario {
   
   public void agregarOferta(OfertaLaboral ol) throws OfertaLaboralYaExisteException {
     if (ofertasLaborales.indexOf(ol) != -1) {
-      throw new OfertaLaboralYaExisteException(
-          "La Oferta Laboral " + ol.getNombre() 
+      throw new OfertaLaboralYaExisteException("La Oferta Laboral " + ol.getNombre()
           + " ya esta asociada a la Empresa " + this.nickname);
     }
     this.ofertasLaborales.add(ol);
@@ -86,11 +84,11 @@ public class Empresa extends Usuario {
     
     ArrayList<DtOfertaLaboral> listaDtofertas = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
-      listaDtofertas.add(oferta.obtenerDtofertaLaboral());
+      listaDtofertas.add(oferta.obtenerDtOfertaLaboral());
     }
-    Dtempresa resultado = new Dtempresa(this.nickname, 
-        this.nombre, this.apellido, this.email, this.getImagen(),
-        this.getContrasenia(), listaDtofertas, this.descripcion, this.sitioWeb);
+    Dtempresa resultado = new Dtempresa(this.nickname, this.nombre, this.apellido, this.email,
+        this.getImagen(), this.getContrasenia(), listaDtofertas, this.descripcion,
+        this.sitioWeb);
     return resultado;
   }
   
@@ -112,7 +110,7 @@ public class Empresa extends Usuario {
     ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.INGRESADA) {
-        listaResultado.add(oferta.obtenerDtofertaLaboral());
+        listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }
     }
     return listaResultado;
@@ -126,7 +124,7 @@ public class Empresa extends Usuario {
     ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.CONFIRMADA) {
-        listaResultado.add(oferta.obtenerDtofertaLaboral());
+        listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }
     }
     return listaResultado;
@@ -140,7 +138,7 @@ public class Empresa extends Usuario {
     ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.RECHAZADA) {
-        listaResultado.add(oferta.obtenerDtofertaLaboral());
+        listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }
     }
     return listaResultado;
@@ -193,8 +191,8 @@ public class Empresa extends Usuario {
    * Comprar una oferta por paquete.
    */
   
-  public void comprarOfertaPorPaquete(String nombrePaquete, 
-      String nomTipoPublicacion, OfertaLaboral oferta) {
+  public void comprarOfertaPorPaquete(String nombrePaquete, String nomTipoPublicacion,
+      OfertaLaboral oferta) {
     for (CompraPaquete compra : compraPaquetes) {
       if (compra.obtenerNombrePaquete() == nombrePaquete) {
         compra.gastarTipoPublicacion(nomTipoPublicacion);

@@ -49,7 +49,7 @@ public class CompraPaquete {
   }
   
   public DtpaquetePublicacion obtenerDtpaquete() {
-    return this.paquete.obtenerDTPaquete();
+    return this.paquete.obtenerDtPaquete();
   }
   
   /**

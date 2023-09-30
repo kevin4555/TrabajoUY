@@ -93,7 +93,7 @@ public class Postulante extends Usuario {
   public ArrayList<DtOfertaLaboral> obtenerDtofertas() {
     ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (Postulacion postulacion : postulaciones) {
-      listaResultado.add(postulacion.getOfertaLaboral().obtenerDtofertaLaboral());
+      listaResultado.add(postulacion.getOfertaLaboral().obtenerDtOfertaLaboral());
     }
     return listaResultado;
   }

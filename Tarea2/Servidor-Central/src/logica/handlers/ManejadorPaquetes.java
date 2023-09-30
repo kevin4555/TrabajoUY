@@ -106,7 +106,7 @@ public class ManejadorPaquetes {
   public ArrayList<DtpaquetePublicacion> listarDtpaquetes() {
     ArrayList<DtpaquetePublicacion> listaResultado = new ArrayList<DtpaquetePublicacion>();
     for (PaquetePublicacion paquete : colPaquetes.values()) {
-      listaResultado.add(paquete.obtenerDTPaquete());
+      listaResultado.add(paquete.obtenerDtPaquete());
     }
     return listaResultado;
   }

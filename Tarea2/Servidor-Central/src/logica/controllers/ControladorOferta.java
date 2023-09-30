@@ -20,8 +20,8 @@ import logica.classes.OfertaLaboral;
 import logica.classes.PaquetePublicacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
-import logica.datatypes.DtcantidadTipoPublicacion;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.DtcantidadTipoPublicacion;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.DttipoPublicacion;
@@ -149,7 +149,7 @@ public class ControladorOferta implements IcontroladorOferta {
     ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
     
     OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
-    DtOfertaLaboral dtOfertaLaboral = ofertaLaboral.obtenerDtofertaLaboral();
+    DtOfertaLaboral dtOfertaLaboral = ofertaLaboral.obtenerDtOfertaLaboral();
     return dtOfertaLaboral;
   }
   
@@ -244,7 +244,7 @@ public class ControladorOferta implements IcontroladorOferta {
   public ArrayList<Dtpostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta)
       throws OfertaLaboralNoExisteException {
     OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
-    return oferta.obtenerDTPostulacion();
+    return oferta.obtenerDtPostulacion();
     
   }
   
@@ -278,7 +278,7 @@ public class ControladorOferta implements IcontroladorOferta {
   public DtpaquetePublicacion obtenerDtpaquete(String nombrePaquete)
       throws PaquetePublicacionNoExisteException {
     PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
-    return paquete.obtenerDTPaquete();
+    return paquete.obtenerDtPaquete();
   }
   
   @Override

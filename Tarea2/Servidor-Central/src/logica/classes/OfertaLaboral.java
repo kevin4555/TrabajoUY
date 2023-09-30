@@ -8,6 +8,10 @@ import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.EstadoOferta;
 
+/**
+ * Clase Oferta laboral .
+ */
+
 public class OfertaLaboral {
   private String nombre;
   private String descripcion;
@@ -25,10 +29,13 @@ public class OfertaLaboral {
   private ArrayList<Postulacion> postulaciones;
   private CompraPaquete compraPaquete;
   
-  public OfertaLaboral(String nombre, String descripcion, 
-      String horarioInicial, String horarioFinal, float remuneracion, String ciudad,
-      String departamento, LocalDate fechaAlta, TipoPublicacion tipoPublicacion,
-      BufferedImage imagen) {
+  /**
+   * Constructor .
+   */
+  
+  public OfertaLaboral(String nombre, String descripcion, String horarioInicial,
+      String horarioFinal, float remuneracion, String ciudad, String departamento,
+      LocalDate fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.ciudad = ciudad;
@@ -123,7 +130,11 @@ public class OfertaLaboral {
     return postulaciones;
   }
   
-  public ArrayList<Dtpostulacion> obtenerDTPostulacion() {
+  /**
+   * Metodo obtener DTPostulacion .
+   */
+  
+  public ArrayList<Dtpostulacion> obtenerDtPostulacion() {
     ArrayList<Dtpostulacion> listaDtpostulaciones = new ArrayList<Dtpostulacion>();
     for (Postulacion iter : postulaciones) {
       listaDtpostulaciones.add(iter.obtenerDtpostulacion());
@@ -131,7 +142,11 @@ public class OfertaLaboral {
     return listaDtpostulaciones;
   }
   
-  public DtOfertaLaboral obtenerDtofertaLaboral() {
+  /**
+   * Metodo obtener DTOfertaLaboral .
+   */
+  
+  public DtOfertaLaboral obtenerDtOfertaLaboral() {
     DtpaquetePublicacion paquete = null;
     if (compraPaquete != null) {
       paquete = compraPaquete.obtenerDtpaquete();
@@ -142,10 +157,11 @@ public class OfertaLaboral {
       keywords.add(keyword.getNombre());
     }
     
-    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(this.getNombre(), 
-        this.getDescripcion(), this.getCiudad(), this.getDepartamento(), this.getHorarioInicial(),
-        this.getHorarioFinal(), this.getRemunaracion(), this.getFechaAlta(), 
-        this.obtenerDTPostulacion(), fechaResolucion, estado, imagen, paquete, keywords);
+    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(this.getNombre(),
+        this.getDescripcion(), this.getCiudad(), this.getDepartamento(),
+        this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
+        this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
+        paquete, keywords);
     return dtOfertaLaboral;
   }
   
@@ -186,6 +202,10 @@ public class OfertaLaboral {
     this.fechaResolucion = fechaResolucion;
   }
   
+  /**
+   * Metodo para saber si tiene Keyword .
+   */
+  
   public Boolean tieneKeyword(String keywordBuscada) {
     Boolean resultado = false;
     for (Keyword keyword : listaKeywords) {
@@ -200,10 +220,16 @@ public class OfertaLaboral {
   public DtpaquetePublicacion obtenerDtpaquete() {
     return compraPaquete.obtenerDtpaquete();
   }
-
+  
+  /**
+   * Metodo para saber si la oferta esta vencida .
+   */
+  
   public Boolean estaVencida() {
-		LocalDate fechaActual = LocalDate.now();
-		LocalDate fechaVencimiento = LocalDate.of(fechaResolucion.getYear(), fechaResolucion.getMonthValue(), fechaResolucion.getDayOfMonth()).plusDays(tipoPublicacion.getDuracionDia());
-		return fechaActual.isAfter(fechaVencimiento);
-	}
+    LocalDate fechaActual = LocalDate.now();
+    LocalDate fechaVencimiento = LocalDate.of(fechaResolucion.getYear(),
+        fechaResolucion.getMonthValue(), fechaResolucion.getDayOfMonth())
+        .plusDays(tipoPublicacion.getDuracionDia());
+    return fechaActual.isAfter(fechaVencimiento);
+  }
 }
