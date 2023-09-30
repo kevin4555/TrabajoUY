@@ -5,6 +5,8 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
@@ -16,10 +18,10 @@ import logica.datatypes.Dtusuario;
 
 public class ManejadorUsuario {
   private static ManejadorUsuario instancia = null;
-  private HashMap<String, Usuario> colUsuarios;
-  private HashMap<String, Postulante> colPostulantes;
-  private HashMap<String, Empresa> colEmpresas;
-  private HashMap<String, Usuario> usuariosEmail;
+  private Map<String, Usuario> colUsuarios;
+  private Map<String, Postulante> colPostulantes;
+  private Map<String, Empresa> colEmpresas;
+  private Map<String, Usuario> usuariosEmail;
   
   private ManejadorUsuario() {
     colUsuarios = new HashMap<String, Usuario>();
@@ -43,8 +45,8 @@ public class ManejadorUsuario {
    * Obtener lista de empresas .
    */
   
-  public ArrayList<String> listarEmpresas() {
-    ArrayList<String> listEmpresa = new ArrayList<String>();
+  public List<String> listarEmpresas() {
+    List<String> listEmpresa = new ArrayList<String>();
     for (String empr : colEmpresas.keySet()) {
       listEmpresa.add(empr);
     }
@@ -122,8 +124,8 @@ public class ManejadorUsuario {
    * Lista de postulantes .
    */
   
-  public ArrayList<String> listarPostulantes() {
-    ArrayList<String> postulantes = new ArrayList<String>();
+  public List<String> listarPostulantes() {
+    List<String> postulantes = new ArrayList<String>();
     for (String key : colPostulantes.keySet()) {
       postulantes.add(key);
     }
@@ -134,8 +136,8 @@ public class ManejadorUsuario {
    * Lista de usuarios .
    */
   
-  public ArrayList<String> listarUsuarios() {
-    ArrayList<String> listaUsuarios = new ArrayList<String>();
+  public List<String> listarUsuarios() {
+    List<String> listaUsuarios = new ArrayList<String>();
     for (String nickUsuario : colUsuarios.keySet()) {
       listaUsuarios.add(nickUsuario);
     }
@@ -164,8 +166,8 @@ public class ManejadorUsuario {
    * Obtener lista de DTUsuario .
    */
   
-  public ArrayList<Dtusuario> obtenerDtusuarios() {
-    ArrayList<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
+  public List<Dtusuario> obtenerDtusuarios() {
+    List<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
     for (Usuario usuario : colUsuarios.values()) {
       if (usuario instanceof Postulante) {
         Postulante postulante = (Postulante) usuario;

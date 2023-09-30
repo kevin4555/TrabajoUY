@@ -9,7 +9,7 @@ import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
 import logica.classes.OfertaLaboral;
@@ -38,14 +38,14 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<String> listarEmpresas() {
+  public List<String> listarEmpresas() {
     ManejadorUsuario manejUsu = ManejadorUsuario.getInstance();
-    ArrayList<String> nomEmpresas = manejUsu.listarEmpresas();
+    List<String> nomEmpresas = manejUsu.listarEmpresas();
     return nomEmpresas;
   }
   
   @Override
-  public ArrayList<String> listaDeUsuarios() {
+  public List<String> listaDeUsuarios() {
     ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
     return manejadorUsuarios.listarUsuarios();
   }
@@ -62,7 +62,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa)
+  public List<String> obtenerOfertasEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
     ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
     Empresa empr = manejadorUsuarios.obtenerEmpresa(nicknameEmpresa);
@@ -71,7 +71,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<String> listarPostulantes() {
+  public List<String> listarPostulantes() {
     ManejadorUsuario manejadorUsuarios = ManejadorUsuario.getInstance();
     return manejadorUsuarios.listarPostulantes();
   }
@@ -132,7 +132,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<String> listaOfertasUsuario(String nickname)
+  public List<String> listaOfertasUsuario(String nickname)
       throws UsuarioNoExisteException {
     Usuario usuario = this.obtenerUsuario(nickname);
     return usuario.listarOfertasUsuario();
@@ -184,21 +184,21 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(String nicknameEmpresa)
+  public List<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasIngresadas();
   }
   
   @Override
-  public ArrayList<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
+  public List<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
       String nicknameEmpresa) throws UsuarioNoExisteException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasConfirmadas();
   }
   
   @Override
-  public ArrayList<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(String nicknameEmpresa)
+  public List<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasRechazadas();
@@ -212,7 +212,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<Dtusuario> obtenerDtusuarios() {
+  public List<Dtusuario> obtenerDtusuarios() {
     return ManejadorUsuario.getInstance().obtenerDtusuarios();
   }
   
@@ -230,7 +230,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<DtpaquetePublicacion> obtenerDtpaquetesDeEmpresa(String nicknameEmpresa)
+  public List<DtpaquetePublicacion> obtenerDtpaquetesDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtpaquetes();
@@ -238,7 +238,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<Dtpostulacion> obtenerDtpostulacionesDePostulante(String nicknamePostulante)
+  public List<Dtpostulacion> obtenerDtpostulacionesDePostulante(String nicknamePostulante)
       throws UsuarioNoExisteException {
     Postulante postulante = ManejadorUsuario.getInstance()
         .obtenerPostulante(nicknamePostulante);
@@ -246,12 +246,12 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public ArrayList<String> listarPaquetesNoCompradosDeEmpresa(String nicknameEmpresa)
+  public List<String> listarPaquetesNoCompradosDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
-    ArrayList<String> paquetesComprados = empresa.listarPaquetesComprados();
+    List<String> paquetesComprados = empresa.listarPaquetesComprados();
     IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    ArrayList<String> listaResultado = controladorOfertas.listarPaquetes();
+    List<String> listaResultado = controladorOfertas.listarPaquetes();
     for (String paquete : paquetesComprados) {
       listaResultado.remove(paquete);
     }

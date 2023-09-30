@@ -100,7 +100,7 @@ public class CrearUsuario extends JInternalFrame {
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         if (registrarUsuario()) {
           limpiarTodosLosDatos();
         }
@@ -110,7 +110,7 @@ public class CrearUsuario extends JInternalFrame {
     
     this.btnCancelar = new JButton("Cancelar");
     btnCancelar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarTodosLosDatos();
         dispose();
       }
@@ -143,8 +143,8 @@ public class CrearUsuario extends JInternalFrame {
     this.tipoUsuarioSeleccionado = "Postulante";
     this.comboBoxSeleccionTipoUsuario.setModel(model);
     this.comboBoxSeleccionTipoUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cambiarTipoUsuario(e);
+      public void actionPerformed(ActionEvent evento) {
+        cambiarTipoUsuario(evento);
       }
     });
     
@@ -279,7 +279,7 @@ public class CrearUsuario extends JInternalFrame {
     
     selectImageButton.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(null);
         
@@ -462,7 +462,7 @@ public class CrearUsuario extends JInternalFrame {
    */
   
   @SuppressWarnings("exports")
-  public void cambiarTipoUsuario(ActionEvent e) {
+  public void cambiarTipoUsuario(ActionEvent evento) {
     
     String tipoSeleccionado = comboBoxSeleccionTipoUsuario.getSelectedItem().toString();
     if (!tipoSeleccionado.equals(tipoUsuarioSeleccionado)) {

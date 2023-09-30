@@ -176,7 +176,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     ubicacionTextos.add(this.textFieldFechaAlta);
     
     btnBotonCerrar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         dispose();
         lblOfertasLaborales.setVisible(false);
         
@@ -186,17 +186,17 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     });
     
     this.comboBoxEmpresasRegistradas.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cargarOfertaEmpresa(e);
+      public void actionPerformed(ActionEvent evento) {
+        cargarOfertaEmpresa(evento);
         lblOfertasLaborales.setVisible(true);
         comboBoxOfertasLaborales.setVisible(true);
       }
     });
     
     this.comboBoxOfertasLaborales.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
-          cargarDatosOferta(e);
+          cargarDatosOferta(evento);
         } catch (OfertaLaboralNoExisteException e1) {
           // TODO Auto-generated catch block
           e1.printStackTrace();
@@ -226,7 +226,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
    * Metodo cargar oferta empresa .
    */
   
-  public void cargarOfertaEmpresa(ActionEvent e) {
+  public void cargarOfertaEmpresa(ActionEvent evento) {
     String empresa = (String) (this.comboBoxEmpresasRegistradas).getSelectedItem();
     String[] ofertasLaborales;
     limpiarInformacion(); // correccion
@@ -245,7 +245,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
    * Metodo cargar datos oferta .
    */
   
-  public void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException {
+  public void cargarDatosOferta(ActionEvent evento) throws OfertaLaboralNoExisteException {
     String ofertaLaboral = (String) (this.comboBoxOfertasLaborales).getSelectedItem();
     DtOfertaLaboral dtOfertaLaboral;
     

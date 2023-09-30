@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -72,7 +73,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         confirmarOfertaLaboral();
         
       }
@@ -81,7 +82,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
     
     this.btnRechazar = new JButton("Rechazar");
     btnRechazar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         rechazarOfertaLaboral();
         
       }
@@ -90,7 +91,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
     
     this.btnCerrar = new JButton("Cancelar");
     btnCerrar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarTodosLosDatos();
         dispose();
         
@@ -119,9 +120,9 @@ public class AceptarRechazarOferta extends JInternalFrame {
     
     this.comboBoxSeleccionUsuario = new JComboBox<String>();
     this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
-          cargarDatosUsuarios(e);
+          cargarDatosUsuarios(evento);
         } catch (UsuarioNoExisteException e1) {
           // TODO Auto-generated catch block
           e1.printStackTrace();
@@ -147,9 +148,9 @@ public class AceptarRechazarOferta extends JInternalFrame {
     
     this.comboBoxSeleccionOferta = new JComboBox<String>();
     this.comboBoxSeleccionOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
-          cargarDatosOferta(e);
+          cargarDatosOferta(evento);
         } catch (OfertaLaboralNoExisteException e1) {
           // TODO Auto-generated catch block
           e1.printStackTrace();
@@ -244,7 +245,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
   
   public void cargarEmpresas() {
     try {
-      ArrayList<String> listaEmpresas = this.controladorUsuario.listarEmpresas();
+      List<String> listaEmpresas = this.controladorUsuario.listarEmpresas();
       String[] arrayEmpresas;
       arrayEmpresas = listaEmpresas.toArray(new String[0]);
       Arrays.sort(arrayEmpresas);
@@ -305,11 +306,11 @@ public class AceptarRechazarOferta extends JInternalFrame {
    * Metodo cargar datos usuario .
    */
   
-  public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
+  public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
     
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
     
-    ArrayList<String> listaOfertas = this.controladorUsuario
+    List<String> listaOfertas = this.controladorUsuario
         .listaOfertasUsuario(nicknameUsuario);
     String[] arrayOfertas = listaOfertas.toArray(new String[0]);
     Arrays.sort(arrayOfertas);
@@ -318,7 +319,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
     this.comboBoxSeleccionOferta.setModel(model);
   }
   
-  protected void cargarDatosOferta(ActionEvent e) throws OfertaLaboralNoExisteException {
+  protected void cargarDatosOferta(ActionEvent evento) throws OfertaLaboralNoExisteException {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
       DtOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);

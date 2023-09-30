@@ -3,6 +3,7 @@ package logica.classes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
@@ -24,9 +25,9 @@ public class OfertaLaboral {
   private LocalDate fechaResolucion;
   private BufferedImage imagen;
   private EstadoOferta estado;
-  private ArrayList<Keyword> listaKeywords;
+  private List<Keyword> listaKeywords;
   private TipoPublicacion tipoPublicacion;
-  private ArrayList<Postulacion> postulaciones;
+  private List<Postulacion> postulaciones;
   private CompraPaquete compraPaquete;
   
   /**
@@ -102,20 +103,20 @@ public class OfertaLaboral {
     this.fechaAlta = fechaAlta;
   }
   
-  public ArrayList<Keyword> getKeywords() {
+  public List<Keyword> getKeywords() {
     return listaKeywords;
   }
   
-  public void setKeword(ArrayList<Keyword> kw) {
-    this.listaKeywords = kw;
+  public void setKeword(List<Keyword> keywords) {
+    this.listaKeywords = keywords;
   }
   
   public TipoPublicacion getTipoPublicacion() {
     return tipoPublicacion;
   }
   
-  public void setTipoPublicacion(TipoPublicacion tp) {
-    this.tipoPublicacion = tp;
+  public void setTipoPublicacion(TipoPublicacion tipoPublicacion) {
+    this.tipoPublicacion = tipoPublicacion;
   }
   
   public void agregarKeyword(Keyword keyword) {
@@ -126,7 +127,7 @@ public class OfertaLaboral {
     this.postulaciones.add(postulacion);
   }
   
-  public ArrayList<Postulacion> getPostulacion() {
+  public List<Postulacion> getPostulacion() {
     return postulaciones;
   }
   
@@ -134,8 +135,8 @@ public class OfertaLaboral {
    * Metodo obtener DTPostulacion .
    */
   
-  public ArrayList<Dtpostulacion> obtenerDtPostulacion() {
-    ArrayList<Dtpostulacion> listaDtpostulaciones = new ArrayList<Dtpostulacion>();
+  public List<Dtpostulacion> obtenerDtPostulacion() {
+    List<Dtpostulacion> listaDtpostulaciones = new ArrayList<Dtpostulacion>();
     for (Postulacion iter : postulaciones) {
       listaDtpostulaciones.add(iter.obtenerDtpostulacion());
     }
@@ -152,7 +153,7 @@ public class OfertaLaboral {
       paquete = compraPaquete.obtenerDtpaquete();
     }
     
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     for (Keyword keyword : listaKeywords) {
       keywords.add(keyword.getNombre());
     }

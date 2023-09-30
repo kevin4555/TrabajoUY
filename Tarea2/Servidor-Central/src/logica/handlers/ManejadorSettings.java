@@ -6,6 +6,8 @@ import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import logica.classes.Keyword;
 import logica.classes.TipoPublicacion;
 
@@ -16,8 +18,8 @@ import logica.classes.TipoPublicacion;
 public class ManejadorSettings {
   
   private static ManejadorSettings instancia = null;
-  private HashMap<String, TipoPublicacion> colTipoPublicaciones;
-  private HashMap<String, Keyword> colKeywords;
+  private Map<String, TipoPublicacion> colTipoPublicaciones;
+  private Map<String, Keyword> colKeywords;
   
   private ManejadorSettings() {
     colTipoPublicaciones = new HashMap<String, TipoPublicacion>();
@@ -39,8 +41,8 @@ public class ManejadorSettings {
    * Lista de tipos de publicaciones .
    */
   
-  public ArrayList<String> listarTipoDePublicaciones() {
-    ArrayList<String> listTipoPublicaciones = new ArrayList<String>();
+  public List<String> listarTipoDePublicaciones() {
+    List<String> listTipoPublicaciones = new ArrayList<String>();
     for (String key : colTipoPublicaciones.keySet()) {
       listTipoPublicaciones.add(key);
     }
@@ -103,8 +105,8 @@ public class ManejadorSettings {
    * Obtener lista de keywords .
    */
   
-  public ArrayList<String> listarKeywords() {
-    ArrayList<String> listKewords = new ArrayList<String>();
+  public List<String> listarKeywords() {
+    List<String> listKewords = new ArrayList<String>();
     for (String key : colKeywords.keySet()) {
       listKewords.add(key);
     }

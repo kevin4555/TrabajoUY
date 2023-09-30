@@ -10,6 +10,7 @@ import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
@@ -26,14 +27,14 @@ public interface IcontroladorUsuario {
   
   public Empresa obtenerEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException;
   
-  public ArrayList<String> listarEmpresas();
+  public List<String> listarEmpresas();
   
-  public ArrayList<String> listaDeUsuarios();
+  public List<String> listaDeUsuarios();
   
   public void editarDatosBasicos(Dtusuario usuario, String nombreNuevo, String apellidoNuevo)
       throws UsuarioNoExisteException;
   
-  public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa) 
+  public List<String> obtenerOfertasEmpresa(String nicknameEmpresa) 
       throws UsuarioNoExisteException;
   
   public void registrarPostulacion(String cvReducido, String motivacion, 
@@ -55,12 +56,12 @@ public interface IcontroladorUsuario {
   
   public Dtusuario obtenerDtusuario(String nickname) throws UsuarioNoExisteException;
   
-  public ArrayList<String> listaOfertasUsuario(String nicknameUsuario) 
+  public List<String> listaOfertasUsuario(String nicknameUsuario) 
       throws UsuarioNoExisteException;
   
   public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException;
   
-  ArrayList<String> listarPostulantes();
+  List<String> listarPostulantes();
   
   public void editarPostulante(String nickname, String nombre, 
       String apellido, LocalDate fechaNacimiento,
@@ -75,30 +76,30 @@ public interface IcontroladorUsuario {
       String nombreOferta)
       throws UsuarioNoExisteException, UsuarioNoExistePostulacion;
   
-  ArrayList<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(
+  List<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException;
   
-  ArrayList<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
+  List<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException;
   
-  ArrayList<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(
+  List<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException;
   
   Boolean confirmarContrasenia(String clave, String contrasenia) throws UsuarioNoExisteException;
   
-  ArrayList<Dtusuario> obtenerDtusuarios();
+  List<Dtusuario> obtenerDtusuarios();
   
-  ArrayList<DtpaquetePublicacion> obtenerDtpaquetesDeEmpresa(
+  List<DtpaquetePublicacion> obtenerDtpaquetesDeEmpresa(
       String nicknameEmpresa) throws UsuarioNoExisteException;
   
-  ArrayList<Dtpostulacion> obtenerDtpostulacionesDePostulante(
+  List<Dtpostulacion> obtenerDtpostulacionesDePostulante(
       String nicknamePostulante)
       throws UsuarioNoExisteException;
   
-  ArrayList<String> listarPaquetesNoCompradosDeEmpresa(
+  List<String> listarPaquetesNoCompradosDeEmpresa(
       String nicknameEmpresa) throws UsuarioNoExisteException;
   
   void comprarPaquete(String nicknameEmpresa, String nombrePaquete, LocalDate fechaCompra)

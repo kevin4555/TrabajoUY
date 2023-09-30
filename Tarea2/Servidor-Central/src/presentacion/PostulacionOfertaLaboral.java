@@ -280,27 +280,27 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     ubicacionSur.setVisible(true);
     
     this.comboBoxEmpresasRegistradasPostulacion.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // empresa1 = (String)
         // (comboBoxEmpresasRegistradasPostulacion).getSelectedItem();
         // if(empresa1 != empresa2)
         ubicacionCentro.setVisible(false);
         limpiarInformacion();
-        cargarOfertaEmpresaPostulacion(e);
+        cargarOfertaEmpresaPostulacion(evento);
         comboBoxOfertasLaboralesPostulacion.setVisible(true);
         lblOfertasLaborales.setVisible(true);
       }
     });
     
     this.comboBoxOfertasLaboralesPostulacion.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
-          cargarDatosOfertaLaboralPostulacion(e);
+          cargarDatosOfertaLaboralPostulacion(evento);
         } catch (OfertaLaboralNoExisteException e1) {
           // TODO Auto-generated catch block
           e1.printStackTrace();
         }
-        cargarPostulantes(e);
+        cargarPostulantes(evento);
         ubicacionCentro.setVisible(true);
         ubicacionDatosOferta.setVisible(true);
         ubicacionEtiquetasDtOf.setVisible(true);
@@ -312,7 +312,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     });
     
     this.comboBoxPostulantesRegistrados.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         ubicacionEtiquetasText.setVisible(true);
         ubicacionTextFields.setVisible(true);
         ubicacionSur.setVisible(true);
@@ -323,9 +323,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     JButton btnBotonAceptar = new JButton("Confirmar");
     ubicacionSur.add(btnBotonAceptar);
     btnBotonAceptar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
-          registrarPostulacion(e);
+          registrarPostulacion(evento);
         } catch (UsuarioYaExistePostulacion | HeadlessException | UsuarioNoExisteException
             | OfertaLaboralNoExisteException e1) {
           // TODO Auto-generated catch block
@@ -337,7 +337,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     JButton btnBotonCancelar = new JButton("Cancelar");
     ubicacionSur.add(btnBotonCancelar);
     btnBotonCancelar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         dispose();
         comboBoxOfertasLaboralesPostulacion.setVisible(false);
         lblOfertasLaborales.setVisible(false);
@@ -393,7 +393,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
    * Metodo cargar oferta empresa postulacion .
    */
   
-  public void cargarOfertaEmpresaPostulacion(ActionEvent e) {
+  public void cargarOfertaEmpresaPostulacion(ActionEvent evento) {
     try {
       this.seleccionEmpresa = this.comboBoxEmpresasRegistradasPostulacion.getSelectedItem()
           .toString();
@@ -411,7 +411,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
    * Metodo cargar datos oferta laboral postulacion .
    */
   
-  public void cargarDatosOfertaLaboralPostulacion(ActionEvent e)
+  public void cargarDatosOfertaLaboralPostulacion(ActionEvent evento)
       throws OfertaLaboralNoExisteException {
     this.nomOfertaLaboral = (String) (this.comboBoxOfertasLaboralesPostulacion)
         .getSelectedItem();
@@ -433,7 +433,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
    * Metodo cargar postulantes .
    */
   
-  public void cargarPostulantes(ActionEvent e) {
+  public void cargarPostulantes(ActionEvent evento) {
     String[] postulantes = (controlUsuarioLab.listarPostulantes()).toArray(new String[0]);
     DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(postulantes);
     this.comboBoxPostulantesRegistrados.setModel(model);
@@ -443,7 +443,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
    * Metodo registrar postulacion .
    */
   
-  public void registrarPostulacion(ActionEvent e) throws UsuarioYaExistePostulacion,
+  public void registrarPostulacion(ActionEvent evento) throws UsuarioYaExistePostulacion,
       HeadlessException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
     if (chequearDatos()) {
       

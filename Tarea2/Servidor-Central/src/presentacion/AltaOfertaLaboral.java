@@ -22,6 +22,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -142,7 +143,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     panelBotones.add(btnCancelar);
     
     btnCancelar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarFormulario();
         dispose();
       }
@@ -362,8 +363,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
     panelDatos.add(comboBoxFormaDePago, gbcComboBox);
     
     this.comboBoxFormaDePago.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cargarDatosTipoPublicacion(e);
+      public void actionPerformed(ActionEvent evento) {
+        cargarDatosTipoPublicacion(evento);
         
       }
     });
@@ -397,8 +398,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
     
     this.comboBoxSeleccionPaquete = new JComboBox<String>();
     this.comboBoxSeleccionPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cargarTipoPublicacionEnPaquete(e);
+      public void actionPerformed(ActionEvent evento) {
+        cargarTipoPublicacionEnPaquete(evento);
         
       }
     });
@@ -431,7 +432,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     
     selectImageButton.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(null);
         
@@ -462,7 +463,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
   @SuppressWarnings("unchecked")
   public void cargarEmpresas() {
     
-    ArrayList<String> listaEmpresas = this.controladorUsuario.listarEmpresas();
+    List<String> listaEmpresas = this.controladorUsuario.listarEmpresas();
     String[] arrayEmpresas;
     arrayEmpresas = listaEmpresas.toArray(new String[0]);
     Arrays.sort(arrayEmpresas);
@@ -504,7 +505,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
    * Metodo cargar datos tipo publicacion .
    */
   
-  public void cargarDatosTipoPublicacion(ActionEvent e) {
+  public void cargarDatosTipoPublicacion(ActionEvent evento) {
     
     try {
       DefaultComboBoxModel<String> modelPublicaciones;
@@ -514,7 +515,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         comboBoxSeleccionTiposPublicaciones.setVisible(true);
         this.comboBoxSeleccionPaquete.setVisible(false);
         lblSeleccionPaquete.setVisible(false);
-        ArrayList<String> listaTipoDePublicaciones = this.controladorOfertaLaboral
+        List<String> listaTipoDePublicaciones = this.controladorOfertaLaboral
             .listarTipoDePublicaciones();
         String[] arrayTiposPublicaciones = listaTipoDePublicaciones.toArray(new String[0]);
         Arrays.sort(arrayTiposPublicaciones);
@@ -530,9 +531,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
           this.comboBoxSeleccionPaquete.setVisible(true);
           lblSeleccionPaquete.setVisible(true);
           
-          ArrayList<DtpaquetePublicacion> dtPaquetesComprados = this.controladorUsuario
+          List<DtpaquetePublicacion> dtPaquetesComprados = this.controladorUsuario
               .obtenerDtpaquetesDeEmpresa(nicknameEmpresa);
-          ArrayList<String> nombrePaquetesComprados = new ArrayList<String>();
+          List<String> nombrePaquetesComprados = new ArrayList<String>();
           for (DtpaquetePublicacion dtPaquete : dtPaquetesComprados) {
             nombrePaquetesComprados.add(dtPaquete.getNombre());
           }
@@ -592,11 +593,11 @@ public class AltaOfertaLaboral extends JInternalFrame {
    * Metodo cargar tipo publicacion en paquete .
    */
   
-  public void cargarTipoPublicacionEnPaquete(ActionEvent e) {
+  public void cargarTipoPublicacionEnPaquete(ActionEvent evento) {
     
     try {
       String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
-      ArrayList<String> listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
+      List<String> listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
           .listarTipoPublicacionDePaquete(nombrePaquete);
       
       String[] arrayTiposPublicacionesPaquete = listaTipoDePublicacionesDePaquete
@@ -629,7 +630,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     
     String horaIniOfertaLab = this.textFieldHoraInicio.getText();
     String horaFinOfertaLab = this.textFieldHoraFin.getText();
-    ArrayList<String> keywordSeleccionadas = new ArrayList<String>();
+    List<String> keywordSeleccionadas = new ArrayList<String>();
     if (!this.listaKeyword.getSelectedValuesList().isEmpty()) {
       keywordSeleccionadas = (ArrayList<String>) this.listaKeyword.getSelectedValuesList();
     }

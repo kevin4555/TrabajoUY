@@ -14,6 +14,7 @@ import excepciones.UsuarioYaExistePostulacion;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import logica.classes.Keyword;
 import logica.datatypes.DtcantidadTipoPublicacion;
 import logica.datatypes.EstadoOferta;
@@ -145,7 +146,7 @@ public class Loader {
     Keyword keyword5 = controladorOferta.obtenerKeywords("Temporal");
     Keyword keyword6 = controladorOferta.obtenerKeywords("Permanente");
     
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     keywords.add(keyword1.getNombre());
     keywords.add(keyword2.getNombre());
     keywords.add(keyword3.getNombre());
@@ -159,7 +160,7 @@ public class Loader {
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", LocalDate.parse("2023-08-14"),
         "Premium", "EcoTech", keywords, null, null);
     
-    ArrayList<String> keywords2 = new ArrayList<String>();
+    List<String> keywords2 = new ArrayList<String>();
     keywords2.add(keyword5.getNombre());
     controladorOferta.altaOfertaLaboral("Estratega de Negocios",
         "Forma parte de nuestro equipo de estrategia y contribuye al "
@@ -167,7 +168,7 @@ public class Loader {
         "08:00", "17:00", 80000f, "Punta del Este", "Maldonado", LocalDate.parse("2023-08-14"),
         "Estándar", "GlobalHealth", keywords2, null, null);
     
-    ArrayList<String> keywords3 = new ArrayList<String>();
+    List<String> keywords3 = new ArrayList<String>();
     keywords3.add(keyword2.getNombre());
     keywords3.add(keyword3.getNombre());
     keywords3.add(keyword6.getNombre());
@@ -177,7 +178,7 @@ public class Loader {
         "14:00", "18:00", 65000f, "Rosario", "Colonia", LocalDate.parse("2023-08-13"),
         "Estándar", "FusionTech", keywords3, null, null);
     
-    ArrayList<String> keywords4 = new ArrayList<String>();
+    List<String> keywords4 = new ArrayList<String>();
     keywords4.add(keyword2.getNombre());
     controladorOferta.altaOfertaLaboral("Analista de Datos",
         "Ayuda a nuestros clientes a tomar decisiones informadas basadas "
@@ -185,7 +186,7 @@ public class Loader {
         "09:00", "13:00", 40000f, "Maldonado", "Maldonado", LocalDate.parse("2023-08-11"),
         "Premium", "ANTEL", keywords4, null, null);
     
-    ArrayList<String> keywords5 = new ArrayList<String>();
+    List<String> keywords5 = new ArrayList<String>();
     keywords5.add(keyword4.getNombre());
     controladorOferta.altaOfertaLaboral("Content Manager",
         "Gestiona y crea contenido persuasivo y relevante para impulsar "
@@ -193,7 +194,7 @@ public class Loader {
         "18:00", "22:00", 10000f, "Montevideo", "Montevideo", LocalDate.parse("2023-08-20"),
         "Destacada", "MIEM", keywords5, null, null);
     
-    ArrayList<String> keywords6 = new ArrayList<String>();
+    List<String> keywords6 = new ArrayList<String>();
     keywords6.add(keyword1.getNombre());
     controladorOferta.altaOfertaLaboral("Soporte Técnico",
         "Ofrece un excelente servicio de soporte técnico a nuestros clientes, "
@@ -252,7 +253,7 @@ public class Loader {
             + "dinámico y contribuir con mis habilidades de liderazgo.",
         LocalDate.parse("2023-08-16"), "lgarcia", "Estratega de Negocios");
     
-    ArrayList<DtcantidadTipoPublicacion> paquete1 = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtcantidadTipoPublicacion> paquete1 = new ArrayList<DtcantidadTipoPublicacion>();
     
     
     
@@ -264,11 +265,11 @@ public class Loader {
     paquete1.add(tipo2);
     paquete1.add(tipo3);
     
-    ArrayList<DtcantidadTipoPublicacion> paquete3 = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtcantidadTipoPublicacion> paquete3 = new ArrayList<DtcantidadTipoPublicacion>();
     DtcantidadTipoPublicacion tipo4 = new DtcantidadTipoPublicacion("Estándar", 2);
     DtcantidadTipoPublicacion tipo5 = new DtcantidadTipoPublicacion("Básica", 1);
     
-    ArrayList<DtcantidadTipoPublicacion> paquete2 = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtcantidadTipoPublicacion> paquete2 = new ArrayList<DtcantidadTipoPublicacion>();
     
     paquete2.add(tipo4);
     paquete2.add(tipo5);
@@ -278,7 +279,7 @@ public class Loader {
     paquete3.add(tipo6);
     paquete3.add(tipo7);
     
-    ArrayList<DtcantidadTipoPublicacion> paquete4 = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtcantidadTipoPublicacion> paquete4 = new ArrayList<DtcantidadTipoPublicacion>();
     
     DtcantidadTipoPublicacion tipo8 = new DtcantidadTipoPublicacion("Destacada", 2);
     paquete4.add(tipo8);

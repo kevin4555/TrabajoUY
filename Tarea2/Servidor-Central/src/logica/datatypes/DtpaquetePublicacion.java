@@ -3,6 +3,7 @@ package logica.datatypes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase DTPaquetePublicacion.
@@ -15,7 +16,7 @@ public class DtpaquetePublicacion {
   private float descuento;
   private float costo;
   private BufferedImage imagen;
-  private ArrayList<DtcantidadTipoPublicacion> cantidadPublicacionesColeccion;
+  private List<DtcantidadTipoPublicacion> cantidadPublicacionesColeccion;
   private LocalDate fechaAlta;
   
   /**
@@ -25,7 +26,7 @@ public class DtpaquetePublicacion {
   public DtpaquetePublicacion(String nombre, String descripcion, 
       int periodoValidez, float descuento, float costo,
       BufferedImage imagen, 
-      ArrayList<DtcantidadTipoPublicacion> cantidadPublicacionesColeccion, 
+      List<DtcantidadTipoPublicacion> cantidadPublicacionesColeccion, 
       LocalDate fechaAlta) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -41,7 +42,7 @@ public class DtpaquetePublicacion {
     return imagen;
   }
   
-  public ArrayList<DtcantidadTipoPublicacion> getCantidadPublicacionesColeccion() {
+  public List<DtcantidadTipoPublicacion> getCantidadPublicacionesColeccion() {
     return cantidadPublicacionesColeccion;
   }
   

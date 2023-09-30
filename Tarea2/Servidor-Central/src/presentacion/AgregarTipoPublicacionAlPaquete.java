@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -81,7 +82,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         agregarTipoPublicacionAlPaquete();
         
       }
@@ -90,7 +91,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     
     this.btnCerrar = new JButton("Cancelar");
     btnCerrar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarTodosLosDatos();
         dispose();
         
@@ -120,8 +121,8 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     
     this.comboBoxSeleccionPaquete = new JComboBox<String>();
     this.comboBoxSeleccionPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cargarTipoPublicacionNoIncluidasEnPaquete(e);
+      public void actionPerformed(ActionEvent evento) {
+        cargarTipoPublicacionNoIncluidasEnPaquete(evento);
         
       }
     });
@@ -144,8 +145,8 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     
     this.comboBoxSeleccionTiposPublicaciones = new JComboBox<String>();
     this.comboBoxSeleccionTiposPublicaciones.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cargarDatosTipoPublicacion(e);
+      public void actionPerformed(ActionEvent evento) {
+        cargarDatosTipoPublicacion(evento);
       }
     });
     GridBagConstraints gbcComboBoxSeleccionOferta = new GridBagConstraints();
@@ -283,7 +284,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   
   public void cargarPaquetes() {
     try {
-      ArrayList<String> listaPaquetes = this.controladorOfertaLaboral.listarPaquetes();
+      List<String> listaPaquetes = this.controladorOfertaLaboral.listarPaquetes();
       String[] arrayEmpresas;
       arrayEmpresas = listaPaquetes.toArray(new String[0]);
       Arrays.sort(arrayEmpresas);
@@ -301,7 +302,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
    */
   
   @SuppressWarnings({ })
-  public void cargarTipoPublicacionNoIncluidasEnPaquete(ActionEvent e) {
+  public void cargarTipoPublicacionNoIncluidasEnPaquete(ActionEvent evento) {
     
     try {
       String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
@@ -325,12 +326,12 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
        * }
        */
       
-      ArrayList<String> listaTipoDePublicaciones = this.controladorOfertaLaboral
+      List<String> listaTipoDePublicaciones = this.controladorOfertaLaboral
           .listarTipoDePublicaciones();
-      ArrayList<String> listaTipoDePublicacionesDePaquete;
+      List<String> listaTipoDePublicacionesDePaquete;
       listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
           .listarTipoPublicacionDePaquete(nombrePaquete);
-      ArrayList<String> listaTipoDePublicacionesNoIncluidas = new ArrayList<String>();
+      List<String> listaTipoDePublicacionesNoIncluidas = new ArrayList<String>();
       for (String nombreTipoPublicacion : listaTipoDePublicaciones) {
         if (!listaTipoDePublicacionesDePaquete.contains(nombreTipoPublicacion)) {
           listaTipoDePublicacionesNoIncluidas.add(nombreTipoPublicacion);
@@ -350,7 +351,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     
   }
   
-  protected void cargarDatosTipoPublicacion(ActionEvent e) {
+  protected void cargarDatosTipoPublicacion(ActionEvent evento) {
     String tipoPublicacion = comboBoxSeleccionTiposPublicaciones.getSelectedItem().toString();
     if (tipoPublicacionSeleccionada != tipoPublicacion) {
       

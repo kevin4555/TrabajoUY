@@ -3,6 +3,7 @@ package logica.datatypes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase DTOfertaLaboral.
@@ -18,11 +19,11 @@ public class DtOfertaLaboral {
   private Float remuneracion;
   private LocalDate fechaAlta;
   private LocalDate fechaResolucion;
-  private ArrayList<Dtpostulacion> postulaciones;
+  private List<Dtpostulacion> postulaciones;
   private EstadoOferta estadoOferta;
   private BufferedImage imagen;
   private DtpaquetePublicacion paqueteAsociado;
-  private ArrayList<String> keywords;
+  private List<String> keywords;
   
   /**
    * Contructor.
@@ -30,10 +31,10 @@ public class DtOfertaLaboral {
   
   public DtOfertaLaboral(String nombre, String descripcion, 
       String ciudad, String departamento, String horarioInicial, String horarioFinal, 
-      Float remuneracion, LocalDate fechaAlta, ArrayList<Dtpostulacion> postulaciones,
+      Float remuneracion, LocalDate fechaAlta, List<Dtpostulacion> postulaciones,
       LocalDate fechaResolucion, EstadoOferta estado, BufferedImage imagen, 
       DtpaquetePublicacion paquete,
-      ArrayList<String> keywords) {
+      List<String> keywords) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.ciudad = ciudad;
@@ -75,7 +76,7 @@ public class DtOfertaLaboral {
     return fechaAlta;
   }
   
-  public ArrayList<Dtpostulacion> getPostulaciones() {
+  public List<Dtpostulacion> getPostulaciones() {
     return postulaciones;
   }
   
@@ -87,7 +88,7 @@ public class DtOfertaLaboral {
     return horarioFinal;
   }
   
-  public ArrayList<String> getKeywords() {
+  public List<String> getKeywords() {
     return keywords;
   }
   

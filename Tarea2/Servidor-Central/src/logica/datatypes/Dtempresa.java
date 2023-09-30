@@ -2,6 +2,7 @@ package logica.datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,7 +19,7 @@ public class Dtempresa extends Dtusuario {
   
   public Dtempresa(String nickname, String nombre, String apellido, 
       String email, BufferedImage imagen, String contrasenia, 
-      ArrayList<DtOfertaLaboral> ofertasColeccion, String descripcion, String sitioWeb) {
+      List<DtOfertaLaboral> ofertasColeccion, String descripcion, String sitioWeb) {
     super(nickname, nombre, apellido, email, imagen, contrasenia, ofertasColeccion);
     this.descripcion = descripcion;
     this.sitioWeb = sitioWeb;
@@ -32,7 +33,7 @@ public class Dtempresa extends Dtusuario {
     return sitioWeb;
   }
   
-  public ArrayList<DtOfertaLaboral> getOfertasLaborales() {
+  public List<DtOfertaLaboral> getOfertasLaborales() {
     return getOfertasColeccion();
   }
 }

@@ -5,6 +5,7 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import logica.classes.OfertaLaboral;
 import logica.datatypes.DtOfertaLaboral;
@@ -19,7 +20,7 @@ public class ManejadorOfertas {
   
   // private HashMap<String, TipoPublicacion>
   // coleccionTipoPublicacion;
-  private HashMap<String, OfertaLaboral> coleccionOfertaLaboral;
+  private Map<String, OfertaLaboral> coleccionOfertaLaboral;
   
   private ManejadorOfertas() {
     // coleccionTipoPublicacion = new HashMap<String,
@@ -82,8 +83,8 @@ public class ManejadorOfertas {
    * Obtener lista de ofertas laborales .
    */
   
-  public ArrayList<String> listarOfertasLaborales() {
-    ArrayList<String> resultado = new ArrayList<String>();
+  public List<String> listarOfertasLaborales() {
+    List<String> resultado = new ArrayList<String>();
     for (Map.Entry<String, OfertaLaboral> entry : this.coleccionOfertaLaboral.entrySet()) {
       resultado.add(entry.getKey());
     }
@@ -98,8 +99,8 @@ public class ManejadorOfertas {
    * Obtener DTOfertasLaboralesConfirmadas .
    */
   
-  public ArrayList<DtOfertaLaboral> obtenerDtofertasConfirmadas() {
-    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
+  public List<DtOfertaLaboral> obtenerDtofertasConfirmadas() {
+    List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
       listaResultado.add(oferta.obtenerDtOfertaLaboral());
     }
@@ -110,8 +111,8 @@ public class ManejadorOfertas {
    * Obtener obtenerDTOfertasPorKeyword .
    */
   
-  public ArrayList<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
-    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
+  public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
+    List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
       if (oferta.tieneKeyword(keyword)) {
         listaResultado.add(oferta.obtenerDtOfertaLaboral());

@@ -100,7 +100,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
     btnCancelar = new JButton("Cancelar");
     ubicacionBotones.add(btnCancelar);
     btnCancelar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarInformacion();
         setVisible(false);
       }

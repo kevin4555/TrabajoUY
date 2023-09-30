@@ -3,6 +3,7 @@ package logica.classes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
@@ -15,7 +16,7 @@ import logica.datatypes.Dtusuario;
 public class Postulante extends Usuario {
   private LocalDate fechaNacimiento;
   private String nacionalidad;
-  private ArrayList<Postulacion> postulaciones;
+  private List<Postulacion> postulaciones;
   
   /**
    * Constructor.
@@ -46,7 +47,7 @@ public class Postulante extends Usuario {
     this.nacionalidad = nacionalidad;
   }
   
-  public ArrayList<Postulacion> getPostulaciones() {
+  public List<Postulacion> getPostulaciones() {
     return postulaciones;
   }
   
@@ -60,8 +61,8 @@ public class Postulante extends Usuario {
   }
   
   @Override
-  public ArrayList<String> listarOfertasUsuario() {
-    ArrayList<String> listaOfertas = new ArrayList<String>();
+  public List<String> listarOfertasUsuario() {
+    List<String> listaOfertas = new ArrayList<String>();
     for (Postulacion postulacion : postulaciones) {
       listaOfertas.add(postulacion.getNombreOfertaLaboral());
     }
@@ -90,8 +91,8 @@ public class Postulante extends Usuario {
    * Obtener DTOfertaLaboral.
    */
   
-  public ArrayList<DtOfertaLaboral> obtenerDtofertas() {
-    ArrayList<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
+  public List<DtOfertaLaboral> obtenerDtofertas() {
+    List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (Postulacion postulacion : postulaciones) {
       listaResultado.add(postulacion.getOfertaLaboral().obtenerDtOfertaLaboral());
     }
@@ -102,8 +103,8 @@ public class Postulante extends Usuario {
    * Obtener DTPostulaciones .
    */
   
-  public ArrayList<Dtpostulacion> obtenerDtpostulaciones() {
-    ArrayList<Dtpostulacion> listaResultado = new ArrayList<Dtpostulacion>();
+  public List<Dtpostulacion> obtenerDtpostulaciones() {
+    List<Dtpostulacion> listaResultado = new ArrayList<Dtpostulacion>();
     for (Postulacion postulacion : postulaciones) {
       listaResultado.add(postulacion.obtenerDtpostulacion());
     }

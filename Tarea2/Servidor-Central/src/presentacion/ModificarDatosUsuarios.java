@@ -19,6 +19,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -110,9 +111,9 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     
     this.comboBoxSeleccionUsuario = new JComboBox<String>();
     this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
-          cargarDatosUsuarios(e);
+          cargarDatosUsuarios(evento);
         } catch (UsuarioNoExisteException e1) {
           // TODO Auto-generated catch block
           e1.printStackTrace();
@@ -236,7 +237,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     
     selectImageButton.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(null);
         
@@ -370,7 +371,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
           modificarDatosUsuarios();
         } catch (UsuarioNoExisteException e1) {
@@ -383,7 +384,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     
     this.btnCancelar = new JButton("Cancelar");
     btnCancelar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarTodosLosDatos();
         dispose();
       }
@@ -398,7 +399,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
   
   public void cargarUsuarios() {
     try {
-      ArrayList<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
+      List<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
       String[] arrayUsuarios;
       arrayUsuarios = listaUsuarios.toArray(new String[0]);
       Arrays.sort(arrayUsuarios);
@@ -416,7 +417,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    */
   
   @SuppressWarnings({ "deprecation", "exports" })
-  public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
+  public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
     
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (nicknameUsuario != usuarioSeleccionado) {

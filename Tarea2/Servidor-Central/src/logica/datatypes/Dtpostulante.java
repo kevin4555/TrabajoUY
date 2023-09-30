@@ -3,6 +3,7 @@ package logica.datatypes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase DTPostulante.
@@ -18,7 +19,7 @@ public class Dtpostulante extends Dtusuario {
   
   public Dtpostulante(String nickname, String nombre, String apellido, 
       String email, BufferedImage imagen, String contrasenia, 
-      ArrayList<DtOfertaLaboral> ofertasColeccion, LocalDate fechaNacimiento, 
+      List<DtOfertaLaboral> ofertasColeccion, LocalDate fechaNacimiento, 
       String nacionalidad) {
     super(nickname, nombre, apellido, email, imagen, contrasenia, ofertasColeccion);
     this.fechaNacimiento = fechaNacimiento;

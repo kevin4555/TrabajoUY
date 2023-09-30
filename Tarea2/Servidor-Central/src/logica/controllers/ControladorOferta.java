@@ -13,6 +13,7 @@ import excepciones.UsuarioNoExisteException;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.Empresa;
 import logica.classes.Keyword;
@@ -40,9 +41,9 @@ import logica.interfaces.IcontroladorUsuario;
 public class ControladorOferta implements IcontroladorOferta {
   
   @Override
-  public ArrayList<String> listarTipoDePublicaciones() {
+  public List<String> listarTipoDePublicaciones() {
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-    ArrayList<String> nombreTiposPublicacion = manejadorSettings.listarTipoDePublicaciones();
+    List<String> nombreTiposPublicacion = manejadorSettings.listarTipoDePublicaciones();
     return nombreTiposPublicacion;
   }
   
@@ -50,7 +51,7 @@ public class ControladorOferta implements IcontroladorOferta {
   public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial,
       String horarioFinal, float remuneracion, String ciudad, String departamento,
       LocalDate fechaAlta, String nomTipoPublicacion, String nicknameEmpresa,
-      ArrayList<String> listakeywords, BufferedImage imagen, String nombrePaquete)
+      List<String> listakeywords, BufferedImage imagen, String nombrePaquete)
       throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException,
       KeywordNoExisteException, UsuarioNoExisteException {
     
@@ -99,7 +100,7 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public ArrayList<String> listarPaquetes() {
+  public List<String> listarPaquetes() {
     ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
     return manejadorPaquetes.listarPaquetes();
   }
@@ -137,9 +138,9 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public ArrayList<String> listarKeywords() {
+  public List<String> listarKeywords() {
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-    ArrayList<String> listKeywords = manejadorSettings.listarKeywords();
+    List<String> listKeywords = manejadorSettings.listarKeywords();
     return listKeywords;
   }
   
@@ -154,14 +155,14 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa)
+  public List<String> obtenerOfertasEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
     ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
     
     Empresa empresa = manejadorUsuario.obtenerEmpresa(nicknameEmpresa);
-    ArrayList<OfertaLaboral> ofertas = empresa.getOfertasLaborales();
+    List<OfertaLaboral> ofertas = empresa.getOfertasLaborales();
     
-    ArrayList<String> nombreOfertas = new ArrayList<String>();
+    List<String> nombreOfertas = new ArrayList<String>();
     for (OfertaLaboral ofertaLaboral : ofertas) {
       nombreOfertas.add(ofertaLaboral.getNombre());
     }
@@ -171,12 +172,12 @@ public class ControladorOferta implements IcontroladorOferta {
   @Override
   public void registrarPaquete(String nombre, String descripcion, int periodoValDias,
       float descuento, BufferedImage imagen, LocalDate fechaAlta,
-      ArrayList<DtcantidadTipoPublicacion> cantidadTipoPublicacion)
+      List<DtcantidadTipoPublicacion> cantidadTipoPublicacion)
       throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException,
       TipoPublicacionNoExisteException {
     ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-    ArrayList<CantidadTotalTipoPublicacion> arrayCantidad = 
+    List<CantidadTotalTipoPublicacion> arrayCantidad = 
         new ArrayList<CantidadTotalTipoPublicacion>();
     
     if (cantidadTipoPublicacion != null) {
@@ -212,11 +213,11 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public ArrayList<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab)
+  public List<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab)
       throws OfertaLaboralNoExisteException {
     ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
     OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOfertaLab);
-    ArrayList<String> listaKeywords = new ArrayList<String>();
+    List<String> listaKeywords = new ArrayList<String>();
     for (int i = 0; i < ofertaLaboral.getKeywords().size(); i++) {
       listaKeywords.add(ofertaLaboral.getKeywords().get(i).getNombre());
     }
@@ -231,17 +232,17 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public ArrayList<DtOfertaLaboral> obtenerDtOfertasConfirmadas() {
+  public List<DtOfertaLaboral> obtenerDtOfertasConfirmadas() {
     return ManejadorOfertas.getInstance().obtenerDtofertasConfirmadas();
   }
   
   @Override
-  public ArrayList<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
+  public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
     return ManejadorOfertas.getInstance().obtenerDtofertasPorKeyword(keyword);
   }
   
   @Override
-  public ArrayList<Dtpostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta)
+  public List<Dtpostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta)
       throws OfertaLaboralNoExisteException {
     OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
     return oferta.obtenerDtPostulacion();
@@ -268,7 +269,7 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete)
+  public List<String> listarTipoPublicacionDePaquete(String nombrePaquete)
       throws PaquetePublicacionNoExisteException {
     PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
     return paquete.obtenerNombresTipoPublicaciones();
@@ -290,12 +291,12 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public ArrayList<String> listarPaquetesNoComprados() {
+  public List<String> listarPaquetesNoComprados() {
     return ManejadorPaquetes.getInstance().listarPaquetesNoComprados();
   }
   
   @Override
-  public ArrayList<DtpaquetePublicacion> listarDtpaquetes() {
+  public List<DtpaquetePublicacion> listarDtpaquetes() {
     return ManejadorPaquetes.getInstance().listarDtpaquetes();
   }
 }

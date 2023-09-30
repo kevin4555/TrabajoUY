@@ -178,7 +178,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuItemRegistrarUsuario = new JMenuItem("Registrar Usuario");
     menuItemRegistrarUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para registrar un
         // usuario
         crearUsuInternalFrame.setVisible(true);
@@ -188,7 +188,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuConsultaUsuario = new JMenuItem("Consulta de Usuario");
     menuConsultaUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para ver información
         // de un usuario
         consultarUsuInternalFrame.cargarUsuarios();
@@ -199,7 +199,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuModificaraUsuario = new JMenuItem("Modificar Datos de Usuario");
     menuModificaraUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para ver información
         // de un usuario
         modificarDatosUsuarios.cargarUsuarios();
@@ -213,7 +213,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuItemRegistrarOferta = new JMenuItem("Registrar Oferta Laboral");
     menuItemRegistrarOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para registrar una
         // oferta laboral
         crearOfertaLaboralInternalFrame.cargarEmpresas();
@@ -227,7 +227,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuItemConsultarOferta = new JMenuItem("Consultar Oferta Laboral");
     menuItemConsultarOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para consultar una
         // oferta laboral
         consultarOfertaInternalFrame.cargarEmpresas();
@@ -239,7 +239,7 @@ public class Principal extends JFrame {
     JMenuItem menuItemAltaTipoPublicDeOferta = new JMenuItem(
         "Registro Tipo de Publicacion de Oferta Laboral");
     menuItemAltaTipoPublicDeOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para crear un tipo de
         // publicacion de oferta laboral
         crearTipoPublicDeOfertaLabInternalFrame.setVisible(true);
@@ -249,7 +249,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuItemPostulacionOfertaLab = new JMenuItem("Postulacion a Oferta Laboral");
     menuItemPostulacionOfertaLab.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para postularse a una
         // oferta laboral
         postulacionOfertaLabInternalFrame.cargarEmpresasPostulacion();
@@ -260,7 +260,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuItemaceptarRechazarOferta = new JMenuItem("Aceptar/Rechazar Oferta Laboral");
     menuItemaceptarRechazarOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para postularse a una
         // oferta laboral
         aceptarRechazarOferta.cargarEmpresas();
@@ -275,7 +275,7 @@ public class Principal extends JFrame {
     JMenuItem menuItemAgregarTipoPublicacionAlPaquete = new JMenuItem(
         "Agregar tipo de publicacion al paquete");
     menuItemAgregarTipoPublicacionAlPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para postularse a una
         // oferta laboral
         agregarTipoPublicacionAlPaquete.cargarPaquetes();
@@ -286,7 +286,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuItemRegistarPaquete = new JMenuItem("Registrar paquete");
     menuItemRegistarPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         registrarPaquete.setVisible(true);
       }
     });
@@ -294,7 +294,7 @@ public class Principal extends JFrame {
     
     JMenuItem menuItemConsultaPaquete = new JMenuItem("Consultar paquete");
     menuItemConsultaPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         // Muestro el InternalFrame para postularse a una
         // oferta laboral
         consultaPaquete.cargarPaquetes();

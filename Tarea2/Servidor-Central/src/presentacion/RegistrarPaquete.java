@@ -77,7 +77,7 @@ public class RegistrarPaquete extends JInternalFrame {
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         if (registrarPaquete()) {
           limpiarTodosLosDatos();
         }
@@ -87,7 +87,7 @@ public class RegistrarPaquete extends JInternalFrame {
     
     this.btnCancelar = new JButton("Cancelar");
     btnCancelar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarTodosLosDatos();
         dispose();
       }
@@ -202,7 +202,7 @@ public class RegistrarPaquete extends JInternalFrame {
     
     selectImageButton.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(null);
         

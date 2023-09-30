@@ -16,6 +16,7 @@ import excepciones.UsuarioYaExistePostulacion;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import junit.framework.Assert;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
@@ -95,7 +96,7 @@ public class ControladorUsuarioTesting {
   
   @Test
   public void listarUsuuariosListaVacia() {
-    ArrayList<String> lista = controladorUsuario.listaDeUsuarios();
+    List<String> lista = controladorUsuario.listaDeUsuarios();
     Assert.assertTrue(lista.isEmpty());
   }
   
@@ -153,9 +154,9 @@ public class ControladorUsuarioTesting {
       throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
     controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
         "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
-    ArrayList<String> listaEsperada = new ArrayList<String>();
+    List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("NicknameTest");
-    ArrayList<String> listaResultado = controladorUsuario.listaDeUsuarios();
+    List<String> listaResultado = controladorUsuario.listaDeUsuarios();
     Assert.assertEquals(listaEsperada, listaResultado);
     
   }
@@ -167,9 +168,9 @@ public class ControladorUsuarioTesting {
         "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
     controladorUsuario.altaPostulante("NicknameTest2", "NombreTest2", "ApellidoTest2",
         "EmailTest2", fechaDate2, "NacionalidadTest2", null, "1234");
-    ArrayList<String> listaResultado = controladorUsuario.listaDeUsuarios();
+    List<String> listaResultado = controladorUsuario.listaDeUsuarios();
     Collections.sort(listaResultado);
-    ArrayList<String> listaEsperada = new ArrayList<String>();
+    List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("NicknameTest");
     listaEsperada.add("NicknameTest2");
     Collections.sort(listaEsperada);
@@ -198,8 +199,8 @@ public class ControladorUsuarioTesting {
         "descripcion1", "sitioWeb1", null, "1234");
     controladorUsuario.altaEmpresa("nicknameEmpresa2", "nombre2", "apellido2", "email2",
         "descripcion2", "sitioWeb2", null, "1234");
-    ArrayList<String> listaResultado = controladorUsuario.listarEmpresas();
-    ArrayList<String> listaEsperada = new ArrayList<String>();
+    List<String> listaResultado = controladorUsuario.listarEmpresas();
+    List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("nicknameEmpresa1");
     listaEsperada.add("nicknameEmpresa2");
     Collections.sort(listaResultado);
@@ -215,9 +216,9 @@ public class ControladorUsuarioTesting {
         "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
     controladorUsuario.altaPostulante("NicknameTest2", "NombreTest2", "ApellidoTest2",
         "EmailTest2", fechaDate2, "NacionalidadTest2", null, "1234");
-    ArrayList<String> listaResultado = controladorUsuario.listarPostulantes();
+    List<String> listaResultado = controladorUsuario.listarPostulantes();
     Collections.sort(listaResultado);
-    ArrayList<String> listaEsperada = new ArrayList<String>();
+    List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("NicknameTest");
     listaEsperada.add("NicknameTest2");
     Collections.sort(listaEsperada);
@@ -257,12 +258,12 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
     controladorOferta.altaKeyword("keyword");
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
     controladorOferta.altaOfertaLaboral("nombre", "descripcion", "09:00", "18:00", 90000f,
         "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech", keywords, null, null);
-    ArrayList<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
-    ArrayList<String> esperado = new ArrayList<String>();
+    List<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
+    List<String> esperado = new ArrayList<String>();
     esperado.add("nombre");
     Assert.assertEquals(esperado, resultado);
   }
@@ -283,8 +284,8 @@ public class ControladorUsuarioTesting {
         + "armoniosa entre la tecnología la naturaleza, y trabajamos "
         + "incansablemente para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
-    ArrayList<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
-    ArrayList<String> esperado = new ArrayList<String>();
+    List<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
+    List<String> esperado = new ArrayList<String>();
     Assert.assertEquals(esperado, resultado);
   }
   
@@ -309,7 +310,7 @@ public class ControladorUsuarioTesting {
         + " impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
@@ -326,8 +327,8 @@ public class ControladorUsuarioTesting {
         "Me entusiasma la posibilidad de trabajar en proyectos "
         + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend");
-    ArrayList<String> resultado = controladorUsuario.listaOfertasUsuario("maro");
-    ArrayList<String> esperado = new ArrayList<String>();
+    List<String> resultado = controladorUsuario.listaOfertasUsuario("maro");
+    List<String> esperado = new ArrayList<String>();
     esperado.add("Desarrollador Frontend");
     Assert.assertEquals(esperado, resultado);
     
@@ -401,7 +402,7 @@ public class ControladorUsuarioTesting {
         + "limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
@@ -454,7 +455,7 @@ public class ControladorUsuarioTesting {
         + "más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
@@ -463,7 +464,7 @@ public class ControladorUsuarioTesting {
         + "experiencias de usuario excepcionales.",
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
-    ArrayList<DtOfertaLaboral> listaResultado = controladorUsuario
+    List<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasIngresadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
@@ -501,7 +502,7 @@ public class ControladorUsuarioTesting {
         + "más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
@@ -512,7 +513,7 @@ public class ControladorUsuarioTesting {
         keywords, null, null);
     controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend",
         EstadoOferta.CONFIRMADA, fechaDate1);
-    ArrayList<DtOfertaLaboral> listaResultado = controladorUsuario
+    List<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasConfirmadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
@@ -549,7 +550,7 @@ public class ControladorUsuarioTesting {
         + "para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
@@ -560,7 +561,7 @@ public class ControladorUsuarioTesting {
         keywords, null, null);
     controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend",
         EstadoOferta.RECHAZADA, fechaDate1);
-    ArrayList<DtOfertaLaboral> listaResultado = controladorUsuario
+    List<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasRechazadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
@@ -624,7 +625,7 @@ public class ControladorUsuarioTesting {
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
         fechaDate2, "Uruguaya", null, "1234");
-    ArrayList<Dtusuario> listaRes = controladorUsuario.obtenerDtusuarios();
+    List<Dtusuario> listaRes = controladorUsuario.obtenerDtusuarios();
     Dtusuario postulante = controladorUsuario.obtenerDtusuario("maro");
     Dtusuario empresa = controladorUsuario.obtenerDtusuario("EcoTech");
     for (Dtusuario usuario : listaRes) {
@@ -668,12 +669,12 @@ public class ControladorUsuarioTesting {
         4000f, fechaDate2);
     DtcantidadTipoPublicacion dtCantidadTipo = 
         new DtcantidadTipoPublicacion("Premium", 2);
-    ArrayList<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
     listaCantidad.add(dtCantidadTipo);
     controladorOferta.registrarPaquete("Paquete", "Descripcion", 10, 20f, null, fechaDate1,
         listaCantidad);
     controladorUsuario.comprarPaquete("EcoTech", "Paquete", fechaDate2);
-    ArrayList<DtpaquetePublicacion> listaRes = controladorUsuario
+    List<DtpaquetePublicacion> listaRes = controladorUsuario
         .obtenerDtpaquetesDeEmpresa("EcoTech");
     DtpaquetePublicacion paquete = listaRes.get(0);
     Assert.assertEquals("Paquete", paquete.getNombre());
@@ -705,7 +706,7 @@ public class ControladorUsuarioTesting {
         + "un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
-    ArrayList<String> keywords = new ArrayList<String>();
+    List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
@@ -723,7 +724,7 @@ public class ControladorUsuarioTesting {
         + "desafiantes y seguir creciendo como profesional en "
         + "el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend");
-    ArrayList<Dtpostulacion> listaRes = controladorUsuario
+    List<Dtpostulacion> listaRes = controladorUsuario
         .obtenerDtpostulacionesDePostulante("maro");
     Dtpostulacion postulacion = listaRes.get(0);
     Assert.assertEquals("maro", postulacion.getnicknamePostulante());
@@ -765,7 +766,7 @@ public class ControladorUsuarioTesting {
         4000f, fechaDate2);
     DtcantidadTipoPublicacion dtCantidadTipo = 
         new DtcantidadTipoPublicacion("Premium", 2);
-    ArrayList<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
     listaCantidad.add(dtCantidadTipo);
     controladorOferta.registrarPaquete("Paquete", "Descripcion", 10, 20f, null, fechaDate1,
         listaCantidad);
@@ -774,11 +775,11 @@ public class ControladorUsuarioTesting {
         listaCantidad);
     controladorOferta.registrarPaquete("Paquete3", "Descripcion", 10, 20f, null, fechaDate1,
         listaCantidad);
-    ArrayList<String> listaEsperada = new ArrayList<String>();
+    List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("Paquete2");
     listaEsperada.add("Paquete3");
     Collections.sort(listaEsperada);
-    ArrayList<String> listaRes = controladorUsuario
+    List<String> listaRes = controladorUsuario
         .listarPaquetesNoCompradosDeEmpresa("EcoTech");
     Collections.sort(listaRes);
     Assert.assertEquals(listaEsperada, listaRes);

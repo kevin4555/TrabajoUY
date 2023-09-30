@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -104,7 +105,7 @@ public class ConsultarUsuario extends JInternalFrame {
     
     this.btnCerrar = new JButton("Cerrar");
     btnCerrar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarTodosLosDatos();
         dispose();
         
@@ -133,9 +134,9 @@ public class ConsultarUsuario extends JInternalFrame {
     
     this.comboBoxSeleccionUsuario = new JComboBox<String>();
     this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
-          cargarDatosUsuarios(e);
+          cargarDatosUsuarios(evento);
         } catch (UsuarioNoExisteException e1) {
           // TODO Auto-generated catch block
           e1.printStackTrace();
@@ -363,9 +364,9 @@ public class ConsultarUsuario extends JInternalFrame {
     
     this.comboBoxSeleccionOferta = new JComboBox<String>();
     this.comboBoxSeleccionOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         try {
-          cargarDatosOferta(e);
+          cargarDatosOferta(evento);
         } catch (OfertaLaboralNoExisteException | UsuarioNoExistePostulacion e1) {
           // TODO Auto-generated catch block
           e1.printStackTrace();
@@ -546,7 +547,7 @@ public class ConsultarUsuario extends JInternalFrame {
     
   }
   
-  protected void cargarDatosOferta(ActionEvent e)
+  protected void cargarDatosOferta(ActionEvent evento)
       throws OfertaLaboralNoExisteException, UsuarioNoExistePostulacion {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     String nicknameUsu = comboBoxSeleccionUsuario.getSelectedItem().toString();
@@ -585,7 +586,7 @@ public class ConsultarUsuario extends JInternalFrame {
   
   public void cargarUsuarios() {
     try {
-      ArrayList<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
+      List<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
       String[] arrayUsuarios;
       arrayUsuarios = listaUsuarios.toArray(new String[0]);
       Arrays.sort(arrayUsuarios);
@@ -603,7 +604,7 @@ public class ConsultarUsuario extends JInternalFrame {
    */
   
   @SuppressWarnings({ "deprecation", "exports" })
-  public void cargarDatosUsuarios(ActionEvent e) throws UsuarioNoExisteException {
+  public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
     
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (nicknameUsuario != usuarioSeleccionado) {
@@ -640,7 +641,7 @@ public class ConsultarUsuario extends JInternalFrame {
         this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().toString());
         cambiarPanel(panelPostulante);
       }
-      ArrayList<String> listaOfertas = this.controladorUsuario
+      List<String> listaOfertas = this.controladorUsuario
           .listaOfertasUsuario(nicknameUsuario);
       String[] arrayOfertas = listaOfertas.toArray(new String[0]);
       Arrays.sort(arrayOfertas);
@@ -717,7 +718,7 @@ public class ConsultarUsuario extends JInternalFrame {
     this.textFieldFechaPostulacion.setVisible(false);
     this.labelFechaPostulacion.setVisible(false);
     
-    ArrayList<String> listaOfertas = new ArrayList<String>();
+    List<String> listaOfertas = new ArrayList<String>();
     String[] arrayOfertas = listaOfertas.toArray(new String[0]);
     Arrays.sort(arrayOfertas);
     DefaultComboBoxModel<String> model;

@@ -3,6 +3,7 @@ package logica.classes;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import logica.datatypes.DtcantidadTipoPublicacion;
 import logica.datatypes.DtpaquetePublicacion;
 
@@ -17,7 +18,7 @@ public class PaquetePublicacion {
   private float descuento;
   private float costo;
   private BufferedImage imagen;
-  private ArrayList<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones;
+  private List<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones;
   private Boolean estaComprado;
   private LocalDate fechaAlta;
   
@@ -27,7 +28,7 @@ public class PaquetePublicacion {
   
   public PaquetePublicacion(String nombre, String descripcion, 
       int periodoValidez, float descuento, BufferedImage imagen, 
-      ArrayList<CantidadTotalTipoPublicacion> cantidadTipo, LocalDate fechaAlta) {
+      List<CantidadTotalTipoPublicacion> cantidadTipo, LocalDate fechaAlta) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.periodoValidez = periodoValidez;
@@ -95,7 +96,7 @@ public class PaquetePublicacion {
     return estaComprado;
   }
   
-  public void setCantidadTotalTipoPublicaciones(ArrayList<CantidadTotalTipoPublicacion> 
+  public void setCantidadTotalTipoPublicaciones(List<CantidadTotalTipoPublicacion> 
       cantidadTipoPublicaciones) {
     this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
   }
@@ -105,7 +106,7 @@ public class PaquetePublicacion {
    */
   
   public DtpaquetePublicacion obtenerDtPaquete() {
-    ArrayList<DtcantidadTipoPublicacion> listDtcantidad = 
+    List<DtcantidadTipoPublicacion> listDtcantidad = 
         new ArrayList<DtcantidadTipoPublicacion>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
       listDtcantidad.add(cantidad.obtenerDtcantidadTipoPublicacion());
@@ -115,7 +116,7 @@ public class PaquetePublicacion {
         fechaAlta);
   }
   
-  public ArrayList<CantidadTotalTipoPublicacion> obtenerCantidadTotalTipoPublicaciones() {
+  public List<CantidadTotalTipoPublicacion> obtenerCantidadTotalTipoPublicaciones() {
     return cantidadTipoPublicaciones;
   }
   
@@ -123,8 +124,8 @@ public class PaquetePublicacion {
    * Metodo obtener nombres de tipo de publicaciones .
    */
   
-  public ArrayList<String> obtenerNombresTipoPublicaciones() {
-    ArrayList<String> listaResultado = new ArrayList<String>();
+  public List<String> obtenerNombresTipoPublicaciones() {
+    List<String> listaResultado = new ArrayList<String>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
       listaResultado.add(cantidad.getTipoPublicacion().getNombre());
     }
@@ -145,8 +146,8 @@ public class PaquetePublicacion {
    * Metodo listar tipo de publicacion .
    */
   
-  public ArrayList<String> listarTipoPublicacion() {
-    ArrayList<String> resultado = new ArrayList<>();
+  public List<String> listarTipoPublicacion() {
+    List<String> resultado = new ArrayList<>();
     for (CantidadTotalTipoPublicacion tipoPublicacion : cantidadTipoPublicaciones) {
       resultado.add(tipoPublicacion.getTipoPublicacion().getNombre());
     }

@@ -13,6 +13,7 @@ import excepciones.UsuarioNoExisteException;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
 import logica.classes.PaquetePublicacion;
@@ -33,16 +34,16 @@ public interface IcontroladorOferta {
   public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial,
       String horarioFinal, float remuneracion, String ciudad, String departamento,
       LocalDate fechaAlta, String nomTipoPublicacion, String nicknameEmpresa,
-      ArrayList<String> listakeywords, BufferedImage imagen, String nombrePaquete)
+      List<String> listakeywords, BufferedImage imagen, String nombrePaquete)
       throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException,
       KeywordNoExisteException, UsuarioNoExisteException;
   
-  public ArrayList<String> listarTipoDePublicaciones();
+  public List<String> listarTipoDePublicaciones();
   
   public OfertaLaboral obtenerOfertaLaboral(String nomOferta)
       throws OfertaLaboralNoExisteException;
   
-  public ArrayList<String> listarPaquetes();
+  public List<String> listarPaquetes();
   
   public TipoPublicacion obtenerTipoPublicacion(String nomTpoPublic)
       throws TipoPublicacionNoExisteException, TipoPublicacionYaExisteException;
@@ -52,17 +53,17 @@ public interface IcontroladorOferta {
   
   public void altaKeyword(String nomKeyword) throws KeywordYaExisteException;
   
-  public ArrayList<String> listarKeywords();
+  public List<String> listarKeywords();
   
   public DtOfertaLaboral obtenerDtOfertaLaboral(String nomOferta)
       throws OfertaLaboralNoExisteException;
   
-  public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa)
+  public List<String> obtenerOfertasEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException;
   
   public void registrarPaquete(String nombre, String descripcion, int periodoValDias,
       float descuento, BufferedImage imagen, LocalDate fechaAlta,
-      ArrayList<DtcantidadTipoPublicacion> cantidadTipoPublicacion)
+      List<DtcantidadTipoPublicacion> cantidadTipoPublicacion)
       throws PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException,
       TipoPublicacionNoExisteException;
   
@@ -82,11 +83,11 @@ public interface IcontroladorOferta {
   void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta,
       LocalDate fechaResolucion) throws OfertaLaboralNoExisteException;
   
-  public ArrayList<DtOfertaLaboral> obtenerDtOfertasConfirmadas();
+  public List<DtOfertaLaboral> obtenerDtOfertasConfirmadas();
   
-  ArrayList<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword);
+  List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword);
   
-  public ArrayList<Dtpostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta)
+  public List<Dtpostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta)
       throws OfertaLaboralNoExisteException;
   
   public boolean estaCompradoPorPaqueteOferta(String nombreOferta)
@@ -95,10 +96,10 @@ public interface IcontroladorOferta {
   public DtpaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta)
       throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete;
   
-  public ArrayList<String> listarTipoPublicacionDePaquete(String nombrePaquete)
+  public List<String> listarTipoPublicacionDePaquete(String nombrePaquete)
       throws PaquetePublicacionNoExisteException;
   
-  ArrayList<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab)
+  List<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab)
       throws OfertaLaboralNoExisteException;
   
   DtpaquetePublicacion obtenerDtpaquete(String nombrePaquete)
@@ -107,8 +108,8 @@ public interface IcontroladorOferta {
   DttipoPublicacion obtenerDttipoPublicacion(String nombreTipo)
       throws TipoPublicacionNoExisteException;
   
-  ArrayList<String> listarPaquetesNoComprados();
+  List<String> listarPaquetesNoComprados();
   
-  ArrayList<DtpaquetePublicacion> listarDtpaquetes();
+  List<DtpaquetePublicacion> listarDtpaquetes();
   
 }

@@ -4,6 +4,8 @@ import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import logica.classes.PaquetePublicacion;
 import logica.datatypes.DtpaquetePublicacion;
 
@@ -13,7 +15,7 @@ import logica.datatypes.DtpaquetePublicacion;
 
 public class ManejadorPaquetes {
   private static ManejadorPaquetes instancia = null;
-  private HashMap<String, PaquetePublicacion> colPaquetes;
+  private Map<String, PaquetePublicacion> colPaquetes;
   
   private ManejadorPaquetes() {
     this.colPaquetes = new HashMap<String, PaquetePublicacion>();
@@ -47,8 +49,8 @@ public class ManejadorPaquetes {
    * Obtener lista de paquetes .
    */
   
-  public ArrayList<String> listarPaquetes() {
-    ArrayList<String> listaPaquetes = new ArrayList<String>();
+  public List<String> listarPaquetes() {
+    List<String> listaPaquetes = new ArrayList<String>();
     for (String key : colPaquetes.keySet()) {
       listaPaquetes.add(key);
     }
@@ -85,8 +87,8 @@ public class ManejadorPaquetes {
    * Lista paquetes no comprados .
    */
   
-  public ArrayList<String> listarPaquetesNoComprados() {
-    ArrayList<String> listaResultado = new ArrayList<String>();
+  public List<String> listarPaquetesNoComprados() {
+    List<String> listaResultado = new ArrayList<String>();
     for (PaquetePublicacion paquete : colPaquetes.values()) {
       if (!paquete.getEstaComprado()) {
         listaResultado.add(paquete.getNombre());
@@ -103,8 +105,8 @@ public class ManejadorPaquetes {
    * Lista de DTPaquetesPublicacion .
    */
   
-  public ArrayList<DtpaquetePublicacion> listarDtpaquetes() {
-    ArrayList<DtpaquetePublicacion> listaResultado = new ArrayList<DtpaquetePublicacion>();
+  public List<DtpaquetePublicacion> listarDtpaquetes() {
+    List<DtpaquetePublicacion> listaResultado = new ArrayList<DtpaquetePublicacion>();
     for (PaquetePublicacion paquete : colPaquetes.values()) {
       listaResultado.add(paquete.obtenerDtPaquete());
     }
