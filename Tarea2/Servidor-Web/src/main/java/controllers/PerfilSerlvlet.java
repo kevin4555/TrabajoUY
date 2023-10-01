@@ -47,11 +47,13 @@ public class PerfilSerlvlet extends HttpServlet {
 				request.setAttribute("ofertasConfirmadas", ofertasConfirmadas);
 				request.setAttribute("ofertasIngresadas", ofertasIngresadas);
 				request.setAttribute("ofertasRechazadas", ofertasRechazadas);
-				request.setAttribute("paquetes", paquetes);				
+				request.setAttribute("paquetes", paquetes);
+				request.setAttribute("tipoUsuario", "empresa");
 			}
 			if(usuario instanceof DTPostulante) {
 				ArrayList<DTPostulacion> postulaciones = controladorUsuario.obtenerDTPostulacionesDePostulante(nicknameUsuario);
 				request.setAttribute("postulaciones", postulaciones);
+				request.setAttribute("tipoUsuario", "postulante");
 			}
 			request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
 		} catch (UsuarioNoExisteException e) {

@@ -1,14 +1,5 @@
 package testing;
 
-import java.awt.image.BufferedImage;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -19,7 +10,12 @@ import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioNoExistePostulacion;
 import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import junit.framework.Assert;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
@@ -37,6 +33,9 @@ import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class ControladorUsuarioTesting {
 
@@ -259,7 +258,7 @@ public class ControladorUsuarioTesting {
 	public void registrarPostulacionTest()
 			throws UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioYaExisteException,
 			UsuarioEmailRepetidoException, TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-			TipoPublicacionNoExisteException, KeywordNoExisteException, KeywordYaExisteException {
+			TipoPublicacionNoExisteException, KeywordNoExisteException, KeywordYaExisteException, UsuarioYaExistePostulacion {
 		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
 				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
 				"http://www.EcoTechInnovations.com", null, "1234");
@@ -315,7 +314,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void obtenerDTPostulacionTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, TipoPublicacionYaExisteException, OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
+	public void obtenerDTPostulacionTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, TipoPublicacionYaExisteException, OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioNoExistePostulacion, UsuarioYaExistePostulacion {
 		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
 				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
 				"http://www.EcoTechInnovations.com", null, "1234");
@@ -481,7 +480,7 @@ public class ControladorUsuarioTesting {
 	}
 	
 	@Test
-	public void obtenerPostulacionesTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, TipoPublicacionYaExisteException, OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException {
+	public void obtenerPostulacionesTest() throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException, TipoPublicacionYaExisteException, OfertaLaboralYaExisteException, TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException, OfertaLaboralNoExisteException, UsuarioYaExistePostulacion {
 		controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
 				"EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.",
 				"http://www.EcoTechInnovations.com", null, "1234");

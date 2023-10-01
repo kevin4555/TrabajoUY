@@ -59,13 +59,13 @@ public class ManejadorUsuario {
 	@SuppressWarnings("unlikely-arg-type")
 	public void agregarEmpresa(Empresa empresa) throws UsuarioYaExisteException, UsuarioEmailRepetidoException 
 	{
-		if(!colUsuarios.containsKey(empresa.getNickname()) && !usuariosEmail.containsKey(empresa.getEmail())) 
+		if(!colUsuarios.containsKey(empresa.getNickname()) && !usuariosEmail.containsKey(empresa.getEmail()) && !usuariosEmail.containsKey(empresa.getNickname())) 
 		{
 			colEmpresas.put(empresa.getNickname(), empresa);
 			colUsuarios.put(empresa.getNickname(), empresa);
 			usuariosEmail.put(empresa.getEmail(), empresa);
 		}
-		else if(colUsuarios.containsKey(empresa.getNickname()))
+		else if(colUsuarios.containsKey(empresa.getNickname()) || usuariosEmail.containsKey(empresa.getNickname()))
 		{
 			throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
 		}
@@ -89,13 +89,13 @@ public class ManejadorUsuario {
 	@SuppressWarnings("unlikely-arg-type")
 	public void agregarPostulante(Postulante postulante) throws UsuarioYaExisteException, UsuarioEmailRepetidoException 
 	{
-		if(!colUsuarios.containsKey(postulante.getNickname()) && !usuariosEmail.containsKey(postulante.getEmail())) 
+		if(!colUsuarios.containsKey(postulante.getNickname()) && !usuariosEmail.containsKey(postulante.getEmail()) && !usuariosEmail.containsKey(postulante.getNickname())) 
 		{
 			colPostulantes.put(postulante.getNickname(), postulante);
 			colUsuarios.put(postulante.getNickname(), postulante);
 			usuariosEmail.put(postulante.getEmail(), postulante);
 		}
-		else if(colUsuarios.containsKey(postulante.getNickname())) 
+		else if(colUsuarios.containsKey(postulante.getNickname()) || usuariosEmail.containsKey(postulante.getNickname())) 
 		{
 			throw new UsuarioYaExisteException("Postulante " + postulante.getNickname() + " ya existe");
 		}

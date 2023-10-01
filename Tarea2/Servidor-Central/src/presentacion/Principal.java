@@ -1,52 +1,35 @@
 package presentacion;
 
-import java.awt.EventQueue;
-import java.text.DateFormat;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
-import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
-import logica.DataTypes.DTCantidadTipoPublicacion;
-import logica.classes.Keyword;
+import excepciones.UsuarioYaExistePostulacion;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import logica.controllers.Fabrica;
 import logica.controllers.Loader;
-import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IControladorOferta;
 import logica.interfaces.IControladorUsuario;
-import java.awt.BorderLayout;
-import javax.swing.JInternalFrame;
-import java.awt.Color;
-import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
 
-    private JPanel contentPane;
     private JFrame ventanaPrincipal;
     private IControladorUsuario ICU;
     private IControladorOferta ICO;
@@ -57,8 +40,10 @@ public class Principal extends JFrame {
     private AltaTipoPublicacionDeOfertaLab crearTipoPublicDeOfertaLabInternalFrame;
     private PostulacionOfertaLaboral postulacionOfertaLabInternalFrame;
     private ModificarDatosUsuarios modificarDatosUsuarios;
-    private Date fecha;
-    private String fechaS = "23/02/1923";
+    private Aceptar_Rechazar_Oferta aceptarRechazarOferta;
+    private AgregarTipoPublicacionAlPaquete agregarTipoPublicacionAlPaquete;
+    private RegistrarPaquete registrarPaquete;
+    private ConsultaPaquete consultaPaquete;
 
     /**
      * Launch the application.
@@ -85,7 +70,6 @@ public class Principal extends JFrame {
 		Fabrica fabrica = Fabrica.getInstance();
 		ICU = fabrica.obtenerControladorUsuario();
 		ICO = fabrica.obtenerControladorOferta();
-		this.fecha = new Date();
 		// Se crean los InternalFrame y se incluyen al Frame principal ocultos.
 		// De esta forma, no es necesario crear y destruir objetos lo que enlentece la
 		// ejecución.
@@ -113,6 +97,18 @@ public class Principal extends JFrame {
 		modificarDatosUsuarios = new ModificarDatosUsuarios(ICU);
 		modificarDatosUsuarios.setVisible(false);
 		
+		aceptarRechazarOferta = new Aceptar_Rechazar_Oferta(ICO, ICU);
+		aceptarRechazarOferta.setVisible(false);
+		
+		agregarTipoPublicacionAlPaquete = new AgregarTipoPublicacionAlPaquete(ICO);
+		agregarTipoPublicacionAlPaquete.setVisible(false);
+		
+		registrarPaquete = new RegistrarPaquete(ICO);
+		registrarPaquete.setVisible(false);
+		
+		consultaPaquete = new ConsultaPaquete(ICO);
+		consultaPaquete.setVisible(false);
+		
 
 		ventanaPrincipal.getContentPane().setLayout(null);
 		ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
@@ -122,6 +118,10 @@ public class Principal extends JFrame {
 		ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
 		ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame);
 		ventanaPrincipal.getContentPane().add(modificarDatosUsuarios);
+		ventanaPrincipal.getContentPane().add(aceptarRechazarOferta);
+		ventanaPrincipal.getContentPane().add(agregarTipoPublicacionAlPaquete);
+		ventanaPrincipal.getContentPane().add(registrarPaquete);
+		ventanaPrincipal.getContentPane().add(consultaPaquete);
 	}
 
 	private void initialize() {
@@ -156,7 +156,7 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					cargarDatosDePrueba(arg0);
-				} catch (ParseException | KeywordNoExisteException | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException e) {
+				} catch (ParseException | KeywordNoExisteException | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException | UsuarioYaExistePostulacion e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} // Esta funcion carga los datos de prueba
@@ -204,7 +204,8 @@ public class Principal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar una oferta laboral
             	crearOfertaLaboralInternalFrame.cargarEmpresas();
-            	crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
+            	//crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
+            	crearOfertaLaboralInternalFrame.cargarComboBoxFormaDePago();
                 crearOfertaLaboralInternalFrame.cargarKeywords();
             	crearOfertaLaboralInternalFrame.setVisible(true);
             }
@@ -239,12 +240,55 @@ public class Principal extends JFrame {
 			}
 		});
 		menuOfertaLaboral.add(menuItemPostulacionOfertaLab);
+		
+		JMenuItem menuItemaceptarRechazarOferta = new JMenuItem("Aceptar/Rechazar Oferta Laboral");
+		menuItemaceptarRechazarOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para postularse a una oferta laboral
+				aceptarRechazarOferta.cargarEmpresas();
+				aceptarRechazarOferta.setVisible(true);
+			}
+		});
+		menuOfertaLaboral.add(menuItemaceptarRechazarOferta);
+		
+		
+		
 
+		JMenu menuPaquete = new JMenu("Paquetes");
+		menuBar.add(menuPaquete);
+		
+		JMenuItem menuItemAgregarTipoPublicacionAlPaquete = new JMenuItem("Agregar tipo de publicacion al paquete");
+		menuItemAgregarTipoPublicacionAlPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para postularse a una oferta laboral
+				agregarTipoPublicacionAlPaquete.cargarPaquetes();
+				agregarTipoPublicacionAlPaquete.setVisible(true);
+			}
+		});
+		menuPaquete.add(menuItemAgregarTipoPublicacionAlPaquete);
+		
+		JMenuItem menuItemRegistarPaquete = new JMenuItem("Registrar paquete");
+		menuItemRegistarPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				registrarPaquete.setVisible(true);
+			}
+		});
+		menuPaquete.add(menuItemRegistarPaquete);
+		
+		JMenuItem menuItemConsultaPaquete = new JMenuItem("Consultar paquete");
+		menuItemConsultaPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Muestro el InternalFrame para postularse a una oferta laboral
+				consultaPaquete.cargarPaquetes();
+				consultaPaquete.setVisible(true);
+			}
+		});
+		menuPaquete.add(menuItemConsultaPaquete);
 	}
 
 	@SuppressWarnings("deprecation")
 	protected void cargarDatosDePrueba(ActionEvent arg0)
-			throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException, UsuarioEmailRepetidoException {
+			throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException, UsuarioEmailRepetidoException, UsuarioYaExistePostulacion {
 		try {
 
 			Loader loader = new Loader();

@@ -1,45 +1,50 @@
 package controllers;
 
-import java.io.IOException;
-
-import excepciones.OfertaLaboralNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTOfertaLaboral;
+import logica.DataTypes.DTUsuario;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
+import logica.interfaces.IControladorUsuario;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import excepciones.UsuarioNoExisteException;
 
 /**
- * Servlet implementation class OfertaServlet
+ * Servlet implementation class ConsultaUsuariosServlet
  */
-@WebServlet("/oferta")
-public class OfertaServlet extends HttpServlet {
+@WebServlet("/consultaUsuarios")
+public class ConsultaUsuariosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OfertaServlet() {
+    public ConsultaUsuariosServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    
+
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-    	String nombreOferta = request.getParameter("nombreOferta");
-    	try {
-			DTOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
-			request.setAttribute("oferta", oferta);
-			request.getRequestDispatcher("/WEB-INF/consultas/Oferta.jsp").forward(request, response);
-			
-		} catch (OfertaLaboralNoExisteException e) {
-			// agregar pagina de error
-			e.printStackTrace();
-		}
+    	IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    	ArrayList<String> listaUsuarios = controladorUsuario.listaDeUsuarios();
+    	Collections.sort(listaUsuarios);
+    	ArrayList<DTUsuario> listaResultado = new ArrayList<DTUsuario>();
+    	for(String nick : listaUsuarios) {
+    		try {
+				listaResultado.add(controladorUsuario.obtenerDTUsuario(nick));
+			} catch (UsuarioNoExisteException e) {
+				// agregar pagina de error
+				e.printStackTrace();
+			}
+    	}
+    	request.setAttribute("listaUsuarios", listaResultado);
+    	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaUsuarios.jsp").forward(request, response);
     	
     }
 	/**

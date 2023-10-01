@@ -1,38 +1,25 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
-
+import com.toedter.calendar.JDateChooser;
+import excepciones.TipoPublicacionYaExisteException;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
-import logica.interfaces.IControladorOferta;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.Date;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import java.awt.Button;
-
-import java.awt.CardLayout;
-
 import javax.swing.JTextArea;
-import java.awt.TextArea;
-import javax.swing.JScrollPane;
-import java.awt.Choice;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.DropMode;
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDateChooser;
-
-import excepciones.TipoPublicacionYaExisteException;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import logica.interfaces.IControladorOferta;
 
 @SuppressWarnings("serial")
 public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
@@ -108,7 +95,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 		ubicacionBotones.add(btnCancelar);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// limpiarInformacion();
+				limpiarInformacion();
 				setVisible(false);
 			}
 		});
@@ -154,11 +141,12 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 		String costo = this.textFieldCosto.getText();
 		Date fecha = this.dateChooser.getDate();
 		String valorString = "";
-		/*if (checkFormulario()) {
+		if (checkFormulario()) {
 			try {
 				Integer duracionFinal = Integer.parseInt(this.textFieldDuracion.getText());
 				Float costoFinal = Float.parseFloat(this.textFieldCosto.getText());
-				controlOfertaLab.altaTipoPublicacion(nombre, descipcion, exposicion, duracionFinal, costoFinal, fecha);
+				LocalDate fechaAltaTipoPublicacion = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				controlOfertaLab.altaTipoPublicacion(nombre, descipcion, exposicion, duracionFinal, costoFinal, fechaAltaTipoPublicacion);
 
 				// Muestro éxito de la operación
 				JOptionPane.showMessageDialog(this, "La publicacion se creo con exito",
@@ -173,7 +161,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
 			// Limpio el internal frame antes de cerrar la ventana
 			limpiarInformacion();
 			setVisible(true);
-		}*/
+		}
 
 	}
 

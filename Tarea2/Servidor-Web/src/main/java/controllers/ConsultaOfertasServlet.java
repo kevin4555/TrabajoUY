@@ -33,6 +33,8 @@ public class ConsultaOfertasServlet extends HttpServlet {
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+    	ArrayList<String> listaEmpresas = controladorUsuario.listarEmpresas();
+    	request.setAttribute("listaEmpresas", listaEmpresas);
     	String nicknameEmpresa = request.getParameter("empresaSeleccionada");
     	String keyword = request.getParameter("keyword");
     	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {

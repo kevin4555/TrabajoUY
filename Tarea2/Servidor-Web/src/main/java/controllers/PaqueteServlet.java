@@ -36,14 +36,14 @@ public class PaqueteServlet extends HttpServlet {
     }
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	DTPaquetePublicacion paquete = (DTPaquetePublicacion) request.getAttribute("paquete");
-    	if(paquete == null) {
+    	
+    	if(request.getParameter("accion") == null || request.getParameter("accion") != "comrpar") {
     		String nombrePaquete = request.getParameter("nombrePaquete");
     		IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
     		try {
-				paquete = controladorOfertas.obtenerDTPaquete(nombrePaquete);
+    			DTPaquetePublicacion paquete = controladorOfertas.obtenerDTPaquete(nombrePaquete);
 				request.setAttribute("paquete", paquete);
-				request.getRequestDispatcher("/WEB-INF/consultas/PAquete.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/consultas/Paquete.jsp").forward(request, response);
 			} catch (PaquetePublicacionNoExisteException e) {
 				// agregar pagina de error
 				e.printStackTrace();
@@ -54,6 +54,7 @@ public class PaqueteServlet extends HttpServlet {
     		if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO || sesion.getAttribute("tipoUsuario") != TipoUsuario.EMPRESA) {
     			//agregar pagina de error
     		}
+    		DTPaquetePublicacion paquete = (DTPaquetePublicacion) request.getAttribute("paquete");
     		DTUsuario usuario = (DTUsuario) sesion.getAttribute("usuarioLogueado");
     		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		String nombrePaquete = paquete.getNombre();
@@ -64,7 +65,7 @@ public class PaqueteServlet extends HttpServlet {
 					request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
 				}
 				else {
-					request.setAttribute("mesaje", "paquete ya comprado");
+					request.setAttribute("mensaje", "paquete ya comprado");
 					request.getRequestDispatcher("/WEB-INF/consultas/Paquete.jsp").forward(request, response);
 				}
 				

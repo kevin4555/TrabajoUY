@@ -1,23 +1,5 @@
 package testing;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import junit.framework.Assert;
-import logica.classes.CantidadTotalTipoPublicacion;
-import logica.classes.CompraPaquete;
-import logica.classes.Empresa;
-import logica.classes.Keyword;
-import logica.classes.OfertaLaboral;
-import logica.classes.PaquetePublicacion;
-import logica.classes.TipoPublicacion;
-
 public class ClasesTest {
 
 	/*private Date fechaDate;

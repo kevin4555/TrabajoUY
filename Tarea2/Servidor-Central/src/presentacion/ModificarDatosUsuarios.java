@@ -1,51 +1,45 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
+import com.toedter.calendar.JDateChooser;
+import excepciones.UsuarioNoExisteException;
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-
-import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-
-import java.awt.CardLayout;
-import javax.swing.JTextField;
-import excepciones.UsuarioNoExisteException;
-import logica.DataTypes.DTEmpresa;
-import logica.DataTypes.DTPostulante;
-import logica.DataTypes.DTUsuario;
-import logica.interfaces.IControladorUsuario;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import com.toedter.calendar.JDateChooser;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
+import logica.DataTypes.DTEmpresa;
+import logica.DataTypes.DTPostulante;
+import logica.DataTypes.DTUsuario;
+import logica.interfaces.IControladorUsuario;
 
 @SuppressWarnings("serial")
 public class ModificarDatosUsuarios extends JInternalFrame {
@@ -69,7 +63,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 	private JButton btnCancelar;
 	private JPanel panelDatos;
 	private JLabel lblNewLabel;
-	private JTextField textFieldContrasenia;
+	private JPasswordField textFieldContrasenia;
 	private JLabel lblNewLabel_1;
 	private JTextPane textPane;
 	private JButton selectImageButton;
@@ -207,7 +201,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		gbc_lblNewLabel.gridy = 6;
 		panelDatos.add(lblNewLabel, gbc_lblNewLabel);
 		
-		textFieldContrasenia = new JTextField();
+		textFieldContrasenia = new JPasswordField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -257,6 +251,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		gbc_textPane.fill = GridBagConstraints.BOTH;
 		gbc_textPane.gridx = 1;
 		gbc_textPane.gridy = 8;
+		textPane.setEditable(false);
 		panelDatos.add(textPane, gbc_textPane);
 
 		layeredPane = new JLayeredPane();
@@ -456,7 +451,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
 		Date fechaNac = this.fechaNacimientoChooser.getDate();
 		String nacionalidadPos = this.textFieldNacionalidad.getText();
 		String descripcionEmpresa = this.textAreaDescripcion.getText();
-		String contrasenia = this.textFieldContrasenia.getText();
+		String contrasenia = this.textFieldContrasenia.getPassword().toString();
 		if (checkFormulario(nombre, apelliido, fechaNac, nacionalidadPos, descripcionEmpresa, contrasenia)) {
 		try {
 			if (this.textPane.getText() == "") {

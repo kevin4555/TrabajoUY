@@ -1,8 +1,7 @@
 package logica.classes;
 
-import java.util.ArrayList;
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 import logica.DataTypes.DTPaquetePublicacion;
 
 public class CompraPaquete {
@@ -14,7 +13,8 @@ public class CompraPaquete {
 
 	public CompraPaquete(LocalDate fechaCompra, PaquetePublicacion paquete) {
 		this.fechaCompra = fechaCompra;
-		this.fechaVencimiento = fechaCompra.withDayOfMonth(fechaCompra.getDayOfMonth() + paquete.getPeriodoValidez());
+		LocalDate copiaFechaCompra = LocalDate.of(fechaCompra.getYear(), fechaCompra.getMonth(), fechaCompra.getDayOfMonth());
+		this.fechaVencimiento = copiaFechaCompra.plusDays(paquete.getPeriodoValidez());
 		this.paquete = paquete;
 		
 		ArrayList<CantidadTotalTipoPublicacion> listaCantidadtotal = this.paquete.obtenerCantidadTotalTipoPublicaciones();

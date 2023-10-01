@@ -15,6 +15,7 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.EstadoOferta;
 import logica.classes.Keyword;
@@ -27,7 +28,7 @@ public class Loader {
 		
 	}
 	
-	public void cargarDatos() throws UsuarioNoExisteException, OfertaLaboralNoExisteException, ParseException, UsuarioYaExisteException, UsuarioEmailRepetidoException, TipoPublicacionYaExisteException, KeywordYaExisteException, KeywordNoExisteException, TipoPublicacionNoExisteException, OfertaLaboralYaExisteException, PaquetePublicacionYaExisteException {
+	public void cargarDatos() throws UsuarioNoExisteException, OfertaLaboralNoExisteException, ParseException, UsuarioYaExisteException, UsuarioEmailRepetidoException, TipoPublicacionYaExisteException, KeywordYaExisteException, KeywordNoExisteException, TipoPublicacionNoExisteException, OfertaLaboralYaExisteException, PaquetePublicacionYaExisteException, UsuarioYaExistePostulacion {
 		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
 		IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
 		

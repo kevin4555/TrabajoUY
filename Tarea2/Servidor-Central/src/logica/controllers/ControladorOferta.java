@@ -1,9 +1,5 @@
 package logica.controllers;
 
-import java.awt.image.BufferedImage;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -14,6 +10,9 @@ import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
+import java.awt.image.BufferedImage;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import logica.DataTypes.DTCantidadTipoPublicacion;
 import logica.DataTypes.DTOfertaLaboral;
 import logica.DataTypes.DTPaquetePublicacion;
@@ -65,7 +64,7 @@ public class ControladorOferta implements IControladorOferta {
 		Empresa empresa = contUsuario.obtenerEmpresa(nicknameEmpresa);
 		empresa.agregarOferta(ofertaLaboral);
 		if(nombrePaquete!=null) {
-			empresa.comprarOfertaPorPaquete(nombre, nombrePaquete, nomTipoPublicacion, ofertaLaboral);
+			empresa.comprarOfertaPorPaquete(nombrePaquete, nomTipoPublicacion, ofertaLaboral);
 			
 		}
 

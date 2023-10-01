@@ -1,11 +1,7 @@
 package logica.classes;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import logica.DataTypes.DTPostulacion;
-import logica.DataTypes.DTPostulante;
-import logica.DataTypes.DTUsuario;
 
 public class Postulacion {
 	private Postulante postulante;
