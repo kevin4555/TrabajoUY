@@ -1,5 +1,8 @@
 package controllers;
 
+import java.io.IOException;
+
+import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,10 +16,6 @@ import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorUsuario;
 import model.EstadoSesion;
 import model.TipoUsuario;
-
-import java.io.IOException;
-
-import excepciones.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class LoginServlet
@@ -35,10 +34,13 @@ public class LoginServlet extends HttpServlet {
 
     
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HttpSession sesion = request.getSession();
-    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	String claveIngresada = (String) request.getParameter("clave");
     	String contraseniaIngresada = (String) request.getParameter("contrasenia");
+    	HttpSession sesion = request.getSession();
+    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    	if(claveIngresada == null || contraseniaIngresada == null) {
+    		request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
+    	}
     	try {
 			if(controladorUsuario.confirmarContrasenia(claveIngresada, contraseniaIngresada)) {
 				sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);

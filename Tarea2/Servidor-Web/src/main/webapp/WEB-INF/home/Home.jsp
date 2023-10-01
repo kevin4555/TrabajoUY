@@ -1,5 +1,5 @@
-<%@page import="logica.datatypes.DtOfertaLaboral"%>
 
+<%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
@@ -14,9 +14,11 @@
 
 %>
 
-
+<jsp:include page ="../include/Head.jsp"/>
 </head>
+
 <body>
+<jsp:include page ="../include/NavBar.jsp"/>
 	<h1>Keywords</h1>
 	<c:forEach var="key" items="${listaKeywords}">
 	${key} <br>
@@ -43,7 +45,7 @@
 		${oferta.descripcion}<br>
 
 	</c:forEach>
-	<c:url var="loginUrl" value="/home/Login.jsp"></c:url>
-	<a href = "${loginUrl}" >login</a>
+	<c:url var="loginUrl" value="/login"></c:url>
+	<a href = "${loginUrl }" >login</a>
 </body>
 </html>
