@@ -19,6 +19,7 @@
 
 <body>
 <jsp:include page ="../include/NavBar.jsp"/>
+<jsp:include page ="../include/Menu.jsp"/>
 	<h1>Keywords</h1>
 	<c:forEach var="key" items="${listaKeywords}">
 	${key} <br>

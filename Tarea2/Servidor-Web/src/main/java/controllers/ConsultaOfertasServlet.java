@@ -42,7 +42,6 @@ public class ConsultaOfertasServlet extends HttpServlet {
     		try {
 				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
 				request.setAttribute("listaOfertas", ofertas);
-				request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
 			} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
 				e.printStackTrace();
@@ -51,9 +50,8 @@ public class ConsultaOfertasServlet extends HttpServlet {
     	else if(keyword != null && keyword != "") {
     		ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorOfertas.obtenerDtofertasPorKeyword(keyword);
     		request.setAttribute("listaOfertas", ofertas);
-    		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
     	}
-    	
+    	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
     }
     
 	/**
