@@ -61,7 +61,7 @@ public class HomeServlet extends HttpServlet {
 		}
 		HttpSession sesion = request.getSession();
 		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		ArrayList<String> listaKeywords = controladorOferta.listarKeywords();
+		ArrayList<String> listaKeywords = (ArrayList<String>) controladorOferta.listarKeywords();
 		sesion.setAttribute("listaKeywords", listaKeywords);
 		
 		if (sesion.getAttribute("estadoSesion") == null) {
@@ -75,7 +75,7 @@ public class HomeServlet extends HttpServlet {
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		initSesion(request);
 		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		ArrayList<DtOfertaLaboral> dTOfertas = controladorOferta.obtenerDtOfertasConfirmadas();
+		ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) controladorOferta.obtenerDtOfertasConfirmadas();
 		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 		request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
 	}

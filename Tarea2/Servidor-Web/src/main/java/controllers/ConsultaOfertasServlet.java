@@ -34,13 +34,13 @@ public class ConsultaOfertasServlet extends HttpServlet {
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	ArrayList<String> listaEmpresas = controladorUsuario.listarEmpresas();
+    	ArrayList<String> listaEmpresas = (ArrayList<String>) controladorUsuario.listarEmpresas();
     	request.setAttribute("listaEmpresas", listaEmpresas);
     	String nicknameEmpresa = request.getParameter("empresaSeleccionada");
     	String keyword = request.getParameter("keyword");
     	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
     		try {
-				ArrayList<DtOfertaLaboral> ofertas = controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
+				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
 				request.setAttribute("listaOfertas", ofertas);
 				request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
 			} catch (UsuarioNoExisteException e) {
@@ -49,7 +49,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
 			}
     	}
     	else if(keyword != null && keyword != "") {
-    		ArrayList<DtOfertaLaboral> ofertas = controladorOfertas.obtenerDtofertasPorKeyword(keyword);
+    		ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorOfertas.obtenerDtofertasPorKeyword(keyword);
     		request.setAttribute("listaOfertas", ofertas);
     		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
     	}

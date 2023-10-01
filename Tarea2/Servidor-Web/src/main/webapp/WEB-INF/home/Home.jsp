@@ -1,4 +1,5 @@
-<%@page import="logica.DataTypes.DTOfertaLaboral"%>
+<%@page import="logica.datatypes.DtOfertaLaboral"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
@@ -9,7 +10,9 @@
 <meta charset="ISO-8859-1">
 <title>Home</title>
 
-<% ArrayList<String> listaKeywords = (ArrayList<String>)session.getAttribute("listaKeywords"); %>
+<% ArrayList<String> listaKeywords = (ArrayList<String>)session.getAttribute("listaKeywords");
+
+%>
 
 
 </head>

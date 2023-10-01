@@ -32,7 +32,7 @@ public class ConsultaUsuariosServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    	ArrayList<String> listaUsuarios = controladorUsuario.listaDeUsuarios();
+    	ArrayList<String> listaUsuarios = (ArrayList<String>) controladorUsuario.listaDeUsuarios();
     	Collections.sort(listaUsuarios);
     	ArrayList<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
     	for(String nick : listaUsuarios) {

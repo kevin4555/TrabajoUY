@@ -60,7 +60,7 @@ public class PaqueteServlet extends HttpServlet {
     		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		String nombrePaquete = paquete.getNombre();
     		try {
-				ArrayList<String> paquetesNoComprados = controladorUsuario.listarPaquetesNoCompradosDeEmpresa(usuario.getNickname());
+				ArrayList<String> paquetesNoComprados = (ArrayList<String>) controladorUsuario.listarPaquetesNoCompradosDeEmpresa(usuario.getNickname());
 				if(paquetesNoComprados.contains(nombrePaquete)) {
 					controladorUsuario.comprarPaquete(usuario.getNickname(), nombrePaquete, LocalDate.now());
 					request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);

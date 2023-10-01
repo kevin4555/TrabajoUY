@@ -31,7 +31,7 @@ public class ConsultaTipoPostulacionServlet extends HttpServlet {
 
     private void procesarResquest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	ArrayList<String> listaTipoPublicacion = controladorOfertas.listarTipoDePublicaciones();
+    	ArrayList<String> listaTipoPublicacion = (ArrayList<String>) controladorOfertas.listarTipoDePublicaciones();
     	ArrayList<DttipoPublicacion> listaDTTipo = new ArrayList<DttipoPublicacion>();
     	for(String tipo : listaTipoPublicacion) {
     		try {

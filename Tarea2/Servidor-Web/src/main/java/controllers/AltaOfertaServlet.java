@@ -1,21 +1,5 @@
 package controllers;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
-import logica.DataTypes.DTPaquetePublicacion;
-import logica.DataTypes.DTTipoPublicacion;
-import logica.DataTypes.DTUsuario;
-import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
-import model.EstadoSesion;
-import model.TipoUsuario;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,6 +12,21 @@ import excepciones.KeywordNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.UsuarioNoExisteException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import logica.controllers.Fabrica;
+import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.DttipoPublicacion;
+import logica.datatypes.Dtusuario;
+import logica.interfaces.IcontroladorOferta;
+import logica.interfaces.IcontroladorUsuario;
+import model.EstadoSesion;
+import model.TipoUsuario;
 
 /**
  * Servlet implementation class AltaOfertaServlet
@@ -46,25 +45,25 @@ public class AltaOfertaServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	HttpSession sesion = request.getSession();
-    	IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-    	DTUsuario empresa = (DTUsuario) sesion.getAttribute("usuarioLogueado");
+    	IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    	Dtusuario empresa = (Dtusuario) sesion.getAttribute("usuarioLogueado");
     	if(empresa == null || sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO || sesion.getAttribute("tipoUsuario" )!= TipoUsuario.EMPRESA) {
     		//agregar pagina de error
     	}
     	if(request.getParameter("accion") != "publicar") {
-    		ArrayList<String> listaTipos = controladorOferta.listarTipoDePublicaciones();
-    		ArrayList<DTTipoPublicacion> listaDtTipos = new ArrayList<DTTipoPublicacion>();
+    		ArrayList<String> listaTipos = (ArrayList<String>) controladorOferta.listarTipoDePublicaciones();
+    		ArrayList<DttipoPublicacion> listaDtTipos = new ArrayList<DttipoPublicacion>();
     		for(String nombreTipo : listaTipos) {
     			try {
-					listaDtTipos.add(controladorOferta.obtenerDTTipoPublicacion(nombreTipo));
+					listaDtTipos.add(controladorOferta.obtenerDttipoPublicacion(nombreTipo));
 				} catch (TipoPublicacionNoExisteException e) {
 					// agregar pagina de error
 					e.printStackTrace();
 				}
     		}
-    		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		try {
-				ArrayList<DTPaquetePublicacion> listaPaquetes = controladorUsuario.obtenerDTPaquetesDeEmpresa(empresa.getNickname());
+				ArrayList<DtpaquetePublicacion> listaPaquetes = (ArrayList<DtpaquetePublicacion>) controladorUsuario.obtenerDtpaquetesDeEmpresa(empresa.getNickname());
 				request.setAttribute("listaPaquetes", listaPaquetes);
     		} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error

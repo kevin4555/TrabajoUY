@@ -29,7 +29,7 @@ public class ConsultaPaquetes extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	ArrayList<DtpaquetePublicacion> listaPaquetes = controladorOfertas.listarDtpaquetes();
+    	ArrayList<DtpaquetePublicacion> listaPaquetes = (ArrayList<DtpaquetePublicacion>) controladorOfertas.listarDtpaquetes();
     	request.setAttribute("listaPaquetes", listaPaquetes);
     	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaPaquetes").forward(request, response);
     }
