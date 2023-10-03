@@ -264,7 +264,7 @@ public class ControladorOferta implements IcontroladorOferta {
       return oferta.obtenerDtpaquete();
     } else {
       throw new OfertaLaboralNoTienePaquete(
-          "La oferta:" + nombreOferta + "no fue comprada por paquete");
+          "La oferta: " + nombreOferta + " no fue comprada por paquete");
     }
   }
   
