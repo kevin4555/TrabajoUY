@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -72,7 +71,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
   private JLabel lblNewLabel1;
   private JTextPane textPane;
   private JButton selectImageButton;
-  private JLabel imageLabel;
+  private JButton quitarImageButton;
   private BufferedImage fotoPerfilUsuario = null;
   
   /**
@@ -225,6 +224,8 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcLblNewLabel1.gridy = 7;
     panelDatos.add(lblNewLabel1, gbcLblNewLabel1);
     
+    
+    
     selectImageButton = new JButton("Seleccionar Imagen");
     GridBagConstraints gbcBtnNewButton = new GridBagConstraints();
     gbcBtnNewButton.anchor = GridBagConstraints.WEST;
@@ -233,7 +234,6 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcBtnNewButton.gridy = 7;
     panelDatos.add(selectImageButton, gbcBtnNewButton);
     
-    imageLabel = new JLabel();
     
     selectImageButton.addActionListener(new ActionListener() {
       @Override
@@ -258,6 +258,21 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcTextPane.gridy = 8;
     textPane.setEditable(false);
     panelDatos.add(textPane, gbcTextPane);
+    
+    quitarImageButton = new JButton("Borrar Imagen");
+    GridBagConstraints gbcBtnButtonBorrar = new GridBagConstraints();
+    gbcBtnButtonBorrar.anchor = GridBagConstraints.WEST;
+    gbcBtnButtonBorrar.insets = new Insets(0, 0, 5, 0);
+    gbcBtnButtonBorrar.gridx = 0;
+    gbcBtnButtonBorrar.gridy = 8;
+    panelDatos.add(quitarImageButton, gbcBtnButtonBorrar);
+    quitarImageButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evento) {
+        fotoPerfilUsuario = null;
+        textPane.setText("");
+      }
+    });
     
     layeredPane = new JLayeredPane();
     GridBagConstraints gbcLayeredPane = new GridBagConstraints();
@@ -374,9 +389,8 @@ public class ModificarDatosUsuarios extends JInternalFrame {
       public void actionPerformed(ActionEvent evento) {
         try {
           modificarDatosUsuarios();
-        } catch (UsuarioNoExisteException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
+        } catch (UsuarioNoExisteException evento1) {
+          // no imprime nada
         }
       }
     });
@@ -416,7 +430,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    * Metodo cargar datos usuarios .
    */
   
-  @SuppressWarnings({ "deprecation", "exports" })
+
   public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
     
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
@@ -499,7 +513,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    * Metodo cambiar panel .
    */
   
-  @SuppressWarnings("exports")
+
   public void cambiarPanel(JPanel panel) {
     layeredPane.removeAll();
     layeredPane.add(panel);
