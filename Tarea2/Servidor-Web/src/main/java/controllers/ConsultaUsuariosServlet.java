@@ -9,9 +9,11 @@ import logica.controllers.Fabrica;
 import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorUsuario;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 import excepciones.UsuarioNoExisteException;
 
@@ -21,43 +23,55 @@ import excepciones.UsuarioNoExisteException;
 @WebServlet("/consultaUsuarios")
 public class ConsultaUsuariosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ConsultaUsuariosServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    	ArrayList<String> listaUsuarios = (ArrayList<String>) controladorUsuario.listaDeUsuarios();
-    	Collections.sort(listaUsuarios);
-    	ArrayList<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
-    	for(String nick : listaUsuarios) {
-    		try {
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ConsultaUsuariosServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		ArrayList<String> listaUsuarios = (ArrayList<String>) controladorUsuario.listaDeUsuarios();
+		Collections.sort(listaUsuarios);
+		String tipoEsperadoVar = "Dtpostulante";
+		ArrayList<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
+		HashMap<String, BufferedImage> fotoPerfil = new HashMap<>();
+		for (String nick : listaUsuarios) {
+			try {
 				listaResultado.add(controladorUsuario.obtenerDtusuario(nick));
+				fotoPerfil.put((controladorUsuario.obtenerDtusuario(nick)).getNickname(),
+						(controladorUsuario.obtenerDtusuario(nick)).getImagen());
 			} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
 				e.printStackTrace();
 			}
-    	}
-    	request.setAttribute("listaUsuarios", listaResultado);
-    	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaUsuarios.jsp").forward(request, response);
-    	
-    }
+		}
+		request.setAttribute("images", fotoPerfil);
+		request.setAttribute("tipoEsperado", tipoEsperadoVar);
+		request.setAttribute("listaUsuarios", listaResultado);
+		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaUsuarios.jsp").forward(request, response);
+
+	}
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		procesarRequest(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
