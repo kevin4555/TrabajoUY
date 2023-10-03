@@ -111,5 +111,7 @@ public interface IcontroladorOferta {
   List<String> listarPaquetesNoComprados();
   
   List<DtpaquetePublicacion> listarDtpaquetes();
+
+  Boolean estaCompradoPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException;
   
 }

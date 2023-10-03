@@ -299,4 +299,10 @@ public class ControladorOferta implements IcontroladorOferta {
   public List<DtpaquetePublicacion> listarDtpaquetes() {
     return ManejadorPaquetes.getInstance().listarDtpaquetes();
   }
+  
+  @Override
+  public Boolean estaCompradoPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException {
+    PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
+    return paquete.getEstaComprado();
+  }
 }

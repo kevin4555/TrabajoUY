@@ -748,19 +748,19 @@ public class ControladorUsuarioTesting {
       UsuarioNoExisteException, PaquetePublicacionNoExisteException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra en "
-        + "desarrollar y comercializar productos y servicios que "
-        + "aborden los desafíos ambientales más apremiantes de "
-        + "nuestro tiempo. Desde sistemas de energía renovable "
-        + "y dispositivos de monitorización ambiental hasta "
-        + "soluciones de gestión de residuos inteligentes, "
-        + "nuestra misión es proporcionar herramientas "
-        + "que permitan a las empresas y comunidades "
-        + "adoptar prácticas más ecológicas sin "
-        + "comprometer la eficiencia. Creemos en la "
-        + "convergencia armoniosa entre la tecnología "
-        + "la naturaleza, y trabajamos incansablemente "
-        + "para impulsar un futuro más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra en "
+            + "desarrollar y comercializar productos y servicios que "
+            + "aborden los desafíos ambientales más apremiantes de "
+            + "nuestro tiempo. Desde sistemas de energía renovable "
+            + "y dispositivos de monitorización ambiental hasta "
+            + "soluciones de gestión de residuos inteligentes, "
+            + "nuestra misión es proporcionar herramientas "
+            + "que permitan a las empresas y comunidades "
+            + "adoptar prácticas más ecológicas sin "
+            + "comprometer la eficiencia. Creemos en la "
+            + "convergencia armoniosa entre la tecnología "
+            + "la naturaleza, y trabajamos incansablemente "
+            + "para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
@@ -783,6 +783,72 @@ public class ControladorUsuarioTesting {
         .listarPaquetesNoCompradosDeEmpresa("EcoTech");
     Collections.sort(listaRes);
     Assert.assertEquals(listaEsperada, listaRes);
+    
+  }
+  
+  @Test
+  public void postulacionesTest()
+      throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
+      TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
+      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
+      OfertaLaboralNoExisteException, UsuarioYaExistePostulacion {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+        "EcoTech Innovations es una empresa líder en soluciones "
+            + "tecnológicas sostenibles. Nuestro enfoque se centra "
+            + "en desarrollar y comercializar productos y servicios "
+            + "que aborden los desafíos ambientales más apremiantes "
+            + "de nuestro tiempo. Desde sistemas de energía renovable "
+            + "y dispositivos de monitorización ambiental hasta "
+            + "soluciones de gestión de residuos inteligentes, "
+            + "nuestra misión es proporcionar herramientas que "
+            + "permitan a las empresas y comunidades adoptar "
+            + "prácticas más ecológicas sin comprometer la eficiencia. "
+            + "Creemos en la convergencia armoniosa entre la tecnología "
+            + "la naturaleza, y trabajamos incansablemente para impulsar "
+            + "un futuro más limpio y sostenible.",
+        "http://www.EcoTechInnovations.com", null, "1234");
+    controladorOferta.altaKeyword("keyword");
+    List<String> keywords = new ArrayList<String>();
+    keywords.add("keyword");
+    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
+        4000f, fechaDate2);
+    controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
+        "Únete a nuestro equipo de desarrollo frontend y crea "
+            + "experiencias de usuario excepcionales.",
+        "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
+        keywords, null, null);
+    controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
+        fechaDate2, "Uruguaya", null, "1234");
+    Boolean noHayPostulacion = false;
+    Boolean postulacionRepetida = false;
+    try {
+      
+      Dtpostulacion dtpostulacion = controladorUsuario.obtenerDtpostulacion("maro",
+          "Desarrollador Frontend");
+    } catch (UsuarioNoExistePostulacion e) {
+      noHayPostulacion = true;
+    }
+    controladorUsuario.registrarPostulacion(
+        "Ingeniero en Sistemas, experiencia en desarrollo web y "
+            + "aplicaciones móviles. Conocimientos en JavaScript y React.",
+        "Me entusiasma la posibilidad de trabajar en proyectos "
+            + "desafiantes y seguir creciendo como profesional en "
+            + "el campo de la tecnología.",
+        fechaDate1, "maro", "Desarrollador Frontend");
+    
+    try {
+      controladorUsuario.registrarPostulacion(
+          "Ingeniero en Sistemas, experiencia en desarrollo web y "
+              + "aplicaciones móviles. Conocimientos en JavaScript y React.",
+          "Me entusiasma la posibilidad de trabajar en proyectos "
+              + "desafiantes y seguir creciendo como profesional en "
+              + "el campo de la tecnología.",
+          fechaDate1, "maro", "Desarrollador Frontend");
+    } catch (UsuarioYaExistePostulacion e) {
+      postulacionRepetida = true;
+    }
+    Assert.assertTrue(noHayPostulacion);
+    Assert.assertTrue(postulacionRepetida);
     
   }
 }
