@@ -62,54 +62,30 @@ public class AltaOfertaLaboral extends JInternalFrame {
   // para facilitar su acceso desde diferentes
   // métodos de la misma.
   private JPanel panelDatos;
-  private JPanel ubicacionEtiquetas;
-  private JPanel ubicacionTexto;
-  private JLabel lblEmpresa;
-  private JComboBox comboBoxEmpresa;
-  private JLabel lblTipoPublicacion;
-  private JComboBox comboBoxTpoPublicacion;
-  private JLabel lblNombre;
   private JTextField textFieldNombre;
-  private JLabel lblDescripcion;
   private JTextArea textFieldDescripcion;
-  private JLabel lblHoraInicio;
   private JTextField textFieldHoraInicio;
-  private JLabel lblHoraFin;
   private JTextField textFieldHoraFin;
-  private JLabel lblRemuneracin;
   private JTextField textFieldRemuneracion;
-  private JLabel lblCiudad;
   private JTextField textFieldCiudad;
-  private JLabel lblDepartamento;
   private JTextField textFieldDepartamento;
-  private JLabel lblFechaDeAlta;
-  // private JCalendar textFieldFechaAlta;
-  private JLabel lblKeyword;
   private JList<String> listaKeyword = new JList<>();
-  private JButton btnSeleccionarKeyword;
   private JButton btnConfirmar;
   private JButton btnCancelar;
   private JDateChooser dateChooser;
-  private JTextField textField;
-  private JTextField textField1;
-  private JTextField textField2;
-  private JTextField textField3;
-  private JTextField textField4;
-  private JTextField textField5;
-  private JTextField textField6;
   private JTextPane textPane;
   private JButton selectImageButton;
-  private JLabel imageLabel;
+  private JButton quitarImageButton;
   private JScrollPane scrollPane;
   private JLabel lblNewLabel;
-  private JList list;
   private JLabel lblNewLabel1;
-  private JComboBox comboBoxFormaDePago;
+  private JComboBox<String> comboBoxEmpresa;
+  private JComboBox<String> comboBoxFormaDePago;
   private JComboBox<String> comboBoxSeleccionTiposPublicaciones;
   private JLabel lblTiposPublicaciones;
   private JLabel lblSeleccionPaquete;
   private JComboBox<String> comboBoxSeleccionPaquete;
-  private String paqueteSeleccionado;
+  //private String paqueteSeleccionado;
   private BufferedImage fotoOferta = null;
   private GridBagConstraints gbcTextField;
   
@@ -120,7 +96,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     
     controladorOfertaLaboral = icontOfer;
     controladorUsuario = icontUsu;
-    this.paqueteSeleccionado = "";
+    //this.paqueteSeleccionado = "";
     
     // Propiedades del JInternalFrame como dimensión,
     // posición dentro del frame,
@@ -354,7 +330,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     gbcLblNewLabel1.gridy = 15;
     panelDatos.add(lblNewLabel1, gbcLblNewLabel1);
     
-    comboBoxFormaDePago = new JComboBox();
+    comboBoxFormaDePago = new JComboBox<String>();
     GridBagConstraints gbcComboBox = new GridBagConstraints();
     gbcComboBox.insets = new Insets(0, 0, 5, 0);
     gbcComboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -421,8 +397,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
     panelDatos.add(imagenOferta, gbcLblNewLabel2);
     
     selectImageButton = new JButton("Seleccionar Imagen");
-    JLabel imageLabel = new JLabel();
-    
     gbcTextField = new GridBagConstraints();
     gbcTextField.anchor = GridBagConstraints.WEST;
     gbcTextField.insets = new Insets(0, 0, 5, 0);
@@ -454,13 +428,28 @@ public class AltaOfertaLaboral extends JInternalFrame {
     panelDatos.add(textPane, gbcTextPane);
     textPane.setEditable(false);
     
+    quitarImageButton = new JButton("Borrar Imagen");
+    GridBagConstraints gbcBtnButtonBorrar = new GridBagConstraints();
+    gbcBtnButtonBorrar.anchor = GridBagConstraints.WEST;
+    gbcBtnButtonBorrar.insets = new Insets(0, 0, 5, 0);
+    gbcBtnButtonBorrar.gridx = 0;
+    gbcBtnButtonBorrar.gridy = 14;
+    panelDatos.add(quitarImageButton, gbcBtnButtonBorrar);
+    quitarImageButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evento) {
+        fotoOferta = null;
+        textPane.setText("");
+      }
+    });
+    
   }
   
   /**
    * Metodo cargar empresas .
    */
   
-  @SuppressWarnings("unchecked")
+
   public void cargarEmpresas() {
     
     List<String> listaEmpresas = this.controladorUsuario.listarEmpresas();
@@ -795,7 +784,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
   // no aparezca al mostrarlas nuevamente.
   private void limpiarFormulario() {
     textFieldNombre.setText("");
-    this.paqueteSeleccionado = "";
+    //this.paqueteSeleccionado = "";
     textFieldDescripcion.setText("");
     textFieldRemuneracion.setText("");
     textFieldCiudad.setText("");

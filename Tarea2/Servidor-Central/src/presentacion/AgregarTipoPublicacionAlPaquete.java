@@ -44,18 +44,12 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   private JComboBox<String> comboBoxSeleccionPaquete;
   private JComboBox<String> comboBoxSeleccionTiposPublicaciones;
   private String tipoPublicacionSeleccionada;
-  private String paqueteSeleccionado;
   private JButton btnConfirmar;
   private JButton btnCerrar;
   private JPanel panelDatos;
   private JScrollPane scrollPane;
   private JTextArea textAreaDescripcion;
-  private JScrollPane scrollPane2;
-  private JTextArea textAreaDescripcionPaquete;
   private JTextField textFieldCantidadIncluida;
-  private JTextField textFieldValidez;
-  private JTextField textFieldDescuento;
-  private JTextField textFieldFechaAltaPaquete;
   
   /**
    * Create the frame.
@@ -63,7 +57,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   public AgregarTipoPublicacionAlPaquete(IcontroladorOferta icontOfeLab) {
     // Se inicializa con el controlador de oferta
     controladorOfertaLaboral = icontOfeLab;
-    this.paqueteSeleccionado = "";
     this.tipoPublicacionSeleccionada = "";
     
     // Propiedades del JInternalFrame como dimensión,
@@ -404,9 +397,8 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
         
       }
       
-    } catch (TipoPublicacionNoExisteException | PaquetePublicacionNoExisteException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    } catch (TipoPublicacionNoExisteException | PaquetePublicacionNoExisteException evento) {
+      // no imprime nada
     } catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(this,
           "La cantidad incluida debe ser un número mayor a cero",
@@ -435,7 +427,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   public void limpiarTodosLosDatos() {
     
     this.tipoPublicacionSeleccionada = "";
-    this.paqueteSeleccionado = "";
     this.textFieldCosto.setText("");
     this.textFieldExposicion.setText("");
     this.textFieldDuracion.setText("");

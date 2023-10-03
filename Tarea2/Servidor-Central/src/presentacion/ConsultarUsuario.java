@@ -71,10 +71,8 @@ public class ConsultarUsuario extends JInternalFrame {
   private JButton btnCerrar;
   private String tipoUsuario = "";
   private JPanel panelDatos;
-  private JTextField textFieldMotivacion;
   private JLabel lblMotivacion = new JLabel("Motivacion");
   private JLabel labelCvReducido = new JLabel("CV Reducido");
-  private JTextField textFieldlabelCvReducido;
   private JLabel labelFechaPostulacion = new JLabel("Fecha Postulacion");
   private JTextField textFieldFechaPostulacion;
   private JLabel lblNewLabel1;
@@ -151,29 +149,6 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcComboBoxSeleccionUsuario.gridx = 1;
     gbcComboBoxSeleccionUsuario.gridy = 1;
     panelDatos.add(this.comboBoxSeleccionUsuario, gbcComboBoxSeleccionUsuario);
-    
-    /*
-     * JLabel lblNickname = new JLabel("Nickname:");
-     * GridBagConstraints gbc_lblNickname = new
-     * GridBagConstraints(); gbc_lblNickname.anchor =
-     * GridBagConstraints.EAST; gbc_lblNickname.insets
-     * = new Insets(0, 0, 5, 5); gbc_lblNickname.gridx
-     * = 0; gbc_lblNickname.gridy = 2;
-     * panelDatos.add(lblNickname, gbc_lblNickname);
-     * 
-     * this.textFieldNickName = new JTextField();
-     * this.textFieldNickName.setEditable(false);
-     * GridBagConstraints gbc_textFieldNickName = new
-     * GridBagConstraints();
-     * gbc_textFieldNickName.insets = new Insets(0, 0,
-     * 5, 0); gbc_textFieldNickName.fill =
-     * GridBagConstraints.HORIZONTAL;
-     * gbc_textFieldNickName.gridx = 1;
-     * gbc_textFieldNickName.gridy = 2;
-     * panelDatos.add(textFieldNickName,
-     * gbc_textFieldNickName);
-     * this.textFieldNickName.setColumns(10);
-     */
     
     GridBagConstraints gbcLblNombre = new GridBagConstraints();
     gbcLblNombre.anchor = GridBagConstraints.EAST;
@@ -367,9 +342,8 @@ public class ConsultarUsuario extends JInternalFrame {
       public void actionPerformed(ActionEvent evento) {
         try {
           cargarDatosOferta(evento);
-        } catch (OfertaLaboralNoExisteException | UsuarioNoExistePostulacion e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
+        } catch (OfertaLaboralNoExisteException | UsuarioNoExistePostulacion evento1) {
+          // no imprime nada
         }
       }
     });
@@ -452,8 +426,6 @@ public class ConsultarUsuario extends JInternalFrame {
     panelDatos.add(this.textFieldDepartamento, gbcTextFieldDepartamento);
     this.textFieldDepartamento.setColumns(10);
     
-    // JLabel lblMotivacion = new
-    // JLabel("Motivacion");
     GridBagConstraints gbcLblMotivacion = new GridBagConstraints();
     gbcLblMotivacion.anchor = GridBagConstraints.EAST;
     gbcLblMotivacion.insets = new Insets(0, 0, 5, 5);
@@ -468,23 +440,7 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcLabelCvReducido.gridx = 0;
     gbcLabelCvReducido.gridy = 18;
     this.labelCvReducido.setVisible(false);
-    
-    /*
-     * this.textFieldMotivacion = new JTextField();
-     * this.textFieldMotivacion.setEditable(false);
-     * GridBagConstraints gbc_textFiedMotivacion = new
-     * GridBagConstraints();
-     * gbc_textFiedMotivacion.insets = new Insets(0,
-     * 0, 5, 0); gbc_textFiedMotivacion.fill =
-     * GridBagConstraints.HORIZONTAL;
-     * gbc_textFiedMotivacion.gridx = 1;
-     * gbc_textFiedMotivacion.gridy = 17;
-     * panelDatos.add(this.textFieldMotivacion,
-     * gbc_textFiedMotivacion);
-     * this.textFieldMotivacion.setColumns(10);
-     * this.textFieldMotivacion.setVisible(false);
-     */
-    
+        
     textPaneMotivacion = new JTextPane();
     GridBagConstraints gbcTextPane1 = new GridBagConstraints();
     gbcTextPane1.insets = new Insets(0, 0, 5, 0);
@@ -496,27 +452,6 @@ public class ConsultarUsuario extends JInternalFrame {
     this.textPaneMotivacion.setEditable(false);
     panelDatos.add(this.labelCvReducido, gbcLabelCvReducido);
     
-    /*
-     * this.textFieldlabelCVReducido = new
-     * JTextField();
-     * this.textFieldlabelCVReducido.setEditable(false
-     * ); GridBagConstraints gbc_textFiedCVReducido =
-     * new GridBagConstraints();
-     * gbc_textFiedCVReducido.insets = new Insets(0,
-     * 0, 5, 0); gbc_textFiedCVReducido.fill =
-     * GridBagConstraints.HORIZONTAL;
-     * gbc_textFiedCVReducido.gridx = 1;
-     * gbc_textFiedCVReducido.gridy = 18;
-     * panelDatos.add(this.textFieldlabelCVReducido,
-     * gbc_textFiedCVReducido);
-     * this.textFieldlabelCVReducido.setColumns(10);
-     * this.textFieldlabelCVReducido.setVisible(false)
-     * ;
-     */
-    
-    // private JLabel labelFechaPostulacion = new
-    // JLabel("Fecha Postulacion");
-    // private JTextField textFieldFechaPostulacion;
     GridBagConstraints gbcLabelFechaPostulaciono = new GridBagConstraints();
     gbcLabelFechaPostulaciono.anchor = GridBagConstraints.EAST;
     gbcLabelFechaPostulaciono.insets = new Insets(0, 0, 0, 5);
@@ -562,7 +497,7 @@ public class ConsultarUsuario extends JInternalFrame {
       if (tipoUsuario.equals("Postulante")) {
         try {
           dtPostulacion = controladorUsuario.obtenerDtpostulacion(nicknameUsu, oferta);
-        } catch (UsuarioNoExisteException e1) {
+        } catch (UsuarioNoExisteException evento1) {
           // TODO Auto-generated catch block
           
         }
@@ -602,8 +537,7 @@ public class ConsultarUsuario extends JInternalFrame {
   /**
    * Metodo cargar datos usuarios .
    */
-  
-  @SuppressWarnings({ "deprecation", "exports" })
+
   public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
     
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
@@ -656,7 +590,6 @@ public class ConsultarUsuario extends JInternalFrame {
    * Metodo cambiar panel .
    */
   
-  @SuppressWarnings("exports")
   public void cambiarPanel(JPanel panel) {
     layeredPane.removeAll();
     layeredPane.add(panel);
