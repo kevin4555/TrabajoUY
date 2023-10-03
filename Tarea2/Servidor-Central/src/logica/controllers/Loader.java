@@ -12,15 +12,10 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import logica.classes.Keyword;
 import logica.datatypes.DtcantidadTipoPublicacion;
@@ -48,32 +43,26 @@ public class Loader {
             TipoPublicacionNoExisteException, OfertaLaboralYaExisteException,
             PaquetePublicacionYaExisteException, UsuarioYaExistePostulacion {
         IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-        File imagenPostulante = new File(
-                "../../Servidor-Web/src/main/webapp/recourse/img/Usuarios/Postulantes/Postulante01.png");
-        File imagenEmpresa = new File(
-                "../../Servidor-Web/src/main/webapp/recourse/img/Usuarios/Empresas/Empresa01.jpg");
-        try {
-            BufferedImage bufferedImageEmpresa = ImageIO.read(imagenEmpresa);
-            BufferedImage bufferedImagePostulante = ImageIO.read(imagenPostulante);
+
             controladorUsuario.altaPostulante("lgarcia", "Lucía", "García", "lgarcia85@gmail.com",
-                    LocalDate.parse("1985-03-15"), "Uruguaya", bufferedImagePostulante, "1234");
+                    LocalDate.parse("1985-03-15"), "Uruguaya", null, "1234");
             controladorUsuario.altaPostulante("matilo", "Matías", "López",
-                    "matias.lopez90@hotmail.com", LocalDate.parse("1990-08-21"), "Argentina", bufferedImagePostulante,
+                    "matias.lopez90@hotmail.com", LocalDate.parse("1990-08-21"), "Argentina", null,
                     "1234");
             controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
-                    LocalDate.parse("1988-11-10"), "Uruguaya", bufferedImagePostulante, "1234");
+                    LocalDate.parse("1988-11-10"), "Uruguaya", null, "1234");
             controladorUsuario.altaPostulante("javierf", "Javier", "Fernández", "javierf93@yahoo.com",
-                    LocalDate.parse("1993-06-05"), "Mexicana", bufferedImagePostulante, "1234");
+                    LocalDate.parse("1993-06-05"), "Mexicana", null, "1234");
             controladorUsuario.altaPostulante("valen25", "Valentina", "Martínez", "vale87@gmail.com",
-                    LocalDate.parse("1987-02-25"), "Uruguaya", bufferedImagePostulante, "1234");
+                    LocalDate.parse("1987-02-25"), "Uruguaya", null, "1234");
             controladorUsuario.altaPostulante("andpe12", "Andrés", "Pérez", "anpe92@hotmail.com",
-                    LocalDate.parse("1992-04-12"), "Chilena", bufferedImagePostulante, "1234");
+                    LocalDate.parse("1992-04-12"), "Chilena", null, "1234");
             controladorUsuario.altaPostulante("sicam", "Camila", "Silva", "camilasilva89@gmail.com",
-                    LocalDate.parse("1989-09-30"), "Uruguaya", bufferedImagePostulante, "1234");
+                    LocalDate.parse("1989-09-30"), "Uruguaya", null, "1234");
             controladorUsuario.altaPostulante("isabel", "Isabella", "López", "loisa@gmail.com",
-                    LocalDate.parse("1991-07-07"), "Uruguaya", bufferedImagePostulante, "1234");
+                    LocalDate.parse("1991-07-07"), "Uruguaya", null, "1234");
             controladorUsuario.altaPostulante("marram02", "Martín", "Ramírez", "marram@hotmail.com",
-                    LocalDate.parse("1986-12-02"), "Argentina", bufferedImagePostulante, "1234");
+                    LocalDate.parse("1986-12-02"), "Argentina", null, "1234");
 
             controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
                     "EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles. "
@@ -85,7 +74,7 @@ public class Loader {
                             + "ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa "
                             + "entre la tecnología la naturaleza, y trabajamos incansablemente para impulsar "
                             + "un futuro más limpio y sostenible.",
-                    "http://www.EcoTechInnovations.com", bufferedImageEmpresa, "1234");
+                    "http://www.EcoTechInnovations.com", null, "1234");
             controladorUsuario.altaEmpresa("FusionTech", "William", "Smith", "contacto@FusionTech.net",
                     "FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y "
                             + "la automatización avanzada. Nuestro equipo multidisciplinario de ingenieros,"
@@ -97,7 +86,7 @@ public class Loader {
                             + "en la sinergia entre la mente humana y las capacidades de la IA, "
                             + "y trabajamos para construir un mundo donde la "
                             + "tecnología mejore y amplíe nuestras capacidades innatas.",
-                    "http://www.fusiontechdynamics.net", bufferedImageEmpresa, "1234");
+                    "http://www.fusiontechdynamics.net", null, "1234");
             controladorUsuario.altaEmpresa("GlobalHealth", "Isabella", "Brown", "jobs@GlobalHealth.uy",
                     "GlobalHealth Dynamics es una empresa comprometida con el avance de la atención médica a "
                             + "nivel mundial. Como líderes en el campo de la salud digital, "
@@ -109,15 +98,15 @@ public class Loader {
                             + "innovación constante y la colaboración con expertos m´edicos, estamos "
                             + "dando forma al futuro de la atención médica, donde la tecnología y la "
                             + "compasión se unen para salvar vidas y mejorar el bienestar en todo el mundo",
-                    "http://www.globalhealthdynamics.uy/info", bufferedImageEmpresa, "1234");
+                    "http://www.globalhealthdynamics.uy/info", null, "1234");
             controladorUsuario.altaEmpresa("ANTEL", "Washington", "Rocha", "jarrington@ANTEL.com.uy",
                     "En Antel te brindamos servicios de vanguardia en tecnología de comunicación en "
                             + "Telefonía Móvil, Fija, Banda Ancha y Datos",
-                    "ANTEL.com.uy", bufferedImageEmpresa, "1234");
+                    "ANTEL.com.uy", null, "1234");
             controladorUsuario.altaEmpresa("MIEM", "Pablo", "Bengoechea", "eldiez@MIEM.org.uy",
                     "Balance Energ´etico Nacional (BEN). La Dirección Nacional de Energía (DNE) del "
                             + "Ministerio de Industria, Energía y Minería (MIEM) presenta anualmente el BEN.",
-                    "MIEM.com.uy", bufferedImageEmpresa, "1234");
+                    "MIEM.com.uy", null, "1234");
             controladorUsuario.altaEmpresa("TechSolutions", "Mercedes", "Venn",
                     "Mercedes@TechSolutions.com.uy",
                     " \"TechSolutions Inc.\" es una empresa líder en el campo de la tecnología de la "
@@ -314,10 +303,6 @@ public class Loader {
                     15, 5f, null, LocalDate.parse("2023-08-13"), paquete4);
 
             datosCargados = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            datosCargados = false;
-        }
 
     }
 
