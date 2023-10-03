@@ -1,11 +1,30 @@
 package testing;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExisteException;
+import junit.framework.Assert;
+import logica.classes.Empresa;
+import logica.classes.Postulante;
+import logica.classes.Usuario;
+import logica.handlers.ManejadorUsuario;
+import logica.interfaces.IcontroladorOferta;
+import logica.interfaces.IcontroladorUsuario;
+
 public class ManejadorUsuarioTesting{
   
-	/*private static Date fechaDate1;
-	private static Date fechaDate2;
-	private static IControladorUsuario controladorUsuario;
-	private static IControladorOferta controladorOferta;
+	private static LocalDate fechaDate1;
+	private static LocalDate fechaDate2;
+	private static IcontroladorUsuario controladorUsuario;
+	private static IcontroladorOferta controladorOferta;
 	private static Postulante postulante1;
 	private static Postulante postulante2;
 	private static Empresa empresa1;
@@ -15,23 +34,16 @@ public class ManejadorUsuarioTesting{
 	@BeforeClass
 	public static void setUp()
 	{		
-		String fecha1 = "02/09/1988";
-		String fecha2 = "04/4/2023";
-		
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		try
-		{
-			fechaDate1 = dateFormat.parse(fecha1);
-			fechaDate2 = dateFormat.parse(fecha2);
-		}
-		catch (ParseException e)
-		{
-			e.getMessage();
-		}
-		postulante1 = new Postulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest@test.com", fechaDate1, "NacionalidadTest" );
-		postulante2 = new Postulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "EmailTest2@test.com", fechaDate2, "NacionalidadTest2" );
-		empresa1 = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1", "sitioWeb1" );
-		empresa2 = new Empresa("nicknameEmpresa2", "nombre2", "apellido2", "email2@test.com", "descripcion2", "sitioWeb2");
+		fechaDate1 = LocalDate.parse("1988-11-10");
+	    fechaDate2 = LocalDate.parse("1988-09-02");
+	    postulante1 = new Postulante("NicknameTest", "NombreTest", "ApellidoTest", "email1@test",
+	            fechaDate1, "NacionalidadTest", null, "1234");
+	    postulante2 = new Postulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "email12@test",
+	            fechaDate1, "NacionalidadTest", null, "1234");
+		empresa1 = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@empresa1",
+		        "descripcion1", "sitioWeb1", null, "1234");
+		empresa2 = new Empresa("nicknameEmpresa2", "nombre2", "apellido2", "email1@empresa2",
+		        "descripcion2", "sitioWeb2", null, "1234");
 		
 	}
 	
@@ -48,7 +60,7 @@ public class ManejadorUsuarioTesting{
 		manejadorUsuario.agregarPostulante(postulante1);
 		manejadorUsuario.agregarEmpresa(empresa2);
 		manejadorUsuario.agregarPostulante(postulante2);
-		ArrayList<String> resultado = manejadorUsuario.listarUsuarios();
+		ArrayList<String> resultado = (ArrayList<String>) manejadorUsuario.listarUsuarios();
 		Collections.sort(resultado);
 		ArrayList<String> esperado = new ArrayList<String>();
 		esperado.add(empresa1.getNickname());
@@ -64,7 +76,7 @@ public class ManejadorUsuarioTesting{
 		manejadorUsuario = ManejadorUsuario.getInstance();
 		manejadorUsuario.agregarEmpresa(empresa1);
 		manejadorUsuario.agregarEmpresa(empresa2);
-		ArrayList<String> resultado = manejadorUsuario.listarEmpresas();
+		ArrayList<String> resultado = (ArrayList<String>) manejadorUsuario.listarEmpresas();
 		Collections.sort(resultado);
 		ArrayList<String> esperado = new ArrayList<String>();
 		esperado.add("nicknameEmpresa1");
@@ -78,7 +90,7 @@ public class ManejadorUsuarioTesting{
 		manejadorUsuario = ManejadorUsuario.getInstance();
 		manejadorUsuario.agregarPostulante(postulante1);
 		manejadorUsuario.agregarPostulante(postulante2);
-		ArrayList<String> resultado = manejadorUsuario.listarPostulantes();
+		ArrayList<String> resultado = (ArrayList<String>) manejadorUsuario.listarPostulantes();
 		Collections.sort(resultado);
 		ArrayList<String> esperado = new ArrayList<String>();
 		esperado.add("NicknameTest");
@@ -170,7 +182,8 @@ public class ManejadorUsuarioTesting{
 		try {
 			 
 			manejadorUsuario.agregarEmpresa(empresa1);
-			Empresa empresa = new Empresa("nicknameEmpresa", "nombre1", "apellido1", "email1@test.com", "descripcion1", "sitioWeb1");
+			Empresa empresa = new Empresa("nicknameEmpresa3", "nombre1", "apellido1", "email1@empresa1",
+			        "descripcion1", "sitioWeb1", null, "1234");
 			manejadorUsuario.agregarEmpresa(empresa);
 		} catch (UsuarioYaExisteException e) {
 			// TODO Auto-generated catch block
@@ -189,7 +202,8 @@ public class ManejadorUsuarioTesting{
 		try {
 			 
 			manejadorUsuario.agregarPostulante(postulante1);
-			Postulante postulante = new Postulante("NicknameTest5", "NombreTest", "ApellidoTest", "EmailTest@test.com", fechaDate1, "NacionalidadTest" );
+			Postulante postulante = new Postulante("NicknameTest3", "NombreTest", "ApellidoTest", "email1@test",
+		            fechaDate1, "NacionalidadTest", null, "1234");
 			manejadorUsuario.agregarPostulante(postulante);
 		} catch (UsuarioYaExisteException e) {
 			// TODO Auto-generated catch block
@@ -207,7 +221,8 @@ public class ManejadorUsuarioTesting{
 		try {
 			 
 			manejadorUsuario.agregarPostulante(postulante1);
-			Empresa empresa = new Empresa("nicknameEmpresa", "nombre1", "apellido1", "EmailTest@test.com", "descripcion1", "sitioWeb1");
+			Empresa empresa = new Empresa("nicknameEmpresa3", "nombre1", "apellido1", "email1@test",
+			        "descripcion1", "sitioWeb1", null, "1234");
 			manejadorUsuario.agregarEmpresa(empresa);
 		} catch (UsuarioYaExisteException e) {
 			// TODO Auto-generated catch block
@@ -225,7 +240,8 @@ public class ManejadorUsuarioTesting{
 		try {
 			 
 			manejadorUsuario.agregarPostulante(postulante1);
-			Postulante postulante = new Postulante("NicknameTest", "NombreTest5", "ApellidoTest5", "EmailTest@test.com5", fechaDate1, "NacionalidadTest5" );
+			Postulante postulante = new Postulante("NicknameTest", "NombreTest", "ApellidoTest", "email13@test",
+		            fechaDate1, "NacionalidadTest", null, "1234");
 			manejadorUsuario.agregarPostulante(postulante);
 		} catch (UsuarioYaExisteException e) {
 			exception = true;
@@ -243,7 +259,8 @@ public class ManejadorUsuarioTesting{
 		try {
 			 
 			manejadorUsuario.agregarEmpresa(empresa1);
-			Empresa empresa = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1", "sitioWeb1");
+			Empresa empresa = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email18@empresa1",
+			        "descripcion1", "sitioWeb1", null, "1234");
 			manejadorUsuario.agregarEmpresa(empresa);
 		} catch (UsuarioYaExisteException e) {
 			exception = true;
@@ -261,7 +278,8 @@ public class ManejadorUsuarioTesting{
 		try {
 			 
 			manejadorUsuario.agregarEmpresa(empresa1);
-			Postulante postulante = new Postulante("nicknameEmpresa1", "NombreTest5", "ApellidoTest5", "EmailTest@test.com5", fechaDate1, "NacionalidadTest5" );
+			Postulante postulante = new Postulante("nicknameEmpresa1", "NombreTest", "ApellidoTest", "email13@test",
+		            fechaDate1, "NacionalidadTest", null, "1234");
 			manejadorUsuario.agregarPostulante(postulante);
 		} catch (UsuarioYaExisteException e) {
 			exception = true;
@@ -270,5 +288,5 @@ public class ManejadorUsuarioTesting{
 			
 		}
 		Assert.assertTrue(exception);
-	}*/
+	}
 }
