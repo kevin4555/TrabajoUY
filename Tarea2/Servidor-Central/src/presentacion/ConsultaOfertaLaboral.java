@@ -404,7 +404,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
       (this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
       (this.textFieldFechaAlta).setText(dtOfertaLaboral.getFechaAlta().toString());
       (this.textFieldEstado).setText(dtOfertaLaboral.getEstadoOferta().toString());
-      //this.textFieldTipoPublicacion.setText(dtOfertaLaboral.getNombreTipoPublicacion());
+      (this.textFieldTipoPublicacion).setText(dtOfertaLaboral.getNombreTipoPublicacion());
       if (dtOfertaLaboral.getFechaResolucion() == null) {
         this.textFieldFechaResolucion.setText("");
       } else {

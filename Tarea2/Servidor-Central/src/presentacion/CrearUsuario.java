@@ -70,12 +70,9 @@ public class CrearUsuario extends JInternalFrame {
   private JPasswordField passwordField;
   private JPasswordField passwordField1;
   private JLabel lblNewLabel2;
-  private JTextField textField;
   private JButton selectImageButton;
-  private JLabel imageLabel;
+  private JButton quitarImageButton;
   private BufferedImage fotoPerfilUsuario = null;
-  private Image resizedImage;
-  private String imagePath;
   private GridBagConstraints gbcTextField;
   private JTextPane textPane;
   
@@ -268,8 +265,6 @@ public class CrearUsuario extends JInternalFrame {
     panelDatos.add(lblNewLabel2, gbcLblNewLabel2);
     
     selectImageButton = new JButton("Seleccionar Imagen");
-    imageLabel = new JLabel();
-    
     gbcTextField = new GridBagConstraints();
     gbcTextField.anchor = GridBagConstraints.WEST;
     gbcTextField.insets = new Insets(0, 0, 5, 0);
@@ -299,6 +294,21 @@ public class CrearUsuario extends JInternalFrame {
     gbcTextPane.gridx = 1;
     gbcTextPane.gridy = 9;
     panelDatos.add(textPane, gbcTextPane);
+    
+    quitarImageButton = new JButton("Borrar Imagen");
+    GridBagConstraints gbcBtnButtonBorrar = new GridBagConstraints();
+    gbcBtnButtonBorrar.anchor = GridBagConstraints.WEST;
+    gbcBtnButtonBorrar.insets = new Insets(0, 0, 5, 0);
+    gbcBtnButtonBorrar.gridx = 0;
+    gbcBtnButtonBorrar.gridy = 9;
+    panelDatos.add(quitarImageButton, gbcBtnButtonBorrar);
+    quitarImageButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evento) {
+        fotoPerfilUsuario = null;
+        textPane.setText("");
+      }
+    });
     
     layeredPane = new JLayeredPane();
     GridBagConstraints gbcLayeredPane = new GridBagConstraints();
@@ -414,12 +424,9 @@ public class CrearUsuario extends JInternalFrame {
     String apellido = this.textFieldApellido.getText();
     String email = this.textFieldEmail.getText();
     String contrasenia = this.passwordField.getPassword().toString();
-    String confirmarContrasenia = this.passwordField1.getPassword().toString();
     String descripcion = this.textAreaDescripcion.getText();
     String sitioWeb = this.textFieldSitioWeb.getText();
     String nacionalidad = this.textFieldNacionalidad.getText();
-    
-    Date fechaNacimienito = this.fechaNacimientoChooser.getDate();
     
     if (checkFormulario()) {
       try {
@@ -461,7 +468,6 @@ public class CrearUsuario extends JInternalFrame {
    * Metodo cambiar tipo de usuario .
    */
   
-  @SuppressWarnings("exports")
   public void cambiarTipoUsuario(ActionEvent evento) {
     
     String tipoSeleccionado = comboBoxSeleccionTipoUsuario.getSelectedItem().toString();
@@ -556,7 +562,6 @@ public class CrearUsuario extends JInternalFrame {
    * Metodo cambiar panel .
    */
   
-  @SuppressWarnings("exports")
   public void cambiarPanel(JPanel panel) {
     limpiarTodosLosDatos();
     layeredPane.removeAll();
