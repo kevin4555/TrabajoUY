@@ -301,7 +301,8 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public Boolean estaCompradoPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException {
+  public Boolean estaCompradoPaquete(String nombrePaquete)
+      throws PaquetePublicacionNoExisteException {
     PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
     return paquete.getEstaComprado();
   }
