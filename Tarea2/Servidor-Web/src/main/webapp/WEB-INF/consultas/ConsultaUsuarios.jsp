@@ -11,13 +11,13 @@
   <jsp:include page ="../include/Head.jsp"/>
 </head>
 <body>
-
   <jsp:include page ="../include/NavBar.jsp"/>
+<main class="container pt-5">
+<div class="row">
   <jsp:include page ="../include/Menu.jsp"/>
-
-<div class="col-8">
+  <div class="col-8">
     <section>
-      <h2>Usuarios registrados:</h2>
+     <h2>Usuarios registrados:</h2>
       <c:forEach var="usuario" items="${listaUsuarios}">
         <div class="card">
           <div class="row g-0"> 
@@ -48,11 +48,9 @@
                 </c:choose>
               </div>
               <div class="card-footer border-0 bg-white text-end">
-                <a
-                  href="../Visitante/perfilGeneralPostulante.html"
-                  class="btn btn-primary">
-                  Perfil
-                </a>
+              <c:url var="perfilURL" value="/perfil">
+							<c:param name="nicknameUsuario" value="${usuario.getNickname()}" />
+			  </c:url> <a href="${perfilURL}"> Perfil </a>
               </div>
             </div>
           </div>
@@ -61,5 +59,7 @@
       </c:forEach>
     </section>
   </div>
+  </div>	
+ </main>
 </body>
 </html>
