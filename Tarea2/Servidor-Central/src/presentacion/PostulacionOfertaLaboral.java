@@ -13,7 +13,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -296,9 +298,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
       public void actionPerformed(ActionEvent evento) {
         try {
           cargarDatosOfertaLaboralPostulacion(evento);
-        } catch (OfertaLaboralNoExisteException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
+        } catch (OfertaLaboralNoExisteException evento1) {
+          //No imprime nada
         }
         cargarPostulantes(evento);
         ubicacionCentro.setVisible(true);
@@ -395,15 +396,26 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
   
   public void cargarOfertaEmpresaPostulacion(ActionEvent evento) {
     try {
-      this.seleccionEmpresa = this.comboBoxEmpresasRegistradasPostulacion.getSelectedItem()
-          .toString();
-      String[] ofertasLaborales = (controlUsuarioLab
-          .obtenerOfertasEmpresa(this.seleccionEmpresa)).toArray(new String[0]);
-      DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(ofertasLaborales);
-      this.comboBoxOfertasLaboralesPostulacion.setModel(model);
+      if (this.comboBoxEmpresasRegistradasPostulacion.getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
+            "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      } else {
+        this.seleccionEmpresa = this.comboBoxEmpresasRegistradasPostulacion
+            .getSelectedItem().toString();
+        List<DtOfertaLaboral> ofertasConfirmadasEmpresa = this.controlUsuarioLab
+            .obtenerDtofertasConfirmadasDeEmpresa(this.seleccionEmpresa);
+        List<String> nombreOfertasConfirmadas = new ArrayList<String>();
+        for (DtOfertaLaboral dtOfertaLaboral : ofertasConfirmadasEmpresa) {
+          nombreOfertasConfirmadas.add(dtOfertaLaboral.getNombre());
+        }
+        String[] ofertasLaborales = (nombreOfertasConfirmadas).toArray(new String[0]);
+        DefaultComboBoxModel<String> model;
+        model = new DefaultComboBoxModel<String>(ofertasLaborales);
+        this.comboBoxOfertasLaboralesPostulacion.setModel(model);
+      }
     } catch (UsuarioNoExisteException e1) {
-      e1.printStackTrace();
+      JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
+          "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
     }
   }
   
