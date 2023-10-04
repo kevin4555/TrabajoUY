@@ -7,6 +7,8 @@ import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.TipoDePublicacionYaFueIngresado;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
@@ -249,7 +251,8 @@ public class ControladorOfertaTest {
     manejadorPaquetes = ManejadorPaquetes.getInstance();
     controladorOferta = new ControladorOferta();
     List<CantidadTotalTipoPublicacion> arrayPrueba = new ArrayList<CantidadTotalTipoPublicacion>();
-    List<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
+    List<CantidadTotalTipoPublicacion> arrayPruebaSegundo = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero",
         "descripcionPrueba", 20, 50f, null, arrayPruebaSegundo, fechaDate);
     
@@ -291,7 +294,8 @@ public class ControladorOfertaTest {
   @Test
   public void agregarTipoPublicacionAlPaquete()
       throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException,
-      PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException {
+      PaquetePublicacionYaExisteException, TipoPublicacionYaExisteException,
+      PaquetePublicacionYaFueComprado, TipoDePublicacionYaFueIngresado {
     manejadorOfertas = ManejadorOfertas.getInstance();
     manejadorSettings = ManejadorSettings.getInstance();
     manejadorPaquetes = ManejadorPaquetes.getInstance();
@@ -422,11 +426,13 @@ public class ControladorOfertaTest {
     manejadorOfertas = ManejadorOfertas.getInstance();
     manejadorPaquetes = ManejadorPaquetes.getInstance();
     controladorOferta = new ControladorOferta();
-    List<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
+    List<CantidadTotalTipoPublicacion> arrayPruebaSegundo = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f,
         fechaDate);
     TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
-    CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(
+    CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = 
+        new CantidadTotalTipoPublicacion(
         2, tipoEncontrado);
     arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
     PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero",
@@ -447,11 +453,13 @@ public class ControladorOfertaTest {
     manejadorPaquetes = ManejadorPaquetes.getInstance();
     controladorOferta = new ControladorOferta();
     
-    List<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
+    List<CantidadTotalTipoPublicacion> arrayPruebaSegundo = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f,
         fechaDate);
     TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
-    CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(
+    CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = 
+        new CantidadTotalTipoPublicacion(
         2, tipoEncontrado);
     arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
     PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero",
@@ -474,11 +482,13 @@ public class ControladorOfertaTest {
     controladorOferta = new ControladorOferta();
     controladorUsuario = new ControladorUsuario();
     
-    List<CantidadTotalTipoPublicacion> arrayPruebaSegundo = new ArrayList<CantidadTotalTipoPublicacion>();
+    List<CantidadTotalTipoPublicacion> arrayPruebaSegundo = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     controladorOferta.altaTipoPublicacion("tipoTesting", "Uso para testing", "baja", 50, 500f,
         fechaDate);
     TipoPublicacion tipoEncontrado = controladorOferta.obtenerTipoPublicacion("tipoTesting");
-    CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(
+    CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = 
+        new CantidadTotalTipoPublicacion(
         2, tipoEncontrado);
     arrayPruebaSegundo.add(nuevoCantidadTotalTipoPublicacion);
     PaquetePublicacion paquetePruebaPrimero = new PaquetePublicacion("nombrePruebaPrimero",
@@ -948,7 +958,8 @@ public class ControladorOfertaTest {
     controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1",
         "email1@test.com", "descripcion1", "sitioWeb1", null, "nuevaContraseña");
     
-    controladorUsuario.comprarPaquete("nicknameEmpresa1", "paquetePrueba", fechaDateSecundaria);
+    controladorUsuario.comprarPaquete("nicknameEmpresa1", "paquetePrueba",
+        fechaDateSecundaria);
     
     Assert.assertTrue(controladorOferta.estaCompradoPaquete("paquetePrueba"));
   }

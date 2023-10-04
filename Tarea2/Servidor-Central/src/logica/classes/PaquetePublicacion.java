@@ -1,5 +1,8 @@
 package logica.classes;
 
+import excepciones.PaquetePublicacionYaExisteException;
+import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.TipoDePublicacionYaFueIngresado;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,12 +26,12 @@ public class PaquetePublicacion {
   private LocalDate fechaAlta;
   
   /**
-   * Constructor  .
+   * Constructor .
    */
   
-  public PaquetePublicacion(String nombre, String descripcion, 
-      int periodoValidez, float descuento, BufferedImage imagen, 
-      List<CantidadTotalTipoPublicacion> cantidadTipo, LocalDate fechaAlta) {
+  public PaquetePublicacion(String nombre, String descripcion, int periodoValidez,
+      float descuento, BufferedImage imagen, List<CantidadTotalTipoPublicacion> cantidadTipo,
+      LocalDate fechaAlta) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.periodoValidez = periodoValidez;
@@ -96,8 +99,8 @@ public class PaquetePublicacion {
     return estaComprado;
   }
   
-  public void setCantidadTotalTipoPublicaciones(List<CantidadTotalTipoPublicacion> 
-      cantidadTipoPublicaciones) {
+  public void setCantidadTotalTipoPublicaciones(
+      List<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones) {
     this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
   }
   
@@ -106,14 +109,12 @@ public class PaquetePublicacion {
    */
   
   public DtpaquetePublicacion obtenerDtPaquete() {
-    List<DtcantidadTipoPublicacion> listDtcantidad = 
-        new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtcantidadTipoPublicacion> listDtcantidad = new ArrayList<DtcantidadTipoPublicacion>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
       listDtcantidad.add(cantidad.obtenerDtcantidadTipoPublicacion());
     }
-    return new DtpaquetePublicacion(nombre, descripcion, periodoValidez, descuento,
-        costo, imagen, listDtcantidad,
-        fechaAlta);
+    return new DtpaquetePublicacion(nombre, descripcion, periodoValidez, descuento, costo,
+        imagen, listDtcantidad, fechaAlta);
   }
   
   public List<CantidadTotalTipoPublicacion> obtenerCantidadTotalTipoPublicaciones() {
@@ -121,7 +122,8 @@ public class PaquetePublicacion {
   }
   
   /**
-   * Metodo obtener nombres de tipo de publicaciones .
+   * Metodo obtener nombres de tipo de publicaciones
+   * .
    */
   
   public List<String> obtenerNombresTipoPublicaciones() {
@@ -134,12 +136,35 @@ public class PaquetePublicacion {
   
   /**
    * Metodo agregar tipo de publicacion .
+   * 
+   * @throws PaquetePublicacionYaFueComprado
+   * @throws TipoDePublicacionYaFueIngresado
    */
   
-  public void agregarTipoPublicacion(TipoPublicacion tipoPublicacion) {
-    CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion = 
-        tipoPublicacion.getCantidadTipoPublicacion();
-    cantidadTipoPublicaciones.add(cantidadTotalTipoPublicacion);
+  public void agregarTipoPublicacion(TipoPublicacion tipoPublicacion, int cantidad)
+      throws PaquetePublicacionYaFueComprado, TipoDePublicacionYaFueIngresado {
+    if (!estaComprado) {
+      boolean existeEnColeccion = false;
+      for (CantidadTotalTipoPublicacion cantidadTotal : cantidadTipoPublicaciones) {
+        if (cantidadTotal.getTipoPublicacion().getNombre() == tipoPublicacion.getNombre()) {
+          existeEnColeccion = true;
+          break;
+        }
+      }
+      if (!existeEnColeccion) {
+        CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(
+            cantidad, tipoPublicacion);
+        cantidadTipoPublicaciones.add(nuevoCantidadTotalTipoPublicacion);
+        setCosto();
+      } else {
+        throw new TipoDePublicacionYaFueIngresado(
+            "El tipo de publicación " + tipoPublicacion.getNombre() + " ya fue ingresado");
+      }
+    } else {
+      throw new PaquetePublicacionYaFueComprado(
+          "El paquete " + getNombre() + " ya fue comprado");
+    }
+    
   }
   
   /**
@@ -152,17 +177,6 @@ public class PaquetePublicacion {
       resultado.add(tipoPublicacion.getTipoPublicacion().getNombre());
     }
     return resultado;
-  }
-  
-  /**
-   * Metodo crear cantidad tipo de publicacion .
-   */
-  
-  public void crearCantidadTipoPublicacion(int cantIncluida, TipoPublicacion tipoPublicacion) {
-    CantidadTotalTipoPublicacion cantidad = 
-        new CantidadTotalTipoPublicacion(cantIncluida, tipoPublicacion);
-    cantidadTipoPublicaciones.add(cantidad);
-    
   }
   
 }

@@ -14,7 +14,6 @@ public class CantidadTipoPublicacionRestante {
    */
   
   public CantidadTipoPublicacionRestante(int cantidad, TipoPublicacion tipoPublicacion) {
-    super();
     this.cantidad = cantidad;
     this.tipoPublicacion = tipoPublicacion;
   }
