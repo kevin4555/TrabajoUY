@@ -39,14 +39,14 @@ public class ConsultaOfertasServlet extends HttpServlet {
     	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
     	
     	
-    	String nicknameEmpresa = request.getParameter("empresaSeleccionada");
+    	String nicknameEmpresa = request.getParameter("nicknameEmpresa");
     	String keyword = request.getParameter("keyword");
     	if(nicknameEmpresa == null && keyword == null ) {
     	  ArrayList<String> listaNickEmpresas = (ArrayList<String>) controladorUsuario.listarEmpresas();
     	  ArrayList<Dtusuario> listaEmpresas = new ArrayList<Dtusuario>();
        for (String nickEmpresa : listaNickEmpresas) {
          try {
-           Dtusuario empresa = controladorUsuario.obtenerDtusuario(nicknameEmpresa);
+           Dtusuario empresa = controladorUsuario.obtenerDtusuario(nickEmpresa);
            listaEmpresas.add(empresa);
          } catch (UsuarioNoExisteException e) {
            // agregar pagina de error

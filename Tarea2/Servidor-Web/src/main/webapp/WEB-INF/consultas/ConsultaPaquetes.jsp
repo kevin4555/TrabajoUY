@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="card-footer border-0 bg-white text-end">
                                         <c:url var="paquetePerfil" value="/paquete">
-                                            <c:param name="paqueteNombre" value="${paquetes.getNombre()}" />
+                                            <c:param name="nombrePaquete" value="${paquetes.getNombre()}" />
                                         </c:url> 
                                         <a href="${paquetePerfil}">Mas Info</a>
                                     </div>
