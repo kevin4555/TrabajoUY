@@ -9,9 +9,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTTipoPublicacion;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
+import logica.datatypes.DttipoPublicacion;
+import logica.interfaces.IcontroladorOferta;
 
 /**
  * Servlet implementation class ConsultaTipoPostulacionServlet
@@ -29,12 +29,12 @@ public class ConsultaTipoPostulacionServlet extends HttpServlet {
     }
 
     private void procesarResquest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	ArrayList<String> listaTipoPublicacion = controladorOfertas.listarTipoDePublicaciones();
-    	ArrayList<DTTipoPublicacion> listaDTTipo = new ArrayList<DTTipoPublicacion>();
+    	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+    	ArrayList<String> listaTipoPublicacion = (ArrayList<String>) controladorOfertas.listarTipoDePublicaciones();
+    	ArrayList<DttipoPublicacion> listaDTTipo = new ArrayList<DttipoPublicacion>();
     	for(String tipo : listaTipoPublicacion) {
     		try {
-				listaDTTipo.add(controladorOfertas.obtenerDTTipoPublicacion(tipo));
+				listaDTTipo.add(controladorOfertas.obtenerDttipoPublicacion(tipo));
 			} catch (TipoPublicacionNoExisteException e) {
 				// pagina de error
 				e.printStackTrace();

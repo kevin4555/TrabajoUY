@@ -1,7 +1,7 @@
-<%@page import="logica.DataTypes.DTOfertaLaboral"%>
+
+<%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     
 <!DOCTYPE html>
@@ -10,11 +10,16 @@
 <meta charset="ISO-8859-1">
 <title>Home</title>
 
-<% ArrayList<String> listaKeywords = (ArrayList<String>)session.getAttribute("listaKeywords"); %>
+<% ArrayList<String> listaKeywords = (ArrayList<String>)session.getAttribute("listaKeywords");
 
+%>
 
+<jsp:include page ="../include/Head.jsp"/>
 </head>
+
 <body>
+<jsp:include page ="../include/NavBar.jsp"/>
+<jsp:include page ="../include/Menu.jsp"/>
 	<h1>Keywords</h1>
 	<c:forEach var="key" items="${listaKeywords}">
 	${key} <br>
@@ -37,11 +42,11 @@
 		</c:forEach>
 
 
-		<h2>Descripción</h2>
+		<h2>DescripciÃ³n</h2>
 		${oferta.descripcion}<br>
 
 	</c:forEach>
-
-
+	<c:url var="loginUrl" value="/login"></c:url>
+	<a href = "${loginUrl }" >login</a>
 </body>
 </html>

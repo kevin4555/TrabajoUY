@@ -9,11 +9,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.DataTypes.DTEmpresa;
-import logica.DataTypes.DTPostulante;
-import logica.DataTypes.DTUsuario;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorUsuario;
+import logica.datatypes.Dtempresa;
+import logica.datatypes.Dtpostulante;
+import logica.datatypes.Dtusuario;
+import logica.interfaces.IcontroladorUsuario;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -34,19 +34,22 @@ public class LoginServlet extends HttpServlet {
 
     
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HttpSession sesion = request.getSession();
-    	IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	String claveIngresada = (String) request.getParameter("clave");
     	String contraseniaIngresada = (String) request.getParameter("contrasenia");
+    	HttpSession sesion = request.getSession();
+    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    	if(claveIngresada == null || contraseniaIngresada == null) {
+    		request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
+    	}
     	try {
 			if(controladorUsuario.confirmarContrasenia(claveIngresada, contraseniaIngresada)) {
 				sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
-				DTUsuario usuario = controladorUsuario.obtenerDTUsuario(claveIngresada);
+				Dtusuario usuario = controladorUsuario.obtenerDtusuario(claveIngresada);
 				sesion.setAttribute("usuarioLogueado", usuario);
-				if(usuario instanceof DTEmpresa) {
+				if(usuario instanceof Dtempresa) {
 					sesion.setAttribute("tipoUsuario", TipoUsuario.EMPRESA);
 				}
-				else if(usuario instanceof DTPostulante) {
+				else if(usuario instanceof Dtpostulante) {
 					sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
 				}
 				request.getRequestDispatcher("/home").forward(request, response);

@@ -6,11 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.DataTypes.DTOfertaLaboral;
-import logica.DataTypes.DTUsuario;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
+import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtusuario;
+import logica.interfaces.IcontroladorOferta;
+import logica.interfaces.IcontroladorUsuario;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -43,9 +43,9 @@ public class PostulacionServlet extends HttpServlet {
     	}
     	if(request.getAttribute("nombreOferta") != null && request.getAttribute("accion") != "postularse" ) {
     		String nombreOferta = request.getParameter("nombreOferta");
-    		IControladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
     		try {
-				DTOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
+				DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
 				request.setAttribute("oferta", oferta);
 				request.getRequestDispatcher("/WEB-INF/registros/Postulacion.jsp").forward(request, response);
 			} catch (OfertaLaboralNoExisteException e) {
@@ -56,9 +56,9 @@ public class PostulacionServlet extends HttpServlet {
     	if(sesion.getAttribute("tipoUsuario") == TipoUsuario.POSTULANTE &&  request.getAttribute("accion") == "postularse" ) {
     		String cVReducido = request.getParameter("cVReducido");
     		String motivacion = request.getParameter("motivacion");
-    		DTUsuario usuario = (DTUsuario) sesion.getAttribute("usuarioLogueado");
-    		DTOfertaLaboral oferta = (DTOfertaLaboral) request.getAttribute("oferta");
-    		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+    		DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
+    		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		try {
 				controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(), usuario.getNickname(), oferta.getNombre());
 				request.getRequestDispatcher("/home").forward(request, response);

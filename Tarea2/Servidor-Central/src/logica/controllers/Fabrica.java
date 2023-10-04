@@ -1,25 +1,34 @@
 package logica.controllers;
 
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
+import logica.interfaces.IcontroladorOferta;
+import logica.interfaces.IcontroladorUsuario;
+
+/**
+ * Clase Fabrica.
+ */
 
 public class Fabrica {
-	private static Fabrica instancia = null;
-	
-	private Fabrica() {}
-	
-	public static Fabrica getInstance() {
-		if(instancia == null) {
-			return new Fabrica();
-		}
-		return instancia;
-	}
-	
-	public IControladorUsuario obtenerControladorUsuario() {
-		return new ControladorUsuario();
-	}
-	
-	public IControladorOferta obtenerControladorOferta() {
-		return new ControladorOferta();
-	}
+  private static Fabrica instancia = null;
+  
+  private Fabrica() {
+  }
+  
+  /**
+   * Constructor.
+   */
+  
+  public static Fabrica getInstance() {
+    if (instancia == null) {
+      return new Fabrica();
+    }
+    return instancia;
+  }
+  
+  public IcontroladorUsuario obtenerControladorUsuario() {
+    return new ControladorUsuario();
+  }
+  
+  public IcontroladorOferta obtenerControladorOferta() {
+    return new ControladorOferta();
+  }
 }

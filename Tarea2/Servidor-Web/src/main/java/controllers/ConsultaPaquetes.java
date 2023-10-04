@@ -8,9 +8,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTPaquetePublicacion;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
+import logica.datatypes.DtpaquetePublicacion;
+import logica.interfaces.IcontroladorOferta;
 
 /**
  * Servlet implementation class ConsultaPaquetes
@@ -28,8 +28,8 @@ public class ConsultaPaquetes extends HttpServlet {
     }
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	ArrayList<DTPaquetePublicacion> listaPaquetes = controladorOfertas.listarDTPaquetes();
+    	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+    	ArrayList<DtpaquetePublicacion> listaPaquetes = (ArrayList<DtpaquetePublicacion>) controladorOfertas.listarDtpaquetes();
     	request.setAttribute("listaPaquetes", listaPaquetes);
     	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaPaquetes").forward(request, response);
     }

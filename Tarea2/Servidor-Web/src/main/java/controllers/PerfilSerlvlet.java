@@ -9,14 +9,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTEmpresa;
-import logica.DataTypes.DTOfertaLaboral;
-import logica.DataTypes.DTPaquetePublicacion;
-import logica.DataTypes.DTPostulacion;
-import logica.DataTypes.DTPostulante;
-import logica.DataTypes.DTUsuario;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorUsuario;
+import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtempresa;
+import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.Dtpostulacion;
+import logica.datatypes.Dtpostulante;
+import logica.datatypes.Dtusuario;
+import logica.interfaces.IcontroladorUsuario;
 
 /**
  * Servlet implementation class PerfilSerlvlet
@@ -35,23 +35,23 @@ public class PerfilSerlvlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String nicknameUsuario = request.getParameter("nicknameUsuario");
-    	IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	try {
-			DTUsuario usuario = controladorUsuario.obtenerDTUsuario(nicknameUsuario);
+			Dtusuario usuario = controladorUsuario.obtenerDtusuario(nicknameUsuario);
 			request.setAttribute("usuario", usuario);
-			if(usuario instanceof DTEmpresa) {
-				ArrayList<DTOfertaLaboral> ofertasConfirmadas = controladorUsuario.obtenerDTOfertasConfirmadasDeEmpresa(nicknameUsuario);
-				ArrayList<DTOfertaLaboral> ofertasIngresadas = controladorUsuario.obtenerDTOfertasIngresadasDeEmpresa(nicknameUsuario);
-				ArrayList<DTOfertaLaboral> ofertasRechazadas = controladorUsuario.obtenerDTOfertasRechazadasDeEmpresa(nicknameUsuario);
-				ArrayList<DTPaquetePublicacion> paquetes = controladorUsuario.obtenerDTPaquetesDeEmpresa(nicknameUsuario);
+			if(usuario instanceof Dtempresa) {
+				ArrayList<DtOfertaLaboral> ofertasConfirmadas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameUsuario);
+				ArrayList<DtOfertaLaboral> ofertasIngresadas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasIngresadasDeEmpresa(nicknameUsuario);
+				ArrayList<DtOfertaLaboral> ofertasRechazadas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasRechazadasDeEmpresa(nicknameUsuario);
+				ArrayList<DtpaquetePublicacion> paquetes = (ArrayList<DtpaquetePublicacion>) controladorUsuario.obtenerDtpaquetesDeEmpresa(nicknameUsuario);
 				request.setAttribute("ofertasConfirmadas", ofertasConfirmadas);
 				request.setAttribute("ofertasIngresadas", ofertasIngresadas);
 				request.setAttribute("ofertasRechazadas", ofertasRechazadas);
 				request.setAttribute("paquetes", paquetes);
 				request.setAttribute("tipoUsuario", "empresa");
 			}
-			if(usuario instanceof DTPostulante) {
-				ArrayList<DTPostulacion> postulaciones = controladorUsuario.obtenerDTPostulacionesDePostulante(nicknameUsuario);
+			if(usuario instanceof Dtpostulante) {
+				ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) controladorUsuario.obtenerDtpostulacionesDePostulante(nicknameUsuario);
 				request.setAttribute("postulaciones", postulaciones);
 				request.setAttribute("tipoUsuario", "postulante");
 			}

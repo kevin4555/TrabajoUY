@@ -8,9 +8,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.DataTypes.DTTipoPublicacion;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
+import logica.datatypes.DttipoPublicacion;
+import logica.interfaces.IcontroladorOferta;
 
 /**
  * Servlet implementation class TipoPostulacionServlet
@@ -29,9 +29,9 @@ public class TipoPostulacionServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String nombreTipo = request.getParameter("nombreTipoPublicacion");
-    	IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+    	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
     	try {
-			DTTipoPublicacion tipoPublicacion = controladorOfertas.obtenerDTTipoPublicacion(nombreTipo);
+			DttipoPublicacion tipoPublicacion = controladorOfertas.obtenerDttipoPublicacion(nombreTipo);
 			request.setAttribute("tipoPublicacion", tipoPublicacion);
 			request.getRequestDispatcher("/WEB-INF/consultas/TipoPublicacion.jsp").forward(request, response);
 		} catch (TipoPublicacionNoExisteException e) {

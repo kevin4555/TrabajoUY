@@ -12,11 +12,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.DataTypes.DTPaquetePublicacion;
-import logica.DataTypes.DTUsuario;
 import logica.controllers.Fabrica;
-import logica.interfaces.IControladorOferta;
-import logica.interfaces.IControladorUsuario;
+import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.Dtusuario;
+import logica.interfaces.IcontroladorOferta;
+import logica.interfaces.IcontroladorUsuario;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -39,9 +39,9 @@ public class PaqueteServlet extends HttpServlet {
     	
     	if(request.getParameter("accion") == null || request.getParameter("accion") != "comrpar") {
     		String nombrePaquete = request.getParameter("nombrePaquete");
-    		IControladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+    		IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
     		try {
-    			DTPaquetePublicacion paquete = controladorOfertas.obtenerDTPaquete(nombrePaquete);
+    			DtpaquetePublicacion paquete = controladorOfertas.obtenerDtpaquete(nombrePaquete);
 				request.setAttribute("paquete", paquete);
 				request.getRequestDispatcher("/WEB-INF/consultas/Paquete.jsp").forward(request, response);
 			} catch (PaquetePublicacionNoExisteException e) {
@@ -54,12 +54,12 @@ public class PaqueteServlet extends HttpServlet {
     		if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO || sesion.getAttribute("tipoUsuario") != TipoUsuario.EMPRESA) {
     			//agregar pagina de error
     		}
-    		DTPaquetePublicacion paquete = (DTPaquetePublicacion) request.getAttribute("paquete");
-    		DTUsuario usuario = (DTUsuario) sesion.getAttribute("usuarioLogueado");
-    		IControladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    		DtpaquetePublicacion paquete = (DtpaquetePublicacion) request.getAttribute("paquete");
+    		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+    		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		String nombrePaquete = paquete.getNombre();
     		try {
-				ArrayList<String> paquetesNoComprados = controladorUsuario.listarPaquetesNoCompradosDeEmpresa(usuario.getNickname());
+				ArrayList<String> paquetesNoComprados = (ArrayList<String>) controladorUsuario.listarPaquetesNoCompradosDeEmpresa(usuario.getNickname());
 				if(paquetesNoComprados.contains(nombrePaquete)) {
 					controladorUsuario.comprarPaquete(usuario.getNickname(), nombrePaquete, LocalDate.now());
 					request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);

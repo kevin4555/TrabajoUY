@@ -1,9 +1,13 @@
 package excepciones;
 
-@SuppressWarnings("serial")
-public class UsuarioEmailRepetidoException extends Exception{
+/**
+ * Excepción UsuarioEmailRepetidoException.
+ */
 
-	public UsuarioEmailRepetidoException(String message) {
-		super(message);
-	}
+@SuppressWarnings("serial")
+public class UsuarioEmailRepetidoException extends Exception {
+  
+  public UsuarioEmailRepetidoException(String message) {
+    super(message);
+  }
 }

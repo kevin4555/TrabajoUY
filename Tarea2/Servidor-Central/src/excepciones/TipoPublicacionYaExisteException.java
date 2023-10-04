@@ -1,8 +1,11 @@
 package excepciones;
 
-@SuppressWarnings("serial")
+/**
+ * Excepción TipoPublicacionYaExisteException.
+ */
+
 public class TipoPublicacionYaExisteException extends Exception {
-	public TipoPublicacionYaExisteException(String message) {
-		super(message);
-	}
+  public TipoPublicacionYaExisteException(String message) {
+    super(message);
+  }
 }
