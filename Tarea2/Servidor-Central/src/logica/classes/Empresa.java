@@ -4,6 +4,8 @@ import excepciones.OfertaLaboralYaExisteException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
@@ -204,4 +206,11 @@ public class Empresa extends Usuario {
     
   }
   
+  public List<DtCompraPaquete> obtenerDtCompraPaquetes() {
+    ArrayList<DtCompraPaquete> resultado = new ArrayList<DtCompraPaquete>();
+    for (CompraPaquete compra : compraPaquetes) {
+      resultado.add(compra.obtenerDtCompraPaquete());
+    }
+    return resultado;
+  }
 }

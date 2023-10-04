@@ -3,6 +3,9 @@ package logica.classes;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import logica.datatypes.DtCantidadTipoPublicacionRestante;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtpaquetePublicacion;
 
 /**
@@ -64,5 +67,15 @@ public class CompraPaquete {
         break;
       }
     }
+  }
+  
+  public DtCompraPaquete obtenerDtCompraPaquete() {
+    ArrayList<DtCantidadTipoPublicacionRestante> dtCantidadesRestantes = new ArrayList<DtCantidadTipoPublicacionRestante>();
+    for (CantidadTipoPublicacionRestante cantidad : cantidadesRestantes) {
+      dtCantidadesRestantes.add(cantidad.obtenerDtTipoCantidadRestante());
+    }
+    DtpaquetePublicacion dtpaquete = paquete.obtenerDtPaquete();
+    return new DtCompraPaquete(fechaCompra, fechaVencimiento, dtCantidadesRestantes,
+        dtpaquete);
   }
 }
