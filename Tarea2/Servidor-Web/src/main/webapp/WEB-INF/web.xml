@@ -149,4 +149,14 @@
     <servlet-name>ModificarDatosServlet</servlet-name>
     <url-pattern>/ModificarDatosServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VerPostulacionServlet</display-name>
+    <servlet-name>VerPostulacionServlet</servlet-name>
+    <servlet-class>controllers.VerPostulacionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VerPostulacionServlet</servlet-name>
+    <url-pattern>/VerPostulacionServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
