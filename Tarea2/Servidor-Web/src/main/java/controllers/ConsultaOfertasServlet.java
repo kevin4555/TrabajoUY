@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,13 +14,6 @@ import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import excepciones.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class OfertasServlet
@@ -59,11 +56,6 @@ public class ConsultaOfertasServlet extends HttpServlet {
     	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
     		try {
 				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
-				for (DtOfertaLaboral dtOfertaLaboral : ofertas)
-				{
-					perfilOfertaHashMap.put(dtOfertaLaboral.getNombre(), dtOfertaLaboral.getImagen());
-				}
-				request.setAttribute("perfilOfertas", perfilOfertaHashMap);
 				request.setAttribute("listaOfertas", ofertas);
 			} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
