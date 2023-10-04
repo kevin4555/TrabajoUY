@@ -1,5 +1,7 @@
 package logica.classes;
 
+import logica.datatypes.DtCantidadTipoPublicacionRestante;
+
 /**
  * Clase CantidadTipoPublicacionRestante.
  */
@@ -33,5 +35,11 @@ public class CantidadTipoPublicacionRestante {
   
   public String getNombreTipoPublicacion() {
     return tipoPublicacion.getNombre();
+  }
+  
+  public DtCantidadTipoPublicacionRestante obtenerDtTipoCantidadRestante() {
+    DtCantidadTipoPublicacionRestante resultado = new DtCantidadTipoPublicacionRestante(
+        cantidad, tipoPublicacion.obtenerDttipoPublicacion());
+    return resultado;
   }
 }

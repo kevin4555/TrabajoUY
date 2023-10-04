@@ -1,43 +1,50 @@
 package testing;
 
+import java.time.LocalDate;
+
+import excepciones.OfertaLaboralYaExisteException;
+import logica.classes.Empresa;
+import logica.classes.OfertaLaboral;
+import logica.classes.Postulante;
+import logica.classes.TipoPublicacion;
+import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtempresa;
+import logica.datatypes.Dtpostulante;
+
 public class DataTypesTest {
 	
-	/*private Date fechaDate;
-	private String fecha = "17/06/1999";
+  private static LocalDate fechaDate1;
 	
-	@Before
+	
+	/*@Before
 	public void setUp()
 	{
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		try
-		{
-			this.fechaDate = dateFormat.parse(fecha);
-		}
-		catch (ParseException e)
-		{
-			e.getMessage();
-		}
+	  fechaDate1 = LocalDate.parse("1988-11-10");
 	}
 	
 	@Test
 	public void obtenerDTPostulante()
 	{
-		Postulante postulante = new Postulante("postulante1", "Postulante 1", "Apellido", "postulante@example.com", this.fechaDate, "Nacionalidad");
-		DTPostulante dtPosutlante = postulante.obtenerDTPostulante();
+		Postulante postulante = new Postulante("postulante1", "Postulante 1", "Apellido", "postulante@example.com", fechaDate1, "Nacionalidad", null, "1234");
+		Dtpostulante dtPosutlante = postulante.obtenerDtpostulante();
 		Assert.assertEquals(postulante.getNickname(), dtPosutlante.getNickname());
 		Assert.assertEquals(postulante.getNombre(), dtPosutlante.getNombre());
 		Assert.assertEquals(postulante.getApellido(), dtPosutlante.getApellido());
 		Assert.assertEquals(postulante.getEmail(), dtPosutlante.getEmail());
 		Assert.assertEquals(postulante.getNacionalidad(), dtPosutlante.getNacionalidad());
 		Assert.assertEquals(postulante.getFechaNacimiento(), dtPosutlante.getFechaNacimiento());
+		Assert.assertEquals(postulante.getContrasenia(), dtPosutlante.getContrasenia());
+	 Assert.assertEquals(postulante.obtenerDtofertas(), dtPosutlante.getOfertasColeccion());
 	}
 	
 	@Test
 	public void obtenerDTOfertaLaboral() throws OfertaLaboralYaExisteException
 	{
-		TipoPublicacion tipoPublicacion = new TipoPublicacion("tipoPublicacion", "Descripcion", "23", 3, 33.2f,this.fechaDate);
-		OfertaLaboral ofertaLaboral = new OfertaLaboral("Nombre", "Descripcion", "09:00", "19:00", 23.4f, "Ciudad", "Departamento", this.fechaDate, tipoPublicacion);
-		DTOfertaLaboral dtOfertaLaboral = ofertaLaboral.obtenerDTOfertaLaboral();
+	  Empresa empresa = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1",
+       "descripcion1", "sitioWeb1", null, "1234");
+		TipoPublicacion tipoPublicacion = new TipoPublicacion("tipoPublicacion", "Descripcion", "23", 3, 33.2f,fechaDate1);
+		OfertaLaboral ofertaLaboral = new OfertaLaboral("Nombre", "Descripcion", "09:00", "19:00", 23.4f, "Ciudad", "Departamento", fechaDate1, tipoPublicacion, null, empresa);
+		DtOfertaLaboral dtOfertaLaboral = ofertaLaboral.obtenerDtOfertaLaboral();
 		Assert.assertEquals(ofertaLaboral.getNombre(), dtOfertaLaboral.getNombre());
 		Assert.assertEquals(ofertaLaboral.getRemunaracion(), dtOfertaLaboral.getRemuneracion());
 		Assert.assertEquals(ofertaLaboral.getCiudad(), dtOfertaLaboral.getCiudad());
@@ -47,15 +54,16 @@ public class DataTypesTest {
 		Assert.assertEquals(ofertaLaboral.getHorarioFinal(), dtOfertaLaboral.getHorarioFinal());
 		Assert.assertEquals(ofertaLaboral.getFechaAlta(), dtOfertaLaboral.getFechaAlta());
 		Assert.assertEquals(ofertaLaboral.getPostulacion().size(), dtOfertaLaboral.getPostulaciones().size());
+		Assert.assertEquals(empresa.getNickname(), dtOfertaLaboral.getEmpresa());
 	}
 	
 	@Test
 	public void obtenerDTEmpresa() throws OfertaLaboralYaExisteException {
-		TipoPublicacion tipoPublicacion = new TipoPublicacion("tipoPublicacion", "Descripcion", "23", 3, 33.2f,this.fechaDate);
-		Empresa empresa = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1", "sitioWeb1" );
-		OfertaLaboral ofertaLaboral = new OfertaLaboral("Nombre", "Descripcion", "09:00", "19:00", 23.4f, "Ciudad", "Departamento", this.fechaDate, tipoPublicacion);
+		TipoPublicacion tipoPublicacion = new TipoPublicacion("tipoPublicacion", "Descripcion", "23", 3, 33.2f,fechaDate1);
+		Empresa empresa = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@test.com", "descripcion1", "sitioWeb1", null, null );
+		OfertaLaboral ofertaLaboral = new OfertaLaboral("Nombre", "Descripcion", "09:00", "19:00", 23.4f, "Ciudad", "Departamento", fechaDate1, tipoPublicacion, null, empresa);
 		empresa.agregarOferta(ofertaLaboral);
-		DTEmpresa dtEmpresa = empresa.obtenerDTEmpresa();
+		Dtempresa dtEmpresa = empresa.obtenerDtempresa();
 		Assert.assertEquals(empresa.getNickname(), dtEmpresa.getNickname());
 		Assert.assertEquals(empresa.getNombre(), dtEmpresa.getNombre());
 		Assert.assertEquals(empresa.getApellido(), dtEmpresa.getApellido());
