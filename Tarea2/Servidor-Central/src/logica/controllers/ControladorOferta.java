@@ -59,16 +59,15 @@ public class ControladorOferta implements IcontroladorOferta {
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
     Fabrica fabrica = Fabrica.getInstance();
     IcontroladorUsuario contUsuario = fabrica.obtenerControladorUsuario();
+    Empresa empresa = contUsuario.obtenerEmpresa(nicknameEmpresa);
     
     OfertaLaboral ofertaLaboral = new OfertaLaboral(nombre, descripcion, horarioInicial,
         horarioFinal, remuneracion, ciudad, departamento, fechaAlta,
-        manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion), imagen);
+        manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion), imagen, empresa);
     manejadorOfertas.agregarOferta(ofertaLaboral);
     for (int i = 0; i < listakeywords.size(); i++) {
       ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listakeywords.get(i)));
     }
-    
-    Empresa empresa = contUsuario.obtenerEmpresa(nicknameEmpresa);
     empresa.agregarOferta(ofertaLaboral);
     if (nombrePaquete != null) {
       empresa.comprarOfertaPorPaquete(nombrePaquete, nomTipoPublicacion, ofertaLaboral);
@@ -301,7 +300,8 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public Boolean estaCompradoPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException {
+  public Boolean estaCompradoPaquete(String nombrePaquete)
+      throws PaquetePublicacionNoExisteException {
     PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
     return paquete.getEstaComprado();
   }
