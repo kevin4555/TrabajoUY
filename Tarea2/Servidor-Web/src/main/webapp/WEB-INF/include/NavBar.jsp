@@ -15,7 +15,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
           <c:param name="nombreOferta" value="${ofertas.getNombre()}" />
         </c:url> 
         <a class="nav-link text-white" href="${pageContext.request.contextPath}/home">
-          <img src="/Servidor-Web/recourse/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid">
+          <img src="/Servidor-Web/resource/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid">
         </a>
       </div>
 

@@ -50,7 +50,6 @@ public class ConsultaUsuariosServlet extends HttpServlet {
 		request.setAttribute("tipoEsperado", tipoEsperadoVar);
 		request.setAttribute("listaUsuarios", listaResultado);
 		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaUsuarios.jsp").forward(request, response);
-
 	}
 
 	/**
