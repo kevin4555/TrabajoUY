@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 
@@ -69,6 +70,8 @@ public class AltaOfertaServlet extends HttpServlet {
 				// agregar pagina de error
 				e.printStackTrace();
 			}
+    		ArrayList<String> listKeywordsAtributo = (ArrayList<String>) controladorOferta.listarKeywords();
+    		request.setAttribute("listaKeywords", listKeywordsAtributo);
     		request.setAttribute("listaTipoPublicacion", listaDtTipos);
     		request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request, response);
     		
