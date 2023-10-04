@@ -39,7 +39,7 @@
                                         <c:url var="perfilURL" value="/consultaOfertas">
                                             <c:param name="nicknameEmpresa" value="${empresa.getNickname()}" />
                                         </c:url>
-                                        <a href="${perfilURL}">Ver Ofertas</a>
+                                        <a href="${perfilURL}" class="btn btn-primary">Ver Ofertas</a>
                                     </div>
                                 </div>
                             </div>
