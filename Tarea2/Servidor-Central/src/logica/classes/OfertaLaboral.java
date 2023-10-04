@@ -29,6 +29,7 @@ public class OfertaLaboral {
   private TipoPublicacion tipoPublicacion;
   private List<Postulacion> postulaciones;
   private CompraPaquete compraPaquete;
+  private Empresa empresa;
   
   /**
    * Constructor .
@@ -36,7 +37,7 @@ public class OfertaLaboral {
   
   public OfertaLaboral(String nombre, String descripcion, String horarioInicial,
       String horarioFinal, float remuneracion, String ciudad, String departamento,
-      LocalDate fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen) {
+      LocalDate fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen, Empresa empresa) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.ciudad = ciudad;
@@ -52,6 +53,7 @@ public class OfertaLaboral {
     this.imagen = imagen;
     this.compraPaquete = null;
     this.fechaResolucion = null;
+    this.empresa = empresa;
     
   }
   
@@ -162,7 +164,7 @@ public class OfertaLaboral {
         this.getDescripcion(), this.getCiudad(), this.getDepartamento(),
         this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
         this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
-        paquete, keywords);
+        paquete, keywords, this.empresa.getNickname());
     return dtOfertaLaboral;
   }
   

@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
@@ -34,10 +35,25 @@ public class ConsultaOfertasServlet extends HttpServlet {
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	ArrayList<String> listaEmpresas = (ArrayList<String>) controladorUsuario.listarEmpresas();
-    	request.setAttribute("listaEmpresas", listaEmpresas);
+    	
+    	
     	String nicknameEmpresa = request.getParameter("empresaSeleccionada");
     	String keyword = request.getParameter("keyword");
+    	if(nicknameEmpresa == null && keyword == null ) {
+    	  ArrayList<String> listaNickEmpresas = (ArrayList<String>) controladorUsuario.listarEmpresas();
+    	  ArrayList<Dtusuario> listaEmpresas = new ArrayList<Dtusuario>();
+       for (String nickEmpresa : listaNickEmpresas) {
+         try {
+           Dtusuario empresa = controladorUsuario.obtenerDtusuario(nicknameEmpresa);
+           listaEmpresas.add(empresa);
+         } catch (UsuarioNoExisteException e) {
+           // agregar pagina de error
+           e.printStackTrace();
+         }
+    	  }
+    	  request.setAttribute("listaEmpresas", listaEmpresas);
+    	  request.getRequestDispatcher("/WEB-INF/consultas/ListaEmpresas.jsp").forward(request, response);
+    	}
     	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
     		try {
 				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
@@ -58,7 +74,6 @@ public class ConsultaOfertasServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		procesarRequest(request, response);
 	}
 
@@ -66,8 +81,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	  procesarRequest(request, response);
 	}
 
 }

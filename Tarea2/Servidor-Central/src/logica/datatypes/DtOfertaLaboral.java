@@ -24,6 +24,7 @@ public class DtOfertaLaboral {
   private BufferedImage imagen;
   private DtpaquetePublicacion paqueteAsociado;
   private List<String> keywords;
+  private String empresa;
   
   /**
    * Contructor.
@@ -34,7 +35,7 @@ public class DtOfertaLaboral {
       Float remuneracion, LocalDate fechaAlta, List<Dtpostulacion> postulaciones,
       LocalDate fechaResolucion, EstadoOferta estado, BufferedImage imagen, 
       DtpaquetePublicacion paquete,
-      List<String> keywords) {
+      List<String> keywords, String empresa) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.ciudad = ciudad;
@@ -49,6 +50,7 @@ public class DtOfertaLaboral {
     this.imagen = imagen;
     this.paqueteAsociado = paquete;
     this.keywords = keywords;
+    this.empresa = empresa;
     
   }
   
@@ -106,6 +108,10 @@ public class DtOfertaLaboral {
   
   public LocalDate getFechaResolucion() {
     return fechaResolucion;
+  }
+
+  public String getEmpresa() {
+    return empresa;
   }
   
 }
