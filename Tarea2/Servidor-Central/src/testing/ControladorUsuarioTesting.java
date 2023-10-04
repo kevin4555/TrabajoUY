@@ -22,6 +22,7 @@ import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.controllers.Fabrica;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtcantidadTipoPublicacion;
 import logica.datatypes.DtpaquetePublicacion;
@@ -783,6 +784,10 @@ public class ControladorUsuarioTesting {
         .listarPaquetesNoCompradosDeEmpresa("EcoTech");
     Collections.sort(listaRes);
     Assert.assertEquals(listaEsperada, listaRes);
+    
+    ArrayList<DtCompraPaquete> listaCompra = (ArrayList<DtCompraPaquete>) controladorUsuario
+        .obtenerDtCompraPaqueteDeEmpresa("EcoTech");
+    Assert.assertEquals(listaCompra.get(0).getPaquete().getNombre(), "Paquete");
     
   }
   
