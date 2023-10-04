@@ -35,6 +35,9 @@
 
                 <c:url var="loginUrl" value="/login"></c:url>
                 <a href="${loginUrl}">login</a>
+                
+                <c:url var="loginUrl" value="/consultaOfertas"></c:url>
+                <a href="${loginUrl}">AAAAAAAAAAAAAAAAAAAAAAAAAAAA</a>
             </div>
         </div>
     </main>

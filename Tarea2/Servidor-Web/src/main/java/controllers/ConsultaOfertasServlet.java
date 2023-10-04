@@ -54,16 +54,11 @@ public class ConsultaOfertasServlet extends HttpServlet {
          }
     	  }
     	  request.setAttribute("listaEmpresas", listaEmpresas);
-    	  request.getRequestDispatcher("/WEB-INF/consultas/ListaEmpresas.jsp").forward(request, response);
+    	  request.getRequestDispatcher("/WEB-INF/consultas/listarEmpresas.jsp").forward(request, response);
     	}
     	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
     		try {
 				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
-				for (DtOfertaLaboral dtOfertaLaboral : ofertas)
-				{
-					perfilOfertaHashMap.put(dtOfertaLaboral.getNombre(), dtOfertaLaboral.getImagen());
-				}
-				request.setAttribute("perfilOfertas", perfilOfertaHashMap);
 				request.setAttribute("listaOfertas", ofertas);
 			} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
