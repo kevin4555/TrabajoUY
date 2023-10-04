@@ -17,14 +17,14 @@ import excepciones.TipoPublicacionNoExisteException;
 /**
  * Servlet implementation class ConsultaTipoPostulacionServlet
  */
-@WebServlet("/consultaTipoPostulacion")
-public class ConsultaTipoPostulacionServlet extends HttpServlet {
+@WebServlet("/consultaTipoPublicacion")
+public class ConsultaTipoPublicacionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConsultaTipoPostulacionServlet() {
+    public ConsultaTipoPublicacionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
