@@ -1,4 +1,4 @@
-<%@page import="logica.datatypes.DtpaquetePublicacion"%>
+<%@page import="logica.classes.PaquetePublicacion"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
@@ -31,15 +31,15 @@
                                 <div class="col-md-9">
                                     <div class="card-body">
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            <strong>Tipo: </strong>${paquetes.getNombre()}
+                                            ${paquetes.getNombre()}
                                         </h5>
                                         <br>
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            <strong>Descripcion: </strong>${paquetes.getDescripcion()}
+                                            ${paquetes.getDescripcion()}
                                         </h5>
                                         <br>
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            <strong>Costo: </strong>$<span id="costo">${paquetes.getCosto()}</span>
+                                            $<span id="costo">${paquetes.getCosto()}</span>
                                         </h5>
                                         <br>
                                         <h5 class="card-header p-0 border-0 bg-white text-start">

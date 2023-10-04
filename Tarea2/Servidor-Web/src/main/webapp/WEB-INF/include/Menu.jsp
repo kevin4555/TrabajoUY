@@ -24,7 +24,7 @@
 							href="${pageContext.request.contextPath}/consultaUsuarios">Consulta usuarios</a></td>
 					</tr>
 					<tr>
-						<td class="d-flex"><a class="btn" href="${pageContext.request.contextPath}/consultaTipoPostulacion">Ver tipos de
+						<td class="d-flex"><a class="btn" href="${pageContext.request.contextPath}/consultaTipoPublicacion">Ver tipos de
 								publicaciones</a></td>
 					</tr>
 					<tr>
