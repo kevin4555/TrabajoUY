@@ -6,6 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Valen/OneDrive - Facultad de Ingeniería/Facultad de Ingenieria/Semestre actual/Taller de Programacion/Repository/tpgr04/Tarea2/Servidor-Central/Utilidades/jcalendar-1.4.jar">
 		<attributes>
 			<attribute name="module" value="true"/>

@@ -15,6 +15,7 @@ import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import junit.framework.Assert;
+import logica.classes.Empresa;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
 import logica.datatypes.DtOfertaLaboral;
@@ -26,11 +27,13 @@ public class ManejadorOfertasTest {
   
   private LocalDate fechaDate;
   private String fecha = "1988-11-10";
-  
+  private Empresa empresa1;
   private ManejadorOfertas manejadorOfertas;
   
   @Before
   public void setUp() {
+    empresa1 = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1@empresa1",
+        "descripcion1", "sitioWeb1", null, "1234");
     fechaDate = LocalDate.parse(fecha);
     manejadorOfertas = ManejadorOfertas.getInstance();
     manejadorOfertas.clean();
@@ -44,7 +47,7 @@ public class ManejadorOfertasTest {
     TipoPublicacion tipoCreadoPublicacion = new TipoPublicacion("tipoTesting",
         "Uso para testing", "baja", 50, 500f, fechaDate);
     OfertaLaboral oferta = new OfertaLaboral("nombre", "Descipcion para testing", "09:00",
-        "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion, null);
+        "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion, null, empresa1);
     manejadorOfertas.agregarOferta(oferta);
     OfertaLaboral obtenida = manejadorOfertas.obtenerOfertaLaboral("nombre");
     assertEquals(oferta, obtenida);
@@ -59,7 +62,7 @@ public class ManejadorOfertasTest {
         "Uso para testing", "baja", 50, 500f, fechaDate);
     OfertaLaboral oferta = new OfertaLaboral("nombreTesting", "Descipcion para testing",
         "09:00", "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion,
-        null);
+        null, empresa1);
     manejadorOfertas.agregarOferta(oferta);
     try {
       manejadorOfertas.agregarOferta(oferta);
@@ -96,12 +99,12 @@ public class ManejadorOfertasTest {
     ArrayList<Dtpostulacion> arrayDT = new ArrayList<Dtpostulacion>();
     DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral("nombreTesting",
         "descripcionTesting", "ciudadTesting", "departamentoTesting", "09:00", "15:00", 100f,
-        fechaDate, arrayDT, fechaDate, EstadoOferta.CONFIRMADA, null, null, null);
+        fechaDate, arrayDT, fechaDate, EstadoOferta.CONFIRMADA, null, null, null, empresa1.getNickname());
     TipoPublicacion tipoCreadoPublicacion = new TipoPublicacion("tipoTesting",
         "Uso para testing", "baja", 50, 500f, fechaDate);
     OfertaLaboral ofertaLaboral = new OfertaLaboral("nombreTesting", "descripcionTesting",
         "09:00", "15:00", 100f, "ciudadTesting", "departamentoTesting", fechaDate,
-        tipoCreadoPublicacion, null);
+        tipoCreadoPublicacion, null, empresa1);
     manejadorOfertas.agregarOferta(ofertaLaboral);
     DtOfertaLaboral resultaDtOfertaLaboral = manejadorOfertas
         .obtenerDtofertaLaboral("nombreTesting");
@@ -130,11 +133,11 @@ public class ManejadorOfertasTest {
         "baja", 50, 500f, fechaDate);
     OfertaLaboral ofertaLaboral = new OfertaLaboral("nombreTesting", "descripcionTesting",
         "09:00", "15:00", 100f, "ciudadTesting", "departamentoTesting", fechaDate,
-        tipoPublicacion, null);
+        tipoPublicacion, null, empresa1);
     TipoPublicacion tipoCreadoPublicacion = new TipoPublicacion("tipoTesting",
         "Uso para testing", "baja", 50, 500f, fechaDate);
     OfertaLaboral oferta = new OfertaLaboral("nombre", "Descipcion para testing", "09:00",
-        "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion, null);
+        "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion, null, empresa1);
     manejadorOfertas.agregarOferta(ofertaLaboral);
     manejadorOfertas.agregarOferta(oferta);
     ArrayList<String> resultado = (ArrayList<String>) manejadorOfertas
