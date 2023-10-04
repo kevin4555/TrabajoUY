@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Consulta tipos de publicacion</title>
-<link rel="stylesheet" type="text/css" href="../../webapp/recourse/css/general.css">
+    <meta charset="ISO-8859-1">
+    <title>Consulta tipos de publicación</title>
+    <link rel="stylesheet" type="text/css" href="../../webapp/recourse/css/general.css">
     <jsp:include page="../include/Head.jsp"/>
 </head>
 <body>
@@ -24,18 +24,18 @@
                                 <div class="col-md-9">
                                     <div class="card-body">
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-										${tipoPublicacion.getNombre()}
+                                            ${tipoPublicacion.getNombre()}
                                         </h5>
                                         <br>
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-                                        ${tipoPublicacion.getDescripcion()}
+                                            ${tipoPublicacion.getDescripcion()}
                                         </h5>
                                     </div>
                                     <div class="card-footer border-0 bg-white text-end">
-                                        <c:url var="tipoPublicacion" value="/tipoPublicacion">
+                                        <c:url var="tipoPublicacionUrl" value="/tipoPublicacion">
                                             <c:param name="tipoPublicacionNombre" value="${tipoPublicacion.getNombre()}" />
                                         </c:url> 
-                                        <a href="${tipoPublicacion}">Mas Info</a>
+                                        <a href="${tipoPublicacionUrl}">Más Info</a>
                                     </div>
                                 </div>
                             </div>
@@ -46,6 +46,5 @@
             </div>
         </div>
     </main>
-
 </body>
 </html>

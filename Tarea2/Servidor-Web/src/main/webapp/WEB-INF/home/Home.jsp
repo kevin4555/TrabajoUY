@@ -19,11 +19,6 @@
         <div class="row">
             <jsp:include page="../include/Menu.jsp"/>
             <div class="col-8">
-                <h1>Keywords</h1>
-                <c:forEach var="key" items="${listaKeywords}">
-                    ${key} <br>
-                </c:forEach>
-
                 <h1>Ofertas</h1>
 
                 <c:forEach var="oferta" items="${listaOfertasConfirmadas}">
@@ -33,11 +28,6 @@
                     </c:url>
 
                     <a href="${ofertaUrl}">${oferta.nombre}</a>
-                    <br>
-                    <h3>Kewords</h3>
-                    <c:forEach var="keyword" items="${oferta.keywords}">
-                        <li>${keyword}</li>
-                    </c:forEach>
 
                     <h2>Descripción</h2>
                     ${oferta.descripcion}<br>

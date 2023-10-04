@@ -10,8 +10,10 @@ import logica.datatypes.DtOfertaLaboral;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import excepciones.UsuarioNoExisteException;
 
@@ -38,9 +40,15 @@ public class ConsultaOfertasServlet extends HttpServlet {
     	request.setAttribute("listaEmpresas", listaEmpresas);
     	String nicknameEmpresa = request.getParameter("empresaSeleccionada");
     	String keyword = request.getParameter("keyword");
+    	HashMap<String, BufferedImage> perfilOfertaHashMap = new HashMap<>();
     	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
     		try {
 				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
+				for (DtOfertaLaboral dtOfertaLaboral : ofertas)
+				{
+					perfilOfertaHashMap.put(dtOfertaLaboral.getNombre(), dtOfertaLaboral.getImagen());
+				}
+				request.setAttribute("perfilOfertas", perfilOfertaHashMap);
 				request.setAttribute("listaOfertas", ofertas);
 			} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
@@ -71,3 +79,5 @@ public class ConsultaOfertasServlet extends HttpServlet {
 	}
 
 }
+
+
