@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import logica.controllers.Fabrica;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.DttipoPublicacion;
 import logica.datatypes.Dtusuario;
@@ -63,8 +64,8 @@ public class AltaOfertaServlet extends HttpServlet {
     		}
     		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		try {
-				ArrayList<DtpaquetePublicacion> listaPaquetes = (ArrayList<DtpaquetePublicacion>) controladorUsuario.obtenerDtpaquetesDeEmpresa(empresa.getNickname());
-				request.setAttribute("listaPaquetes", listaPaquetes);
+				ArrayList<DtCompraPaquete> listaCompraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario.obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
+				request.setAttribute("listaCompraPaquetes", listaCompraPaquetes);
     		} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
 				e.printStackTrace();
