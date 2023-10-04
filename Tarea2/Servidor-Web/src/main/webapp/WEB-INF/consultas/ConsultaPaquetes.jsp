@@ -1,4 +1,4 @@
-<%@page import="logica.classes.PaquetePublicacion"%>
+<%@page import="logica.datatypes.DtpaquetePublicacion"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
@@ -21,9 +21,10 @@
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-md-3 justify-content-center align-items-center d-flex">
+                                    <c:set var="nombreClaveHash" value="${paquetes.getNombre()}"/>
                                     <img
                                         class="imgPaquete"
-                                        src="${perfilPaquetes[paquetes.getNombre()]}"
+                                        src="${perfilPaquetes[nombreClaveHash]}"
                                         alt="Imagen Paquete"
                                     />
                                 </div>
