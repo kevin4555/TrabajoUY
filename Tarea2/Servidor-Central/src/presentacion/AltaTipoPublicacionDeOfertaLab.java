@@ -16,7 +16,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import logica.interfaces.IcontroladorOferta;
@@ -36,7 +35,6 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
   private JTextField textFieldDuracion;
   private JTextField textFieldCosto;
   private JDateChooser dateChooser;
-  private JTextArea textAreaDescripcion;
   private JButton btnCancelar;
   private JButton btnConfirmar;
   private JTextField textFieldDescripcion;
@@ -143,10 +141,7 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
     String nombre = textFieldNombre.getText();
     String descipcion = textFieldDescripcion.getText();
     String exposicion = textFieldExposicion.getText();
-    String duracion = this.textFieldDuracion.getText();
-    String costo = this.textFieldCosto.getText();
     Date fecha = this.dateChooser.getDate();
-    String valorString = "";
     if (checkFormulario()) {
       try {
         Integer duracionFinal = Integer.parseInt(this.textFieldDuracion.getText());

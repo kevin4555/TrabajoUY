@@ -6,38 +6,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Home</title>
+<meta charset="ISO-8859-1">
 
-    <% ArrayList<String> listaKeywords = (ArrayList<String>)session.getAttribute("listaKeywords"); %>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="../../recourse/css/general.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+<title>Home</title>
 
-    <jsp:include page="../include/Head.jsp"/>
+<%
+ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("listaKeywords");
+%>
+
+<jsp:include page="../include/Head.jsp" />
 </head>
-<body>
-    <jsp:include page="../include/NavBar.jsp"/>
-    <main class="container pt-5">
-        <div class="row">
-            <jsp:include page="../include/Menu.jsp"/>
-            <div class="col-8">
-                <h1>Ofertas</h1>
 
-                <c:forEach var="oferta" items="${listaOfertasConfirmadas}">
-                    <h2>Nombre Oferta</h2>
-                    <c:url var="ofertaUrl" value="/oferta">
-                        <c:param name="nombreOferta" value="${oferta.nombre}" />
-                    </c:url>
+<body class="mb-4">
+	<jsp:include page="../include/NavBar.jsp" />
+	<main class="container pt-5">
+		<div class="row">
+			<jsp:include page="../include/Menu.jsp" />
+			<div class="col-8">
+				<section>
 
-                    <a href="${ofertaUrl}">${oferta.nombre}</a>
+					<c:forEach var="oferta" items="${listaOfertasConfirmadas}">
 
-                    <h2>Descripción</h2>
-                    ${oferta.descripcion}<br>
-                </c:forEach>
 
-                <c:url var="loginUrl" value="/login"></c:url>
-                <a href="${loginUrl}">login</a>
 
-            </div>
-        </div>
-    </main>
+
+						<div class="card">
+							<div class="row g-0">
+								<div
+									class="col-md-4 justify-content-center align-items-center d-flex">
+									<img src="${oferta.imagen}" class="img-fluid rounded-start"
+										alt="Imagen Oferta" />
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<h5 class="card-header p-0 border-0 bg-white text-start">
+											<c:url var="ofertaUrl" value="/oferta">
+												<c:param name="nombreOferta" value="${oferta.nombre}" />
+											</c:url>
+										</h5>
+										<p class="card-text">${oferta.descripcion}</p>
+									</div>
+									<div class="card-footer border-0 bg-white text-end">
+										<a href="${ofertaUrl}" class="btn btn-primary">Mas Info</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</section>
+				</div>
+
+
+
+
+		
+				
+			</div>
+	</main>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

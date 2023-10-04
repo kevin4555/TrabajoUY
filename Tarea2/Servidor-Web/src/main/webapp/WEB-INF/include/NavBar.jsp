@@ -14,7 +14,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
       <div class="container">
         <div class="row w-100 justify-content-between align-items-center">
           <div class="col-2">
-            <a href="./indexEmpresa.html"
+            <a href="${pageContext.request.contextPath}/home"
               ><img
                 src="${pageContext.request.contextPath}/recourse/img/Logo.svg"
                 alt="Logo"
@@ -84,7 +84,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
                     </li>
                     <li>
                       <a class="dropdown-item" href="/logout"
-                        >Cerrar Sessión</a
+                        >Cerrar Sessiï¿½n</a
                       >
                     </li>
                   </ul>

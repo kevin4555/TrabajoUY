@@ -24,6 +24,8 @@ public class DtOfertaLaboral {
   private BufferedImage imagen;
   private DtpaquetePublicacion paqueteAsociado;
   private List<String> keywords;
+  private Boolean estaVencida;
+  private String nombreTipoPublicacion;
   private String empresa;
   
   /**
@@ -35,7 +37,7 @@ public class DtOfertaLaboral {
       Float remuneracion, LocalDate fechaAlta, List<Dtpostulacion> postulaciones,
       LocalDate fechaResolucion, EstadoOferta estado, BufferedImage imagen, 
       DtpaquetePublicacion paquete,
-      List<String> keywords, String empresa) {
+      List<String> keywords,Boolean estaVencida, String nombreTipoPublicacion, String empresa) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.ciudad = ciudad;
@@ -50,6 +52,8 @@ public class DtOfertaLaboral {
     this.imagen = imagen;
     this.paqueteAsociado = paquete;
     this.keywords = keywords;
+    this.estaVencida = estaVencida;
+    this.nombreTipoPublicacion = nombreTipoPublicacion;
     this.empresa = empresa;
     
   }
@@ -108,6 +112,14 @@ public class DtOfertaLaboral {
   
   public LocalDate getFechaResolucion() {
     return fechaResolucion;
+  }
+
+  public Boolean getEstaVencida() {
+    return estaVencida;
+  }
+
+  public String getNombreTipoPublicacion() {
+    return nombreTipoPublicacion;
   }
 
   public String getEmpresa() {

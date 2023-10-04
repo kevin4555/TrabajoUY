@@ -9,7 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.EstadoOferta;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
@@ -56,6 +57,7 @@ public class AceptarRechazarOferta extends JInternalFrame {
     // Se inicializa con el controlador de oferta
     controladorOfertaLaboral = icontOfeLab;
     controladorUsuario = icontUsuLab;
+    this.ofertaSeleccionada = "";
     
     // Propiedades del JInternalFrame como dimensión,
     // posición dentro del frame,
@@ -263,19 +265,31 @@ public class AceptarRechazarOferta extends JInternalFrame {
    */
   
   public void confirmarOfertaLaboral() {
-    String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
-    if (ofertaSeleccionada != oferta) {
-      try {
-        DtOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
-        
-        // CAMBIAR ESTADO OFERTA
-        
-        JOptionPane.showMessageDialog(this, "Falta agregar el cambio de estado",
-            "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-        limpiarTodosLosDatos();
-      } catch (OfertaLaboralNoExisteException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+    if (comboBoxSeleccionOferta.getSelectedIndex() == -1) {
+      JOptionPane.showMessageDialog(this, "Debe seleccionar una oferta laboral",
+          "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+    } else {
+      String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
+      if (!ofertaSeleccionada.equals(oferta)) {
+        try {
+          DtOfertaLaboral dtOfertaLaboral = this.controladorOfertaLaboral
+              .obtenerDtOfertaLaboral(oferta);
+          if (!dtOfertaLaboral.getEstadoOferta().equals(EstadoOferta.INGRESADA)) {
+            JOptionPane.showMessageDialog(this, "La oferta " + oferta + " no se encuentra en "
+                + "estado ingresada",
+                "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+          } else {
+            LocalDate fechaActual = LocalDate.now();
+            this.controladorOfertaLaboral.aceptarRechazarOfertaLaboral(oferta, 
+                EstadoOferta.CONFIRMADA, fechaActual);
+            JOptionPane.showMessageDialog(this, "La oferta " + oferta + " ha sido confirmada con "
+                + "éxito",
+                "Agregar/Rechazar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+            limpiarTodosLosDatos();
+          }
+        } catch (OfertaLaboralNoExisteException evento) {
+          evento.printStackTrace();
+        }
       }
     }
   }
@@ -285,38 +299,51 @@ public class AceptarRechazarOferta extends JInternalFrame {
    */
   
   public void rechazarOfertaLaboral() {
-    String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
-    if (ofertaSeleccionada != oferta) {
-      try {
-        DtOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
-        
-        // CAMBIAR ESTADO OFERTA
-        
-        JOptionPane.showMessageDialog(this, "Falta agregar el cambio de estado",
-            "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-        limpiarTodosLosDatos();
-      } catch (OfertaLaboralNoExisteException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+    if (comboBoxSeleccionOferta.getSelectedIndex() == -1) {
+      JOptionPane.showMessageDialog(this, "Debe seleccionar una oferta laboral",
+          "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+    } else {
+      String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
+      if (ofertaSeleccionada != oferta) {
+        try {
+          DtOfertaLaboral dtOfertaLaboral = this.controladorOfertaLaboral
+              .obtenerDtOfertaLaboral(oferta);
+          if (!dtOfertaLaboral.getEstadoOferta().equals(EstadoOferta.INGRESADA)) {
+            JOptionPane.showMessageDialog(this, "La oferta " + oferta + " no se encuentra en estado"
+                + " ingresada",
+                "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+          }  else {
+            LocalDate fechaActual = LocalDate.now();
+            this.controladorOfertaLaboral.aceptarRechazarOfertaLaboral(oferta,
+                EstadoOferta.RECHAZADA, fechaActual);
+            JOptionPane.showMessageDialog(this, "La oferta " + oferta + " ha sido rechazada con "
+                + "éxito",
+                "Agregar/Rechazar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+            limpiarTodosLosDatos();
+          }
+        } catch (OfertaLaboralNoExisteException evento) {
+          evento.printStackTrace();
+        }
       }
     }
+    
   }
+
   
   /**
    * Metodo cargar datos usuario .
    */
   
   public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
-    
-    String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
-    
-    List<String> listaOfertas = this.controladorUsuario
-        .listaOfertasUsuario(nicknameUsuario);
-    String[] arrayOfertas = listaOfertas.toArray(new String[0]);
-    Arrays.sort(arrayOfertas);
-    DefaultComboBoxModel<String> model;
-    model = new DefaultComboBoxModel<String>(arrayOfertas);
-    this.comboBoxSeleccionOferta.setModel(model);
+    if (comboBoxSeleccionUsuario.getSelectedIndex() != -1) {
+      String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
+      List<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
+      String[] arrayOfertas = listaOfertas.toArray(new String[0]);
+      Arrays.sort(arrayOfertas);
+      DefaultComboBoxModel<String> model;
+      model = new DefaultComboBoxModel<String>(arrayOfertas);
+      this.comboBoxSeleccionOferta.setModel(model);
+    }
   }
   
   protected void cargarDatosOferta(ActionEvent evento) throws OfertaLaboralNoExisteException {
@@ -342,18 +369,5 @@ public class AceptarRechazarOferta extends JInternalFrame {
     this.textFieldCiudad.setText("");
     this.textFieldHorarioOferta.setText("");
     this.textFieldRemuneracion.setText("");
-    
-    /*
-     * ArrayList<String> listaOfertas = new
-     * ArrayList<String>(); String [] arrayOfertas =
-     * listaOfertas.toArray(new String[0]);
-     * Arrays.sort(arrayOfertas);
-     * DefaultComboBoxModel<String> model; model = new
-     * DefaultComboBoxModel<String>(arrayOfertas);
-     * this.comboBoxSeleccionOferta.setModel(model);
-     * 
-     * this.comboBoxSeleccionUsuario.setModel(model);
-     */
-    
   }
 }

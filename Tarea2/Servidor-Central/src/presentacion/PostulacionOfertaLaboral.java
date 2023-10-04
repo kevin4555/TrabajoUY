@@ -2,6 +2,7 @@ package presentacion;
 
 import com.toedter.calendar.JDateChooser;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.TipoPublicacionNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.awt.BorderLayout;
@@ -13,7 +14,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -60,7 +63,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
   private JDateChooser dateChooser;
   private String cvReducido;
   private String motivacion;
-  private Date fechaPostulacion;
   private JLabel lblOfertasLaborales;
   private JComponent ubicacionDatosOferta;
   private JComponent ubicacionEtiqueta;
@@ -72,6 +74,9 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
   private JComponent ubicacionCentro;
   private JComponent postulanteEingreso;
   private String nomOfertaLaboral;
+  private LocalDate fechaAlta;
+  private String nombreTipoPublicacion;
+
   
   /**
    * Create the frame.
@@ -296,9 +301,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
       public void actionPerformed(ActionEvent evento) {
         try {
           cargarDatosOfertaLaboralPostulacion(evento);
-        } catch (OfertaLaboralNoExisteException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
+        } catch (OfertaLaboralNoExisteException evento1) {
+          //No imprime nada
         }
         cargarPostulantes(evento);
         ubicacionCentro.setVisible(true);
@@ -395,15 +399,26 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
   
   public void cargarOfertaEmpresaPostulacion(ActionEvent evento) {
     try {
-      this.seleccionEmpresa = this.comboBoxEmpresasRegistradasPostulacion.getSelectedItem()
-          .toString();
-      String[] ofertasLaborales = (controlUsuarioLab
-          .obtenerOfertasEmpresa(this.seleccionEmpresa)).toArray(new String[0]);
-      DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(ofertasLaborales);
-      this.comboBoxOfertasLaboralesPostulacion.setModel(model);
+      if (this.comboBoxEmpresasRegistradasPostulacion.getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
+            "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      } else {
+        this.seleccionEmpresa = this.comboBoxEmpresasRegistradasPostulacion
+            .getSelectedItem().toString();
+        List<DtOfertaLaboral> ofertasConfirmadasEmpresa = this.controlUsuarioLab
+            .obtenerDtofertasConfirmadasDeEmpresa(this.seleccionEmpresa);
+        List<String> nombreOfertasConfirmadas = new ArrayList<String>();
+        for (DtOfertaLaboral dtOfertaLaboral : ofertasConfirmadasEmpresa) {
+          nombreOfertasConfirmadas.add(dtOfertaLaboral.getNombre());
+        }
+        String[] ofertasLaborales = (nombreOfertasConfirmadas).toArray(new String[0]);
+        DefaultComboBoxModel<String> model;
+        model = new DefaultComboBoxModel<String>(ofertasLaborales);
+        this.comboBoxOfertasLaboralesPostulacion.setModel(model);
+      }
     } catch (UsuarioNoExisteException e1) {
-      e1.printStackTrace();
+      JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
+          "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
     }
   }
   
@@ -417,7 +432,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         .getSelectedItem();
     DtOfertaLaboral dtOfertaLaboral;
     dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(this.nomOfertaLaboral);
-    
+    this.fechaAlta = dtOfertaLaboral.getFechaResolucion();
+    this.nombreTipoPublicacion = dtOfertaLaboral.getNombreTipoPublicacion();
     (this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
     (this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());
     (this.textFieldHoraInicio).setText(dtOfertaLaboral.getHorarioInicio());
@@ -425,7 +441,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     (this.textFieldRemuneracion).setText(String.valueOf((dtOfertaLaboral.getRemuneracion())));
     (this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
     (this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
-    (this.textFieldFechaAlta).setText(dtOfertaLaboral.getFechaAlta().toString());
+    (this.textFieldFechaAlta).setText(dtOfertaLaboral.getFechaResolucion().toString());
     
   }
   
@@ -482,20 +498,42 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
    */
   
   public boolean chequearDatos() {
-    this.cvReducido = this.textFieldCvReducido.getText();
-    this.motivacion = this.textFieldMotivacion.getText();
-    this.fechaPostulacion = this.dateChooser.getDate();
-    if (cvReducido.isEmpty() || motivacion.isEmpty()) {
-      JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos.",
-          "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+    try {
+      if (this.comboBoxEmpresasRegistradasPostulacion.getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
+            "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+        return false;
+      } else {
+        this.cvReducido = this.textFieldCvReducido.getText();
+        this.motivacion = this.textFieldMotivacion.getText();
+        LocalDate fechaPostulacion = this.dateChooser.getDate().toInstant()
+            .atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaVencimiento;
+        fechaVencimiento = LocalDate.of(fechaAlta.getYear(), fechaAlta.getMonthValue(), 
+            fechaAlta.getDayOfMonth()).plusDays(this.controlOfertaLab
+                .obtenerDttipoPublicacion(nombreTipoPublicacion).getDuracionDia());
+        if (fechaPostulacion.isAfter(fechaVencimiento) || (fechaPostulacion.isBefore(fechaAlta))) {
+          JOptionPane.showMessageDialog(this, 
+              "La oferta no esta vigente en la fecha de postulación ingresada",
+              "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+          return false;
+        }
+        if (cvReducido.isEmpty() || motivacion.isEmpty()) {
+          JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos.",
+              "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+          return false;
+        } else if ((fechaPostulacion == null) || (fechaPostulacion.isBefore(fechaAlta))) {
+          JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha válida",
+              "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+          return false;
+        } else {
+          return true;
+        }
+      } 
+    } catch (TipoPublicacionNoExisteException e) {
       return false;
-    } else if (this.fechaPostulacion == null) {
-      JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha válida", "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
-      return false;
-    } else {
-      return true;
     }
+
   }
   
   public void guardarPostulante() {

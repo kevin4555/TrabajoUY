@@ -9,7 +9,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -18,9 +17,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import logica.datatypes.DtcantidadTipoPublicacion;
@@ -46,11 +44,8 @@ public class ConsultaPaquete extends JInternalFrame {
   private JComboBox<String> comboBoxSeleccionTiposPublicaciones;
   private String tipoPublicacionSeleccionada;
   private String paqueteSeleccionado;
-  private JButton btnConfirmar;
   private JButton btnCerrar;
   private JPanel panelDatos;
-  private JScrollPane scrollPane;
-  private JTextArea textAreaDescripcion;
   private JTextField textFieldCantidadIncluida;
   private JTextField textFieldValidez;
   private JTextField textFieldDescuento;
@@ -307,28 +302,6 @@ public class ConsultaPaquete extends JInternalFrame {
     JLabel lblDescripcionEmpresa = new JLabel("Descripcion");
     panelDatos.add(lblDescripcionEmpresa, gbcLblDescripcionEmpresa);
     
-    /*
-     * scrollPane = new JScrollPane();
-     * scrollPane.setVerticalScrollBarPolicy(
-     * ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-     * scrollPane.setEnabled(false);
-     * scrollPane.setHorizontalScrollBarPolicy(
-     * ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER)
-     * ; GridBagConstraints gbc_scrollPane = new
-     * GridBagConstraints(); gbc_scrollPane.gridheight
-     * = 2; gbc_scrollPane.insets = new Insets(0, 0,
-     * 5, 0); gbc_scrollPane.fill =
-     * GridBagConstraints.BOTH; gbc_scrollPane.gridx =
-     * 1; gbc_scrollPane.gridy = 17;
-     * panelDatos.add(scrollPane, gbc_scrollPane);
-     * 
-     * textAreaDescripcion = new JTextArea();
-     * textAreaDescripcion.setLineWrap(true);
-     * textAreaDescripcion.setWrapStyleWord(true);
-     * textAreaDescripcion.setEditable(false);
-     * scrollPane.setViewportView(textAreaDescripcion)
-     * ;
-     */
     textPaneTipoPublicacion = new JTextPane();
     GridBagConstraints gbcTextPaneTipoPublicacion = new GridBagConstraints();
     gbcTextPaneTipoPublicacion.insets = new Insets(0, 0, 5, 0);
@@ -380,76 +353,85 @@ public class ConsultaPaquete extends JInternalFrame {
    * Metodo cargar tipo de publicacion en paquete .
    */
   
-  @SuppressWarnings({ "deprecation", "exports" })
   public void cargarTipoPublicacionEnPaquete(ActionEvent evento) {
     
     try {
-      String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
-      
-      if (nombrePaquete != paqueteSeleccionado) {
-        paqueteSeleccionado = nombrePaquete;
-        limpiarDatosPublicaciones();
-        DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
-            .obtenerDtpaquete(nombrePaquete);
-        this.textFieldDescuento
-            .setText(String.valueOf(dtPaquetePublicaciones.getDescuento()) + "%");
-        this.textFieldValidez
-            .setText(String.valueOf(dtPaquetePublicaciones.getPeriodoValidez()));
-        // this.textFieldFechaAltaPaquete.setText(dtPaquetePublicaciones.getFecha);
-        this.textPanePaquete.setText(dtPaquetePublicaciones.getDescripcion());
+      if (comboBoxSeleccionPaquete.getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un paquete",
+            "Consultar paquete", JOptionPane.ERROR_MESSAGE);
+      } else {
+        String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
         
+        if (nombrePaquete != paqueteSeleccionado) {
+          paqueteSeleccionado = nombrePaquete;
+          limpiarDatosPublicaciones();
+          DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
+              .obtenerDtpaquete(nombrePaquete);
+          this.textFieldDescuento
+              .setText(String.valueOf(dtPaquetePublicaciones.getDescuento()) + "%");
+          this.textFieldValidez
+              .setText(String.valueOf(dtPaquetePublicaciones.getPeriodoValidez()));
+          // this.textFieldFechaAltaPaquete.setText(dtPaquetePublicaciones.getFecha);
+          this.textPanePaquete.setText(dtPaquetePublicaciones.getDescripcion());
+          this.textFieldFechaAltaPaquete.setText(dtPaquetePublicaciones.getFechaAlta().toString());
+          
+        }
+        
+        List<String> listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
+            .listarTipoPublicacionDePaquete(nombrePaquete);
+        
+        String[] arrayTiposPublicacionesPaquete = listaTipoDePublicacionesDePaquete
+            .toArray(new String[0]);
+        Arrays.sort(arrayTiposPublicacionesPaquete);
+        DefaultComboBoxModel<String> model;
+        model = new DefaultComboBoxModel<String>(arrayTiposPublicacionesPaquete);
+        this.comboBoxSeleccionTiposPublicaciones.setModel(model);
       }
       
-      List<String> listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
-          .listarTipoPublicacionDePaquete(nombrePaquete);
-      
-      String[] arrayTiposPublicacionesPaquete = listaTipoDePublicacionesDePaquete
-          .toArray(new String[0]);
-      Arrays.sort(arrayTiposPublicacionesPaquete);
-      DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayTiposPublicacionesPaquete);
-      this.comboBoxSeleccionTiposPublicaciones.setModel(model);
-    } catch (PaquetePublicacionNoExisteException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
+    } catch (PaquetePublicacionNoExisteException evento1) {
+      // no imprime nada
     }
     
   }
   
   protected void cargarDatosTipoPublicacion(ActionEvent evento) {
     try {
-      String tipoPublicacion = comboBoxSeleccionTiposPublicaciones.getSelectedItem()
-          .toString();
-      String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
-      DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
-          .obtenerDtpaquete(nombrePaquete);
-      List<DtcantidadTipoPublicacion> dtCantidadPublicaciones = dtPaquetePublicaciones
-          .getCantidadPublicacionesColeccion();
-      int cantidadRestante = 0;
-      for (DtcantidadTipoPublicacion dtCantidadTipoPublicacion : dtCantidadPublicaciones) {
-        if (dtCantidadTipoPublicacion.getNombreTipoPublicacion().equals(tipoPublicacion)) {
-          cantidadRestante = dtCantidadTipoPublicacion.getCantidad();
+      if (comboBoxSeleccionTiposPublicaciones.getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de publicacion",
+            "Consultar paquete", JOptionPane.ERROR_MESSAGE);
+      } else {
+        String tipoPublicacion = comboBoxSeleccionTiposPublicaciones.getSelectedItem()
+            .toString();
+        String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
+        DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
+            .obtenerDtpaquete(nombrePaquete);
+        List<DtcantidadTipoPublicacion> dtCantidadPublicaciones = dtPaquetePublicaciones
+            .getCantidadPublicacionesColeccion();
+        int cantidadRestante = 0;
+        for (DtcantidadTipoPublicacion dtCantidadTipoPublicacion : dtCantidadPublicaciones) {
+          if (dtCantidadTipoPublicacion.getNombreTipoPublicacion().equals(tipoPublicacion)) {
+            cantidadRestante = dtCantidadTipoPublicacion.getCantidad();
+          }
+        }
+        
+        if (tipoPublicacionSeleccionada != tipoPublicacion) {
+          
+          DttipoPublicacion dtTipoPublicacion;
+          dtTipoPublicacion = controladorOfertaLaboral.obtenerDttipoPublicacion(tipoPublicacion);
+          this.textFieldExposicion.setText(dtTipoPublicacion.getExposicion());
+          this.textFieldCosto.setText(String.valueOf(dtTipoPublicacion.getCosto()));
+          this.textFieldDuracion
+              .setText(String.valueOf(dtTipoPublicacion.getDuracionDia()) + " días");
+          this.textFieldFechaAlta.setText(dtTipoPublicacion.getFechaAlta().toString());
+          this.textPaneTipoPublicacion.setText(dtTipoPublicacion.getDescripcion());
+          this.textFieldCantidadIncluida.setText(String.valueOf(cantidadRestante));
         }
       }
       
-      if (tipoPublicacionSeleccionada != tipoPublicacion) {
-        
-        DttipoPublicacion dtTipoPublicacion;
-        dtTipoPublicacion = controladorOfertaLaboral.obtenerDttipoPublicacion(tipoPublicacion);
-        this.textFieldExposicion.setText(dtTipoPublicacion.getExposicion());
-        this.textFieldCosto.setText(String.valueOf(dtTipoPublicacion.getCosto()));
-        this.textFieldDuracion
-            .setText(String.valueOf(dtTipoPublicacion.getDuracionDia()) + " días");
-        this.textFieldFechaAlta.setText(dtTipoPublicacion.getFechaAlta().toString());
-        this.textPaneTipoPublicacion.setText(dtTipoPublicacion.getDescripcion());
-        this.textFieldCantidadIncluida.setText(String.valueOf(cantidadRestante));
-      }
-    } catch (TipoPublicacionNoExisteException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
-    } catch (PaquetePublicacionNoExisteException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
+    } catch (TipoPublicacionNoExisteException evento1) {
+      // no imprime nada
+    } catch (PaquetePublicacionNoExisteException evento1) {
+      // no imprime nada
     }
     
   }
@@ -482,23 +464,7 @@ public class ConsultaPaquete extends JInternalFrame {
     this.textPaneTipoPublicacion.setText("");
     this.textFieldCantidadIncluida.setText("");
     this.textPanePaquete.setText("");
-    /*
-     * this.textFieldDescuento.setText("");
-     * this.textFieldValidez.setText("");
-     * this.textAreaDescripcionPaquete.setText("");
-     */
-    
-    /*
-     * ArrayList<String> listaOfertas = new
-     * ArrayList<String>(); String [] arrayOfertas =
-     * listaOfertas.toArray(new String[0]);
-     * Arrays.sort(arrayOfertas);
-     * DefaultComboBoxModel<String> model; model = new
-     * DefaultComboBoxModel<String>(arrayOfertas);
-     * this.comboBoxSeleccionOferta.setModel(model);
-     * 
-     * this.comboBoxSeleccionUsuario.setModel(model);
-     */
+    this.textFieldFechaAltaPaquete.setText("");
     
   }
 }
