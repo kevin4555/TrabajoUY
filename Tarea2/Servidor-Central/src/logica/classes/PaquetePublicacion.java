@@ -60,6 +60,11 @@ public class PaquetePublicacion {
     return descripcion;
   }
   
+	  
+  public LocalDate getFechaAlta() {
+    return this.fechaAlta;
+  }
+  
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }

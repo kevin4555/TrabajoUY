@@ -41,7 +41,7 @@ public class ManejadorPaquetes {
     if (colPaquetes.containsKey(nomPaquete)) {
       return colPaquetes.get(nomPaquete);
     } else {
-      throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + " no existe");
+      throw new PaquetePublicacionNoExisteException("El paquete " + nomPaquete + " no existe");
     }
   }
   
@@ -79,7 +79,7 @@ public class ManejadorPaquetes {
     if (colPaquetes.get(nomPaquete) != null) {
       colPaquetes.remove(nomPaquete);
     } else {
-      throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + "no existe");
+      throw new PaquetePublicacionNoExisteException("El paquete " + nomPaquete + "no existe");
     }
   }
   

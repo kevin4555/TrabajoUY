@@ -16,7 +16,7 @@ public class DtpaquetePublicacion {
   private float descuento;
   private float costo;
   private BufferedImage imagen;
-  private List<DtcantidadTipoPublicacion> cantidadPublicacionesColeccion;
+  private List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones;
   private LocalDate fechaAlta;
   
   /**
@@ -26,7 +26,7 @@ public class DtpaquetePublicacion {
   public DtpaquetePublicacion(String nombre, String descripcion, 
       int periodoValidez, float descuento, float costo,
       BufferedImage imagen, 
-      List<DtcantidadTipoPublicacion> cantidadPublicacionesColeccion, 
+      List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones, 
       LocalDate fechaAlta) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -34,7 +34,7 @@ public class DtpaquetePublicacion {
     this.descuento = descuento;
     this.costo = costo;
     this.imagen = imagen;
-    this.cantidadPublicacionesColeccion = cantidadPublicacionesColeccion;
+    this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
     this.fechaAlta = fechaAlta;
   }
   
@@ -42,8 +42,8 @@ public class DtpaquetePublicacion {
     return imagen;
   }
   
-  public List<DtcantidadTipoPublicacion> getCantidadPublicacionesColeccion() {
-    return cantidadPublicacionesColeccion;
+  public List<DtcantidadTipoPublicacion> getCantidadTipoPublicaciones() {
+    return cantidadTipoPublicaciones;
   }
   
   public String getNombre() {

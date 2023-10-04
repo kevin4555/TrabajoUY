@@ -76,7 +76,6 @@
             </td>
         </tr>
     </table>
-	<table>
 		<h2>Postulaciones</h2>
 
 		<table border="1">
@@ -98,8 +97,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-
-	</table>
 
 
 </body>

@@ -16,7 +16,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
           <div class="col-2">
             <a href="${pageContext.request.contextPath}/home"
               ><img
-                src="${pageContext.request.contextPath}/recourse/img/Logo.svg"
+                src="${pageContext.request.contextPath}/resource/img/Logo.svg"
                 alt="Logo"
                 class="navbar-brand img-fluid"
             /></a>
@@ -104,12 +104,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
               </c:otherwise>
               
               </c:choose>
-              
-              
             </ul>
-            
-            
-            
           </div>
         </div>
       </div>

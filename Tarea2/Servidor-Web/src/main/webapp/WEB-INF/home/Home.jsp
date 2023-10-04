@@ -13,7 +13,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link href="../../recourse/css/general.css" />
+<link href="../../resource/css/general.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 <title>Home</title>
@@ -34,10 +34,6 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 				<section>
 
 					<c:forEach var="oferta" items="${listaOfertasConfirmadas}">
-
-
-
-
 						<div class="card">
 							<div class="row g-0">
 								<div
@@ -63,12 +59,6 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 					</c:forEach>
 				</section>
 				</div>
-
-
-
-
-		
-				
 			</div>
 	</main>
 	<script

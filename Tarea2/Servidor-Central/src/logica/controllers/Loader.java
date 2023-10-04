@@ -12,10 +12,16 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import logica.classes.Keyword;
 import logica.datatypes.DtcantidadTipoPublicacion;
@@ -286,11 +292,22 @@ public class Loader {
             controladorOferta.registrarPaquete("Básico",
                     "Publica ofertas laborales en nuestra plataforma por un período de 30 días", 30, 20f,
                     null, LocalDate.parse("2023-08-16"), paquete1);
+            
+            ClassLoader classLoader = getClass().getClassLoader();
+            
+            InputStream input = classLoader.getResourceAsStream("Paquete/Destacado.jpg");
+            BufferedImage imagen = null;
+            try {
+            	
+                imagen = ImageIO.read(input);
+            }catch (IOException  e) {
+            	e.printStackTrace();
+			}
 
             controladorOferta.registrarPaquete("Destacado",
                     "Publica ofertas laborales destacadas que se mostrará en la "
                             + "parte superior de los resultados de búsqueda por 45 días",
-                    45, 10f, null, LocalDate.parse("2023-08-15"), paquete2);
+                    45, 10f, imagen, LocalDate.parse("2023-08-15"), paquete2);
 
             controladorOferta.registrarPaquete("Premium",
                     "Publica ofertas laborales premium que incluye promoción en nuestras "
