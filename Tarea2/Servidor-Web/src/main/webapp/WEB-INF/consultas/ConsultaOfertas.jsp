@@ -30,7 +30,7 @@
                                 <div class="col-md-9">
                                     <div class="card-body">
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            ${ofertas.getNombre()}
+                                            <strong>${ofertas.getNombre()}</strong>
                                         </h5>
                                         <br>
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
@@ -41,7 +41,7 @@
                                         <c:url var="ofertaPerfil" value="/oferta">
                                             <c:param name="nombreOferta" value="${ofertas.getNombre()}" />
                                         </c:url> 
-                                        <a href="${ofertaPerfil}">Mas Info</a>
+                                        <a href=" ${ofertaPerfil}" class="btn btn-primary">Mas Info</a>
                                     </div>
                                 </div>
                             </div>

@@ -35,7 +35,7 @@
                                         <c:url var="tipoPublicacionUrl" value="/tipoPublicacion">
                                             <c:param name="nombreTipoPublicacion" value="${tipoPublicacion.getNombre()}" />
                                         </c:url> 
-                                        <a href="${tipoPublicacionUrl}">Más Info</a>
+                                        <a href="${tipoPublicacionUrl}" class="btn btn-primary">Más Info</a>
                                     </div>
                                 </div>
                             </div>

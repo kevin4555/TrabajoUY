@@ -48,7 +48,7 @@
                                         <c:url var="perfilURL" value="/perfil">
                                             <c:param name="nicknameUsuario" value="${usuario.getNickname()}" />
                                         </c:url>
-                                        <a href="${perfilURL}">Perfil</a>
+                                        <a href="${perfilURL}" class="btn btn-primary">Perfil</a>
                                     </div>
                                 </div>
                             </div>

@@ -49,7 +49,7 @@
                                         <c:url var="paquetePerfil" value="/paquete">
                                             <c:param name="nombrePaquete" value="${paquetes.getNombre()}" />
                                         </c:url> 
-                                        <a href="${paquetePerfil}">Mas Info</a>
+                                        <a href="${paquetePerfil}" class="btn btn-primary">Mas Info</a>
                                     </div>
                                 </div>
                             </div>
