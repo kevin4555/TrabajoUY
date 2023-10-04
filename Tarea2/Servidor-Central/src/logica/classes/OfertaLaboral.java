@@ -1,9 +1,14 @@
 package logica.classes;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
@@ -157,12 +162,17 @@ public class OfertaLaboral {
     for (Keyword keyword : listaKeywords) {
       keywords.add(keyword.getNombre());
     }
+    Boolean estaVencida = null;
+    if (estado == EstadoOferta.CONFIRMADA) {
+     estaVencida = this.estaVencida();
+    }
+
     
     DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(this.getNombre(),
         this.getDescripcion(), this.getCiudad(), this.getDepartamento(),
         this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
         this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
-        paquete, keywords);
+        paquete, keywords, estaVencida, this.tipoPublicacion.getNombre());
     return dtOfertaLaboral;
   }
   
