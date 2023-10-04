@@ -9,8 +9,10 @@ import logica.controllers.Fabrica;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.interfaces.IcontroladorOferta;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Servlet implementation class ConsultaPaquetes
@@ -30,8 +32,14 @@ public class ConsultaPaquetes extends HttpServlet {
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
     	ArrayList<DtpaquetePublicacion> listaPaquetes = (ArrayList<DtpaquetePublicacion>) controladorOfertas.listarDtpaquetes();
+    	HashMap<String, BufferedImage> perfilPaqueteHashMap = new HashMap<>();
+    	for(DtpaquetePublicacion name: listaPaquetes)
+    	{
+    		perfilPaqueteHashMap.put(name.getNombre(), name.getImagen());
+    	}
+    	request.setAttribute("perfilPaquetes", perfilPaqueteHashMap);
     	request.setAttribute("listaPaquetes", listaPaquetes);
-    	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaPaquetes").forward(request, response);
+    	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaPaquetes.jsp").forward(request, response);
     }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
