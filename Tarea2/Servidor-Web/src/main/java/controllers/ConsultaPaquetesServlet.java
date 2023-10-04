@@ -18,13 +18,13 @@ import java.util.HashMap;
  * Servlet implementation class ConsultaPaquetes
  */
 @WebServlet("/consultaPaquetes")
-public class ConsultaPaquetes extends HttpServlet {
+public class ConsultaPaquetesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConsultaPaquetes() {
+    public ConsultaPaquetesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
