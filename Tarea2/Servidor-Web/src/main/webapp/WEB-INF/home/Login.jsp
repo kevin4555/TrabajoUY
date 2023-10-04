@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../../webapp/recourse/css/general.css">
+    <link rel="stylesheet" type="text/css" href="recourse/css/general.css">
     <jsp:include page="../include/Head.jsp"/>
 </head>
-<body>
+<body class="login">
 
 <form class="formLogin" action="">
-    <a href="../../index.html"><img src="../img/Logo.svg" alt="Logo" class="navbar-brand img-fluid" /></a>
+    <c:url var="ofertaPerfil" value="/oferta">
+        <c:param name="nombreOferta" value="${ofertas.getNombre()}" />
+    </c:url> 
+    <a class="nav-link text-white" href="${pageContext.request.contextPath}/home">
+        <img src="/Servidor-Web/recourse/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid">
+    </a>
+
     <div class="mb-3 mt-3">
         <label for="email" class="form-label"><strong>*Email o nickname:</strong></label>
         <input type="email" class="form-control" id="email" name="email" />
@@ -25,6 +31,6 @@
         <a class="btn btn-primary" href="./altaUsuario.html">Registrarse</a>
     </div>
 </form>
-<script src="../js/app.js"></script>
+<script src="recourse/js/app.js"></script>
 </body>
 </html>
