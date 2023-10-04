@@ -36,8 +36,8 @@
 
                                     </div>
                                     <div class="card-footer border-0 bg-white text-end">
-                                        <c:url var="perfilURL" value="/consultaOferta">
-                                            <c:param name="nicknameUsuario" value="${empresa.getNickname()}" />
+                                        <c:url var="perfilURL" value="/consultaOfertas">
+                                            <c:param name="nicknameEmpresa" value="${empresa.getNickname()}" />
                                         </c:url>
                                         <a href="${perfilURL}">Ver Ofertas</a>
                                     </div>

@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="card-footer border-0 bg-white text-end">
                                         <c:url var="tipoPublicacionUrl" value="/tipoPublicacion">
-                                            <c:param name="tipoPublicacionNombre" value="${tipoPublicacion.getNombre()}" />
+                                            <c:param name="nombreTipoPublicacion" value="${tipoPublicacion.getNombre()}" />
                                         </c:url> 
                                         <a href="${tipoPublicacionUrl}">Más Info</a>
                                     </div>

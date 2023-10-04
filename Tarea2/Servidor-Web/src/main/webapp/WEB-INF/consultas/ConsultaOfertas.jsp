@@ -21,11 +21,10 @@
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-md-3 justify-content-center align-items-center d-flex">
-                                    <c:set var="nombreClaveHash" value="${ofertas.getNombre()}"/>
                                     <img
                                         class="imgOfertaLaboral"
-                                        src="${perfilOfertas[nombreClaveHash]}"
-                                        alt="Imagen Paquete"
+                                        src="${ofertas.getImagen()}"
+                                        alt="Imagen Oferta"
                                     />
                                 </div>
                                 <div class="col-md-9">
@@ -35,20 +34,12 @@
                                         </h5>
                                         <br>
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            ${paquetes.getDescripcion()}
-                                        </h5>
-                                        <br>
-                                        <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            $<span id="costo">${paquetes.getCosto()}</span>
-                                        </h5>
-                                        <br>
-                                        <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            ${paquetes.getNombre()}
+                                            ${ofertas.getDescripcion()}
                                         </h5>
                                     </div>
                                     <div class="card-footer border-0 bg-white text-end">
-                                        <c:url var="ofertaPerfil" value="/paquete">
-                                            <c:param name="ofertaNombre" value="${ofertas.getNombre()}" />
+                                        <c:url var="ofertaPerfil" value="/oferta">
+                                            <c:param name="nombreOferta" value="${ofertas.getNombre()}" />
                                         </c:url> 
                                         <a href="${ofertaPerfil}">Mas Info</a>
                                     </div>
