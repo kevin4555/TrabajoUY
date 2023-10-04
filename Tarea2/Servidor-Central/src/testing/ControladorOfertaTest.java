@@ -897,9 +897,59 @@ public class ControladorOfertaTest {
         "Montevideo", "Montevideo", fechaDate, "tipoTesting", "nicknameEmpresa1", listaKeyword,
         null, null);
     controladorOferta.aceptarRechazarOfertaLaboral("test", EstadoOferta.CONFIRMADA, fechaDate);
-    List<DtOfertaLaboral> dtOfertasConfirmadas = controladorOferta.obtenerDtOfertasConfirmadas();
-    Assert.assertEquals(dtOfertasConfirmadas.get(0).getEstadoOferta(), EstadoOferta.CONFIRMADA);
+    List<DtOfertaLaboral> dtOfertasConfirmadas = controladorOferta
+        .obtenerDtOfertasConfirmadas();
+    Assert.assertEquals(dtOfertasConfirmadas.get(0).getEstadoOferta(),
+        EstadoOferta.CONFIRMADA);
     Assert.assertEquals(dtOfertasConfirmadas.get(0).getNombre(), "test");
   }
   
+  @Test
+  public void testEstaCompradoPaqueteFalse()
+      throws TipoPublicacionYaExisteException, PaquetePublicacionYaExisteException,
+      TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException {
+    manejadorOfertas = ManejadorOfertas.getInstance();
+    manejadorSettings = ManejadorSettings.getInstance();
+    manejadorPaquetes = ManejadorPaquetes.getInstance();
+    controladorOferta = new ControladorOferta();
+    TipoPublicacion publicacionPrueba = new TipoPublicacion("tipoPublicacionPrueba",
+        "descripcionPrueba", "alta", 20, 50f, fechaDate);
+    manejadorSettings.addTipoPublicacion(publicacionPrueba);
+    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion("tipoPublicacionPrueba",
+        5);
+    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    arrayDtCantidad.add(nuevoDt);
+    controladorOferta.registrarPaquete("paquetePrueba", "descripcionPrueba", 20, 50f, null,
+        fechaDate, arrayDtCantidad);
+    
+    Assert.assertTrue(!controladorOferta.estaCompradoPaquete("paquetePrueba"));
+  }
+  
+  @Test
+  public void testEstaCompradoPaqueteTrue() throws TipoPublicacionYaExisteException,
+      PaquetePublicacionYaExisteException, TipoPublicacionNoExisteException,
+      UsuarioYaExisteException, UsuarioEmailRepetidoException, UsuarioNoExisteException,
+      PaquetePublicacionNoExisteException {
+    manejadorOfertas = ManejadorOfertas.getInstance();
+    manejadorSettings = ManejadorSettings.getInstance();
+    manejadorPaquetes = ManejadorPaquetes.getInstance();
+    controladorOferta = new ControladorOferta();
+    controladorUsuario = new ControladorUsuario();
+    TipoPublicacion publicacionPrueba = new TipoPublicacion("tipoPublicacionPrueba",
+        "descripcionPrueba", "alta", 20, 50f, fechaDate);
+    manejadorSettings.addTipoPublicacion(publicacionPrueba);
+    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion("tipoPublicacionPrueba",
+        5);
+    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    arrayDtCantidad.add(nuevoDt);
+    controladorOferta.registrarPaquete("paquetePrueba", "descripcionPrueba", 20, 50f, null,
+        fechaDate, arrayDtCantidad);
+    
+    controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1",
+        "email1@test.com", "descripcion1", "sitioWeb1", null, "nuevaContraseña");
+    
+    controladorUsuario.comprarPaquete("nicknameEmpresa1", "paquetePrueba", fechaDateSecundaria);
+    
+    Assert.assertTrue(controladorOferta.estaCompradoPaquete("paquetePrueba"));
+  }
 }
