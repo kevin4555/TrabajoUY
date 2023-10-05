@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.ParseException;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -165,9 +166,9 @@ public class Principal extends JFrame {
           cargarDatosDePrueba(arg0);
         } catch (ParseException | KeywordNoExisteException
             | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException
-            | UsuarioYaExistePostulacion e) {
+            | UsuarioYaExistePostulacion  e) {
           // TODO Auto-generated catch block
-          e.printStackTrace();
+          
         } // Esta funcion carga los datos de prueba
       }
     });
@@ -344,6 +345,9 @@ public class Principal extends JFrame {
           JOptionPane.ERROR_MESSAGE);
     } catch (UsuarioEmailRepetidoException e) {
       JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
+          JOptionPane.ERROR_MESSAGE);
+    } catch (IOException evento) {
+      JOptionPane.showMessageDialog(this, evento.getMessage(), "Trabajo.uy",
           JOptionPane.ERROR_MESSAGE);
     }
   }

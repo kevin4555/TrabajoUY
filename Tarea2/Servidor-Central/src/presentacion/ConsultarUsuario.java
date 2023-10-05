@@ -615,6 +615,7 @@ public class ConsultarUsuario extends JInternalFrame {
     this.textFieldFechaPostulacion.setText("");
     this.textFieldFechaPostulacion.setVisible(false);
     this.labelFechaPostulacion.setVisible(false);
+    this.textPane.setText("");
     // this.comboBoxSeleccionOferta = new
     // JComboBox<String>();
   }
