@@ -2,6 +2,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
+<%
+TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+%>
+
 <div class="col-3">
     <section class="text-center">
         <div class="table-responsive overflow-auto tablaKeyword">
@@ -12,8 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <% TipoUsuario tipoUsuario = (TipoUsuario) request.getAttribute("tipoUsuario");
-                    if (tipoUsuario == TipoUsuario.EMPRESA) { %>
+                    <%if (tipoUsuario == TipoUsuario.EMPRESA) { %>
                         <tr>
                             <td class="d-flex"><a class="btn" href="<%= request.getContextPath() %>/altaOferta">Alta Oferta</a></td>
                         </tr>
@@ -43,14 +46,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="key" items="${listaKeywords}">
-                        <c:url var="keywordUrl" value="/consultaOfertas">
-                            <c:param name="keyword" value="${key}" />
-                        </c:url>
+                    <%
+                    ArrayList<String> listaKeywords = (ArrayList) session.getAttribute("listaKeywords");
+                    for (String key : listaKeywords) { %>
+                        <%
+                        String keywordUrl = request.getContextPath() + "/consultaOfertas?keyword=" + key;
+                        %>
                         <tr>
-                            <td><a class="btnKeyword btn" href="${keywordUrl}">${key}</a></td>
+                            <td><a class="btnKeyword btn" href="<%= keywordUrl %>"><%= key %></a></td>
                         </tr>
-                    </c:forEach>
+                    <% } %>
                 </tbody>
             </table>
         </div>
