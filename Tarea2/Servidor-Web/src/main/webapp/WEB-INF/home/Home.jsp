@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <link href="../../recourse/css/general.css" />
+    <link href="<%= request.getContextPath() %>/recourse/css/general.css" />
     <title>Home</title>
     <%
     ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("listaKeywords");
