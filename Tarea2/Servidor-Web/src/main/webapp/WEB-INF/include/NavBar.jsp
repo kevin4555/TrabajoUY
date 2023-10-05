@@ -11,25 +11,16 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
   <div class="container">
     <div class="row w-100 justify-content-between align-items-center">
       <div class="col-2">
-        <c:url var="ofertaPerfil" value="/oferta">
-          <c:param name="nombreOferta" value="${ofertas.getNombre()}" />
-        </c:url> 
-        <a class="nav-link text-white" href="${pageContext.request.contextPath}/home">
+        <a class="nav-link text-white" href="<%= request.getContextPath() %>/home">
           <img src="/Servidor-Web/resource/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid">
         </a>
       </div>
-
       <div class="col">
         <div class="row justify-content-center">
           <div class="col-5">
             <form class="form-inline">
               <div class="input-group">
-                <input
-                  class="form-control"
-                  type="search"
-                  placeholder="Buscar oferta"
-                  aria-label="Search"
-                />
+                <input class="form-control" type="search" placeholder="Buscar oferta" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">
                   <i class="bi bi-search text-white"></i>
                 </button>
@@ -41,51 +32,35 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
       <div class="col-3">
         <ul class="navbar-nav justify-content-evenly fs-3">
           <li class="nav-item">
-            <a class="nav-link text-white" href="${pageContext.request.contextPath}/home">Inicio</a>
+            <a class="nav-link text-white" href="<%= request.getContextPath() %>/home">Inicio</a>
           </li>
-          <c:choose>
-            <c:when test="${usuario != null}">
+          <% if (usuario != null) { %>
               <li class="nav-item">
-                <c:if test="${not empty usuario.imagen}">
-                  <img
-                    class="rounded-pill imgPerfil"
-                    src="data:image/png;base64,${oferta.imagenBase64}"
-                  />
-                </c:if>
+                <% if (usuario.getImagen() != null) { %>
+                  <img class="rounded-pill imgPerfil" src="data:image/png;base64,<%= usuario.getImagen() %>"/>
+                <% } %>
               </li>
+             
               <li class="nav-item">
                 <div class="dropdown selectUsuario">
-                  <button
-                    type="button"
-                    class="btn dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                  >
-                    ${usuario.nickname}
+                  <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                    <%= usuario.getNickname() %>
                   </button>
                   <ul class="dropdown-menu">
                     <li>
-                      <c:url var="usuarioUrl" value="/perfil">
-                        <c:param name="nicknameUsuairo" value="${usuario.nickname}" />
-                      </c:url>
-                      <a
-                        class="dropdown-item"
-                        href="${usuarioUrl}"
-                      >Perfil</a>
+                      <a class="dropdown-item" href="/perfil?nicknameUsuairo=<%= usuario.getNickname() %>">Perfil</a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/logout">Cerrar Sessión</a>
+                      <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
                     </li>
                   </ul>
                 </div>
               </li>
-            </c:when>
-            <c:otherwise>
-              <li class="nav-item">
-                <c:url var="loginUrl" value="/login"></c:url>
-                <a class="nav-link text-white" href="${loginUrl}">Acceder</a>
-              </li>
-            </c:otherwise>
-          </c:choose>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="<%= request.getContextPath() %>/login">Acceder</a>
+            </li>
+          <% } %>
         </ul>
       </div>
     </div>

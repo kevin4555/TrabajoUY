@@ -1,27 +1,35 @@
-<%@page import="model.EstadoSesion"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Iniciar Sesión</title>
-    <% HttpSession sesion = request.getSession(); 
-    EstadoSesion estado = (EstadoSesion) sesion.getAttribute("estadoSesion");
-    %>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/Servidor-Web/resource/css/general.css" />
+    <%@include file="../include/Head.jsp" %>
 </head>
-<body>
-    <h1>Iniciar Sesión</h1>
-    <h1>PEPE <%= estado %></h1>
-    <h1> ${mensajeError}</h1>
-    <form action="${pageContext.request.contextPath}/login" method="post">
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="nombreEmail" required>
-        <br><br>
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasenia" required>
-        <br><br>
-        <input type="submit" value="Iniciar Sesión">
+<body class="login">
+    <form action="<%= request.getContextPath() %>/login" method="post" class="formLogin">
+        <a class="nav-link text-white" href="<%= request.getContextPath() %>/home">
+            <img src="/Servidor-Web/resource/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid" />
+        </a>
+
+        <div class="mb-3 mt-3">
+            <label for="email" class="form-label"><strong>*Email o nickname:</strong></label>
+            <input type="text" class="form-control" id="email" name="nombreEmail" />
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label"><strong>*Contraseña:</strong></label>
+            <input type="password" class="form-control" id="pwd" name="contrasenia" />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Confirmar" />
+            <a class="btn btn-primary" href="<%= request.getContextPath() %>/home">Cancelar</a>
+        </div>
+        <div class="mb-3">
+            <label class="form-label mb-3"><strong>¿No tienes cuenta?</strong></label>
+            <a class="btn btn-primary" href="<%= request.getContextPath() %>/altaUsuario">Registrarse</a>
+        </div>
     </form>
 </body>
 </html>
