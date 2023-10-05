@@ -222,7 +222,7 @@ public class OfertaLaboral {
   public Boolean tieneKeyword(String keywordBuscada) {
     Boolean resultado = false;
     for (Keyword keyword : listaKeywords) {
-      if (keyword.getNombre() == keywordBuscada) {
+      if (keywordBuscada.equals(keyword.getNombre())) {
         resultado = true;
         break;
       }

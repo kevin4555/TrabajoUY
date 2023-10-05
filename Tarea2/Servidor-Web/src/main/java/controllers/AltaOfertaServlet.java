@@ -66,27 +66,7 @@ public class AltaOfertaServlet extends HttpServlet {
         {
         	remuneracion = Float.valueOf(request.getParameter("remuneracion"));
         }
-        
-        System.out.print("========================");
-        System.out.print(tipoPublicacion);
-        System.out.print("========================");
-        System.out.print("========================");
-        System.out.print(nombreOferta);
-        System.out.print("========================");
-        System.out.print("========================");
-        System.out.print(descripcion);
-        System.out.print("========================");
-        System.out.print("========================");
-        System.out.print(departamento);
-        System.out.print("========================");
-        System.out.print("========================");
-        System.out.print(ciudad);
-        System.out.print("========================");
-        System.out.print("========================");
-        System.out.print(remuneracion);
-        System.out.print("========================");
-        
-        
+ 
         if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO) {
             // agregar pagina de error
         }
@@ -123,7 +103,6 @@ public class AltaOfertaServlet extends HttpServlet {
                 listKeywords.add(keyword);
             }
         }
-        System.out.print("AAAAAAAAAAAAAAAAAAAAAAAAAA");
         if(imagen != null)
         {
             try {
@@ -137,7 +116,7 @@ public class AltaOfertaServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        String nombrePaquete = "El duki";
+        String nombrePaquete = null;
         LocalDate fechaAlta = LocalDate.now();
         
         try {

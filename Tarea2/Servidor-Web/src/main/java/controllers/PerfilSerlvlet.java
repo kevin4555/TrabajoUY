@@ -36,17 +36,7 @@ public class PerfilSerlvlet extends HttpServlet {
     }
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HttpSession sesion = request.getSession();
-    	String nicknameUsuario = "";
-    	if(sesion.getAttribute("estadoSesion").equals(EstadoSesion.LOGIN_CORRECTO))
-    	{
-    		nicknameUsuario = (String)((Dtusuario) sesion.getAttribute("usuarioLogueado")).getNickname();
-    	}
-    	else 
-    	{
-    		nicknameUsuario = request.getParameter("nicknameUsuario");
-		}
-    	
+    	String nicknameUsuario = request.getParameter("nicknameUsuario");
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	try {
 			Dtusuario usuario = controladorUsuario.obtenerDtusuario(nicknameUsuario);
