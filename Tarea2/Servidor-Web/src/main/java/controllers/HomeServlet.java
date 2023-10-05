@@ -21,6 +21,7 @@ import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
@@ -49,12 +50,12 @@ public class HomeServlet extends HttpServlet {
 		if (!Loader.datosCargados()) {
 			Loader loader = new Loader();
 			try {
-				loader.cargarDatos();
+			 loader.cargarDatos();
 				loader.confirmarOfertas();
 			} catch (UsuarioNoExisteException | OfertaLaboralNoExisteException | ParseException
 					| UsuarioYaExisteException | UsuarioEmailRepetidoException | TipoPublicacionYaExisteException
 					| KeywordYaExisteException | KeywordNoExisteException | TipoPublicacionNoExisteException
-					| OfertaLaboralYaExisteException | PaquetePublicacionYaExisteException | UsuarioYaExistePostulacion e) {
+					| OfertaLaboralYaExisteException | PaquetePublicacionYaExisteException | UsuarioYaExistePostulacion | PaquetePublicacionNoExisteException | IOException e) {
 				// COMPLETAR con paginas de errores
 				e.printStackTrace();
 			}
