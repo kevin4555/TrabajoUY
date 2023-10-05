@@ -7,12 +7,15 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -23,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import logica.datatypes.DtOfertaLaboral;
 import logica.interfaces.IcontroladorOferta;
@@ -51,6 +55,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
   private JTextField textFieldEstado;
   private JTextField textFieldTipoPublicacion;
   private JTextArea textAreaDescripcion;
+  private JTextPane textPane;
   private JButton btnCerrar;
   private JPanel panelDatos;
   private JPanel ubicacionCentro;
@@ -333,6 +338,23 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldTipoPublicacion.setColumns(10);
     this.textFieldTipoPublicacion.setEditable(false);
     
+    
+    GridBagConstraints gbcLblFotoOferta = new GridBagConstraints();
+    gbcLblFotoOferta.insets = new Insets(0, 0, 5, 5);
+    gbcLblFotoOferta.gridx = 0;
+    gbcLblFotoOferta.gridy = 15;
+    JLabel labelFoto = new JLabel("Foto Oferta:");
+    ubicacionCentro.add(labelFoto, gbcLblFotoOferta);
+    
+    this.textPane = new JTextPane();
+    GridBagConstraints gbcTextPane = new GridBagConstraints();
+    gbcTextPane.insets = new Insets(0, 0, 5, 0);
+    gbcTextPane.fill = GridBagConstraints.BOTH;
+    gbcTextPane.gridx = 1;
+    gbcTextPane.gridy = 15;
+    this.textPane.setEditable(false);
+    ubicacionCentro.add(textPane, gbcTextPane);
+    
 
     this.comboBoxEmpresasRegistradas.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -393,6 +415,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
   
   public void cargarDatosOferta(ActionEvent evento)  {
     String ofertaLaboral = (String) (this.comboBoxOfertasLaborales).getSelectedItem();
+    this.textPane.setText("");
     DtOfertaLaboral dtOfertaLaboral;
     try {
       dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
@@ -404,6 +427,16 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
       (this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
       (this.textFieldFechaAlta).setText(dtOfertaLaboral.getFechaAlta().toString());
       (this.textFieldEstado).setText(dtOfertaLaboral.getEstadoOferta().toString());
+      BufferedImage originalImage = dtOfertaLaboral.getImagen();
+      if (originalImage != null) {
+        int newWidth = 100; // Ancho deseado
+        int newHeight = 100; // Alto deseado
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
+            Image.SCALE_SMOOTH);
+        this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+        ImageIcon icono = new ImageIcon(scaledImage);
+        this.textPane.insertIcon(icono);
+      }
       (this.textFieldTipoPublicacion).setText(dtOfertaLaboral.getNombreTipoPublicacion());
       if (dtOfertaLaboral.getFechaResolucion() == null) {
         this.textFieldFechaResolucion.setText("");
@@ -430,6 +463,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldEstado.setText("");
     this.textFieldFechaResolucion.setText("");
     this.textFieldTipoPublicacion.setText("");
+    this.textPane.setText("");
  
   }
   

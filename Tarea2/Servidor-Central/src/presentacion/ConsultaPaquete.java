@@ -6,12 +6,15 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -36,6 +39,7 @@ public class ConsultaPaquete extends JInternalFrame {
   // Controlador de usuarios que se utilizará para
   // las acciones del JFrame
   private IcontroladorOferta controladorOfertaLaboral;
+  private JTextField textFieldCostoPaquete;
   private JTextField textFieldExposicion;
   private JTextField textFieldCosto;
   private JTextField textFieldDuracion;
@@ -50,6 +54,7 @@ public class ConsultaPaquete extends JInternalFrame {
   private JTextField textFieldValidez;
   private JTextField textFieldDescuento;
   private JTextField textFieldFechaAltaPaquete;
+  private JTextPane textPane;
   private JTextPane textPanePaquete;
   private JTextPane textPaneTipoPublicacion;
   
@@ -195,6 +200,40 @@ public class ConsultaPaquete extends JInternalFrame {
     panelDatos.add(this.textFieldFechaAltaPaquete, gbcTextFieldFechaAltaPaquete);
     this.textFieldFechaAltaPaquete.setColumns(10);
     
+    GridBagConstraints gbcLblCostoPaquete = new GridBagConstraints();
+    gbcLblCostoPaquete.anchor = GridBagConstraints.EAST;
+    gbcLblCostoPaquete.insets = new Insets(0, 0, 5, 5);
+    gbcLblCostoPaquete.gridx = 0;
+    gbcLblCostoPaquete.gridy = 8;
+    JLabel lblCostoPaquete = new JLabel("Costo paquete");
+    panelDatos.add(lblCostoPaquete, gbcLblCostoPaquete);
+    
+    this.textFieldCostoPaquete = new JTextField();
+    this.textFieldCostoPaquete.setEditable(false);
+    GridBagConstraints gbcTextFieldCostoPaquete = new GridBagConstraints();
+    gbcTextFieldCostoPaquete.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldCostoPaquete.fill = GridBagConstraints.HORIZONTAL;
+    gbcTextFieldCostoPaquete.gridx = 1;
+    gbcTextFieldCostoPaquete.gridy = 8;
+    panelDatos.add(this.textFieldCostoPaquete, gbcTextFieldCostoPaquete);
+    this.textFieldCostoPaquete.setColumns(10);
+    
+    GridBagConstraints gbcLblFotoOferta = new GridBagConstraints();
+    gbcLblFotoOferta.insets = new Insets(0, 0, 5, 5);
+    gbcLblFotoOferta.gridx = 0;
+    gbcLblFotoOferta.gridy = 9;
+    JLabel labelFoto = new JLabel("Foto Paquete:");
+    panelDatos.add(labelFoto, gbcLblFotoOferta);
+    
+    this.textPane = new JTextPane();
+    GridBagConstraints gbcTextPaneFoto = new GridBagConstraints();
+    gbcTextPaneFoto.insets = new Insets(0, 0, 5, 0);
+    gbcTextPaneFoto.fill = GridBagConstraints.BOTH;
+    gbcTextPaneFoto.gridx = 1;
+    gbcTextPaneFoto.gridy = 9;
+    this.textPane.setEditable(false);
+    panelDatos.add(textPane, gbcTextPaneFoto);
+    
     
     GridBagConstraints gbcLblOfertas = new GridBagConstraints();
     gbcLblOfertas.anchor = GridBagConstraints.EAST;
@@ -316,7 +355,7 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcLblCantidadInlcuidaa.insets = new Insets(0, 0, 0, 5);
     gbcLblCantidadInlcuidaa.gridx = 0;
     gbcLblCantidadInlcuidaa.gridy = 20;
-    JLabel lblCantidadInlcuida = new JLabel("Cantidad Restante");
+    JLabel lblCantidadInlcuida = new JLabel("Cantidad Incluida");
     panelDatos.add(lblCantidadInlcuida, gbcLblCantidadInlcuidaa);
     
     this.textFieldCantidadIncluida = new JTextField();
@@ -371,9 +410,19 @@ public class ConsultaPaquete extends JInternalFrame {
               .setText(String.valueOf(dtPaquetePublicaciones.getDescuento()) + "%");
           this.textFieldValidez
               .setText(String.valueOf(dtPaquetePublicaciones.getPeriodoValidez()));
-          // this.textFieldFechaAltaPaquete.setText(dtPaquetePublicaciones.getFecha);
+          this.textFieldCostoPaquete.setText(String.valueOf(dtPaquetePublicaciones.getCosto()));
           this.textPanePaquete.setText(dtPaquetePublicaciones.getDescripcion());
           this.textFieldFechaAltaPaquete.setText(dtPaquetePublicaciones.getFechaAlta().toString());
+          BufferedImage originalImage = dtPaquetePublicaciones.getImagen();
+          if (originalImage != null) {
+            int newWidth = 100; // Ancho deseado
+            int newHeight = 100; // Alto deseado
+            Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
+                Image.SCALE_SMOOTH);
+            this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+            ImageIcon icono = new ImageIcon(scaledImage);
+            this.textPane.insertIcon(icono);
+          }
           
         }
         
@@ -447,6 +496,7 @@ public class ConsultaPaquete extends JInternalFrame {
     this.textFieldFechaAlta.setText("");
     this.textPaneTipoPublicacion.setText("");
     this.textFieldCantidadIncluida.setText("");
+    this.textPane.setText("");
   }
   
   /**
@@ -465,6 +515,8 @@ public class ConsultaPaquete extends JInternalFrame {
     this.textFieldCantidadIncluida.setText("");
     this.textPanePaquete.setText("");
     this.textFieldFechaAltaPaquete.setText("");
+    this.textPane.setText("");
+    this.textFieldCostoPaquete.setText("");
     
   }
 }

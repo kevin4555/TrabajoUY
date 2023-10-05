@@ -4,6 +4,7 @@ import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
@@ -166,7 +167,7 @@ public class Principal extends JFrame {
           cargarDatosDePrueba(arg0);
         } catch (ParseException | KeywordNoExisteException
             | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException
-            | UsuarioYaExistePostulacion  e) {
+            | UsuarioYaExistePostulacion | PaquetePublicacionNoExisteException e) {
           // TODO Auto-generated catch block
           
         } // Esta funcion carga los datos de prueba
@@ -307,11 +308,12 @@ public class Principal extends JFrame {
   
   protected void cargarDatosDePrueba(ActionEvent arg0)
       throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioYaExistePostulacion {
+      UsuarioEmailRepetidoException, UsuarioYaExistePostulacion, PaquetePublicacionNoExisteException {
     try {
       
       Loader loader = new Loader();
       loader.cargarDatos();
+      loader.confirmarOfertas();
       
       JOptionPane.showMessageDialog(this, "Los Datos de prueba se ha creado con éxito",
           "Trabajo.uy", JOptionPane.INFORMATION_MESSAGE);
