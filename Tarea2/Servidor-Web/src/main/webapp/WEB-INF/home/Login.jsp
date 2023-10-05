@@ -6,12 +6,13 @@
     <title>Iniciar Sesión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/Servidor-Web/resource/css/general.css" />
-    <%@include file="../include/Head.jsp" %>
+    <jsp:include page="../include/Head.jsp" />
 </head>
 <body class="login">
 	<%
     String contextPath = request.getContextPath();
     %>
+    
     <form action="<%= contextPath %>/login" method="post" class="formLogin">
         <a class="nav-link text-white" href="<%= contextPath %>/home">
             <img src="/Servidor-Web/resource/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid" />

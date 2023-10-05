@@ -1,5 +1,7 @@
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
-<%@page import="java.util.ArrayList" %>
+<%@page import="model.TipoUsuario"%>
+<%@page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +10,14 @@
 <link rel="stylesheet" type="text/css" href="../../webapp/resource/css/general.css">
 </head>
 <body>
-<%@include file="../include/Head.jsp" %>
-<%@include file="../include/NavBar.jsp" %>
+
+<jsp:include page="../include/Head.jsp" />
+<jsp:include page="../include/NavBar.jsp" />
 <main class="container pt-5">
     <div class="row">
-        <%@include file="../include/Menu.jsp" %>
+    
+    	<jsp:include page="../include/Menu.jsp" />
+        
         <div class="col-8">
             <section>
                 <%

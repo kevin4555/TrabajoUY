@@ -1,10 +1,5 @@
 <%@page import="model.TipoUsuario"%>
 <%@page import="java.util.ArrayList"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-
-<%
-TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-%>
 
 <div class="col-3">
     <section class="text-center">
@@ -16,7 +11,10 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
                     </tr>
                 </thead>
                 <tbody>
-                    <%if (tipoUsuario == TipoUsuario.EMPRESA) { %>
+                
+                    <%
+                    TipoUsuario tipoUsuarioSesion = (TipoUsuario) session.getAttribute("tipoUsuario");
+                    if (tipoUsuarioSesion == TipoUsuario.EMPRESA) { %>
                         <tr>
                             <td class="d-flex"><a class="btn" href="<%= request.getContextPath() %>/altaOferta">Alta Oferta</a></td>
                         </tr>

@@ -1,12 +1,13 @@
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
 Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
 TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 %> 
+
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <div class="row w-100 justify-content-between align-items-center">
@@ -40,8 +41,6 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
                   <img class="rounded-pill imgPerfil" src="data:image/png;base64,<%= usuario.getImagen() %>"/>
                 <% } %>
               </li>
-             
-              <li class="nav-item">
                 <div class="dropdown selectUsuario">
                   <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
                     <%= usuario.getNickname() %>
@@ -51,14 +50,14 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
                     <%
                     String contextPath = request.getContextPath();
                     %>
-                    <a href="<%= contextPath %>/oferta?nombreOferta=<%= usuario.getNickname() %>" class="btn btn-primary">Perfil</a>
+                    <a class="dropdown-item" href="<%= contextPath %>/perfil?nicknameUsuario=<%= usuario.getNickname() %>">Pefil</a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="<%= contextPath %>/logout">Cerrar Sesi�n</a>
+                      <a class="dropdown-item" href="<%= contextPath %>/logout"  class="btn btn-primary">Cerrar Sesion</a>
                     </li>
                   </ul>
                 </div>
-              </li>
+                
           <% } else { %>
             <li class="nav-item">
             <%
