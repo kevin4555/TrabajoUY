@@ -38,6 +38,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
     	
     	String nicknameEmpresa = request.getParameter("nicknameEmpresa");
     	String keyword = request.getParameter("keyword");
+    	
     	if(nicknameEmpresa == null && keyword == null ) {
     	  ArrayList<String> listaNickEmpresas = (ArrayList<String>) controladorUsuario.listarEmpresas();
     	  ArrayList<Dtusuario> listaEmpresas = new ArrayList<Dtusuario>();
@@ -53,7 +54,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
     	  request.setAttribute("listaEmpresas", listaEmpresas);
     	  request.getRequestDispatcher("/WEB-INF/consultas/listarEmpresas.jsp").forward(request, response);
     	}
-    	if( nicknameEmpresa != null && nicknameEmpresa != "" ) {
+    	if( nicknameEmpresa != null) {
     		try {
 				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
 				request.setAttribute("listaOfertas", ofertas);
@@ -62,7 +63,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
 				e.printStackTrace();
 			}
     	}
-    	else if(keyword != null && keyword != "") {
+    	else if(keyword != null) {
     		ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorOfertas.obtenerDtofertasPorKeyword(keyword);
     		request.setAttribute("listaOfertas", ofertas);
     	}

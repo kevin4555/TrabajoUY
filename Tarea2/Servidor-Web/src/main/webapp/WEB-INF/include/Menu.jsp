@@ -48,10 +48,10 @@
                     ArrayList<String> listaKeywords = (ArrayList) session.getAttribute("listaKeywords");
                     for (String key : listaKeywords) { %>
                         <%
-                        String keywordUrl = request.getContextPath() + "/consultaOfertas?keyword=" + key;
+                        String contextPath = request.getContextPath();
                         %>
                         <tr>
-                            <td><a class="btnKeyword btn" href="<%= keywordUrl %>"><%= key %></a></td>
+                            <td><a class="btnKeyword btn" href="<%= contextPath %>/consultaOfertas?keyword=<%= key %>"> <%= key %></a></td>            
                         </tr>
                     <% } %>
                 </tbody>

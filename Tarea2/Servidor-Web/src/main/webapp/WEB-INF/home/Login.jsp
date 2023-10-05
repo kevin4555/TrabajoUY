@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Iniciar Sesión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/Servidor-Web/resource/css/general.css" />
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resource/css/general.css" />
     <jsp:include page="../include/Head.jsp" />
 </head>
 <body class="login">

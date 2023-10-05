@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Consulta Ofertas Laborales</title>
-<link rel="stylesheet" type="text/css" href="../../webapp/resource/css/general.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resource/css/general.css">
 </head>
 <body>
 

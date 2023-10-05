@@ -7,7 +7,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Lista de Empresas</title>
-    <link rel="stylesheet" type="text/css" href="../../webapp/resource/css/general.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resource/css/general.css">
     <jsp:include page="../include/Head.jsp"/>
 </head>
 <body>
