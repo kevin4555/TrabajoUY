@@ -7,6 +7,8 @@ import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.TipoDePublicacionYaFueIngresado;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
@@ -87,7 +89,8 @@ public class ControladorOferta implements IcontroladorOferta {
   @Override
   public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion,
       String nomTipoPaquete)
-      throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException {
+      throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException,
+      PaquetePublicacionYaFueComprado, TipoDePublicacionYaFueIngresado {
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
     ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
     
@@ -95,7 +98,7 @@ public class ControladorOferta implements IcontroladorOferta {
     tipoPublicacion = manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion);
     PaquetePublicacion paquetePublicacion = manejadorPaquetes.obtenerPaquete(nomTipoPaquete);
     
-    paquetePublicacion.crearCantidadTipoPublicacion(cantIncluida, tipoPublicacion);
+    paquetePublicacion.agregarTipoPublicacion(tipoPublicacion, cantIncluida);
   }
   
   @Override
@@ -176,8 +179,7 @@ public class ControladorOferta implements IcontroladorOferta {
       TipoPublicacionNoExisteException {
     ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-    List<CantidadTotalTipoPublicacion> arrayCantidad = 
-        new ArrayList<CantidadTotalTipoPublicacion>();
+    List<CantidadTotalTipoPublicacion> arrayCantidad = new ArrayList<CantidadTotalTipoPublicacion>();
     
     if (cantidadTipoPublicacion != null) {
       for (DtcantidadTipoPublicacion dtCantidad : cantidadTipoPublicacion) {

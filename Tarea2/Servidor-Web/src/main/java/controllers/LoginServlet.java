@@ -33,18 +33,18 @@ public class LoginServlet extends HttpServlet {
     }
 
     
-    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String claveIngresada = (String) request.getParameter("clave");
+    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+    	String nombreEmail = (String) request.getParameter("nombreEmail");
     	String contraseniaIngresada = (String) request.getParameter("contrasenia");
     	HttpSession sesion = request.getSession();
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    	if(claveIngresada == null || contraseniaIngresada == null) {
+    	if(nombreEmail == null || contraseniaIngresada == null) {
     		request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
     	}
     	try {
-			if(controladorUsuario.confirmarContrasenia(claveIngresada, contraseniaIngresada)) {
+			if(controladorUsuario.confirmarContrasenia(nombreEmail, contraseniaIngresada)) {
 				sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
-				Dtusuario usuario = controladorUsuario.obtenerDtusuario(claveIngresada);
+				Dtusuario usuario = controladorUsuario.obtenerDtusuario(nombreEmail);
 				sesion.setAttribute("usuarioLogueado", usuario);
 				if(usuario instanceof Dtempresa) {
 					sesion.setAttribute("tipoUsuario", TipoUsuario.EMPRESA);

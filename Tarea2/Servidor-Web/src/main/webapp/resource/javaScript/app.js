@@ -9,20 +9,12 @@ const divSitioWeb = document.getElementById('divSitioWeb');
 const divDescripcionEmpresa = document.getElementById('divDescripcionEmpresa');
 const btnRegistrarUsuario = document.getElementById('btnRegistrarUsuario');
 
-
-
 let postulanteSeleccionado = false;
 let empresaSeleccionado = false;
 formularioAltaUsuario.removeChild(divNacionalidad);
 formularioAltaUsuario.removeChild(divFechaNacimiento);
 formularioAltaUsuario.removeChild(divSitioWeb);
 formularioAltaUsuario.removeChild(divDescripcionEmpresa);
-
-
-
-
-
-
 
 //Escucha de eventos
 radioPostulante.addEventListener('click', () => {

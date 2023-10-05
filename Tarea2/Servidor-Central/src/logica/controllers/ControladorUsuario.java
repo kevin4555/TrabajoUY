@@ -17,6 +17,7 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
@@ -208,7 +209,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   public Boolean confirmarContrasenia(String clave, String contrasenia)
       throws UsuarioNoExisteException {
     Usuario usuario = ManejadorUsuario.getInstance().obtenerUsuario(clave);
-    return contrasenia == usuario.getContrasenia();
+    return contrasenia.equals(usuario.getContrasenia());
   }
   
   @Override
@@ -256,5 +257,12 @@ public class ControladorUsuario implements IcontroladorUsuario {
       listaResultado.remove(paquete);
     }
     return listaResultado;
+  }
+  
+  @Override
+  public List<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(String nicknameEmpresa)
+      throws UsuarioNoExisteException {
+    Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
+    return empresa.obtenerDtCompraPaquetes();
   }
 }

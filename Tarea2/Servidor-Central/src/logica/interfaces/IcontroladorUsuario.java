@@ -14,6 +14,7 @@ import java.util.List;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
@@ -104,4 +105,7 @@ public interface IcontroladorUsuario {
   
   void comprarPaquete(String nicknameEmpresa, String nombrePaquete, LocalDate fechaCompra)
       throws UsuarioNoExisteException, PaquetePublicacionNoExisteException;
+
+  List<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(String nicknameEmpresa)
+      throws UsuarioNoExisteException;
 }

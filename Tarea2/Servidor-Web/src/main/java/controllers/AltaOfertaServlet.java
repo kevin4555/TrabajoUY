@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 
@@ -20,6 +21,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import logica.controllers.Fabrica;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.DttipoPublicacion;
 import logica.datatypes.Dtusuario;
@@ -63,12 +65,14 @@ public class AltaOfertaServlet extends HttpServlet {
     		}
     		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     		try {
-				ArrayList<DtpaquetePublicacion> listaPaquetes = (ArrayList<DtpaquetePublicacion>) controladorUsuario.obtenerDtpaquetesDeEmpresa(empresa.getNickname());
-				request.setAttribute("listaPaquetes", listaPaquetes);
+				ArrayList<DtCompraPaquete> listaCompraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario.obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
+				request.setAttribute("listaCompraPaquetes", listaCompraPaquetes);
     		} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
 				e.printStackTrace();
 			}
+    		ArrayList<String> listKeywordsAtributo = (ArrayList<String>) controladorOferta.listarKeywords();
+    		request.setAttribute("listaKeywords", listKeywordsAtributo);
     		request.setAttribute("listaTipoPublicacion", listaDtTipos);
     		request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request, response);
     		
