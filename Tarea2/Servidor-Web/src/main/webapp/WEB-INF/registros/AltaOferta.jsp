@@ -161,7 +161,7 @@
             </div>
         </form>
     </main>
-    <script src="<%= request.getContextPath() %>/resource/javaScript/AltaOferta.js"></script>
+    <script src="<%= request.getContextPath() %>/resource/javaScript/verTipoPublicacion.js"></script>
     <!-- <script src="<%--<%= request.getContextPath() %>--%>/resource/javaScript/verPaquetes.js"></script> -->
 </body>
 </html>

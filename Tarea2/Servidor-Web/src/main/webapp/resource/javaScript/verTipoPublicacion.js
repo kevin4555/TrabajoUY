@@ -1,5 +1,5 @@
-var tipoPublicacionSelect = document.getElementById("tipoPublicacion");
-var botonRedireccionar = document.getElementById("botonRedireccionar");
+const tipoPublicacionSelect = document.getElementById("tipoPublicacion");
+const botonRedireccionar = document.getElementById("botonRedireccionar");
 
 
 tipoPublicacionSelect.addEventListener("change", function() 
@@ -15,7 +15,8 @@ tipoPublicacionSelect.addEventListener("change", function()
     
 botonRedireccionar.addEventListener("click", function() 
 {
-	var tipoPublicacionSeleccionado = tipoPublicacionSelect.value;
-	window.location.href = "/servletTipoPublicacion?tipoPublicacion=" + tipoPublicacionSeleccionado;
+	const tipoPublicacionSeleccionado = tipoPublicacionSelect.value;
+	const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	window.location.href = contextPath+"/tipoPublicacion?nombreTipoPublicacion=" + tipoPublicacionSeleccionado;
 });
 
