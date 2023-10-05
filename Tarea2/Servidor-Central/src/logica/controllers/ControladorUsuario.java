@@ -208,7 +208,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   public Boolean confirmarContrasenia(String clave, String contrasenia)
       throws UsuarioNoExisteException {
     Usuario usuario = ManejadorUsuario.getInstance().obtenerUsuario(clave);
-    return contrasenia == usuario.getContrasenia();
+    return contrasenia.equals(usuario.getContrasenia());
   }
   
   @Override
