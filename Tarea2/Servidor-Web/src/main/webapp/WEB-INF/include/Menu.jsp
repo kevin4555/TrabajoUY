@@ -1,4 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.TipoUsuario"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <div class="col-3">
     <section class="text-center">
@@ -10,22 +12,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:if test="${tipoUsuario == TipoUsuario.EMPRESA}">
+                <% TipoUsuario tipoUsuario = (TipoUsuario) request.getAttribute("tipoUsuario");
+                    if (tipoUsuario == TipoUsuario.EMPRESA) { %>
                         <tr>
-                            <td class="d-flex"><a class="btn" href="${pageContext.request.contextPath}/altaOferta">Alta Oferta</a></td>
+                            <td class="d-flex"><a class="btn" href="<%= request.getContextPath() %>/altaOferta">Alta Oferta</a></td>
                         </tr>
-                    </c:if>
+                    <% } %>
                     <tr>
-                        <td class="d-flex"><a class="btn" href="${pageContext.request.contextPath}/consultaUsuarios">Consulta usuarios</a></td>
+                        <td class="d-flex"><a class="btn" href="<%= request.getContextPath() %>/consultaUsuarios">Consulta usuarios</a></td>
                     </tr>
                     <tr>
-                        <td class="d-flex"><a class="btn" href="${pageContext.request.contextPath}/consultaTipoPublicacion">Ver tipos de publicaciones</a></td>
+                        <td class="d-flex"><a class="btn" href="<%= request.getContextPath() %>/consultaTipoPublicacion">Ver tipos de publicaciones</a></td>
                     </tr>
                     <tr>
-                        <td class="d-flex"><a class="btn" href="${pageContext.request.contextPath}/consultaPaquetes">Ver tipos de paquetes</a></td>
+                        <td class="d-flex"><a class="btn" href="<%= request.getContextPath() %>/consultaPaquetes">Ver tipos de paquetes</a></td>
                     </tr>
                     <tr>
-                        <td class="d-flex"><a class="btn" href="${pageContext.request.contextPath}/consultaOfertas">Consulta ofertas laborales</a></td>
+                        <td class="d-flex"><a class="btn" href="<%= request.getContextPath() %>/consultaOfertas">Consulta ofertas laborales</a></td>
                     </tr>
                 </tbody>
             </table>
