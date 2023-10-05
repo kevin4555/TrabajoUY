@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+
 
 import excepciones.UsuarioNoExisteException;
 
@@ -39,22 +39,17 @@ public class ConsultaUsuariosServlet extends HttpServlet {
 		Collections.sort(listaUsuarios);
 		String tipoEsperadoVar = "Dtpostulante";
 		ArrayList<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
-		HashMap<String, BufferedImage> fotoPerfil = new HashMap<>();
 		for (String nick : listaUsuarios) {
 			try {
 				listaResultado.add(controladorUsuario.obtenerDtusuario(nick));
-				fotoPerfil.put((controladorUsuario.obtenerDtusuario(nick)).getNickname(),
-						(controladorUsuario.obtenerDtusuario(nick)).getImagen());
 			} catch (UsuarioNoExisteException e) {
 				// agregar pagina de error
 				e.printStackTrace();
 			}
 		}
-		request.setAttribute("images", fotoPerfil);
 		request.setAttribute("tipoEsperado", tipoEsperadoVar);
 		request.setAttribute("listaUsuarios", listaResultado);
 		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaUsuarios.jsp").forward(request, response);
-
 	}
 
 	/**

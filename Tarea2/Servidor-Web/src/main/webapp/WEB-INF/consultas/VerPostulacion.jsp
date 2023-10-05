@@ -9,7 +9,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" href="../../webapp/recourse/css/general.css">
+    <link rel="stylesheet" type="text/css" href="../../webapp/resource/css/general.css">
     <jsp:include page="../include/Head.jsp"/>
 </head>
 <body>
