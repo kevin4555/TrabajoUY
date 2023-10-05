@@ -48,17 +48,23 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
                   </button>
                   <ul class="dropdown-menu">
                     <li>
-                      <a class="dropdown-item" href="/perfil?nicknameUsuairo=<%= usuario.getNickname() %>">Perfil</a>
+                    <%
+                    String contextPath = request.getContextPath();
+                    %>
+                    <a href="<%= contextPath %>/oferta?nombreOferta=<%= usuario.getNickname() %>" class="btn btn-primary">Perfil</a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/logout">Cerrar Sesi�n</a>
+                      <a class="dropdown-item" href="<%= contextPath %>/logout">Cerrar Sesi�n</a>
                     </li>
                   </ul>
                 </div>
               </li>
           <% } else { %>
             <li class="nav-item">
-              <a class="nav-link text-white" href="<%= request.getContextPath() %>/login">Acceder</a>
+            <%
+                    String contextPath = request.getContextPath();
+                    %>
+              <a class="nav-link text-white" href="<%= contextPath %>/login">Acceder</a>
             </li>
           <% } %>
         </ul>

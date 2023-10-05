@@ -9,8 +9,11 @@
     <%@include file="../include/Head.jsp" %>
 </head>
 <body class="login">
-    <form action="<%= request.getContextPath() %>/login" method="post" class="formLogin">
-        <a class="nav-link text-white" href="<%= request.getContextPath() %>/home">
+	<%
+    String contextPath = request.getContextPath();
+    %>
+    <form action="<%= contextPath %>/login" method="post" class="formLogin">
+        <a class="nav-link text-white" href="<%= contextPath %>/home">
             <img src="/Servidor-Web/resource/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid" />
         </a>
 
@@ -24,11 +27,11 @@
         </div>
         <div class="mb-3">
             <input class="btn btn-primary" type="submit" value="Confirmar" />
-            <a class="btn btn-primary" href="<%= request.getContextPath() %>/home">Cancelar</a>
+            <a class="btn btn-primary" href="<%= contextPath %>/home">Cancelar</a>
         </div>
         <div class="mb-3">
             <label class="form-label mb-3"><strong>¿No tienes cuenta?</strong></label>
-            <a class="btn btn-primary" href="<%= request.getContextPath() %>/altaUsuario">Registrarse</a>
+            <a class="btn btn-primary" href="<%= contextPath %>/altaUsuario">Registrarse</a>
         </div>
     </form>
 </body>
