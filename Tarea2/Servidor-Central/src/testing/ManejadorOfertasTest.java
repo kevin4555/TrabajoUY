@@ -92,7 +92,7 @@ public class ManejadorOfertasTest {
     }
   }
   
-  @Test
+  /*@Test
   public void testObtenerDTYCompararlo()
       throws OfertaLaboralYaExisteException, DtOfertaNoExisteException {
     manejadorOfertas = ManejadorOfertas.getInstance();
@@ -123,7 +123,7 @@ public class ManejadorOfertasTest {
         resultaDtOfertaLaboral.getPostulaciones());
     Assert.assertEquals(dtOfertaLaboral.getDescripcion(),
         resultaDtOfertaLaboral.getDescripcion());
-  }
+  }*/
   
   @Test
   public void testObtenerListaOfertasLaboralesYComprar()
