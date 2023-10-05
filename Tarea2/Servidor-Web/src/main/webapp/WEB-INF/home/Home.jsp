@@ -33,7 +33,7 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            <a href="/oferta?nombreOferta=<%= oferta.getNombre() %>"><%= oferta.getNombre() %></a>
+                                            <p><%= oferta.getNombre() %></p>
                                         </h5>
                                         <p class="card-text"><%= oferta.getDescripcion() %></p>
                                     </div>

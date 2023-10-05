@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtempresa;
@@ -17,6 +18,7 @@ import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
 import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorUsuario;
+import model.EstadoSesion;
 
 /**
  * Servlet implementation class PerfilSerlvlet
@@ -34,7 +36,17 @@ public class PerfilSerlvlet extends HttpServlet {
     }
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String nicknameUsuario = request.getParameter("nicknameUsuario");
+    	HttpSession sesion = request.getSession();
+    	String nicknameUsuario = "";
+    	if(sesion.getAttribute("estadoSesion").equals(EstadoSesion.LOGIN_CORRECTO))
+    	{
+    		nicknameUsuario = (String)((Dtusuario) sesion.getAttribute("usuarioLogueado")).getNickname();
+    	}
+    	else 
+    	{
+    		nicknameUsuario = request.getParameter("nicknameUsuario");
+		}
+    	
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	try {
 			Dtusuario usuario = controladorUsuario.obtenerDtusuario(nicknameUsuario);
