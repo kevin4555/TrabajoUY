@@ -35,7 +35,7 @@
                                     <%
                                     String contextPath = request.getContextPath();
                                     %>
-                                    <a href="<%= contextPath %>/paquete?nombrePaquete=<%=tipoPublicacion.getNombre()%>" class="btn btn-primary">Mas Info</a>
+                                    <a href="<%= contextPath %>/tipoPublicacion?nombreTipoPublicacion=<%=tipoPublicacion.getNombre()%>" class="btn btn-primary">Mas Info</a>
                                 </div>
                             </div>
                         </div>
