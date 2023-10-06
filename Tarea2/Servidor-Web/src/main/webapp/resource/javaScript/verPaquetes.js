@@ -1,18 +1,15 @@
-const seleccionTipoPublicacion = document.getElementById("seleccionTipoPublicacion");
-const botonRedireccionar = document.getElementById("botonRedireccionar");
-seleccionTipoPublicacion.addEventListener("change", function () 
+const radioPorPaquete = document.getElementById("radioPorPaquete");
+
+const divSeleccionPaquete = document.getElementById("divSeleccionPaquete");
+ 
+radioPorPaquete.addEventListener("change", function() 
 {
-	const tipoSeleccionado = seleccionTipoPublicacion.value;
-    if (tipoSeleccionado) 
-    {
-    	botonRedireccionar.style.display = "block";
-        botonRedireccionar.onclick = function () 
-        {
-        	window.location.href = `TipoPublicacion.html`;
-        };
+	if (radioPorPaquete.checked) 
+	{
+        divSeleccionPaquete.style.display = "block";
     } 
     else 
     {
-    botonRedireccionar.style.display = "none";
+		divSeleccionPaquete.style.display = "none";
     }
 });

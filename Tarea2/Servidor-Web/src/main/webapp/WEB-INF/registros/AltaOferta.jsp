@@ -44,7 +44,7 @@
                         <label for="inputNombreOferta" class="form-label">*Nombre</label>
                         <input type="text" class="form-control" id="inputNombreOferta" name="nombreOferta" placeholder="Ingrese el nombre de la Oferta" required/>
                     </div>
-<!-- <%--
+
                     <div class="camposForm">
                         <div class="form-group">
                             <label for="textAreaDescripcion">*Descripción</label>
@@ -83,7 +83,7 @@
                     	<label for="inputRemuneracion" class="form-label">*Remuneracion</label>
                     	<input type="number" class="form-control" id="inputRemuneracion" placeholder="Ingrese la Remuneracion" min="1" name="remuneracion" required/>
                 	</div>
-                	
+
                 	<div class="camposForm">
 	                    <label for="departamentos">*Selecciona un departamento:</label>
 	                    <select class="form-control" id="departamentos" name="departamento" required>
@@ -120,7 +120,7 @@
 	                    <input type="file" name="imagenOferta" />
 	                </div>
                 	
-           <!-- <%--      	<div class="row camposForm">
+                	<div class="row camposForm">
 	                    <div class="col">
 	                        <label for="inputTipoDePago" class="form-label">*Tipo de pago</label>
 	                    </div>
@@ -136,19 +136,22 @@
 	                    </div>
 	                </div>
 
-	                <div class="camposForm" id="divSeleccionPaquete">
+	                <div class="camposForm" id="divSeleccionPaquete" style="display: none">
 	                    <label for="listPaquetes">*Selecciona un paquete:</label>
 	                    <select class="form-control" id="listPaquetes" name="nombrePaquete">	                  
 	                        <option value="">-- Selecciona un paquete --</option>
 	                         <% 
                             ArrayList<DtCompraPaquete> listaPaquetes = (ArrayList<DtCompraPaquete>)request.getAttribute("listaCompraPaquetes");
-                            for (DtCompraPaquete tipoPublicacion : listaPaquetes) { %>
-                                <option value="<%= tipoPublicacion %>"><%= tipoPublicacion.getNombre() %></option>
+                            for (DtCompraPaquete paquete : listaPaquetes) { %>
+                            <%
+                            	String nombre = (paquete.getPaquete()).getNombre();
+                            %>
+                                <option value="<%= nombre %>"><%= nombre %></option>
                             <% } %>
 	                    </select>
 	                    <div id="descuentoContainer" class="mt-3"></div>
 	                </div>	
-	                --%>-->
+
                 	<%
     				String contextPath = request.getContextPath();
     				%>
@@ -164,6 +167,6 @@
         </form>
     </main>
     <script src="<%= request.getContextPath() %>/resource/javaScript/verTipoPublicacion.js"></script>
-    <!-- <script src="<%--<%= request.getContextPath() %>--%>/resource/javaScript/verPaquetes.js"></script> -->
+    <script src="<%= request.getContextPath() %>/resource/javaScript/verPaquetes.js"></script>
 </body>
 </html>
