@@ -2,6 +2,8 @@ package testing;
 
 import excepciones.PaquetePublicacionYaFueComprado;
 import excepciones.TipoDePublicacionYaFueIngresado;
+import junit.framework.Assert;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +16,7 @@ import logica.classes.CantidadTipoPublicacionRestante;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.PaquetePublicacion;
 import logica.classes.TipoPublicacion;
-import org.junit.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
