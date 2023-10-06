@@ -1,9 +1,13 @@
+<%@page import="logica.datatypes.DtpaquetePublicacion"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@page import="logica.classes.PaquetePublicacion"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@page import="logica.datatypes.DtcantidadTipoPublicacion"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.time.ZoneId" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,7 +24,7 @@
 	<jsp:include page="../include/Head.jsp" />
 </head>
   <body>
-  	
+  	<% DtpaquetePublicacion paquete = (DtpaquetePublicacion) request.getAttribute("paquete"); %>
 	<jsp:include page="../include/NavBar.jsp" />
     <main class="container pt-5">
       <div class="row">
@@ -30,7 +34,7 @@
             <div class="row g-0">
               <div class="col-4 d-flex align-items-center">
                 <img
-                  src="data:image/png;base64,${paquete.imagenBase64}"
+                  src="data:image/png;base64,<%= paquete.getImagenBase64() %>"
                   class="img-fluid rounded-start"
                   alt="Imagen Paquete"
                 />
@@ -39,26 +43,31 @@
                 <div class="card-body">
                   <div class="card-header bg-white px-0">
                     <h1 class="m-0 fs-2">
-                      <i class="bi bi-box-seam text-primary"></i> Paquete ${paquete.nombre}
+                      <i class="bi bi-box-seam text-primary"></i> Paquete <%= paquete.getNombre() %>
                     </h1>
                   </div>
                   <p class="card-text py-2 fst-italic">
-                    ${paquete.descripcion}
+                    <%= paquete.getDescripcion() %>
                   </p>
                   <ul class="list-unstyled">
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
-                      Período: ${paquete.periodoValidez} días
+                      Período: <%= paquete.getPeriodoValidez() %> días
                     </li>
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
-                      Descuento del ${paquete.descuento} % por publicación
+                      Descuento del <%= paquete.getDescuento() %> % por publicación
                     </li>
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
-                      <fmt:parseDate value="${paquete.fechaAlta}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
-						<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="dd/MM/yyyy" />
-                      Fecha ${newParsedDate}
+                      <%
+						LocalDate fechaAlta = paquete.getFechaAlta(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
+						Date fechaAltaDate = Date.from(fechaAlta.atStartOfDay(ZoneId.systemDefault()).toInstant());
+						SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						String newParsedDate = outputDateFormat.format(fechaAltaDate);
+						%>
+						
+						Fecha <%= newParsedDate %>
                     </li>
                   </ul>
                   <div class="publicacionesPaquete">
@@ -66,19 +75,24 @@
                       <thead>
                         <tr>
                           <th scope="col">Tipo Publicaciones</th>
-                          <th scope="col">Cant.</th>
+                          <th scope="col">Cantidad</th>
                         </tr>
                       </thead>
                       <tbody>
-                      	<c:forEach var="cantidadTipoPublicacion" items="${paquete.cantidadTipoPublicaciones}">
-                      		<tr>
-                      		<c:url var="tipoPublicacionUrl" value="/consultaTipoPostulacion">
-							<c:param name="tipoPublicacion" value="${cantidadTipoPublicacion.nombreTipoPublicacion}" />
-							</c:url>
-                          		<td><a href="${tipoPublicacionUrl}">${cantidadTipoPublicacion.nombreTipoPublicacion}</a></td>
-                          		<td>${cantidadTipoPublicacion.cantidad}</td>
-                        	</tr>
-                      	</c:forEach>
+                      <%
+                      List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones = paquete.getCantidadTipoPublicaciones();
+						%>
+                      	<% for (DtcantidadTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) { %>
+					        <tr>
+					            <%
+					                String tipoPublicacion = cantidadTipoPublicacion.getNombreTipoPublicacion();
+					                int cantidad = cantidadTipoPublicacion.getCantidad();
+					                String tipoPublicacionUrl = "/consultaTipoPostulacion?tipoPublicacion=" + tipoPublicacion;
+					            %>
+					            <td><a href="<%= tipoPublicacionUrl %>"><%= tipoPublicacion %></a></td>
+					            <td><%= cantidad %></td>
+					        </tr>
+					    <% } %>
                       </tbody>
                     </table>
                   </div>
