@@ -14,10 +14,6 @@
     %>
     
     <form action="<%= contextPath %>/login" method="post" class="formLogin">
-        <a class="nav-link text-white" href="<%= contextPath %>/home">
-            <img src="/Servidor-Web/resource/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid" />
-        </a>
-
         <div class="mb-3 mt-3">
             <label for="email" class="form-label"><strong>*Email o nickname:</strong></label>
             <input type="text" class="form-control" id="email" name="nombreEmail" />

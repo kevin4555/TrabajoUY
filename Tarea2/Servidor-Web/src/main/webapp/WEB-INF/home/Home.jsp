@@ -22,6 +22,7 @@
             <div class="col-8">
                 <section>
                     <%
+                    
                     ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request.getAttribute("listaOfertasConfirmadas");
                     for (DtOfertaLaboral oferta : listaOfertasConfirmadas) {
                     %>

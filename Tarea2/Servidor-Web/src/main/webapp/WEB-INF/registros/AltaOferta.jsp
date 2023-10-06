@@ -27,8 +27,10 @@
                             </option>
                             <% 
                             ArrayList<DttipoPublicacion> listaTipoPublicacion = (ArrayList<DttipoPublicacion>)request.getAttribute("listaTipoPublicacion");
+                            if(!(listaTipoPublicacion.isEmpty())) {
                             for (DttipoPublicacion opcion : listaTipoPublicacion) { %>
                                 <option value="<%= opcion.getNombre() %>"><%= opcion.getNombre() %></option>
+                            <% } %>
                             <% } %>
                         </select>
                     </div>
@@ -42,7 +44,7 @@
                         <label for="inputNombreOferta" class="form-label">*Nombre</label>
                         <input type="text" class="form-control" id="inputNombreOferta" name="nombreOferta" placeholder="Ingrese el nombre de la Oferta" required/>
                     </div>
-
+<!-- <%--
                     <div class="camposForm">
                         <div class="form-group">
                             <label for="textAreaDescripcion">*Descripción</label>
@@ -157,7 +159,7 @@
        					 </div>
 	                </div>
                 	
-                </div>
+                </div> 
             </div>
         </form>
     </main>
