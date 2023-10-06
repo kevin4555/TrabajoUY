@@ -18,7 +18,8 @@
 		class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
 		<form action="<%=request.getContextPath()%>/altaOferta"
 			method="post" id="formAltaOferta"
-			class="bg-white rounded container py-3 mx-3 shadow-sm">
+			class="bg-white rounded container py-3 mx-3 shadow-sm"
+			enctype="multipart/form-data">
 			<div class="row g-5 mx-2">
 				<div class="col-6">
 					<div class="camposForm">

@@ -57,7 +57,6 @@ public class ControladorOferta implements IcontroladorOferta {
       List<String> listakeywords, BufferedImage imagen, String nombrePaquete)
       throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException,
       KeywordNoExisteException, UsuarioNoExisteException {
-    
     ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
     Fabrica fabrica = Fabrica.getInstance();

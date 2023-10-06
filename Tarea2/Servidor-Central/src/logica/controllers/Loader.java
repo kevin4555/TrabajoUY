@@ -316,8 +316,8 @@ public class Loader {
             keywords10.add(keyword1.getNombre());
             keywords10.add(keyword6.getNombre());
             keywords10.add(keyword9.getNombre());
-            controladorOferta.altaOfertaLaboral("Desarrollador de Software\r\n"
-                + "Senior",
+            controladorOferta.altaOfertaLaboral("Desarrollador de Software"
+                + " Senior",
                     "Únete a nuestro equipo y lidera proyectos de desar- \r\n"
                     + "rollo de software sostenible y ecol´ogico. Impulsa la\r\n"
                     + "innovación y contribuye a un futuro más verde.",
@@ -326,8 +326,8 @@ public class Loader {
             
             List<String> keywords11 = new ArrayList<String>();
             keywords11.add(keyword3.getNombre());
-            controladorOferta.altaOfertaLaboral("Desarrollador de Software\r\n"
-                + "Full Stack\r\n"
+            controladorOferta.altaOfertaLaboral("Desarrollador de Software "
+                + "Full Stack"
                 + "",
                     "Únete a nuestro equipo para crear soluciones de soft- \r\n"
                     + "ware personalizadas de extremo a extremo. Colabora\r\n"
@@ -347,7 +347,7 @@ public class Loader {
             List<String> keywords13 = new ArrayList<String>();
             keywords13.add(keyword1.getNombre());
             keywords13.add(keyword10.getNombre());
-            controladorOferta.altaOfertaLaboral("Ingeniero de Calidad de\r\n"
+            controladorOferta.altaOfertaLaboral("Ingeniero de Calidad de "
                 + "Software",
                     "Asegura la calidad de nuestros productos de software\r\n"
                     + "sostenibles. Únete a nosotros para garantizar un im- \r\n"
