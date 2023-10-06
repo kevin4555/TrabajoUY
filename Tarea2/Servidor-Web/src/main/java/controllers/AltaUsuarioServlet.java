@@ -11,6 +11,7 @@ import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import model.TipoUsuario;
 /**
  * Servlet implementation class AltaUsuario
  */
+@MultipartConfig()
 @WebServlet("/altaUsuario")
 public class AltaUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +41,10 @@ public class AltaUsuarioServlet extends HttpServlet {
     }
     
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	HttpSession sesion = request.getSession();
+    	if(request.getParameter("nickname")==null) {
+    	  request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
+    	}
+     HttpSession sesion = request.getSession();
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	String nickname = request.getParameter("nickname");
     	String nombre = request.getParameter("nombre");
