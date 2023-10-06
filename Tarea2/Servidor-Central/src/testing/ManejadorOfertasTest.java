@@ -1,7 +1,10 @@
 package testing;
 
+
+
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,7 +57,7 @@ public class ManejadorOfertasTest {
     
   }
   
-  @Test()
+  @Test
   public void testAgregarOfertaDuplicada() throws OfertaLaboralYaExisteException,
       TipoPublicacionNoExisteException, TipoPublicacionYaExisteException {
     manejadorOfertas = ManejadorOfertas.getInstance();
@@ -67,7 +70,7 @@ public class ManejadorOfertasTest {
     try {
       manejadorOfertas.agregarOferta(oferta);
     } catch (OfertaLaboralYaExisteException e) {
-      Assert.assertEquals("La oferta laboral que desea ingresar ya existe", e.getMessage());
+      assertEquals("La oferta laboral que desea ingresar ya existe", e.getMessage());
     }
   }
   
@@ -77,18 +80,18 @@ public class ManejadorOfertasTest {
     try {
       manejadorOfertas.obtenerOfertaLaboral("OfertaNoExistente");
     } catch (OfertaLaboralNoExisteException e) {
-      Assert.assertEquals("No existe la oferta solicitada", e.getMessage());
+    	assertEquals("No existe la oferta solicitada", e.getMessage());
     }
   }
   
   @Test
-  public void testObtenerDTOfertaInexistente() throws DtOfertaNoExisteException {
+  public void testObtenerDTOfertaInexistente() throws DtOfertaNoExisteException, IOException {
     manejadorOfertas = ManejadorOfertas.getInstance();
     
     try {
       manejadorOfertas.obtenerDtofertaLaboral("OfertaInexistente");
     } catch (DtOfertaNoExisteException e) {
-      Assert.assertEquals("No existe la oferta solicitada", e.getMessage());
+      assertEquals("No existe la oferta solicitada", e.getMessage());
     }
   }
   
@@ -108,20 +111,20 @@ public class ManejadorOfertasTest {
     manejadorOfertas.agregarOferta(ofertaLaboral);
     DtOfertaLaboral resultaDtOfertaLaboral = manejadorOfertas
         .obtenerDtofertaLaboral("nombreTesting");
-    Assert.assertEquals(dtOfertaLaboral.getNombre(), resultaDtOfertaLaboral.getNombre());
-    Assert.assertEquals(dtOfertaLaboral.getCiudad(), resultaDtOfertaLaboral.getCiudad());
-    Assert.assertEquals(dtOfertaLaboral.getDepartamento(),
+    assertEquals(dtOfertaLaboral.getNombre(), resultaDtOfertaLaboral.getNombre());
+    assertEquals(dtOfertaLaboral.getCiudad(), resultaDtOfertaLaboral.getCiudad());
+    assertEquals(dtOfertaLaboral.getDepartamento(),
         resultaDtOfertaLaboral.getDepartamento());
-    Assert.assertEquals(dtOfertaLaboral.getHorarioInicio(),
+    assertEquals(dtOfertaLaboral.getHorarioInicio(),
         resultaDtOfertaLaboral.getHorarioInicio());
-    Assert.assertEquals(dtOfertaLaboral.getHorarioFinal(),
+    assertEquals(dtOfertaLaboral.getHorarioFinal(),
         resultaDtOfertaLaboral.getHorarioFinal());
-    Assert.assertEquals(dtOfertaLaboral.getRemuneracion(),
+    assertEquals(dtOfertaLaboral.getRemuneracion(),
         resultaDtOfertaLaboral.getRemuneracion());
-    Assert.assertEquals(dtOfertaLaboral.getFechaAlta(), resultaDtOfertaLaboral.getFechaAlta());
-    Assert.assertEquals(dtOfertaLaboral.getPostulaciones(),
+    assertEquals(dtOfertaLaboral.getFechaAlta(), resultaDtOfertaLaboral.getFechaAlta());
+    assertEquals(dtOfertaLaboral.getPostulaciones(),
         resultaDtOfertaLaboral.getPostulaciones());
-    Assert.assertEquals(dtOfertaLaboral.getDescripcion(),
+    assertEquals(dtOfertaLaboral.getDescripcion(),
         resultaDtOfertaLaboral.getDescripcion());
   }
   
@@ -147,7 +150,7 @@ public class ManejadorOfertasTest {
     resultadoEsperado.add("nombreTesting");
     resultadoEsperado.add("nombre");
     Collections.sort(resultadoEsperado);
-    Assert.assertEquals(resultadoEsperado, resultado);
+    assertEquals(resultadoEsperado, resultado);
   }
   
 }

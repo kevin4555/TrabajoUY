@@ -436,7 +436,14 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
-      Dtusuario dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+      Dtusuario dtUsuario;
+	try {
+		dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+	} catch (UsuarioNoExisteException | IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return;
+	}
       
       this.textFieldNickName.setText(nicknameUsuario);
       this.textFieldNombre.setText(dtUsuario.getNombre());

@@ -46,14 +46,7 @@ public class PaqueteServlet extends HttpServlet {
     		IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
     		try {
     			DtpaquetePublicacion paquete = controladorOfertas.obtenerDtpaquete(nombrePaquete);
-				request.setAttribute("paquete", paquete);
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			    ImageIO.write(paquete.getImagen(), "jpg", baos); // Cambia "png" al formato deseado (png, jpg, etc.)
-			    byte[] bytesImagen = baos.toByteArray();
-			    String imagenBase64 = Base64.getEncoder().encodeToString(bytesImagen);
-
-			    // Establece la cadena en base64 como un atributo de solicitud
-			    request.setAttribute("imagenBase64", imagenBase64);
+				request.setAttribute("paquete", paquete);			    
 				request.getRequestDispatcher("/WEB-INF/consultas/Paquete.jsp").forward(request, response);
 			} catch (PaquetePublicacionNoExisteException e) {
 				// agregar pagina de error

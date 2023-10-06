@@ -29,7 +29,7 @@
                         <div class="col-md-3 justify-content-center align-items-center d-flex">
                             <img
                                 class="imgOfertaLaboral"
-                                src="<%= oferta.getImagen() %>"
+                                src="data:image/png;base64,<%= oferta.getImagenBase64() %>"
                                 alt="Imagen Oferta"
                             />
                         </div>

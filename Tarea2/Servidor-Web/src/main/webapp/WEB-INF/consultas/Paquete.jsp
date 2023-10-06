@@ -117,7 +117,7 @@
             <div class="row g-0">
               <div class="col-4 d-flex align-items-center">
                 <img
-                  src="data:image/png;base64,${imagenBase64}"
+                  src="data:image/png;base64,${paquete.imagenBase64}"
                   class="img-fluid rounded-start"
                   alt="Imagen Paquete"
                 />

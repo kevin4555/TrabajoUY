@@ -14,6 +14,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -487,7 +488,14 @@ public class ConsultarUsuario extends JInternalFrame {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     String nicknameUsu = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
-      DtOfertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
+      DtOfertaLaboral dtOferta;
+	try {
+		dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
+	} catch (OfertaLaboralNoExisteException | IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return;
+	}
       Dtpostulacion dtPostulacion = new Dtpostulacion();
       this.textFieldHorarioOferta
           .setText(dtOferta.getHorarioInicio() + " - " + dtOferta.getHorarioFinal());
@@ -544,7 +552,14 @@ public class ConsultarUsuario extends JInternalFrame {
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
       limpiarDatosOfertas();
-      Dtusuario dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+      Dtusuario dtUsuario;
+	try {
+		dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+	} catch (UsuarioNoExisteException | IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return;
+	}
       
       // this.textFieldNickName.setText(nicknameUsuario);
       this.textFieldNombre.setText(dtUsuario.getNombre());

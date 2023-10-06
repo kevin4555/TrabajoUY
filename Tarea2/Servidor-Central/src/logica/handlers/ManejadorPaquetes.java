@@ -2,6 +2,8 @@ package logica.handlers;
 
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -103,9 +105,10 @@ public class ManejadorPaquetes {
   
   /**
    * Lista de DTPaquetesPublicacion .
+ * @throws IOException 
    */
   
-  public List<DtpaquetePublicacion> listarDtpaquetes() {
+  public List<DtpaquetePublicacion> listarDtpaquetes() throws IOException {
     List<DtpaquetePublicacion> listaResultado = new ArrayList<DtpaquetePublicacion>();
     for (PaquetePublicacion paquete : colPaquetes.values()) {
       listaResultado.add(paquete.obtenerDtPaquete());

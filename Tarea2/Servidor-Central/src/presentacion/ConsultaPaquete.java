@@ -11,6 +11,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -437,7 +438,7 @@ public class ConsultaPaquete extends JInternalFrame {
         this.comboBoxSeleccionTiposPublicaciones.setModel(model);
       }
       
-    } catch (PaquetePublicacionNoExisteException evento1) {
+    } catch (PaquetePublicacionNoExisteException | IOException evento1) {
       // no imprime nada
     }
     
@@ -455,7 +456,7 @@ public class ConsultaPaquete extends JInternalFrame {
         DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
             .obtenerDtpaquete(nombrePaquete);
         List<DtcantidadTipoPublicacion> dtCantidadPublicaciones = dtPaquetePublicaciones
-            .getCantidadPublicacionesColeccion();
+            .getCantidadTipoPublicaciones();
         int cantidadRestante = 0;
         for (DtcantidadTipoPublicacion dtCantidadTipoPublicacion : dtCantidadPublicaciones) {
           if (dtCantidadTipoPublicacion.getNombreTipoPublicacion().equals(tipoPublicacion)) {
@@ -481,7 +482,10 @@ public class ConsultaPaquete extends JInternalFrame {
       // no imprime nada
     } catch (PaquetePublicacionNoExisteException evento1) {
       // no imprime nada
-    }
+    } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     
   }
   

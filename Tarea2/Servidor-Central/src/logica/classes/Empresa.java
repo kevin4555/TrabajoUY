@@ -2,6 +2,7 @@ package logica.classes;
 
 import excepciones.OfertaLaboralYaExisteException;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,9 +82,10 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTEmpresa.
+ * @throws IOException 
    */
   
-  public Dtempresa obtenerDtempresa() {
+  public Dtempresa obtenerDtempresa() throws IOException {
     
     List<DtOfertaLaboral> listaDtofertas = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
@@ -101,15 +103,16 @@ public class Empresa extends Usuario {
   }
   
   @Override
-  public Dtusuario obtenerDtusuario() {
+  public Dtusuario obtenerDtusuario() throws IOException {
     return this.obtenerDtempresa();
   }
   
   /**
    * Obtener DTOfertaLaboral.
+ * @throws IOException 
    */
   
-  public List<DtOfertaLaboral> obtenerDtofertasIngresadas() {
+  public List<DtOfertaLaboral> obtenerDtofertasIngresadas() throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.INGRESADA) {
@@ -121,9 +124,10 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTOfertaLaboralConfirmadas.
+ * @throws IOException 
    */
   
-  public List<DtOfertaLaboral> obtenerDtofertasConfirmadas() {
+  public List<DtOfertaLaboral> obtenerDtofertasConfirmadas() throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.CONFIRMADA) {
@@ -135,9 +139,10 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTOfertaLaboralRechazadas.
+ * @throws IOException 
    */
   
-  public List<DtOfertaLaboral> obtenerDtofertasRechazadas() {
+  public List<DtOfertaLaboral> obtenerDtofertasRechazadas() throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       if (oferta.getEstado() == EstadoOferta.RECHAZADA) {
@@ -168,9 +173,10 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTPaquetePublicacion.
+ * @throws IOException 
    */
   
-  public List<DtpaquetePublicacion> obtenerDtpaquetes() {
+  public List<DtpaquetePublicacion> obtenerDtpaquetes() throws IOException {
     List<DtpaquetePublicacion> listaReultado = new ArrayList<DtpaquetePublicacion>();
     for (CompraPaquete compraPaquete : compraPaquetes) {
       listaReultado.add(compraPaquete.obtenerDtpaquete());
@@ -206,7 +212,7 @@ public class Empresa extends Usuario {
     
   }
   
-  public List<DtCompraPaquete> obtenerDtCompraPaquetes() {
+  public List<DtCompraPaquete> obtenerDtCompraPaquetes() throws IOException {
     ArrayList<DtCompraPaquete> resultado = new ArrayList<DtCompraPaquete>();
     for (CompraPaquete compra : compraPaquetes) {
       resultado.add(compra.obtenerDtCompraPaquete());

@@ -8,6 +8,7 @@ import excepciones.UsuarioNoExistePostulacion;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public interface IcontroladorUsuario {
   
   public Postulante obtenerPostulante(String nomPostulante) throws UsuarioNoExisteException;
   
-  public Dtusuario obtenerDtusuario(String nickname) throws UsuarioNoExisteException;
+  public Dtusuario obtenerDtusuario(String nickname) throws UsuarioNoExisteException, IOException;
   
   public List<String> listaOfertasUsuario(String nicknameUsuario) 
       throws UsuarioNoExisteException;
@@ -79,22 +80,22 @@ public interface IcontroladorUsuario {
   
   List<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(
       String nicknameEmpresa)
-      throws UsuarioNoExisteException;
+      throws UsuarioNoExisteException, IOException;
   
   List<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
       String nicknameEmpresa)
-      throws UsuarioNoExisteException;
+      throws UsuarioNoExisteException, IOException;
   
   List<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(
       String nicknameEmpresa)
-      throws UsuarioNoExisteException;
+      throws UsuarioNoExisteException, IOException;
   
   Boolean confirmarContrasenia(String clave, String contrasenia) throws UsuarioNoExisteException;
   
-  List<Dtusuario> obtenerDtusuarios();
+  List<Dtusuario> obtenerDtusuarios() throws IOException;
   
   List<DtpaquetePublicacion> obtenerDtpaquetesDeEmpresa(
-      String nicknameEmpresa) throws UsuarioNoExisteException;
+      String nicknameEmpresa) throws UsuarioNoExisteException, IOException;
   
   List<Dtpostulacion> obtenerDtpostulacionesDePostulante(
       String nicknamePostulante)
@@ -107,5 +108,5 @@ public interface IcontroladorUsuario {
       throws UsuarioNoExisteException, PaquetePublicacionNoExisteException;
 
   List<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(String nicknameEmpresa)
-      throws UsuarioNoExisteException;
+      throws UsuarioNoExisteException, IOException;
 }

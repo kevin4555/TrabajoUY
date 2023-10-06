@@ -2,6 +2,7 @@ module tpgr04 {
   requires transitive java.desktop;
   requires jcalendar;
   requires junit;
+requires jdk.incubator.vector;
   
   exports presentacion;
   exports logica.interfaces;

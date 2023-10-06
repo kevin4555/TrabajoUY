@@ -13,6 +13,8 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioNoExistePostulacion;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -123,7 +125,7 @@ public class ControladorUsuarioTesting {
   
   @Test
   public void obtenerDtUsuario() throws UsuarioYaExisteException, UsuarioNoExisteException,
-      UsuarioEmailRepetidoException {
+      UsuarioEmailRepetidoException, IOException {
     controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
         "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
     Dtusuario dtResultado = controladorUsuario.obtenerDtusuario("NicknameTest");
@@ -227,7 +229,7 @@ public class ControladorUsuarioTesting {
   
   @Test
   public void editarDatosBasicosDeUsuarioTest() throws UsuarioYaExisteException,
-      UsuarioNoExisteException, UsuarioEmailRepetidoException {
+      UsuarioNoExisteException, UsuarioEmailRepetidoException, IOException {
     controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
         "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
     Dtusuario dtUsuario = postulante1.obtenerDtusuario();
@@ -438,7 +440,7 @@ public class ControladorUsuarioTesting {
   public void obtenerDtOfertasIngresadasTest()
       throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
       TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException {
+      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
         + "tecnológicas sostenibles. Nuestro enfoque se centra "
@@ -485,7 +487,7 @@ public class ControladorUsuarioTesting {
   public void obtenerDtOfertasConfirmadasTest() throws UsuarioYaExisteException,
       UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException,
       TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
-      TipoPublicacionYaExisteException, OfertaLaboralNoExisteException {
+      TipoPublicacionYaExisteException, OfertaLaboralNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
         + "tecnológicas sostenibles. Nuestro enfoque se centra en "
@@ -535,7 +537,7 @@ public class ControladorUsuarioTesting {
       throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
       TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
       TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
-      OfertaLaboralNoExisteException {
+      OfertaLaboralNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
         + "tecnológicas sostenibles. Nuestro enfoque se centra en "
@@ -607,7 +609,7 @@ public class ControladorUsuarioTesting {
   
   @Test
   public void obtenerDtUsuariosTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioNoExisteException {
+      UsuarioEmailRepetidoException, UsuarioNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
         + "tecnológicas sostenibles. Nuestro enfoque se centra "
@@ -649,7 +651,7 @@ public class ControladorUsuarioTesting {
   public void comprarPaqueteTest() throws UsuarioYaExisteException,
       UsuarioEmailRepetidoException, TipoPublicacionYaExisteException,
       PaquetePublicacionYaExisteException, TipoPublicacionNoExisteException,
-      UsuarioNoExisteException, PaquetePublicacionNoExisteException {
+      UsuarioNoExisteException, PaquetePublicacionNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
         + "tecnológicas sostenibles. Nuestro enfoque se centra "

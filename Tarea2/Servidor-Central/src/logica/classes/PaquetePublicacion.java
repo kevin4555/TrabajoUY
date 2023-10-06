@@ -4,6 +4,7 @@ import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.PaquetePublicacionYaFueComprado;
 import excepciones.TipoDePublicacionYaFueIngresado;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,9 +112,10 @@ public class PaquetePublicacion {
   
   /**
    * Metodo obtener DTPaquete .
+ * @throws IOException 
    */
   
-  public DtpaquetePublicacion obtenerDtPaquete() {
+  public DtpaquetePublicacion obtenerDtPaquete() throws IOException {
     List<DtcantidadTipoPublicacion> listDtcantidad = new ArrayList<DtcantidadTipoPublicacion>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
       listDtcantidad.add(cantidad.obtenerDtcantidadTipoPublicacion());

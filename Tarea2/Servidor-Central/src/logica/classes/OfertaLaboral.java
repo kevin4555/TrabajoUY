@@ -152,9 +152,10 @@ public class OfertaLaboral {
   
   /**
    * Metodo obtener DTOfertaLaboral .
+ * @throws IOException 
    */
   
-  public DtOfertaLaboral obtenerDtOfertaLaboral() {
+  public DtOfertaLaboral obtenerDtOfertaLaboral() throws IOException {
     DtpaquetePublicacion paquete = null;
     if (compraPaquete != null) {
       paquete = compraPaquete.obtenerDtpaquete();
@@ -230,7 +231,7 @@ public class OfertaLaboral {
     return resultado;
   }
   
-  public DtpaquetePublicacion obtenerDtpaquete() {
+  public DtpaquetePublicacion obtenerDtpaquete() throws IOException {
     return compraPaquete.obtenerDtpaquete();
   }
   

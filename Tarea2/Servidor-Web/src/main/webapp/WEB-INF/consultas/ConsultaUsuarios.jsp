@@ -27,7 +27,7 @@
                             <div class="row g-0">
                                 <div class="col-md-3 justify-content-center align-items-center d-flex">
                                     <img
-                                        src="<%= usuario.getImagen() %>"
+                                    	src="data:image/png;base64,<%= usuario.getImagenBase64() %>"
                                         class="img-fluid rounded-start"
                                         alt="Imagen PerfilUsuario"
                                     />

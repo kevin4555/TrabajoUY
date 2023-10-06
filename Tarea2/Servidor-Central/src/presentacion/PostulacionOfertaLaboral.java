@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -419,7 +420,11 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     } catch (UsuarioNoExisteException e1) {
       JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
           "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-    }
+    } catch (IOException e) {
+    	JOptionPane.showMessageDialog(this, "Error con la imagen",
+    			"Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+		e.printStackTrace();
+	}
   }
   
   /**
@@ -431,7 +436,14 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
     this.nomOfertaLaboral = (String) (this.comboBoxOfertasLaboralesPostulacion)
         .getSelectedItem();
     DtOfertaLaboral dtOfertaLaboral;
-    dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(this.nomOfertaLaboral);
+    try {
+		dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(this.nomOfertaLaboral);
+	} catch (OfertaLaboralNoExisteException | IOException e) {
+		JOptionPane.showMessageDialog(this, "Error con la imagen",
+				"Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+		e.printStackTrace();
+		return;
+	}
     this.fechaAlta = dtOfertaLaboral.getFechaResolucion();
     this.nombreTipoPublicacion = dtOfertaLaboral.getNombreTipoPublicacion();
     (this.textFieldNombre).setText(dtOfertaLaboral.getNombre());

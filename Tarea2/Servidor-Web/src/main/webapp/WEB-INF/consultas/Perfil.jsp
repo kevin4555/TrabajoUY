@@ -24,9 +24,9 @@
 		<strong>Email:</strong> ${usuario.email}
 	</p>
 
-	<c:if test="${not empty oferta.imagen}">
+	<c:if test="${not empty usuario.imagen}">
 		<h2>Imagen de Perfil</h2>
-		<img src="data:image/jpeg;base64,${usuario.imagen}"
+		<img src="data:image/png;base64,${usuario.imagenBase64}"
 			alt="Imagen de Perfil" width="200" height="200">
 	</c:if>
 

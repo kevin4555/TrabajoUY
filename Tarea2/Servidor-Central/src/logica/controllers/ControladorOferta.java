@@ -13,6 +13,7 @@ import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -148,7 +149,7 @@ public class ControladorOferta implements IcontroladorOferta {
   
   @Override
   public DtOfertaLaboral obtenerDtOfertaLaboral(String nomOferta)
-      throws OfertaLaboralNoExisteException {
+      throws OfertaLaboralNoExisteException, IOException {
     ManejadorOfertas manejadorOfertas = ManejadorOfertas.getInstance();
     
     OfertaLaboral ofertaLaboral = manejadorOfertas.obtenerOfertaLaboral(nomOferta);
@@ -233,12 +234,12 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public List<DtOfertaLaboral> obtenerDtOfertasConfirmadas() {
+  public List<DtOfertaLaboral> obtenerDtOfertasConfirmadas() throws IOException {
     return ManejadorOfertas.getInstance().obtenerDtofertasConfirmadas();
   }
   
   @Override
-  public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) {
+  public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) throws IOException {
     return ManejadorOfertas.getInstance().obtenerDtofertasPorKeyword(keyword);
   }
   
@@ -259,7 +260,7 @@ public class ControladorOferta implements IcontroladorOferta {
   
   @Override
   public DtpaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta)
-      throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete {
+      throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete, IOException {
     OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
     if (oferta.estaCompradaPorPaquete()) {
       return oferta.obtenerDtpaquete();
@@ -278,7 +279,7 @@ public class ControladorOferta implements IcontroladorOferta {
   
   @Override
   public DtpaquetePublicacion obtenerDtpaquete(String nombrePaquete)
-      throws PaquetePublicacionNoExisteException {
+      throws PaquetePublicacionNoExisteException, IOException {
     PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
     return paquete.obtenerDtPaquete();
   }
@@ -297,7 +298,7 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public List<DtpaquetePublicacion> listarDtpaquetes() {
+  public List<DtpaquetePublicacion> listarDtpaquetes() throws IOException {
     return ManejadorPaquetes.getInstance().listarDtpaquetes();
   }
   

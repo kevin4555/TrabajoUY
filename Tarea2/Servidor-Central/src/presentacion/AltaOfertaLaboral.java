@@ -545,7 +545,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         }
         
       }
-    } catch (UsuarioNoExisteException e1) {
+    } catch (UsuarioNoExisteException | IOException e1) {
       // TODO Auto-generated catch block
       e1.printStackTrace();
     }

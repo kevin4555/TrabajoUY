@@ -95,7 +95,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core"%>
                         <div class="row g-0">
                           <div class="col-md-4">
                             <img
-                              src=""
+                              src="data:image/png;base64,${paquete.imagenBase64}"
                               class="img-fluid rounded-start"
                               alt="..."
                             />

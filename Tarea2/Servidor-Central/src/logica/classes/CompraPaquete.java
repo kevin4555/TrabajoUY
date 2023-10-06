@@ -1,5 +1,6 @@
 package logica.classes;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class CompraPaquete {
     return this.paquete.getNombre();
   }
   
-  public DtpaquetePublicacion obtenerDtpaquete() {
+  public DtpaquetePublicacion obtenerDtpaquete() throws IOException {
     return this.paquete.obtenerDtPaquete();
   }
   
@@ -69,7 +70,7 @@ public class CompraPaquete {
     }
   }
   
-  public DtCompraPaquete obtenerDtCompraPaquete() {
+  public DtCompraPaquete obtenerDtCompraPaquete() throws IOException {
     ArrayList<DtCantidadTipoPublicacionRestante> dtCantidadesRestantes = new ArrayList<DtCantidadTipoPublicacionRestante>();
     for (CantidadTipoPublicacionRestante cantidad : cantidadesRestantes) {
       dtCantidadesRestantes.add(cantidad.obtenerDtTipoCantidadRestante());

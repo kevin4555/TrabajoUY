@@ -12,6 +12,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
@@ -446,7 +447,11 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     } catch (OfertaLaboralNoExisteException evento1) {
       JOptionPane.showMessageDialog(this, "Debe seleccionar una oferta",
           "Consulta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-    }
+    } catch (IOException e) {
+    	JOptionPane.showMessageDialog(this, "Error con la imagen",
+    	          "Consulta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+		e.printStackTrace();
+	}
   }
   
   /**
