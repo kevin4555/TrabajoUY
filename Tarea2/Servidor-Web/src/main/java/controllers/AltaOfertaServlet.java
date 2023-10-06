@@ -31,11 +31,11 @@ import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 import jakarta.servlet.http.Part;
 import jakarta.servlet.annotation.MultipartConfig;
-import org.apache.commons.fileupload.FileItemFactory;
+/*import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItem;*/
 
 import model.EstadoSesion;
 import model.TipoUsuario;

@@ -28,7 +28,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label mb-3"><strong>¿No tienes cuenta?</strong></label>
-            <a class="btn btn-primary" href="<%= contextPath %>/altaUsuario">Registrarse</a>
+            <a class="btn btn-primary" href="<%= contextPath %>/AltaUsuario">Registrarse</a>
         </div>
     </form>
 </body>

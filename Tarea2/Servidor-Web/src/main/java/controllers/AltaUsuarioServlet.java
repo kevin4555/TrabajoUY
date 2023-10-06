@@ -11,6 +11,7 @@ import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +27,8 @@ import model.TipoUsuario;
 /**
  * Servlet implementation class AltaUsuario
  */
-@WebServlet("/altaUsuario")
+@MultipartConfig()
+@WebServlet("/AltaUsuario")
 public class AltaUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
