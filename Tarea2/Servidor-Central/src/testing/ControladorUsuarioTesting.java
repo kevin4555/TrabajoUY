@@ -24,10 +24,15 @@ import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.controllers.Fabrica;
+import logica.datatypes.DtCantidadTipoPublicacionRestante;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtcantidadTipoPublicacion;
+import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
+import logica.datatypes.Dtpostulante;
+import logica.datatypes.DttipoPublicacion;
 import logica.datatypes.Dtusuario;
 import logica.datatypes.EstadoOferta;
 import logica.handlers.ManejadorOfertas;
@@ -133,6 +138,7 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals("NombreTest", dtResultado.getNombre());
     Assert.assertEquals("ApellidoTest", dtResultado.getApellido());
     Assert.assertEquals("EmailTest".toLowerCase(), dtResultado.getEmail());
+    Assert.assertTrue(dtResultado.getOfertasColeccion().isEmpty());;
   }
   
   @Test
@@ -480,6 +486,11 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals(90000f, oferta.getRemuneracion());
     Assert.assertEquals("Montevideo", oferta.getDepartamento());
     Assert.assertEquals("Montevideo", oferta.getCiudad());
+    Assert.assertEquals("EcoTech", oferta.getEmpresa());
+    Assert.assertEquals(keywords.get(0), oferta.getKeywords().get(0));
+    Assert.assertEquals(null, oferta.getImagen());
+    
+    
     
   }
   
@@ -628,21 +639,32 @@ public class ControladorUsuarioTesting {
     controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
         fechaDate2, "Uruguaya", null, "1234");
     List<Dtusuario> listaRes = controladorUsuario.obtenerDtusuarios();
-    Dtusuario postulante = controladorUsuario.obtenerDtusuario("maro");
-    Dtusuario empresa = controladorUsuario.obtenerDtusuario("EcoTech");
+    Dtpostulante postulante = (Dtpostulante) controladorUsuario.obtenerDtusuario("maro");
+    Dtempresa empresa = (Dtempresa) controladorUsuario.obtenerDtusuario("EcoTech");
     for (Dtusuario usuario : listaRes) {
       if (usuario.getNickname() == empresa.getNickname()) {
-        Assert.assertEquals(usuario.getNickname(), empresa.getNickname());
-        Assert.assertEquals(usuario.getNombre(), empresa.getNombre());
-        Assert.assertEquals(usuario.getApellido(), empresa.getApellido());
-        Assert.assertEquals(usuario.getEmail(), empresa.getEmail());
-        Assert.assertEquals(usuario.getContrasenia(), empresa.getContrasenia());
+        Dtempresa dtempresa = (Dtempresa) usuario;
+        Assert.assertEquals(dtempresa.getNickname(), empresa.getNickname());
+        Assert.assertEquals(dtempresa.getNombre(), empresa.getNombre());
+        Assert.assertEquals(dtempresa.getApellido(), empresa.getApellido());
+        Assert.assertEquals(dtempresa.getEmail(), empresa.getEmail());
+        Assert.assertEquals(dtempresa.getContrasenia(), empresa.getContrasenia());
+        Assert.assertEquals(dtempresa.getDescripcion(), empresa.getDescripcion());
+        Assert.assertEquals(dtempresa.getSitioWeb(),empresa.getSitioWeb());
+        Assert.assertEquals(dtempresa.getOfertasColeccion().size(),empresa.getOfertasColeccion().size());
+        Assert.assertEquals(dtempresa.getOfertasLaborales().size(),empresa.getOfertasLaborales().size());
+        Assert.assertEquals(dtempresa.getImagen(),empresa.getImagen());
+        
       } else if (usuario.getNickname() == postulante.getNickname()) {
-        Assert.assertEquals(usuario.getNickname(), postulante.getNickname());
-        Assert.assertEquals(usuario.getNombre(), postulante.getNombre());
-        Assert.assertEquals(usuario.getApellido(), postulante.getApellido());
-        Assert.assertEquals(usuario.getEmail(), postulante.getEmail());
-        Assert.assertEquals(usuario.getContrasenia(), postulante.getContrasenia());
+        Dtpostulante dtpostulante = (Dtpostulante) usuario;
+        Assert.assertEquals(dtpostulante.getNickname(), postulante.getNickname());
+        Assert.assertEquals(dtpostulante.getNombre(), postulante.getNombre());
+        Assert.assertEquals(dtpostulante.getApellido(), postulante.getApellido());
+        Assert.assertEquals(dtpostulante.getEmail(), postulante.getEmail());
+        Assert.assertEquals(dtpostulante.getContrasenia(), postulante.getContrasenia());
+        Assert.assertEquals(dtpostulante.getFechaNacimiento(), postulante.getFechaNacimiento());
+        Assert.assertEquals(dtpostulante.getNacionalidad(), postulante.getNacionalidad());
+        Assert.assertEquals(dtpostulante.getOfertasColeccion().size(), postulante.getOfertasColeccion().size());
       }
     }
   }
@@ -683,6 +705,7 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals("Descripcion", paquete.getDescripcion());
     Assert.assertEquals(10, paquete.getPeriodoValidez());
     Assert.assertEquals(20f, paquete.getDescuento());
+    Assert.assertEquals(fechaDate1, paquete.getFechaAlta());
     
   }
   
@@ -785,6 +808,25 @@ public class ControladorUsuarioTesting {
         .listarPaquetesNoCompradosDeEmpresa("EcoTech");
     Collections.sort(listaRes);
     Assert.assertEquals(listaEsperada, listaRes);
+    
+    ArrayList<DtCompraPaquete> listaCompra = (ArrayList<DtCompraPaquete>) controladorUsuario
+        .obtenerDtCompraPaqueteDeEmpresa("EcoTech");
+    DtCompraPaquete dtcompra = listaCompra.get(0);
+    Assert.assertEquals(dtcompra.getPaquete().getNombre(), "Paquete");
+    Assert.assertEquals(dtcompra.getFechaCompra(), fechaDate2);
+    Assert.assertEquals(dtcompra.getPublicacionesRestantes().get(0).getCantidad(), 2);
+    LocalDate fechaVencimiento = LocalDate
+        .of(fechaDate2.getYear(), fechaDate2.getMonthValue(), fechaDate2.getDayOfMonth())
+        .plusDays(10);
+    Assert.assertEquals(dtcompra.getFechaVencimiento(), fechaVencimiento);
+    DtCantidadTipoPublicacionRestante dtCantidadRestante = dtcompra.getPublicacionesRestantes().get(0);
+    DttipoPublicacion dttipo = dtCantidadRestante.getTipoPublicacion();
+    Assert.assertEquals(dttipo.getCosto(), 4000f);
+    Assert.assertEquals(dttipo.getDescripcion(), "Obtén máxima visibilidad");
+    Assert.assertEquals(dttipo.getDuracionDia(), 30);
+    Assert.assertEquals(dttipo.getExposicion(), "1");
+    Assert.assertEquals(dttipo.getFechaAlta(), fechaDate2);
+    
     
   }
   
