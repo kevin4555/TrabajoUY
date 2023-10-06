@@ -32,21 +32,12 @@ import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 import jakarta.servlet.http.Part;
 import jakarta.servlet.annotation.MultipartConfig;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.FileItem;
+
 
 import model.EstadoSesion;
 import model.TipoUsuario;
 
 
-@MultipartConfig(
-		  fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
-		  maxFileSize = 1024 * 1024 * 10,      // 10 MB
-		  maxRequestSize = 1024 * 1024 * 100   // 100 MB
-		)
 /**
  * Servlet implementation class AltaOfertaServlet
  */
