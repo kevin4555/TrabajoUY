@@ -23,7 +23,7 @@
                             <div class="row g-0">
                                 <div class="col-md-3 justify-content-center align-items-center d-flex">
                                     <img
-                                        class="imgPaquete"
+                                        class="imgPaquete img img-fluid"
                                         src="data:image/png;base64,<%= paquete.getImagenBase64() %>"
                                         alt="Imagen Paquete"
                                     />
@@ -42,9 +42,6 @@
                                             $<span id="costo"><%= paquete.getCosto() %></span>
                                         </h5>
                                         <br>
-                                        <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            <%= paquete.getNombre() %>
-                                        </h5>
                                     </div>
                                     <div class="card-footer border-0 bg-white text-end">
                                         <% String contextPath = request.getContextPath(); %>
