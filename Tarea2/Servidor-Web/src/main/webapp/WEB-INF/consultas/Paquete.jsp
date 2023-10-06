@@ -85,12 +85,11 @@
                       	<% for (DtcantidadTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) { %>
 					        <tr>
 					            <%
-					                String tipoPublicacion = cantidadTipoPublicacion.getNombreTipoPublicacion();
-					                int cantidad = cantidadTipoPublicacion.getCantidad();
-					                String tipoPublicacionUrl = "/consultaTipoPostulacion?tipoPublicacion=" + tipoPublicacion;
+					                String tipoPublicacionUrl = "/consultaTipoPostulacion?tipoPublicacion=" 
+					            								+ cantidadTipoPublicacion.getNombreTipoPublicacion();
 					            %>
-					            <td><a href="<%= tipoPublicacionUrl %>"><%= tipoPublicacion %></a></td>
-					            <td><%= cantidad %></td>
+					            <td><a href="<%= tipoPublicacionUrl %>"><%= cantidadTipoPublicacion.getNombreTipoPublicacion() %></a></td>
+					            <td><%= cantidadTipoPublicacion.getCantidad() %></td>
 					        </tr>
 					    <% } %>
                       </tbody>
