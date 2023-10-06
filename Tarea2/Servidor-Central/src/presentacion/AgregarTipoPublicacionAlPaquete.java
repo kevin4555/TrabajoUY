@@ -1,6 +1,8 @@
 package presentacion;
 
 import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.TipoDePublicacionYaFueIngresado;
 import excepciones.TipoPublicacionNoExisteException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -76,7 +78,12 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evento) {
-        agregarTipoPublicacionAlPaquete();
+        try {
+          agregarTipoPublicacionAlPaquete();
+        } catch (PaquetePublicacionYaFueComprado | TipoDePublicacionYaFueIngresado e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
         
       }
     });
@@ -99,10 +106,9 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0 };
     gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblPanelDatos);
-    
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
     gbcLblSeleccion.insets = new Insets(0, 0, 5, 5);
@@ -126,7 +132,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     gbcComboBoxSeleccionUsuario.gridx = 1;
     gbcComboBoxSeleccionUsuario.gridy = 1;
     panelDatos.add(this.comboBoxSeleccionPaquete, gbcComboBoxSeleccionUsuario);
-    
     
     GridBagConstraints gbcLblOfertas = new GridBagConstraints();
     gbcLblOfertas.anchor = GridBagConstraints.EAST;
@@ -167,7 +172,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     panelDatos.add(this.textFieldExposicion, gbcTextFieldNombreOferta);
     this.textFieldExposicion.setColumns(10);
     
-    
     GridBagConstraints gbcLblRemuneracion = new GridBagConstraints();
     gbcLblRemuneracion.anchor = GridBagConstraints.EAST;
     gbcLblRemuneracion.insets = new Insets(0, 0, 5, 5);
@@ -185,7 +189,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     gbcTextFieldRemuneracion.gridy = 14;
     panelDatos.add(this.textFieldCosto, gbcTextFieldRemuneracion);
     this.textFieldCosto.setColumns(10);
-    
     
     GridBagConstraints gbcLblCiudad = new GridBagConstraints();
     gbcLblCiudad.anchor = GridBagConstraints.EAST;
@@ -205,7 +208,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     panelDatos.add(this.textFieldDuracion, gbcTextFieldCiudad);
     this.textFieldDuracion.setColumns(10);
     
-    
     GridBagConstraints gbcLblFechaAlta = new GridBagConstraints();
     gbcLblFechaAlta.anchor = GridBagConstraints.EAST;
     gbcLblFechaAlta.insets = new Insets(0, 0, 5, 5);
@@ -223,7 +225,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     gbcTextFieldFechaAlta.gridy = 16;
     panelDatos.add(this.textFieldFechaAlta, gbcTextFieldFechaAlta);
     this.textFieldFechaAlta.setColumns(10);
-    
     
     GridBagConstraints gbcLblDescripcionEmpresa = new GridBagConstraints();
     gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
@@ -250,7 +251,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     textAreaDescripcion.setWrapStyleWord(true);
     textAreaDescripcion.setEditable(false);
     scrollPane.setViewportView(textAreaDescripcion);
-    
     
     GridBagConstraints gbcLblCantidadInlcuidaa = new GridBagConstraints();
     gbcLblCantidadInlcuidaa.anchor = GridBagConstraints.EAST;
@@ -291,10 +291,11 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   }
   
   /**
-   * Metodo cargar tipo de publicacion no incluidas en paquete .
+   * Metodo cargar tipo de publicacion no incluidas
+   * en paquete .
    */
   
-  @SuppressWarnings({ })
+  @SuppressWarnings({})
   public void cargarTipoPublicacionNoIncluidasEnPaquete(ActionEvent evento) {
     
     try {
@@ -368,9 +369,13 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   
   /**
    * Metodo agregar tipo de publicacion al paquete .
+   * 
+   * @throws TipoDePublicacionYaFueIngresado
+   * @throws PaquetePublicacionYaFueComprado
    */
   
-  public void agregarTipoPublicacionAlPaquete() {
+  public void agregarTipoPublicacionAlPaquete()
+      throws PaquetePublicacionYaFueComprado, TipoDePublicacionYaFueIngresado {
     
     try {
       if (comboBoxSeleccionTiposPublicaciones.getSelectedIndex() == -1

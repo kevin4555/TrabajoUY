@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtempresa;
@@ -17,6 +18,7 @@ import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
 import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorUsuario;
+import model.EstadoSesion;
 
 /**
  * Servlet implementation class PerfilSerlvlet

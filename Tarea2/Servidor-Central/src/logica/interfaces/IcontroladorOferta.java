@@ -7,6 +7,8 @@ import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.TipoDePublicacionYaFueIngresado;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
@@ -72,7 +74,8 @@ public interface IcontroladorOferta {
   
   public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion,
       String nomTipoPaquete)
-      throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException;
+      throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException,
+      PaquetePublicacionYaFueComprado, TipoDePublicacionYaFueIngresado;
   
   public PaquetePublicacion obtenerPaquetePublicacion(String string)
       throws PaquetePublicacionNoExisteException;
@@ -111,7 +114,7 @@ public interface IcontroladorOferta {
   List<String> listarPaquetesNoComprados();
   
   List<DtpaquetePublicacion> listarDtpaquetes();
-
+  
   Boolean estaCompradoPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException;
   
 }

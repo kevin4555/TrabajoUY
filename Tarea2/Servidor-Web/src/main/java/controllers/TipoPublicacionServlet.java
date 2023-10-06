@@ -15,14 +15,14 @@ import logica.interfaces.IcontroladorOferta;
 /**
  * Servlet implementation class TipoPostulacionServlet
  */
-@WebServlet("/tipoPostulacion")
-public class TipoPostulacionServlet extends HttpServlet {
+@WebServlet("/tipoPublicacion")
+public class TipoPublicacionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TipoPostulacionServlet() {
+    public TipoPublicacionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -7,6 +7,8 @@ import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.TipoDePublicacionYaFueIngresado;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
@@ -59,16 +61,15 @@ public class ControladorOferta implements IcontroladorOferta {
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
     Fabrica fabrica = Fabrica.getInstance();
     IcontroladorUsuario contUsuario = fabrica.obtenerControladorUsuario();
+    Empresa empresa = contUsuario.obtenerEmpresa(nicknameEmpresa);
     
     OfertaLaboral ofertaLaboral = new OfertaLaboral(nombre, descripcion, horarioInicial,
         horarioFinal, remuneracion, ciudad, departamento, fechaAlta,
-        manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion), imagen);
+        manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion), imagen, empresa);
     manejadorOfertas.agregarOferta(ofertaLaboral);
     for (int i = 0; i < listakeywords.size(); i++) {
       ofertaLaboral.agregarKeyword(manejadorSettings.obtenerKeyword(listakeywords.get(i)));
     }
-    
-    Empresa empresa = contUsuario.obtenerEmpresa(nicknameEmpresa);
     empresa.agregarOferta(ofertaLaboral);
     if (nombrePaquete != null) {
       empresa.comprarOfertaPorPaquete(nombrePaquete, nomTipoPublicacion, ofertaLaboral);
@@ -88,7 +89,8 @@ public class ControladorOferta implements IcontroladorOferta {
   @Override
   public void agregarTipoPublicacionAlPaquete(int cantIncluida, String nomTipoPublicacion,
       String nomTipoPaquete)
-      throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException {
+      throws TipoPublicacionNoExisteException, PaquetePublicacionNoExisteException,
+      PaquetePublicacionYaFueComprado, TipoDePublicacionYaFueIngresado {
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
     ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
     
@@ -96,7 +98,7 @@ public class ControladorOferta implements IcontroladorOferta {
     tipoPublicacion = manejadorSettings.obtenerTipoPublicacion(nomTipoPublicacion);
     PaquetePublicacion paquetePublicacion = manejadorPaquetes.obtenerPaquete(nomTipoPaquete);
     
-    paquetePublicacion.crearCantidadTipoPublicacion(cantIncluida, tipoPublicacion);
+    paquetePublicacion.agregarTipoPublicacion(tipoPublicacion, cantIncluida);
   }
   
   @Override
@@ -177,8 +179,7 @@ public class ControladorOferta implements IcontroladorOferta {
       TipoPublicacionNoExisteException {
     ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-    List<CantidadTotalTipoPublicacion> arrayCantidad = 
-        new ArrayList<CantidadTotalTipoPublicacion>();
+    List<CantidadTotalTipoPublicacion> arrayCantidad = new ArrayList<CantidadTotalTipoPublicacion>();
     
     if (cantidadTipoPublicacion != null) {
       for (DtcantidadTipoPublicacion dtCantidad : cantidadTipoPublicacion) {
@@ -301,7 +302,8 @@ public class ControladorOferta implements IcontroladorOferta {
   }
   
   @Override
-  public Boolean estaCompradoPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException {
+  public Boolean estaCompradoPaquete(String nombrePaquete)
+      throws PaquetePublicacionNoExisteException {
     PaquetePublicacion paquete = ManejadorPaquetes.getInstance().obtenerPaquete(nombrePaquete);
     return paquete.getEstaComprado();
   }

@@ -49,12 +49,14 @@ public class RegistrarPaquete extends JInternalFrame {
   private JTextPane textAreaDescripcion;
   private JButton btnCancelar;
   private JButton btnConfirmar;
+  private JButton quitarImageButton;
   private JPanel panelDatos;
   private JLabel lblNewLabel2;
   private JButton selectImageButton;
   private BufferedImage fotoPaquete = null;
   private GridBagConstraints gbcTextField;
   private JTextPane textPane;
+  
   
   /**
    * Constructor .
@@ -223,6 +225,21 @@ public class RegistrarPaquete extends JInternalFrame {
     gbcTextPane.gridy = 5;
     panelDatos.add(textPane, gbcTextPane);
     textPane.setEditable(false);
+    
+    quitarImageButton = new JButton("Borrar Imagen");
+    GridBagConstraints gbcBtnButtonBorrar = new GridBagConstraints();
+    gbcBtnButtonBorrar.anchor = GridBagConstraints.WEST;
+    gbcBtnButtonBorrar.insets = new Insets(0, 0, 5, 0);
+    gbcBtnButtonBorrar.gridx = 0;
+    gbcBtnButtonBorrar.gridy = 5;
+    panelDatos.add(quitarImageButton, gbcBtnButtonBorrar);
+    quitarImageButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evento) {
+        fotoPaquete = null;
+        textPane.setText("");
+      }
+    });
     
     GridBagConstraints gbcLblFechaAlta = new GridBagConstraints();
     gbcLblFechaAlta.insets = new Insets(0, 0, 5, 5);
