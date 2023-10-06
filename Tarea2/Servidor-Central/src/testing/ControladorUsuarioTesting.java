@@ -703,6 +703,7 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals("Descripcion", paquete.getDescripcion());
     Assert.assertEquals(10, paquete.getPeriodoValidez());
     Assert.assertEquals(20f, paquete.getDescuento());
+    Assert.assertEquals(fechaDate1, paquete.getFechaAlta());
     
   }
   
