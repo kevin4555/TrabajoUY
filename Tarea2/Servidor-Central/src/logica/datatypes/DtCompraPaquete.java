@@ -3,11 +3,20 @@ package logica.datatypes;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Clase DtCompraPaquete.
+ */
+
 public class DtCompraPaquete {
   private LocalDate fechaCompra;
   private LocalDate fechaVencimiento;
   private List<DtCantidadTipoPublicacionRestante> publicacionesRestantes;
   private DtpaquetePublicacion paquete;
+  
+  /**
+   * Constructor.
+   */
+  
   public DtCompraPaquete(LocalDate fechaCompra, LocalDate fechaVencimiento,
       List<DtCantidadTipoPublicacionRestante> publicacionesRestantes,
       DtpaquetePublicacion paquete) {
@@ -16,15 +25,19 @@ public class DtCompraPaquete {
     this.publicacionesRestantes = publicacionesRestantes;
     this.paquete = paquete;
   }
+  
   public LocalDate getFechaCompra() {
     return fechaCompra;
   }
+  
   public LocalDate getFechaVencimiento() {
     return fechaVencimiento;
   }
+  
   public List<DtCantidadTipoPublicacionRestante> getPublicacionesRestantes() {
     return publicacionesRestantes;
   }
+  
   public DtpaquetePublicacion getPaquete() {
     return paquete;
   }

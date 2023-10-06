@@ -1,8 +1,7 @@
 package excepciones;
 
 /**
- * Excepción
- * PaquetePublicacionYaFueCompradoException.
+ * Excepción PaquetePublicacionYaFueComprado.
  */
 
 public class PaquetePublicacionYaFueComprado extends Exception {

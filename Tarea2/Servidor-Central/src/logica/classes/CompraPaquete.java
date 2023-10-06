@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtpaquetePublicacion;
@@ -70,8 +69,13 @@ public class CompraPaquete {
     }
   }
   
+  /**
+   * Metodo obtenerDtCompraPaquete.
+   */
+  
   public DtCompraPaquete obtenerDtCompraPaquete() throws IOException {
-    ArrayList<DtCantidadTipoPublicacionRestante> dtCantidadesRestantes = new ArrayList<DtCantidadTipoPublicacionRestante>();
+    ArrayList<DtCantidadTipoPublicacionRestante> dtCantidadesRestantes = 
+        new ArrayList<DtCantidadTipoPublicacionRestante>();
     for (CantidadTipoPublicacionRestante cantidad : cantidadesRestantes) {
       dtCantidadesRestantes.add(cantidad.obtenerDtTipoCantidadRestante());
     }

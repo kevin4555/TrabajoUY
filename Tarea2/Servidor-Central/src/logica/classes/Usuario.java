@@ -72,7 +72,7 @@ public abstract class Usuario {
     this.contrasenia = contrasenia;
   }
   
-  public abstract List<String> listarOfertasUsuario();
+  public abstract List<String> listarNombreOfertasUsuario();
   
   public abstract  Dtusuario obtenerDtusuario() throws IOException;
 }

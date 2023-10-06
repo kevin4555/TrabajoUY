@@ -1,23 +1,16 @@
 package testing;
 
-
-
 import static org.junit.Assert.assertEquals;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import org.junit.Before;
-import org.junit.Test;
 
 import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
-import junit.framework.Assert;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import logica.classes.Empresa;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
@@ -25,6 +18,12 @@ import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.EstadoOferta;
 import logica.handlers.ManejadorOfertas;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * Clase ManejadorOfertasTest.
+ */
 
 public class ManejadorOfertasTest {
   
@@ -32,6 +31,10 @@ public class ManejadorOfertasTest {
   private String fecha = "1988-11-10";
   private Empresa empresa1;
   private ManejadorOfertas manejadorOfertas;
+  
+  /**
+   * Metodo setUp.
+   */
   
   @Before
   public void setUp() {
@@ -43,14 +46,15 @@ public class ManejadorOfertasTest {
   }
   
   @Test
-  public void testAgregarYObtenerOferta()
+  public void testAgregaryobtenerOferta()
       throws OfertaLaboralYaExisteException, OfertaLaboralNoExisteException,
       TipoPublicacionYaExisteException, TipoPublicacionNoExisteException {
     manejadorOfertas = ManejadorOfertas.getInstance();
     TipoPublicacion tipoCreadoPublicacion = new TipoPublicacion("tipoTesting",
         "Uso para testing", "baja", 50, 500f, fechaDate);
     OfertaLaboral oferta = new OfertaLaboral("nombre", "Descipcion para testing", "09:00",
-        "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion, null, empresa1);
+        "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion, null,
+        empresa1);
     manejadorOfertas.agregarOferta(oferta);
     OfertaLaboral obtenida = manejadorOfertas.obtenerOfertaLaboral("nombre");
     assertEquals(oferta, obtenida);
@@ -80,12 +84,12 @@ public class ManejadorOfertasTest {
     try {
       manejadorOfertas.obtenerOfertaLaboral("OfertaNoExistente");
     } catch (OfertaLaboralNoExisteException e) {
-    	assertEquals("No existe la oferta solicitada", e.getMessage());
+      assertEquals("No existe la oferta solicitada", e.getMessage());
     }
   }
   
   @Test
-  public void testObtenerDTOfertaInexistente() throws DtOfertaNoExisteException, IOException {
+  public void testObtenerDtOfertaInexistente() throws DtOfertaNoExisteException, IOException {
     manejadorOfertas = ManejadorOfertas.getInstance();
     
     try {
@@ -96,13 +100,14 @@ public class ManejadorOfertasTest {
   }
   
   @Test
-  public void testObtenerDTYCompararlo()
-      throws OfertaLaboralYaExisteException, DtOfertaNoExisteException {
+  public void testObtenerDtycompararlo()
+      throws OfertaLaboralYaExisteException, DtOfertaNoExisteException, IOException {
     manejadorOfertas = ManejadorOfertas.getInstance();
-    ArrayList<Dtpostulacion> arrayDT = new ArrayList<Dtpostulacion>();
+    ArrayList<Dtpostulacion> arrayDt = new ArrayList<Dtpostulacion>();
     DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral("nombreTesting",
         "descripcionTesting", "ciudadTesting", "departamentoTesting", "09:00", "15:00", 100f,
-        fechaDate, arrayDT, fechaDate, EstadoOferta.CONFIRMADA, null, null, null, empresa1.getNickname());
+        fechaDate, arrayDt, fechaDate, EstadoOferta.CONFIRMADA, null, null, null, false,
+        "tipoTesting", empresa1.getNickname());
     TipoPublicacion tipoCreadoPublicacion = new TipoPublicacion("tipoTesting",
         "Uso para testing", "baja", 50, 500f, fechaDate);
     OfertaLaboral ofertaLaboral = new OfertaLaboral("nombreTesting", "descripcionTesting",
@@ -113,23 +118,19 @@ public class ManejadorOfertasTest {
         .obtenerDtofertaLaboral("nombreTesting");
     assertEquals(dtOfertaLaboral.getNombre(), resultaDtOfertaLaboral.getNombre());
     assertEquals(dtOfertaLaboral.getCiudad(), resultaDtOfertaLaboral.getCiudad());
-    assertEquals(dtOfertaLaboral.getDepartamento(),
-        resultaDtOfertaLaboral.getDepartamento());
+    assertEquals(dtOfertaLaboral.getDepartamento(), resultaDtOfertaLaboral.getDepartamento());
     assertEquals(dtOfertaLaboral.getHorarioInicio(),
         resultaDtOfertaLaboral.getHorarioInicio());
-    assertEquals(dtOfertaLaboral.getHorarioFinal(),
-        resultaDtOfertaLaboral.getHorarioFinal());
-    assertEquals(dtOfertaLaboral.getRemuneracion(),
-        resultaDtOfertaLaboral.getRemuneracion());
+    assertEquals(dtOfertaLaboral.getHorarioFinal(), resultaDtOfertaLaboral.getHorarioFinal());
+    assertEquals(dtOfertaLaboral.getRemuneracion(), resultaDtOfertaLaboral.getRemuneracion());
     assertEquals(dtOfertaLaboral.getFechaAlta(), resultaDtOfertaLaboral.getFechaAlta());
     assertEquals(dtOfertaLaboral.getPostulaciones(),
         resultaDtOfertaLaboral.getPostulaciones());
-    assertEquals(dtOfertaLaboral.getDescripcion(),
-        resultaDtOfertaLaboral.getDescripcion());
+    assertEquals(dtOfertaLaboral.getDescripcion(), resultaDtOfertaLaboral.getDescripcion());
   }
   
   @Test
-  public void testObtenerListaOfertasLaboralesYComprar()
+  public void testObtenerListaOfertasLaboralesycomprar()
       throws OfertaLaboralYaExisteException {
     manejadorOfertas = ManejadorOfertas.getInstance();
     TipoPublicacion tipoPublicacion = new TipoPublicacion("tipoTesting", "Uso para testing",
@@ -140,7 +141,8 @@ public class ManejadorOfertasTest {
     TipoPublicacion tipoCreadoPublicacion = new TipoPublicacion("tipoTesting",
         "Uso para testing", "baja", 50, 500f, fechaDate);
     OfertaLaboral oferta = new OfertaLaboral("nombre", "Descipcion para testing", "09:00",
-        "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion, null, empresa1);
+        "15:00", 10F, "Montevideo", "Montevideo", fechaDate, tipoCreadoPublicacion, null,
+        empresa1);
     manejadorOfertas.agregarOferta(ofertaLaboral);
     manejadorOfertas.agregarOferta(oferta);
     ArrayList<String> resultado = (ArrayList<String>) manejadorOfertas

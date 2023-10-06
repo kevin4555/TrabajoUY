@@ -62,7 +62,7 @@ public class Postulante extends Usuario {
   }
   
   @Override
-  public List<String> listarOfertasUsuario() {
+  public List<String> listarNombreOfertasUsuario() {
     List<String> listaOfertas = new ArrayList<String>();
     for (Postulacion postulacion : postulaciones) {
       listaOfertas.add(postulacion.getNombreOfertaLaboral());
@@ -90,7 +90,6 @@ public class Postulante extends Usuario {
   }
   /**
    * Obtener DTOfertaLaboral.
- * @throws IOException 
    */
   
   public List<DtOfertaLaboral> obtenerDtofertas() throws IOException {

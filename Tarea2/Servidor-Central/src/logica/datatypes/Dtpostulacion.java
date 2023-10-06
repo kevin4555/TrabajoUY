@@ -16,16 +16,12 @@ public class Dtpostulacion {
   
   private String cvReducido;
   
-  public Dtpostulacion() {
-    
-  }
-  
   /**
    * Contructor.
    */
   
-  public Dtpostulacion(String postulante, String descripMotivacion, 
-      LocalDate fechaPostulacion, String cvReducido) {
+  public Dtpostulacion(String postulante, String descripMotivacion, LocalDate fechaPostulacion,
+      String cvReducido) {
     this.nicknamePostulante = postulante;
     this.descripMotivacion = descripMotivacion;
     this.fechaPostulacion = fechaPostulacion;

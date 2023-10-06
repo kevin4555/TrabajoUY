@@ -369,9 +369,6 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   
   /**
    * Metodo agregar tipo de publicacion al paquete .
-   * 
-   * @throws TipoDePublicacionYaFueIngresado
-   * @throws PaquetePublicacionYaFueComprado
    */
   
   public void agregarTipoPublicacionAlPaquete()

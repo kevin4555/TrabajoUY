@@ -3,10 +3,8 @@ package logica.datatypes;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 
 /**
@@ -25,22 +23,21 @@ public class Dtusuario {
   
   /**
    * Contructor.
- * @throws IOException 
    */
   
-  public Dtusuario(String nickname, String nombre, String apellido, 
-      String email, BufferedImage imagen,
-      String contrasenia, List<DtOfertaLaboral> ofertasColeccion) throws IOException {
+  public Dtusuario(String nickname, String nombre, String apellido, String email,
+      BufferedImage imagen, String contrasenia, List<DtOfertaLaboral> ofertasColeccion)
+      throws IOException {
     this.nickname = nickname;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
     this.imagen = imagen;
     this.imagenBase64 = null;
-    if(imagen != null) {
-    	ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	    ImageIO.write(this.imagen, "jpg", baos);
-    	this.imagenBase64 = Base64.getEncoder().encodeToString(baos.toByteArray());
+    if (imagen != null) {
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      ImageIO.write(this.imagen, "jpg", baos);
+      this.imagenBase64 = Base64.getEncoder().encodeToString(baos.toByteArray());
     }
     this.contrasenia = contrasenia;
     this.ofertasColeccion = ofertasColeccion;
@@ -73,9 +70,9 @@ public class Dtusuario {
   public String getNickname() {
     return nickname;
   }
-
-public String getImagenBase64() {
-	return imagenBase64;
-}
+  
+  public String getImagenBase64() {
+    return imagenBase64;
+  }
   
 }

@@ -13,13 +13,11 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioNoExistePostulacion;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import junit.framework.Assert;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
@@ -41,6 +39,7 @@ import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -80,12 +79,12 @@ public class ControladorUsuarioTesting {
     
     postulante1 = new Postulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest",
         fechaDate1, "NacionalidadTest", null, "1234");
-    new Postulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "EmailTest2",
-        fechaDate2, "NacionalidadTest2", null, "1234");
+    new Postulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "EmailTest2", fechaDate2,
+        "NacionalidadTest2", null, "1234");
     empresa1 = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1",
         "descripcion1", "sitioWeb1", null, "1234");
-    new Empresa("nicknameEmpresa2", "nombre2", "apellido2", "email2",
-        "descripcion2", "sitioWeb2", null, "1234");
+    new Empresa("nicknameEmpresa2", "nombre2", "apellido2", "email2", "descripcion2",
+        "sitioWeb2", null, "1234");
     
   }
   
@@ -138,7 +137,8 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals("NombreTest", dtResultado.getNombre());
     Assert.assertEquals("ApellidoTest", dtResultado.getApellido());
     Assert.assertEquals("EmailTest".toLowerCase(), dtResultado.getEmail());
-    Assert.assertTrue(dtResultado.getOfertasColeccion().isEmpty());;
+    Assert.assertTrue(dtResultado.getOfertasColeccion().isEmpty());
+    ;
   }
   
   @Test
@@ -253,15 +253,15 @@ public class ControladorUsuarioTesting {
       TipoPublicacionYaExisteException, KeywordNoExisteException, KeywordYaExisteException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles."
-        + " Nuestro enfoque se centra en desarrollar y comercializar productos y "
-        + "servicios que aborden los desafíos ambientales más apremiantes de nuestro"
-        + " tiempo. Desde sistemas de energía renovable y dispositivos de "
-        + "monitorización ambiental hasta soluciones de gestión de residuos "
-        + "inteligentes, nuestra misión es proporcionar herramientas que "
-        + "permitan a las empresas y comunidades adoptar prácticas más "
-        + "ecológicas sin comprometer la eficiencia. Creemos en la convergencia"
-        + " armoniosa entre la tecnología la naturaleza, y trabajamos "
-        + "incansablemente para impulsar un futuro más limpio y sostenible.",
+            + " Nuestro enfoque se centra en desarrollar y comercializar productos y "
+            + "servicios que aborden los desafíos ambientales más apremiantes de nuestro"
+            + " tiempo. Desde sistemas de energía renovable y dispositivos de "
+            + "monitorización ambiental hasta soluciones de gestión de residuos "
+            + "inteligentes, nuestra misión es proporcionar herramientas que "
+            + "permitan a las empresas y comunidades adoptar prácticas más "
+            + "ecológicas sin comprometer la eficiencia. Creemos en la convergencia"
+            + " armoniosa entre la tecnología la naturaleza, y trabajamos "
+            + "incansablemente para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
@@ -281,16 +281,16 @@ public class ControladorUsuarioTesting {
       UsuarioEmailRepetidoException, UsuarioNoExisteException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra en"
-        + " desarrollar y comercializar productos y servicios que"
-        + " aborden los desafíos ambientales más apremiantes de nuestro"
-        + " tiempo. Desde sistemas de energía renovable y dispositivos"
-        + " de monitorización ambiental hasta soluciones de gestión de "
-        + "residuos inteligentes, nuestra misión es proporcionar herramientas"
-        + " que permitan a las empresas y comunidades adoptar prácticas más "
-        + "ecológicas sin comprometer la eficiencia. Creemos en la convergencia "
-        + "armoniosa entre la tecnología la naturaleza, y trabajamos "
-        + "incansablemente para impulsar un futuro más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra en"
+            + " desarrollar y comercializar productos y servicios que"
+            + " aborden los desafíos ambientales más apremiantes de nuestro"
+            + " tiempo. Desde sistemas de energía renovable y dispositivos"
+            + " de monitorización ambiental hasta soluciones de gestión de "
+            + "residuos inteligentes, nuestra misión es proporcionar herramientas"
+            + " que permitan a las empresas y comunidades adoptar prácticas más "
+            + "ecológicas sin comprometer la eficiencia. Creemos en la convergencia "
+            + "armoniosa entre la tecnología la naturaleza, y trabajamos "
+            + "incansablemente para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     List<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
     List<String> esperado = new ArrayList<String>();
@@ -305,17 +305,17 @@ public class ControladorUsuarioTesting {
       UsuarioYaExistePostulacion {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones"
-        + " tecnológicas sostenibles. Nuestro enfoque se centra"
-        + " en desarrollar y comercializar productos y servicios"
-        + " que aborden los desafíos ambientales más apremiantes"
-        + " de nuestro tiempo. Desde sistemas de energía renovable"
-        + " y dispositivos de monitorización ambiental hasta soluciones"
-        + " de gestión de residuos inteligentes, nuestra misión es"
-        + " proporcionar herramientas que permitan a las empresas y"
-        + " comunidades adoptar prácticas más ecológicas sin comprometer"
-        + " la eficiencia. Creemos en la convergencia armoniosa entre la"
-        + " tecnología la naturaleza, y trabajamos incansablemente para"
-        + " impulsar un futuro más limpio y sostenible.",
+            + " tecnológicas sostenibles. Nuestro enfoque se centra"
+            + " en desarrollar y comercializar productos y servicios"
+            + " que aborden los desafíos ambientales más apremiantes"
+            + " de nuestro tiempo. Desde sistemas de energía renovable"
+            + " y dispositivos de monitorización ambiental hasta soluciones"
+            + " de gestión de residuos inteligentes, nuestra misión es"
+            + " proporcionar herramientas que permitan a las empresas y"
+            + " comunidades adoptar prácticas más ecológicas sin comprometer"
+            + " la eficiencia. Creemos en la convergencia armoniosa entre la"
+            + " tecnología la naturaleza, y trabajamos incansablemente para"
+            + " impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
@@ -324,16 +324,16 @@ public class ControladorUsuarioTesting {
         4000f, fechaDate2);
     controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea"
-        + " experiencias de usuario excepcionales.",
+            + " experiencias de usuario excepcionales.",
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
     controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
         fechaDate2, "Uruguaya", null, "1234");
     controladorUsuario.registrarPostulacion(
         "Ingeniero en Sistemas, experiencia en desarrollo web y"
-        + " aplicaciones móviles. Conocimientos en JavaScript y React.",
+            + " aplicaciones móviles. Conocimientos en JavaScript y React.",
         "Me entusiasma la posibilidad de trabajar en proyectos "
-        + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
+            + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend");
     List<String> resultado = controladorUsuario.listaOfertasUsuario("maro");
     List<String> esperado = new ArrayList<String>();
@@ -364,17 +364,17 @@ public class ControladorUsuarioTesting {
       UsuarioEmailRepetidoException, UsuarioNoExisteException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra en "
-        + "desarrollar y comercializar productos y servicios que "
-        + "aborden los desafíos ambientales más apremiantes de "
-        + "nuestro tiempo. Desde sistemas de energía renovable y "
-        + "dispositivos de monitorización ambiental hasta "
-        + "soluciones de gestión de residuos inteligentes, "
-        + "nuestra misión es proporcionar herramientas que permitan"
-        + " a las empresas y comunidades adoptar prácticas más ecológicas"
-        + " sin comprometer la eficiencia. Creemos en la convergencia"
-        + " armoniosa entre la tecnología la naturaleza, y trabajamos"
-        + " incansablemente para impulsar un futuro más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra en "
+            + "desarrollar y comercializar productos y servicios que "
+            + "aborden los desafíos ambientales más apremiantes de "
+            + "nuestro tiempo. Desde sistemas de energía renovable y "
+            + "dispositivos de monitorización ambiental hasta "
+            + "soluciones de gestión de residuos inteligentes, "
+            + "nuestra misión es proporcionar herramientas que permitan"
+            + " a las empresas y comunidades adoptar prácticas más ecológicas"
+            + " sin comprometer la eficiencia. Creemos en la convergencia"
+            + " armoniosa entre la tecnología la naturaleza, y trabajamos"
+            + " incansablemente para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorUsuario.editarEmpresa("EcoTech", "nombreNuevo", "apellidoNuevo",
         "sitioWebNuevo", "descripcionNueva", null, "contrasenia");
@@ -396,18 +396,18 @@ public class ControladorUsuarioTesting {
       OfertaLaboralNoExisteException, UsuarioNoExistePostulacion, UsuarioYaExistePostulacion {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra "
-        + "en desarrollar y comercializar productos y servicios "
-        + "que aborden los desafíos ambientales más apremiantes "
-        + "de nuestro tiempo. Desde sistemas de energía renovable"
-        + " y dispositivos de monitorización ambiental hasta "
-        + "soluciones de gestión de residuos inteligentes, "
-        + "nuestra misión es proporcionar herramientas que permitan"
-        + " a las empresas y comunidades adoptar prácticas más "
-        + "ecológicas sin comprometer la eficiencia. Creemos en la"
-        + " convergencia armoniosa entre la tecnología la naturaleza,"
-        + " y trabajamos incansablemente para impulsar un futuro más "
-        + "limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra "
+            + "en desarrollar y comercializar productos y servicios "
+            + "que aborden los desafíos ambientales más apremiantes "
+            + "de nuestro tiempo. Desde sistemas de energía renovable"
+            + " y dispositivos de monitorización ambiental hasta "
+            + "soluciones de gestión de residuos inteligentes, "
+            + "nuestra misión es proporcionar herramientas que permitan"
+            + " a las empresas y comunidades adoptar prácticas más "
+            + "ecológicas sin comprometer la eficiencia. Creemos en la"
+            + " convergencia armoniosa entre la tecnología la naturaleza,"
+            + " y trabajamos incansablemente para impulsar un futuro más "
+            + "limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
@@ -416,28 +416,28 @@ public class ControladorUsuarioTesting {
         4000f, fechaDate2);
     controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
-        + "experiencias de usuario excepcionales.",
+            + "experiencias de usuario excepcionales.",
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
     controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
         fechaDate2, "Uruguaya", null, "1234");
     controladorUsuario.registrarPostulacion(
         "Ingeniero en Sistemas, experiencia en desarrollo web y "
-        + "aplicaciones móviles. Conocimientos en JavaScript y React.",
+            + "aplicaciones móviles. Conocimientos en JavaScript y React.",
         "Me entusiasma la posibilidad de trabajar en proyectos "
-        + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
+            + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend");
     Dtpostulacion postulacionResultado = controladorUsuario.obtenerDtpostulacion("maro",
         "Desarrollador Frontend");
     Assert.assertEquals("maro", postulacionResultado.getnicknamePostulante());
     Assert.assertEquals(
         "Me entusiasma la posibilidad de trabajar en proyectos "
-        + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
+            + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         postulacionResultado.getDescripMotivacion());
     Assert.assertEquals(fechaDate1, postulacionResultado.getFechaPostulacion());
     Assert.assertEquals(
         "Ingeniero en Sistemas, experiencia en desarrollo web y "
-        + "aplicaciones móviles. Conocimientos en JavaScript y React.",
+            + "aplicaciones móviles. Conocimientos en JavaScript y React.",
         postulacionResultado.getCvReducido());
     
   }
@@ -446,21 +446,22 @@ public class ControladorUsuarioTesting {
   public void obtenerDtOfertasIngresadasTest()
       throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
       TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException, IOException {
+      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
+      IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra "
-        + "en desarrollar y comercializar productos y servicios "
-        + "que aborden los desafíos ambientales más apremiantes "
-        + "de nuestro tiempo. Desde sistemas de energía renovable "
-        + "y dispositivos de monitorización ambiental hasta "
-        + "soluciones de gestión de residuos inteligentes, "
-        + "nuestra misión es proporcionar herramientas que permitan"
-        + " a las empresas y comunidades adoptar prácticas más "
-        + "ecológicas sin comprometer la eficiencia. Creemos en "
-        + "la convergencia armoniosa entre la tecnología la naturaleza,"
-        + " y trabajamos incansablemente para impulsar un futuro "
-        + "más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra "
+            + "en desarrollar y comercializar productos y servicios "
+            + "que aborden los desafíos ambientales más apremiantes "
+            + "de nuestro tiempo. Desde sistemas de energía renovable "
+            + "y dispositivos de monitorización ambiental hasta "
+            + "soluciones de gestión de residuos inteligentes, "
+            + "nuestra misión es proporcionar herramientas que permitan"
+            + " a las empresas y comunidades adoptar prácticas más "
+            + "ecológicas sin comprometer la eficiencia. Creemos en "
+            + "la convergencia armoniosa entre la tecnología la naturaleza,"
+            + " y trabajamos incansablemente para impulsar un futuro "
+            + "más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
@@ -469,7 +470,7 @@ public class ControladorUsuarioTesting {
         4000f, fechaDate2);
     controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
-        + "experiencias de usuario excepcionales.",
+            + "experiencias de usuario excepcionales.",
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
     List<DtOfertaLaboral> listaResultado = controladorUsuario
@@ -477,20 +478,16 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
-    Assert.assertEquals(
-        "Únete a nuestro equipo de desarrollo frontend y crea "
-        + "experiencias de usuario excepcionales.",
-        oferta.getDescripcion());
+    Assert.assertEquals("Únete a nuestro equipo de desarrollo frontend y crea "
+        + "experiencias de usuario excepcionales.", oferta.getDescripcion());
     Assert.assertEquals("09:00", oferta.getHorarioInicio());
     Assert.assertEquals("18:00", oferta.getHorarioFinal());
-    Assert.assertEquals(90000f, oferta.getRemuneracion());
+    Assert.assertEquals(String.valueOf(90000f), String.valueOf(oferta.getRemuneracion()));
     Assert.assertEquals("Montevideo", oferta.getDepartamento());
     Assert.assertEquals("Montevideo", oferta.getCiudad());
     Assert.assertEquals("EcoTech", oferta.getEmpresa());
     Assert.assertEquals(keywords.get(0), oferta.getKeywords().get(0));
     Assert.assertEquals(null, oferta.getImagen());
-    
-    
     
   }
   
@@ -501,18 +498,18 @@ public class ControladorUsuarioTesting {
       TipoPublicacionYaExisteException, OfertaLaboralNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra en "
-        + "desarrollar y comercializar productos y servicios que "
-        + "aborden los desafíos ambientales más apremiantes de "
-        + "nuestro tiempo. Desde sistemas de energía renovable y "
-        + "dispositivos de monitorización ambiental hasta soluciones "
-        + "de gestión de residuos inteligentes, nuestra misión es "
-        + "proporcionar herramientas que permitan a las empresas y "
-        + "comunidades adoptar prácticas más ecológicas sin "
-        + "comprometer la eficiencia. Creemos en la convergencia "
-        + "armoniosa entre la tecnología la naturaleza, y "
-        + "trabajamos incansablemente para impulsar un futuro "
-        + "más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra en "
+            + "desarrollar y comercializar productos y servicios que "
+            + "aborden los desafíos ambientales más apremiantes de "
+            + "nuestro tiempo. Desde sistemas de energía renovable y "
+            + "dispositivos de monitorización ambiental hasta soluciones "
+            + "de gestión de residuos inteligentes, nuestra misión es "
+            + "proporcionar herramientas que permitan a las empresas y "
+            + "comunidades adoptar prácticas más ecológicas sin "
+            + "comprometer la eficiencia. Creemos en la convergencia "
+            + "armoniosa entre la tecnología la naturaleza, y "
+            + "trabajamos incansablemente para impulsar un futuro "
+            + "más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
@@ -521,7 +518,7 @@ public class ControladorUsuarioTesting {
         4000f, fechaDate2);
     controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
-        + "experiencias de usuario excepcionales.",
+            + "experiencias de usuario excepcionales.",
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
     controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend",
@@ -531,13 +528,11 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
-    Assert.assertEquals(
-        "Únete a nuestro equipo de desarrollo frontend y crea "
-        + "experiencias de usuario excepcionales.",
-        oferta.getDescripcion());
+    Assert.assertEquals("Únete a nuestro equipo de desarrollo frontend y crea "
+        + "experiencias de usuario excepcionales.", oferta.getDescripcion());
     Assert.assertEquals("09:00", oferta.getHorarioInicio());
     Assert.assertEquals("18:00", oferta.getHorarioFinal());
-    Assert.assertEquals(90000f, oferta.getRemuneracion());
+    Assert.assertEquals(String.valueOf(90000f), String.valueOf(oferta.getRemuneracion()));
     Assert.assertEquals("Montevideo", oferta.getDepartamento());
     Assert.assertEquals("Montevideo", oferta.getCiudad());
     
@@ -551,16 +546,16 @@ public class ControladorUsuarioTesting {
       OfertaLaboralNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra en "
-        + "desarrollar y comercializar productos y servicios que "
-        + "aborden los desafíos ambientales más apremiantes de nuestro tiempo. "
-        + "Desde sistemas de energía renovable y dispositivos de monitorización "
-        + "ambiental hasta soluciones de gestión de residuos inteligentes, "
-        + "nuestra misión es proporcionar herramientas que permitan a las "
-        + "empresas y comunidades adoptar prácticas más ecológicas sin "
-        + "comprometer la eficiencia. Creemos en la convergencia armoniosa "
-        + "entre la tecnología la naturaleza, y trabajamos incansablemente "
-        + "para impulsar un futuro más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra en "
+            + "desarrollar y comercializar productos y servicios que "
+            + "aborden los desafíos ambientales más apremiantes de nuestro tiempo. "
+            + "Desde sistemas de energía renovable y dispositivos de monitorización "
+            + "ambiental hasta soluciones de gestión de residuos inteligentes, "
+            + "nuestra misión es proporcionar herramientas que permitan a las "
+            + "empresas y comunidades adoptar prácticas más ecológicas sin "
+            + "comprometer la eficiencia. Creemos en la convergencia armoniosa "
+            + "entre la tecnología la naturaleza, y trabajamos incansablemente "
+            + "para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
@@ -569,7 +564,7 @@ public class ControladorUsuarioTesting {
         4000f, fechaDate2);
     controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea experiencias"
-        + " de usuario excepcionales.",
+            + " de usuario excepcionales.",
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
     controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend",
@@ -579,13 +574,11 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
-    Assert.assertEquals(
-        "Únete a nuestro equipo de desarrollo frontend y crea experiencias "
-        + "de usuario excepcionales.",
-        oferta.getDescripcion());
+    Assert.assertEquals("Únete a nuestro equipo de desarrollo frontend y crea experiencias "
+        + "de usuario excepcionales.", oferta.getDescripcion());
     Assert.assertEquals("09:00", oferta.getHorarioInicio());
     Assert.assertEquals("18:00", oferta.getHorarioFinal());
-    Assert.assertEquals(90000f, oferta.getRemuneracion());
+    Assert.assertEquals(String.valueOf(90000f), String.valueOf(oferta.getRemuneracion()));
     Assert.assertEquals("Montevideo", oferta.getDepartamento());
     Assert.assertEquals("Montevideo", oferta.getCiudad());
   }
@@ -595,18 +588,17 @@ public class ControladorUsuarioTesting {
       UsuarioEmailRepetidoException, UsuarioNoExisteException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra en "
-        + "desarrollar y comercializar productos y servicios que "
-        + "aborden los desafíos ambientales más apremiantes de "
-        + "nuestro tiempo. Desde sistemas de energía renovable y "
-        + "dispositivos de monitorización ambiental hasta soluciones "
-        + "de gestión de residuos inteligentes, nuestra misión es "
-        + "proporcionar herramientas que permitan a las empresas y "
-        + "comunidades adoptar prácticas más ecológicas sin "
-        + "comprometer la eficiencia. Creemos en la convergencia "
-        + "armoniosa entre la tecnología la naturaleza, y trabajamos "
-        + "incansablemente para impulsar un futuro más "
-        + "limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra en "
+            + "desarrollar y comercializar productos y servicios que "
+            + "aborden los desafíos ambientales más apremiantes de "
+            + "nuestro tiempo. Desde sistemas de energía renovable y "
+            + "dispositivos de monitorización ambiental hasta soluciones "
+            + "de gestión de residuos inteligentes, nuestra misión es "
+            + "proporcionar herramientas que permitan a las empresas y "
+            + "comunidades adoptar prácticas más ecológicas sin "
+            + "comprometer la eficiencia. Creemos en la convergencia "
+            + "armoniosa entre la tecnología la naturaleza, y trabajamos "
+            + "incansablemente para impulsar un futuro más " + "limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     
     Assert.assertTrue(controladorUsuario.confirmarContrasenia("EcoTech", "1234"));
@@ -623,18 +615,18 @@ public class ControladorUsuarioTesting {
       UsuarioEmailRepetidoException, UsuarioNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra "
-        + "en desarrollar y comercializar productos y servicios "
-        + "que aborden los desafíos ambientales más apremiantes "
-        + "de nuestro tiempo. Desde sistemas de energía renovable "
-        + "y dispositivos de monitorización ambiental hasta "
-        + "soluciones de gestión de residuos inteligentes, "
-        + "nuestra misión es proporcionar herramientas que "
-        + "permitan a las empresas y comunidades adoptar "
-        + "prácticas más ecológicas sin comprometer la eficiencia. "
-        + "Creemos en la convergencia armoniosa entre la tecnología "
-        + "la naturaleza, y trabajamos incansablemente para impulsar "
-        + "un futuro más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra "
+            + "en desarrollar y comercializar productos y servicios "
+            + "que aborden los desafíos ambientales más apremiantes "
+            + "de nuestro tiempo. Desde sistemas de energía renovable "
+            + "y dispositivos de monitorización ambiental hasta "
+            + "soluciones de gestión de residuos inteligentes, "
+            + "nuestra misión es proporcionar herramientas que "
+            + "permitan a las empresas y comunidades adoptar "
+            + "prácticas más ecológicas sin comprometer la eficiencia. "
+            + "Creemos en la convergencia armoniosa entre la tecnología "
+            + "la naturaleza, y trabajamos incansablemente para impulsar "
+            + "un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
         fechaDate2, "Uruguaya", null, "1234");
@@ -650,10 +642,12 @@ public class ControladorUsuarioTesting {
         Assert.assertEquals(dtempresa.getEmail(), empresa.getEmail());
         Assert.assertEquals(dtempresa.getContrasenia(), empresa.getContrasenia());
         Assert.assertEquals(dtempresa.getDescripcion(), empresa.getDescripcion());
-        Assert.assertEquals(dtempresa.getSitioWeb(),empresa.getSitioWeb());
-        Assert.assertEquals(dtempresa.getOfertasColeccion().size(),empresa.getOfertasColeccion().size());
-        Assert.assertEquals(dtempresa.getOfertasLaborales().size(),empresa.getOfertasLaborales().size());
-        Assert.assertEquals(dtempresa.getImagen(),empresa.getImagen());
+        Assert.assertEquals(dtempresa.getSitioWeb(), empresa.getSitioWeb());
+        Assert.assertEquals(dtempresa.getOfertasColeccion().size(),
+            empresa.getOfertasColeccion().size());
+        Assert.assertEquals(dtempresa.getOfertasLaborales().size(),
+            empresa.getOfertasLaborales().size());
+        Assert.assertEquals(dtempresa.getImagen(), empresa.getImagen());
         
       } else if (usuario.getNickname() == postulante.getNickname()) {
         Dtpostulante dtpostulante = (Dtpostulante) usuario;
@@ -662,9 +656,11 @@ public class ControladorUsuarioTesting {
         Assert.assertEquals(dtpostulante.getApellido(), postulante.getApellido());
         Assert.assertEquals(dtpostulante.getEmail(), postulante.getEmail());
         Assert.assertEquals(dtpostulante.getContrasenia(), postulante.getContrasenia());
-        Assert.assertEquals(dtpostulante.getFechaNacimiento(), postulante.getFechaNacimiento());
+        Assert.assertEquals(dtpostulante.getFechaNacimiento(),
+            postulante.getFechaNacimiento());
         Assert.assertEquals(dtpostulante.getNacionalidad(), postulante.getNacionalidad());
-        Assert.assertEquals(dtpostulante.getOfertasColeccion().size(), postulante.getOfertasColeccion().size());
+        Assert.assertEquals(dtpostulante.getOfertasColeccion().size(),
+            postulante.getOfertasColeccion().size());
       }
     }
   }
@@ -676,23 +672,21 @@ public class ControladorUsuarioTesting {
       UsuarioNoExisteException, PaquetePublicacionNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra "
-        + "en desarrollar y comercializar productos y servicios "
-        + "que aborden los desafíos ambientales más apremiantes "
-        + "de nuestro tiempo. Desde sistemas de energía renovable "
-        + "y dispositivos de monitorización ambiental hasta soluciones "
-        + "de gestión de residuos inteligentes, nuestra misión es "
-        + "proporcionar herramientas que permitan a las empresas y "
-        + "comunidades adoptar prácticas más ecológicas sin "
-        + "comprometer la eficiencia. Creemos en la convergencia "
-        + "armoniosa entre la tecnología la naturaleza, y trabajamos "
-        + "incansablemente para impulsar un futuro "
-        + "más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra "
+            + "en desarrollar y comercializar productos y servicios "
+            + "que aborden los desafíos ambientales más apremiantes "
+            + "de nuestro tiempo. Desde sistemas de energía renovable "
+            + "y dispositivos de monitorización ambiental hasta soluciones "
+            + "de gestión de residuos inteligentes, nuestra misión es "
+            + "proporcionar herramientas que permitan a las empresas y "
+            + "comunidades adoptar prácticas más ecológicas sin "
+            + "comprometer la eficiencia. Creemos en la convergencia "
+            + "armoniosa entre la tecnología la naturaleza, y trabajamos "
+            + "incansablemente para impulsar un futuro " + "más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
-    DtcantidadTipoPublicacion dtCantidadTipo = 
-        new DtcantidadTipoPublicacion("Premium", 2);
+    DtcantidadTipoPublicacion dtCantidadTipo = new DtcantidadTipoPublicacion("Premium", 2);
     List<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
     listaCantidad.add(dtCantidadTipo);
     controladorOferta.registrarPaquete("Paquete", "Descripcion", 10, 20f, null, fechaDate1,
@@ -704,7 +698,7 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals("Paquete", paquete.getNombre());
     Assert.assertEquals("Descripcion", paquete.getDescripcion());
     Assert.assertEquals(10, paquete.getPeriodoValidez());
-    Assert.assertEquals(20f, paquete.getDescuento());
+    Assert.assertEquals(String.valueOf(20f), String.valueOf(paquete.getDescuento()));
     Assert.assertEquals(fechaDate1, paquete.getFechaAlta());
     
   }
@@ -717,18 +711,18 @@ public class ControladorUsuarioTesting {
       OfertaLaboralNoExisteException, UsuarioYaExistePostulacion {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
-        + "tecnológicas sostenibles. Nuestro enfoque se centra "
-        + "en desarrollar y comercializar productos y servicios "
-        + "que aborden los desafíos ambientales más apremiantes "
-        + "de nuestro tiempo. Desde sistemas de energía renovable "
-        + "y dispositivos de monitorización ambiental hasta "
-        + "soluciones de gestión de residuos inteligentes, "
-        + "nuestra misión es proporcionar herramientas que "
-        + "permitan a las empresas y comunidades adoptar "
-        + "prácticas más ecológicas sin comprometer la eficiencia. "
-        + "Creemos en la convergencia armoniosa entre la tecnología "
-        + "la naturaleza, y trabajamos incansablemente para impulsar "
-        + "un futuro más limpio y sostenible.",
+            + "tecnológicas sostenibles. Nuestro enfoque se centra "
+            + "en desarrollar y comercializar productos y servicios "
+            + "que aborden los desafíos ambientales más apremiantes "
+            + "de nuestro tiempo. Desde sistemas de energía renovable "
+            + "y dispositivos de monitorización ambiental hasta "
+            + "soluciones de gestión de residuos inteligentes, "
+            + "nuestra misión es proporcionar herramientas que "
+            + "permitan a las empresas y comunidades adoptar "
+            + "prácticas más ecológicas sin comprometer la eficiencia. "
+            + "Creemos en la convergencia armoniosa entre la tecnología "
+            + "la naturaleza, y trabajamos incansablemente para impulsar "
+            + "un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
@@ -737,17 +731,17 @@ public class ControladorUsuarioTesting {
         4000f, fechaDate2);
     controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
-        + "experiencias de usuario excepcionales.",
+            + "experiencias de usuario excepcionales.",
         "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
     controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
         fechaDate2, "Uruguaya", null, "1234");
     controladorUsuario.registrarPostulacion(
         "Ingeniero en Sistemas, experiencia en desarrollo web y "
-        + "aplicaciones móviles. Conocimientos en JavaScript y React.",
+            + "aplicaciones móviles. Conocimientos en JavaScript y React.",
         "Me entusiasma la posibilidad de trabajar en proyectos "
-        + "desafiantes y seguir creciendo como profesional en "
-        + "el campo de la tecnología.",
+            + "desafiantes y seguir creciendo como profesional en "
+            + "el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend");
     List<Dtpostulacion> listaRes = controladorUsuario
         .obtenerDtpostulacionesDePostulante("maro");
@@ -756,12 +750,10 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals(fechaDate1, postulacion.getFechaPostulacion());
     Assert.assertEquals(
         "Ingeniero en Sistemas, experiencia en desarrollo web y "
-        + "aplicaciones móviles. Conocimientos en JavaScript y React.",
+            + "aplicaciones móviles. Conocimientos en JavaScript y React.",
         postulacion.getCvReducido());
-    Assert.assertEquals(
-        "Me entusiasma la posibilidad de trabajar en proyectos "
-        + "desafiantes y seguir creciendo como profesional en "
-        + "el campo de la tecnología.",
+    Assert.assertEquals("Me entusiasma la posibilidad de trabajar en proyectos "
+        + "desafiantes y seguir creciendo como profesional en " + "el campo de la tecnología.",
         postulacion.getDescripMotivacion());
     
   }
@@ -789,8 +781,7 @@ public class ControladorUsuarioTesting {
         "http://www.EcoTechInnovations.com", null, "1234");
     controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
         4000f, fechaDate2);
-    DtcantidadTipoPublicacion dtCantidadTipo = 
-        new DtcantidadTipoPublicacion("Premium", 2);
+    DtcantidadTipoPublicacion dtCantidadTipo = new DtcantidadTipoPublicacion("Premium", 2);
     List<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
     listaCantidad.add(dtCantidadTipo);
     controladorOferta.registrarPaquete("Paquete", "Descripcion", 10, 20f, null, fechaDate1,
@@ -804,8 +795,7 @@ public class ControladorUsuarioTesting {
     listaEsperada.add("Paquete2");
     listaEsperada.add("Paquete3");
     Collections.sort(listaEsperada);
-    List<String> listaRes = controladorUsuario
-        .listarPaquetesNoCompradosDeEmpresa("EcoTech");
+    List<String> listaRes = controladorUsuario.listarPaquetesNoCompradosDeEmpresa("EcoTech");
     Collections.sort(listaRes);
     Assert.assertEquals(listaEsperada, listaRes);
     
@@ -819,14 +809,14 @@ public class ControladorUsuarioTesting {
         .of(fechaDate2.getYear(), fechaDate2.getMonthValue(), fechaDate2.getDayOfMonth())
         .plusDays(10);
     Assert.assertEquals(dtcompra.getFechaVencimiento(), fechaVencimiento);
-    DtCantidadTipoPublicacionRestante dtCantidadRestante = dtcompra.getPublicacionesRestantes().get(0);
+    DtCantidadTipoPublicacionRestante dtCantidadRestante = dtcompra.getPublicacionesRestantes()
+        .get(0);
     DttipoPublicacion dttipo = dtCantidadRestante.getTipoPublicacion();
-    Assert.assertEquals(dttipo.getCosto(), 4000f);
+    Assert.assertEquals(String.valueOf(dttipo.getCosto()), String.valueOf(4000f));
     Assert.assertEquals(dttipo.getDescripcion(), "Obtén máxima visibilidad");
     Assert.assertEquals(dttipo.getDuracionDia(), 30);
     Assert.assertEquals(dttipo.getExposicion(), "1");
     Assert.assertEquals(dttipo.getFechaAlta(), fechaDate2);
-    
     
   }
   

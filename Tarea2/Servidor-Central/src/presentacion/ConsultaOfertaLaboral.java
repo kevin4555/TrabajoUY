@@ -1,6 +1,5 @@
 package presentacion;
 
-
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import java.awt.BorderLayout;
@@ -33,7 +32,6 @@ import logica.datatypes.DtOfertaLaboral;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
-
 /**
  * Clase Consulta de oferta laboral .
  */
@@ -61,7 +59,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
   private JPanel panelDatos;
   private JPanel ubicacionCentro;
   private JScrollPane scrollPane;
-
   
   /**
    * Create the frame.
@@ -71,8 +68,9 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     // Se inicializa con el controlador de oferta
     controlOfertaLab = icontOfeLab;
     controlUsuarioLab = icontUsuLab;
-
-    // Propiedades del JInternalFrame como dimensión, posición dentro del frame,
+    
+    // Propiedades del JInternalFrame como dimensión,
+    // posición dentro del frame,
     // etc.
     setResizable(true);
     setIconifiable(true);
@@ -84,30 +82,27 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     JPanel panelBotones = new JPanel();
     getContentPane().add(panelBotones, BorderLayout.SOUTH);
     panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
-
-
+    
     btnCerrar = new JButton("Cerrar");
     panelBotones.add(btnCerrar);
-
+    
     btnCerrar.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         limpiarInformacion();
         dispose();
       }
     });
-
     
     this.panelDatos = new JPanel();
     getContentPane().add(panelDatos, BorderLayout.NORTH);
     GridBagLayout gblpanelDatos = new GridBagLayout();
     gblpanelDatos.columnWidths = new int[] { 113, 739, 0 };
-    gblpanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0 };
+    gblpanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0 };
     gblpanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblpanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblpanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0,
+        0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblpanelDatos);
-    
     
     GridBagConstraints gbclblSeleccion = new GridBagConstraints();
     gbclblSeleccion.insets = new Insets(0, 0, 5, 5);
@@ -116,7 +111,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblSeleccion.gridy = 1;
     JLabel lblSeleccion = new JLabel("Seleccionar Empresa:");
     panelDatos.add(lblSeleccion, gbclblSeleccion);
-
+    
     this.comboBoxEmpresasRegistradas = new JComboBox<String>();
     GridBagConstraints gbccomboBoxSeleccionUsuario = new GridBagConstraints();
     gbccomboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
@@ -124,8 +119,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbccomboBoxSeleccionUsuario.gridx = 1;
     gbccomboBoxSeleccionUsuario.gridy = 1;
     panelDatos.add(this.comboBoxEmpresasRegistradas, gbccomboBoxSeleccionUsuario);
-   
-    
     
     GridBagConstraints gbclblOfertas = new GridBagConstraints();
     gbclblOfertas.anchor = GridBagConstraints.EAST;
@@ -135,7 +128,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     JLabel lblOfertasLaborales = new JLabel("Ofertas Laborales:");
     panelDatos.add(lblOfertasLaborales, gbclblOfertas);
     lblOfertasLaborales.setVisible(false);
-
+    
     this.comboBoxOfertasLaborales = new JComboBox<String>();
     GridBagConstraints gbccomboBoxSeleccionOferta = new GridBagConstraints();
     gbccomboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
@@ -145,28 +138,26 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     panelDatos.add(this.comboBoxOfertasLaborales, gbccomboBoxSeleccionOferta);
     this.comboBoxOfertasLaborales.setVisible(false);
     
-    
     this.ubicacionCentro = new JPanel();
     getContentPane().add(ubicacionCentro, BorderLayout.CENTER);
     GridBagLayout gblpanelDatosOfertas = new GridBagLayout();
     gblpanelDatosOfertas.columnWidths = new int[] { 113, 739, 0 };
-    gblpanelDatosOfertas.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0 };
+    gblpanelDatosOfertas.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0 };
     gblpanelDatosOfertas.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
     gblpanelDatosOfertas.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
         1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     this.ubicacionCentro.setLayout(gblpanelDatosOfertas);
     this.ubicacionCentro.setVisible(false);
-
     
     GridBagConstraints gbclblRemuneracion = new GridBagConstraints();
-    gbclblRemuneracion.anchor = GridBagConstraints.EAST;    
+    gbclblRemuneracion.anchor = GridBagConstraints.EAST;
     gbclblRemuneracion.insets = new Insets(0, 0, 5, 5);
     gbclblRemuneracion.gridx = 0;
     gbclblRemuneracion.gridy = 4;
     JLabel lblRemuneracion = new JLabel("Remuneracion");
     ubicacionCentro.add(lblRemuneracion, gbclblRemuneracion);
-
+    
     this.textFieldRemuneracion = new JTextField();
     GridBagConstraints gbctextFieldRemuneracion = new GridBagConstraints();
     gbctextFieldRemuneracion.insets = new Insets(0, 0, 5, 0);
@@ -177,8 +168,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldRemuneracion.setColumns(10);
     this.textFieldRemuneracion.setEditable(false);
     
-    
-    
     GridBagConstraints gbclblCiudad = new GridBagConstraints();
     gbclblCiudad.anchor = GridBagConstraints.EAST;
     gbclblCiudad.insets = new Insets(0, 0, 5, 5);
@@ -186,7 +175,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblCiudad.gridy = 5;
     JLabel lblCiudad = new JLabel("Ciudad");
     ubicacionCentro.add(lblCiudad, gbclblCiudad);
-
+    
     this.textFieldCiudad = new JTextField();
     GridBagConstraints gbctextFieldCiudad = new GridBagConstraints();
     gbctextFieldCiudad.insets = new Insets(0, 0, 5, 0);
@@ -196,7 +185,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     ubicacionCentro.add(this.textFieldCiudad, gbctextFieldCiudad);
     this.textFieldCiudad.setColumns(10);
     this.textFieldCiudad.setEditable(false);
-
     
     GridBagConstraints gbclblDepartamento = new GridBagConstraints();
     gbclblDepartamento.anchor = GridBagConstraints.EAST;
@@ -205,7 +193,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblDepartamento.gridy = 6;
     JLabel lblDepartamento = new JLabel("Departamento");
     ubicacionCentro.add(lblDepartamento, gbclblDepartamento);
-
+    
     this.textFieldDepartamento = new JTextField();
     GridBagConstraints gbctextFieldDepartamento = new GridBagConstraints();
     gbctextFieldDepartamento.insets = new Insets(0, 0, 5, 0);
@@ -216,7 +204,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldDepartamento.setColumns(10);
     this.textFieldDepartamento.setEditable(false);
     
-    
     GridBagConstraints gbclblHorarioInicio = new GridBagConstraints();
     gbclblHorarioInicio.anchor = GridBagConstraints.EAST;
     gbclblHorarioInicio.insets = new Insets(0, 0, 5, 5);
@@ -224,7 +211,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblHorarioInicio.gridy = 7;
     JLabel lblHorarioInicio = new JLabel("Horario");
     ubicacionCentro.add(lblHorarioInicio, gbclblHorarioInicio);
-
+    
     this.textFieldHorarioOferta = new JTextField();
     GridBagConstraints gbctextFieldHorarioInicio = new GridBagConstraints();
     gbctextFieldHorarioInicio.insets = new Insets(0, 0, 5, 0);
@@ -235,8 +222,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldHorarioOferta.setColumns(10);
     this.textFieldHorarioOferta.setEditable(false);
     
-    
-    
     GridBagConstraints gbclblDescripcion = new GridBagConstraints();
     gbclblDescripcion.insets = new Insets(0, 0, 5, 5);
     gbclblDescripcion.anchor = GridBagConstraints.EAST;
@@ -244,7 +229,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblDescripcion.gridy = 8;
     JLabel lblDescripcion = new JLabel("Descripcion:");
     this.ubicacionCentro.add(lblDescripcion, gbclblDescripcion);
-
+    
     scrollPane = new JScrollPane();
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     scrollPane.setEnabled(false);
@@ -256,13 +241,12 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbcscrollPane.gridx = 1;
     gbcscrollPane.gridy = 8;
     this.ubicacionCentro.add(scrollPane, gbcscrollPane);
-
+    
     textAreaDescripcion = new JTextArea();
     textAreaDescripcion.setLineWrap(true);
     textAreaDescripcion.setWrapStyleWord(true);
     textAreaDescripcion.setEditable(false);
     scrollPane.setViewportView(textAreaDescripcion);
-    
     
     GridBagConstraints gbclblfechaAlta = new GridBagConstraints();
     gbclblfechaAlta.anchor = GridBagConstraints.EAST;
@@ -271,7 +255,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblfechaAlta.gridy = 11;
     JLabel lblFechaAlta = new JLabel("Fecha de alta");
     ubicacionCentro.add(lblFechaAlta, gbclblfechaAlta);
-
+    
     this.textFieldFechaAlta = new JTextField();
     GridBagConstraints gbctextFieldFechaAlta = new GridBagConstraints();
     gbctextFieldFechaAlta.insets = new Insets(0, 0, 5, 0);
@@ -282,7 +266,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldFechaAlta.setColumns(10);
     this.textFieldFechaAlta.setEditable(false);
     
-    
     GridBagConstraints gbclblfechaResolucion = new GridBagConstraints();
     gbclblfechaResolucion.anchor = GridBagConstraints.EAST;
     gbclblfechaResolucion.insets = new Insets(0, 0, 5, 5);
@@ -290,7 +273,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblfechaResolucion.gridy = 12;
     JLabel lblFechaResolucion = new JLabel("Fecha de resolución");
     ubicacionCentro.add(lblFechaResolucion, gbclblfechaResolucion);
-
+    
     this.textFieldFechaResolucion = new JTextField();
     GridBagConstraints gbctextFieldFechaResolucion = new GridBagConstraints();
     gbctextFieldFechaResolucion.insets = new Insets(0, 0, 5, 0);
@@ -301,7 +284,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldFechaResolucion.setColumns(10);
     this.textFieldFechaResolucion.setEditable(false);
     
-   
     GridBagConstraints gbclblEstado = new GridBagConstraints();
     gbclblEstado.anchor = GridBagConstraints.EAST;
     gbclblEstado.insets = new Insets(0, 0, 5, 5);
@@ -309,7 +291,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblEstado.gridy = 13;
     JLabel lblEstado = new JLabel("Estado");
     ubicacionCentro.add(lblEstado, gbclblEstado);
-
+    
     this.textFieldEstado = new JTextField();
     GridBagConstraints gbctextFieldEstado = new GridBagConstraints();
     gbctextFieldEstado.insets = new Insets(0, 0, 5, 0);
@@ -320,7 +302,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldEstado.setColumns(10);
     this.textFieldEstado.setEditable(false);
     
-    
     GridBagConstraints gbclblTipoPublicacion = new GridBagConstraints();
     gbclblTipoPublicacion.anchor = GridBagConstraints.EAST;
     gbclblTipoPublicacion.insets = new Insets(0, 0, 5, 5);
@@ -328,7 +309,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     gbclblTipoPublicacion.gridy = 14;
     JLabel lblTipoPublicacion = new JLabel("Tipo de publicacion");
     ubicacionCentro.add(lblTipoPublicacion, gbclblTipoPublicacion);
-
+    
     this.textFieldTipoPublicacion = new JTextField();
     GridBagConstraints gbctextFieldTipoPublicacion = new GridBagConstraints();
     gbctextFieldTipoPublicacion.insets = new Insets(0, 0, 5, 0);
@@ -338,7 +319,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     ubicacionCentro.add(this.textFieldTipoPublicacion, gbctextFieldTipoPublicacion);
     this.textFieldTipoPublicacion.setColumns(10);
     this.textFieldTipoPublicacion.setEditable(false);
-    
     
     GridBagConstraints gbcLblFotoOferta = new GridBagConstraints();
     gbcLblFotoOferta.insets = new Insets(0, 0, 5, 5);
@@ -356,7 +336,6 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textPane.setEditable(false);
     ubicacionCentro.add(textPane, gbcTextPane);
     
-
     this.comboBoxEmpresasRegistradas.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         cargarOfertaEmpresa(e);
@@ -364,14 +343,14 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
         comboBoxOfertasLaborales.setVisible(true);
       }
     });
-
+    
     this.comboBoxOfertasLaborales.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         cargarDatosOferta(e);
         ubicacionCentro.setVisible(true);
       }
     });
-
+    
   }
   
   public String dateToString(Date fecha) {
@@ -414,15 +393,15 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
    * Metodo cargar datos oferta .
    */
   
-  public void cargarDatosOferta(ActionEvent evento)  {
+  public void cargarDatosOferta(ActionEvent evento) {
     String ofertaLaboral = (String) (this.comboBoxOfertasLaborales).getSelectedItem();
     this.textPane.setText("");
     DtOfertaLaboral dtOfertaLaboral;
     try {
       dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(ofertaLaboral);
       (this.textAreaDescripcion).setText(dtOfertaLaboral.getDescripcion());
-      (this.textFieldHorarioOferta).setText(dtOfertaLaboral.getHorarioInicio() + " - " 
-          + dtOfertaLaboral.getHorarioFinal());
+      (this.textFieldHorarioOferta).setText(
+          dtOfertaLaboral.getHorarioInicio() + " - " + dtOfertaLaboral.getHorarioFinal());
       (this.textFieldRemuneracion).setText(dtOfertaLaboral.getRemuneracion().toString());
       (this.textFieldCiudad).setText(dtOfertaLaboral.getCiudad());
       (this.textFieldDepartamento).setText(dtOfertaLaboral.getDepartamento());
@@ -448,10 +427,10 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
       JOptionPane.showMessageDialog(this, "Debe seleccionar una oferta",
           "Consulta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
     } catch (IOException e) {
-    	JOptionPane.showMessageDialog(this, "Error con la imagen",
-    	          "Consulta Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-		e.printStackTrace();
-	}
+      JOptionPane.showMessageDialog(this, "Error con la imagen", "Consulta Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
+      e.printStackTrace();
+    }
   }
   
   /**
@@ -469,7 +448,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     this.textFieldFechaResolucion.setText("");
     this.textFieldTipoPublicacion.setText("");
     this.textPane.setText("");
- 
+    
   }
   
 }

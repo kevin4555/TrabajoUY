@@ -16,7 +16,6 @@ public class Dtpostulante extends Dtusuario {
   
   /**
    * Contructor.
- * @throws IOException 
    */
   
   public Dtpostulante(String nickname, String nombre, String apellido, 

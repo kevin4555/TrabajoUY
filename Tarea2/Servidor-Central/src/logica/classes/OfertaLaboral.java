@@ -1,14 +1,10 @@
 package logica.classes;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
@@ -42,7 +38,8 @@ public class OfertaLaboral {
   
   public OfertaLaboral(String nombre, String descripcion, String horarioInicial,
       String horarioFinal, float remuneracion, String ciudad, String departamento,
-      LocalDate fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen, Empresa empresa) {
+      LocalDate fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen,
+      Empresa empresa) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.ciudad = ciudad;
@@ -64,10 +61,6 @@ public class OfertaLaboral {
   
   public String getNombre() {
     return nombre;
-  }
-  
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
   }
   
   public String getDescripcion() {
@@ -114,7 +107,7 @@ public class OfertaLaboral {
     return listaKeywords;
   }
   
-  public void setKeword(List<Keyword> keywords) {
+  public void setKeyword(List<Keyword> keywords) {
     this.listaKeywords = keywords;
   }
   
@@ -152,7 +145,6 @@ public class OfertaLaboral {
   
   /**
    * Metodo obtener DTOfertaLaboral .
- * @throws IOException 
    */
   
   public DtOfertaLaboral obtenerDtOfertaLaboral() throws IOException {
@@ -167,15 +159,15 @@ public class OfertaLaboral {
     }
     Boolean estaVencida = null;
     if (estado == EstadoOferta.CONFIRMADA) {
-     estaVencida = this.estaVencida();
+      estaVencida = this.estaVencida();
     }
-
     
     DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(this.getNombre(),
         this.getDescripcion(), this.getCiudad(), this.getDepartamento(),
         this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
         this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
-        paquete, keywords, estaVencida, this.tipoPublicacion.getNombre(), this.empresa.getNickname());
+        paquete, keywords, estaVencida, this.tipoPublicacion.getNombre(),
+        this.empresa.getNickname());
     return dtOfertaLaboral;
   }
   

@@ -1,19 +1,21 @@
 package testing;
 
+import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.PaquetePublicacionYaExisteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import excepciones.PaquetePublicacionNoExisteException;
-import excepciones.PaquetePublicacionYaExisteException;
-import junit.framework.Assert;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.PaquetePublicacion;
 import logica.classes.TipoPublicacion;
 import logica.handlers.ManejadorPaquetes;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * Clase ManejadorPaqueteTesting.
+ */
 
 public class ManejadorPaqueteTesting {
   
@@ -40,7 +42,8 @@ public class ManejadorPaqueteTesting {
         "exposicionTipo", 2, 200f, fechaDate1);
     CantidadTotalTipoPublicacion cantidadTipoPublicacion = new CantidadTotalTipoPublicacion(4,
         tipoPublicacion);
-    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP = new ArrayList<CantidadTotalTipoPublicacion>();
+    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     listaCantidadTipoP.add(cantidadTipoPublicacion);
     PaquetePublicacion paquete = new PaquetePublicacion("nombrePaquete", "descripcionPaquete",
         5, 20f, null, listaCantidadTipoP, fechaDate1);
@@ -60,8 +63,10 @@ public class ManejadorPaqueteTesting {
         tipoPublicacion1);
     CantidadTotalTipoPublicacion cantidadTipoPublicacion2 = new CantidadTotalTipoPublicacion(3,
         tipoPublicacion2);
-    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = new ArrayList<CantidadTotalTipoPublicacion>();
-    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP2 = new ArrayList<CantidadTotalTipoPublicacion>();
+    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
+    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP2 = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     listaCantidadTipoP1.add(cantidadTipoPublicacion1);
     listaCantidadTipoP2.add(cantidadTipoPublicacion2);
     PaquetePublicacion paquete1 = new PaquetePublicacion("nombrePaquete1",
@@ -87,7 +92,8 @@ public class ManejadorPaqueteTesting {
         "exposicionTipo1", 2, 200f, fechaDate1);
     CantidadTotalTipoPublicacion cantidadTipoPublicacion1 = new CantidadTotalTipoPublicacion(4,
         tipoPublicacion1);
-    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = new ArrayList<CantidadTotalTipoPublicacion>();
+    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     listaCantidadTipoP1.add(cantidadTipoPublicacion1);
     PaquetePublicacion paquete1 = new PaquetePublicacion("nombrePaquete1",
         "descripcionPaquete1", 5, 20f, null, listaCantidadTipoP1, fechaDate1);
@@ -109,8 +115,10 @@ public class ManejadorPaqueteTesting {
         tipoPublicacion1);
     CantidadTotalTipoPublicacion cantidadTipoPublicacion2 = new CantidadTotalTipoPublicacion(3,
         tipoPublicacion2);
-    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = new ArrayList<CantidadTotalTipoPublicacion>();
-    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP2 = new ArrayList<CantidadTotalTipoPublicacion>();
+    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
+    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP2 = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     listaCantidadTipoP1.add(cantidadTipoPublicacion1);
     listaCantidadTipoP2.add(cantidadTipoPublicacion2);
     PaquetePublicacion paquete1 = new PaquetePublicacion("nombrePaquete1",
@@ -134,7 +142,8 @@ public class ManejadorPaqueteTesting {
         "exposicionTipo1", 2, 200f, fechaDate1);
     CantidadTotalTipoPublicacion cantidadTipoPublicacion1 = new CantidadTotalTipoPublicacion(4,
         tipoPublicacion1);
-    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = new ArrayList<CantidadTotalTipoPublicacion>();
+    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     listaCantidadTipoP1.add(cantidadTipoPublicacion1);
     PaquetePublicacion paquete1 = new PaquetePublicacion("nombrePaquete1",
         "descripcionPaquete1", 5, 20f, null, listaCantidadTipoP1, fechaDate1);
@@ -142,7 +151,7 @@ public class ManejadorPaqueteTesting {
       manejadorPaquete.agregarPaquete(paquete1);
       PaquetePublicacion resultado = manejadorPaquete.obtenerPaquete("Pepe");
     } catch (PaquetePublicacionYaExisteException e) {
-      
+      e.getMessage();
     } catch (PaquetePublicacionNoExisteException e) {
       exception = true;
     }
@@ -157,7 +166,8 @@ public class ManejadorPaqueteTesting {
         "exposicionTipo1", 2, 200f, fechaDate1);
     CantidadTotalTipoPublicacion cantidadTipoPublicacion1 = new CantidadTotalTipoPublicacion(4,
         tipoPublicacion1);
-    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = new ArrayList<CantidadTotalTipoPublicacion>();
+    ArrayList<CantidadTotalTipoPublicacion> listaCantidadTipoP1 = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     listaCantidadTipoP1.add(cantidadTipoPublicacion1);
     PaquetePublicacion paquete1 = new PaquetePublicacion("nombrePaquete1",
         "descripcionPaquete1", 5, 20f, null, listaCantidadTipoP1, fechaDate1);
@@ -165,7 +175,7 @@ public class ManejadorPaqueteTesting {
       manejadorPaquete.agregarPaquete(paquete1);
       manejadorPaquete.eliminarPaquete("Pepe");
     } catch (PaquetePublicacionYaExisteException e) {
-      
+      e.getMessage();
     } catch (PaquetePublicacionNoExisteException e) {
       exception = true;
     }

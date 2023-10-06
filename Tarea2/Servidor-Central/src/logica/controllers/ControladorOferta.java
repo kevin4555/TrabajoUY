@@ -180,7 +180,8 @@ public class ControladorOferta implements IcontroladorOferta {
       TipoPublicacionNoExisteException {
     ManejadorPaquetes manejadorPaquetes = ManejadorPaquetes.getInstance();
     ManejadorSettings manejadorSettings = ManejadorSettings.getInstance();
-    List<CantidadTotalTipoPublicacion> arrayCantidad = new ArrayList<CantidadTotalTipoPublicacion>();
+    List<CantidadTotalTipoPublicacion> arrayCantidad = 
+        new ArrayList<CantidadTotalTipoPublicacion>();
     
     if (cantidadTipoPublicacion != null) {
       for (DtcantidadTipoPublicacion dtCantidad : cantidadTipoPublicacion) {
@@ -211,7 +212,7 @@ public class ControladorOferta implements IcontroladorOferta {
       throws UsuarioNoExisteException, OfertaLaboralNoExisteException {
     IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     Postulante post = controladorUsuario.obtenerPostulante(postulante);
-    return post.listarOfertasUsuario().contains(nomOfertaLaboral);
+    return post.listarNombreOfertasUsuario().contains(nomOfertaLaboral);
   }
   
   @Override

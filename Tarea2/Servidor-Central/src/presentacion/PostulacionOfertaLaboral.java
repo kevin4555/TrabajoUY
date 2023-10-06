@@ -77,7 +77,6 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
   private String nomOfertaLaboral;
   private LocalDate fechaAlta;
   private String nombreTipoPublicacion;
-
   
   /**
    * Create the frame.
@@ -303,7 +302,7 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         try {
           cargarDatosOfertaLaboralPostulacion(evento);
         } catch (OfertaLaboralNoExisteException evento1) {
-          //No imprime nada
+          // No imprime nada
         }
         cargarPostulantes(evento);
         ubicacionCentro.setVisible(true);
@@ -404,8 +403,8 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
             "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
       } else {
-        this.seleccionEmpresa = this.comboBoxEmpresasRegistradasPostulacion
-            .getSelectedItem().toString();
+        this.seleccionEmpresa = this.comboBoxEmpresasRegistradasPostulacion.getSelectedItem()
+            .toString();
         List<DtOfertaLaboral> ofertasConfirmadasEmpresa = this.controlUsuarioLab
             .obtenerDtofertasConfirmadasDeEmpresa(this.seleccionEmpresa);
         List<String> nombreOfertasConfirmadas = new ArrayList<String>();
@@ -421,14 +420,15 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
       JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
           "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
     } catch (IOException e) {
-    	JOptionPane.showMessageDialog(this, "Error con la imagen",
-    			"Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-		e.printStackTrace();
-	}
+      JOptionPane.showMessageDialog(this, "Error con la imagen",
+          "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      e.printStackTrace();
+    }
   }
   
   /**
-   * Metodo cargar datos oferta laboral postulacion .
+   * Metodo cargar datos oferta laboral postulacion
+   * .
    */
   
   public void cargarDatosOfertaLaboralPostulacion(ActionEvent evento)
@@ -437,13 +437,13 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         .getSelectedItem();
     DtOfertaLaboral dtOfertaLaboral;
     try {
-		dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(this.nomOfertaLaboral);
-	} catch (OfertaLaboralNoExisteException | IOException e) {
-		JOptionPane.showMessageDialog(this, "Error con la imagen",
-				"Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-		e.printStackTrace();
-		return;
-	}
+      dtOfertaLaboral = controlOfertaLab.obtenerDtOfertaLaboral(this.nomOfertaLaboral);
+    } catch (OfertaLaboralNoExisteException | IOException e) {
+      JOptionPane.showMessageDialog(this, "Error con la imagen",
+          "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      e.printStackTrace();
+      return;
+    }
     this.fechaAlta = dtOfertaLaboral.getFechaResolucion();
     this.nombreTipoPublicacion = dtOfertaLaboral.getNombreTipoPublicacion();
     (this.textFieldNombre).setText(dtOfertaLaboral.getNombre());
@@ -521,11 +521,13 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         LocalDate fechaPostulacion = this.dateChooser.getDate().toInstant()
             .atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate fechaVencimiento;
-        fechaVencimiento = LocalDate.of(fechaAlta.getYear(), fechaAlta.getMonthValue(), 
-            fechaAlta.getDayOfMonth()).plusDays(this.controlOfertaLab
-                .obtenerDttipoPublicacion(nombreTipoPublicacion).getDuracionDia());
-        if (fechaPostulacion.isAfter(fechaVencimiento) || (fechaPostulacion.isBefore(fechaAlta))) {
-          JOptionPane.showMessageDialog(this, 
+        fechaVencimiento = LocalDate
+            .of(fechaAlta.getYear(), fechaAlta.getMonthValue(), fechaAlta.getDayOfMonth())
+            .plusDays(this.controlOfertaLab.obtenerDttipoPublicacion(nombreTipoPublicacion)
+                .getDuracionDia());
+        if (fechaPostulacion.isAfter(fechaVencimiento)
+            || (fechaPostulacion.isBefore(fechaAlta))) {
+          JOptionPane.showMessageDialog(this,
               "La oferta no esta vigente en la fecha de postulación ingresada",
               "Postulación a Oferta Laboral", JOptionPane.ERROR_MESSAGE);
           return false;
@@ -541,11 +543,11 @@ public class PostulacionOfertaLaboral extends JInternalFrame {
         } else {
           return true;
         }
-      } 
+      }
     } catch (TipoPublicacionNoExisteException e) {
       return false;
     }
-
+    
   }
   
   public void guardarPostulante() {

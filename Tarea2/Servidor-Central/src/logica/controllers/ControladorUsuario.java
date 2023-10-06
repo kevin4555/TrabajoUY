@@ -137,7 +137,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   public List<String> listaOfertasUsuario(String nickname)
       throws UsuarioNoExisteException {
     Usuario usuario = this.obtenerUsuario(nickname);
-    return usuario.listarOfertasUsuario();
+    return usuario.listarNombreOfertasUsuario();
   }
   
   @Override

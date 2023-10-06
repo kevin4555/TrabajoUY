@@ -14,7 +14,6 @@ public class TipoPublicacion {
   private int duracionDia;
   private float costo;
   private LocalDate fechaAlta;
-  private CantidadTotalTipoPublicacion cantTipo;
   
   /**
    * Constructor .
@@ -28,7 +27,6 @@ public class TipoPublicacion {
     this.setDuracionDia(duracion);
     this.setCosto(costo);
     this.setFechaAlta(fechaPub);
-    this.cantTipo = null;
   }
   
   public String getNombre() {
@@ -79,9 +77,6 @@ public class TipoPublicacion {
     this.fechaAlta = fechaAlta;
   }
   
-  public CantidadTotalTipoPublicacion getCantidadTipoPublicacion() {
-    return cantTipo;
-  }
   
   /**
    * Obtener DTtipo de publicación .

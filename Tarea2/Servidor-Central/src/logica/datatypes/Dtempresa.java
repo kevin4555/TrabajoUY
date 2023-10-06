@@ -16,12 +16,12 @@ public class Dtempresa extends Dtusuario {
   
   /**
    * Contructor.
- * @throws IOException 
    */
   
   public Dtempresa(String nickname, String nombre, String apellido, 
       String email, BufferedImage imagen, String contrasenia, 
-      List<DtOfertaLaboral> ofertasColeccion, String descripcion, String sitioWeb) throws IOException {
+      List<DtOfertaLaboral> ofertasColeccion, String descripcion, String sitioWeb) 
+          throws IOException {
     super(nickname, nombre, apellido, email, imagen, contrasenia, ofertasColeccion);
     this.descripcion = descripcion;
     this.sitioWeb = sitioWeb;

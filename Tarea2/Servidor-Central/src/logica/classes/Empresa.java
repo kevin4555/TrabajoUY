@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtempresa;
@@ -82,7 +81,6 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTEmpresa.
- * @throws IOException 
    */
   
   public Dtempresa obtenerDtempresa() throws IOException {
@@ -98,7 +96,7 @@ public class Empresa extends Usuario {
   }
   
   @Override
-  public List<String> listarOfertasUsuario() {
+  public List<String> listarNombreOfertasUsuario() {
     return this.obtenerNombresOfertas();
   }
   
@@ -109,7 +107,6 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTOfertaLaboral.
- * @throws IOException 
    */
   
   public List<DtOfertaLaboral> obtenerDtofertasIngresadas() throws IOException {
@@ -124,7 +121,6 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTOfertaLaboralConfirmadas.
- * @throws IOException 
    */
   
   public List<DtOfertaLaboral> obtenerDtofertasConfirmadas() throws IOException {
@@ -139,7 +135,6 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTOfertaLaboralRechazadas.
- * @throws IOException 
    */
   
   public List<DtOfertaLaboral> obtenerDtofertasRechazadas() throws IOException {
@@ -173,7 +168,6 @@ public class Empresa extends Usuario {
   
   /**
    * Obtener DTPaquetePublicacion.
- * @throws IOException 
    */
   
   public List<DtpaquetePublicacion> obtenerDtpaquetes() throws IOException {
@@ -211,6 +205,10 @@ public class Empresa extends Usuario {
     }
     
   }
+  
+  /**
+   * Metodo obtenerDtCompraPaquetes.
+   */
   
   public List<DtCompraPaquete> obtenerDtCompraPaquetes() throws IOException {
     ArrayList<DtCompraPaquete> resultado = new ArrayList<DtCompraPaquete>();

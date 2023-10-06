@@ -3,7 +3,6 @@ package logica.handlers;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -166,7 +165,6 @@ public class ManejadorUsuario {
   
   /**
    * Obtener lista de DTUsuario .
- * @throws IOException 
    */
   
   public List<Dtusuario> obtenerDtusuarios() throws IOException {

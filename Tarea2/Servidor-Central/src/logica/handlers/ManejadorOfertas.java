@@ -3,7 +3,6 @@ package logica.handlers;
 import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +56,6 @@ public class ManejadorOfertas {
   
   /**
    * Obtener DTOfertaLaboral .
- * @throws IOException 
    */
   
   public DtOfertaLaboral obtenerDtofertaLaboral(String nombreOferta)
@@ -100,7 +98,6 @@ public class ManejadorOfertas {
   
   /**
    * Obtener DTOfertasLaboralesConfirmadas .
- * @throws IOException 
    */
   
   public List<DtOfertaLaboral> obtenerDtofertasConfirmadas() throws IOException {
@@ -113,7 +110,6 @@ public class ManejadorOfertas {
   
   /**
    * Obtener obtenerDTOfertasPorKeyword .
- * @throws IOException 
    */
   
   public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) throws IOException {
