@@ -16,22 +16,17 @@
 	<%@ include file="../include/NavBar.jsp"%>
 	<main
 		class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
-		<form action="/altaOferta" method="post" enctype="multipart/form-data">
-			<input type="file" name="imagenOferta"> <input type="submit"
-				value="imagenOferta">
-		</form>
-
-		<!-- <%--	<form action="<%=request.getContextPath()%>/altaOferta" method="post"
-			id="formAltaOferta"
+		<form action="<%=request.getContextPath()%>/altaOferta"
+			method="post" id="formAltaOferta"
 			class="bg-white rounded container py-3 mx-3 shadow-sm"
 			enctype="multipart/form-data">
 			<div class="row g-5 mx-2">
 				<div class="col-6">
 					<div class="camposForm">
 						<!-- <%--<label for="tipoPublicacion" class="form-label">
-							*Seleccione un Tipo de Publicación: </label> <select class="form-control"
+							*Seleccione un Tipo de Publicaciï¿½n: </label> <select class="form-control"
 							id="tipoPublicacion" name="tipoPublicacion" required>
-							<option value="">-- Selecciona un tipo de publicación --
+							<option value="">-- Selecciona un tipo de publicaciï¿½n --
 							</option>
 							<%
 							ArrayList<DttipoPublicacion> listaTipoPublicacion = (ArrayList<DttipoPublicacion>) request
@@ -70,7 +65,7 @@
 
 					<div class="camposForm">
 						<div class="form-group">
-							<label for="textAreaDescripcion">*Descripción</label>
+							<label for="textAreaDescripcion">*Descripciï¿½n</label>
 							<textarea class="form-control" id="textAreaDescripcion"
 								name="descripcion" rows="3" required></textarea>
 						</div>
@@ -131,14 +126,14 @@
 							<option value="Lavalleja">Lavalleja</option>
 							<option value="Maldonado">Maldonado</option>
 							<option value="Montevideo">Montevideo</option>
-							<option value="Paysandú">Paysandú</option>
-							<option value="Río Negro">Río Negro</option>
+							<option value="Paysandï¿½">Paysandï¿½</option>
+							<option value="Rï¿½o Negro">Rï¿½o Negro</option>
 							<option value="Rivera">Rivera</option>
 							<option value="Rocha">Rocha</option>
 							<option value="Salto">Salto</option>
-							<option value="San José">San José</option>
+							<option value="San Josï¿½">San Josï¿½</option>
 							<option value="Soriano">Soriano</option>
-							<option value="Tacuarembó">Tacuarembó</option>
+							<option value="Tacuarembï¿½">Tacuarembï¿½</option>
 							<option value="Treinta y Tres">Treinta y Tres</option>
 						</select>
 					</div>

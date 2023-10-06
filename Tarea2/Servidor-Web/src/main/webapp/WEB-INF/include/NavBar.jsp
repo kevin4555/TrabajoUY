@@ -38,7 +38,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
           <% if (usuario != null) { %>
               <li class="nav-item">
                 <% if (usuario.getImagen() != null) { %>
-                  <img class="rounded-pill imgPerfil" src="data:image/png;base64,<%= usuario.getImagen() %>"/>
+                  <img class="rounded-pill imgPerfil" src="data:image/png;base64,<%= usuario.getImagenBase64() %>"/>
                 <% } %>
               </li>
                 <div class="dropdown selectUsuario">

@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core"%>
                             <b>Ciudad:</b> ${oferta.ciudad}
                           </li>
                           <li class="list-group-item">
-                            <b>Fecha de alta:</b> ${oferta.fechaResolucion}
+                            <b>Fecha de alta:</b> ${oferta.fechaAlta}
                           </li>
                           <li class="list-group-item">
                             <b>Keywords:</b>

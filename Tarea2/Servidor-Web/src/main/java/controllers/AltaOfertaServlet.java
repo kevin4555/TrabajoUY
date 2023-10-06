@@ -16,6 +16,7 @@ import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,112 +50,118 @@ import model.TipoUsuario;
 /**
  * Servlet implementation class AltaOfertaServlet
  */
+@MultipartConfig()
 @WebServlet("/altaOferta")
 public class AltaOfertaServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AltaOfertaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+  private static final long serialVersionUID = 1L;
+  
+  /**
+   * @see HttpServlet#HttpServlet()
+   */
+  public AltaOfertaServlet() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
+  
+  @SuppressWarnings("unused")
+  private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    HttpSession sesion = request.getSession();
+    
+    if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO) {
+      // agregar pagina de error
     }
-
-    @SuppressWarnings("unused")
-    private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-//        HttpSession sesion = request.getSession();
-//
-//        if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO) {
-//            // agregar pagina de error
-//        }
-
-//        IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-//        Dtusuario empresa = (Dtusuario) sesion.getAttribute("usuarioLogueado");
-//        String tipoPublicacion = request.getParameter("tipoPublicacion");
-//        String nombreOferta = request.getParameter("nombreOferta");
-//        String descripcion = request.getParameter("descripcion");
-//        String[] keywords = request.getParameterValues("keywords");
-//        String horaInicio = request.getParameter("horaInicio");
-//        String horaFin = request.getParameter("horaFin");
-//        float remuneracion = 0;
-//        String departamento = request.getParameter("departamento");
-//        String ciudad = request.getParameter("ciudad");
-        	Part imagen = request.getPart("imagenOferta");
-        	if(imagen!= null)
-        		request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
-//        ArrayList<String> listKeywords = new ArrayList<>();
-//        LocalDate fechaAlta = LocalDate.now();
-//        String nombrePaquete = null;
-//        BufferedImage imagenParametroAlta = null;
-//
-//        System.out.println("asdasdasdas");
-//        if(imagen != null)
-//        {
-//            InputStream inputStream = imagen.getInputStream();
-//            imagenParametroAlta = ImageIO.read(inputStream);
-//            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-//        }
-//
-//        if (keywords != null) {
-//            for (String keyword : keywords) {
-//                listKeywords.add(keyword);
-//            }
-//        }
-//
-//        if (request.getParameter("remuneracion") != null) {
-//            remuneracion = Float.valueOf(request.getParameter("remuneracion"));
-//        }
-//
-//        if (!(nombreOferta == null)) {
-//            try {
-//                controladorOferta.altaOfertaLaboral(nombreOferta, descripcion, horaInicio, horaFin, remuneracion, ciudad,
-//                        departamento, fechaAlta, tipoPublicacion, empresa.getNickname(), listKeywords, imagenParametroAlta,
-//                        nombrePaquete);
-//                String url = request.getContextPath() + "/perfil?nicknameUsuario=" + empresa.getNickname();
-//                response.sendRedirect(url);
-//                
-//            } catch (TipoPublicacionNoExisteException | KeywordNoExisteException | UsuarioNoExisteException e) {
-//                // agregar pagina de error
-//                e.printStackTrace();
-//                
-//            } catch (OfertaLaboralYaExisteException e) {
-//                request.setAttribute("mensajeError", "nombre de oferta repetido");
-//                request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request, response);
-//                e.printStackTrace();
-//            }
-//        } else {
-//
-//            if (request.getAttribute("nombreOferta") == null) {
-//                ArrayList<String> listaTipos = (ArrayList<String>) controladorOferta.listarTipoDePublicaciones();
-//                ArrayList<DttipoPublicacion> listaDtTipos = new ArrayList<DttipoPublicacion>();
-//                IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-//                for (String nombreTipo : listaTipos) {
-//                    try {
-//                        listaDtTipos.add(controladorOferta.obtenerDttipoPublicacion(nombreTipo));
-//                    } catch (TipoPublicacionNoExisteException e) {
-//                        // agregar pagina de error
-//                        e.printStackTrace();
-//                    }
-//                }
-//                 
-//                 try {
-//                 ArrayList<DtCompraPaquete> listaCompraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario.obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
-//                 request.setAttribute("listaCompraPaquetes", listaCompraPaquetes);
-//                 } catch (UsuarioNoExisteException e) {
-//                 // agregar pagina de error
-//                 e.printStackTrace();
-//                 }
-//
-//                ArrayList<String> listKeywordsAtributo = (ArrayList<String>) controladorOferta.listarKeywords();
-//                request.setAttribute("listaKeywords", listKeywordsAtributo);
-//                request.setAttribute("listaTipoPublicacion", listaDtTipos);
-//                request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request, response);
-//            }
-//
-//        }
+    
+    IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    Dtusuario empresa = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+    String tipoPublicacion = request.getParameter("tipoPublicacion");
+    String nombreOferta = request.getParameter("nombreOferta");
+    String descripcion = request.getParameter("descripcion");
+    String[] keywords = request.getParameterValues("keywords");
+    String horaInicio = request.getParameter("horaInicio");
+    String horaFin = request.getParameter("horaFin");
+    float remuneracion = 0;
+    String departamento = request.getParameter("departamento");
+    String ciudad = request.getParameter("ciudad");
+    BufferedImage imagen = null;
+    ArrayList<String> listKeywords = new ArrayList<>();
+    LocalDate fechaAlta = LocalDate.now();
+    String nombrePaquete = request.getParameter("nombrePaquete");
+    if (request.getParameter("remuneracion") != null) {
+      remuneracion = Float.valueOf(request.getParameter("remuneracion"));
     }
+    try {
+      Part filePart = request.getPart("imagenOferta");
+      if (filePart != null && filePart.getSize() > 0) {
+        InputStream fileContent = filePart.getInputStream();
+        imagen = ImageIO.read(fileContent);
+      }
+    } catch (IOException | ServletException e) {
+      // agregar pagina de error
+      e.printStackTrace();
+    }
+    
+    if (keywords != null) {
+      for (String keyword : keywords) {
+        listKeywords.add(keyword);
+      }
+    }
+    if (nombreOferta != null) {
+      try {
+        controladorOferta.altaOfertaLaboral(nombreOferta, descripcion, horaInicio, horaFin,
+            remuneracion, ciudad, departamento, fechaAlta, tipoPublicacion,
+            empresa.getNickname(), listKeywords, imagen, nombrePaquete);
+        String url = request.getContextPath() + "/perfil?nicknameUsuario="
+            + empresa.getNickname();
+        response.sendRedirect(url);
+        
+      } catch (TipoPublicacionNoExisteException | KeywordNoExisteException
+          | UsuarioNoExisteException e) {
+        // agregar pagina de error
+        e.printStackTrace();
+        
+      } catch (OfertaLaboralYaExisteException e) {
+        request.setAttribute("mensajeError", "nombre de oferta repetido");
+        request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request,
+            response);
+        e.printStackTrace();
+      }
+    } else {
+      
+      if (request.getAttribute("nombreOferta") == null) {
+        ArrayList<String> listaTipos = (ArrayList<String>) controladorOferta
+            .listarTipoDePublicaciones();
+        ArrayList<DttipoPublicacion> listaDtTipos = new ArrayList<DttipoPublicacion>();
+        IcontroladorUsuario controladorUsuario = Fabrica.getInstance()
+            .obtenerControladorUsuario();
+        for (String nombreTipo : listaTipos) {
+          try {
+            listaDtTipos.add(controladorOferta.obtenerDttipoPublicacion(nombreTipo));
+          } catch (TipoPublicacionNoExisteException e) {
+            // agregar pagina de error
+            e.printStackTrace();
+          }
+        }
+        
+        try {
+          ArrayList<DtCompraPaquete> listaCompraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario
+              .obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
+          request.setAttribute("listaCompraPaquetes", listaCompraPaquetes);
+        } catch (UsuarioNoExisteException e) {
+          // agregar pagina de error
+          e.printStackTrace();
+        }
+        
+        ArrayList<String> listKeywordsAtributo = (ArrayList<String>) controladorOferta
+            .listarKeywords();
+        request.setAttribute("listaKeywords", listKeywordsAtributo);
+        request.setAttribute("listaTipoPublicacion", listaDtTipos);
+        request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request,
+            response);
+      }
+      
+    }
+  }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
