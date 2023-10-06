@@ -98,7 +98,7 @@
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
-                    <h2 class="">$${paquete.costo}</h2>
+                    <h2 class="">$<%= paquete.getCosto() %></h2>
                   </div>
                 </div>
               </div>
