@@ -2,6 +2,7 @@ package logica.handlers;
 
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,7 @@ public class ManejadorPaquetes {
     if (colPaquetes.containsKey(nomPaquete)) {
       return colPaquetes.get(nomPaquete);
     } else {
-      throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + " no existe");
+      throw new PaquetePublicacionNoExisteException("El paquete " + nomPaquete + " no existe");
     }
   }
   
@@ -79,7 +80,7 @@ public class ManejadorPaquetes {
     if (colPaquetes.get(nomPaquete) != null) {
       colPaquetes.remove(nomPaquete);
     } else {
-      throw new PaquetePublicacionNoExisteException("El paquete" + nomPaquete + "no existe");
+      throw new PaquetePublicacionNoExisteException("El paquete " + nomPaquete + "no existe");
     }
   }
   
@@ -105,7 +106,7 @@ public class ManejadorPaquetes {
    * Lista de DTPaquetesPublicacion .
    */
   
-  public List<DtpaquetePublicacion> listarDtpaquetes() {
+  public List<DtpaquetePublicacion> listarDtpaquetes() throws IOException {
     List<DtpaquetePublicacion> listaResultado = new ArrayList<DtpaquetePublicacion>();
     for (PaquetePublicacion paquete : colPaquetes.values()) {
       listaResultado.add(paquete.obtenerDtPaquete());

@@ -14,6 +14,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -440,7 +441,7 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcLabelCvReducido.gridx = 0;
     gbcLabelCvReducido.gridy = 18;
     this.labelCvReducido.setVisible(false);
-        
+    
     textPaneMotivacion = new JTextPane();
     GridBagConstraints gbcTextPane1 = new GridBagConstraints();
     gbcTextPane1.insets = new Insets(0, 0, 5, 0);
@@ -487,8 +488,15 @@ public class ConsultarUsuario extends JInternalFrame {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     String nicknameUsu = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
-      DtOfertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
-      Dtpostulacion dtPostulacion = new Dtpostulacion();
+      DtOfertaLaboral dtOferta;
+      try {
+        dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
+      } catch (OfertaLaboralNoExisteException | IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+        return;
+      }
+      Dtpostulacion dtPostulacion;
       this.textFieldHorarioOferta
           .setText(dtOferta.getHorarioInicio() + " - " + dtOferta.getHorarioFinal());
       this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
@@ -497,20 +505,22 @@ public class ConsultarUsuario extends JInternalFrame {
       if (tipoUsuario.equals("Postulante")) {
         try {
           dtPostulacion = controladorUsuario.obtenerDtpostulacion(nicknameUsu, oferta);
+          this.textPaneMotivacion.setText(dtPostulacion.getDescripMotivacion());
+          this.textPaneMotivacion.setVisible(true);
+          this.lblMotivacion.setVisible(true);
+          this.textPaneCvReducido.setText(dtPostulacion.getCvReducido());
+          this.textPaneCvReducido.setVisible(true);
+          this.labelCvReducido.setVisible(true);
+          
+          this.textFieldFechaPostulacion
+              .setText(dtPostulacion.getFechaPostulacion().toString());
+          this.textFieldFechaPostulacion.setVisible(true);
+          this.labelFechaPostulacion.setVisible(true);
         } catch (UsuarioNoExisteException evento1) {
           // TODO Auto-generated catch block
           
         }
-        this.textPaneMotivacion.setText(dtPostulacion.getDescripMotivacion());
-        this.textPaneMotivacion.setVisible(true);
-        this.lblMotivacion.setVisible(true);
-        this.textPaneCvReducido.setText(dtPostulacion.getCvReducido());
-        this.textPaneCvReducido.setVisible(true);
-        this.labelCvReducido.setVisible(true);
         
-        this.textFieldFechaPostulacion.setText(dtPostulacion.getFechaPostulacion().toString());
-        this.textFieldFechaPostulacion.setVisible(true);
-        this.labelFechaPostulacion.setVisible(true);
       }
     }
   }
@@ -537,14 +547,21 @@ public class ConsultarUsuario extends JInternalFrame {
   /**
    * Metodo cargar datos usuarios .
    */
-
+  
   public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
     
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
       limpiarDatosOfertas();
-      Dtusuario dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+      Dtusuario dtUsuario;
+      try {
+        dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+      } catch (UsuarioNoExisteException | IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+        return;
+      }
       
       // this.textFieldNickName.setText(nicknameUsuario);
       this.textFieldNombre.setText(dtUsuario.getNombre());
@@ -575,8 +592,7 @@ public class ConsultarUsuario extends JInternalFrame {
         this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().toString());
         cambiarPanel(panelPostulante);
       }
-      List<String> listaOfertas = this.controladorUsuario
-          .listaOfertasUsuario(nicknameUsuario);
+      List<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
       String[] arrayOfertas = listaOfertas.toArray(new String[0]);
       Arrays.sort(arrayOfertas);
       DefaultComboBoxModel<String> model;

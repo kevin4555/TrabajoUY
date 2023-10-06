@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -275,19 +276,19 @@ public class AceptarRechazarOferta extends JInternalFrame {
           DtOfertaLaboral dtOfertaLaboral = this.controladorOfertaLaboral
               .obtenerDtOfertaLaboral(oferta);
           if (!dtOfertaLaboral.getEstadoOferta().equals(EstadoOferta.INGRESADA)) {
-            JOptionPane.showMessageDialog(this, "La oferta " + oferta + " no se encuentra en "
-                + "estado ingresada",
+            JOptionPane.showMessageDialog(this,
+                "La oferta " + oferta + " no se encuentra en " + "estado ingresada",
                 "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
           } else {
             LocalDate fechaActual = LocalDate.now();
-            this.controladorOfertaLaboral.aceptarRechazarOfertaLaboral(oferta, 
+            this.controladorOfertaLaboral.aceptarRechazarOfertaLaboral(oferta,
                 EstadoOferta.CONFIRMADA, fechaActual);
-            JOptionPane.showMessageDialog(this, "La oferta " + oferta + " ha sido confirmada con "
-                + "éxito",
+            JOptionPane.showMessageDialog(this,
+                "La oferta " + oferta + " ha sido confirmada con " + "éxito",
                 "Agregar/Rechazar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
             limpiarTodosLosDatos();
           }
-        } catch (OfertaLaboralNoExisteException evento) {
+        } catch (OfertaLaboralNoExisteException | IOException evento) {
           evento.printStackTrace();
         }
       }
@@ -309,26 +310,25 @@ public class AceptarRechazarOferta extends JInternalFrame {
           DtOfertaLaboral dtOfertaLaboral = this.controladorOfertaLaboral
               .obtenerDtOfertaLaboral(oferta);
           if (!dtOfertaLaboral.getEstadoOferta().equals(EstadoOferta.INGRESADA)) {
-            JOptionPane.showMessageDialog(this, "La oferta " + oferta + " no se encuentra en estado"
-                + " ingresada",
+            JOptionPane.showMessageDialog(this,
+                "La oferta " + oferta + " no se encuentra en estado" + " ingresada",
                 "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-          }  else {
+          } else {
             LocalDate fechaActual = LocalDate.now();
             this.controladorOfertaLaboral.aceptarRechazarOfertaLaboral(oferta,
                 EstadoOferta.RECHAZADA, fechaActual);
-            JOptionPane.showMessageDialog(this, "La oferta " + oferta + " ha sido rechazada con "
-                + "éxito",
+            JOptionPane.showMessageDialog(this,
+                "La oferta " + oferta + " ha sido rechazada con " + "éxito",
                 "Agregar/Rechazar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
             limpiarTodosLosDatos();
           }
-        } catch (OfertaLaboralNoExisteException evento) {
+        } catch (OfertaLaboralNoExisteException | IOException evento) {
           evento.printStackTrace();
         }
       }
     }
     
   }
-
   
   /**
    * Metodo cargar datos usuario .
@@ -349,7 +349,14 @@ public class AceptarRechazarOferta extends JInternalFrame {
   protected void cargarDatosOferta(ActionEvent evento) throws OfertaLaboralNoExisteException {
     String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
-      DtOfertaLaboral dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
+      DtOfertaLaboral dtOferta;
+      try {
+        dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
+      } catch (OfertaLaboralNoExisteException | IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+        return;
+      }
       this.textFieldHorarioOferta
           .setText(dtOferta.getHorarioInicio() + " - " + dtOferta.getHorarioFinal());
       this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());

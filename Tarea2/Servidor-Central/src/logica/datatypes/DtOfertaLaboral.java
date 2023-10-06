@@ -1,9 +1,12 @@
 package logica.datatypes;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import javax.imageio.ImageIO;
 
 /**
  * Clase DTOfertaLaboral.
@@ -22,6 +25,7 @@ public class DtOfertaLaboral {
   private List<Dtpostulacion> postulaciones;
   private EstadoOferta estadoOferta;
   private BufferedImage imagen;
+  private String imagenBase64;
   private DtpaquetePublicacion paqueteAsociado;
   private List<String> keywords;
   private Boolean estaVencida;
@@ -32,12 +36,11 @@ public class DtOfertaLaboral {
    * Contructor.
    */
   
-  public DtOfertaLaboral(String nombre, String descripcion, 
-      String ciudad, String departamento, String horarioInicial, String horarioFinal, 
-      Float remuneracion, LocalDate fechaAlta, List<Dtpostulacion> postulaciones,
-      LocalDate fechaResolucion, EstadoOferta estado, BufferedImage imagen, 
-      DtpaquetePublicacion paquete,
-      List<String> keywords,Boolean estaVencida, String nombreTipoPublicacion, String empresa) {
+  public DtOfertaLaboral(String nombre, String descripcion, String ciudad, String departamento,
+      String horarioInicial, String horarioFinal, Float remuneracion, LocalDate fechaAlta,
+      List<Dtpostulacion> postulaciones, LocalDate fechaResolucion, EstadoOferta estado,
+      BufferedImage imagen, DtpaquetePublicacion paquete, List<String> keywords,
+      Boolean estaVencida, String nombreTipoPublicacion, String empresa) throws IOException {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.ciudad = ciudad;
@@ -50,6 +53,12 @@ public class DtOfertaLaboral {
     this.postulaciones = postulaciones;
     this.estadoOferta = estado;
     this.imagen = imagen;
+    
+    if (imagen != null) {
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      ImageIO.write(this.imagen, "jpg", baos);
+      this.imagenBase64 = Base64.getEncoder().encodeToString(baos.toByteArray());
+    }
     this.paqueteAsociado = paquete;
     this.keywords = keywords;
     this.estaVencida = estaVencida;
@@ -113,17 +122,21 @@ public class DtOfertaLaboral {
   public LocalDate getFechaResolucion() {
     return fechaResolucion;
   }
-
+  
   public Boolean getEstaVencida() {
     return estaVencida;
   }
-
+  
   public String getNombreTipoPublicacion() {
     return nombreTipoPublicacion;
   }
-
+  
   public String getEmpresa() {
     return empresa;
+  }
+  
+  public String getImagenBase64() {
+    return imagenBase64;
   }
   
 }

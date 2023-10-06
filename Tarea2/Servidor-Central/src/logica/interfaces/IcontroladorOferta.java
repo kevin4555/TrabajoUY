@@ -13,6 +13,7 @@ import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public interface IcontroladorOferta {
   public List<String> listarKeywords();
   
   public DtOfertaLaboral obtenerDtOfertaLaboral(String nomOferta)
-      throws OfertaLaboralNoExisteException;
+      throws OfertaLaboralNoExisteException, IOException;
   
   public List<String> obtenerOfertasEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException;
@@ -86,9 +87,9 @@ public interface IcontroladorOferta {
   void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta,
       LocalDate fechaResolucion) throws OfertaLaboralNoExisteException;
   
-  public List<DtOfertaLaboral> obtenerDtOfertasConfirmadas();
+  public List<DtOfertaLaboral> obtenerDtOfertasConfirmadas() throws IOException;
   
-  List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword);
+  List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) throws IOException;
   
   public List<Dtpostulacion> obtenerDtPostulacionesDeOferta(String nombreOferta)
       throws OfertaLaboralNoExisteException;
@@ -97,7 +98,7 @@ public interface IcontroladorOferta {
       throws OfertaLaboralNoExisteException;
   
   public DtpaquetePublicacion obtenerDtPaquetePublicacion(String nombreOferta)
-      throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete;
+      throws OfertaLaboralNoExisteException, OfertaLaboralNoTienePaquete, IOException;
   
   public List<String> listarTipoPublicacionDePaquete(String nombrePaquete)
       throws PaquetePublicacionNoExisteException;
@@ -106,14 +107,14 @@ public interface IcontroladorOferta {
       throws OfertaLaboralNoExisteException;
   
   DtpaquetePublicacion obtenerDtpaquete(String nombrePaquete)
-      throws PaquetePublicacionNoExisteException;
+      throws PaquetePublicacionNoExisteException, IOException;
   
   DttipoPublicacion obtenerDttipoPublicacion(String nombreTipo)
       throws TipoPublicacionNoExisteException;
   
   List<String> listarPaquetesNoComprados();
   
-  List<DtpaquetePublicacion> listarDtpaquetes();
+  List<DtpaquetePublicacion> listarDtpaquetes() throws IOException;
   
   Boolean estaCompradoPaquete(String nombrePaquete) throws PaquetePublicacionNoExisteException;
   

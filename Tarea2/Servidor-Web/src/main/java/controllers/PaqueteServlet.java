@@ -1,5 +1,15 @@
 package controllers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Base64;
+
+import javax.imageio.ImageIO;
+
+import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,13 +23,6 @@ import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 import model.EstadoSesion;
 import model.TipoUsuario;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-import excepciones.PaquetePublicacionNoExisteException;
-import excepciones.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class PaqueteServlet
@@ -38,12 +41,12 @@ public class PaqueteServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	if(request.getParameter("accion") == null || request.getParameter("accion") != "comrpar") {
+    	if(request.getParameter("accion") == null || request.getParameter("accion") != "comprar") {
     		String nombrePaquete = request.getParameter("nombrePaquete");
     		IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
     		try {
     			DtpaquetePublicacion paquete = controladorOfertas.obtenerDtpaquete(nombrePaquete);
-				request.setAttribute("paquete", paquete);
+				request.setAttribute("paquete", paquete);			    
 				request.getRequestDispatcher("/WEB-INF/consultas/Paquete.jsp").forward(request, response);
 			} catch (PaquetePublicacionNoExisteException e) {
 				// agregar pagina de error

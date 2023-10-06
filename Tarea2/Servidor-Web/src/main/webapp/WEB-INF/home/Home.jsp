@@ -22,13 +22,14 @@
             <div class="col-8">
                 <section>
                     <%
+                    
                     ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request.getAttribute("listaOfertasConfirmadas");
                     for (DtOfertaLaboral oferta : listaOfertasConfirmadas) {
                     %>
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-md-4 justify-content-center align-items-center d-flex">
-                                    <img src="<%= oferta.getImagen() %>" class="img-fluid rounded-start" alt="Imagen Oferta" />
+                                    <img src="data:image/png;base64,<%= oferta.getImagenBase64() %>" class="img-fluid rounded-start" alt="Imagen Oferta" />
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

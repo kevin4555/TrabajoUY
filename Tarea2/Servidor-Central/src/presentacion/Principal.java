@@ -308,7 +308,8 @@ public class Principal extends JFrame {
   
   protected void cargarDatosDePrueba(ActionEvent arg0)
       throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioYaExistePostulacion, PaquetePublicacionNoExisteException {
+      UsuarioEmailRepetidoException, UsuarioYaExistePostulacion, 
+      PaquetePublicacionNoExisteException {
     try {
       
       Loader loader = new Loader();

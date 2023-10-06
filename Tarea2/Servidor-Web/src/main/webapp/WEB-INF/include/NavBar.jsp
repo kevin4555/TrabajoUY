@@ -13,7 +13,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
     <div class="row w-100 justify-content-between align-items-center">
       <div class="col-2">
         <a class="nav-link text-white" href="<%= request.getContextPath() %>/home">
-          <img src="/Servidor-Web/resource/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid">
+          <img src="<%= request.getContextPath() %>/resource/img/Logo.svg" alt="Logo" class="navbar-brand img-fluid">
         </a>
       </div>
       <div class="col">

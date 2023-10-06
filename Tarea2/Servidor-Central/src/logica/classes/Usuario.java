@@ -1,6 +1,7 @@
 package logica.classes;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import logica.datatypes.Dtusuario;
@@ -71,7 +72,7 @@ public abstract class Usuario {
     this.contrasenia = contrasenia;
   }
   
-  public abstract List<String> listarOfertasUsuario();
+  public abstract List<String> listarNombreOfertasUsuario();
   
-  public abstract  Dtusuario obtenerDtusuario();
+  public abstract  Dtusuario obtenerDtusuario() throws IOException;
 }

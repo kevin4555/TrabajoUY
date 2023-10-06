@@ -6,11 +6,11 @@ package logica.datatypes;
 
 public class DtcantidadTipoPublicacion {
   String nombreTipoPublicacion;
-  int cantidadRestante;
+  int cantidad;
   
   public DtcantidadTipoPublicacion(String nombre, int cantidad) {
     this.nombreTipoPublicacion = nombre;
-    this.cantidadRestante = cantidad;
+    this.cantidad = cantidad;
   }
   
   public String getNombreTipoPublicacion() {
@@ -18,7 +18,7 @@ public class DtcantidadTipoPublicacion {
   }
   
   public int getCantidad() {
-    return cantidadRestante;
+    return cantidad;
   }
   
 }

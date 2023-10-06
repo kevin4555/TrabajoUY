@@ -11,6 +11,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -98,10 +99,9 @@ public class ConsultaPaquete extends JInternalFrame {
     gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0 };
     gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblPanelDatos);
-    
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
     gbcLblSeleccion.insets = new Insets(0, 0, 5, 5);
@@ -126,7 +126,6 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcComboBoxSeleccionUsuario.gridy = 1;
     panelDatos.add(this.comboBoxSeleccionPaquete, gbcComboBoxSeleccionUsuario);
     
-    
     GridBagConstraints gbcLblDescuento = new GridBagConstraints();
     gbcLblDescuento.anchor = GridBagConstraints.EAST;
     gbcLblDescuento.insets = new Insets(0, 0, 5, 5);
@@ -144,7 +143,6 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcTextFieldDescuento.gridy = 2;
     panelDatos.add(textFieldDescuento, gbcTextFieldDescuento);
     textFieldDescuento.setColumns(10);
-    
     
     GridBagConstraints gbcLblValidez = new GridBagConstraints();
     gbcLblValidez.anchor = GridBagConstraints.EAST;
@@ -164,7 +162,6 @@ public class ConsultaPaquete extends JInternalFrame {
     panelDatos.add(textFieldValidez, gbcTextFieldValidez);
     textFieldValidez.setColumns(10);
     
-    
     GridBagConstraints gbcLblDescripcionPaquete = new GridBagConstraints();
     gbcLblDescripcionPaquete.insets = new Insets(0, 0, 5, 5);
     gbcLblDescripcionPaquete.anchor = GridBagConstraints.EAST;
@@ -180,7 +177,6 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcTextPane.gridx = 1;
     gbcTextPane.gridy = 4;
     panelDatos.add(textPanePaquete, gbcTextPane);
-    
     
     GridBagConstraints gbcLblFechaAltaPaquete = new GridBagConstraints();
     gbcLblFechaAltaPaquete.anchor = GridBagConstraints.EAST;
@@ -234,7 +230,6 @@ public class ConsultaPaquete extends JInternalFrame {
     this.textPane.setEditable(false);
     panelDatos.add(textPane, gbcTextPaneFoto);
     
-    
     GridBagConstraints gbcLblOfertas = new GridBagConstraints();
     gbcLblOfertas.anchor = GridBagConstraints.EAST;
     gbcLblOfertas.insets = new Insets(0, 0, 5, 5);
@@ -256,7 +251,6 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcComboBoxSeleccionOferta.gridy = 12;
     panelDatos.add(this.comboBoxSeleccionTiposPublicaciones, gbcComboBoxSeleccionOferta);
     
-   
     GridBagConstraints gbcLblHorarioOferta = new GridBagConstraints();
     gbcLblHorarioOferta.anchor = GridBagConstraints.EAST;
     gbcLblHorarioOferta.insets = new Insets(0, 0, 5, 5);
@@ -274,7 +268,6 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcTextFieldNombreOferta.gridy = 13;
     panelDatos.add(this.textFieldExposicion, gbcTextFieldNombreOferta);
     this.textFieldExposicion.setColumns(10);
-    
     
     GridBagConstraints gbcLblRemuneracion = new GridBagConstraints();
     gbcLblRemuneracion.anchor = GridBagConstraints.EAST;
@@ -294,7 +287,6 @@ public class ConsultaPaquete extends JInternalFrame {
     panelDatos.add(this.textFieldCosto, gbcTextFieldRemuneracion);
     this.textFieldCosto.setColumns(10);
     
-    
     GridBagConstraints gbcLblCiudad = new GridBagConstraints();
     gbcLblCiudad.anchor = GridBagConstraints.EAST;
     gbcLblCiudad.insets = new Insets(0, 0, 5, 5);
@@ -312,7 +304,6 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcTextFieldCiudad.gridy = 15;
     panelDatos.add(this.textFieldDuracion, gbcTextFieldCiudad);
     this.textFieldDuracion.setColumns(10);
-    
     
     GridBagConstraints gbcLblFechaAlta = new GridBagConstraints();
     gbcLblFechaAlta.anchor = GridBagConstraints.EAST;
@@ -332,7 +323,6 @@ public class ConsultaPaquete extends JInternalFrame {
     panelDatos.add(this.textFieldFechaAlta, gbcTextFieldFechaAlta);
     this.textFieldFechaAlta.setColumns(10);
     
-    
     GridBagConstraints gbcLblDescripcionEmpresa = new GridBagConstraints();
     gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
     gbcLblDescripcionEmpresa.anchor = GridBagConstraints.EAST;
@@ -348,7 +338,6 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcTextPaneTipoPublicacion.gridx = 1;
     gbcTextPaneTipoPublicacion.gridy = 17;
     panelDatos.add(textPaneTipoPublicacion, gbcTextPaneTipoPublicacion);
-    
     
     GridBagConstraints gbcLblCantidadInlcuidaa = new GridBagConstraints();
     gbcLblCantidadInlcuidaa.anchor = GridBagConstraints.EAST;
@@ -396,8 +385,8 @@ public class ConsultaPaquete extends JInternalFrame {
     
     try {
       if (comboBoxSeleccionPaquete.getSelectedIndex() == -1) {
-        JOptionPane.showMessageDialog(this, "Debe seleccionar un paquete",
-            "Consultar paquete", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un paquete", "Consultar paquete",
+            JOptionPane.ERROR_MESSAGE);
       } else {
         String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
         
@@ -410,9 +399,11 @@ public class ConsultaPaquete extends JInternalFrame {
               .setText(String.valueOf(dtPaquetePublicaciones.getDescuento()) + "%");
           this.textFieldValidez
               .setText(String.valueOf(dtPaquetePublicaciones.getPeriodoValidez()));
-          this.textFieldCostoPaquete.setText(String.valueOf(dtPaquetePublicaciones.getCosto()));
+          this.textFieldCostoPaquete
+              .setText(String.valueOf(dtPaquetePublicaciones.getCosto()));
           this.textPanePaquete.setText(dtPaquetePublicaciones.getDescripcion());
-          this.textFieldFechaAltaPaquete.setText(dtPaquetePublicaciones.getFechaAlta().toString());
+          this.textFieldFechaAltaPaquete
+              .setText(dtPaquetePublicaciones.getFechaAlta().toString());
           BufferedImage originalImage = dtPaquetePublicaciones.getImagen();
           if (originalImage != null) {
             int newWidth = 100; // Ancho deseado
@@ -437,7 +428,7 @@ public class ConsultaPaquete extends JInternalFrame {
         this.comboBoxSeleccionTiposPublicaciones.setModel(model);
       }
       
-    } catch (PaquetePublicacionNoExisteException evento1) {
+    } catch (PaquetePublicacionNoExisteException | IOException evento1) {
       // no imprime nada
     }
     
@@ -455,7 +446,7 @@ public class ConsultaPaquete extends JInternalFrame {
         DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
             .obtenerDtpaquete(nombrePaquete);
         List<DtcantidadTipoPublicacion> dtCantidadPublicaciones = dtPaquetePublicaciones
-            .getCantidadPublicacionesColeccion();
+            .getCantidadTipoPublicaciones();
         int cantidadRestante = 0;
         for (DtcantidadTipoPublicacion dtCantidadTipoPublicacion : dtCantidadPublicaciones) {
           if (dtCantidadTipoPublicacion.getNombreTipoPublicacion().equals(tipoPublicacion)) {
@@ -466,7 +457,8 @@ public class ConsultaPaquete extends JInternalFrame {
         if (tipoPublicacionSeleccionada != tipoPublicacion) {
           
           DttipoPublicacion dtTipoPublicacion;
-          dtTipoPublicacion = controladorOfertaLaboral.obtenerDttipoPublicacion(tipoPublicacion);
+          dtTipoPublicacion = controladorOfertaLaboral
+              .obtenerDttipoPublicacion(tipoPublicacion);
           this.textFieldExposicion.setText(dtTipoPublicacion.getExposicion());
           this.textFieldCosto.setText(String.valueOf(dtTipoPublicacion.getCosto()));
           this.textFieldDuracion
@@ -481,6 +473,9 @@ public class ConsultaPaquete extends JInternalFrame {
       // no imprime nada
     } catch (PaquetePublicacionNoExisteException evento1) {
       // no imprime nada
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
     
   }

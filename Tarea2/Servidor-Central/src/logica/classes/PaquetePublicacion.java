@@ -1,9 +1,9 @@
 package logica.classes;
 
-import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.PaquetePublicacionYaFueComprado;
 import excepciones.TipoDePublicacionYaFueIngresado;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +63,10 @@ public class PaquetePublicacion {
     return descripcion;
   }
   
+  public LocalDate getFechaAlta() {
+    return this.fechaAlta;
+  }
+  
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
@@ -108,7 +112,7 @@ public class PaquetePublicacion {
    * Metodo obtener DTPaquete .
    */
   
-  public DtpaquetePublicacion obtenerDtPaquete() {
+  public DtpaquetePublicacion obtenerDtPaquete() throws IOException {
     List<DtcantidadTipoPublicacion> listDtcantidad = new ArrayList<DtcantidadTipoPublicacion>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
       listDtcantidad.add(cantidad.obtenerDtcantidadTipoPublicacion());
@@ -136,9 +140,6 @@ public class PaquetePublicacion {
   
   /**
    * Metodo agregar tipo de publicacion .
-   * 
-   * @throws PaquetePublicacionYaFueComprado
-   * @throws TipoDePublicacionYaFueIngresado
    */
   
   public void agregarTipoPublicacion(TipoPublicacion tipoPublicacion, int cantidad)
@@ -152,7 +153,8 @@ public class PaquetePublicacion {
         }
       }
       if (!existeEnColeccion) {
-        CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = new CantidadTotalTipoPublicacion(
+        CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = 
+            new CantidadTotalTipoPublicacion(
             cantidad, tipoPublicacion);
         cantidadTipoPublicaciones.add(nuevoCantidadTotalTipoPublicacion);
         setCosto();
@@ -164,19 +166,7 @@ public class PaquetePublicacion {
       throw new PaquetePublicacionYaFueComprado(
           "El paquete " + getNombre() + " ya fue comprado");
     }
-    
   }
-  
-  /**
-   * Metodo listar tipo de publicacion .
-   */
-  
-  public List<String> listarTipoPublicacion() {
-    List<String> resultado = new ArrayList<>();
-    for (CantidadTotalTipoPublicacion tipoPublicacion : cantidadTipoPublicaciones) {
-      resultado.add(tipoPublicacion.getTipoPublicacion().getNombre());
-    }
-    return resultado;
-  }
-  
+
+
 }

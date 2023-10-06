@@ -36,6 +36,10 @@ public class CantidadTipoPublicacionRestante {
     return tipoPublicacion.getNombre();
   }
   
+  /**
+   * Metodo obtenerDtCantidadTipoPublicacionRestante.
+   */
+  
   public DtCantidadTipoPublicacionRestante obtenerDtTipoCantidadRestante() {
     DtCantidadTipoPublicacionRestante resultado = new DtCantidadTipoPublicacionRestante(
         cantidad, tipoPublicacion.obtenerDttipoPublicacion());

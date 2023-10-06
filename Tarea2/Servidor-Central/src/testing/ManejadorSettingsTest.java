@@ -1,23 +1,29 @@
 package testing;
 
-import java.time.LocalDate;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
+import java.time.LocalDate;
 import junit.framework.Assert;
 import logica.classes.Keyword;
 import logica.classes.TipoPublicacion;
 import logica.handlers.ManejadorSettings;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * Clase ManejadorSettingsTest.
+ */
 
 public class ManejadorSettingsTest {
   
   private LocalDate fechaDate;
   private String fecha = "1988-11-10";
+  
+  /**
+   * Metodo setUp.
+   */
   
   @Before
   public void setUp() {

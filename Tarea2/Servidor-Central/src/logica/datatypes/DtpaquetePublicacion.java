@@ -1,9 +1,12 @@
 package logica.datatypes;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import javax.imageio.ImageIO;
 
 /**
  * Clase DTPaquetePublicacion.
@@ -16,25 +19,31 @@ public class DtpaquetePublicacion {
   private float descuento;
   private float costo;
   private BufferedImage imagen;
-  private List<DtcantidadTipoPublicacion> cantidadPublicacionesColeccion;
+  private String imagenBase64;
+  private List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones;
   private LocalDate fechaAlta;
   
   /**
    * Contructor.
    */
   
-  public DtpaquetePublicacion(String nombre, String descripcion, 
-      int periodoValidez, float descuento, float costo,
-      BufferedImage imagen, 
-      List<DtcantidadTipoPublicacion> cantidadPublicacionesColeccion, 
-      LocalDate fechaAlta) {
+  public DtpaquetePublicacion(String nombre, String descripcion, int periodoValidez,
+      float descuento, float costo, BufferedImage imagen,
+      List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones, LocalDate fechaAlta)
+      throws IOException {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.periodoValidez = periodoValidez;
     this.descuento = descuento;
     this.costo = costo;
     this.imagen = imagen;
-    this.cantidadPublicacionesColeccion = cantidadPublicacionesColeccion;
+    this.imagenBase64 = null;
+    if (imagen != null) {
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      ImageIO.write(this.imagen, "jpg", baos);
+      this.imagenBase64 = Base64.getEncoder().encodeToString(baos.toByteArray());
+    }
+    this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
     this.fechaAlta = fechaAlta;
   }
   
@@ -42,8 +51,8 @@ public class DtpaquetePublicacion {
     return imagen;
   }
   
-  public List<DtcantidadTipoPublicacion> getCantidadPublicacionesColeccion() {
-    return cantidadPublicacionesColeccion;
+  public List<DtcantidadTipoPublicacion> getCantidadTipoPublicaciones() {
+    return cantidadTipoPublicaciones;
   }
   
   public String getNombre() {
@@ -68,6 +77,10 @@ public class DtpaquetePublicacion {
   
   public LocalDate getFechaAlta() {
     return fechaAlta;
+  }
+  
+  public String getImagenBase64() {
+    return imagenBase64;
   }
   
 }

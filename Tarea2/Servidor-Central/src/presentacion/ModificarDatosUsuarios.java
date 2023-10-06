@@ -224,8 +224,6 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcLblNewLabel1.gridy = 7;
     panelDatos.add(lblNewLabel1, gbcLblNewLabel1);
     
-    
-    
     selectImageButton = new JButton("Seleccionar Imagen");
     GridBagConstraints gbcBtnNewButton = new GridBagConstraints();
     gbcBtnNewButton.anchor = GridBagConstraints.WEST;
@@ -233,7 +231,6 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcBtnNewButton.gridx = 1;
     gbcBtnNewButton.gridy = 7;
     panelDatos.add(selectImageButton, gbcBtnNewButton);
-    
     
     selectImageButton.addActionListener(new ActionListener() {
       @Override
@@ -430,13 +427,19 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    * Metodo cargar datos usuarios .
    */
   
-
   public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
     
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
-      Dtusuario dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+      Dtusuario dtUsuario;
+      try {
+        dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+      } catch (UsuarioNoExisteException | IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+        return;
+      }
       
       this.textFieldNickName.setText(nicknameUsuario);
       this.textFieldNombre.setText(dtUsuario.getNombre());
@@ -513,7 +516,6 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    * Metodo cambiar panel .
    */
   
-
   public void cambiarPanel(JPanel panel) {
     layeredPane.removeAll();
     layeredPane.add(panel);

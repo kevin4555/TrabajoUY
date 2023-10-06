@@ -8,6 +8,7 @@ import excepciones.UsuarioNoExistePostulacion;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import logica.classes.CompraPaquete;
@@ -127,7 +128,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public Dtusuario obtenerDtusuario(String nickname) throws UsuarioNoExisteException {
+  public Dtusuario obtenerDtusuario(String nickname) throws UsuarioNoExisteException, IOException {
     Usuario usuario = this.obtenerUsuario(nickname);
     return usuario.obtenerDtusuario();
   }
@@ -136,7 +137,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   public List<String> listaOfertasUsuario(String nickname)
       throws UsuarioNoExisteException {
     Usuario usuario = this.obtenerUsuario(nickname);
-    return usuario.listarOfertasUsuario();
+    return usuario.listarNombreOfertasUsuario();
   }
   
   @Override
@@ -186,21 +187,21 @@ public class ControladorUsuario implements IcontroladorUsuario {
   
   @Override
   public List<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(String nicknameEmpresa)
-      throws UsuarioNoExisteException {
+      throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasIngresadas();
   }
   
   @Override
   public List<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
-      String nicknameEmpresa) throws UsuarioNoExisteException {
+      String nicknameEmpresa) throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasConfirmadas();
   }
   
   @Override
   public List<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(String nicknameEmpresa)
-      throws UsuarioNoExisteException {
+      throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasRechazadas();
   }
@@ -213,7 +214,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   }
   
   @Override
-  public List<Dtusuario> obtenerDtusuarios() {
+  public List<Dtusuario> obtenerDtusuarios() throws IOException {
     return ManejadorUsuario.getInstance().obtenerDtusuarios();
   }
   
@@ -232,7 +233,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   
   @Override
   public List<DtpaquetePublicacion> obtenerDtpaquetesDeEmpresa(String nicknameEmpresa)
-      throws UsuarioNoExisteException {
+      throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtpaquetes();
     
@@ -261,7 +262,7 @@ public class ControladorUsuario implements IcontroladorUsuario {
   
   @Override
   public List<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(String nicknameEmpresa)
-      throws UsuarioNoExisteException {
+      throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtCompraPaquetes();
   }

@@ -1,6 +1,7 @@
 package logica.classes;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class Postulante extends Usuario {
     return postulaciones;
   }
   
-  public Dtpostulante obtenerDtpostulante() {
+  public Dtpostulante obtenerDtpostulante() throws IOException {
     return new Dtpostulante(this.nickname, this.nombre, this.apellido, this.email, this.getImagen(),
         this.getContrasenia(), this.obtenerDtofertas(), this.fechaNacimiento, this.nacionalidad);
   }
@@ -61,7 +62,7 @@ public class Postulante extends Usuario {
   }
   
   @Override
-  public List<String> listarOfertasUsuario() {
+  public List<String> listarNombreOfertasUsuario() {
     List<String> listaOfertas = new ArrayList<String>();
     for (Postulacion postulacion : postulaciones) {
       listaOfertas.add(postulacion.getNombreOfertaLaboral());
@@ -70,7 +71,7 @@ public class Postulante extends Usuario {
   }
   
   @Override
-  public Dtusuario obtenerDtusuario() {
+  public Dtusuario obtenerDtusuario() throws IOException {
     
     return this.obtenerDtpostulante();
   }
@@ -91,7 +92,7 @@ public class Postulante extends Usuario {
    * Obtener DTOfertaLaboral.
    */
   
-  public List<DtOfertaLaboral> obtenerDtofertas() {
+  public List<DtOfertaLaboral> obtenerDtofertas() throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (Postulacion postulacion : postulaciones) {
       listaResultado.add(postulacion.getOfertaLaboral().obtenerDtOfertaLaboral());
