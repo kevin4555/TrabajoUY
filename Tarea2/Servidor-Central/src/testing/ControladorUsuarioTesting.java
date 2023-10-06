@@ -770,7 +770,7 @@ public class ControladorUsuarioTesting {
   public void listarPaquetesNoCompradosTest() throws UsuarioYaExisteException,
       UsuarioEmailRepetidoException, TipoPublicacionYaExisteException,
       PaquetePublicacionYaExisteException, TipoPublicacionNoExisteException,
-      UsuarioNoExisteException, PaquetePublicacionNoExisteException {
+      UsuarioNoExisteException, PaquetePublicacionNoExisteException, IOException {
     controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra en "
