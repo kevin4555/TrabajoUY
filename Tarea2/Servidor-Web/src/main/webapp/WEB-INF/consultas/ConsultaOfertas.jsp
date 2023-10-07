@@ -28,7 +28,7 @@
                     <div class="row g-0">
                         <div class="col-md-3 justify-content-center align-items-center d-flex">
                             <img
-                                class="imgOfertaLaboral"
+                                class="imgOfertaLaboral img img-fluid"
                                 src="data:image/png;base64,<%= oferta.getImagenBase64() %>"
                                 alt="Imagen Oferta"
                             />

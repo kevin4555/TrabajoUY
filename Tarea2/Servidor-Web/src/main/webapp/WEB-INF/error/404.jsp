@@ -1,16 +1,25 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String error = (String) request.getAttribute("error");
+String errorMessage = (error != null && error.equals("404")) ? "La página que buscas no existe." : "Página no encontrada";
+%>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-
-    <title>Página no encontrada :: gamebook</title>
+    <meta charset="UTF-8">
+	<title>404: Not Found</title>
+	
+	
+	<jsp:include page="../include/Head.jsp" />
 </head>
 <body class="login" id="error_page">
-    <div class="gameover">
-    	404: Not Found
+		<% String contextPath = request.getContextPath(); 
+		String url=contextPath + "/home";
+		%>
+		<h1>¡Ha ocurrido un error!</h1>
+    <div class="alert alert-danger">
+        <strong>Error <%= error %>:</strong> <%= errorMessage %> <a href="<%= url %>">Volver al inicio</a>
     </div>
-
-    <p>
-    <a href="/">volver</a> al inicio.
-    </p>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import excepciones.OfertaLaboralNoExisteException;
 import jakarta.servlet.ServletException;
@@ -42,7 +43,16 @@ public class OfertaServlet extends HttpServlet {
     	IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
     	String nombreOferta = request.getParameter("nombreOferta");
     	HttpSession sesion = request.getSession();
-     
+    	/**if (sesion != null) {
+    		System.out.print(sesion.toString());
+    		Enumeration<String> attributeNames = sesion.getAttributeNames();
+    		while (attributeNames.hasMoreElements()) {
+                String attributeName = attributeNames.nextElement();
+                System.out.println( attributeName + "\n");
+            }
+    	}else {
+    		System.out.print("Sesion es null");
+		}*/
     	try {
 			DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
 			request.setAttribute("oferta", oferta);

@@ -50,7 +50,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
                     <%
                     String contextPath = request.getContextPath();
                     %>
-                    <a class="dropdown-item" href="<%= contextPath %>/perfil?nicknameUsuario=<%= usuario.getNickname() %>">Pefil</a>
+                    <a class="dropdown-item" href="<%= contextPath %>/perfil?nicknameUsuario=<%= usuario.getNickname() %>">Perfil</a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="<%= contextPath %>/logout"  class="btn btn-primary">Cerrar Sesion</a>
