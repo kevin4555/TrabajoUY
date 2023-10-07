@@ -8,11 +8,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.interfaces.IcontroladorOferta;
+import logica.interfaces.IcontroladorUsuario;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class ConsultaPaquetes
@@ -30,7 +35,36 @@ public class CompraPaqueteServlet extends HttpServlet {
     }
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    	String nicknameempresa = request.getParameter("nicknameEmrpesa");
+    	String nombrePaquete = request.getParameter("nombrePaquete");
+    	try {
+        ArrayList<String> paquetesNoComprados = (ArrayList<String>) controladorUsuario.listarPaquetesNoCompradosDeEmpresa(nicknameempresa);
+        Boolean permitido = false;
+        for(String paquete : paquetesNoComprados) {
+          if(paquete.equals(nombrePaquete)) {
+            permitido = true;
+            break;
+          }
+        }
+        if(permitido) {
+          controladorUsuario.comprarPaquete(nicknameempresa, nombrePaquete, LocalDate.now());
+          String url = request.getContextPath() + "/perfil?nicknameUsuario="
+              + nicknameempresa;
+          response.sendRedirect(url);
+          return;
+        }
+        else {
+          request.setAttribute("mensajeError", "paquete ya comprado");
+          String url = request.getContextPath() + "/paquete?nombrePaquete="
+              + nombrePaquete;
+          response.sendRedirect(url);
+          return;
+        }
+      } catch (UsuarioNoExisteException | PaquetePublicacionNoExisteException e) {
+        request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+        e.printStackTrace();
+      }
     }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
