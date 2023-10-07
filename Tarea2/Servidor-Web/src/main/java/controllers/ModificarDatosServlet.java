@@ -34,17 +34,24 @@ public class ModificarDatosServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) {
+    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession sesion = request.getSession();
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO) {
-    		//agregar pagina de error
+    	  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+    	  return;
     	}
     	Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
     	String nombre = request.getParameter("nombre");
     	String apellido = request.getParameter("apellido");
     	String contrasenia = request.getParameter("contrasenia");
+    	String contraseniaConf = request.getParameter("contraseniaConf");
     	BufferedImage imagen = usuario.getImagen();
+    	if(!contraseniaConf.equals(contrasenia)) {
+       request.setAttribute("mensajeError", "contraseña incorrecta");
+       request.getRequestDispatcher("/WEB-INF/registros/EditarDatos.jsp").forward(request, response);
+       return;
+     }
 		try {
 			Part filePart = request.getPart("imagen");
 			if(filePart != null && filePart.getSize() > 0) {
@@ -52,8 +59,9 @@ public class ModificarDatosServlet extends HttpServlet {
 				imagen = ImageIO.read(fileContent);
 			}
 		} catch (IOException | ServletException e) {
-			//agregar pagina de error
+		  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
+			return;
 		}
     	if(sesion.getAttribute("tipoUsuario") == TipoUsuario.EMPRESA) {
     		String descripcion = request.getParameter("descripcion");
@@ -64,8 +72,9 @@ public class ModificarDatosServlet extends HttpServlet {
 				String url = "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 			} catch (UsuarioNoExisteException | IOException e) {
-				// agregar pagina de error
+			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
+				return;
 			}
     	}
     	else if(sesion.getAttribute("tipoUsuario") == TipoUsuario.POSTULANTE) {
@@ -76,8 +85,9 @@ public class ModificarDatosServlet extends HttpServlet {
 				String url = "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 			} catch (UsuarioNoExisteException | IOException e) {
-				// agregar pagina de error
+			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
+				return;
 			}
     	}
     }
@@ -85,7 +95,8 @@ public class ModificarDatosServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		procesarRequest(request, response);
+	  request.getRequestDispatcher("/WEB-INF/registros/EditarDatos.jsp").forward(request,
+       response);
 	}
 
 	/**
