@@ -104,7 +104,7 @@ public class ManejadorOfertas {
   public List<DtOfertaLaboral> obtenerDtofertasConfirmadas() throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
-      if(oferta.getEstado() == EstadoOferta.CONFIRMADA) {
+      if (oferta.getEstado() == EstadoOferta.CONFIRMADA) {
         listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }
       

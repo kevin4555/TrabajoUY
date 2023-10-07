@@ -557,7 +557,8 @@ public class ModificarDatosUsuarios extends JInternalFrame {
   
   public boolean checkFormulario(String nombre, String apellido, Date fechaNacPostulante,
       String nacionalidadPostulante, String descripEmpresa, String contrasenia) {
-    if (nombre.isEmpty() || apellido.isEmpty() || this.textFieldContrasenia.getPassword().length == 0) {
+    if (nombre.isEmpty() || apellido.isEmpty() 
+        || this.textFieldContrasenia.getPassword().length == 0) {
       JOptionPane.showMessageDialog(this, "No puede haber campos vacíos",
           "Modificar Datos Usuario", JOptionPane.ERROR_MESSAGE);
       return false;
