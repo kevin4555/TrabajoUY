@@ -11,6 +11,7 @@ import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import model.TipoUsuario;
 /**
  * Servlet implementation class AltaUsuario
  */
+@MultipartConfig()
 @WebServlet("/altaUsuario")
 public class AltaUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -95,7 +97,7 @@ public class AltaUsuarioServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		procesarRequest(request, response);
+	  request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
 	}
 
 	/**
