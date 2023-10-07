@@ -10,7 +10,7 @@
 </head>
 <body>
 <body class="login">
-    <form class="formLogin" action="<%=request.getContextPath()%>/AltaUsuario"
+    <form class="formLogin" action="<%=request.getContextPath()%>/altaUsuario"
 			method="post" id="formAltaUsuario"
 			class="bg-white rounded container py-3 mx-3 shadow-sm"
 			enctype="multipart/form-data">
@@ -156,9 +156,7 @@
         />
       </div>
       <div class="col-6 mt-3" id="radioTipoUsuario">
-        <button id="btnRegistrarUsuario" type="submit" class="btn btn-primary">
-          Registrarse
-        </button>
+        <input class="btn btn-primary" type="submit" value="Registrarse" />
       </div>
     </form>
 
