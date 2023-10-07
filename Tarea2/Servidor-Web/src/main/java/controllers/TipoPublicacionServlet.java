@@ -35,7 +35,8 @@ public class TipoPublicacionServlet extends HttpServlet {
 			request.setAttribute("tipoPublicacion", tipoPublicacion);
 			request.getRequestDispatcher("/WEB-INF/consultas/TipoPublicacion.jsp").forward(request, response);
 		} catch (TipoPublicacionNoExisteException e) {
-			// agregar pagina de error
+			request.setAttribute("error", e.getMessage());
+			request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 			e.printStackTrace();
 		}
     	

@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	if(nombreEmail == null || contraseniaIngresada == null) {
     		request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
+    		return;
     	}
     	try {
 			if(controladorUsuario.confirmarContrasenia(nombreEmail, contraseniaIngresada)) {

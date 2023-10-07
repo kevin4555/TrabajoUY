@@ -18,9 +18,7 @@ pageEncoding="UTF-8"%>
 	<%@ include file="../include/NavBar.jsp"%>
 	<main
 		class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
-		<form action="<%=request.getContextPath()%>/altaOferta"
-			method="post" id="formAltaOferta"
-			class="bg-white rounded container py-3 mx-3 shadow-sm"
+		<form action="<%=request.getContextPath()%>/altaOferta" method="post"
 			enctype="multipart/form-data">
 			<div class="row g-5 mx-2">
 				<div class="col-6">
@@ -31,24 +29,17 @@ pageEncoding="UTF-8"%>
 							<option value="">-- Selecciona un tipo de publicación --
 							</option>
 							<%
-							ArrayList<DttipoPublicacion> listaTipoPublicacion = (ArrayList<DttipoPublicacion>) request
-									.getAttribute("listaTipoPublicacion");
-							if (!(listaTipoPublicacion.isEmpty()))
-							{
-								for (DttipoPublicacion opcion : listaTipoPublicacion)
-								{
+							ArrayList<DttipoPublicacion> listaTipoPublicacion = (ArrayList<DttipoPublicacion>) request.getAttribute("listaTipoPublicacion");
+							if (!(listaTipoPublicacion.isEmpty())) {
+								for (DttipoPublicacion opcion : listaTipoPublicacion) {
 							%>
-							<option value="<%=opcion.getNombre()%>"><%=opcion.getNombre()%></option>
+								<option value="<%=opcion.getNombre()%>"><%=opcion.getNombre()%></option>
 							<%
-							}
-							%>
-							<%
-							}
-							else
-							{
-							%>
-							<option value="none">-- No hay tipos cargados --</option>
-							<%
+								}
+							} else {
+								%>
+								<option value="none">-- No hay tipos cargados --</option>
+								<%
 							}
 							%>
 						</select>
@@ -148,7 +139,7 @@ pageEncoding="UTF-8"%>
 
 					<div class="camposForm pt-2">
 						<label for="imagenOferta" class="form-label">Imagen</label> <input
-							type="file" name="imagenOferta" />
+							type="file" name="imagenOferta" accept="image/jpg, image/png"/>
 					</div>
 
 					<div class="row camposForm">
@@ -212,7 +203,7 @@ pageEncoding="UTF-8"%>
 							<input class="btn btn-primary" type="submit" value="Confirmar" />
 							<a class="btn btn-primary" href="<%=contextPath%>/home">Cancelar</a>
 						</div>
-					</div> 
+					</div>
 
 				</div>
 			</div>

@@ -40,6 +40,7 @@ public class PostulacionServlet extends HttpServlet {
     	HttpSession sesion = request.getSession();
     	if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO || request.getAttribute("nombreOferta") == null){
     		//agregar pagina de error
+    		return;
     	}
     	if(request.getAttribute("nombreOferta") != null && request.getAttribute("accion") != "postularse" ) {
     		String nombreOferta = request.getParameter("nombreOferta");
@@ -48,6 +49,7 @@ public class PostulacionServlet extends HttpServlet {
 				DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
 				request.setAttribute("oferta", oferta);
 				request.getRequestDispatcher("/WEB-INF/registros/Postulacion.jsp").forward(request, response);
+				return;
 			} catch (OfertaLaboralNoExisteException e) {
 				//agregar pàgina de error
 				e.printStackTrace();
@@ -62,6 +64,7 @@ public class PostulacionServlet extends HttpServlet {
     		try {
 				controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(), usuario.getNickname(), oferta.getNombre());
 				request.getRequestDispatcher("/home").forward(request, response);
+				return;
 			} catch (UsuarioNoExisteException | OfertaLaboralNoExisteException | UsuarioYaExistePostulacion e) {
 				// agregar pagina error
 				e.printStackTrace();

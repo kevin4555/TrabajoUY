@@ -53,6 +53,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
     	  }
     	  request.setAttribute("listaEmpresas", listaEmpresas);
     	  request.getRequestDispatcher("/WEB-INF/consultas/listarEmpresas.jsp").forward(request, response);
+    	  return;
     	}
     	if( nicknameEmpresa != null) {
     		try {

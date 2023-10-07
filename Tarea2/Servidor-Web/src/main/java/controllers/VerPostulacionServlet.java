@@ -40,7 +40,8 @@ public class VerPostulacionServlet extends HttpServlet {
       String nombreOferta = request.getParameter("nombreOferta");
       
       if(nombreOferta == null || nicknamePostulante == null) {
-        //agregar pagina de error
+    	  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+    	  return;
       }
       try {
         Dtusuario postulante = controladorUsuario.obtenerDtusuario(nicknamePostulante);

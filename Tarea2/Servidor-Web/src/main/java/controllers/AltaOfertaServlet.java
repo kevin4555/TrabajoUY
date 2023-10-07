@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Iterator;
 
 import javax.imageio.ImageIO;
@@ -36,11 +37,8 @@ import jakarta.servlet.annotation.MultipartConfig;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
-
-/**
- * Servlet implementation class AltaOfertaServlet
- */
 @MultipartConfig()
+
 @WebServlet("/altaOferta")
 public class AltaOfertaServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
