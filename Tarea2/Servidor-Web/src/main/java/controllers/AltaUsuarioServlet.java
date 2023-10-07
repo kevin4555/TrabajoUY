@@ -56,10 +56,11 @@ public class AltaUsuarioServlet extends HttpServlet {
 				imagen = ImageIO.read(fileContent);
 			}
 		} catch (IOException | ServletException e) {
+		  System.out.println("sale en imagen");
 		  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
 		}
-		if(request.getParameter("tipoUsuario") == "postulante") {
+		if(request.getParameter("tipoUsuario").equals("postulante")) {
 			String nacionalidad = request.getParameter("nacionalidad");
 			LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
 			try {
@@ -70,7 +71,7 @@ public class AltaUsuarioServlet extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
 			}
 		}
-		if(request.getParameter("tipoUsuario") == "empresa") {
+		if(request.getParameter("tipoUsuario").equals("empresa")) {
 			String descriopcion = request.getParameter("descripcion");
 			String sitioWeb = request.getParameter("sitioWeb");
 			try {
@@ -87,6 +88,7 @@ public class AltaUsuarioServlet extends HttpServlet {
 			sesion.setAttribute("usuarioLogueado", usuario);
 			request.getRequestDispatcher("/home").forward(request, response);
 		} catch (UsuarioNoExisteException e) {
+		  System.out.println("sale al buscar usuario");
 		  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
 		}

@@ -21,6 +21,7 @@
             type="text"
             class="form-control"
             id="inputNombreUsuario"
+            name="nombre"
             placeholder="Ingrese su nombre"
             required
           />
@@ -33,6 +34,7 @@
             type="text"
             class="form-control nom"
             id="inputApellidoUsuario"
+            name="apellido"
             placeholder="Ingrese su apellido"
             required
           />
@@ -46,6 +48,7 @@
           type="text"
           class="form-control"
           id="inputNickname"
+          name="nickname"
           placeholder="Ingrese su nickname"
           required
         />
@@ -58,18 +61,20 @@
           type="email"
           class="form-control"
           id="inputEmail"
+          name="email"
           placeholder="Ingrese su email"
           required
         />
       </div>
       <div class="col-md-6 mt-3">
-        <label for="inputPassword4" class="form-label"
+        <label for="inputPassword" class="form-label"
           ><strong>*Contraseña</strong></label
         >
         <input
           type="password"
           class="form-control"
           id="inputPassword"
+          name="contrasenia"
           placeholder="Ingrese su contraseña"
           required
         />
@@ -90,7 +95,7 @@
         <label for="imagenUsuario" class="form-label"
           ><strong>Foto de perfil</strong></label
         >
-        <input type="file" name="imagenUsuario" />
+        <input type="file" name="imagen" accept="image/jpg, image/png" />
       </div>
       <div class="row mt-3">
         <div class="col">
@@ -104,8 +109,8 @@
               type="radio"
               class="form-check-input"
               id="radioPostulante"
-              name="optradio"
-              value="option1"
+              name="tipoUsuario"
+              value="postulante"
             /><strong>Postulante</strong>
             <label class="form-check-label" for="radio1"></label>
           </div>
@@ -114,8 +119,8 @@
               type="radio"
               class="form-check-input"
               id="radioEmpresa"
-              name="optradio"
-              value="option2"
+              name="tipoUsuario"
+              value="empresa"
             /><strong>Empresa</strong>
             <label class="form-check-label" for="radio2"></label>
           </div>
@@ -128,12 +133,13 @@
           class="form-control"
           placeholder="Ingrese su nacionalidad"
           id="inputNacionalidad"
+          name="nacionalidad"
           required
         />
       </div>
       <div class="col-md-6 mt-3" id="divFechaNacimiento">
         <label class="form-label"><strong>*Fecha de Nacimiento</strong></label>
-        <input type="date" class="form-control" id="inputFechaNacimiento"  required />
+        <input name="fechaNacimiento" type="date" class="form-control" id="inputFechaNacimiento"  required />
       </div>
       <div class="col-md-6 mt-3" id="divSitioWeb">
         <label class="form-label"><strong>Sitio Web</strong></label>
@@ -142,6 +148,7 @@
           class="form-control"
           placeholder="Ingrese su sitio web"
           id="inputSitioWeb"
+          name="sitioWeb"
           
         />
       </div>
@@ -152,6 +159,7 @@
           class="form-control"
           placeholder="Ingrese una descripción"
           id="inputDescripcion"
+          name="descripcion"
           required
         />
       </div>
