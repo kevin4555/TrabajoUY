@@ -84,36 +84,23 @@
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<div id="#miPerfilUsuario" class="container tab-pane active">
-									<br />
 									<section class="">
 										<table class="table table-hover table-bordered">
 											<tr>
 												<td><strong>Nickname</strong></td>
 												<td><%=usuario.getNickname()%></td>
-												<td></td>
 											</tr>
 											<tr>
 												<td><strong>Nombre</strong></td>
 												<td><%=usuario.getNombre()%></td>
-												<td>
-													<button>
-														<i class="fa-solid fa-pen-to-square fa-lg"></i>
-													</button>
-												</td>
 											</tr>
 											<tr>
 												<td><strong>Apellido</strong></td>
 												<td><%=usuario.getApellido()%></td>
-												<td>
-													<button>
-														<i class="fa-solid fa-pen-to-square fa-lg"></i>
-													</button>
-												</td>
 											</tr>
 											<tr>
 												<td><strong>E-mail</strong></td>
 												<td><%=usuario.getEmail()%></td>
-												<td></td>
 											</tr>
 											<%
 											if (tipoUsuario.equals("empresa")) {
@@ -122,20 +109,10 @@
 											<tr>
 												<td><strong>Sitio web</strong></td>
 												<td><%=empresa.getSitioWeb()%></td>
-												<td>
-													<button>
-														<i class="fa-solid fa-pen-to-square fa-lg"></i>
-													</button>
-												</td>
 											</tr>
 											<tr>
 												<td><strong>Descripción</strong></td>
 												<td><%=empresa.getDescripcion()%></td>
-												<td>
-													<button>
-														<i class="fa-solid fa-pen-to-square fa-lg"></i>
-													</button>
-												</td>
 											</tr>
 											<%
 											}
@@ -147,24 +124,15 @@
 											<tr>
 												<td><strong>Nacionalidad</strong></td>
 												<td><%=postulante.getNacionalidad()%></td>
-												<td>
-													<button>
-														<i class="fa-solid fa-pen-to-square fa-lg"></i>
-													</button>
-												</td>
 											</tr>
 											<tr>
 												<td><strong>Fecha de nacimiento</strong></td>
 												<td><%=postulante.getFechaNacimiento()%></td>
-												<td>
-													<button>
-														<i class="fa-solid fa-pen-to-square fa-lg"></i>
-													</button>
-												</td>
 											</tr>
 											<%
 											}
 											%>
+											
 										</table>
 									</section>
 								</div>
@@ -223,15 +191,20 @@
 											<tbody>
 												<%
 												List<DtpaquetePublicacion> paquetesComprados = (List<DtpaquetePublicacion>) request.getAttribute("paquetes");
-												for (DtpaquetePublicacion paquete : paquetesComprados) {
+												if (paquetesComprados != null) {
+												  for (DtpaquetePublicacion paquete : paquetesComprados) {
 												%>
 												<tr>
-													<td><a href="<%=request.getContextPath()%>/paquete?nombrePaquete=<%= paquete.getNombre() %>"><%= paquete.getNombre() %></a></td>
+													<td><a
+														href="<%=request.getContextPath()%>/paquete?nombrePaquete=<%=paquete.getNombre()%>"><%=paquete.getNombre()%></a></td>
 													<td><%=paquete.getDescripcion()%></td>
 													<td><%=paquete.getPeriodoValidez()%></td>
 													<td><%=paquete.getDescuento()%>%</td>
 													<td></td>
 												</tr>
+												<%
+												}
+												%>
 												<%
 												}
 												%>
@@ -256,20 +229,21 @@
 											</tr>
 										</thead>
 										<tbody>
-										<%
-												List<Dtpostulacion> postulaciones = (List<Dtpostulacion>) request.getAttribute("postulaciones");
-												for (Dtpostulacion postulacion : postulaciones) {
-												%>
+											<%
+											List<Dtpostulacion> postulaciones = (List<Dtpostulacion>) request.getAttribute("postulaciones");
+											for (Dtpostulacion postulacion : postulaciones) {
+											%>
 											<tr>
-												<%-- <td><a href="./ofertaPostulantePostulado.html">Desarrollador
-														Frontend</a></td>--%>
+												<td><a
+													href="<%=request.getContextPath()%>/oferta?nombreOferta=<%=postulacion.getNombreOferta()%>"><%=postulacion.getNombreOferta()%></a></td>
 												<td><%=postulacion.getDescripMotivacion()%></td>
 												<td><%=postulacion.getCvReducido()%></td>
 												<td><%=postulacion.getFechaPostulacion()%></td>
+
 											</tr>
 											<%
-								}
-								%>
+											}
+											%>
 										</tbody>
 									</table>
 								</div>

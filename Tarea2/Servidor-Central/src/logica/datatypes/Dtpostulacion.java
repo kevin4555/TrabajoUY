@@ -46,5 +46,9 @@ public class Dtpostulacion {
   public String getCvReducido() {
     return cvReducido;
   }
+
+  public String getNombreOferta() {
+    return nombreOferta;
+  }
   
 }
