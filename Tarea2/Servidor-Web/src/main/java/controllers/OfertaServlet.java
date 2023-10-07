@@ -53,7 +53,7 @@ public class OfertaServlet extends HttpServlet {
        request.setAttribute("estaPostulado", estaPostulado);
      }
      if(usuario instanceof Dtempresa) {
-       Boolean miOferta = usuario.getNickname() == oferta.getEmpresa();
+       Boolean miOferta = usuario.getNickname().equals(oferta.getEmpresa());
        request.setAttribute("miOferta", miOferta);
      }
    }
