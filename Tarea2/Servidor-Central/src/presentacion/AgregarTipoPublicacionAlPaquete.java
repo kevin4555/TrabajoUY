@@ -406,6 +406,10 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
           "La cantidad incluida debe ser un número mayor a cero",
           "Agregar tipo de publicacion a paquete", JOptionPane.ERROR_MESSAGE);
       
+    } catch (PaquetePublicacionYaFueComprado evento) {
+      JOptionPane.showMessageDialog(this,
+          "El paquete ya fue comprado",
+          "Agregar tipo de publicacion a paquete", JOptionPane.ERROR_MESSAGE);
     }
   }
   

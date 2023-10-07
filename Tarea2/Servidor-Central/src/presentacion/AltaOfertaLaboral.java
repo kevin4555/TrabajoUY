@@ -67,6 +67,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
   private JTextField textFieldHoraInicio;
   private JTextField textFieldHoraFin;
   private JTextField textFieldRemuneracion;
+  private JTextField textFieldCantidadRestante;
   private JTextField textFieldCiudad;
   private JTextField textFieldDepartamento;
   private JList<String> listaKeyword = new JList<>();
@@ -79,6 +80,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
   private JScrollPane scrollPane;
   private JLabel lblNewLabel;
   private JLabel lblNewLabel1;
+  private JLabel lblCantidadTiposPublicaciones;
   private JComboBox<String> comboBoxEmpresa;
   private JComboBox<String> comboBoxFormaDePago;
   private JComboBox<String> comboBoxSeleccionTiposPublicaciones;
@@ -363,6 +365,27 @@ public class AltaOfertaLaboral extends JInternalFrame {
     panelDatos.add(this.comboBoxSeleccionTiposPublicaciones, gbcComboBoxSeleccionOferta);
     comboBoxSeleccionTiposPublicaciones.setVisible(false);
     
+    lblCantidadTiposPublicaciones = new JLabel("Cantidad restante");
+    GridBagConstraints gbcLblCantidadTipos = new GridBagConstraints();
+    gbcLblCantidadTipos.anchor = GridBagConstraints.EAST;
+    gbcLblCantidadTipos.insets = new Insets(0, 0, 5, 5);
+    gbcLblCantidadTipos.gridx = 0;
+    gbcLblCantidadTipos.gridy = 18;
+    panelDatos.add(lblCantidadTiposPublicaciones, gbcLblCantidadTipos);
+    lblCantidadTiposPublicaciones.setVisible(false);
+    
+    this.textFieldCantidadRestante = new JTextField();
+    GridBagConstraints gbcTextFieldCanitdadRestante = new GridBagConstraints();
+    gbcTextFieldCanitdadRestante.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldCanitdadRestante.fill = GridBagConstraints.HORIZONTAL;
+    gbcTextFieldCanitdadRestante.gridx = 1;
+    gbcTextFieldCanitdadRestante.gridy = 18;
+    panelDatos.add(this.textFieldCantidadRestante, gbcTextFieldCanitdadRestante);
+    this.textFieldCantidadRestante.setColumns(10);
+    textFieldCantidadRestante.setVisible(false);
+    textFieldCantidadRestante.setEditable(false);
+    
+    
     lblSeleccionPaquete = new JLabel("Seleccionar Paquete:");
     GridBagConstraints gbcLblSeleccionPaquete = new GridBagConstraints();
     gbcLblSeleccionPaquete.insets = new Insets(0, 0, 5, 5);
@@ -514,11 +537,14 @@ public class AltaOfertaLaboral extends JInternalFrame {
       if (this.comboBoxFormaDePago.getSelectedItem().equals("Por paquete")) {
         String nicknameEmpresa = "";
         if (this.comboBoxEmpresa.getSelectedIndex() != -1) {
+          this.comboBoxSeleccionTiposPublicaciones.removeAllItems();
           nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
           lblTiposPublicaciones.setVisible(true);
           comboBoxSeleccionTiposPublicaciones.setVisible(true);
           this.comboBoxSeleccionPaquete.setVisible(true);
           lblSeleccionPaquete.setVisible(true);
+          lblCantidadTiposPublicaciones.setVisible(true);
+          this.textFieldCantidadRestante.setVisible(true);
           
           List<DtpaquetePublicacion> dtPaquetesComprados = this.controladorUsuario
               .obtenerDtpaquetesDeEmpresa(nicknameEmpresa);
@@ -531,6 +557,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
             this.comboBoxSeleccionTiposPublicaciones.removeAllItems();
             lblTiposPublicaciones.setVisible(false);
             comboBoxSeleccionTiposPublicaciones.setVisible(false);
+            lblCantidadTiposPublicaciones.setVisible(false);
+            this.textFieldCantidadRestante.setVisible(false);
             this.comboBoxSeleccionPaquete.setVisible(false);
             lblSeleccionPaquete.setVisible(false);
             JOptionPane.showMessageDialog(this, "La empresa no tiene ningún paquete comprado",
@@ -702,7 +730,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
       JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de publicación",
           "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
     }
-    if (fechaAlta == null) {
+    if (fechaAlta == null || (fechaAlta.compareTo(Date.from(LocalDate.now()
+        .atStartOfDay(ZoneId.systemDefault()).toInstant()))) > 0) {
       JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
           "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
       return false;
@@ -797,5 +826,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     comboBoxSeleccionTiposPublicaciones.setVisible(false);
     this.comboBoxSeleccionPaquete.setVisible(false);
     lblSeleccionPaquete.setVisible(false);
+    comboBoxSeleccionTiposPublicaciones.setVisible(false);
+    lblCantidadTiposPublicaciones.setVisible(false);
   }
 }
