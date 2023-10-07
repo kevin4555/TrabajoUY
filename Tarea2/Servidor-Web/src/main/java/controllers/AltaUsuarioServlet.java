@@ -28,7 +28,7 @@ import model.TipoUsuario;
  * Servlet implementation class AltaUsuario
  */
 @MultipartConfig()
-@WebServlet("/AltaUsuario")
+@WebServlet("/altaUsuario")
 public class AltaUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,7 +50,7 @@ public class AltaUsuarioServlet extends HttpServlet {
     	String contrasenia = request.getParameter("contrasenia");
     	BufferedImage imagen = null;
 		try {
-			Part filePart = request.getPart("imagen");
+			Part filePart = request.getPart("imagenUsuario");
 			if(filePart != null && filePart.getSize() > 0) {
 				InputStream fileContent = filePart.getInputStream();
 				imagen = ImageIO.read(fileContent);

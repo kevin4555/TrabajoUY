@@ -23,7 +23,7 @@
 			<div class="row g-5 mx-2">
 				<div class="col-6">
 					<div class="camposForm">
-						<!-- <%--<label for="tipoPublicacion" class="form-label">
+						<label for="tipoPublicacion" class="form-label">
 							*Seleccione un Tipo de Publicaci�n: </label> <select class="form-control"
 							id="tipoPublicacion" name="tipoPublicacion" required>
 							<option value="">-- Selecciona un tipo de publicaci�n --
@@ -220,7 +220,6 @@
 		src="<%=request.getContextPath()%>/resource/javaScript/verTipoPublicacion.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resource/javaScript/tipoDePago.js"></script>
-		--%>-->
 	</main>
 </body>
 </html>

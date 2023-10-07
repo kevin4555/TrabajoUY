@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@page import="logica.datatypes.Dtusuario"%>
 <!DOCTYPE html>
 <html>
@@ -12,17 +10,19 @@
 </head>
 <body>
 <body class="login">
-    <form class="formLogin" id="formAltaUsuario" action="">
-      <a href="../../index.html"
-        ><img src="../img/Logo.svg" alt="Logo" class="navbar-brand img-fluid"
-      /></a>
+    <form class="formLogin" action="<%=request.getContextPath()%>/AltaUsuario"
+			method="post" id="formAltaUsuario"
+			class="bg-white rounded container py-3 mx-3 shadow-sm"
+			enctype="multipart/form-data">
       <div class="row mt-3">
         <div class="col">
           <label class="form-label"><strong>*Nombre</strong></label>
           <input
             type="text"
             class="form-control"
+            id="inputNombreUsuario"
             placeholder="Ingrese su nombre"
+            required
           />
         </div>
         <div class="col">
@@ -32,7 +32,9 @@
           <input
             type="text"
             class="form-control nom"
+            id="inputApellidoUsuario"
             placeholder="Ingrese su apellido"
+            required
           />
         </div>
       </div>
@@ -45,6 +47,7 @@
           class="form-control"
           id="inputNickname"
           placeholder="Ingrese su nickname"
+          required
         />
       </div>
       <div class="col-md-6 mt-3">
@@ -56,6 +59,7 @@
           class="form-control"
           id="inputEmail"
           placeholder="Ingrese su email"
+          required
         />
       </div>
       <div class="col-md-6 mt-3">
@@ -67,6 +71,7 @@
           class="form-control"
           id="inputPassword"
           placeholder="Ingrese su contraseña"
+          required
         />
       </div>
       <div class="col-md-6 mt-3">
@@ -78,13 +83,14 @@
           class="form-control"
           id="inputPasswordConfirm"
           placeholder="Ingrese su contraseña"
+          required
         />
       </div>
       <div class="col-md-6 mt-3">
-        <label for="inputImgage" class="form-label"
+        <label for="imagenUsuario" class="form-label"
           ><strong>Foto de perfil</strong></label
         >
-        <input type="file" name="imagen1" />
+        <input type="file" name="imagenUsuario" />
       </div>
       <div class="row mt-3">
         <div class="col">
@@ -121,11 +127,13 @@
           type="text"
           class="form-control"
           placeholder="Ingrese su nacionalidad"
+          id="inputNacionalidad"
+          required
         />
       </div>
       <div class="col-md-6 mt-3" id="divFechaNacimiento">
         <label class="form-label"><strong>*Fecha de Nacimiento</strong></label>
-        <input type="date" class="form-control" />
+        <input type="date" class="form-control" id="inputFechaNacimiento"  required />
       </div>
       <div class="col-md-6 mt-3" id="divSitioWeb">
         <label class="form-label"><strong>Sitio Web</strong></label>
@@ -133,6 +141,8 @@
           type="text"
           class="form-control"
           placeholder="Ingrese su sitio web"
+          id="inputSitioWeb"
+          
         />
       </div>
       <div class="col-md-6 mt-3" id="divDescripcionEmpresa">
@@ -141,6 +151,8 @@
           type="text"
           class="form-control"
           placeholder="Ingrese una descripción"
+          id="inputDescripcion"
+          required
         />
       </div>
       <div class="col-6 mt-3" id="radioTipoUsuario">
@@ -150,7 +162,7 @@
       </div>
     </form>
 
-    <script src="../js/app.js"></script>
+    <script src="<%=request.getContextPath()%>/resource/js/app.js"></script>
     <!--link archivo js-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
