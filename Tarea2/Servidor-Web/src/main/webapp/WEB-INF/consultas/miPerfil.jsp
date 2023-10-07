@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="logica.datatypes.Dtpostulante"%>
@@ -111,7 +110,7 @@
 												<td><%=empresa.getSitioWeb()%></td>
 											</tr>
 											<tr>
-												<td><strong>Descripci髇</strong></td>
+												<td><strong>Descripci贸n</strong></td>
 												<td><%=empresa.getDescripcion()%></td>
 											</tr>
 											<%
@@ -132,6 +131,10 @@
 											<%
 											}
 											%>
+											<tr>
+												<td><strong>Editar perfil</strong></td>
+												<td><a href="<%=request.getContextPath()%>/editarPerfil">Modificar</a></td>
+											</tr>
 											
 										</table>
 									</section>
@@ -145,11 +148,11 @@
 											<tr>
 												<th>Nombre</th>
 												<th>Horario</th>
-												<th>Remuneraci髇</th>
-												<th>Descripci髇</th>
+												<th>Remuneraci贸n</th>
+												<th>Descripci贸n</th>
 												<th>Departamento</th>
 												<th>Ciudad</th>
-												<th>Tipo de publicaci髇</th>
+												<th>Tipo de publicaci贸n</th>
 												<th>Estado</th>
 											</tr>
 										</thead>
@@ -182,8 +185,8 @@
 											<thead>
 												<tr>
 													<th>Nombre</th>
-													<th>Descripci髇</th>
-													<th>Per韔do</th>
+													<th>Descripci贸n</th>
+													<th>Per铆odo</th>
 													<th>Descuento</th>
 													<th>Fecha de compra</th>
 												</tr>
