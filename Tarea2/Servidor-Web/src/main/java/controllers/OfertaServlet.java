@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import excepciones.OfertaLaboralNoExisteException;
 import jakarta.servlet.ServletException;
@@ -13,9 +15,11 @@ import jakarta.servlet.http.HttpSession;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtempresa;
+import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
 import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorOferta;
+import logica.interfaces.IcontroladorUsuario;
 import model.EstadoSesion;
 
 import java.io.IOException;
@@ -41,20 +45,18 @@ public class OfertaServlet extends HttpServlet {
     
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    	IcontroladorUsuario controladorUsuarios = Fabrica.getInstance().obtenerControladorUsuario();
     	String nombreOferta = request.getParameter("nombreOferta");
     	HttpSession sesion = request.getSession();
-    	/**if (sesion != null) {
-    		System.out.print(sesion.toString());
-    		Enumeration<String> attributeNames = sesion.getAttributeNames();
-    		while (attributeNames.hasMoreElements()) {
-                String attributeName = attributeNames.nextElement();
-                System.out.println( attributeName + "\n");
-            }
-    	}else {
-    		System.out.print("Sesion es null");
-		}*/
+    	
     	try {
 			DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
+			Map<String, String> mapImagen = new HashMap<String, String>();
+			for(Dtpostulacion postulacion : oferta.getPostulaciones()) {
+			  Dtusuario postulante = controladorUsuarios.obtenerDtusuario(postulacion.getnicknamePostulante());
+			  mapImagen.put(postulante.getNickname(), postulante.getImagenBase64());
+			}
+			request.setAttribute("mapImagenes", mapImagen);
 			request.setAttribute("oferta", oferta);
 			if (sesion.getAttribute("estadoSesion") == EstadoSesion.LOGIN_CORRECTO) {
      Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
@@ -68,9 +70,9 @@ public class OfertaServlet extends HttpServlet {
      }
    }
 			request.getRequestDispatcher("/WEB-INF/consultas/Oferta.jsp").forward(request, response);
-			
+			return;
 		} catch (OfertaLaboralNoExisteException | UsuarioNoExisteException e) {
-			// agregar pagina de error
+		  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
 		}
     	

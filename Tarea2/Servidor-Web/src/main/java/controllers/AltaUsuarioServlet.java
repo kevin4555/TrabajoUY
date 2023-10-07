@@ -48,7 +48,14 @@ public class AltaUsuarioServlet extends HttpServlet {
     	String apellido = request.getParameter("apellido");
     	String email = request.getParameter("email");
     	String contrasenia = request.getParameter("contrasenia");
+    	String contraseniaConf = request.getParameter("contraseniaConf");
     	BufferedImage imagen = null;
+    	
+    	if(!contraseniaConf.equals(contrasenia)) {
+    	  request.setAttribute("mensajeError", "contraseña incorrecta");
+       request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
+       return;
+    	}
 		try {
 			Part filePart = request.getPart("imagen");
 			if(filePart != null && filePart.getSize() > 0) {
@@ -59,6 +66,7 @@ public class AltaUsuarioServlet extends HttpServlet {
 		  System.out.println("sale en imagen");
 		  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
+			return;
 		}
 		if(request.getParameter("tipoUsuario").equals("postulante")) {
 			String nacionalidad = request.getParameter("nacionalidad");
@@ -69,6 +77,7 @@ public class AltaUsuarioServlet extends HttpServlet {
 			} catch (UsuarioYaExisteException | UsuarioEmailRepetidoException e) {
 				request.setAttribute("mensajeError", "nickname o email repetido");
 				request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
+				return;
 			}
 		}
 		if(request.getParameter("tipoUsuario").equals("empresa")) {
@@ -80,6 +89,7 @@ public class AltaUsuarioServlet extends HttpServlet {
 			} catch (UsuarioYaExisteException | UsuarioEmailRepetidoException e) {
 				request.setAttribute("mensajeError", "nickname o email repetido");
 				request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
+				return;
 			}
 		}
 		sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
@@ -91,6 +101,7 @@ public class AltaUsuarioServlet extends HttpServlet {
 		  System.out.println("sale al buscar usuario");
 		  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
+			return;
 		}
 		
 		
