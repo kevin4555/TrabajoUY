@@ -54,13 +54,51 @@ public class AltaOfertaServlet extends HttpServlet {
     // TODO Auto-generated constructor stub
   }
   
-  @SuppressWarnings("unused")
-  private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
+  private void procesarGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    HttpSession sesion = request.getSession();
+    Dtusuario empresa = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+    if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO
+        || sesion.getAttribute("tipoUsuario") != TipoUsuario.EMPRESA) {
+      request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+    }
+    IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    ArrayList<String> listaTipos = (ArrayList<String>) controladorOferta
+        .listarTipoDePublicaciones();
+    ArrayList<DttipoPublicacion> listaDtTipos = new ArrayList<DttipoPublicacion>();
+    IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    for (String nombreTipo : listaTipos) {
+      try {
+        listaDtTipos.add(controladorOferta.obtenerDttipoPublicacion(nombreTipo));
+      } catch (TipoPublicacionNoExisteException e) {
+        request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+        e.printStackTrace();
+      }
+    }
+    
+    try {
+      ArrayList<DtCompraPaquete> listaCompraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario
+          .obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
+      request.setAttribute("listaCompraPaquetes", listaCompraPaquetes);
+    } catch (UsuarioNoExisteException e) {
+      request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+      e.printStackTrace();
+    }
+    
+    ArrayList<String> listKeywordsAtributo = (ArrayList<String>) controladorOferta
+        .listarKeywords();
+    request.setAttribute("listaKeywords", listKeywordsAtributo);
+    request.setAttribute("listaTipoPublicacion", listaDtTipos);
+    request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request,
+        response);
+  }
+  
+  private void procesarPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     HttpSession sesion = request.getSession();
     
-    if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO) {
-      // agregar pagina de error
+    if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO
+        || sesion.getAttribute("tipoUsuario") != TipoUsuario.EMPRESA) {
+      request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
     }
     
     IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
@@ -81,6 +119,7 @@ public class AltaOfertaServlet extends HttpServlet {
     if (request.getParameter("remuneracion") != null) {
       remuneracion = Float.valueOf(request.getParameter("remuneracion"));
     }
+    
     try {
       Part filePart = request.getPart("imagenOferta");
       if (filePart != null && filePart.getSize() > 0) {
@@ -88,8 +127,7 @@ public class AltaOfertaServlet extends HttpServlet {
         imagen = ImageIO.read(fileContent);
       }
     } catch (IOException | ServletException e) {
-      // agregar pagina de error
-      e.printStackTrace();
+      request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
     }
     
     if (keywords != null) {
@@ -97,77 +135,43 @@ public class AltaOfertaServlet extends HttpServlet {
         listKeywords.add(keyword);
       }
     }
-    if (nombreOferta != null) {
-      try {
-        controladorOferta.altaOfertaLaboral(nombreOferta, descripcion, horaInicio, horaFin,
-            remuneracion, ciudad, departamento, fechaAlta, tipoPublicacion,
-            empresa.getNickname(), listKeywords, imagen, nombrePaquete);
-        String url = request.getContextPath() + "/perfil?nicknameUsuario="
-            + empresa.getNickname();
-        response.sendRedirect(url);
-        
-      } catch (TipoPublicacionNoExisteException | KeywordNoExisteException
-          | UsuarioNoExisteException e) {
-        // agregar pagina de error
-        e.printStackTrace();
-        
-      } catch (OfertaLaboralYaExisteException e) {
-        request.setAttribute("mensajeError", "nombre de oferta repetido");
-        request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request,
-            response);
-        e.printStackTrace();
-      }
-    } else {
+    
+    try {
+      controladorOferta.altaOfertaLaboral(nombreOferta, descripcion, horaInicio, horaFin,
+          remuneracion, ciudad, departamento, fechaAlta, tipoPublicacion,
+          empresa.getNickname(), listKeywords, imagen, nombrePaquete);
+      String url = request.getContextPath() + "/perfil?nicknameUsuario="
+          + empresa.getNickname();
+      response.sendRedirect(url);
       
-      if (request.getAttribute("nombreOferta") == null) {
-        ArrayList<String> listaTipos = (ArrayList<String>) controladorOferta
-            .listarTipoDePublicaciones();
-        ArrayList<DttipoPublicacion> listaDtTipos = new ArrayList<DttipoPublicacion>();
-        IcontroladorUsuario controladorUsuario = Fabrica.getInstance()
-            .obtenerControladorUsuario();
-        for (String nombreTipo : listaTipos) {
-          try {
-            listaDtTipos.add(controladorOferta.obtenerDttipoPublicacion(nombreTipo));
-          } catch (TipoPublicacionNoExisteException e) {
-            // agregar pagina de error
-            e.printStackTrace();
-          }
-        }
-        
-        try {
-          ArrayList<DtCompraPaquete> listaCompraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario
-              .obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
-          request.setAttribute("listaCompraPaquetes", listaCompraPaquetes);
-        } catch (UsuarioNoExisteException e) {
-          // agregar pagina de error
-          e.printStackTrace();
-        }
-        
-        ArrayList<String> listKeywordsAtributo = (ArrayList<String>) controladorOferta
-            .listarKeywords();
-        request.setAttribute("listaKeywords", listKeywordsAtributo);
-        request.setAttribute("listaTipoPublicacion", listaDtTipos);
-        request.getRequestDispatcher("/WEB-INF/registros/AltaOferta.jsp").forward(request,
-            response);
-      }
+    } catch (TipoPublicacionNoExisteException | KeywordNoExisteException
+        | UsuarioNoExisteException e) {
+      request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+      
+    } catch (OfertaLaboralYaExisteException e) {
+      request.setAttribute("mensajeError", "nombre de oferta repetido");
+      procesarGet(request, response);
       
     }
+    
   }
-
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        procesarRequest(request, response);
-    }
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        procesarRequest(request, response);
-    }
-
+  
+  /**
+   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+   *      response)
+   */
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+   procesarGet(request, response);
+  }
+  
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+   *      response)
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    procesarPost(request, response);
+  }
+  
 }
