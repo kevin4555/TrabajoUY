@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import logica.classes.OfertaLaboral;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.EstadoOferta;
 
 /**
  * Clase Manejador de ofertas.
@@ -103,7 +104,10 @@ public class ManejadorOfertas {
   public List<DtOfertaLaboral> obtenerDtofertasConfirmadas() throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
-      listaResultado.add(oferta.obtenerDtOfertaLaboral());
+      if(oferta.getEstado() == EstadoOferta.CONFIRMADA) {
+        listaResultado.add(oferta.obtenerDtOfertaLaboral());
+      }
+      
     }
     return listaResultado;
   }

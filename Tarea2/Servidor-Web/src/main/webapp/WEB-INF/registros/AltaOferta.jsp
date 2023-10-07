@@ -2,6 +2,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="logica.datatypes.DttipoPublicacion"%>
 <%@page import="logica.datatypes.DtCompraPaquete"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -23,10 +25,10 @@
 			<div class="row g-5 mx-2">
 				<div class="col-6">
 					<div class="camposForm">
-						<label for="tipoPublicacion" class="form-label">
-							*Seleccione un Tipo de Publicaci�n: </label> <select class="form-control"
+						 <label for="tipoPublicacion" class="form-label">
+							*Seleccione un Tipo de Publicación: </label> <select class="form-control"
 							id="tipoPublicacion" name="tipoPublicacion" required>
-							<option value="">-- Selecciona un tipo de publicaci�n --
+							<option value="">-- Selecciona un tipo de publicación --
 							</option>
 							<%
 							ArrayList<DttipoPublicacion> listaTipoPublicacion = (ArrayList<DttipoPublicacion>) request
@@ -53,7 +55,7 @@
 					</div>
 					<div>
 						<button id="botonRedireccionar" class="btn btn-primary"
-							style="display: none">Ver TipoPublicacion</button>
+							style="display: none">Ver TipoPublicación</button>
 					</div>
 
 					<div class="camposForm">
@@ -65,7 +67,7 @@
 
 					<div class="camposForm">
 						<div class="form-group">
-							<label for="textAreaDescripcion">*Descripci�n</label>
+							<label for="textAreaDescripcion">*Descripción</label>
 							<textarea class="form-control" id="textAreaDescripcion"
 								name="descripcion" rows="3" required></textarea>
 						</div>
@@ -105,7 +107,7 @@
 					</div>
 
 					<div class="camposForm">
-						<label for="inputRemuneracion" class="form-label">*Remuneracion</label>
+						<label for="inputRemuneracion" class="form-label">*Remuneración</label>
 						<input type="number" class="form-control" id="inputRemuneracion"
 							placeholder="Ingrese la Remuneracion" min="1" name="remuneracion"
 							required />
@@ -126,14 +128,14 @@
 							<option value="Lavalleja">Lavalleja</option>
 							<option value="Maldonado">Maldonado</option>
 							<option value="Montevideo">Montevideo</option>
-							<option value="Paysand�">Paysand�</option>
-							<option value="R�o Negro">R�o Negro</option>
+							<option value="Paysandú">Paysandú</option>
+							<option value="Río Negro">Río Negro</option>
 							<option value="Rivera">Rivera</option>
 							<option value="Rocha">Rocha</option>
 							<option value="Salto">Salto</option>
-							<option value="San Jos�">San Jos�</option>
+							<option value="San José">San José</option>
 							<option value="Soriano">Soriano</option>
-							<option value="Tacuaremb�">Tacuaremb�</option>
+							<option value="Tacuarembó">Tacuarembó</option>
 							<option value="Treinta y Tres">Treinta y Tres</option>
 						</select>
 					</div>
@@ -220,6 +222,7 @@
 		src="<%=request.getContextPath()%>/resource/javaScript/verTipoPublicacion.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resource/javaScript/tipoDePago.js"></script>
+		
 	</main>
 </body>
 </html>
