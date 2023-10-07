@@ -41,10 +41,7 @@ public class AltaUsuarioServlet extends HttpServlet {
     }
     
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	if(request.getParameter("nickname")==null) {
-    	  request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
-    	}
-     HttpSession sesion = request.getSession();
+    	HttpSession sesion = request.getSession();
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	String nickname = request.getParameter("nickname");
     	String nombre = request.getParameter("nombre");
@@ -100,7 +97,7 @@ public class AltaUsuarioServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		procesarRequest(request, response);
+	  request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
 	}
 
 	/**
