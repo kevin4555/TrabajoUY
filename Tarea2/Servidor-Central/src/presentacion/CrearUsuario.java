@@ -294,6 +294,7 @@ public class CrearUsuario extends JInternalFrame {
     gbcTextPane.gridx = 1;
     gbcTextPane.gridy = 9;
     panelDatos.add(textPane, gbcTextPane);
+    textPane.setEditable(false);
     
     quitarImageButton = new JButton("Borrar Imagen");
     GridBagConstraints gbcBtnButtonBorrar = new GridBagConstraints();
@@ -516,16 +517,25 @@ public class CrearUsuario extends JInternalFrame {
             "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
         return false;
       }
+      try {
+        Float.parseFloat(this.textFieldNacionalidad.getText());
+        JOptionPane.showMessageDialog(this, "La nacionalidad debe ser un texto",
+            "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+        return false;
+      } catch (NumberFormatException e) {
+        // Esta bien
+      }
       Date fechaNacimiento = fechaNacimientoChooser.getDate();
-      if (fechaNacimiento == null) {
-        JOptionPane.showMessageDialog(this, "Debe ingresar una Fecha de Nacimiento",
+      if (fechaNacimiento == null || (fechaNacimiento.compareTo(Date.from(LocalDate.now()
+          .atStartOfDay(ZoneId.systemDefault()).toInstant()))) > 0) {
+        JOptionPane.showMessageDialog(this, "Debe ingresar una Fecha de Nacimiento valida",
             "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
         return false;
       }
     } else {
       if (this.textAreaDescripcion.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "Debe ingresar una Descripcion",
-            "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+              "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
         return false;
       }
     }

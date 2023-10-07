@@ -30,7 +30,7 @@ import model.TipoUsuario;
 @MultipartConfig()
 @WebServlet("/altaUsuario")
 public class AltaUsuarioServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+ private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -41,70 +41,70 @@ public class AltaUsuarioServlet extends HttpServlet {
     }
     
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	HttpSession sesion = request.getSession();
-    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    	String nickname = request.getParameter("nickname");
-    	String nombre = request.getParameter("nombre");
-    	String apellido = request.getParameter("apellido");
-    	String email = request.getParameter("email");
-    	String contrasenia = request.getParameter("contrasenia");
-    	BufferedImage imagen = null;
-		try {
-			Part filePart = request.getPart("imagen");
-			if(filePart != null && filePart.getSize() > 0) {
-				InputStream fileContent = filePart.getInputStream();
-				imagen = ImageIO.read(fileContent);
-			}
-		} catch (IOException | ServletException e) {
-			//agregar pagina de error
-			e.printStackTrace();
-		}
-		if(request.getParameter("tipoUsuario") == "postulante") {
-			String nacionalidad = request.getParameter("nacionalidad");
-			LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
-			try {
-				controladorUsuario.altaPostulante(nickname, nombre, apellido, email, fechaNacimiento, nacionalidad, imagen, contrasenia);
-				sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
-			} catch (UsuarioYaExisteException | UsuarioEmailRepetidoException e) {
-				request.setAttribute("mensajeError", "nickname o email repetido");
-				request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
-			}
-		}
-		if(request.getParameter("tipoUsuario") == "empresa") {
-			String descriopcion = request.getParameter("descripcion");
-			String sitioWeb = request.getParameter("sitioWeb");
-			try {
-				controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descriopcion, sitioWeb, imagen, contrasenia);
-				sesion.setAttribute("tipoUsuario", TipoUsuario.EMPRESA);
-			} catch (UsuarioYaExisteException | UsuarioEmailRepetidoException e) {
-				request.setAttribute("mensajeError", "nickname o email repetido");
-				request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
-			}
-		}
-		sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
-		try {
-			Dtusuario usuario = controladorUsuario.obtenerDtusuario(nickname);
-			sesion.setAttribute("usuarioLogueado", usuario);
-			request.getRequestDispatcher("/home").forward(request, response);
-		} catch (UsuarioNoExisteException e) {
-			// agregar pagina de error
-			e.printStackTrace();
-		}
-		
-		
+     HttpSession sesion = request.getSession();
+     IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+     String nickname = request.getParameter("nickname");
+     String nombre = request.getParameter("nombre");
+     String apellido = request.getParameter("apellido");
+     String email = request.getParameter("email");
+     String contrasenia = request.getParameter("contrasenia");
+     BufferedImage imagen = null;
+  try {
+   Part filePart = request.getPart("imagen");
+   if(filePart != null && filePart.getSize() > 0) {
+    InputStream fileContent = filePart.getInputStream();
+    imagen = ImageIO.read(fileContent);
+   }
+  } catch (IOException | ServletException e) {
+   //agregar pagina de error
+   e.printStackTrace();
+  }
+  if(request.getParameter("tipoUsuario") == "postulante") {
+   String nacionalidad = request.getParameter("nacionalidad");
+   LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
+   try {
+    controladorUsuario.altaPostulante(nickname, nombre, apellido, email, fechaNacimiento, nacionalidad, imagen, contrasenia);
+    sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
+   } catch (UsuarioYaExisteException | UsuarioEmailRepetidoException e) {
+    request.setAttribute("mensajeError", "nickname o email repetido");
+    request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
+   }
+  }
+  if(request.getParameter("tipoUsuario") == "empresa") {
+   String descriopcion = request.getParameter("descripcion");
+   String sitioWeb = request.getParameter("sitioWeb");
+   try {
+    controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descriopcion, sitioWeb, imagen, contrasenia);
+    sesion.setAttribute("tipoUsuario", TipoUsuario.EMPRESA);
+   } catch (UsuarioYaExisteException | UsuarioEmailRepetidoException e) {
+    request.setAttribute("mensajeError", "nickname o email repetido");
+    request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
+   }
+  }
+  sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
+  try {
+   Dtusuario usuario = controladorUsuario.obtenerDtusuario(nickname);
+   sesion.setAttribute("usuarioLogueado", usuario);
+   request.getRequestDispatcher("/home").forward(request, response);
+  } catch (UsuarioNoExisteException e) {
+   // agregar pagina de error
+   e.printStackTrace();
+  }
+  
+  
     }
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
-	}
+ /**
+  * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+  */
+ protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   request.getRequestDispatcher("/WEB-INF/registros/AltaUsuario.jsp").forward(request, response);
+ }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		procesarRequest(request, response);
-	}
+ /**
+  * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+  */
+ protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  procesarRequest(request, response);
+ }
 
 }
