@@ -71,6 +71,7 @@ public class ModificarDatosServlet extends HttpServlet {
 				controladorUsuario.editarEmpresa(usuario.getNickname(), nombre, apellido, sitioWeb, descripcion, imagen, contrasenia);
 				String url = "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
+				return;
 			} catch (UsuarioNoExisteException | IOException e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
@@ -84,6 +85,7 @@ public class ModificarDatosServlet extends HttpServlet {
 				controladorUsuario.editarPostulante(usuario.getNickname(), nombre, apellido, fechaNacimiento, nacionalidad, imagen, contrasenia);
 				String url = "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
+				return;
 			} catch (UsuarioNoExisteException | IOException e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
