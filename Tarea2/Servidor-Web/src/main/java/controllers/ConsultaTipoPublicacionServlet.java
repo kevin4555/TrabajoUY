@@ -36,7 +36,7 @@ public class ConsultaTipoPublicacionServlet extends HttpServlet {
     		try {
 				listaDTTipo.add(controladorOfertas.obtenerDttipoPublicacion(tipo));
 			} catch (TipoPublicacionNoExisteException e) {
-				// pagina de error
+			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 			}
     	}

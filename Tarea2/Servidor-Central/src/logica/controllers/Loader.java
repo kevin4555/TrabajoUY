@@ -326,7 +326,7 @@ public class Loader {
     keywords10.add(keyword9.getNombre());
     controladorOferta.altaOfertaLaboral("Desarrollador de Software " + "Senior",
         "Únete a nuestro equipo y lidera proyectos de desar- \r\n"
-            + "rollo de software sostenible y ecol´ogico. Impulsa la\r\n"
+            + "rollo de software sostenible y ecológico. Impulsa la\r\n"
             + "innovación y contribuye a un futuro más verde.",
         "09:00", "16:00", 123000f, "Montevideo", "Montevideo", LocalDate.parse("2023-10-02"),
         "Destacada", "EcoTech", keywords10, this.getBufferImage("O10.jpg"), "Básico");
@@ -345,7 +345,7 @@ public class Loader {
     keywords12.add(keyword3.getNombre());
     keywords12.add(keyword6.getNombre());
     controladorOferta.altaOfertaLaboral("Gerente de Proyecto",
-        "Únete a nuestro equipo de gesti´on de proyectos y lid- \r\n"
+        "Únete a nuestro equipo de gestión de proyectos y lid- \r\n"
             + "era la entrega exitosa de soluciones de software personalizadas."
             + " Colabora con equipos multidisciplinarios y clientes exigentes.",
         "04:00", "12:00", 230000f, "Montevideo", "Montevideo", LocalDate.parse("2023-10-02"),

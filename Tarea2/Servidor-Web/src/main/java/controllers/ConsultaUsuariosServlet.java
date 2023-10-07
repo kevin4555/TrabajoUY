@@ -37,17 +37,15 @@ public class ConsultaUsuariosServlet extends HttpServlet {
 		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
 		ArrayList<String> listaUsuarios = (ArrayList<String>) controladorUsuario.listaDeUsuarios();
 		Collections.sort(listaUsuarios);
-		String tipoEsperadoVar = "Dtpostulante";
 		ArrayList<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
 		for (String nick : listaUsuarios) {
 			try {
 				listaResultado.add(controladorUsuario.obtenerDtusuario(nick));
 			} catch (UsuarioNoExisteException e) {
-				// agregar pagina de error
+			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 			}
 		}
-		request.setAttribute("tipoEsperado", tipoEsperadoVar);
 		request.setAttribute("listaUsuarios", listaResultado);
 		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaUsuarios.jsp").forward(request, response);
 	}

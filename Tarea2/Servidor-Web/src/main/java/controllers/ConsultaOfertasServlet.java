@@ -47,7 +47,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
            Dtusuario empresa = controladorUsuario.obtenerDtusuario(nickEmpresa);
            listaEmpresas.add(empresa);
          } catch (UsuarioNoExisteException e) {
-           // agregar pagina de error
+           request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
            e.printStackTrace();
          }
     	  }
@@ -60,7 +60,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
 				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
 				request.setAttribute("listaOfertas", ofertas);
 			} catch (UsuarioNoExisteException e) {
-				// agregar pagina de error
+			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 			}
     	}

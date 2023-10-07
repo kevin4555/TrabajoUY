@@ -1,3 +1,4 @@
+<%@page import="logica.datatypes.Dtpostulante"%>
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList" %>
@@ -37,8 +38,9 @@
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
                                             <%= usuario.getNickname() %>
                                         </h5>
+                                        <p class="card-text"><%= usuario.getNombre()+" " + usuario.getApellido() %></p>
                                         <%
-                                        if (tipoUser.equals(tipoEsperadoVar)) {
+                                        if (usuario instanceof Dtpostulante) {
                                         %>
                                             <p class="card-text">Tipo: Postulante</p>
                                         <%
