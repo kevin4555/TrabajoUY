@@ -38,55 +38,25 @@ public class PaqueteServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    private void getConsultaPaquete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-		try {
-			String nombrePaquete = request.getParameter("nombrePaquete");
-			DtpaquetePublicacion paquete = controladorOfertas.obtenerDtpaquete(nombrePaquete);
-			request.setAttribute("paquete", paquete);			    
-			request.getRequestDispatcher("/WEB-INF/consultas/Paquete.jsp").forward(request, response);
-			return;
-		} catch (PaquetePublicacionNoExisteException e) {
-			request.setAttribute("error", e.getMessage());
-			request.getRequestDispatcher("/WEB-INF/consultas/404.jsp").forward(request, response);
-			e.printStackTrace();
-		}
-    }
+  
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	if(request.getParameter("accion") == null) {
-    		this.getConsultaPaquete(request, response);
-    	}
-    	if(request.getParameter("accion") != null && request.getParameter("accion").equals("comprar")) {
-    		HttpSession sesion = request.getSession();
-    		if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO || sesion.getAttribute("tipoUsuario") != TipoUsuario.EMPRESA) {
-    			request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
-    		}
-    		String nombrePaquete = request.getParameter("nombrePaquete");
-    		request.setAttribute("error", null);
-    		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
-    		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    		try {
-				ArrayList<String> paquetesNoComprados = (ArrayList<String>) controladorUsuario.listarPaquetesNoCompradosDeEmpresa(usuario.getNickname());
-				if(paquetesNoComprados.contains(nombrePaquete)) {
-					controladorUsuario.comprarPaquete(usuario.getNickname(), nombrePaquete, LocalDate.now());
-					request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
-					return;
-				}
-				else {
-					request.setAttribute("error", "paquete ya comprado");
-					request.setAttribute("accion", null);
-					this.getConsultaPaquete(request, response);
-				}
-				
-			} catch (UsuarioNoExisteException | PaquetePublicacionNoExisteException e) {
-				// agregar pagina de error
-				e.printStackTrace();
-			}
+      IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+      try {
+       String nombrePaquete = request.getParameter("nombrePaquete");
+       DtpaquetePublicacion paquete = controladorOfertas.obtenerDtpaquete(nombrePaquete);
+       request.setAttribute("paquete", paquete);       
+       request.getRequestDispatcher("/WEB-INF/consultas/Paquete.jsp").forward(request, response);
+       return;
+      } catch (PaquetePublicacionNoExisteException e) {
+       request.setAttribute("error", e.getMessage());
+       request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+       e.printStackTrace();
+      }
     		
     	}
     	
-    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
