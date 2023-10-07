@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import logica.controllers.Fabrica;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
@@ -51,12 +52,12 @@ public class PerfilSerlvlet extends HttpServlet {
             .obtenerDtofertasIngresadasDeEmpresa(nicknameUsuario);
         ArrayList<DtOfertaLaboral> ofertasRechazadas = (ArrayList<DtOfertaLaboral>) controladorUsuario
             .obtenerDtofertasRechazadasDeEmpresa(nicknameUsuario);
-        ArrayList<DtpaquetePublicacion> paquetes = (ArrayList<DtpaquetePublicacion>) controladorUsuario
-            .obtenerDtpaquetesDeEmpresa(nicknameUsuario);
+        ArrayList<DtCompraPaquete> compraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario.obtenerDtCompraPaqueteDeEmpresa(nicknameUsuario);
+        
         request.setAttribute("ofertasConfirmadas", ofertasConfirmadas);
         request.setAttribute("ofertasIngresadas", ofertasIngresadas);
         request.setAttribute("ofertasRechazadas", ofertasRechazadas);
-        request.setAttribute("paquetes", paquetes);
+        request.setAttribute("compraPaquetes", compraPaquetes);
         request.setAttribute("tipoUsuario", "empresa");
         
       }
@@ -70,8 +71,10 @@ public class PerfilSerlvlet extends HttpServlet {
       if (usuarioLogueado != null && nicknameUsuario.equals(usuarioLogueado.getNickname())) {
         request.getRequestDispatcher("/WEB-INF/consultas/miPerfil.jsp").forward(request,
             response);
+        return;
       }
       request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
+      return;
     } catch (UsuarioNoExisteException e) {
       request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
       e.printStackTrace();

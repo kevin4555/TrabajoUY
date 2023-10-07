@@ -87,6 +87,7 @@
           type="password"
           class="form-control"
           id="inputPasswordConfirm"
+          name="contraseniaConf"
           placeholder="Ingrese su contraseña"
           required
         />
