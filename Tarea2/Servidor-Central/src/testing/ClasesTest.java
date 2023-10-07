@@ -1,8 +1,19 @@
 package testing;
 
+import excepciones.KeywordNoExisteException;
+import excepciones.KeywordYaExisteException;
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.PaquetePublicacionYaFueComprado;
 import excepciones.TipoDePublicacionYaFueIngresado;
+import excepciones.TipoPublicacionNoExisteException;
+import excepciones.TipoPublicacionYaExisteException;
+import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,9 +33,11 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
+import logica.controllers.Loader;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.Dtpostulacion;
 import logica.datatypes.DttipoPublicacion;
 import org.junit.Assert;
 import org.junit.Before;
@@ -180,6 +193,10 @@ public class ClasesTest {
     Postulacion postulacion = new Postulacion("DescripcionPostulacion", fechaDate,
         "cvReducidoPostulacion", postulante, ofertaLaboral);
     
+    Dtpostulacion dtpostulacion = postulacion.obtenerDtpostulacion();
+    
+    Assert.assertEquals(dtpostulacion.getNombreOferta(), postulacion.getNombreOfertaLaboral());
+    
     postulante.agregarPostulacion(postulacion);
     
     List<DtOfertaLaboral> dtOfertaLaboral = postulante.obtenerDtofertas();
@@ -328,6 +345,12 @@ public class ClasesTest {
     Assert.assertEquals(dtOfertaLaboral.getNombreTipoPublicacion(),
         ofertaLaboral.getTipoPublicacion().getNombre());
     
+  }
+  
+  @Test
+  public void loaderClase() throws UsuarioNoExisteException, OfertaLaboralNoExisteException, ParseException, UsuarioYaExisteException, UsuarioEmailRepetidoException, TipoPublicacionYaExisteException, KeywordYaExisteException, KeywordNoExisteException, TipoPublicacionNoExisteException, OfertaLaboralYaExisteException, PaquetePublicacionYaExisteException, UsuarioYaExistePostulacion, IOException, PaquetePublicacionNoExisteException {
+    Loader loader = new Loader();
+    loader.cargarDatos();
   }
   
 }

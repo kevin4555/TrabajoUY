@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -310,7 +309,8 @@ public class RegistrarPaquete extends JInternalFrame {
       return false;
     }
     
-    if (this.fechaAltaChooser.getDate() == null || (this.fechaAltaChooser.getDate().compareTo(Date.from(LocalDate.now()
+    if (this.fechaAltaChooser.getDate() == null 
+        || (this.fechaAltaChooser.getDate().compareTo(Date.from(LocalDate.now()
         .atStartOfDay(ZoneId.systemDefault()).toInstant()))) > 0) {
       JOptionPane.showMessageDialog(this, "Debe ingresar una Fecha de Alta",
           "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
