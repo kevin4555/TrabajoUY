@@ -489,13 +489,13 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     Date fechaNac = this.fechaNacimientoChooser.getDate();
     String nacionalidadPos = this.textFieldNacionalidad.getText();
     String descripcionEmpresa = this.textAreaDescripcion.getText();
-    String contrasenia = this.textFieldContrasenia.getPassword().toString();
-    if (checkFormulario(nombre, apelliido, fechaNac, nacionalidadPos, descripcionEmpresa,
-        contrasenia)) {
+    if (checkFormulario(nombre, apelliido, fechaNac, nacionalidadPos, descripcionEmpresa)) {
       
       if (this.textPane.getText() == "") {
         fotoPerfilUsuario = null;
       }
+      char[] passwordChars = this.textFieldContrasenia.getPassword();
+      String contrasenia = new String(passwordChars);
       if (tipoUsuario.equals("Postulante")) {
         LocalDate fechaNacimiento = this.fechaNacimientoChooser.getDate().toInstant()
             .atZone(ZoneId.systemDefault()).toLocalDate();
@@ -556,7 +556,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    */
   
   public boolean checkFormulario(String nombre, String apellido, Date fechaNacPostulante,
-      String nacionalidadPostulante, String descripEmpresa, String contrasenia) {
+      String nacionalidadPostulante, String descripEmpresa) {
     if (nombre.isEmpty() || apellido.isEmpty() 
         || this.textFieldContrasenia.getPassword().length == 0) {
       JOptionPane.showMessageDialog(this, "No puede haber campos vacíos",

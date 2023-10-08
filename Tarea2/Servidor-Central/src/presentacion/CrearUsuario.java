@@ -424,7 +424,6 @@ public class CrearUsuario extends JInternalFrame {
     String nombre = this.textFieldNombre.getText();
     String apellido = this.textFieldApellido.getText();
     String email = this.textFieldEmail.getText();
-    String contrasenia = this.passwordField.getPassword().toString();
     String descripcion = this.textAreaDescripcion.getText();
     String sitioWeb = this.textFieldSitioWeb.getText();
     String nacionalidad = this.textFieldNacionalidad.getText();
@@ -434,6 +433,8 @@ public class CrearUsuario extends JInternalFrame {
         if (this.textPane.getText() == "") {
           fotoPerfilUsuario = null;
         }
+        char[] passwordChars = this.passwordField.getPassword();
+        String contrasenia = new String(passwordChars);
         if (tipoUsuarioSeleccionado.equals("Postulante")) {
           LocalDate fechaNac = this.fechaNacimientoChooser.getDate().toInstant()
               .atZone(ZoneId.systemDefault()).toLocalDate();
@@ -443,6 +444,7 @@ public class CrearUsuario extends JInternalFrame {
               "Registrar Usuario", JOptionPane.INFORMATION_MESSAGE);
           return true;
         } else {
+          
           this.controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descripcion,
               sitioWeb, fotoPerfilUsuario, contrasenia);
           JOptionPane.showMessageDialog(this, "La Empresa se ha creado con éxito",
