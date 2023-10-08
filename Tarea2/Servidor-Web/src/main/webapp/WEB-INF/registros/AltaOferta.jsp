@@ -18,6 +18,18 @@ pageEncoding="UTF-8"%>
 	<%@ include file="../include/NavBar.jsp"%>
 	<main
 		class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
+		<%
+			String mensaje = (String) request.getAttribute("mensajeError");
+			if(mensaje != null){%>
+		<div class="alert alert-danger alert-dismissible fade show"
+			role="alert">
+			<strong>Error:</strong>
+			<%=mensaje%>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		<%
+		}
+		%>
 		<form action="<%=request.getContextPath()%>/altaOferta" method="post"
 			enctype="multipart/form-data">
 			<div class="row g-5 mx-2">

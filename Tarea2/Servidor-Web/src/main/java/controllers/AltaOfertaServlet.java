@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import logica.controllers.Fabrica;
+import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.DttipoPublicacion;
@@ -113,6 +114,9 @@ public class AltaOfertaServlet extends HttpServlet {
     ArrayList<String> listKeywords = new ArrayList<>();
     LocalDate fechaAlta = LocalDate.now();
     String nombrePaquete = request.getParameter("nombrePaquete");
+    if(nombrePaquete.equals("")) {
+      nombrePaquete = null;
+    }
     if (request.getParameter("remuneracion") != null) {
       remuneracion = Float.valueOf(request.getParameter("remuneracion"));
     }
@@ -132,7 +136,42 @@ public class AltaOfertaServlet extends HttpServlet {
         listKeywords.add(keyword);
       }
     }
-    
+    if(nombrePaquete != null) {
+      System.out.println("paquete no es null");
+      System.out.println("nombre paquete" + nombrePaquete);
+      IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+      try {
+        ArrayList<DtCompraPaquete>  listaCompras = (ArrayList<DtCompraPaquete>) controladorUsuario.obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
+        Boolean hayPublicaciones = false;
+        for(DtCompraPaquete compra : listaCompras) {
+          if(nombrePaquete.equals(compra.getPaquete().getNombre())){
+            System.out.println("encuentra el dtcompra");
+            for(DtCantidadTipoPublicacionRestante cantidadRestante : compra.getPublicacionesRestantes()) {
+              System.out.println(cantidadRestante.getTipoPublicacion().getNombre());
+              System.out.println(cantidadRestante.getCantidad());
+              if(tipoPublicacion.equals(cantidadRestante.getTipoPublicacion().getNombre())) {
+                System.out.println("encuentra el tipo");
+                if(cantidadRestante.getCantidad()>0) {
+                  System.out.println("setea hay publicacion en true");
+                  hayPublicaciones = true;
+                }
+              }
+            }
+          }
+        }
+        if(!hayPublicaciones) {
+          request.setAttribute("mensajeError", "el paquete no tiene publicaciones del tipo seleccionado");
+          procesarGet(request, response);
+          return;
+        }
+      } catch (UsuarioNoExisteException e) {
+        request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+        e.printStackTrace();
+      } catch (IOException e) {
+        request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+        e.printStackTrace();
+      }
+    }
     try {
       controladorOferta.altaOfertaLaboral(nombreOferta, descripcion, horaInicio, horaFin,
           remuneracion, ciudad, departamento, fechaAlta, tipoPublicacion,
