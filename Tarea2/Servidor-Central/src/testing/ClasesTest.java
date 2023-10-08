@@ -50,11 +50,8 @@ import org.junit.Test;
 public class ClasesTest {
   
   private Date fechaDateParse;
-  private Date fechaDateParseSecundaria;
   private LocalDate fechaDate;
-  private LocalDate fechaDateSecundaria;
   private String fecha = "24/08/2023";
-  private String fechaSecuandaria = "24/09/2023";
   
   /**
    * Metodo setUp.
@@ -64,11 +61,8 @@ public class ClasesTest {
   public void setUp() {
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     try {
-      this.fechaDateParseSecundaria = dateFormat.parse(fechaSecuandaria);
       this.fechaDateParse = dateFormat.parse(fecha);
       fechaDate = fechaDateParse.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-      fechaDateSecundaria = fechaDateParseSecundaria.toInstant().atZone(ZoneId.systemDefault())
-          .toLocalDate();
       
     } catch (ParseException e) {
       e.getMessage();
@@ -79,8 +73,7 @@ public class ClasesTest {
   public void cantidadTipoPublicacionRestanteClase() {
     TipoPublicacion tipoPublicacion = new TipoPublicacion("tipoTesting", "Uso para testing",
         "baja", 50, 500f, fechaDate);
-    CantidadTipoPublicacionRestante cantidadTipoPublicacionRestante = 
-        new CantidadTipoPublicacionRestante(
+    CantidadTipoPublicacionRestante cantidadTipoPublicacionRestante = new CantidadTipoPublicacionRestante(
         5, tipoPublicacion);
     Assert.assertEquals(cantidadTipoPublicacionRestante.getCantidad(), 5);
     Assert.assertEquals(cantidadTipoPublicacionRestante.getTipoPublicacion(), tipoPublicacion);
@@ -132,8 +125,7 @@ public class ClasesTest {
         .obtenerCantidadTotalTipoPublicaciones();
     float cantidadTotal = 0;
     float costo = 0;
-    for (CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion :
-        cantidadTotalTipoPublicacions) {
+    for (CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion : cantidadTotalTipoPublicacions) {
       cantidadTotal = cantidadTotal + (cantidadTotalTipoPublicacion.getCantidadTotal()
           * cantidadTotalTipoPublicacion.getTipoPublicacion().getCosto());
     }
@@ -348,7 +340,12 @@ public class ClasesTest {
   }
   
   @Test
-  public void loaderClase() throws UsuarioNoExisteException, OfertaLaboralNoExisteException, ParseException, UsuarioYaExisteException, UsuarioEmailRepetidoException, TipoPublicacionYaExisteException, KeywordYaExisteException, KeywordNoExisteException, TipoPublicacionNoExisteException, OfertaLaboralYaExisteException, PaquetePublicacionYaExisteException, UsuarioYaExistePostulacion, IOException, PaquetePublicacionNoExisteException {
+  public void loaderClase() throws UsuarioNoExisteException, OfertaLaboralNoExisteException,
+      ParseException, UsuarioYaExisteException, UsuarioEmailRepetidoException,
+      TipoPublicacionYaExisteException, KeywordYaExisteException, KeywordNoExisteException,
+      TipoPublicacionNoExisteException, OfertaLaboralYaExisteException,
+      PaquetePublicacionYaExisteException, UsuarioYaExistePostulacion, IOException,
+      PaquetePublicacionNoExisteException {
     Loader loader = new Loader();
     loader.cargarDatos();
   }
