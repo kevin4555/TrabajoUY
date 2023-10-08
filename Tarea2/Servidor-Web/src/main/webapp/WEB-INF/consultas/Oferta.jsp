@@ -94,7 +94,8 @@
 											} else {
 											%>
 											<div class="text-center">
-												<a href="<%=request.getContextPath()%>/postulacion?nombreOferta=<%=oferta.getNombre()%>" class="btn btn-primary">Postularse</a>
+											<%= oferta.getNombre() %>
+												<a href="<%=request.getContextPath()%>/postulacion?nombreOferta=<%= oferta.getNombre() %>" class="btn btn-primary">Postularse</a>
 											</div>
 
 											<%

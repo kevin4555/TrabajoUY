@@ -71,7 +71,7 @@ public class PostulacionServlet extends HttpServlet {
      throws ServletException, IOException {
    HttpSession sesion = request.getSession();
    if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO
-       || request.getAttribute("nombreOferta") == null) {
+       || request.getParameter("nombreOferta") == null) {
      request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
      return;
    }
