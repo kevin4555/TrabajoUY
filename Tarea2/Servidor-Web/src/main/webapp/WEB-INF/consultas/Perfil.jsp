@@ -4,6 +4,7 @@
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="logica.datatypes.Dtpostulante"%>
 <%@page import="logica.datatypes.Dtempresa"%>
+<%@page import="logica.datatypes.EstadoOferta"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -136,6 +137,7 @@
 												<%
 												List<DtOfertaLaboral> ofertasColeccion = usuario.getOfertasColeccion();
 												for (DtOfertaLaboral oferta : ofertasColeccion) {
+												  if (oferta.getEstadoOferta().equals(EstadoOferta.CONFIRMADA)) {
 												%>
 												<td><a
 													href="<%=request.getContextPath()%>/oferta?nombreOferta=<%=oferta.getNombre()%>"><%=oferta.getNombre()%></a></td>
@@ -146,6 +148,9 @@
 												<td><%=oferta.getDepartamento()%></td>
 												<td><%=oferta.getCiudad()%></td>
 											</tr>
+											<%
+											}
+											%>
 											<%
 											}
 											%>
