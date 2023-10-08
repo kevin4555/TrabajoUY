@@ -22,7 +22,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
             <form class="form-inline">
               <div class="input-group">
                 <input class="form-control" type="search" placeholder="Buscar oferta" aria-label="Search"/>
-                <button class="btn btn-outline-success" type="submit">
+                <button class="btn btn-outline-success" >
                   <i class="bi bi-search text-white"></i>
                 </button>
               </div>
