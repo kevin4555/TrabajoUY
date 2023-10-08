@@ -56,7 +56,7 @@ public class DtOfertaLaboral {
     
     if (imagen != null) {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      ImageIO.write(this.imagen, "jpg", baos);
+      ImageIO.write(this.imagen, "png", baos);
       this.imagenBase64 = Base64.getEncoder().encodeToString(baos.toByteArray());
     }
     this.paqueteAsociado = paquete;
