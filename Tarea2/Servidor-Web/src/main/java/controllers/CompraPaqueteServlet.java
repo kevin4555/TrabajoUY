@@ -57,7 +57,7 @@ public class CompraPaqueteServlet extends HttpServlet {
         }
         else {
           String url = request.getContextPath() + "/paquete?nombrePaquete="
-              + nombrePaquete + "&error=" + URLEncoder.encode("Paquete ya comprado", "UTF-8");
+              + URLEncoder.encode(nombrePaquete,"UTF-8" ) + "&error=" + URLEncoder.encode("Paquete ya comprado", "UTF-8");
           response.sendRedirect(url);
           return;
         }

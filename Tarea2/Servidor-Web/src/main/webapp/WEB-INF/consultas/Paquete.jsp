@@ -2,8 +2,7 @@
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="model.EstadoSesion"%>
 <%@page import="logica.datatypes.DtpaquetePublicacion"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     
 <%@page import="logica.datatypes.DtcantidadTipoPublicacion"%>
 <%@ page import="java.util.List" %>
@@ -60,16 +59,16 @@
                   <ul class="list-unstyled">
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
-                      Período: <%= paquete.getPeriodoValidez() %> días
+                      PerÃ­odo: <%= paquete.getPeriodoValidez() %> dÃ­as
                     </li>
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
-                      Descuento del <%= paquete.getDescuento() %> % por publicación
+                      Descuento del <%= paquete.getDescuento() %> % por publicaciÃ³n
                     </li>
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
                       <%
-						LocalDate fechaAlta = paquete.getFechaAlta(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
+						LocalDate fechaAlta = paquete.getFechaAlta(); // ObtÃ©n la fecha como un objeto LocalDate desde tu objeto paquete
 						Date fechaAltaDate = Date.from(fechaAlta.atStartOfDay(ZoneId.systemDefault()).toInstant());
 						SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						String newParsedDate = outputDateFormat.format(fechaAltaDate);
