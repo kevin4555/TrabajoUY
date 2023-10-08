@@ -4711,6 +4711,10 @@
         <extension>zmm</extension>
         <mime-type>application/vnd.handheld-entertainment+xml</mime-type>
     </mime-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error/404.jsp</location>
+    </error-page>
 
   <!-- ==================== Default Welcome File List ===================== -->
   <!-- When a request URI refers to a directory, the default servlet looks  -->
