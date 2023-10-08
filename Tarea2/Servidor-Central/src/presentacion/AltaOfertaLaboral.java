@@ -41,6 +41,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+
+import logica.datatypes.DtCantidadTipoPublicacionRestante;
+import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
@@ -87,7 +90,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
   private JLabel lblTiposPublicaciones;
   private JLabel lblSeleccionPaquete;
   private JComboBox<String> comboBoxSeleccionPaquete;
-  //private String paqueteSeleccionado;
+  // private String paqueteSeleccionado;
   private BufferedImage fotoOferta = null;
   private GridBagConstraints gbcTextField;
   
@@ -98,7 +101,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     
     controladorOfertaLaboral = icontOfer;
     controladorUsuario = icontUsu;
-    //this.paqueteSeleccionado = "";
+    // this.paqueteSeleccionado = "";
     
     // Propiedades del JInternalFrame como dimensión,
     // posición dentro del frame,
@@ -137,11 +140,10 @@ public class AltaOfertaLaboral extends JInternalFrame {
     getContentPane().add(panelDatos, BorderLayout.CENTER);
     GridBagLayout gblPanelDatos = new GridBagLayout();
     gblPanelDatos.columnWidths = new int[] { 113, 739, 0 };
-    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0 };
+    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0,
-        0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblPanelDatos);
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
@@ -364,6 +366,12 @@ public class AltaOfertaLaboral extends JInternalFrame {
     gbcComboBoxSeleccionOferta.gridy = 17;
     panelDatos.add(this.comboBoxSeleccionTiposPublicaciones, gbcComboBoxSeleccionOferta);
     comboBoxSeleccionTiposPublicaciones.setVisible(false);
+    this.comboBoxSeleccionTiposPublicaciones.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evento) {
+        cargarCantidadRestante(evento);
+        
+      }
+    });
     
     lblCantidadTiposPublicaciones = new JLabel("Cantidad restante");
     GridBagConstraints gbcLblCantidadTipos = new GridBagConstraints();
@@ -384,7 +392,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
     this.textFieldCantidadRestante.setColumns(10);
     textFieldCantidadRestante.setVisible(false);
     textFieldCantidadRestante.setEditable(false);
-    
     
     lblSeleccionPaquete = new JLabel("Seleccionar Paquete:");
     GridBagConstraints gbcLblSeleccionPaquete = new GridBagConstraints();
@@ -472,7 +479,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
    * Metodo cargar empresas .
    */
   
-
   public void cargarEmpresas() {
     
     List<String> listaEmpresas = this.controladorUsuario.listarEmpresas();
@@ -513,6 +519,37 @@ public class AltaOfertaLaboral extends JInternalFrame {
     comboBoxFormaDePago.setModel(model);
   }
   
+  public void cargarCantidadRestante(ActionEvent evento) {
+    try {
+      if (this.comboBoxSeleccionTiposPublicaciones.getSelectedIndex() != -1
+          & comboBoxSeleccionPaquete.getSelectedIndex() != -1 & this.comboBoxEmpresa.getSelectedIndex() != -1) {
+        String nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+        String nombrePaquete = this.comboBoxSeleccionPaquete.getSelectedItem().toString();
+        List<DtCompraPaquete> listaCompraPaquetesaux;
+        
+        listaCompraPaquetesaux = (ArrayList<DtCompraPaquete>) controladorUsuario
+            .obtenerDtCompraPaqueteDeEmpresa(nicknameEmpresa);
+        
+        List<DtCantidadTipoPublicacionRestante> cantidadTipoPublicacion = new ArrayList<DtCantidadTipoPublicacionRestante>();
+        for (DtCompraPaquete compraPaquete : listaCompraPaquetesaux) {
+          DtpaquetePublicacion dtPaquete = compraPaquete.getPaquete();
+          if (dtPaquete.getNombre().equals(nombrePaquete)) {
+            cantidadTipoPublicacion = compraPaquete.getPublicacionesRestantes();
+            break;
+          }
+        }
+        for (DtCantidadTipoPublicacionRestante tiposPublicacion : cantidadTipoPublicacion) {
+          if (tiposPublicacion.getTipoPublicacion().getNombre().equals(this.comboBoxSeleccionTiposPublicaciones.getSelectedItem().toString())) {
+            this.textFieldCantidadRestante.setText(String.valueOf(tiposPublicacion.getCantidad()));
+          }
+        }
+      }
+    } catch (UsuarioNoExisteException | IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  
   /**
    * Metodo cargar datos tipo publicacion .
    */
@@ -527,8 +564,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         comboBoxSeleccionTiposPublicaciones.setVisible(true);
         this.comboBoxSeleccionPaquete.setVisible(false);
         lblSeleccionPaquete.setVisible(false);
-        List<String> listaTipoDePublicaciones = this.controladorOfertaLaboral
-            .listarTipoDePublicaciones();
+        List<String> listaTipoDePublicaciones = this.controladorOfertaLaboral.listarTipoDePublicaciones();
         String[] arrayTiposPublicaciones = listaTipoDePublicaciones.toArray(new String[0]);
         Arrays.sort(arrayTiposPublicaciones);
         modelPublicaciones = new DefaultComboBoxModel<String>(arrayTiposPublicaciones);
@@ -545,31 +581,40 @@ public class AltaOfertaLaboral extends JInternalFrame {
           lblSeleccionPaquete.setVisible(true);
           lblCantidadTiposPublicaciones.setVisible(true);
           this.textFieldCantidadRestante.setVisible(true);
-          
-          List<DtpaquetePublicacion> dtPaquetesComprados = this.controladorUsuario
-              .obtenerDtpaquetesDeEmpresa(nicknameEmpresa);
-          List<String> nombrePaquetesComprados = new ArrayList<String>();
-          for (DtpaquetePublicacion dtPaquete : dtPaquetesComprados) {
-            nombrePaquetesComprados.add(dtPaquete.getNombre());
+          if (this.dateChooser.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar una fecha de alta", "Trabajo.uy",
+                JOptionPane.ERROR_MESSAGE);
+          } else {
+            List<DtCompraPaquete> listaCompraPaquetesaux = (ArrayList<DtCompraPaquete>) controladorUsuario
+                .obtenerDtCompraPaqueteDeEmpresa(nicknameEmpresa);
+            ArrayList<String> listaCompraPaquetes = new ArrayList<String>();
+            for (DtCompraPaquete compra : listaCompraPaquetesaux) {
+              if (compra.getFechaVencimiento()
+                  .isAfter(this.dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
+                DtpaquetePublicacion dtpaquete = compra.getPaquete();
+                listaCompraPaquetes.add(dtpaquete.getNombre());
+              }
+            }
+            String[] arrayPaquetes = listaCompraPaquetes.toArray(new String[0]);
+            if (arrayPaquetes.length == 0) {
+              this.comboBoxSeleccionTiposPublicaciones.removeAllItems();
+              lblTiposPublicaciones.setVisible(false);
+              comboBoxSeleccionTiposPublicaciones.setVisible(false);
+              lblCantidadTiposPublicaciones.setVisible(false);
+              this.textFieldCantidadRestante.setVisible(false);
+              this.comboBoxSeleccionPaquete.setVisible(false);
+              lblSeleccionPaquete.setVisible(false);
+              JOptionPane.showMessageDialog(this, "La empresa no tiene ningún paquete comprado",
+                  "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+            } else {
+              Arrays.sort(arrayPaquetes);
+              modelPaquetes = new DefaultComboBoxModel<String>(arrayPaquetes);
+              this.comboBoxSeleccionPaquete.setModel(modelPaquetes);
+            }
           }
-          String[] arrayPaquetes = nombrePaquetesComprados.toArray(new String[0]);
-          if (arrayPaquetes.length == 0) {
-            this.comboBoxSeleccionTiposPublicaciones.removeAllItems();
-            lblTiposPublicaciones.setVisible(false);
-            comboBoxSeleccionTiposPublicaciones.setVisible(false);
-            lblCantidadTiposPublicaciones.setVisible(false);
-            this.textFieldCantidadRestante.setVisible(false);
-            this.comboBoxSeleccionPaquete.setVisible(false);
-            lblSeleccionPaquete.setVisible(false);
-            JOptionPane.showMessageDialog(this, "La empresa no tiene ningún paquete comprado",
-                "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-          }
-          Arrays.sort(arrayPaquetes);
-          modelPaquetes = new DefaultComboBoxModel<String>(arrayPaquetes);
-          this.comboBoxSeleccionPaquete.setModel(modelPaquetes);
         } else {
-          JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa",
-              "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa", "Registrar Oferta Laboral",
+              JOptionPane.ERROR_MESSAGE);
         }
         
       }
@@ -592,17 +637,15 @@ public class AltaOfertaLaboral extends JInternalFrame {
       this.textPane.setText("");
       int newWidth = 100; // Ancho deseado
       int newHeight = 100; // Alto deseado
-      Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
-          Image.SCALE_SMOOTH);
+      Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
       ImageIcon icono = new ImageIcon(scaledImage);
       this.textPane.insertIcon(icono);
       
     } catch (IOException e) {
-      JOptionPane.showMessageDialog(this, "No se cargo la imagen", "Registrar Usuario",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "No se cargo la imagen", "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
     } catch (java.lang.NullPointerException e2) {
-      JOptionPane.showMessageDialog(this, "Debe ingresar una imagen valida",
-          "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "Debe ingresar una imagen valida", "Registrar Usuario",
+          JOptionPane.ERROR_MESSAGE);
     }
   }
   
@@ -613,17 +656,50 @@ public class AltaOfertaLaboral extends JInternalFrame {
   public void cargarTipoPublicacionEnPaquete(ActionEvent evento) {
     
     try {
+      String nicknameEmpresa = "";
+      if (comboBoxSeleccionPaquete.getSelectedIndex() != -1) {
+        String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
+        if (this.comboBoxEmpresa.getSelectedIndex() != -1) {
+          nicknameEmpresa = this.comboBoxEmpresa.getSelectedItem().toString();
+          List<DtCompraPaquete> listaCompraPaquetesaux = (ArrayList<DtCompraPaquete>) controladorUsuario
+              .obtenerDtCompraPaqueteDeEmpresa(nicknameEmpresa);
+          List<DtCantidadTipoPublicacionRestante> cantidadTipoPublicacion = new ArrayList<DtCantidadTipoPublicacionRestante>();
+          for (DtCompraPaquete compraPaquete : listaCompraPaquetesaux) {
+            DtpaquetePublicacion dtPaquete = compraPaquete.getPaquete();
+            if (dtPaquete.getNombre().equals(nombrePaquete)) {
+              cantidadTipoPublicacion = compraPaquete.getPublicacionesRestantes();
+              break;
+            }
+          }
+          ArrayList<String> nombreTipoPublicacion = new ArrayList<String>();
+          for (DtCantidadTipoPublicacionRestante tiposPublicacion : cantidadTipoPublicacion) {
+            nombreTipoPublicacion.add(tiposPublicacion.getTipoPublicacion().getNombre());
+          }
+          String[] arrayTiposPublicacionesPaquete = nombreTipoPublicacion.toArray(new String[0]);
+          Arrays.sort(arrayTiposPublicacionesPaquete);
+          DefaultComboBoxModel<String> model;
+          model = new DefaultComboBoxModel<String>(arrayTiposPublicacionesPaquete);
+          this.comboBoxSeleccionTiposPublicaciones.setModel(model);
+        } else {
+          JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa", "Registrar Oferta Laboral",
+              JOptionPane.ERROR_MESSAGE);
+        }
+        
+      } else {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un paquete", "Registrar Oferta Laboral",
+            JOptionPane.ERROR_MESSAGE);
+      }
+      
       String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
       List<String> listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
           .listarTipoPublicacionDePaquete(nombrePaquete);
       
-      String[] arrayTiposPublicacionesPaquete = listaTipoDePublicacionesDePaquete
-          .toArray(new String[0]);
+      String[] arrayTiposPublicacionesPaquete = listaTipoDePublicacionesDePaquete.toArray(new String[0]);
       Arrays.sort(arrayTiposPublicacionesPaquete);
       DefaultComboBoxModel<String> model;
       model = new DefaultComboBoxModel<String>(arrayTiposPublicacionesPaquete);
       this.comboBoxSeleccionTiposPublicaciones.setModel(model);
-    } catch (PaquetePublicacionNoExisteException e1) {
+    } catch (PaquetePublicacionNoExisteException | UsuarioNoExisteException | IOException e1) {
       // TODO Auto-generated catch block
       e1.printStackTrace();
     }
@@ -657,23 +733,20 @@ public class AltaOfertaLaboral extends JInternalFrame {
     String remuneracionOfertaLab = this.textFieldRemuneracion.getText();
     String ciudadOfertaLab = this.textFieldCiudad.getText();
     String departOfertaLab = this.textFieldDepartamento.getText();
-    if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab,
-        ciudadOfertaLab, departOfertaLab, horaIniOfertaLab, horaFinOfertaLab, fechaAlta,
-        nicknameEmpresa)) {
+    if (checkFormulario(nombreOfertaLab, descripOfertaLab, remuneracionOfertaLab, ciudadOfertaLab, departOfertaLab,
+        horaIniOfertaLab, horaFinOfertaLab, fechaAlta, nicknameEmpresa)) {
       try {
         if (this.textPane.getText() == "") {
           fotoOferta = null;
         }
-        LocalDate fechaAltaOferta = this.dateChooser.getDate().toInstant()
-            .atZone(ZoneId.systemDefault()).toLocalDate();
-        controladorOfertaLaboral.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab,
-            horaIniOfertaLab, horaFinOfertaLab, Float.parseFloat(remuneracionOfertaLab),
-            ciudadOfertaLab, departOfertaLab, fechaAltaOferta,
-            this.comboBoxSeleccionTiposPublicaciones.getSelectedItem().toString(),
-            nicknameEmpresa, keywordSeleccionadas, fotoOferta, nomPaquete);
+        LocalDate fechaAltaOferta = this.dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        controladorOfertaLaboral.altaOfertaLaboral(nombreOfertaLab, descripOfertaLab, horaIniOfertaLab,
+            horaFinOfertaLab, Float.parseFloat(remuneracionOfertaLab), ciudadOfertaLab, departOfertaLab,
+            fechaAltaOferta, this.comboBoxSeleccionTiposPublicaciones.getSelectedItem().toString(), nicknameEmpresa,
+            keywordSeleccionadas, fotoOferta, nomPaquete);
         // Muestro éxito de la operación
-        JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito",
-            "Registrar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "La Oferta Laboral se ha creado con éxito", "Registrar Oferta Laboral",
+            JOptionPane.INFORMATION_MESSAGE);
         
         // Limpio el internal frame antes de cerrar la
         // ventana
@@ -684,16 +757,13 @@ public class AltaOfertaLaboral extends JInternalFrame {
       } catch (UsuarioNoExisteException e) {
         // no imprime nada
       } catch (OfertaLaboralYaExisteException e) {
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-            JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
       } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-            JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
       } catch (KeywordNoExisteException e) {
         // no imprime nada
       } catch (java.lang.ClassCastException e) {
-        JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Trabajo.uy",
-            JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
         
       }
     }
@@ -713,38 +783,40 @@ public class AltaOfertaLaboral extends JInternalFrame {
   // en el campo de la cédula, o mostrando un
   // mensaje de error apenas el foco pasa
   // a otro campo.
-  private boolean checkFormulario(String nombreOfertaLab, String descripOfertaLab,
-      String remuneracionOfertaLab, String ciudadOfertaLab, String departOfertaLab,
-      String horaIniOfertaLab, String horaFinOfertaLab, Date fechaAlta,
+  private boolean checkFormulario(String nombreOfertaLab, String descripOfertaLab, String remuneracionOfertaLab,
+      String ciudadOfertaLab, String departOfertaLab, String horaIniOfertaLab, String horaFinOfertaLab, Date fechaAlta,
       String nicknameEmpresa) {
     
-    if (nombreOfertaLab.isEmpty() || descripOfertaLab.isEmpty()
-        || remuneracionOfertaLab.isEmpty() || ciudadOfertaLab.isEmpty()
-        || departOfertaLab.isEmpty() || horaIniOfertaLab.isEmpty()
+    if (nombreOfertaLab.isEmpty() || descripOfertaLab.isEmpty() || remuneracionOfertaLab.isEmpty()
+        || ciudadOfertaLab.isEmpty() || departOfertaLab.isEmpty() || horaIniOfertaLab.isEmpty()
         || horaFinOfertaLab.isEmpty()) {
-      JOptionPane.showMessageDialog(this, "No puede haber campos vacíos",
-          "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     if (this.comboBoxSeleccionTiposPublicaciones.getSelectedIndex() == -1) {
-      JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de publicación",
-          "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de publicación", "Registrar Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
+      return false;
     }
-    if (fechaAlta == null || (fechaAlta.compareTo(Date.from(LocalDate.now()
-        .atStartOfDay(ZoneId.systemDefault()).toInstant()))) > 0) {
-      JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
-          "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+    if (Integer.parseInt(this.textFieldCantidadRestante.getText()) == 0) {
+      JOptionPane.showMessageDialog(this, "No le quedan mas tipo de publicación disponibles del elegido", "Registrar Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
+      return false;
+    }
+    if (fechaAlta == null
+        || (fechaAlta.compareTo(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))) > 0) {
+      JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "Registrar Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     if (chequeoHoraValida(horaIniOfertaLab)) {
-      JOptionPane.showMessageDialog(this,
-          "Por favor, ingrese una hora de inicio valida del tipo xx:xx",
+      JOptionPane.showMessageDialog(this, "Por favor, ingrese una hora de inicio valida del tipo xx:xx",
           "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
       return false;
     }
     if (chequeoHoraValida(horaFinOfertaLab)) {
-      JOptionPane.showMessageDialog(this,
-          "Por favor, ingrese una hora de fin valida del tipo xx:xx",
+      JOptionPane.showMessageDialog(this, "Por favor, ingrese una hora de fin valida del tipo xx:xx",
           "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
       return false;
     }
@@ -757,14 +829,14 @@ public class AltaOfertaLaboral extends JInternalFrame {
     try {
       Float.parseFloat(remuneracionOfertaLab);
     } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(this, "La remuneración debe ser un numero",
-          "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "La remuneración debe ser un numero", "Registrar Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
     if (Float.parseFloat(remuneracionOfertaLab) <= 0) {
-      JOptionPane.showMessageDialog(this, "La remuneración debe ser mayor a cero",
-          "Registrar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "La remuneración debe ser mayor a cero", "Registrar Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
@@ -813,7 +885,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
   // no aparezca al mostrarlas nuevamente.
   private void limpiarFormulario() {
     textFieldNombre.setText("");
-    //this.paqueteSeleccionado = "";
+    // this.paqueteSeleccionado = "";
     textFieldDescripcion.setText("");
     textFieldRemuneracion.setText("");
     textFieldCiudad.setText("");
@@ -828,5 +900,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     lblSeleccionPaquete.setVisible(false);
     comboBoxSeleccionTiposPublicaciones.setVisible(false);
     lblCantidadTiposPublicaciones.setVisible(false);
+    this.textFieldCantidadRestante.setVisible(false);
+    this.textFieldCantidadRestante.setText("");
   }
 }
