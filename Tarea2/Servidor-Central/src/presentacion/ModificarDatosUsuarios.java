@@ -432,6 +432,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
+      this.textPane.setText("");
       Dtusuario dtUsuario;
       try {
         dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
@@ -448,6 +449,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
       this.textFieldContrasenia.setText(dtUsuario.getContrasenia());
       BufferedImage originalImage = dtUsuario.getImagen();
       if (originalImage != null) {
+        fotoPerfilUsuario = originalImage;
         int newWidth = 100; // Ancho deseado
         int newHeight = 100; // Alto deseado
         Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
@@ -555,7 +557,8 @@ public class ModificarDatosUsuarios extends JInternalFrame {
   
   public boolean checkFormulario(String nombre, String apellido, Date fechaNacPostulante,
       String nacionalidadPostulante, String descripEmpresa, String contrasenia) {
-    if (nombre.isEmpty() || apellido.isEmpty() || contrasenia.isEmpty()) {
+    if (nombre.isEmpty() || apellido.isEmpty() 
+        || this.textFieldContrasenia.getPassword().length == 0) {
       JOptionPane.showMessageDialog(this, "No puede haber campos vacíos",
           "Modificar Datos Usuario", JOptionPane.ERROR_MESSAGE);
       return false;

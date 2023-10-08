@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -308,17 +309,18 @@ public class RegistrarPaquete extends JInternalFrame {
       return false;
     }
     
-    if (this.fechaAltaChooser.getDate() == null) {
+    if (this.fechaAltaChooser.getDate() == null 
+        || (this.fechaAltaChooser.getDate().compareTo(Date.from(LocalDate.now()
+        .atStartOfDay(ZoneId.systemDefault()).toInstant()))) > 0) {
       JOptionPane.showMessageDialog(this, "Debe ingresar una Fecha de Alta",
           "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
     try {
-      if (Float.parseFloat(this.textFieldDescuento.getText()) <= 0
-          || Float.parseFloat(this.textFieldDescuento.getText()) > 100) {
+      if (Float.parseFloat(this.textFieldDescuento.getText()) <= 0) {
         JOptionPane.showMessageDialog(this,
-            "El descuento(en porcentaje) debe ser un número entre 1 y 100",
+            "El descuento(en porcentaje) debe ser mayor a 0",
             "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
         return false;
       }

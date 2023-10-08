@@ -9,6 +9,8 @@ import javax.imageio.ImageIO;
 
 import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,6 +25,9 @@ import model.TipoUsuario;
 /**
  * Servlet implementation class ModificarDatosServlet
  */
+@MultipartConfig()
+
+@WebServlet("/editarPerfil")
 public class ModificarDatosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -65,11 +70,11 @@ public class ModificarDatosServlet extends HttpServlet {
 		}
     	if(sesion.getAttribute("tipoUsuario") == TipoUsuario.EMPRESA) {
     		String descripcion = request.getParameter("descripcion");
-    		String sitioWeb = request.getParameter("sitioWebb");
+    		String sitioWeb = request.getParameter("sitioWeb");
     		
     		try {
 				controladorUsuario.editarEmpresa(usuario.getNickname(), nombre, apellido, sitioWeb, descripcion, imagen, contrasenia);
-				String url = "/perfil?nicknameUsuario=" + usuario.getNickname();
+				String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 				return;
 			} catch (UsuarioNoExisteException | IOException e) {
@@ -83,7 +88,7 @@ public class ModificarDatosServlet extends HttpServlet {
     		LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
     		try {
 				controladorUsuario.editarPostulante(usuario.getNickname(), nombre, apellido, fechaNacimiento, nacionalidad, imagen, contrasenia);
-				String url = "/perfil?nicknameUsuario=" + usuario.getNickname();
+				String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 				return;
 			} catch (UsuarioNoExisteException | IOException e) {
