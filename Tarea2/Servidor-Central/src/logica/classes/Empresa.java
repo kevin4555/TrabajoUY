@@ -197,7 +197,7 @@ public class Empresa extends Usuario {
   public void comprarOfertaPorPaquete(String nombrePaquete, String nomTipoPublicacion,
       OfertaLaboral oferta) {
     for (CompraPaquete compra : compraPaquetes) {
-      if (compra.obtenerNombrePaquete() == nombrePaquete) {
+      if (nombrePaquete.equals(compra.obtenerNombrePaquete())) {
         compra.gastarTipoPublicacion(nomTipoPublicacion);
         oferta.setCompraPaquete(compra);
         break;
