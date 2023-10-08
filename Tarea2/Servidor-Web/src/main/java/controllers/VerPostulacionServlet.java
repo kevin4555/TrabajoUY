@@ -45,15 +45,19 @@ public class VerPostulacionServlet extends HttpServlet {
       }
       try {
         Dtusuario postulante = controladorUsuario.obtenerDtusuario(nicknamePostulante);
+        DtOfertaLaboral dtOferta= controladorOferta.obtenerDtOfertaLaboral(nombreOferta);        
         Dtpostulacion postulacion = controladorUsuario.obtenerDtpostulacion(nicknamePostulante, nombreOferta);
-        DtOfertaLaboral dtOferta= controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
+        
         request.setAttribute("ofertas", dtOferta);
         request.setAttribute("postulacion", postulacion);
         request.setAttribute("postulante", postulante);
         request.getRequestDispatcher("/WEB-INF/consultas/VerPostulacion.jsp").forward(request, response);
+        return;
       } catch (UsuarioNoExisteException | UsuarioNoExistePostulacion | OfertaLaboralNoExisteException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+    	  request.setAttribute("error", e.getMessage());
+          request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+          e.printStackTrace();
+          return;
       }
     }
 	/**

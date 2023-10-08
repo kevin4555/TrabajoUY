@@ -76,7 +76,7 @@
 													 }
 													 %></li>
 												<%
-												if (tipoUsuario.equals(TipoUsuario.EMPRESA)) {
+												if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa())) {
 												%>
 												<li class="list-group-item"><b>Estado de la Oferta:</b>
 													<%=oferta.getEstadoOferta()%></li>

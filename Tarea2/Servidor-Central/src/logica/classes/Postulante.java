@@ -80,13 +80,12 @@ public class Postulante extends Usuario {
    */
   
   public Dtpostulacion obtenerDtpostulacion(String nombreOferta) {
-    Postulacion postulacionAoferta = null;
     for (Postulacion postulacion : postulaciones) {
-      if (postulacion.getNombreOfertaLaboral() == nombreOferta) {
-        postulacionAoferta = postulacion;
+      if (postulacion.getNombreOfertaLaboral().equals(nombreOferta)) {
+        return postulacion.obtenerDtpostulacion();
       }
     }
-    return postulacionAoferta.obtenerDtpostulacion();
+    return null;
   }
   /**
    * Obtener DTOfertaLaboral.
@@ -116,14 +115,13 @@ public class Postulante extends Usuario {
    */
   
   public Boolean estaPostulado(String nombreOferta) {
-    Boolean resultado = false;
+    
     for (Postulacion postulacion : postulaciones) {
-      if (postulacion.getOfertaLaboral().getNombre() == nombreOferta) {
-        resultado = true;
-        break;
+      if (postulacion.getOfertaLaboral().getNombre().equals(nombreOferta)) {
+        return true;
       }
     }
-    return resultado;
+    return false;
     
   }
 }

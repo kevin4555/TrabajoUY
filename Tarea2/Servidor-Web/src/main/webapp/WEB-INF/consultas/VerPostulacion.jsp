@@ -1,3 +1,12 @@
+<%@page import="java.time.ZoneId"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="logica.datatypes.Dtpostulacion"%>
+<%@page import="model.TipoUsuario"%>
+<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="model.EstadoSesion"%>
+<%@page import="logica.datatypes.Dtpostulante"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
@@ -9,52 +18,71 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<%= request.getContextPath() %>/recourse/css/general.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-    <title>Home</title>
-
-    <%
-    ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("listaKeywords");
-    %>
+    <title>VerPostulacion</title>
 
     <jsp:include page="../include/Head.jsp" />
 </head>
 <body class="mb-4">
+	<% 
+	Dtpostulante postulante = (Dtpostulante) request.getAttribute("postulante");
+	DtOfertaLaboral oferta= (DtOfertaLaboral) request.getAttribute("ofertas");        
+	Dtpostulacion postulacion = (Dtpostulacion) request.getAttribute("postulacion");
+	EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
+	Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
+	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+	String contextPath = request.getContextPath();
+	%>
     <jsp:include page="../include/NavBar.jsp" />
     <main class="container pt-5">
         <div class="row">
             <jsp:include page="../include/Menu.jsp" />
             <div class="col-8">
-                <section>
-                    <%
-                    ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request.getAttribute("listaOfertasConfirmadas");
-                    for (DtOfertaLaboral oferta : listaOfertasConfirmadas) {
-                    %>
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-4 justify-content-center align-items-center d-flex">
-                                    <img src="data:image/png;base64,<%= oferta.getImagenBase64() %>" class="img-fluid rounded-start" alt="Imagen Oferta" />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-header p-0 border-0 bg-white text-start">
-                                        <%
-                                    		String contextPath = request.getContextPath();
-                                    	%>
-                                       <a href="<%= contextPath %>/oferta?nombreOferta=<%= oferta.getNombre() %>" class="btn btn-primary"><strong><%= oferta.getNombre() %></strong></a>
-                                        </h5>
-                                        <p class="card-text"><%= oferta.getDescripcion() %></p>
-                                    </div>
-                                    <div class="card-footer border-0 bg-white text-end">
-                                        <a href="<%= contextPath %>/oferta?nombreOferta=<%= oferta.getNombre() %>" class="btn btn-primary">Mas Info</a>
-                                    </div>
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="data:image/png;base64,<%= postulante.getImagenBase64() %>" class="img-fluid rounded-start" alt="imagen postulante">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Postulación a oferta laboral</h5>
+                                    <% 			                    
+                                    String perfilUrl = contextPath + "/perfil?nicknameUsuario=" +
+                                    java.net.URLEncoder.encode(postulante.getNickname(), "UTF-8"); 
+                                    LocalDate fecha = postulacion.getFechaPostulacion();
+                                    Date fechaDate = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                                    SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                                    String newParsedDate = outputDateFormat.format(fechaDate);
+                                    %>
+                                    <p class="card-text">
+                                        <strong>Postulante: </strong><a href="<%= perfilUrl %>"><%= postulante.getNombre() %> <%= postulante.getApellido() %></a>
+                                        <br>
+                                        <br>
+                                        <strong>CV reducido: </strong> <%= postulacion.getCvReducido() %>
+                                        <br>
+                                        <br>
+                                        <strong>Motivación: </strong> <%= postulacion.getDescripMotivacion() %>
+                                        <br>
+                                        <br>
+                                        <strong>Fecha de postulación: </strong> <%= newParsedDate %>
+                                        <br>
+                                        <br>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                    <%
-                    }
-                    %>
-                </section>
+                    </div>
+                <div class="col-3">
+                    <div class="card">
+                        <img src="data:image/png;base64,<%= oferta.getImagenBase64() %>" class="card-img-top" alt="Imagen Oferta">
+                        <div class="card-body">
+                        <%  String ofertaUrl = contextPath + "/oferta?nombreOferta=" +
+                                    java.net.URLEncoder.encode(oferta.getNombre(), "UTF-8");%>                         
+                            <h5 class="card-title text-center"><a href="<%= ofertaUrl %>" class="card-link">Desarrollador Frontend</a></h5>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

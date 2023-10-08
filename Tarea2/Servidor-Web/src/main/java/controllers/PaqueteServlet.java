@@ -52,9 +52,9 @@ public class PaqueteServlet extends HttpServlet {
        request.setAttribute("error", e.getMessage());
        request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
        e.printStackTrace();
+       return;       
       }
-    		
-    	}
+    }
     	
     
 	/**
