@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -75,8 +76,15 @@ public class AltaOfertaServlet extends HttpServlet {
     }
     
     try {
-      ArrayList<DtCompraPaquete> listaCompraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario
+      ArrayList<DtCompraPaquete> listaCompraPaquetesaux = (ArrayList<DtCompraPaquete>) controladorUsuario
           .obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
+      ArrayList<DtCompraPaquete>listaCompraPaquetes = new ArrayList<DtCompraPaquete>();
+      LocalDate fechaActual = LocalDate.now();
+      for(DtCompraPaquete compra : listaCompraPaquetesaux) {
+       if(compra.getFechaVencimiento().isAfter(fechaActual)) {
+         listaCompraPaquetes.add(compra);
+       }
+      }
       request.setAttribute("listaCompraPaquetes", listaCompraPaquetes);
     } catch (UsuarioNoExisteException e) {
       request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
