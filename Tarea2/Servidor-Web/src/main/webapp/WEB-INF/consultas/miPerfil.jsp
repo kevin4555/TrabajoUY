@@ -3,8 +3,9 @@
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="logica.datatypes.Dtpostulante"%>
 <%@page import="logica.datatypes.Dtempresa"%>
-<%@page import="logica.datatypes.DtpaquetePublicacion"%>
+<%@page import="logica.datatypes.DtCompraPaquete"%>
 <%@page import="logica.datatypes.Dtpostulacion"%>
+<%@page import="logica.datatypes.DtpaquetePublicacion"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -193,17 +194,19 @@
 											</thead>
 											<tbody>
 												<%
-												List<DtpaquetePublicacion> paquetesComprados = (List<DtpaquetePublicacion>) request.getAttribute("paquetes");
+												List<DtCompraPaquete> paquetesComprados = (List<DtCompraPaquete>) request.getAttribute("compraPaquetes");
 												if (paquetesComprados != null) {
-												  for (DtpaquetePublicacion paquete : paquetesComprados) {
+												  for (DtCompraPaquete paquete : paquetesComprados) {
+												    DtpaquetePublicacion dtPaquete = paquete.getPaquete();
+												    
 												%>
 												<tr>
 													<td><a
-														href="<%=request.getContextPath()%>/paquete?nombrePaquete=<%=paquete.getNombre()%>"><%=paquete.getNombre()%></a></td>
-													<td><%=paquete.getDescripcion()%></td>
-													<td><%=paquete.getPeriodoValidez()%></td>
-													<td><%=paquete.getDescuento()%>%</td>
-													<td></td>
+														href="<%=request.getContextPath()%>/paquete?nombrePaquete=<%=dtPaquete.getNombre()%>"><%=dtPaquete.getNombre()%></a></td>
+													<td><%=dtPaquete.getDescripcion()%></td>
+													<td><%=dtPaquete.getPeriodoValidez()%></td>
+													<td><%=dtPaquete.getDescuento()%>%</td>
+													<td><%=paquete.getFechaCompra()%></td>
 												</tr>
 												<%
 												}
