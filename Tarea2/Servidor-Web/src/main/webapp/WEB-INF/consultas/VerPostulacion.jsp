@@ -77,7 +77,7 @@
                         <div class="card-body">
                         <%  String ofertaUrl = contextPath + "/oferta?nombreOferta=" +
                                     java.net.URLEncoder.encode(oferta.getNombre(), "UTF-8");%>                         
-                            <h5 class="card-title text-center"><a href="<%= ofertaUrl %>" class="card-link">Desarrollador Frontend</a></h5>
+                            <h5 class="card-title text-center"><a href="<%= ofertaUrl %>" class="card-link"><%= oferta.getNombre() %></a></h5>
                         </div>
                     </div>
                 </div>

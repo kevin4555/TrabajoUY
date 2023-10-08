@@ -53,7 +53,9 @@ public class PostulacionServlet extends HttpServlet {
       try {
         controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(),
             usuario.getNickname(), nombreOferta);
-        request.getRequestDispatcher("/home").forward(request, response);
+        String url = request.getContextPath() + "/perfil?nicknameUsuario="
+            + usuario.getNickname();
+        response.sendRedirect(url);
         return;
       } catch (UsuarioNoExisteException | OfertaLaboralNoExisteException
           | UsuarioYaExistePostulacion e) {

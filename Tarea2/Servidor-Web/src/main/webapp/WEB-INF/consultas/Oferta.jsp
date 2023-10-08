@@ -89,14 +89,14 @@
 											  if ((Boolean) request.getAttribute("estaPostulado")) {
 											%>
 											<div class="text-center">
-												<a href="<%=request.getContextPath()%>/verPostulacion"
+												<a href="<%=request.getContextPath()%>/verPostulacion?nombreOferta=<%=oferta.getNombre() %>&nicknamePostulante=<%=usuario.getNickname() %>"
 													class="btn btn-primary">Ir a Mi Postulacion</a>
 											</div>
 											<%
 											} else {
 											%>
 											<div class="text-center">
-											<%= oferta.getNombre() %>
+											
 												<a href="<%=request.getContextPath()%>/postulacion?nombreOferta=<%= oferta.getNombre() %>" class="btn btn-primary">Postularse</a>
 											</div>
 
