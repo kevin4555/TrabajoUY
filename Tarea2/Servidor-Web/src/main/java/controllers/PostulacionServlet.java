@@ -36,49 +36,58 @@ public class PostulacionServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HttpSession sesion = request.getSession();
-    	if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO || request.getAttribute("nombreOferta") == null){
-    		//agregar pagina de error
-    		return;
-    	}
-    	if(request.getAttribute("nombreOferta") != null && request.getAttribute("accion") != "postularse" ) {
-    		String nombreOferta = request.getParameter("nombreOferta");
-    		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-    		try {
-				DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
-				request.setAttribute("oferta", oferta);
-				request.getRequestDispatcher("/WEB-INF/registros/Postulacion.jsp").forward(request, response);
-				return;
-			} catch (OfertaLaboralNoExisteException e) {
-				//agregar pàgina de error
-				e.printStackTrace();
-			}
-    	}
-    	if(sesion.getAttribute("tipoUsuario") == TipoUsuario.POSTULANTE &&  request.getAttribute("accion") == "postularse" ) {
-    		String cVReducido = request.getParameter("cVReducido");
-    		String motivacion = request.getParameter("motivacion");
-    		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
-    		DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
-    		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    		try {
-				controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(), usuario.getNickname(), oferta.getNombre());
-				request.getRequestDispatcher("/home").forward(request, response);
-				return;
-			} catch (UsuarioNoExisteException | OfertaLaboralNoExisteException | UsuarioYaExistePostulacion e) {
-				// agregar pagina error
-				e.printStackTrace();
-			}
-    		
-    	}
-    	
+    private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+      HttpSession sesion = request.getSession();
+      if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO
+          || sesion.getAttribute("tipoUsuario") != TipoUsuario.POSTULANTE) {
+        request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+        return;
+      }
+      String nombreOferta = request.getParameter("nombreOferta");
+      String cVReducido = request.getParameter("cVReducido");
+      String motivacion = request.getParameter("motivacion");
+      Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+      IcontroladorUsuario controladorUsuario = Fabrica.getInstance()
+          .obtenerControladorUsuario();
+      try {
+        controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(),
+            usuario.getNickname(), nombreOferta);
+        request.getRequestDispatcher("/home").forward(request, response);
+        return;
+      } catch (UsuarioNoExisteException | OfertaLaboralNoExisteException
+          | UsuarioYaExistePostulacion e) {
+        request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+        e.printStackTrace();
+      }
+      
     }
+    	
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		procesarRequest(request, response);
-	}
+ protected void doGet(HttpServletRequest request, HttpServletResponse response)
+     throws ServletException, IOException {
+   HttpSession sesion = request.getSession();
+   if (sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO
+       || request.getAttribute("nombreOferta") == null) {
+     request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+     return;
+   }
+   String nombreOferta = request.getParameter("nombreOferta");
+   IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+   try {
+     DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
+     request.setAttribute("oferta", oferta);
+     request.getRequestDispatcher("/WEB-INF/registros/Postulacion.jsp").forward(request,
+         response);
+     return;
+   } catch (OfertaLaboralNoExisteException e) {
+     request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+     e.printStackTrace();
+   }
+ }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
