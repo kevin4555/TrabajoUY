@@ -62,7 +62,7 @@ public class CompraPaquete {
   
   public void gastarTipoPublicacion(String nombreTipoPublicacion) {
     for (CantidadTipoPublicacionRestante cantidad : cantidadesRestantes) {
-      if (cantidad.getNombreTipoPublicacion() == nombreTipoPublicacion) {
+      if (nombreTipoPublicacion.equals(cantidad.getNombreTipoPublicacion())) {
         cantidad.reducirCantidad();
         break;
       }
