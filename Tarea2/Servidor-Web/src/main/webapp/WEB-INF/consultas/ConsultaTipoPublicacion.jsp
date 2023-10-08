@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Consulta de Paquetes</title>
+    <title>Consulta de Tipos de publicaciones</title>
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resource/css/general.css">
     <jsp:include page="../include/Head.jsp"/>
 </head>
