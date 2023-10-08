@@ -179,11 +179,14 @@
 										String contextPath = request.getContextPath();
 										String perfilUrl = contextPath + "/perfil?nicknameUsuario="
 										    + java.net.URLEncoder.encode(postulacion.getnicknamePostulante(), "UTF-8");
+										String postulacionUrl = contextPath + "/verPostulacion?nombreOferta="
+												+ java.net.URLEncoder.encode(oferta.getNombre(), "UTF-8")
+												+ "&nicknamePostulante="+ java.net.URLEncoder.encode(postulacion.getnicknamePostulante(), "UTF-8");
 										%>
 
 										<a href="<%=perfilUrl%>"><%=postulacion.getnicknamePostulante()%></a>
 									</p>
-									<a href="" class="btn btn-primary">Postulacion</a>
+									<a href="<%= postulacionUrl %>" class="btn btn-primary">Postulacion</a>
 								</div>
 							</div>
 							<%
