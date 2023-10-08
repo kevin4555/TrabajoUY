@@ -191,13 +191,11 @@
 											</thead>
 											<tbody>
 												<%
-												
 												if (paquetesComprados != null) {
 												  for (DtCompraPaquete paquete : paquetesComprados) {
 												    DtpaquetePublicacion dtPaquete = paquete.getPaquete();
-												    List<DtCantidadTipoPublicacionRestante> tiposPublicaciones = (List<DtCantidadTipoPublicacionRestante>) paquete.getPublicacionesRestantes();
-										    		for (DtCantidadTipoPublicacionRestante cantidadTiposPublicaciones : tiposPublicaciones) {
-										    		  DttipoPublicacion dtTiposPublicaciones = cantidadTiposPublicaciones.getTipoPublicacion();
+												    List<DtCantidadTipoPublicacionRestante> tiposPublicaciones = (List<DtCantidadTipoPublicacionRestante>) paquete
+												    .getPublicacionesRestantes();
 												%>
 												<tr>
 													<td><a
@@ -206,12 +204,23 @@
 													<td><%=dtPaquete.getPeriodoValidez()%></td>
 													<td><%=dtPaquete.getDescuento()%>%</td>
 													<td><%=paquete.getFechaCompra()%></td>
-													<td><a
-														href="<%=request.getContextPath()%>/tipoPublicacion?nombreTipoPublicacion=<%=dtTiposPublicaciones.getNombre()%>"><%=dtTiposPublicaciones.getNombre()%></a> : <%=cantidadTiposPublicaciones.getCantidad()%></td>
+													<td>
+
+														<ul class="navbar-nav justify-content-evenly">
+															<%
+															for (DtCantidadTipoPublicacionRestante cantidadTiposPublicaciones : tiposPublicaciones) {
+															  DttipoPublicacion dtTiposPublicaciones = cantidadTiposPublicaciones.getTipoPublicacion();
+															%>
+															<li class="nav-item"><a
+																href="<%=request.getContextPath()%>/tipoPublicacion?nombreTipoPublicacion=<%=dtTiposPublicaciones.getNombre()%>"><%=dtTiposPublicaciones.getNombre()%></a>
+																: <%=cantidadTiposPublicaciones.getCantidad()%></li>
+															<%
+															}
+															%>
+														</ul>
+													</td>
 												</tr>
-												<%
-												}
-												%>
+
 												<%
 												}
 												%>
