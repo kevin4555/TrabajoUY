@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -137,8 +138,6 @@ public class AltaOfertaServlet extends HttpServlet {
       }
     }
     if(nombrePaquete != null) {
-      System.out.println("paquete no es null");
-      System.out.println("nombre paquete" + nombrePaquete);
       IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
       try {
         ArrayList<DtCompraPaquete>  listaCompras = (ArrayList<DtCompraPaquete>) controladorUsuario.obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname());
@@ -177,7 +176,7 @@ public class AltaOfertaServlet extends HttpServlet {
           remuneracion, ciudad, departamento, fechaAlta, tipoPublicacion,
           empresa.getNickname(), listKeywords, imagen, nombrePaquete);
       String url = request.getContextPath() + "/perfil?nicknameUsuario="
-          + empresa.getNickname();
+          + URLEncoder.encode(empresa.getNickname(),"UTF-8" );
       response.sendRedirect(url);
       
     } catch (TipoPublicacionNoExisteException | KeywordNoExisteException
