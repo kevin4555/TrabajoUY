@@ -2,6 +2,7 @@
 <%@page import="logica.datatypes.DtpaquetePublicacion"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Map"%>
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
@@ -28,6 +29,7 @@
 	EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
 	Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
 	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+	Map<String,String> mapImagenes = (Map<String,String>) request.getAttribute("mapImagenes");
 	%>
 	<jsp:include page="../include/NavBar.jsp" />
 	<main class="container pt-5">
@@ -66,13 +68,13 @@
 												<li class="list-group-item"><b>Departamento:</b> <%=oferta.getDepartamento()%></li>
 												<li class="list-group-item"><b>Ciudad:</b> <%=oferta.getCiudad()%></li>
 												<li class="list-group-item"><b>Fecha de alta:</b> <%=oferta.getFechaAlta()%></li>
-												<li class="list-group-item"><b>Keywords:</b> <%
- if (oferta.getKeywords() != null) {
-   for (String keyword : oferta.getKeywords()) {
-     out.print(keyword + ", ");
-   }
- }
- %></li>
+												<li class="list-group-item"><b>Keywords:</b> 
+												<%if (oferta.getKeywords() != null) {
+													   for (String keyword : oferta.getKeywords()) {
+													     out.print(keyword + ", ");
+													   }
+													 }
+													 %></li>
 												<%
 												if (tipoUsuario.equals(TipoUsuario.EMPRESA)) {
 												%>
@@ -154,28 +156,38 @@
 						if (tipoUsuario.equals(TipoUsuario.EMPRESA)) {
 						%>
 						<div class="col-md-3">
+							
+							<%
+							if (oferta.getPostulaciones() != null) {
+							%>
 							<div>
 								<h1>Postulaciones</h1>
 							</div>
 							<%
-							if (oferta.getPostulaciones() != null) {
-							%>
-							<%
 							for (Dtpostulacion postulacion : oferta.getPostulaciones()) {
 							%>
 							<div class="card">
-								<img src="" class="card-img-top" />
+							<%if(mapImagenes != null && mapImagenes.getOrDefault(postulacion.getnicknamePostulante(), null) != null)  {%>
+							
+							<img src="data:image/png;base64,<%=mapImagenes.get(postulacion.getnicknamePostulante())%>" class="card-img-top" />
+							<% }else{ %>
+							<img src="" class="card-img-top" />
+							<% } %>
+								
 								<div class="card-body">
 									<p class="card-text">
 										<%
 										String contextPath = request.getContextPath();
 										String perfilUrl = contextPath + "/perfil?nicknameUsuario="
 										    + java.net.URLEncoder.encode(postulacion.getnicknamePostulante(), "UTF-8");
+										String postulacionUrl = contextPath + "/verPostulacion?nombreOferta="
+												+ java.net.URLEncoder.encode(oferta.getNombre(), "UTF-8")
+												+ "&nicknamePostulante="+ java.net.URLEncoder.encode(postulacion.getnicknamePostulante(), "UTF-8");
 										%>
 
 										<a href="<%=perfilUrl%>"><%=postulacion.getnicknamePostulante()%></a>
 									</p>
-									<a href="" class="btn btn-primary">Postulacion</a>
+									<a href="<%= postulacionUrl %>" class="btn btn-primary">Postulacion</a>
 								</div>
 							</div>
 							<%
