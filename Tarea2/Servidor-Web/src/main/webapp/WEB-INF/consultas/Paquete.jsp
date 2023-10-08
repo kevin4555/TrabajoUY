@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
 	<title>Paquete</title>
 	
 	

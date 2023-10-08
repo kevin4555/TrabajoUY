@@ -13,13 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/recourse/css/general.css" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+<meta charset="UTF-8">
 <title>Mi perfil</title>
 <jsp:include page="../include/Head.jsp" />
 </head>
@@ -250,7 +244,7 @@
 											for (Dtpostulacion postulacion : postulaciones) {
 											%>
 											<tr>
-												<td><a class="nav-link"
+												<td><a
 													href="<%=request.getContextPath()%>/oferta?nombreOferta=<%=postulacion.getNombreOferta()%>"><%=postulacion.getNombreOferta()%></a></td>
 												<td><%=postulacion.getDescripMotivacion()%></td>
 												<td><%=postulacion.getCvReducido()%></td>

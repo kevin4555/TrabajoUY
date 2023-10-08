@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="logica.datatypes.Dtpostulacion"%>
 <%@page import="logica.datatypes.DtpaquetePublicacion"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
@@ -6,35 +8,27 @@
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/recourse/css/general.css" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+<meta charset="UTF-8">
 <title>Detalles de la Oferta</title>
 <jsp:include page="../include/Head.jsp" />
 </head>
 <body>
-
-	<%
-	DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
-	HttpSession sesion = request.getSession();
-	EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
-	Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
-	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-	Map<String,String> mapImagenes = (Map<String,String>) request.getAttribute("mapImagenes");
-	%>
 	<jsp:include page="../include/NavBar.jsp" />
 	<main class="container pt-5">
 		<div class="row">
 			<jsp:include page="../include/Menu.jsp" />
+			<%
+			DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
+			HttpSession sesion = request.getSession();
+			EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
+			Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
+			TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+			Map<String, String> mapImagenes = (Map<String, String>) request.getAttribute("mapImagenes");
+			%>
 			<div class="col-8">
 				<section>
 					<div class="row">
@@ -46,8 +40,7 @@
 									%>
 									<div
 										class="col-md-4 justify-content-center align-items-center d-flex">
-										<img
-											src="data:image/png;base64,<%=oferta.getImagenBase64()%>"
+										<img src="data:image/png;base64,<%=oferta.getImagenBase64()%>"
 											class="img-fluid rounded-start" alt="Imagen Oferta" />
 									</div>
 									<%
@@ -68,13 +61,13 @@
 												<li class="list-group-item"><b>Departamento:</b> <%=oferta.getDepartamento()%></li>
 												<li class="list-group-item"><b>Ciudad:</b> <%=oferta.getCiudad()%></li>
 												<li class="list-group-item"><b>Fecha de alta:</b> <%=oferta.getFechaAlta()%></li>
-												<li class="list-group-item"><b>Keywords:</b> 
-												<%if (oferta.getKeywords() != null) {
-													   for (String keyword : oferta.getKeywords()) {
-													     out.print(keyword + ", ");
-													   }
-													 }
-													 %></li>
+												<li class="list-group-item"><b>Keywords:</b> <%
+ if (oferta.getKeywords() != null) {
+   for (String keyword : oferta.getKeywords()) {
+     out.print(keyword + ", ");
+   }
+ }
+ %></li>
 												<%
 												if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa())) {
 												%>
@@ -89,15 +82,18 @@
 											  if ((Boolean) request.getAttribute("estaPostulado")) {
 											%>
 											<div class="text-center">
-												<a href="<%=request.getContextPath()%>/verPostulacion?nombreOferta=<%=oferta.getNombre() %>&nicknamePostulante=<%=usuario.getNickname() %>"
+												<a
+													href="<%=request.getContextPath()%>/verPostulacion?nombreOferta=<%=oferta.getNombre()%>&nicknamePostulante=<%=usuario.getNickname()%>"
 													class="btn btn-primary">Ir a Mi Postulacion</a>
 											</div>
 											<%
 											} else {
 											%>
 											<div class="text-center">
-											
-												<a href="<%=request.getContextPath()%>/postulacion?nombreOferta=<%= oferta.getNombre() %>" class="btn btn-primary">Postularse</a>
+
+												<a
+													href="<%=request.getContextPath()%>/postulacion?nombreOferta=<%=oferta.getNombre()%>"
+													class="btn btn-primary">Postularse</a>
 											</div>
 
 											<%
@@ -137,8 +133,8 @@
 
 												<h1 class="card-title"><%=oferta.getPaqueteAsociado().getNombre()%></h1>
 												<p class="card-text">
-													<a href="<%=paqueteUrl%>" class="btn btn-primary">Ir
-														a Paquete</a>
+													<a href="<%=paqueteUrl%>" class="btn btn-primary">Ir a
+														Paquete</a>
 												</p>
 											</div>
 										</div>
@@ -156,7 +152,7 @@
 						if (tipoUsuario.equals(TipoUsuario.EMPRESA)) {
 						%>
 						<div class="col-md-3">
-							
+
 							<%
 							if (oferta.getPostulaciones() != null) {
 							%>
@@ -167,13 +163,21 @@
 							for (Dtpostulacion postulacion : oferta.getPostulaciones()) {
 							%>
 							<div class="card">
-							<%if(mapImagenes != null && mapImagenes.getOrDefault(postulacion.getnicknamePostulante(), null) != null)  {%>
-							
-							<img src="data:image/png;base64,<%=mapImagenes.get(postulacion.getnicknamePostulante())%>" class="card-img-top" />
-							<% }else{ %>
-							<img src="" class="card-img-top" />
-							<% } %>
-								
+								<%
+								if (mapImagenes != null && mapImagenes.getOrDefault(postulacion.getnicknamePostulante(), null) != null) {
+								%>
+
+								<img
+									src="data:image/png;base64,<%=mapImagenes.get(postulacion.getnicknamePostulante())%>"
+									class="card-img-top" />
+								<%
+								} else {
+								%>
+								<img src="" class="card-img-top" />
+								<%
+								}
+								%>
+
 								<div class="card-body">
 									<p class="card-text">
 										<%
@@ -181,13 +185,13 @@
 										String perfilUrl = contextPath + "/perfil?nicknameUsuario="
 										    + java.net.URLEncoder.encode(postulacion.getnicknamePostulante(), "UTF-8");
 										String postulacionUrl = contextPath + "/verPostulacion?nombreOferta="
-												+ java.net.URLEncoder.encode(oferta.getNombre(), "UTF-8")
-												+ "&nicknamePostulante="+ java.net.URLEncoder.encode(postulacion.getnicknamePostulante(), "UTF-8");
+										    + java.net.URLEncoder.encode(oferta.getNombre(), "UTF-8") + "&nicknamePostulante="
+										    + java.net.URLEncoder.encode(postulacion.getnicknamePostulante(), "UTF-8");
 										%>
 
 										<a href="<%=perfilUrl%>"><%=postulacion.getnicknamePostulante()%></a>
 									</p>
-									<a href="<%= postulacionUrl %>" class="btn btn-primary">Postulacion</a>
+									<a href="<%=postulacionUrl%>" class="btn btn-primary">Postulacion</a>
 								</div>
 							</div>
 							<%
@@ -206,8 +210,5 @@
 			</div>
 		</div>
 	</main>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

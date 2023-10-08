@@ -9,13 +9,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/recourse/css/general.css" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-
 <title>Perfil de Usuario</title>
 <jsp:include page="../include/Head.jsp" />
 </head>
@@ -170,7 +163,5 @@
 			</div>
 		</div>
 	</main>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
