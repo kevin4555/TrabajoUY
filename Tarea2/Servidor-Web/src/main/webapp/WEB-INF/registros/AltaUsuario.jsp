@@ -10,6 +10,18 @@
 </head>
 <body>
 <body class="login">
+	<%
+			String mensaje = (String) request.getAttribute("mensajeError");
+			if(mensaje != null){%>
+		<div class="alert alert-danger alert-dismissible fade show"
+			role="alert">
+			<strong>Error:</strong>
+			<%=mensaje%>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		<%
+		}
+		%>
     <form class="formLogin" action="<%=request.getContextPath()%>/altaUsuario"
 			method="post" id="formAltaUsuario"
 			class="bg-white rounded container py-3 mx-3 shadow-sm"
