@@ -12,6 +12,7 @@ import logica.interfaces.IcontroladorUsuario;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +37,7 @@ public class CompraPaqueteServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    	String nicknameempresa = request.getParameter("nicknameEmrpesa");
+    	String nicknameempresa = request.getParameter("nicknameEmpresa");
     	String nombrePaquete = request.getParameter("nombrePaquete");
     	try {
         ArrayList<String> paquetesNoComprados = (ArrayList<String>) controladorUsuario.listarPaquetesNoCompradosDeEmpresa(nicknameempresa);
@@ -55,14 +56,14 @@ public class CompraPaqueteServlet extends HttpServlet {
           return;
         }
         else {
-          request.setAttribute("mensajeError", "paquete ya comprado");
           String url = request.getContextPath() + "/paquete?nombrePaquete="
-              + nombrePaquete;
+              + nombrePaquete + "&error=" + URLEncoder.encode("Paquete ya comprado", "UTF-8");
           response.sendRedirect(url);
           return;
         }
       } catch (UsuarioNoExisteException | PaquetePublicacionNoExisteException e) {
-        request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+    	  request.setAttribute("error", e.getMessage());
+        request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
         e.printStackTrace();
       }
     }

@@ -73,7 +73,8 @@ public class OfertaServlet extends HttpServlet {
 			return;
 		} catch (OfertaLaboralNoExisteException | UsuarioNoExisteException e) {
 		  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
-			e.printStackTrace();
+		  e.printStackTrace();
+		  return;			
 		}
     	
     }

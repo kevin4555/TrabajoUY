@@ -32,9 +32,10 @@
         <jsp:include page="../include/Menu.jsp" />
         <div class="col-9 d-flex flex-column align-items-center flex-grow-1">
           <div class="card mb-3" style="max-width: 540px">
-          <%if (request.getAttribute("error") != null) { %>
+          <% String error = request.getParameter("error");
+				if (error != null && !error.isEmpty()) { %>
           <div class="alert alert-danger  alert-dismissible fade show" role="alert">
-			   <%= (String) request.getAttribute("error") %>
+			   <%= error %>
 			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
           <% } %>
@@ -110,8 +111,9 @@
                     <h2 class="">$<%= paquete.getCosto() %></h2>
                     <% if (usuario != null && tipoUsuario.equals(TipoUsuario.EMPRESA)) {        
                     String contextPath = request.getContextPath();
-                   	String comprarUrl = contextPath + "/paquete?accion=comprar&nombrePaquete=" +
-                   			java.net.URLEncoder.encode(paquete.getNombre(), "UTF-8");					 
+                   	String comprarUrl = contextPath + "/compraPaquete?nombrePaquete=" +
+                   			java.net.URLEncoder.encode(paquete.getNombre(), "UTF-8")+"&nicknameEmpresa=" 
+                   	+java.net.URLEncoder.encode(usuario.getNickname(), "UTF-8");					 
 		            %>
                     
                     <a href="<%= comprarUrl %>" class="btn btn-primary">Comprar</a>
