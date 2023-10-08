@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="logica.datatypes.Dtpostulante"%>
@@ -6,6 +7,8 @@
 <%@page import="logica.datatypes.DtCompraPaquete"%>
 <%@page import="logica.datatypes.Dtpostulacion"%>
 <%@page import="logica.datatypes.DtpaquetePublicacion"%>
+<%@page import="logica.datatypes.DtCantidadTipoPublicacionRestante"%>
+<%@page import="logica.datatypes.DttipoPublicacion"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -17,10 +20,6 @@
 <link href="<%=request.getContextPath()%>/recourse/css/general.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Mi perfil</title>
 <jsp:include page="../include/Head.jsp" />
 </head>
@@ -32,6 +31,7 @@
 			<%
 			Dtusuario usuario = (Dtusuario) request.getAttribute("usuario");
 			String tipoUsuario = (String) request.getAttribute("tipoUsuario");
+			List<DtCompraPaquete> paquetesComprados = (List<DtCompraPaquete>) request.getAttribute("compraPaquetes");
 			%>
 			<div class="menuMiPerfil container mt-3 col-8">
 				<!-- Tab panes -->
@@ -69,9 +69,7 @@
 								<li class="nav-item"><a class="nav-link"
 									data-bs-toggle="tab" href="#paquetes">Paquetes comprados</a></li>
 								<%
-								}
-								%>
-								<%
+								} else {
 								if (tipoUsuario.equals("postulante")) {
 								%>
 								<li class="nav-item"><a class="nav-link"
@@ -79,11 +77,14 @@
 								<%
 								}
 								%>
+								<%
+								}
+								%>
 							</ul>
 
 							<!-- Tab panes -->
 							<div class="tab-content">
-								<div id="#miPerfilUsuario" class="container tab-pane active">
+								<div id="miPerfilUsuario" class="container tab-pane active">
 									<section class="">
 										<table class="table table-hover table-bordered">
 											<tr>
@@ -134,9 +135,10 @@
 											%>
 											<tr>
 												<td><strong>Editar perfil</strong></td>
-												<td><a href="<%=request.getContextPath()%>/editarPerfil">Modificar</a></td>
+												<td><a class="btn btn-primary"
+													href="<%=request.getContextPath()%>/editarPerfil">Modificar</a></td>
 											</tr>
-											
+
 										</table>
 									</section>
 								</div>
@@ -190,15 +192,18 @@
 													<th>Período</th>
 													<th>Descuento</th>
 													<th>Fecha de compra</th>
+													<th>Tipos/cantidad</th>
 												</tr>
 											</thead>
 											<tbody>
 												<%
-												List<DtCompraPaquete> paquetesComprados = (List<DtCompraPaquete>) request.getAttribute("compraPaquetes");
+												
 												if (paquetesComprados != null) {
 												  for (DtCompraPaquete paquete : paquetesComprados) {
 												    DtpaquetePublicacion dtPaquete = paquete.getPaquete();
-												    
+												    List<DtCantidadTipoPublicacionRestante> tiposPublicaciones = (List<DtCantidadTipoPublicacionRestante>) paquete.getPublicacionesRestantes();
+										    		for (DtCantidadTipoPublicacionRestante cantidadTiposPublicaciones : tiposPublicaciones) {
+										    		  DttipoPublicacion dtTiposPublicaciones = cantidadTiposPublicaciones.getTipoPublicacion();
 												%>
 												<tr>
 													<td><a
@@ -207,7 +212,12 @@
 													<td><%=dtPaquete.getPeriodoValidez()%></td>
 													<td><%=dtPaquete.getDescuento()%>%</td>
 													<td><%=paquete.getFechaCompra()%></td>
+													<td><a
+														href="<%=request.getContextPath()%>/tipoPublicacion?nombreTipoPublicacion=<%=dtTiposPublicaciones.getNombre()%>"><%=dtTiposPublicaciones.getNombre()%></a> : <%=cantidadTiposPublicaciones.getCantidad()%></td>
 												</tr>
+												<%
+												}
+												%>
 												<%
 												}
 												%>
@@ -240,7 +250,7 @@
 											for (Dtpostulacion postulacion : postulaciones) {
 											%>
 											<tr>
-												<td><a
+												<td><a class="nav-link"
 													href="<%=request.getContextPath()%>/oferta?nombreOferta=<%=postulacion.getNombreOferta()%>"><%=postulacion.getNombreOferta()%></a></td>
 												<td><%=postulacion.getDescripMotivacion()%></td>
 												<td><%=postulacion.getCvReducido()%></td>
