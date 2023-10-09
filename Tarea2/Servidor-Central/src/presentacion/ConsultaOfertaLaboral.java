@@ -87,7 +87,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     panelBotones.add(btnCerrar);
     
     btnCerrar.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent evento) {
         limpiarInformacion();
         dispose();
       }
@@ -337,16 +337,16 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     ubicacionCentro.add(textPane, gbcTextPane);
     
     this.comboBoxEmpresasRegistradas.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cargarOfertaEmpresa(e);
+      public void actionPerformed(ActionEvent evento) {
+        cargarOfertaEmpresa(evento);
         lblOfertasLaborales.setVisible(true);
         comboBoxOfertasLaborales.setVisible(true);
       }
     });
     
     this.comboBoxOfertasLaborales.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cargarDatosOferta(e);
+      public void actionPerformed(ActionEvent evento) {
+        cargarDatosOferta(evento);
         ubicacionCentro.setVisible(true);
       }
     });

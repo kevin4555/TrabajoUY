@@ -799,7 +799,7 @@ public class ControladorUsuarioTesting {
     Collections.sort(listaRes);
     Assert.assertEquals(listaEsperada, listaRes);
     
-    ArrayList<DtCompraPaquete> listaCompra = (ArrayList<DtCompraPaquete>) controladorUsuario
+    List<DtCompraPaquete> listaCompra = (ArrayList<DtCompraPaquete>) controladorUsuario
         .obtenerDtCompraPaqueteDeEmpresa("EcoTech");
     DtCompraPaquete dtcompra = listaCompra.get(0);
     Assert.assertEquals(dtcompra.getPaquete().getNombre(), "Paquete");

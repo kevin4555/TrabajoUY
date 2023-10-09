@@ -211,7 +211,7 @@ public class Empresa extends Usuario {
    */
   
   public List<DtCompraPaquete> obtenerDtCompraPaquetes() throws IOException {
-    ArrayList<DtCompraPaquete> resultado = new ArrayList<DtCompraPaquete>();
+    List<DtCompraPaquete> resultado = new ArrayList<DtCompraPaquete>();
     for (CompraPaquete compra : compraPaquetes) {
       resultado.add(compra.obtenerDtCompraPaquete());
     }

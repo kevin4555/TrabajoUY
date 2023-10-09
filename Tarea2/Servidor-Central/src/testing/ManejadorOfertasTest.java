@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import logica.classes.Empresa;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
@@ -103,7 +104,7 @@ public class ManejadorOfertasTest {
   public void testObtenerDtycompararlo()
       throws OfertaLaboralYaExisteException, DtOfertaNoExisteException, IOException {
     manejadorOfertas = ManejadorOfertas.getInstance();
-    ArrayList<Dtpostulacion> arrayDt = new ArrayList<Dtpostulacion>();
+    List<Dtpostulacion> arrayDt = new ArrayList<Dtpostulacion>();
     DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral("nombreTesting",
         "descripcionTesting", "ciudadTesting", "departamentoTesting", "09:00", "15:00", 100f,
         fechaDate, arrayDt, fechaDate, EstadoOferta.CONFIRMADA, null, null, null, false,
@@ -145,10 +146,10 @@ public class ManejadorOfertasTest {
         empresa1);
     manejadorOfertas.agregarOferta(ofertaLaboral);
     manejadorOfertas.agregarOferta(oferta);
-    ArrayList<String> resultado = (ArrayList<String>) manejadorOfertas
+    List<String> resultado = (ArrayList<String>) manejadorOfertas
         .listarOfertasLaborales();
     Collections.sort(resultado);
-    ArrayList<String> resultadoEsperado = new ArrayList<String>();
+    List<String> resultadoEsperado = new ArrayList<String>();
     resultadoEsperado.add("nombreTesting");
     resultadoEsperado.add("nombre");
     Collections.sort(resultadoEsperado);

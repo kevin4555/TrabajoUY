@@ -74,7 +74,7 @@ public class CompraPaquete {
    */
   
   public DtCompraPaquete obtenerDtCompraPaquete() throws IOException {
-    ArrayList<DtCantidadTipoPublicacionRestante> dtCantidadesRestantes = 
+    List<DtCantidadTipoPublicacionRestante> dtCantidadesRestantes = 
         new ArrayList<DtCantidadTipoPublicacionRestante>();
     for (CantidadTipoPublicacionRestante cantidad : cantidadesRestantes) {
       dtCantidadesRestantes.add(cantidad.obtenerDtTipoCantidadRestante());

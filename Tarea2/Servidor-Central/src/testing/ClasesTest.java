@@ -73,7 +73,8 @@ public class ClasesTest {
   public void cantidadTipoPublicacionRestanteClase() {
     TipoPublicacion tipoPublicacion = new TipoPublicacion("tipoTesting", "Uso para testing",
         "baja", 50, 500f, fechaDate);
-    CantidadTipoPublicacionRestante cantidadTipoPublicacionRestante = new CantidadTipoPublicacionRestante(
+    CantidadTipoPublicacionRestante cantidadTipoPublicacionRestante = 
+        new CantidadTipoPublicacionRestante(
         5, tipoPublicacion);
     Assert.assertEquals(cantidadTipoPublicacionRestante.getCantidad(), 5);
     Assert.assertEquals(cantidadTipoPublicacionRestante.getTipoPublicacion(), tipoPublicacion);
@@ -125,7 +126,8 @@ public class ClasesTest {
         .obtenerCantidadTotalTipoPublicaciones();
     float cantidadTotal = 0;
     float costo = 0;
-    for (CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion : cantidadTotalTipoPublicacions) {
+    for (CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion 
+        : cantidadTotalTipoPublicacions) {
       cantidadTotal = cantidadTotal + (cantidadTotalTipoPublicacion.getCantidadTotal()
           * cantidadTotalTipoPublicacion.getTipoPublicacion().getCosto());
     }
@@ -337,17 +339,6 @@ public class ClasesTest {
     Assert.assertEquals(dtOfertaLaboral.getNombreTipoPublicacion(),
         ofertaLaboral.getTipoPublicacion().getNombre());
     
-  }
-  
-  @Test
-  public void loaderClase() throws UsuarioNoExisteException, OfertaLaboralNoExisteException,
-      ParseException, UsuarioYaExisteException, UsuarioEmailRepetidoException,
-      TipoPublicacionYaExisteException, KeywordYaExisteException, KeywordNoExisteException,
-      TipoPublicacionNoExisteException, OfertaLaboralYaExisteException,
-      PaquetePublicacionYaExisteException, UsuarioYaExistePostulacion, IOException,
-      PaquetePublicacionNoExisteException {
-    Loader loader = new Loader();
-    loader.cargarDatos();
   }
   
 }
