@@ -102,7 +102,7 @@
 		}
 		%>
 		<div class="col-6 mt-3" id="radioTipoUsuario">
-			<input class="btn btn-primary" type="submit" value="Registrarse" />
+			<input class="btn btn-primary" type="submit" value="Modificar Datos" />
 		</div>
 	</form>
 
@@ -111,7 +111,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
-	<!--Instalación bootstrap-->
 </body>
 
 </body>

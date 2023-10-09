@@ -16,7 +16,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>VerPostulacion</title>
+<title>Ver Postulacion</title>
 <jsp:include page="../include/Head.jsp" />
 </head>
 <body class="mb-4">

@@ -1,3 +1,4 @@
+<%@page import="model.EstadoSesion"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,9 +12,16 @@
 <body class="login">
 	<%
     String contextPath = request.getContextPath();
+	EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
     %>
     
     <form action="<%= contextPath %>/login" method="post" class="formLogin">
+    <%if (estadoSesion != null && estadoSesion.equals(EstadoSesion.LOGIN_INCORRECTO)) { %>
+          	<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+			   <%= estadoSesion.name() %>
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+	<% } %>
         <div class="mb-3 mt-3">
             <label for="email" class="form-label"><strong>*Email o nickname:</strong></label>
             <input type="text" class="form-control" id="email" name="nombreEmail" />

@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet {
     	HttpSession sesion = request.getSession();
     	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
     	if(nombreEmail == null || contraseniaIngresada == null) {
+    		sesion.setAttribute("estadoSesion", EstadoSesion.NO_LOGIN);
     		request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
     		return;
     	}
@@ -57,12 +58,12 @@ public class LoginServlet extends HttpServlet {
 			}
 			else {
 				sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
-				request.setAttribute("mensajeError", "password incorrecta");
+				request.setAttribute("error", "password incorrecta");
 				request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
 			}
 		} catch (UsuarioNoExisteException e) {
 			sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
-			request.setAttribute("mensajeError", "usuario incorrecta");
+			request.setAttribute("error", "usuario incorrecta");
 			request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
 		}
     	
