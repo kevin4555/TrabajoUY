@@ -88,8 +88,8 @@ public class ModificarDatosServlet extends HttpServlet {
     		LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
     		try {
 				controladorUsuario.editarPostulante(usuario.getNickname(), nombre, apellido, fechaNacimiento, nacionalidad, imagen, contrasenia);
-				usuario = controladorUsuario.obtenerDtusuario(usuario.getNickname());
-				sesion.setAttribute("usuarioLogueado", usuario);
+				Dtusuario usuariomodificado = controladorUsuario.obtenerDtusuario(usuario.getNickname());
+				sesion.setAttribute("usuarioLogueado", usuariomodificado);
 				String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 				return;
