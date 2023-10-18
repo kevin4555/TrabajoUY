@@ -23,6 +23,11 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import logica.classes.CantidadTipoPublicacionRestante;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.CompraPaquete;
@@ -39,9 +44,7 @@ import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.DttipoPublicacion;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
 
 /**
  * Clase ClasesTest.

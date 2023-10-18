@@ -25,6 +25,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
@@ -42,9 +47,6 @@ import logica.handlers.ManejadorOfertas;
 import logica.handlers.ManejadorPaquetes;
 import logica.handlers.ManejadorSettings;
 import logica.handlers.ManejadorUsuario;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Clase Controlador oferta test .

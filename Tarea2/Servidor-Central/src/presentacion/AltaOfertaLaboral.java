@@ -1,6 +1,5 @@
 package presentacion;
 
-import com.toedter.calendar.JDateChooser;
 import excepciones.KeywordNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
@@ -46,6 +45,7 @@ import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
+import com.toedter.calendar.JDateChooser;
 
 /**
  * Clase AltaOfertaLaboral .
@@ -75,7 +75,6 @@ public class AltaOfertaLaboral extends JInternalFrame {
   private JList<String> listaKeyword = new JList<>();
   private JButton btnConfirmar;
   private JButton btnCancelar;
-  private JDateChooser dateChooser;
   private JTextPane textPane;
   private JButton selectImageButton;
   private JButton quitarImageButton;
@@ -92,6 +91,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
   // private String paqueteSeleccionado;
   private BufferedImage fotoOferta = null;
   private GridBagConstraints gbcTextField;
+  private JDateChooser dateChooser;
 
   /**
    * Create the frame.
