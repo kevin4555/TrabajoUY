@@ -1,19 +1,5 @@
 package testing;
 
-import excepciones.KeywordNoExisteException;
-import excepciones.KeywordYaExisteException;
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.OfertaLaboralYaExisteException;
-import excepciones.PaquetePublicacionNoExisteException;
-import excepciones.PaquetePublicacionYaExisteException;
-import excepciones.PaquetePublicacionYaFueComprado;
-import excepciones.TipoDePublicacionYaFueIngresado;
-import excepciones.TipoPublicacionNoExisteException;
-import excepciones.TipoPublicacionYaExisteException;
-import excepciones.UsuarioEmailRepetidoException;
-import excepciones.UsuarioNoExisteException;
-import excepciones.UsuarioYaExisteException;
-import excepciones.UsuarioYaExistePostulacion;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,6 +14,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.OfertaLaboralYaExisteException;
+import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.TipoDePublicacionYaFueIngresado;
 import logica.classes.CantidadTipoPublicacionRestante;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.CompraPaquete;
@@ -38,7 +27,6 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
-import logica.controllers.Loader;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
