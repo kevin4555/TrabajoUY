@@ -29,8 +29,10 @@ public class PaquetePublicacion {
    * Constructor .
    */
   
-  public PaquetePublicacion(String nombre, String descripcion, int periodoValidez,
-      float descuento, BufferedImage imagen, List<CantidadTotalTipoPublicacion> cantidadTipo,
+  public PaquetePublicacion(String nombre,
+      String descripcion, int periodoValidez,
+      float descuento, BufferedImage imagen,
+      List<CantidadTotalTipoPublicacion> cantidadTipo,
       LocalDate fechaAlta) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -50,7 +52,8 @@ public class PaquetePublicacion {
   private void setCosto() {
     float costoTotal = 0;
     for (CantidadTotalTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) {
-      costoTotal += cantidadTipoPublicacion.obtenerCostoTotalPublicaciones();
+      costoTotal += cantidadTipoPublicacion
+          .obtenerCostoTotalPublicaciones();
     }
     this.costo = costoTotal * ((100 - descuento) / 100);
   }
@@ -112,13 +115,16 @@ public class PaquetePublicacion {
    * Metodo obtener DTPaquete .
    */
   
-  public DtpaquetePublicacion obtenerDtPaquete() throws IOException {
+  public DtpaquetePublicacion obtenerDtPaquete()
+      throws IOException {
     List<DtcantidadTipoPublicacion> listDtcantidad = new ArrayList<DtcantidadTipoPublicacion>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
-      listDtcantidad.add(cantidad.obtenerDtcantidadTipoPublicacion());
+      listDtcantidad
+          .add(cantidad.obtenerDtcantidadTipoPublicacion());
     }
-    return new DtpaquetePublicacion(nombre, descripcion, periodoValidez, descuento, costo,
-        imagen, listDtcantidad, fechaAlta);
+    return new DtpaquetePublicacion(nombre, descripcion,
+        periodoValidez, descuento, costo, imagen,
+        listDtcantidad, fechaAlta);
   }
   
   public List<CantidadTotalTipoPublicacion> obtenerCantidadTotalTipoPublicaciones() {
@@ -133,7 +139,8 @@ public class PaquetePublicacion {
   public List<String> obtenerNombresTipoPublicaciones() {
     List<String> listaResultado = new ArrayList<String>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
-      listaResultado.add(cantidad.getTipoPublicacion().getNombre());
+      listaResultado
+          .add(cantidad.getTipoPublicacion().getNombre());
     }
     return listaResultado;
   }
@@ -142,12 +149,15 @@ public class PaquetePublicacion {
    * Metodo agregar tipo de publicacion .
    */
   
-  public void agregarTipoPublicacion(TipoPublicacion tipoPublicacion, int cantidad)
-      throws PaquetePublicacionYaFueComprado, TipoDePublicacionYaFueIngresado {
+  public void agregarTipoPublicacion(
+      TipoPublicacion tipoPublicacion, int cantidad)
+      throws PaquetePublicacionYaFueComprado,
+      TipoDePublicacionYaFueIngresado {
     if (!estaComprado) {
       boolean existeEnColeccion = false;
       for (CantidadTotalTipoPublicacion cantidadTotal : cantidadTipoPublicaciones) {
-        if (cantidadTotal.getTipoPublicacion().getNombre() == tipoPublicacion.getNombre()) {
+        if (cantidadTotal.getTipoPublicacion()
+            .getNombre() == tipoPublicacion.getNombre()) {
           existeEnColeccion = true;
           break;
         }
@@ -156,17 +166,19 @@ public class PaquetePublicacion {
         CantidadTotalTipoPublicacion nuevoCantidadTotalTipoPublicacion = 
             new CantidadTotalTipoPublicacion(
             cantidad, tipoPublicacion);
-        cantidadTipoPublicaciones.add(nuevoCantidadTotalTipoPublicacion);
+        cantidadTipoPublicaciones
+            .add(nuevoCantidadTotalTipoPublicacion);
         setCosto();
       } else {
         throw new TipoDePublicacionYaFueIngresado(
-            "El tipo de publicación " + tipoPublicacion.getNombre() + " ya fue ingresado");
+            "El tipo de publicación "
+                + tipoPublicacion.getNombre()
+                + " ya fue ingresado");
       }
     } else {
       throw new PaquetePublicacionYaFueComprado(
           "El paquete " + getNombre() + " ya fue comprado");
     }
   }
-
-
+  
 }

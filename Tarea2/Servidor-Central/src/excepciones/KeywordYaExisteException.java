@@ -1,6 +1,5 @@
 package excepciones;
 
-
 /**
  * Excepción KeywordYaExisteException.
  */

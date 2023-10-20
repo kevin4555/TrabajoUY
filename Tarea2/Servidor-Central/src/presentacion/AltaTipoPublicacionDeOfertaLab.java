@@ -25,7 +25,8 @@ import logica.interfaces.IcontroladorOferta;
  */
 
 @SuppressWarnings("serial")
-public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
+public class AltaTipoPublicacionDeOfertaLab
+    extends JInternalFrame {
   
   // Controlador de usuarios que se utilizará para
   // las acciones del JFrame
@@ -42,7 +43,8 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
   /**
    * Create the frame.
    */
-  public AltaTipoPublicacionDeOfertaLab(IcontroladorOferta icontOfeLab) {
+  public AltaTipoPublicacionDeOfertaLab(
+      IcontroladorOferta icontOfeLab) {
     // Se inicializa con el controlador de usuarios
     controlOfertaLab = icontOfeLab;
     
@@ -53,14 +55,18 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
     setIconifiable(true);
     setMaximizable(true);
     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-    setTitle("Registro de Tipo Publicacion de Oferta Laboral");
+    setTitle(
+        "Registro de Tipo Publicacion de Oferta Laboral");
     setBounds(30, 30, 639, 470);
     getContentPane().setLayout(new BorderLayout(0, 0));
     
     JPanel ubicacionEtiquetas = new JPanel();
-    ubicacionEtiquetas.setBorder(new EmptyBorder(5, 5, 5, 5));
-    getContentPane().add(ubicacionEtiquetas, BorderLayout.WEST);
-    ubicacionEtiquetas.setLayout(new GridLayout(6, 1, 50, 50));
+    ubicacionEtiquetas
+        .setBorder(new EmptyBorder(5, 5, 5, 5));
+    getContentPane().add(ubicacionEtiquetas,
+        BorderLayout.WEST);
+    ubicacionEtiquetas
+        .setLayout(new GridLayout(6, 1, 50, 50));
     
     JLabel lblNombre = new JLabel("Nombre: ");
     ubicacionEtiquetas.add(lblNombre);
@@ -77,15 +83,18 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
     JLabel lblCosto = new JLabel("Costo: ");
     ubicacionEtiquetas.add(lblCosto);
     
-    JLabel lblFechaPublicacion = new JLabel("Fecha de publicación: ");
+    JLabel lblFechaPublicacion = new JLabel(
+        "Fecha de publicación: ");
     ubicacionEtiquetas.add(lblFechaPublicacion);
     
     JPanel ubicacionBotones = new JPanel();
     ubicacionBotones.setBorder(new EmptyBorder(5, 5, 5, 5));
-    FlowLayout flowLayout = (FlowLayout) ubicacionBotones.getLayout();
+    FlowLayout flowLayout = (FlowLayout) ubicacionBotones
+        .getLayout();
     flowLayout.setVgap(0);
     flowLayout.setHgap(120);
-    getContentPane().add(ubicacionBotones, BorderLayout.SOUTH);
+    getContentPane().add(ubicacionBotones,
+        BorderLayout.SOUTH);
     
     btnConfirmar = new JButton("Confirmar");
     ubicacionBotones.add(btnConfirmar);
@@ -106,7 +115,8 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
     
     JPanel ubicacionTexto = new JPanel();
     ubicacionTexto.setBorder(new EmptyBorder(5, 5, 5, 5));
-    getContentPane().add(ubicacionTexto, BorderLayout.CENTER);
+    getContentPane().add(ubicacionTexto,
+        BorderLayout.CENTER);
     ubicacionTexto.setLayout(new GridLayout(0, 1, 0, 50));
     
     textFieldNombre = new JTextField();
@@ -137,27 +147,35 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
     
   }
   
-  protected void cmdRegistrarTipoPublicacionOfertaLaboral(ActionEvent arg0) {
+  protected void cmdRegistrarTipoPublicacionOfertaLaboral(
+      ActionEvent arg0) {
     String nombre = textFieldNombre.getText();
     String descipcion = textFieldDescripcion.getText();
     String exposicion = textFieldExposicion.getText();
     Date fecha = this.dateChooser.getDate();
     if (checkFormulario()) {
       try {
-        Integer duracionFinal = Integer.parseInt(this.textFieldDuracion.getText());
-        Float costoFinal = Float.parseFloat(this.textFieldCosto.getText());
-        LocalDate fechaAltaTipoPublicacion = fecha.toInstant().atZone(ZoneId.systemDefault())
+        Integer duracionFinal = Integer
+            .parseInt(this.textFieldDuracion.getText());
+        Float costoFinal = Float
+            .parseFloat(this.textFieldCosto.getText());
+        LocalDate fechaAltaTipoPublicacion = fecha
+            .toInstant().atZone(ZoneId.systemDefault())
             .toLocalDate();
-        controlOfertaLab.altaTipoPublicacion(nombre, descipcion, exposicion, duracionFinal,
+        controlOfertaLab.altaTipoPublicacion(nombre,
+            descipcion, exposicion, duracionFinal,
             costoFinal, fechaAltaTipoPublicacion);
         
         // Muestro éxito de la operación
-        JOptionPane.showMessageDialog(this, "La publicacion se creo con exito",
-            "Registrar tipo de publicación", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,
+            "La publicacion se creo con exito",
+            "Registrar tipo de publicación",
+            JOptionPane.INFORMATION_MESSAGE);
         
       } catch (TipoPublicacionYaExisteException e) {
         // Muestro error de registro
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Registrar tipo de publicación",
+        JOptionPane.showMessageDialog(this, e.getMessage(),
+            "Registrar tipo de publicación",
             JOptionPane.ERROR_MESSAGE);
       }
       
@@ -191,42 +209,55 @@ public class AltaTipoPublicacionDeOfertaLab extends JInternalFrame {
     String costo = this.textFieldCosto.getText();
     Date fecha = this.dateChooser.getDate();
     
-    if (nombre.isEmpty() || descipcion.isEmpty() || exposicion.isEmpty() || duracion.isEmpty()
+    if (nombre.isEmpty() || descipcion.isEmpty()
+        || exposicion.isEmpty() || duracion.isEmpty()
         || costo.isEmpty()) {
-      JOptionPane.showMessageDialog(this, "No puede haber campos vacíos",
-          "Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "No puede haber campos vacíos",
+          "Registrar tipo de publicación",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     if (fecha == null) {
-      JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
-          "Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "Debe ingresar una fecha valida",
+          "Registrar tipo de publicación",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
     try {
       Integer.parseInt(duracion);
     } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(this, "La duración debe ser un valor numérico",
-          "Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "La duración debe ser un valor numérico",
+          "Registrar tipo de publicación",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
     if (Integer.parseInt(duracion) <= 0) {
-      JOptionPane.showMessageDialog(this, "La duración debe ser mayor a cero",
-          "Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "La duración debe ser mayor a cero",
+          "Registrar tipo de publicación",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
     try {
       Float.parseFloat(costo);
     } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(this, "El costo debe ser un valor numérico",
-          "Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "El costo debe ser un valor numérico",
+          "Registrar tipo de publicación",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     if (Float.parseFloat(costo) < 0) {
-      JOptionPane.showMessageDialog(this, "El costo debe ser mayor o igual a cero",
-          "Registrar tipo de publicación", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "El costo debe ser mayor o igual a cero",
+          "Registrar tipo de publicación",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     

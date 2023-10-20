@@ -84,30 +84,40 @@ public class Principal extends JFrame {
     crearUsuInternalFrame = new CrearUsuario(icu);
     crearUsuInternalFrame.setVisible(false);
     
-    consultarUsuInternalFrame = new ConsultarUsuario(icu, ico);
+    consultarUsuInternalFrame = new ConsultarUsuario(icu,
+        ico);
     consultarUsuInternalFrame.setVisible(false);
     
-    crearOfertaLaboralInternalFrame = new AltaOfertaLaboral(ico, icu);
+    crearOfertaLaboralInternalFrame = new AltaOfertaLaboral(
+        ico, icu);
     crearOfertaLaboralInternalFrame.setVisible(false);
     
-    consultarOfertaInternalFrame = new ConsultaOfertaLaboral(ico, icu);
+    consultarOfertaInternalFrame = new ConsultaOfertaLaboral(
+        ico, icu);
     consultarOfertaInternalFrame.setVisible(false);
     
-    crearTipoPublicDeOfertaLabInternalFrame = new AltaTipoPublicacionDeOfertaLab(ico);
-    crearTipoPublicDeOfertaLabInternalFrame.setVisible(false);
+    crearTipoPublicDeOfertaLabInternalFrame = new AltaTipoPublicacionDeOfertaLab(
+        ico);
+    crearTipoPublicDeOfertaLabInternalFrame
+        .setVisible(false);
     
-    postulacionOfertaLabInternalFrame = new PostulacionOfertaLaboral(ico, icu);
-    postulacionOfertaLabInternalFrame.setBackground(new Color(240, 240, 240));
+    postulacionOfertaLabInternalFrame = new PostulacionOfertaLaboral(
+        ico, icu);
+    postulacionOfertaLabInternalFrame
+        .setBackground(new Color(240, 240, 240));
     postulacionOfertaLabInternalFrame.setResizable(false);
     postulacionOfertaLabInternalFrame.setVisible(false);
     
-    modificarDatosUsuarios = new ModificarDatosUsuarios(icu);
+    modificarDatosUsuarios = new ModificarDatosUsuarios(
+        icu);
     modificarDatosUsuarios.setVisible(false);
     
-    aceptarRechazarOferta = new AceptarRechazarOferta(ico, icu);
+    aceptarRechazarOferta = new AceptarRechazarOferta(ico,
+        icu);
     aceptarRechazarOferta.setVisible(false);
     
-    agregarTipoPublicacionAlPaquete = new AgregarTipoPublicacionAlPaquete(ico);
+    agregarTipoPublicacionAlPaquete = new AgregarTipoPublicacionAlPaquete(
+        ico);
     agregarTipoPublicacionAlPaquete.setVisible(false);
     
     registrarPaquete = new RegistrarPaquete(ico);
@@ -117,15 +127,24 @@ public class Principal extends JFrame {
     consultaPaquete.setVisible(false);
     
     ventanaPrincipal.getContentPane().setLayout(null);
-    ventanaPrincipal.getContentPane().add(consultarUsuInternalFrame);
-    ventanaPrincipal.getContentPane().add(crearUsuInternalFrame);
-    ventanaPrincipal.getContentPane().add(crearOfertaLaboralInternalFrame);
-    ventanaPrincipal.getContentPane().add(consultarOfertaInternalFrame);
-    ventanaPrincipal.getContentPane().add(crearTipoPublicDeOfertaLabInternalFrame);
-    ventanaPrincipal.getContentPane().add(postulacionOfertaLabInternalFrame);
-    ventanaPrincipal.getContentPane().add(modificarDatosUsuarios);
-    ventanaPrincipal.getContentPane().add(aceptarRechazarOferta);
-    ventanaPrincipal.getContentPane().add(agregarTipoPublicacionAlPaquete);
+    ventanaPrincipal.getContentPane()
+        .add(consultarUsuInternalFrame);
+    ventanaPrincipal.getContentPane()
+        .add(crearUsuInternalFrame);
+    ventanaPrincipal.getContentPane()
+        .add(crearOfertaLaboralInternalFrame);
+    ventanaPrincipal.getContentPane()
+        .add(consultarOfertaInternalFrame);
+    ventanaPrincipal.getContentPane()
+        .add(crearTipoPublicDeOfertaLabInternalFrame);
+    ventanaPrincipal.getContentPane()
+        .add(postulacionOfertaLabInternalFrame);
+    ventanaPrincipal.getContentPane()
+        .add(modificarDatosUsuarios);
+    ventanaPrincipal.getContentPane()
+        .add(aceptarRechazarOferta);
+    ventanaPrincipal.getContentPane()
+        .add(agregarTipoPublicacionAlPaquete);
     ventanaPrincipal.getContentPane().add(registrarPaquete);
     ventanaPrincipal.getContentPane().add(consultaPaquete);
   }
@@ -136,7 +155,8 @@ public class Principal extends JFrame {
     ventanaPrincipal = new JFrame();
     ventanaPrincipal.setTitle("Trabajo.uy");
     ventanaPrincipal.setBounds(100, 100, 800, 700);
-    ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    ventanaPrincipal
+        .setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     // Se crea una barra de menú (JMenuBar) con menú
     // (JMenu) desplegables.
@@ -160,14 +180,17 @@ public class Principal extends JFrame {
     });
     menuSistema.add(menuSalir);
     
-    JMenuItem menuCargarDatos = new JMenuItem("Cargar Datos");
+    JMenuItem menuCargarDatos = new JMenuItem(
+        "Cargar Datos");
     menuCargarDatos.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg0) {
         try {
           cargarDatosDePrueba(arg0);
         } catch (ParseException | KeywordNoExisteException
-            | PaquetePublicacionYaExisteException | UsuarioEmailRepetidoException
-            | UsuarioYaExistePostulacion | PaquetePublicacionNoExisteException e) {
+            | PaquetePublicacionYaExisteException
+            | UsuarioEmailRepetidoException
+            | UsuarioYaExistePostulacion
+            | PaquetePublicacionNoExisteException e) {
           // TODO Auto-generated catch block
           
         } // Esta funcion carga los datos de prueba
@@ -178,97 +201,123 @@ public class Principal extends JFrame {
     JMenu menuUsuarios = new JMenu("Usuarios");
     menuBar.add(menuUsuarios);
     
-    JMenuItem menuItemRegistrarUsuario = new JMenuItem("Registrar Usuario");
-    menuItemRegistrarUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para registrar un
-        // usuario
-        crearUsuInternalFrame.setVisible(true);
-      }
-    });
+    JMenuItem menuItemRegistrarUsuario = new JMenuItem(
+        "Registrar Usuario");
+    menuItemRegistrarUsuario
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para registrar un
+            // usuario
+            crearUsuInternalFrame.setVisible(true);
+          }
+        });
     menuUsuarios.add(menuItemRegistrarUsuario);
     
-    JMenuItem menuConsultaUsuario = new JMenuItem("Consulta de Usuario");
-    menuConsultaUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para ver información
-        // de un usuario
-        consultarUsuInternalFrame.cargarUsuarios();
-        consultarUsuInternalFrame.setVisible(true);
-      }
-    });
+    JMenuItem menuConsultaUsuario = new JMenuItem(
+        "Consulta de Usuario");
+    menuConsultaUsuario
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para ver información
+            // de un usuario
+            consultarUsuInternalFrame.cargarUsuarios();
+            consultarUsuInternalFrame.setVisible(true);
+          }
+        });
     menuUsuarios.add(menuConsultaUsuario);
     
-    JMenuItem menuModificaraUsuario = new JMenuItem("Modificar Datos de Usuario");
-    menuModificaraUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para ver información
-        // de un usuario
-        modificarDatosUsuarios.cargarUsuarios();
-        modificarDatosUsuarios.setVisible(true);
-      }
-    });
+    JMenuItem menuModificaraUsuario = new JMenuItem(
+        "Modificar Datos de Usuario");
+    menuModificaraUsuario
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para ver información
+            // de un usuario
+            modificarDatosUsuarios.cargarUsuarios();
+            modificarDatosUsuarios.setVisible(true);
+          }
+        });
     menuUsuarios.add(menuModificaraUsuario);
     
-    JMenu menuOfertaLaboral = new JMenu("Ofertas Laborales");
+    JMenu menuOfertaLaboral = new JMenu(
+        "Ofertas Laborales");
     menuBar.add(menuOfertaLaboral);
     
-    JMenuItem menuItemRegistrarOferta = new JMenuItem("Registrar Oferta Laboral");
-    menuItemRegistrarOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para registrar una
-        // oferta laboral
-        crearOfertaLaboralInternalFrame.cargarEmpresas();
-        // crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
-        crearOfertaLaboralInternalFrame.cargarComboBoxFormaDePago();
-        crearOfertaLaboralInternalFrame.cargarKeywords();
-        crearOfertaLaboralInternalFrame.setVisible(true);
-      }
-    });
+    JMenuItem menuItemRegistrarOferta = new JMenuItem(
+        "Registrar Oferta Laboral");
+    menuItemRegistrarOferta
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para registrar una
+            // oferta laboral
+            crearOfertaLaboralInternalFrame
+                .cargarEmpresas();
+            // crearOfertaLaboralInternalFrame.cargarTipoPublicaciones();
+            crearOfertaLaboralInternalFrame
+                .cargarComboBoxFormaDePago();
+            crearOfertaLaboralInternalFrame
+                .cargarKeywords();
+            crearOfertaLaboralInternalFrame
+                .setVisible(true);
+          }
+        });
     menuOfertaLaboral.add(menuItemRegistrarOferta);
     
-    JMenuItem menuItemConsultarOferta = new JMenuItem("Consultar Oferta Laboral");
-    menuItemConsultarOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para consultar una
-        // oferta laboral
-        consultarOfertaInternalFrame.cargarEmpresas();
-        consultarOfertaInternalFrame.setVisible(true);
-      }
-    });
+    JMenuItem menuItemConsultarOferta = new JMenuItem(
+        "Consultar Oferta Laboral");
+    menuItemConsultarOferta
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para consultar una
+            // oferta laboral
+            consultarOfertaInternalFrame.cargarEmpresas();
+            consultarOfertaInternalFrame.setVisible(true);
+          }
+        });
     menuOfertaLaboral.add(menuItemConsultarOferta);
     
     JMenuItem menuItemAltaTipoPublicDeOferta = new JMenuItem(
         "Registro Tipo de Publicacion de Oferta Laboral");
-    menuItemAltaTipoPublicDeOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para crear un tipo de
-        // publicacion de oferta laboral
-        crearTipoPublicDeOfertaLabInternalFrame.setVisible(true);
-      }
-    });
+    menuItemAltaTipoPublicDeOferta
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para crear un tipo
+            // de
+            // publicacion de oferta laboral
+            crearTipoPublicDeOfertaLabInternalFrame
+                .setVisible(true);
+          }
+        });
     menuOfertaLaboral.add(menuItemAltaTipoPublicDeOferta);
     
-    JMenuItem menuItemPostulacionOfertaLab = new JMenuItem("Postulacion a Oferta Laboral");
-    menuItemPostulacionOfertaLab.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para postularse a una
-        // oferta laboral
-        postulacionOfertaLabInternalFrame.cargarEmpresasPostulacion();
-        postulacionOfertaLabInternalFrame.setVisible(true);
-      }
-    });
+    JMenuItem menuItemPostulacionOfertaLab = new JMenuItem(
+        "Postulacion a Oferta Laboral");
+    menuItemPostulacionOfertaLab
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para postularse a
+            // una
+            // oferta laboral
+            postulacionOfertaLabInternalFrame
+                .cargarEmpresasPostulacion();
+            postulacionOfertaLabInternalFrame
+                .setVisible(true);
+          }
+        });
     menuOfertaLaboral.add(menuItemPostulacionOfertaLab);
     
-    JMenuItem menuItemaceptarRechazarOferta = new JMenuItem("Aceptar/Rechazar Oferta Laboral");
-    menuItemaceptarRechazarOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para postularse a una
-        // oferta laboral
-        aceptarRechazarOferta.cargarEmpresas();
-        aceptarRechazarOferta.setVisible(true);
-      }
-    });
+    JMenuItem menuItemaceptarRechazarOferta = new JMenuItem(
+        "Aceptar/Rechazar Oferta Laboral");
+    menuItemaceptarRechazarOferta
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para postularse a
+            // una
+            // oferta laboral
+            aceptarRechazarOferta.cargarEmpresas();
+            aceptarRechazarOferta.setVisible(true);
+          }
+        });
     menuOfertaLaboral.add(menuItemaceptarRechazarOferta);
     
     JMenu menuPaquete = new JMenu("Paquetes");
@@ -276,39 +325,51 @@ public class Principal extends JFrame {
     
     JMenuItem menuItemAgregarTipoPublicacionAlPaquete = new JMenuItem(
         "Agregar tipo de publicacion al paquete");
-    menuItemAgregarTipoPublicacionAlPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para postularse a una
-        // oferta laboral
-        agregarTipoPublicacionAlPaquete.cargarPaquetes();
-        agregarTipoPublicacionAlPaquete.setVisible(true);
-      }
-    });
-    menuPaquete.add(menuItemAgregarTipoPublicacionAlPaquete);
+    menuItemAgregarTipoPublicacionAlPaquete
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para postularse a
+            // una
+            // oferta laboral
+            agregarTipoPublicacionAlPaquete
+                .cargarPaquetes();
+            agregarTipoPublicacionAlPaquete
+                .setVisible(true);
+          }
+        });
+    menuPaquete
+        .add(menuItemAgregarTipoPublicacionAlPaquete);
     
-    JMenuItem menuItemRegistarPaquete = new JMenuItem("Registrar paquete");
-    menuItemRegistarPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        registrarPaquete.setVisible(true);
-      }
-    });
+    JMenuItem menuItemRegistarPaquete = new JMenuItem(
+        "Registrar paquete");
+    menuItemRegistarPaquete
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            registrarPaquete.setVisible(true);
+          }
+        });
     menuPaquete.add(menuItemRegistarPaquete);
     
-    JMenuItem menuItemConsultaPaquete = new JMenuItem("Consultar paquete");
-    menuItemConsultaPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        // Muestro el InternalFrame para postularse a una
-        // oferta laboral
-        consultaPaquete.cargarPaquetes();
-        consultaPaquete.setVisible(true);
-      }
-    });
+    JMenuItem menuItemConsultaPaquete = new JMenuItem(
+        "Consultar paquete");
+    menuItemConsultaPaquete
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para postularse a
+            // una
+            // oferta laboral
+            consultaPaquete.cargarPaquetes();
+            consultaPaquete.setVisible(true);
+          }
+        });
     menuPaquete.add(menuItemConsultaPaquete);
   }
   
   protected void cargarDatosDePrueba(ActionEvent arg0)
-      throws ParseException, KeywordNoExisteException, PaquetePublicacionYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioYaExistePostulacion, 
+      throws ParseException, KeywordNoExisteException,
+      PaquetePublicacionYaExisteException,
+      UsuarioEmailRepetidoException,
+      UsuarioYaExistePostulacion,
       PaquetePublicacionNoExisteException {
     try {
       
@@ -316,41 +377,43 @@ public class Principal extends JFrame {
       loader.cargarDatos();
       loader.confirmarOfertas();
       
-      JOptionPane.showMessageDialog(this, "Los Datos de prueba se ha creado con éxito",
+      JOptionPane.showMessageDialog(this,
+          "Los Datos de prueba se ha creado con éxito",
           "Trabajo.uy", JOptionPane.INFORMATION_MESSAGE);
       
     } catch (TipoPublicacionYaExisteException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (KeywordYaExisteException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (java.lang.NullPointerException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (UsuarioYaExisteException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (OfertaLaboralYaExisteException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (TipoPublicacionNoExisteException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (OfertaLaboralNoExisteException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (UsuarioNoExisteException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (KeywordNoExisteException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (UsuarioEmailRepetidoException e) {
-      JOptionPane.showMessageDialog(this, e.getMessage(), "Trabajo.uy",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Trabajo.uy", JOptionPane.ERROR_MESSAGE);
     } catch (IOException evento) {
-      JOptionPane.showMessageDialog(this, evento.getMessage(), "Trabajo.uy",
+      JOptionPane.showMessageDialog(this,
+          evento.getMessage(), "Trabajo.uy",
           JOptionPane.ERROR_MESSAGE);
     }
   }
