@@ -37,12 +37,14 @@ public class ManejadorPaquetes {
    * Metodo obtener paquete .
    */
   
-  public PaquetePublicacion obtenerPaquete(String nomPaquete)
+  public PaquetePublicacion obtenerPaquete(
+      String nomPaquete)
       throws PaquetePublicacionNoExisteException {
     if (colPaquetes.containsKey(nomPaquete)) {
       return colPaquetes.get(nomPaquete);
     } else {
-      throw new PaquetePublicacionNoExisteException("El paquete " + nomPaquete + " no existe");
+      throw new PaquetePublicacionNoExisteException(
+          "El paquete " + nomPaquete + " no existe");
     }
   }
   
@@ -76,11 +78,13 @@ public class ManejadorPaquetes {
    * Eliminar paquete .
    */
   
-  public void eliminarPaquete(String nomPaquete) throws PaquetePublicacionNoExisteException {
+  public void eliminarPaquete(String nomPaquete)
+      throws PaquetePublicacionNoExisteException {
     if (colPaquetes.get(nomPaquete) != null) {
       colPaquetes.remove(nomPaquete);
     } else {
-      throw new PaquetePublicacionNoExisteException("El paquete " + nomPaquete + "no existe");
+      throw new PaquetePublicacionNoExisteException(
+          "El paquete " + nomPaquete + "no existe");
     }
   }
   
@@ -90,7 +94,8 @@ public class ManejadorPaquetes {
   
   public List<String> listarPaquetesNoComprados() {
     List<String> listaResultado = new ArrayList<String>();
-    for (PaquetePublicacion paquete : colPaquetes.values()) {
+    for (PaquetePublicacion paquete : colPaquetes
+        .values()) {
       if (!paquete.getEstaComprado()) {
         listaResultado.add(paquete.getNombre());
       }
@@ -106,9 +111,11 @@ public class ManejadorPaquetes {
    * Lista de DTPaquetesPublicacion .
    */
   
-  public List<DtpaquetePublicacion> listarDtpaquetes() throws IOException {
+  public List<DtpaquetePublicacion> listarDtpaquetes()
+      throws IOException {
     List<DtpaquetePublicacion> listaResultado = new ArrayList<DtpaquetePublicacion>();
-    for (PaquetePublicacion paquete : colPaquetes.values()) {
+    for (PaquetePublicacion paquete : colPaquetes
+        .values()) {
       listaResultado.add(paquete.obtenerDtPaquete());
     }
     return listaResultado;

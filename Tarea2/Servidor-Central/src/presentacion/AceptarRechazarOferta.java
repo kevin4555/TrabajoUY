@@ -53,7 +53,8 @@ public class AceptarRechazarOferta extends JInternalFrame {
   /**
    * Create the frame.
    */
-  public AceptarRechazarOferta(IcontroladorOferta icontOfeLab,
+  public AceptarRechazarOferta(
+      IcontroladorOferta icontOfeLab,
       IcontroladorUsuario icontUsuLab) {
     // Se inicializa con el controlador de oferta
     controladorOfertaLaboral = icontOfeLab;
@@ -72,7 +73,8 @@ public class AceptarRechazarOferta extends JInternalFrame {
     
     JPanel panelBotones = new JPanel();
     getContentPane().add(panelBotones, BorderLayout.SOUTH);
-    panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
+    panelBotones.setLayout(
+        new FlowLayout(FlowLayout.CENTER, 120, 20));
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
@@ -106,11 +108,13 @@ public class AceptarRechazarOferta extends JInternalFrame {
     getContentPane().add(panelDatos, BorderLayout.CENTER);
     GridBagLayout gblPanelDatos = new GridBagLayout();
     gblPanelDatos.columnWidths = new int[] { 113, 739, 0 };
-    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0 };
-    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0,
+        Double.MIN_VALUE };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblPanelDatos);
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
@@ -118,28 +122,32 @@ public class AceptarRechazarOferta extends JInternalFrame {
     gbcLblSeleccion.anchor = GridBagConstraints.EAST;
     gbcLblSeleccion.gridx = 0;
     gbcLblSeleccion.gridy = 1;
-    JLabel lblSeleccion = new JLabel("Seleccionar Empresa:");
+    JLabel lblSeleccion = new JLabel(
+        "Seleccionar Empresa:");
     panelDatos.add(lblSeleccion, gbcLblSeleccion);
     
     this.comboBoxSeleccionUsuario = new JComboBox<String>();
-    this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        try {
-          cargarDatosUsuarios(evento);
-        } catch (UsuarioNoExisteException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
-        }
-        
-      }
-    });
+    this.comboBoxSeleccionUsuario
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            try {
+              cargarDatosUsuarios(evento);
+            } catch (UsuarioNoExisteException e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            }
+            
+          }
+        });
     
     GridBagConstraints gbcComboBoxSeleccionUsuario = new GridBagConstraints();
-    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionUsuario.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionUsuario.gridx = 1;
     gbcComboBoxSeleccionUsuario.gridy = 1;
-    panelDatos.add(this.comboBoxSeleccionUsuario, gbcComboBoxSeleccionUsuario);
+    panelDatos.add(this.comboBoxSeleccionUsuario,
+        gbcComboBoxSeleccionUsuario);
     
     GridBagConstraints gbcLblOfertas = new GridBagConstraints();
     gbcLblOfertas.anchor = GridBagConstraints.EAST;
@@ -150,23 +158,26 @@ public class AceptarRechazarOferta extends JInternalFrame {
     panelDatos.add(lblOfertas, gbcLblOfertas);
     
     this.comboBoxSeleccionOferta = new JComboBox<String>();
-    this.comboBoxSeleccionOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        try {
-          cargarDatosOferta(evento);
-        } catch (OfertaLaboralNoExisteException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
-          
-        }
-      }
-    });
+    this.comboBoxSeleccionOferta
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            try {
+              cargarDatosOferta(evento);
+            } catch (OfertaLaboralNoExisteException e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+              
+            }
+          }
+        });
     GridBagConstraints gbcComboBoxSeleccionOferta = new GridBagConstraints();
-    gbcComboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionOferta.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionOferta.gridx = 1;
     gbcComboBoxSeleccionOferta.gridy = 12;
-    panelDatos.add(this.comboBoxSeleccionOferta, gbcComboBoxSeleccionOferta);
+    panelDatos.add(this.comboBoxSeleccionOferta,
+        gbcComboBoxSeleccionOferta);
     
     GridBagConstraints gbcLblHorarioOferta = new GridBagConstraints();
     gbcLblHorarioOferta.anchor = GridBagConstraints.EAST;
@@ -179,11 +190,13 @@ public class AceptarRechazarOferta extends JInternalFrame {
     this.textFieldHorarioOferta = new JTextField();
     this.textFieldHorarioOferta.setEditable(false);
     GridBagConstraints gbcTextFieldNombreOferta = new GridBagConstraints();
-    gbcTextFieldNombreOferta.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldNombreOferta.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldNombreOferta.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldNombreOferta.gridx = 1;
     gbcTextFieldNombreOferta.gridy = 13;
-    panelDatos.add(this.textFieldHorarioOferta, gbcTextFieldNombreOferta);
+    panelDatos.add(this.textFieldHorarioOferta,
+        gbcTextFieldNombreOferta);
     this.textFieldHorarioOferta.setColumns(10);
     
     GridBagConstraints gbcLblRemuneracion = new GridBagConstraints();
@@ -197,11 +210,13 @@ public class AceptarRechazarOferta extends JInternalFrame {
     this.textFieldRemuneracion = new JTextField();
     this.textFieldRemuneracion.setEditable(false);
     GridBagConstraints gbcTextFieldRemuneracion = new GridBagConstraints();
-    gbcTextFieldRemuneracion.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldRemuneracion.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldRemuneracion.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldRemuneracion.gridx = 1;
     gbcTextFieldRemuneracion.gridy = 14;
-    panelDatos.add(this.textFieldRemuneracion, gbcTextFieldRemuneracion);
+    panelDatos.add(this.textFieldRemuneracion,
+        gbcTextFieldRemuneracion);
     this.textFieldRemuneracion.setColumns(10);
     
     GridBagConstraints gbcLblCiudad = new GridBagConstraints();
@@ -219,7 +234,8 @@ public class AceptarRechazarOferta extends JInternalFrame {
     gbcTextFieldCiudad.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldCiudad.gridx = 1;
     gbcTextFieldCiudad.gridy = 15;
-    panelDatos.add(this.textFieldCiudad, gbcTextFieldCiudad);
+    panelDatos.add(this.textFieldCiudad,
+        gbcTextFieldCiudad);
     this.textFieldCiudad.setColumns(10);
     
     GridBagConstraints gbcLblDepartamento = new GridBagConstraints();
@@ -233,11 +249,13 @@ public class AceptarRechazarOferta extends JInternalFrame {
     this.textFieldDepartamento = new JTextField();
     this.textFieldDepartamento.setEditable(false);
     GridBagConstraints gbcTextFieldDepartamento = new GridBagConstraints();
-    gbcTextFieldDepartamento.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldDepartamento.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldDepartamento.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldDepartamento.gridx = 1;
     gbcTextFieldDepartamento.gridy = 16;
-    panelDatos.add(this.textFieldDepartamento, gbcTextFieldDepartamento);
+    panelDatos.add(this.textFieldDepartamento,
+        gbcTextFieldDepartamento);
     this.textFieldDepartamento.setColumns(10);
     
   }
@@ -248,12 +266,14 @@ public class AceptarRechazarOferta extends JInternalFrame {
   
   public void cargarEmpresas() {
     try {
-      List<String> listaEmpresas = this.controladorUsuario.listarEmpresas();
+      List<String> listaEmpresas = this.controladorUsuario
+          .listarEmpresas();
       String[] arrayEmpresas;
       arrayEmpresas = listaEmpresas.toArray(new String[0]);
       Arrays.sort(arrayEmpresas);
       DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayEmpresas);
+      model = new DefaultComboBoxModel<String>(
+          arrayEmpresas);
       this.comboBoxSeleccionUsuario.setModel(model);
       
     } catch (Exception e) {
@@ -267,28 +287,39 @@ public class AceptarRechazarOferta extends JInternalFrame {
   
   public void confirmarOfertaLaboral() {
     if (comboBoxSeleccionOferta.getSelectedIndex() == -1) {
-      JOptionPane.showMessageDialog(this, "Debe seleccionar una oferta laboral",
-          "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "Debe seleccionar una oferta laboral",
+          "Agregar/Rechazar Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
     } else {
-      String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
+      String oferta = comboBoxSeleccionOferta
+          .getSelectedItem().toString();
       if (!ofertaSeleccionada.equals(oferta)) {
         try {
           DtOfertaLaboral dtOfertaLaboral = this.controladorOfertaLaboral
               .obtenerDtOfertaLaboral(oferta);
-          if (!dtOfertaLaboral.getEstadoOferta().equals(EstadoOferta.INGRESADA)) {
+          if (!dtOfertaLaboral.getEstadoOferta()
+              .equals(EstadoOferta.INGRESADA)) {
             JOptionPane.showMessageDialog(this,
-                "La oferta " + oferta + " no se encuentra en " + "estado ingresada",
-                "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                "La oferta " + oferta
+                    + " no se encuentra en "
+                    + "estado ingresada",
+                "Agregar/Rechazar Oferta Laboral",
+                JOptionPane.ERROR_MESSAGE);
           } else {
             LocalDate fechaActual = LocalDate.now();
-            this.controladorOfertaLaboral.aceptarRechazarOfertaLaboral(oferta,
-                EstadoOferta.CONFIRMADA, fechaActual);
+            this.controladorOfertaLaboral
+                .aceptarRechazarOfertaLaboral(oferta,
+                    EstadoOferta.CONFIRMADA, fechaActual);
             JOptionPane.showMessageDialog(this,
-                "La oferta " + oferta + " ha sido confirmada con " + "éxito",
-                "Agregar/Rechazar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+                "La oferta " + oferta
+                    + " ha sido confirmada con " + "éxito",
+                "Agregar/Rechazar Oferta Laboral",
+                JOptionPane.INFORMATION_MESSAGE);
             limpiarTodosLosDatos();
           }
-        } catch (OfertaLaboralNoExisteException | IOException evento) {
+        } catch (OfertaLaboralNoExisteException
+            | IOException evento) {
           evento.printStackTrace();
         }
       }
@@ -301,28 +332,39 @@ public class AceptarRechazarOferta extends JInternalFrame {
   
   public void rechazarOfertaLaboral() {
     if (comboBoxSeleccionOferta.getSelectedIndex() == -1) {
-      JOptionPane.showMessageDialog(this, "Debe seleccionar una oferta laboral",
-          "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "Debe seleccionar una oferta laboral",
+          "Agregar/Rechazar Oferta Laboral",
+          JOptionPane.ERROR_MESSAGE);
     } else {
-      String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
+      String oferta = comboBoxSeleccionOferta
+          .getSelectedItem().toString();
       if (ofertaSeleccionada != oferta) {
         try {
           DtOfertaLaboral dtOfertaLaboral = this.controladorOfertaLaboral
               .obtenerDtOfertaLaboral(oferta);
-          if (!dtOfertaLaboral.getEstadoOferta().equals(EstadoOferta.INGRESADA)) {
+          if (!dtOfertaLaboral.getEstadoOferta()
+              .equals(EstadoOferta.INGRESADA)) {
             JOptionPane.showMessageDialog(this,
-                "La oferta " + oferta + " no se encuentra en estado" + " ingresada",
-                "Agregar/Rechazar Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+                "La oferta " + oferta
+                    + " no se encuentra en estado"
+                    + " ingresada",
+                "Agregar/Rechazar Oferta Laboral",
+                JOptionPane.ERROR_MESSAGE);
           } else {
             LocalDate fechaActual = LocalDate.now();
-            this.controladorOfertaLaboral.aceptarRechazarOfertaLaboral(oferta,
-                EstadoOferta.RECHAZADA, fechaActual);
+            this.controladorOfertaLaboral
+                .aceptarRechazarOfertaLaboral(oferta,
+                    EstadoOferta.RECHAZADA, fechaActual);
             JOptionPane.showMessageDialog(this,
-                "La oferta " + oferta + " ha sido rechazada con " + "éxito",
-                "Agregar/Rechazar Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+                "La oferta " + oferta
+                    + " ha sido rechazada con " + "éxito",
+                "Agregar/Rechazar Oferta Laboral",
+                JOptionPane.INFORMATION_MESSAGE);
             limpiarTodosLosDatos();
           }
-        } catch (OfertaLaboralNoExisteException | IOException evento) {
+        } catch (OfertaLaboralNoExisteException
+            | IOException evento) {
           evento.printStackTrace();
         }
       }
@@ -334,34 +376,46 @@ public class AceptarRechazarOferta extends JInternalFrame {
    * Metodo cargar datos usuario .
    */
   
-  public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
+  public void cargarDatosUsuarios(ActionEvent evento)
+      throws UsuarioNoExisteException {
     if (comboBoxSeleccionUsuario.getSelectedIndex() != -1) {
-      String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
-      List<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
-      String[] arrayOfertas = listaOfertas.toArray(new String[0]);
+      String nicknameUsuario = comboBoxSeleccionUsuario
+          .getSelectedItem().toString();
+      List<String> listaOfertas = this.controladorUsuario
+          .listaOfertasUsuario(nicknameUsuario);
+      String[] arrayOfertas = listaOfertas
+          .toArray(new String[0]);
       Arrays.sort(arrayOfertas);
       DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayOfertas);
+      model = new DefaultComboBoxModel<String>(
+          arrayOfertas);
       this.comboBoxSeleccionOferta.setModel(model);
     }
   }
   
-  protected void cargarDatosOferta(ActionEvent evento) throws OfertaLaboralNoExisteException {
-    String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
+  protected void cargarDatosOferta(ActionEvent evento)
+      throws OfertaLaboralNoExisteException {
+    String oferta = comboBoxSeleccionOferta
+        .getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
       DtOfertaLaboral dtOferta;
       try {
-        dtOferta = controladorOfertaLaboral.obtenerDtOfertaLaboral(oferta);
-      } catch (OfertaLaboralNoExisteException | IOException e) {
+        dtOferta = controladorOfertaLaboral
+            .obtenerDtOfertaLaboral(oferta);
+      } catch (OfertaLaboralNoExisteException
+          | IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
         return;
       }
       this.textFieldHorarioOferta
-          .setText(dtOferta.getHorarioInicio() + " - " + dtOferta.getHorarioFinal());
-      this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
+          .setText(dtOferta.getHorarioInicio() + " - "
+              + dtOferta.getHorarioFinal());
+      this.textFieldRemuneracion
+          .setText(dtOferta.getRemuneracion().toString());
       this.textFieldCiudad.setText(dtOferta.getCiudad());
-      this.textFieldDepartamento.setText(dtOferta.getDepartamento());
+      this.textFieldDepartamento
+          .setText(dtOferta.getDepartamento());
     }
   }
   

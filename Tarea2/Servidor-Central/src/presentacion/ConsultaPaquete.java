@@ -80,7 +80,8 @@ public class ConsultaPaquete extends JInternalFrame {
     
     JPanel panelBotones = new JPanel();
     getContentPane().add(panelBotones, BorderLayout.SOUTH);
-    panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
+    panelBotones.setLayout(
+        new FlowLayout(FlowLayout.CENTER, 120, 20));
     
     this.btnCerrar = new JButton("Cerrar");
     btnCerrar.addActionListener(new ActionListener() {
@@ -96,11 +97,13 @@ public class ConsultaPaquete extends JInternalFrame {
     getContentPane().add(panelDatos, BorderLayout.CENTER);
     GridBagLayout gblPanelDatos = new GridBagLayout();
     gblPanelDatos.columnWidths = new int[] { 113, 739, 0 };
-    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0 };
-    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0,
+        Double.MIN_VALUE };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblPanelDatos);
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
@@ -108,23 +111,27 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcLblSeleccion.anchor = GridBagConstraints.EAST;
     gbcLblSeleccion.gridx = 0;
     gbcLblSeleccion.gridy = 1;
-    JLabel lblSeleccion = new JLabel("Seleccionar Paquete:");
+    JLabel lblSeleccion = new JLabel(
+        "Seleccionar Paquete:");
     panelDatos.add(lblSeleccion, gbcLblSeleccion);
     
     this.comboBoxSeleccionPaquete = new JComboBox<String>();
-    this.comboBoxSeleccionPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        cargarTipoPublicacionEnPaquete(evento);
-        
-      }
-    });
+    this.comboBoxSeleccionPaquete
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            cargarTipoPublicacionEnPaquete(evento);
+            
+          }
+        });
     
     GridBagConstraints gbcComboBoxSeleccionUsuario = new GridBagConstraints();
-    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionUsuario.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionUsuario.gridx = 1;
     gbcComboBoxSeleccionUsuario.gridy = 1;
-    panelDatos.add(this.comboBoxSeleccionPaquete, gbcComboBoxSeleccionUsuario);
+    panelDatos.add(this.comboBoxSeleccionPaquete,
+        gbcComboBoxSeleccionUsuario);
     
     GridBagConstraints gbcLblDescuento = new GridBagConstraints();
     gbcLblDescuento.anchor = GridBagConstraints.EAST;
@@ -141,7 +148,8 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcTextFieldDescuento.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldDescuento.gridx = 1;
     gbcTextFieldDescuento.gridy = 2;
-    panelDatos.add(textFieldDescuento, gbcTextFieldDescuento);
+    panelDatos.add(textFieldDescuento,
+        gbcTextFieldDescuento);
     textFieldDescuento.setColumns(10);
     
     GridBagConstraints gbcLblValidez = new GridBagConstraints();
@@ -163,12 +171,15 @@ public class ConsultaPaquete extends JInternalFrame {
     textFieldValidez.setColumns(10);
     
     GridBagConstraints gbcLblDescripcionPaquete = new GridBagConstraints();
-    gbcLblDescripcionPaquete.insets = new Insets(0, 0, 5, 5);
+    gbcLblDescripcionPaquete.insets = new Insets(0, 0, 5,
+        5);
     gbcLblDescripcionPaquete.anchor = GridBagConstraints.EAST;
     gbcLblDescripcionPaquete.gridx = 0;
     gbcLblDescripcionPaquete.gridy = 4;
-    JLabel lblDescripcionPaquete = new JLabel("Descripcion");
-    panelDatos.add(lblDescripcionPaquete, gbcLblDescripcionPaquete);
+    JLabel lblDescripcionPaquete = new JLabel(
+        "Descripcion");
+    panelDatos.add(lblDescripcionPaquete,
+        gbcLblDescripcionPaquete);
     
     textPanePaquete = new JTextPane();
     GridBagConstraints gbcTextPane = new GridBagConstraints();
@@ -183,17 +194,21 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcLblFechaAltaPaquete.insets = new Insets(0, 0, 5, 5);
     gbcLblFechaAltaPaquete.gridx = 0;
     gbcLblFechaAltaPaquete.gridy = 7;
-    JLabel lblFechaAltaPaquete = new JLabel("Fecha de alta");
-    panelDatos.add(lblFechaAltaPaquete, gbcLblFechaAltaPaquete);
+    JLabel lblFechaAltaPaquete = new JLabel(
+        "Fecha de alta");
+    panelDatos.add(lblFechaAltaPaquete,
+        gbcLblFechaAltaPaquete);
     
     this.textFieldFechaAltaPaquete = new JTextField();
     this.textFieldFechaAltaPaquete.setEditable(false);
     GridBagConstraints gbcTextFieldFechaAltaPaquete = new GridBagConstraints();
-    gbcTextFieldFechaAltaPaquete.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldFechaAltaPaquete.insets = new Insets(0, 0,
+        5, 0);
     gbcTextFieldFechaAltaPaquete.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldFechaAltaPaquete.gridx = 1;
     gbcTextFieldFechaAltaPaquete.gridy = 7;
-    panelDatos.add(this.textFieldFechaAltaPaquete, gbcTextFieldFechaAltaPaquete);
+    panelDatos.add(this.textFieldFechaAltaPaquete,
+        gbcTextFieldFechaAltaPaquete);
     this.textFieldFechaAltaPaquete.setColumns(10);
     
     GridBagConstraints gbcLblCostoPaquete = new GridBagConstraints();
@@ -207,11 +222,13 @@ public class ConsultaPaquete extends JInternalFrame {
     this.textFieldCostoPaquete = new JTextField();
     this.textFieldCostoPaquete.setEditable(false);
     GridBagConstraints gbcTextFieldCostoPaquete = new GridBagConstraints();
-    gbcTextFieldCostoPaquete.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldCostoPaquete.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldCostoPaquete.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldCostoPaquete.gridx = 1;
     gbcTextFieldCostoPaquete.gridy = 8;
-    panelDatos.add(this.textFieldCostoPaquete, gbcTextFieldCostoPaquete);
+    panelDatos.add(this.textFieldCostoPaquete,
+        gbcTextFieldCostoPaquete);
     this.textFieldCostoPaquete.setColumns(10);
     
     GridBagConstraints gbcLblFotoOferta = new GridBagConstraints();
@@ -235,21 +252,25 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcLblOfertas.insets = new Insets(0, 0, 5, 5);
     gbcLblOfertas.gridx = 0;
     gbcLblOfertas.gridy = 12;
-    JLabel lblTiposPublicaciones = new JLabel("Tipos de publicaciones:");
+    JLabel lblTiposPublicaciones = new JLabel(
+        "Tipos de publicaciones:");
     panelDatos.add(lblTiposPublicaciones, gbcLblOfertas);
     
     this.comboBoxSeleccionTiposPublicaciones = new JComboBox<String>();
-    this.comboBoxSeleccionTiposPublicaciones.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        cargarDatosTipoPublicacion(evento);
-      }
-    });
+    this.comboBoxSeleccionTiposPublicaciones
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            cargarDatosTipoPublicacion(evento);
+          }
+        });
     GridBagConstraints gbcComboBoxSeleccionOferta = new GridBagConstraints();
-    gbcComboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionOferta.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionOferta.gridx = 1;
     gbcComboBoxSeleccionOferta.gridy = 12;
-    panelDatos.add(this.comboBoxSeleccionTiposPublicaciones, gbcComboBoxSeleccionOferta);
+    panelDatos.add(this.comboBoxSeleccionTiposPublicaciones,
+        gbcComboBoxSeleccionOferta);
     
     GridBagConstraints gbcLblHorarioOferta = new GridBagConstraints();
     gbcLblHorarioOferta.anchor = GridBagConstraints.EAST;
@@ -262,11 +283,13 @@ public class ConsultaPaquete extends JInternalFrame {
     this.textFieldExposicion = new JTextField();
     this.textFieldExposicion.setEditable(false);
     GridBagConstraints gbcTextFieldNombreOferta = new GridBagConstraints();
-    gbcTextFieldNombreOferta.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldNombreOferta.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldNombreOferta.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldNombreOferta.gridx = 1;
     gbcTextFieldNombreOferta.gridy = 13;
-    panelDatos.add(this.textFieldExposicion, gbcTextFieldNombreOferta);
+    panelDatos.add(this.textFieldExposicion,
+        gbcTextFieldNombreOferta);
     this.textFieldExposicion.setColumns(10);
     
     GridBagConstraints gbcLblRemuneracion = new GridBagConstraints();
@@ -280,11 +303,13 @@ public class ConsultaPaquete extends JInternalFrame {
     this.textFieldCosto = new JTextField();
     this.textFieldCosto.setEditable(false);
     GridBagConstraints gbcTextFieldRemuneracion = new GridBagConstraints();
-    gbcTextFieldRemuneracion.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldRemuneracion.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldRemuneracion.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldRemuneracion.gridx = 1;
     gbcTextFieldRemuneracion.gridy = 14;
-    panelDatos.add(this.textFieldCosto, gbcTextFieldRemuneracion);
+    panelDatos.add(this.textFieldCosto,
+        gbcTextFieldRemuneracion);
     this.textFieldCosto.setColumns(10);
     
     GridBagConstraints gbcLblCiudad = new GridBagConstraints();
@@ -302,7 +327,8 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcTextFieldCiudad.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldCiudad.gridx = 1;
     gbcTextFieldCiudad.gridy = 15;
-    panelDatos.add(this.textFieldDuracion, gbcTextFieldCiudad);
+    panelDatos.add(this.textFieldDuracion,
+        gbcTextFieldCiudad);
     this.textFieldDuracion.setColumns(10);
     
     GridBagConstraints gbcLblFechaAlta = new GridBagConstraints();
@@ -320,39 +346,48 @@ public class ConsultaPaquete extends JInternalFrame {
     gbcTextFieldFechaAlta.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldFechaAlta.gridx = 1;
     gbcTextFieldFechaAlta.gridy = 16;
-    panelDatos.add(this.textFieldFechaAlta, gbcTextFieldFechaAlta);
+    panelDatos.add(this.textFieldFechaAlta,
+        gbcTextFieldFechaAlta);
     this.textFieldFechaAlta.setColumns(10);
     
     GridBagConstraints gbcLblDescripcionEmpresa = new GridBagConstraints();
-    gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
+    gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5,
+        5);
     gbcLblDescripcionEmpresa.anchor = GridBagConstraints.EAST;
     gbcLblDescripcionEmpresa.gridx = 0;
     gbcLblDescripcionEmpresa.gridy = 17;
-    JLabel lblDescripcionEmpresa = new JLabel("Descripcion");
-    panelDatos.add(lblDescripcionEmpresa, gbcLblDescripcionEmpresa);
+    JLabel lblDescripcionEmpresa = new JLabel(
+        "Descripcion");
+    panelDatos.add(lblDescripcionEmpresa,
+        gbcLblDescripcionEmpresa);
     
     textPaneTipoPublicacion = new JTextPane();
     GridBagConstraints gbcTextPaneTipoPublicacion = new GridBagConstraints();
-    gbcTextPaneTipoPublicacion.insets = new Insets(0, 0, 5, 0);
+    gbcTextPaneTipoPublicacion.insets = new Insets(0, 0, 5,
+        0);
     gbcTextPaneTipoPublicacion.fill = GridBagConstraints.BOTH;
     gbcTextPaneTipoPublicacion.gridx = 1;
     gbcTextPaneTipoPublicacion.gridy = 17;
-    panelDatos.add(textPaneTipoPublicacion, gbcTextPaneTipoPublicacion);
+    panelDatos.add(textPaneTipoPublicacion,
+        gbcTextPaneTipoPublicacion);
     
     GridBagConstraints gbcLblCantidadInlcuidaa = new GridBagConstraints();
     gbcLblCantidadInlcuidaa.anchor = GridBagConstraints.EAST;
     gbcLblCantidadInlcuidaa.insets = new Insets(0, 0, 0, 5);
     gbcLblCantidadInlcuidaa.gridx = 0;
     gbcLblCantidadInlcuidaa.gridy = 20;
-    JLabel lblCantidadInlcuida = new JLabel("Cantidad Incluida");
-    panelDatos.add(lblCantidadInlcuida, gbcLblCantidadInlcuidaa);
+    JLabel lblCantidadInlcuida = new JLabel(
+        "Cantidad Incluida");
+    panelDatos.add(lblCantidadInlcuida,
+        gbcLblCantidadInlcuidaa);
     
     this.textFieldCantidadIncluida = new JTextField();
     GridBagConstraints gbcTextFieldCantidadInlcuida = new GridBagConstraints();
     gbcTextFieldCantidadInlcuida.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldCantidadInlcuida.gridx = 1;
     gbcTextFieldCantidadInlcuida.gridy = 20;
-    panelDatos.add(this.textFieldCantidadIncluida, gbcTextFieldCantidadInlcuida);
+    panelDatos.add(this.textFieldCantidadIncluida,
+        gbcTextFieldCantidadInlcuida);
     this.textFieldCantidadIncluida.setColumns(10);
     this.textFieldCantidadIncluida.setEditable(false);
     
@@ -364,12 +399,14 @@ public class ConsultaPaquete extends JInternalFrame {
   
   public void cargarPaquetes() {
     try {
-      List<String> listaPaquetes = this.controladorOfertaLaboral.listarPaquetes();
+      List<String> listaPaquetes = this.controladorOfertaLaboral
+          .listarPaquetes();
       String[] arrayEmpresas;
       arrayEmpresas = listaPaquetes.toArray(new String[0]);
       Arrays.sort(arrayEmpresas);
       DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayEmpresas);
+      model = new DefaultComboBoxModel<String>(
+          arrayEmpresas);
       this.comboBoxSeleccionPaquete.setModel(model);
       
     } catch (Exception e) {
@@ -381,36 +418,45 @@ public class ConsultaPaquete extends JInternalFrame {
    * Metodo cargar tipo de publicacion en paquete .
    */
   
-  public void cargarTipoPublicacionEnPaquete(ActionEvent evento) {
+  public void cargarTipoPublicacionEnPaquete(
+      ActionEvent evento) {
     
     try {
-      if (comboBoxSeleccionPaquete.getSelectedIndex() == -1) {
-        JOptionPane.showMessageDialog(this, "Debe seleccionar un paquete", "Consultar paquete",
-            JOptionPane.ERROR_MESSAGE);
+      if (comboBoxSeleccionPaquete
+          .getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this,
+            "Debe seleccionar un paquete",
+            "Consultar paquete", JOptionPane.ERROR_MESSAGE);
       } else {
-        String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
+        String nombrePaquete = comboBoxSeleccionPaquete
+            .getSelectedItem().toString();
         
         if (nombrePaquete != paqueteSeleccionado) {
           paqueteSeleccionado = nombrePaquete;
           limpiarDatosPublicaciones();
           DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
               .obtenerDtpaquete(nombrePaquete);
-          this.textFieldDescuento
-              .setText(String.valueOf(dtPaquetePublicaciones.getDescuento()) + "%");
-          this.textFieldValidez
-              .setText(String.valueOf(dtPaquetePublicaciones.getPeriodoValidez()));
-          this.textFieldCostoPaquete
-              .setText(String.valueOf(dtPaquetePublicaciones.getCosto()));
-          this.textPanePaquete.setText(dtPaquetePublicaciones.getDescripcion());
+          this.textFieldDescuento.setText(String.valueOf(
+              dtPaquetePublicaciones.getDescuento()) + "%");
+          this.textFieldValidez.setText(String.valueOf(
+              dtPaquetePublicaciones.getPeriodoValidez()));
+          this.textFieldCostoPaquete.setText(String
+              .valueOf(dtPaquetePublicaciones.getCosto()));
+          this.textPanePaquete.setText(
+              dtPaquetePublicaciones.getDescripcion());
           this.textFieldFechaAltaPaquete
-              .setText(dtPaquetePublicaciones.getFechaAlta().toString());
-          BufferedImage originalImage = dtPaquetePublicaciones.getImagen();
+              .setText(dtPaquetePublicaciones.getFechaAlta()
+                  .toString());
+          BufferedImage originalImage = dtPaquetePublicaciones
+              .getImagen();
           if (originalImage != null) {
             int newWidth = 100; // Ancho deseado
             int newHeight = 100; // Alto deseado
-            Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
-                Image.SCALE_SMOOTH);
-            this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+            Image scaledImage = originalImage
+                .getScaledInstance(newWidth, newHeight,
+                    Image.SCALE_SMOOTH);
+            this.textPane.setCaretPosition(
+                textPane.getStyledDocument().getLength());
             ImageIcon icono = new ImageIcon(scaledImage);
             this.textPane.insertIcon(icono);
           }
@@ -424,33 +470,43 @@ public class ConsultaPaquete extends JInternalFrame {
             .toArray(new String[0]);
         Arrays.sort(arrayTiposPublicacionesPaquete);
         DefaultComboBoxModel<String> model;
-        model = new DefaultComboBoxModel<String>(arrayTiposPublicacionesPaquete);
-        this.comboBoxSeleccionTiposPublicaciones.setModel(model);
+        model = new DefaultComboBoxModel<String>(
+            arrayTiposPublicacionesPaquete);
+        this.comboBoxSeleccionTiposPublicaciones
+            .setModel(model);
       }
       
-    } catch (PaquetePublicacionNoExisteException | IOException evento1) {
+    } catch (PaquetePublicacionNoExisteException
+        | IOException evento1) {
       // no imprime nada
     }
     
   }
   
-  protected void cargarDatosTipoPublicacion(ActionEvent evento) {
+  protected void cargarDatosTipoPublicacion(
+      ActionEvent evento) {
     try {
-      if (comboBoxSeleccionTiposPublicaciones.getSelectedIndex() == -1) {
-        JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de publicacion",
+      if (comboBoxSeleccionTiposPublicaciones
+          .getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this,
+            "Debe seleccionar un tipo de publicacion",
             "Consultar paquete", JOptionPane.ERROR_MESSAGE);
       } else {
-        String tipoPublicacion = comboBoxSeleccionTiposPublicaciones.getSelectedItem()
-            .toString();
-        String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
+        String tipoPublicacion = comboBoxSeleccionTiposPublicaciones
+            .getSelectedItem().toString();
+        String nombrePaquete = comboBoxSeleccionPaquete
+            .getSelectedItem().toString();
         DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
             .obtenerDtpaquete(nombrePaquete);
         List<DtcantidadTipoPublicacion> dtCantidadPublicaciones = dtPaquetePublicaciones
             .getCantidadTipoPublicaciones();
         int cantidadRestante = 0;
         for (DtcantidadTipoPublicacion dtCantidadTipoPublicacion : dtCantidadPublicaciones) {
-          if (dtCantidadTipoPublicacion.getNombreTipoPublicacion().equals(tipoPublicacion)) {
-            cantidadRestante = dtCantidadTipoPublicacion.getCantidad();
+          if (dtCantidadTipoPublicacion
+              .getNombreTipoPublicacion()
+              .equals(tipoPublicacion)) {
+            cantidadRestante = dtCantidadTipoPublicacion
+                .getCantidad();
           }
         }
         
@@ -459,13 +515,19 @@ public class ConsultaPaquete extends JInternalFrame {
           DttipoPublicacion dtTipoPublicacion;
           dtTipoPublicacion = controladorOfertaLaboral
               .obtenerDttipoPublicacion(tipoPublicacion);
-          this.textFieldExposicion.setText(dtTipoPublicacion.getExposicion());
-          this.textFieldCosto.setText(String.valueOf(dtTipoPublicacion.getCosto()));
-          this.textFieldDuracion
-              .setText(String.valueOf(dtTipoPublicacion.getDuracionDia()) + " días");
-          this.textFieldFechaAlta.setText(dtTipoPublicacion.getFechaAlta().toString());
-          this.textPaneTipoPublicacion.setText(dtTipoPublicacion.getDescripcion());
-          this.textFieldCantidadIncluida.setText(String.valueOf(cantidadRestante));
+          this.textFieldExposicion
+              .setText(dtTipoPublicacion.getExposicion());
+          this.textFieldCosto.setText(
+              String.valueOf(dtTipoPublicacion.getCosto()));
+          this.textFieldDuracion.setText(String
+              .valueOf(dtTipoPublicacion.getDuracionDia())
+              + " días");
+          this.textFieldFechaAlta.setText(
+              dtTipoPublicacion.getFechaAlta().toString());
+          this.textPaneTipoPublicacion
+              .setText(dtTipoPublicacion.getDescripcion());
+          this.textFieldCantidadIncluida
+              .setText(String.valueOf(cantidadRestante));
         }
       }
       

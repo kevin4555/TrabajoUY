@@ -1,3 +1,4 @@
+
 package logica.classes;
 
 import java.io.IOException;
@@ -11,7 +12,6 @@ import logica.datatypes.DtpaquetePublicacion;
 /**
  * Clase CompraPaquete.
  */
-
 public class CompraPaquete {
   private LocalDate fechaVencimiento;
   private LocalDate fechaCompra;
@@ -21,23 +21,32 @@ public class CompraPaquete {
   /**
    * Constructor.
    */
-  
-  public CompraPaquete(LocalDate fechaCompra, PaquetePublicacion paquete) {
+  public CompraPaquete(
+      LocalDate fechaCompra,
+      PaquetePublicacion paquete) {
     this.fechaCompra = fechaCompra;
-    LocalDate copiaFechaCompra = LocalDate.of(fechaCompra.getYear(), fechaCompra.getMonth(),
-        fechaCompra.getDayOfMonth());
-    this.fechaVencimiento = copiaFechaCompra.plusDays(paquete.getPeriodoValidez());
+    LocalDate copiaFechaCompra = LocalDate
+        .of(
+            fechaCompra.getYear(),
+            fechaCompra.getMonth(),
+            fechaCompra
+                .getDayOfMonth());
+    this.fechaVencimiento = copiaFechaCompra
+        .plusDays(paquete
+            .getPeriodoValidez());
     this.paquete = paquete;
-    
-    List<CantidadTotalTipoPublicacion> listaCantidadtotal = 
-        this.paquete.obtenerCantidadTotalTipoPublicaciones();
+    List<CantidadTotalTipoPublicacion> listaCantidadtotal = this.paquete
+        .obtenerCantidadTotalTipoPublicaciones();
     this.cantidadesRestantes = new ArrayList<CantidadTipoPublicacionRestante>();
     for (CantidadTotalTipoPublicacion cantidad : listaCantidadtotal) {
       this.cantidadesRestantes
-          .add(new CantidadTipoPublicacionRestante(
-              cantidad.getCantidadTotal(), cantidad.getTipoPublicacion()));
+          .add(
+              new CantidadTipoPublicacionRestante(
+                  cantidad
+                      .getCantidadTotal(),
+                  cantidad
+                      .getTipoPublicacion()));
     }
-    
   }
   
   public LocalDate getFechaVencimiento() {
@@ -52,17 +61,21 @@ public class CompraPaquete {
     return this.paquete.getNombre();
   }
   
-  public DtpaquetePublicacion obtenerDtpaquete() throws IOException {
-    return this.paquete.obtenerDtPaquete();
+  public DtpaquetePublicacion obtenerDtpaquete()
+      throws IOException {
+    return this.paquete
+        .obtenerDtPaquete();
   }
   
   /**
    * Disminuir cantidad tipo de publicación.
    */
-  
-  public void gastarTipoPublicacion(String nombreTipoPublicacion) {
+  public void gastarTipoPublicacion(
+      String nombreTipoPublicacion) {
     for (CantidadTipoPublicacionRestante cantidad : cantidadesRestantes) {
-      if (nombreTipoPublicacion.equals(cantidad.getNombreTipoPublicacion())) {
+      if (nombreTipoPublicacion
+          .equals(cantidad
+              .getNombreTipoPublicacion())) {
         cantidad.reducirCantidad();
         break;
       }
@@ -72,15 +85,21 @@ public class CompraPaquete {
   /**
    * Metodo obtenerDtCompraPaquete.
    */
-  
-  public DtCompraPaquete obtenerDtCompraPaquete() throws IOException {
+  public DtCompraPaquete obtenerDtCompraPaquete()
+      throws IOException {
     List<DtCantidadTipoPublicacionRestante> dtCantidadesRestantes = 
         new ArrayList<DtCantidadTipoPublicacionRestante>();
     for (CantidadTipoPublicacionRestante cantidad : cantidadesRestantes) {
-      dtCantidadesRestantes.add(cantidad.obtenerDtTipoCantidadRestante());
+      dtCantidadesRestantes
+          .add(cantidad
+              .obtenerDtTipoCantidadRestante());
     }
-    DtpaquetePublicacion dtpaquete = paquete.obtenerDtPaquete();
-    return new DtCompraPaquete(fechaCompra, fechaVencimiento, dtCantidadesRestantes,
+    DtpaquetePublicacion dtpaquete = paquete
+        .obtenerDtPaquete();
+    return new DtCompraPaquete(
+        fechaCompra,
+        fechaVencimiento,
+        dtCantidadesRestantes,
         dtpaquete);
   }
 }

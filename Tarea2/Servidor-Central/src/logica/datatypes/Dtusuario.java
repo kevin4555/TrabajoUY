@@ -1,8 +1,10 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Base64;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -11,7 +13,8 @@ import javax.imageio.ImageIO;
  * Clase Dtusuario.
  */
 
-public class Dtusuario {
+@XmlAccessorType
+public class Dtusuario implements Serializable {
   private String nickname;
   private String nombre;
   private String apellido;
@@ -21,12 +24,17 @@ public class Dtusuario {
   private String contrasenia;
   private List<DtOfertaLaboral> ofertasColeccion;
   
+  public Dtusuario() {
+  }
+  
   /**
    * Contructor.
    */
   
-  public Dtusuario(String nickname, String nombre, String apellido, String email,
-      BufferedImage imagen, String contrasenia, List<DtOfertaLaboral> ofertasColeccion)
+  public Dtusuario(String nickname, String nombre,
+      String apellido, String email, BufferedImage imagen,
+      String contrasenia,
+      List<DtOfertaLaboral> ofertasColeccion)
       throws IOException {
     this.nickname = nickname;
     this.nombre = nombre;
@@ -37,9 +45,43 @@ public class Dtusuario {
     if (imagen != null) {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       ImageIO.write(this.imagen, "png", baos);
-      this.imagenBase64 = Base64.getEncoder().encodeToString(baos.toByteArray());
+      this.imagenBase64 = Base64.getEncoder()
+          .encodeToString(baos.toByteArray());
     }
     this.contrasenia = contrasenia;
+    this.ofertasColeccion = ofertasColeccion;
+  }
+  
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
+  }
+  
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+  
+  public void setApellido(String apellido) {
+    this.apellido = apellido;
+  }
+  
+  public void setEmail(String email) {
+    this.email = email;
+  }
+  
+  public void setImagen(BufferedImage imagen) {
+    this.imagen = imagen;
+  }
+  
+  public void setImagenBase64(String imagenBase64) {
+    this.imagenBase64 = imagenBase64;
+  }
+  
+  public void setContrasenia(String contrasenia) {
+    this.contrasenia = contrasenia;
+  }
+  
+  public void setOfertasColeccion(
+      List<DtOfertaLaboral> ofertasColeccion) {
     this.ofertasColeccion = ofertasColeccion;
   }
   
