@@ -17,45 +17,43 @@
 <body class="mb-4">
     <jsp:include page="../../mobile/include/NavBarMobile.jsp" />
     <jsp:include page="../../mobile/include/MenuMobile.jsp" />
-    <main class="container pt-5">
-        <div class="row">
-
-            <div class="col-8">
-                <section>
-                    <%
-                    
-                    ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request.getAttribute("listaOfertasConfirmadas");
-                    for (DtOfertaLaboral oferta : listaOfertasConfirmadas) {
-                    %>
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-4 justify-content-center align-items-center d-flex">
-                                    <img src="data:image/png;base64,<%= oferta.getImagenBase64() %>" class="img-fluid rounded-start" alt="Imagen Oferta" />
+ <main class="container pt-5">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <section>
+                <%
+                ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request
+                		.getAttribute("listaOfertasConfirmadas");
+                for (DtOfertaLaboral oferta : listaOfertasConfirmadas)
+                {
+                %>
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4 justify-content-center align-items-center d-flex">
+                                <img src="data:image/png;base64,<%= oferta.getImagenBase64() %>" class="img-fluid rounded-start" alt="Imagen Oferta" />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-header p-0 border-0 bg-white text-start">
+                                        <p><%= oferta.getNombre() %></p>
+                                    </h5>
+                                    <p class="card-text"><%= oferta.getDescripcion() %></p>
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            <p><%= oferta.getNombre() %></p>
-                                        </h5>
-                                        <p class="card-text"><%= oferta.getDescripcion() %></p>
-                                    </div>
-                                    <div class="card-footer border-0 bg-white text-end">
-                                        <%
-                                    		String contextPath = request.getContextPath();
-                                    	%>
-                                       <a href="<%= contextPath %>/oferta?nombreOferta=<%= oferta.getNombre() %>" class="btn btn-primary">Mas Info</a>
-
-                                    </div>
+                                <div class="card-footer border-0 bg-white text-end">
+                                    <%
+                                        String contextPath = request.getContextPath();
+                                    %>
+                                   <a href="<%= contextPath %>/oferta?nombreOferta=<%= oferta.getNombre() %>" class="btn btn-primary">Mas Info</a>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                    <%
-                    }
-                    %>
-                </section>
-            </div>
+                    </div>
+                <%
+                }
+                %>
+            </section>
         </div>
-    </main>
+    </div>
+</main>
 </body>
 </html>

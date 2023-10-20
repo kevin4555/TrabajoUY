@@ -39,11 +39,6 @@
 			<input class="btn btn-primary" type="submit" value="Confirmar" /> <a
 				class="btn btn-primary" href="<%= contextPath %>/home">Cancelar</a>
 		</div>
-		<div class="mb-3">
-			<label class="form-label mb-3"><strong>¿No tienes
-					cuenta?</strong></label> <a class="btn btn-primary"
-				href="<%= contextPath %>/altaUsuario">Registrarse</a>
-		</div>
 	</form>
 </body>
 </html>

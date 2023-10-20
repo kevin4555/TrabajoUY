@@ -17,7 +17,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					alt="Logo" class="navbar-brand img-fluid">
 				</a>
 			</div>
-			<div class="col-3">
+			<div class="col-5">
 				<%
 				if (usuario != null)
 				{
@@ -36,7 +36,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 			</div>
 		</div>
 		<div class="row w-100 justify-content-between align-items-center">
-			<div class="col-5">
+			<div class="col-4">
 				<div class="container-fluid">
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse"
@@ -48,7 +48,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 				</div>
 			</div>
 
-			<div class="col-3">
+			<div class="col-5">
 				<ul class="navbar-nav justify-content-end fs-3">
 					<%
 					if (usuario != null)
@@ -61,7 +61,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 								data-bs-toggle="dropdown" aria-expanded="true">
 								<%=usuario.getNickname()%>
 							</button>
-							<ul class="dropdown-menu">
+							<ul class="opcUsuario dropdown-menu">
 								<li>
 									<%
 									String contextPath = request.getContextPath();
