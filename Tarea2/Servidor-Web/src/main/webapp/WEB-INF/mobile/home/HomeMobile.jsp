@@ -18,7 +18,7 @@
     <jsp:include page="../../mobile/include/NavBarMobile.jsp" />
     <main class="container pt-5">
         <div class="row">
-            <jsp:include page="../../mobile/include/MenuMobile.jsp" />
+
             <div class="col-8">
                 <section>
                     <%
