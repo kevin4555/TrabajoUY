@@ -83,7 +83,6 @@ public class HomeServlet extends HttpServlet {
 		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
 		{
-			System.out.println(sesion.getAttribute("estadoSesion"));
 			if(sesion.getAttribute("estadoSesion") == EstadoSesion.LOGIN_CORRECTO)
 			{
 				request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);

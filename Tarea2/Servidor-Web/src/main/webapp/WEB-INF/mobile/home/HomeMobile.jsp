@@ -15,10 +15,10 @@
     <jsp:include page="../../include/Head.jsp" />
 </head>
 <body class="mb-4">
-    <jsp:include page="../../include/NavBar.jsp" />
+    <jsp:include page="../../mobile/include/NavBarMobile.jsp" />
     <main class="container pt-5">
         <div class="row">
-            <jsp:include page="../../include/Menu.jsp" />
+            <jsp:include page="../../mobile/include/MenuMobile.jsp" />
             <div class="col-8">
                 <section>
                     <%
