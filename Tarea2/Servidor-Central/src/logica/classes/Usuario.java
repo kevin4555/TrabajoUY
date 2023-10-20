@@ -2,7 +2,6 @@ package logica.classes;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import logica.datatypes.Dtusuario;
 
@@ -20,8 +19,8 @@ public abstract class Usuario {
   /**
    * Constuctor clase Usuario.
    */
-  public Usuario(String nickname, String nombre, String apellido, 
-      String email, BufferedImage imagen,
+  public Usuario(String nickname, String nombre,
+      String apellido, String email, BufferedImage imagen,
       String contrasenia) {
     super();
     this.nickname = nickname;
@@ -74,5 +73,6 @@ public abstract class Usuario {
   
   public abstract List<String> listarNombreOfertasUsuario();
   
-  public abstract  Dtusuario obtenerDtusuario() throws IOException;
+  public abstract Dtusuario obtenerDtusuario()
+      throws IOException;
 }

@@ -36,9 +36,11 @@ public class OfertaLaboral {
    * Constructor .
    */
   
-  public OfertaLaboral(String nombre, String descripcion, String horarioInicial,
-      String horarioFinal, float remuneracion, String ciudad, String departamento,
-      LocalDate fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen,
+  public OfertaLaboral(String nombre, String descripcion,
+      String horarioInicial, String horarioFinal,
+      float remuneracion, String ciudad,
+      String departamento, LocalDate fechaAlta,
+      TipoPublicacion tipoPublicacion, BufferedImage imagen,
       Empresa empresa) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -115,7 +117,8 @@ public class OfertaLaboral {
     return tipoPublicacion;
   }
   
-  public void setTipoPublicacion(TipoPublicacion tipoPublicacion) {
+  public void setTipoPublicacion(
+      TipoPublicacion tipoPublicacion) {
     this.tipoPublicacion = tipoPublicacion;
   }
   
@@ -147,7 +150,8 @@ public class OfertaLaboral {
    * Metodo obtener DTOfertaLaboral .
    */
   
-  public DtOfertaLaboral obtenerDtOfertaLaboral() throws IOException {
+  public DtOfertaLaboral obtenerDtOfertaLaboral()
+      throws IOException {
     DtpaquetePublicacion paquete = null;
     if (compraPaquete != null) {
       paquete = compraPaquete.obtenerDtpaquete();
@@ -162,11 +166,14 @@ public class OfertaLaboral {
       estaVencida = this.estaVencida();
     }
     
-    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(this.getNombre(),
-        this.getDescripcion(), this.getCiudad(), this.getDepartamento(),
-        this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
-        this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
-        paquete, keywords, estaVencida, this.tipoPublicacion.getNombre(),
+    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(
+        this.getNombre(), this.getDescripcion(),
+        this.getCiudad(), this.getDepartamento(),
+        this.getHorarioInicial(), this.getHorarioFinal(),
+        this.getRemunaracion(), this.getFechaAlta(),
+        this.obtenerDtPostulacion(), fechaResolucion,
+        estado, imagen, paquete, keywords, estaVencida,
+        this.tipoPublicacion.getNombre(),
         this.empresa.getNickname());
     return dtOfertaLaboral;
   }
@@ -199,11 +206,13 @@ public class OfertaLaboral {
     return compraPaquete;
   }
   
-  public void setCompraPaquete(CompraPaquete compraPaquete) {
+  public void setCompraPaquete(
+      CompraPaquete compraPaquete) {
     this.compraPaquete = compraPaquete;
   }
   
-  public void resolucionOferta(EstadoOferta estado, LocalDate fechaResolucion) {
+  public void resolucionOferta(EstadoOferta estado,
+      LocalDate fechaResolucion) {
     this.estado = estado;
     this.fechaResolucion = fechaResolucion;
   }
@@ -223,7 +232,8 @@ public class OfertaLaboral {
     return resultado;
   }
   
-  public DtpaquetePublicacion obtenerDtpaquete() throws IOException {
+  public DtpaquetePublicacion obtenerDtpaquete()
+      throws IOException {
     return compraPaquete.obtenerDtpaquete();
   }
   
@@ -233,8 +243,10 @@ public class OfertaLaboral {
   
   public Boolean estaVencida() {
     LocalDate fechaActual = LocalDate.now();
-    LocalDate fechaVencimiento = LocalDate.of(fechaResolucion.getYear(),
-        fechaResolucion.getMonthValue(), fechaResolucion.getDayOfMonth())
+    LocalDate fechaVencimiento = LocalDate
+        .of(fechaResolucion.getYear(),
+            fechaResolucion.getMonthValue(),
+            fechaResolucion.getDayOfMonth())
         .plusDays(tipoPublicacion.getDuracionDia());
     return fechaActual.isAfter(fechaVencimiento);
   }

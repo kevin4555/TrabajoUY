@@ -73,8 +73,10 @@ public class ConsultarUsuario extends JInternalFrame {
   private String tipoUsuario = "";
   private JPanel panelDatos;
   private JLabel lblMotivacion = new JLabel("Motivacion");
-  private JLabel labelCvReducido = new JLabel("CV Reducido");
-  private JLabel labelFechaPostulacion = new JLabel("Fecha Postulacion");
+  private JLabel labelCvReducido = new JLabel(
+      "CV Reducido");
+  private JLabel labelFechaPostulacion = new JLabel(
+      "Fecha Postulacion");
   private JTextField textFieldFechaPostulacion;
   private JLabel lblNewLabel1;
   private JTextPane textPane;
@@ -85,7 +87,8 @@ public class ConsultarUsuario extends JInternalFrame {
    * Constructor .
    */
   
-  public ConsultarUsuario(IcontroladorUsuario contrUsuario, IcontroladorOferta contrOferta) {
+  public ConsultarUsuario(IcontroladorUsuario contrUsuario,
+      IcontroladorOferta contrOferta) {
     setTitle("Consulta de Usuarios");
     this.usuarioSeleccionado = "";
     this.ofertaSeleccionada = "";
@@ -100,7 +103,8 @@ public class ConsultarUsuario extends JInternalFrame {
     
     JPanel panelBotones = new JPanel();
     getContentPane().add(panelBotones, BorderLayout.SOUTH);
-    panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
+    panelBotones.setLayout(
+        new FlowLayout(FlowLayout.CENTER, 120, 20));
     
     this.btnCerrar = new JButton("Cerrar");
     btnCerrar.addActionListener(new ActionListener() {
@@ -116,11 +120,13 @@ public class ConsultarUsuario extends JInternalFrame {
     getContentPane().add(panelDatos, BorderLayout.CENTER);
     GridBagLayout gblPanelDatos = new GridBagLayout();
     gblPanelDatos.columnWidths = new int[] { 113, 739, 0 };
-    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0 };
-    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0,
+        Double.MIN_VALUE };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblPanelDatos);
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
@@ -128,28 +134,32 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcLblSeleccion.anchor = GridBagConstraints.EAST;
     gbcLblSeleccion.gridx = 0;
     gbcLblSeleccion.gridy = 1;
-    JLabel lblSeleccion = new JLabel("Seleccionar Usuario:");
+    JLabel lblSeleccion = new JLabel(
+        "Seleccionar Usuario:");
     panelDatos.add(lblSeleccion, gbcLblSeleccion);
     
     this.comboBoxSeleccionUsuario = new JComboBox<String>();
-    this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        try {
-          cargarDatosUsuarios(evento);
-        } catch (UsuarioNoExisteException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
-        }
-        
-      }
-    });
+    this.comboBoxSeleccionUsuario
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            try {
+              cargarDatosUsuarios(evento);
+            } catch (UsuarioNoExisteException e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            }
+            
+          }
+        });
     
     GridBagConstraints gbcComboBoxSeleccionUsuario = new GridBagConstraints();
-    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionUsuario.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionUsuario.gridx = 1;
     gbcComboBoxSeleccionUsuario.gridy = 1;
-    panelDatos.add(this.comboBoxSeleccionUsuario, gbcComboBoxSeleccionUsuario);
+    panelDatos.add(this.comboBoxSeleccionUsuario,
+        gbcComboBoxSeleccionUsuario);
     
     GridBagConstraints gbcLblNombre = new GridBagConstraints();
     gbcLblNombre.anchor = GridBagConstraints.EAST;
@@ -184,7 +194,8 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldApellido.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldApellido.gridx = 1;
     gbcTextFieldApellido.gridy = 4;
-    panelDatos.add(this.textFieldApellido, gbcTextFieldApellido);
+    panelDatos.add(this.textFieldApellido,
+        gbcTextFieldApellido);
     this.textFieldApellido.setColumns(10);
     
     GridBagConstraints gbcLblEmail = new GridBagConstraints();
@@ -236,9 +247,12 @@ public class ConsultarUsuario extends JInternalFrame {
     layeredPane.add(panelEmpresa, "name_918030925291900");
     GridBagLayout gblPanelEmpresa = new GridBagLayout();
     gblPanelEmpresa.columnWidths = new int[] { 114, 0, 0 };
-    gblPanelEmpresa.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
-    gblPanelEmpresa.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelEmpresa.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+    gblPanelEmpresa.rowHeights = new int[] { 0, 0, 0, 0, 0,
+        0 };
+    gblPanelEmpresa.columnWeights = new double[] { 0.0, 1.0,
+        Double.MIN_VALUE };
+    gblPanelEmpresa.rowWeights = new double[] { 1.0, 0.0,
+        0.0, 1.0, 0.0, Double.MIN_VALUE };
     panelEmpresa.setLayout(gblPanelEmpresa);
     panelEmpresa.setPreferredSize(new Dimension(200, 200));
     
@@ -257,21 +271,27 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldSitioWeb.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldSitioWeb.gridx = 1;
     gbcTextFieldSitioWeb.gridy = 1;
-    panelEmpresa.add(this.textFieldSitioWeb, gbcTextFieldSitioWeb);
+    panelEmpresa.add(this.textFieldSitioWeb,
+        gbcTextFieldSitioWeb);
     this.textFieldSitioWeb.setColumns(10);
     
     GridBagConstraints gbcLblDescripcionEmpresa = new GridBagConstraints();
-    gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
+    gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5,
+        5);
     gbcLblDescripcionEmpresa.anchor = GridBagConstraints.EAST;
     gbcLblDescripcionEmpresa.gridx = 0;
     gbcLblDescripcionEmpresa.gridy = 2;
-    JLabel lblDescripcionEmpresa = new JLabel("Descripcion:");
-    panelEmpresa.add(lblDescripcionEmpresa, gbcLblDescripcionEmpresa);
+    JLabel lblDescripcionEmpresa = new JLabel(
+        "Descripcion:");
+    panelEmpresa.add(lblDescripcionEmpresa,
+        gbcLblDescripcionEmpresa);
     
     scrollPane = new JScrollPane();
-    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    scrollPane.setVerticalScrollBarPolicy(
+        ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     scrollPane.setEnabled(false);
-    scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    scrollPane.setHorizontalScrollBarPolicy(
+        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     GridBagConstraints gbcScrollPane = new GridBagConstraints();
     gbcScrollPane.gridheight = 2;
     gbcScrollPane.insets = new Insets(0, 0, 5, 0);
@@ -287,12 +307,16 @@ public class ConsultarUsuario extends JInternalFrame {
     scrollPane.setViewportView(textAreaDescripcion);
     
     panelPostulante = new JPanel();
-    layeredPane.add(panelPostulante, "name_919472867094100");
+    layeredPane.add(panelPostulante,
+        "name_919472867094100");
     GridBagLayout gblPanelPostulante = new GridBagLayout();
-    gblPanelPostulante.columnWidths = new int[] { 113, 0, 0 };
+    gblPanelPostulante.columnWidths = new int[] { 113, 0,
+        0 };
     gblPanelPostulante.rowHeights = new int[] { 0, 0, 0 };
-    gblPanelPostulante.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelPostulante.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+    gblPanelPostulante.columnWeights = new double[] { 0.0,
+        1.0, Double.MIN_VALUE };
+    gblPanelPostulante.rowWeights = new double[] { 0.0, 0.0,
+        Double.MIN_VALUE };
     panelPostulante.setLayout(gblPanelPostulante);
     
     GridBagConstraints gbcLblFechaNacimiento = new GridBagConstraints();
@@ -300,17 +324,21 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcLblFechaNacimiento.anchor = GridBagConstraints.EAST;
     gbcLblFechaNacimiento.gridx = 0;
     gbcLblFechaNacimiento.gridy = 0;
-    JLabel lblFechaNacimiento = new JLabel("Fecha de Nacimiento:");
-    panelPostulante.add(lblFechaNacimiento, gbcLblFechaNacimiento);
+    JLabel lblFechaNacimiento = new JLabel(
+        "Fecha de Nacimiento:");
+    panelPostulante.add(lblFechaNacimiento,
+        gbcLblFechaNacimiento);
     
     this.textFieldFechaNacimiento = new JTextField();
     this.textFieldFechaNacimiento.setEditable(false);
     GridBagConstraints gbcTextFieldFechaNacimiento = new GridBagConstraints();
-    gbcTextFieldFechaNacimiento.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldFechaNacimiento.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldFechaNacimiento.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldFechaNacimiento.gridx = 1;
     gbcTextFieldFechaNacimiento.gridy = 0;
-    panelPostulante.add(this.textFieldFechaNacimiento, gbcTextFieldFechaNacimiento);
+    panelPostulante.add(this.textFieldFechaNacimiento,
+        gbcTextFieldFechaNacimiento);
     this.textFieldFechaNacimiento.setColumns(10);
     
     GridBagConstraints gbcLblNacionalidad = new GridBagConstraints();
@@ -319,7 +347,8 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcLblNacionalidad.gridx = 0;
     gbcLblNacionalidad.gridy = 1;
     JLabel lblNacionalidad = new JLabel("Nacionalidad:");
-    panelPostulante.add(lblNacionalidad, gbcLblNacionalidad);
+    panelPostulante.add(lblNacionalidad,
+        gbcLblNacionalidad);
     
     this.textFieldNacionalidad = new JTextField();
     this.textFieldNacionalidad.setEditable(false);
@@ -327,7 +356,8 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldNacionalidad.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldNacionalidad.gridx = 1;
     gbcTextFieldNacionalidad.gridy = 1;
-    panelPostulante.add(this.textFieldNacionalidad, gbcTextFieldNacionalidad);
+    panelPostulante.add(this.textFieldNacionalidad,
+        gbcTextFieldNacionalidad);
     this.textFieldNacionalidad.setColumns(10);
     
     GridBagConstraints gbcLblOfertas = new GridBagConstraints();
@@ -339,21 +369,25 @@ public class ConsultarUsuario extends JInternalFrame {
     panelDatos.add(lblOfertas, gbcLblOfertas);
     
     this.comboBoxSeleccionOferta = new JComboBox<String>();
-    this.comboBoxSeleccionOferta.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        try {
-          cargarDatosOferta(evento);
-        } catch (OfertaLaboralNoExisteException | UsuarioNoExistePostulacion evento1) {
-          // no imprime nada
-        }
-      }
-    });
+    this.comboBoxSeleccionOferta
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            try {
+              cargarDatosOferta(evento);
+            } catch (OfertaLaboralNoExisteException
+                | UsuarioNoExistePostulacion evento1) {
+              // no imprime nada
+            }
+          }
+        });
     GridBagConstraints gbcComboBoxSeleccionOferta = new GridBagConstraints();
-    gbcComboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionOferta.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionOferta.gridx = 1;
     gbcComboBoxSeleccionOferta.gridy = 12;
-    panelDatos.add(this.comboBoxSeleccionOferta, gbcComboBoxSeleccionOferta);
+    panelDatos.add(this.comboBoxSeleccionOferta,
+        gbcComboBoxSeleccionOferta);
     
     GridBagConstraints gbcLblHorarioOferta = new GridBagConstraints();
     gbcLblHorarioOferta.anchor = GridBagConstraints.EAST;
@@ -366,11 +400,13 @@ public class ConsultarUsuario extends JInternalFrame {
     this.textFieldHorarioOferta = new JTextField();
     this.textFieldHorarioOferta.setEditable(false);
     GridBagConstraints gbcTextFieldNombreOferta = new GridBagConstraints();
-    gbcTextFieldNombreOferta.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldNombreOferta.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldNombreOferta.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldNombreOferta.gridx = 1;
     gbcTextFieldNombreOferta.gridy = 13;
-    panelDatos.add(this.textFieldHorarioOferta, gbcTextFieldNombreOferta);
+    panelDatos.add(this.textFieldHorarioOferta,
+        gbcTextFieldNombreOferta);
     this.textFieldHorarioOferta.setColumns(10);
     
     GridBagConstraints gbcLblRemuneracion = new GridBagConstraints();
@@ -384,11 +420,13 @@ public class ConsultarUsuario extends JInternalFrame {
     this.textFieldRemuneracion = new JTextField();
     this.textFieldRemuneracion.setEditable(false);
     GridBagConstraints gbcTextFieldRemuneracion = new GridBagConstraints();
-    gbcTextFieldRemuneracion.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldRemuneracion.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldRemuneracion.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldRemuneracion.gridx = 1;
     gbcTextFieldRemuneracion.gridy = 14;
-    panelDatos.add(this.textFieldRemuneracion, gbcTextFieldRemuneracion);
+    panelDatos.add(this.textFieldRemuneracion,
+        gbcTextFieldRemuneracion);
     this.textFieldRemuneracion.setColumns(10);
     
     GridBagConstraints gbcLblCiudad = new GridBagConstraints();
@@ -406,7 +444,8 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFieldCiudad.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldCiudad.gridx = 1;
     gbcTextFieldCiudad.gridy = 15;
-    panelDatos.add(this.textFieldCiudad, gbcTextFieldCiudad);
+    panelDatos.add(this.textFieldCiudad,
+        gbcTextFieldCiudad);
     this.textFieldCiudad.setColumns(10);
     
     GridBagConstraints gbcLblDepartamento = new GridBagConstraints();
@@ -420,11 +459,13 @@ public class ConsultarUsuario extends JInternalFrame {
     this.textFieldDepartamento = new JTextField();
     this.textFieldDepartamento.setEditable(false);
     GridBagConstraints gbcTextFieldDepartamento = new GridBagConstraints();
-    gbcTextFieldDepartamento.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldDepartamento.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldDepartamento.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldDepartamento.gridx = 1;
     gbcTextFieldDepartamento.gridy = 16;
-    panelDatos.add(this.textFieldDepartamento, gbcTextFieldDepartamento);
+    panelDatos.add(this.textFieldDepartamento,
+        gbcTextFieldDepartamento);
     this.textFieldDepartamento.setColumns(10);
     
     GridBagConstraints gbcLblMotivacion = new GridBagConstraints();
@@ -451,11 +492,13 @@ public class ConsultarUsuario extends JInternalFrame {
     panelDatos.add(textPaneMotivacion, gbcTextPane1);
     this.textPaneMotivacion.setVisible(false);
     this.textPaneMotivacion.setEditable(false);
-    panelDatos.add(this.labelCvReducido, gbcLabelCvReducido);
+    panelDatos.add(this.labelCvReducido,
+        gbcLabelCvReducido);
     
     GridBagConstraints gbcLabelFechaPostulaciono = new GridBagConstraints();
     gbcLabelFechaPostulaciono.anchor = GridBagConstraints.EAST;
-    gbcLabelFechaPostulaciono.insets = new Insets(0, 0, 0, 5);
+    gbcLabelFechaPostulaciono.insets = new Insets(0, 0, 0,
+        5);
     gbcLabelFechaPostulaciono.gridx = 0;
     gbcLabelFechaPostulaciono.gridy = 19;
     this.labelFechaPostulacion.setVisible(false);
@@ -469,7 +512,8 @@ public class ConsultarUsuario extends JInternalFrame {
     panelDatos.add(textPaneCvReducido, gbcTextPane2);
     this.textPaneCvReducido.setVisible(false);
     this.textPaneCvReducido.setEditable(false);
-    panelDatos.add(this.labelFechaPostulacion, gbcLabelFechaPostulaciono);
+    panelDatos.add(this.labelFechaPostulacion,
+        gbcLabelFechaPostulaciono);
     
     this.textFieldFechaPostulacion = new JTextField();
     this.textFieldFechaPostulacion.setEditable(false);
@@ -477,43 +521,56 @@ public class ConsultarUsuario extends JInternalFrame {
     gbcTextFiedFechaPostulacion.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFiedFechaPostulacion.gridx = 1;
     gbcTextFiedFechaPostulacion.gridy = 19;
-    panelDatos.add(this.textFieldFechaPostulacion, gbcTextFiedFechaPostulacion);
+    panelDatos.add(this.textFieldFechaPostulacion,
+        gbcTextFiedFechaPostulacion);
     this.textFieldFechaPostulacion.setColumns(10);
     this.textFieldFechaPostulacion.setVisible(false);
     
   }
   
   protected void cargarDatosOferta(ActionEvent evento)
-      throws OfertaLaboralNoExisteException, UsuarioNoExistePostulacion {
-    String oferta = comboBoxSeleccionOferta.getSelectedItem().toString();
-    String nicknameUsu = comboBoxSeleccionUsuario.getSelectedItem().toString();
+      throws OfertaLaboralNoExisteException,
+      UsuarioNoExistePostulacion {
+    String oferta = comboBoxSeleccionOferta
+        .getSelectedItem().toString();
+    String nicknameUsu = comboBoxSeleccionUsuario
+        .getSelectedItem().toString();
     if (ofertaSeleccionada != oferta) {
       DtOfertaLaboral dtOferta;
       try {
-        dtOferta = controladorOferta.obtenerDtOfertaLaboral(oferta);
-      } catch (OfertaLaboralNoExisteException | IOException e) {
+        dtOferta = controladorOferta
+            .obtenerDtOfertaLaboral(oferta);
+      } catch (OfertaLaboralNoExisteException
+          | IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
         return;
       }
       Dtpostulacion dtPostulacion;
       this.textFieldHorarioOferta
-          .setText(dtOferta.getHorarioInicio() + " - " + dtOferta.getHorarioFinal());
-      this.textFieldRemuneracion.setText(dtOferta.getRemuneracion().toString());
+          .setText(dtOferta.getHorarioInicio() + " - "
+              + dtOferta.getHorarioFinal());
+      this.textFieldRemuneracion
+          .setText(dtOferta.getRemuneracion().toString());
       this.textFieldCiudad.setText(dtOferta.getCiudad());
-      this.textFieldDepartamento.setText(dtOferta.getDepartamento());
+      this.textFieldDepartamento
+          .setText(dtOferta.getDepartamento());
       if (tipoUsuario.equals("Postulante")) {
         try {
-          dtPostulacion = controladorUsuario.obtenerDtpostulacion(nicknameUsu, oferta);
-          this.textPaneMotivacion.setText(dtPostulacion.getDescripMotivacion());
+          dtPostulacion = controladorUsuario
+              .obtenerDtpostulacion(nicknameUsu, oferta);
+          this.textPaneMotivacion.setText(
+              dtPostulacion.getDescripMotivacion());
           this.textPaneMotivacion.setVisible(true);
           this.lblMotivacion.setVisible(true);
-          this.textPaneCvReducido.setText(dtPostulacion.getCvReducido());
+          this.textPaneCvReducido
+              .setText(dtPostulacion.getCvReducido());
           this.textPaneCvReducido.setVisible(true);
           this.labelCvReducido.setVisible(true);
           
           this.textFieldFechaPostulacion
-              .setText(dtPostulacion.getFechaPostulacion().toString());
+              .setText(dtPostulacion.getFechaPostulacion()
+                  .toString());
           this.textFieldFechaPostulacion.setVisible(true);
           this.labelFechaPostulacion.setVisible(true);
         } catch (UsuarioNoExisteException evento1) {
@@ -531,12 +588,14 @@ public class ConsultarUsuario extends JInternalFrame {
   
   public void cargarUsuarios() {
     try {
-      List<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
+      List<String> listaUsuarios = this.controladorUsuario
+          .listaDeUsuarios();
       String[] arrayUsuarios;
       arrayUsuarios = listaUsuarios.toArray(new String[0]);
       Arrays.sort(arrayUsuarios);
       DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayUsuarios);
+      model = new DefaultComboBoxModel<String>(
+          arrayUsuarios);
       this.comboBoxSeleccionUsuario.setModel(model);
       
     } catch (Exception e) {
@@ -548,15 +607,18 @@ public class ConsultarUsuario extends JInternalFrame {
    * Metodo cargar datos usuarios .
    */
   
-  public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
+  public void cargarDatosUsuarios(ActionEvent evento)
+      throws UsuarioNoExisteException {
     
-    String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
+    String nicknameUsuario = comboBoxSeleccionUsuario
+        .getSelectedItem().toString();
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
       limpiarDatosOfertas();
       Dtusuario dtUsuario;
       try {
-        dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+        dtUsuario = this.controladorUsuario
+            .obtenerDtusuario(nicknameUsuario);
       } catch (UsuarioNoExisteException | IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -565,15 +627,17 @@ public class ConsultarUsuario extends JInternalFrame {
       
       // this.textFieldNickName.setText(nicknameUsuario);
       this.textFieldNombre.setText(dtUsuario.getNombre());
-      this.textFieldApellido.setText(dtUsuario.getApellido());
+      this.textFieldApellido
+          .setText(dtUsuario.getApellido());
       this.textFieldEmail.setText(dtUsuario.getEmail());
       BufferedImage originalImage = dtUsuario.getImagen();
       if (originalImage != null) {
         int newWidth = 100; // Ancho deseado
         int newHeight = 100; // Alto deseado
-        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
-            Image.SCALE_SMOOTH);
-        this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+        Image scaledImage = originalImage.getScaledInstance(
+            newWidth, newHeight, Image.SCALE_SMOOTH);
+        this.textPane.setCaretPosition(
+            textPane.getStyledDocument().getLength());
         ImageIcon icono = new ImageIcon(scaledImage);
         this.textPane.insertIcon(icono);
       }
@@ -581,22 +645,29 @@ public class ConsultarUsuario extends JInternalFrame {
       if (dtUsuario instanceof Dtempresa) {
         tipoUsuario = "Empresa";
         Dtempresa dtEmpresa = (Dtempresa) dtUsuario;
-        this.textAreaDescripcion.setText(dtEmpresa.getDescripcion());
-        this.textFieldSitioWeb.setText(dtEmpresa.getSitioWeb());
+        this.textAreaDescripcion
+            .setText(dtEmpresa.getDescripcion());
+        this.textFieldSitioWeb
+            .setText(dtEmpresa.getSitioWeb());
         cambiarPanel(panelEmpresa);
       }
       if (dtUsuario instanceof Dtpostulante) {
         tipoUsuario = "Postulante";
         Dtpostulante dtPostulante = (Dtpostulante) dtUsuario;
-        this.textFieldNacionalidad.setText(dtPostulante.getNacionalidad());
-        this.textFieldFechaNacimiento.setText(dtPostulante.getFechaNacimiento().toString());
+        this.textFieldNacionalidad
+            .setText(dtPostulante.getNacionalidad());
+        this.textFieldFechaNacimiento.setText(
+            dtPostulante.getFechaNacimiento().toString());
         cambiarPanel(panelPostulante);
       }
-      List<String> listaOfertas = this.controladorUsuario.listaOfertasUsuario(nicknameUsuario);
-      String[] arrayOfertas = listaOfertas.toArray(new String[0]);
+      List<String> listaOfertas = this.controladorUsuario
+          .listaOfertasUsuario(nicknameUsuario);
+      String[] arrayOfertas = listaOfertas
+          .toArray(new String[0]);
       Arrays.sort(arrayOfertas);
       DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayOfertas);
+      model = new DefaultComboBoxModel<String>(
+          arrayOfertas);
       this.comboBoxSeleccionOferta.setModel(model);
     }
     
@@ -669,7 +740,8 @@ public class ConsultarUsuario extends JInternalFrame {
     this.labelFechaPostulacion.setVisible(false);
     
     List<String> listaOfertas = new ArrayList<String>();
-    String[] arrayOfertas = listaOfertas.toArray(new String[0]);
+    String[] arrayOfertas = listaOfertas
+        .toArray(new String[0]);
     Arrays.sort(arrayOfertas);
     DefaultComboBoxModel<String> model;
     model = new DefaultComboBoxModel<String>(arrayOfertas);
@@ -679,8 +751,13 @@ public class ConsultarUsuario extends JInternalFrame {
     
   }
   
+  /**
+   * Metodo dateToString.
+   */
+  
   public String dateToString(Date fecha) {
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formatter = new SimpleDateFormat(
+        "dd/MM/yyyy");
     return formatter.format(fecha);
   }
   

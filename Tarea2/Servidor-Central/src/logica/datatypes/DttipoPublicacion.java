@@ -1,12 +1,15 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * Clase DttipoPublicacion.
  */
 
-public class DttipoPublicacion {
+@XmlAccessorType
+public class DttipoPublicacion implements Serializable {
   private String nombre;
   private String descripcion;
   private String exposicion;
@@ -18,14 +21,41 @@ public class DttipoPublicacion {
    * Contructor.
    */
   
-  public DttipoPublicacion(String nombre, String descripcion, String exposicion, 
-      int duracionDia, float costo,
-      LocalDate fechaAlta) {
+  public DttipoPublicacion(String nombre,
+      String descripcion, String exposicion,
+      int duracionDia, float costo, LocalDate fechaAlta) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.exposicion = exposicion;
     this.duracionDia = duracionDia;
     this.costo = costo;
+    this.fechaAlta = fechaAlta;
+  }
+  
+  public DttipoPublicacion() {
+  }
+  
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+  
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
+  
+  public void setExposicion(String exposicion) {
+    this.exposicion = exposicion;
+  }
+  
+  public void setDuracionDia(int duracionDia) {
+    this.duracionDia = duracionDia;
+  }
+  
+  public void setCosto(float costo) {
+    this.costo = costo;
+  }
+  
+  public void setFechaAlta(LocalDate fechaAlta) {
     this.fechaAlta = fechaAlta;
   }
   

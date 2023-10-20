@@ -78,7 +78,8 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    * Metodo modificar datos usuarios .
    */
   
-  public ModificarDatosUsuarios(IcontroladorUsuario contrUsuario) {
+  public ModificarDatosUsuarios(
+      IcontroladorUsuario contrUsuario) {
     setTitle("Modificar Datos Usuarios");
     this.usuarioSeleccionado = "";
     
@@ -93,11 +94,13 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     getContentPane().add(panelDatos, BorderLayout.CENTER);
     GridBagLayout gblPanelDatos = new GridBagLayout();
     gblPanelDatos.columnWidths = new int[] { 113, 739, 0 };
-    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0 };
-    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0,
+        Double.MIN_VALUE };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
     panelDatos.setLayout(gblPanelDatos);
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
@@ -105,28 +108,32 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcLblSeleccion.anchor = GridBagConstraints.EAST;
     gbcLblSeleccion.gridx = 0;
     gbcLblSeleccion.gridy = 1;
-    JLabel lblSeleccion = new JLabel("Seleccionar Usuario:");
+    JLabel lblSeleccion = new JLabel(
+        "Seleccionar Usuario:");
     panelDatos.add(lblSeleccion, gbcLblSeleccion);
     
     this.comboBoxSeleccionUsuario = new JComboBox<String>();
-    this.comboBoxSeleccionUsuario.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        try {
-          cargarDatosUsuarios(evento);
-        } catch (UsuarioNoExisteException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
-        }
-        
-      }
-    });
+    this.comboBoxSeleccionUsuario
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            try {
+              cargarDatosUsuarios(evento);
+            } catch (UsuarioNoExisteException e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            }
+            
+          }
+        });
     
     GridBagConstraints gbcComboBoxSeleccionUsuario = new GridBagConstraints();
-    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionUsuario.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionUsuario.gridx = 1;
     gbcComboBoxSeleccionUsuario.gridy = 1;
-    panelDatos.add(this.comboBoxSeleccionUsuario, gbcComboBoxSeleccionUsuario);
+    panelDatos.add(this.comboBoxSeleccionUsuario,
+        gbcComboBoxSeleccionUsuario);
     
     GridBagConstraints gbcLblNickname = new GridBagConstraints();
     gbcLblNickname.anchor = GridBagConstraints.EAST;
@@ -179,7 +186,8 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcTextFieldApellido.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldApellido.gridx = 1;
     gbcTextFieldApellido.gridy = 4;
-    panelDatos.add(this.textFieldApellido, gbcTextFieldApellido);
+    panelDatos.add(this.textFieldApellido,
+        gbcTextFieldApellido);
     this.textFieldApellido.setColumns(10);
     
     GridBagConstraints gbcLblEmail = new GridBagConstraints();
@@ -232,20 +240,22 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcBtnNewButton.gridy = 7;
     panelDatos.add(selectImageButton, gbcBtnNewButton);
     
-    selectImageButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evento) {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(null);
-        
-        if (result == JFileChooser.APPROVE_OPTION) {
-          
-          File fotoPerfil = new File(fileChooser.getSelectedFile().getAbsolutePath());
-          obtenerImagen(fotoPerfil);
-          
-        }
-      }
-    });
+    selectImageButton
+        .addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evento) {
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showOpenDialog(null);
+            
+            if (result == JFileChooser.APPROVE_OPTION) {
+              
+              File fotoPerfil = new File(fileChooser
+                  .getSelectedFile().getAbsolutePath());
+              obtenerImagen(fotoPerfil);
+              
+            }
+          }
+        });
     
     textPane = new JTextPane();
     GridBagConstraints gbcTextPane = new GridBagConstraints();
@@ -263,13 +273,14 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcBtnButtonBorrar.gridx = 0;
     gbcBtnButtonBorrar.gridy = 8;
     panelDatos.add(quitarImageButton, gbcBtnButtonBorrar);
-    quitarImageButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evento) {
-        fotoPerfilUsuario = null;
-        textPane.setText("");
-      }
-    });
+    quitarImageButton
+        .addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evento) {
+            fotoPerfilUsuario = null;
+            textPane.setText("");
+          }
+        });
     
     layeredPane = new JLayeredPane();
     GridBagConstraints gbcLayeredPane = new GridBagConstraints();
@@ -286,9 +297,12 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     layeredPane.add(panelEmpresa, "name_918030925291900");
     GridBagLayout gblPanelEmpresa = new GridBagLayout();
     gblPanelEmpresa.columnWidths = new int[] { 114, 0, 0 };
-    gblPanelEmpresa.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
-    gblPanelEmpresa.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelEmpresa.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+    gblPanelEmpresa.rowHeights = new int[] { 0, 0, 0, 0, 0,
+        0 };
+    gblPanelEmpresa.columnWeights = new double[] { 0.0, 1.0,
+        Double.MIN_VALUE };
+    gblPanelEmpresa.rowWeights = new double[] { 1.0, 0.0,
+        0.0, 1.0, 0.0, Double.MIN_VALUE };
     panelEmpresa.setLayout(gblPanelEmpresa);
     
     GridBagConstraints gbcLblSitioWeb = new GridBagConstraints();
@@ -306,21 +320,27 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcTextFieldSitioWeb.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldSitioWeb.gridx = 1;
     gbcTextFieldSitioWeb.gridy = 1;
-    panelEmpresa.add(this.textFieldSitioWeb, gbcTextFieldSitioWeb);
+    panelEmpresa.add(this.textFieldSitioWeb,
+        gbcTextFieldSitioWeb);
     this.textFieldSitioWeb.setColumns(10);
     
     GridBagConstraints gbcLblDescripcionEmpresa = new GridBagConstraints();
-    gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
+    gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5,
+        5);
     gbcLblDescripcionEmpresa.anchor = GridBagConstraints.EAST;
     gbcLblDescripcionEmpresa.gridx = 0;
     gbcLblDescripcionEmpresa.gridy = 2;
-    JLabel lblDescripcionEmpresa = new JLabel("Descripcion:");
-    panelEmpresa.add(lblDescripcionEmpresa, gbcLblDescripcionEmpresa);
+    JLabel lblDescripcionEmpresa = new JLabel(
+        "Descripcion:");
+    panelEmpresa.add(lblDescripcionEmpresa,
+        gbcLblDescripcionEmpresa);
     
     scrollPane = new JScrollPane();
-    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    scrollPane.setVerticalScrollBarPolicy(
+        ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     scrollPane.setEnabled(false);
-    scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    scrollPane.setHorizontalScrollBarPolicy(
+        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     GridBagConstraints gbcScrollPane = new GridBagConstraints();
     gbcScrollPane.gridheight = 2;
     gbcScrollPane.insets = new Insets(0, 0, 5, 0);
@@ -336,12 +356,16 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     scrollPane.setViewportView(textAreaDescripcion);
     
     panelPostulante = new JPanel();
-    layeredPane.add(panelPostulante, "name_919472867094100");
+    layeredPane.add(panelPostulante,
+        "name_919472867094100");
     GridBagLayout gblPanelPostulante = new GridBagLayout();
-    gblPanelPostulante.columnWidths = new int[] { 113, 0, 0 };
+    gblPanelPostulante.columnWidths = new int[] { 113, 0,
+        0 };
     gblPanelPostulante.rowHeights = new int[] { 0, 0, 0 };
-    gblPanelPostulante.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelPostulante.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+    gblPanelPostulante.columnWeights = new double[] { 0.0,
+        1.0, Double.MIN_VALUE };
+    gblPanelPostulante.rowWeights = new double[] { 0.0, 0.0,
+        Double.MIN_VALUE };
     panelPostulante.setLayout(gblPanelPostulante);
     
     GridBagConstraints gbcLblFechaNacimiento = new GridBagConstraints();
@@ -349,8 +373,10 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcLblFechaNacimiento.anchor = GridBagConstraints.EAST;
     gbcLblFechaNacimiento.gridx = 0;
     gbcLblFechaNacimiento.gridy = 0;
-    JLabel lblFechaNacimiento = new JLabel("Fecha de Nacimiento:");
-    panelPostulante.add(lblFechaNacimiento, gbcLblFechaNacimiento);
+    JLabel lblFechaNacimiento = new JLabel(
+        "Fecha de Nacimiento:");
+    panelPostulante.add(lblFechaNacimiento,
+        gbcLblFechaNacimiento);
     
     this.fechaNacimientoChooser = new JDateChooser();
     GridBagConstraints gbcFechaNacimiento = new GridBagConstraints();
@@ -358,7 +384,8 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcFechaNacimiento.fill = GridBagConstraints.HORIZONTAL;
     gbcFechaNacimiento.gridx = 1;
     gbcFechaNacimiento.gridy = 0;
-    panelPostulante.add(fechaNacimientoChooser, gbcFechaNacimiento);
+    panelPostulante.add(fechaNacimientoChooser,
+        gbcFechaNacimiento);
     
     GridBagConstraints gbcLblNacionalidad = new GridBagConstraints();
     gbcLblNacionalidad.anchor = GridBagConstraints.EAST;
@@ -366,7 +393,8 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcLblNacionalidad.gridx = 0;
     gbcLblNacionalidad.gridy = 1;
     JLabel lblNacionalidad = new JLabel("Nacionalidad:");
-    panelPostulante.add(lblNacionalidad, gbcLblNacionalidad);
+    panelPostulante.add(lblNacionalidad,
+        gbcLblNacionalidad);
     
     this.textFieldNacionalidad = new JTextField();
     this.textFieldNacionalidad.setEditable(true);
@@ -374,12 +402,14 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     gbcTextFieldNacionalidad.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldNacionalidad.gridx = 1;
     gbcTextFieldNacionalidad.gridy = 1;
-    panelPostulante.add(this.textFieldNacionalidad, gbcTextFieldNacionalidad);
+    panelPostulante.add(this.textFieldNacionalidad,
+        gbcTextFieldNacionalidad);
     this.textFieldNacionalidad.setColumns(10);
     
     JPanel panelBotones = new JPanel();
     getContentPane().add(panelBotones, BorderLayout.SOUTH);
-    panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
+    panelBotones.setLayout(
+        new FlowLayout(FlowLayout.CENTER, 120, 20));
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
@@ -410,12 +440,14 @@ public class ModificarDatosUsuarios extends JInternalFrame {
   
   public void cargarUsuarios() {
     try {
-      List<String> listaUsuarios = this.controladorUsuario.listaDeUsuarios();
+      List<String> listaUsuarios = this.controladorUsuario
+          .listaDeUsuarios();
       String[] arrayUsuarios;
       arrayUsuarios = listaUsuarios.toArray(new String[0]);
       Arrays.sort(arrayUsuarios);
       DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayUsuarios);
+      model = new DefaultComboBoxModel<String>(
+          arrayUsuarios);
       this.comboBoxSeleccionUsuario.setModel(model);
       
     } catch (Exception e) {
@@ -427,15 +459,18 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    * Metodo cargar datos usuarios .
    */
   
-  public void cargarDatosUsuarios(ActionEvent evento) throws UsuarioNoExisteException {
+  public void cargarDatosUsuarios(ActionEvent evento)
+      throws UsuarioNoExisteException {
     
-    String nicknameUsuario = comboBoxSeleccionUsuario.getSelectedItem().toString();
+    String nicknameUsuario = comboBoxSeleccionUsuario
+        .getSelectedItem().toString();
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
       this.textPane.setText("");
       Dtusuario dtUsuario;
       try {
-        dtUsuario = this.controladorUsuario.obtenerDtusuario(nicknameUsuario);
+        dtUsuario = this.controladorUsuario
+            .obtenerDtusuario(nicknameUsuario);
       } catch (UsuarioNoExisteException | IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -444,33 +479,41 @@ public class ModificarDatosUsuarios extends JInternalFrame {
       
       this.textFieldNickName.setText(nicknameUsuario);
       this.textFieldNombre.setText(dtUsuario.getNombre());
-      this.textFieldApellido.setText(dtUsuario.getApellido());
+      this.textFieldApellido
+          .setText(dtUsuario.getApellido());
       this.textFieldEmail.setText(dtUsuario.getEmail());
-      this.textFieldContrasenia.setText(dtUsuario.getContrasenia());
+      this.textFieldContrasenia
+          .setText(dtUsuario.getContrasenia());
       BufferedImage originalImage = dtUsuario.getImagen();
       if (originalImage != null) {
         fotoPerfilUsuario = originalImage;
         int newWidth = 100; // Ancho deseado
         int newHeight = 100; // Alto deseado
-        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
-            Image.SCALE_SMOOTH);
-        this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+        Image scaledImage = originalImage.getScaledInstance(
+            newWidth, newHeight, Image.SCALE_SMOOTH);
+        this.textPane.setCaretPosition(
+            textPane.getStyledDocument().getLength());
         ImageIcon icono = new ImageIcon(scaledImage);
         this.textPane.insertIcon(icono);
       }
       if (dtUsuario instanceof Dtempresa) {
         tipoUsuario = "Empresa";
         Dtempresa dtEmpresa = (Dtempresa) dtUsuario;
-        this.textAreaDescripcion.setText(dtEmpresa.getDescripcion());
-        this.textFieldSitioWeb.setText(dtEmpresa.getSitioWeb());
+        this.textAreaDescripcion
+            .setText(dtEmpresa.getDescripcion());
+        this.textFieldSitioWeb
+            .setText(dtEmpresa.getSitioWeb());
         cambiarPanel(panelEmpresa);
       }
       if (dtUsuario instanceof Dtpostulante) {
         tipoUsuario = "Postulante";
         Dtpostulante dtPostulante = (Dtpostulante) dtUsuario;
-        this.textFieldNacionalidad.setText(dtPostulante.getNacionalidad());
-        this.fechaNacimientoChooser.setDate(Date.from(dtPostulante.getFechaNacimiento()
-            .atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        this.textFieldNacionalidad
+            .setText(dtPostulante.getNacionalidad());
+        this.fechaNacimientoChooser.setDate(
+            Date.from(dtPostulante.getFechaNacimiento()
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()));
         cambiarPanel(panelPostulante);
       }
       
@@ -482,32 +525,44 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    * Metodo modificar datos usuarios .
    */
   
-  public void modificarDatosUsuarios() throws UsuarioNoExisteException {
+  public void modificarDatosUsuarios()
+      throws UsuarioNoExisteException {
     String nombre = this.textFieldNombre.getText();
     String apelliido = this.textFieldApellido.getText();
     String sitioWeb = this.textFieldSitioWeb.getText();
     Date fechaNac = this.fechaNacimientoChooser.getDate();
-    String nacionalidadPos = this.textFieldNacionalidad.getText();
-    String descripcionEmpresa = this.textAreaDescripcion.getText();
-    if (checkFormulario(nombre, apelliido, fechaNac, nacionalidadPos, descripcionEmpresa)) {
+    String nacionalidadPos = this.textFieldNacionalidad
+        .getText();
+    String descripcionEmpresa = this.textAreaDescripcion
+        .getText();
+    if (checkFormulario(nombre, apelliido, fechaNac,
+        nacionalidadPos, descripcionEmpresa)) {
       
       if (this.textPane.getText() == "") {
         fotoPerfilUsuario = null;
       }
-      char[] passwordChars = this.textFieldContrasenia.getPassword();
+      char[] passwordChars = this.textFieldContrasenia
+          .getPassword();
       String contrasenia = new String(passwordChars);
       if (tipoUsuario.equals("Postulante")) {
-        LocalDate fechaNacimiento = this.fechaNacimientoChooser.getDate().toInstant()
+        LocalDate fechaNacimiento = this.fechaNacimientoChooser
+            .getDate().toInstant()
             .atZone(ZoneId.systemDefault()).toLocalDate();
-        controladorUsuario.editarPostulante(usuarioSeleccionado, nombre, apelliido,
-            fechaNacimiento, nacionalidadPos, fotoPerfilUsuario, contrasenia);
+        controladorUsuario.editarPostulante(
+            usuarioSeleccionado, nombre, apelliido,
+            fechaNacimiento, nacionalidadPos,
+            fotoPerfilUsuario, contrasenia);
       } else if (tipoUsuario.equals("Empresa")) {
-        controladorUsuario.editarEmpresa(usuarioSeleccionado, nombre, apelliido, sitioWeb,
-            descripcionEmpresa, fotoPerfilUsuario, contrasenia);
+        controladorUsuario.editarEmpresa(
+            usuarioSeleccionado, nombre, apelliido,
+            sitioWeb, descripcionEmpresa, fotoPerfilUsuario,
+            contrasenia);
       }
       
-      JOptionPane.showMessageDialog(this, "Los datos se actualizaron con éxito",
-          "Modificar datos de usuario", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "Los datos se actualizaron con éxito",
+          "Modificar datos de usuario",
+          JOptionPane.INFORMATION_MESSAGE);
       limpiarTodosLosDatos();
       
     }
@@ -531,22 +586,26 @@ public class ModificarDatosUsuarios extends JInternalFrame {
   
   public void obtenerImagen(File imagenPerfil) {
     try {
-      BufferedImage originalImage = ImageIO.read(imagenPerfil);
+      BufferedImage originalImage = ImageIO
+          .read(imagenPerfil);
       fotoPerfilUsuario = originalImage;
-      this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+      this.textPane.setCaretPosition(
+          textPane.getStyledDocument().getLength());
       this.textPane.setText("");
       int newWidth = 100; // Ancho deseado
       int newHeight = 100; // Alto deseado
-      Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
-          Image.SCALE_SMOOTH);
+      Image scaledImage = originalImage.getScaledInstance(
+          newWidth, newHeight, Image.SCALE_SMOOTH);
       ImageIcon icono = new ImageIcon(scaledImage);
       this.textPane.insertIcon(icono);
       
     } catch (IOException e) {
-      JOptionPane.showMessageDialog(this, "No se cargo la imagen", "Registrar Usuario",
+      JOptionPane.showMessageDialog(this,
+          "No se cargo la imagen", "Registrar Usuario",
           JOptionPane.ERROR_MESSAGE);
     } catch (java.lang.NullPointerException e2) {
-      JOptionPane.showMessageDialog(this, "Debe ingresar una imagen valida",
+      JOptionPane.showMessageDialog(this,
+          "Debe ingresar una imagen valida",
           "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
     }
   }
@@ -555,29 +614,40 @@ public class ModificarDatosUsuarios extends JInternalFrame {
    * Metodo checkFormulario .
    */
   
-  public boolean checkFormulario(String nombre, String apellido, Date fechaNacPostulante,
-      String nacionalidadPostulante, String descripEmpresa) {
-    if (nombre.isEmpty() || apellido.isEmpty() 
-        || this.textFieldContrasenia.getPassword().length == 0) {
-      JOptionPane.showMessageDialog(this, "No puede haber campos vacíos",
-          "Modificar Datos Usuario", JOptionPane.ERROR_MESSAGE);
+  public boolean checkFormulario(String nombre,
+      String apellido, Date fechaNacPostulante,
+      String nacionalidadPostulante,
+      String descripEmpresa) {
+    if (nombre.isEmpty() || apellido.isEmpty()
+        || this.textFieldContrasenia
+            .getPassword().length == 0) {
+      JOptionPane.showMessageDialog(this,
+          "No puede haber campos vacíos",
+          "Modificar Datos Usuario",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
     if (tipoUsuario.equals("Postulante")) {
       if (nacionalidadPostulante.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "No puede haber campos vacíos",
-            "Modificar Datos Usuario", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this,
+            "No puede haber campos vacíos",
+            "Modificar Datos Usuario",
+            JOptionPane.ERROR_MESSAGE);
         return false;
       }
       if (fechaNacPostulante == null) {
-        JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
-            "Modificar Datos Usuario", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this,
+            "Debe ingresar una fecha valida",
+            "Modificar Datos Usuario",
+            JOptionPane.ERROR_MESSAGE);
         return false;
         
       } else if (tipoUsuario.equals("Empresa")) {
         if (descripEmpresa.isEmpty()) {
-          JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida",
-              "Modificar Datos Usuario", JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(this,
+              "Debe ingresar una fecha valida",
+              "Modificar Datos Usuario",
+              JOptionPane.ERROR_MESSAGE);
           return false;
         }
       }

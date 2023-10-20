@@ -13,13 +13,14 @@ public class Postulacion {
   private String descrpMotivacion;
   private LocalDate fechaPostulacion;
   private String cvReducido;
+  
   /**
    * Constructor .
    */
   
-  public Postulacion(String descrpMotivacion, LocalDate fechaPostulacion,
-      String cvReducido, Postulante postulante,
-      OfertaLaboral ofertaLaboral) {
+  public Postulacion(String descrpMotivacion,
+      LocalDate fechaPostulacion, String cvReducido,
+      Postulante postulante, OfertaLaboral ofertaLaboral) {
     super();
     setDescrpMotivacion(descrpMotivacion);
     setFechaPostulacion(fechaPostulacion);
@@ -40,7 +41,8 @@ public class Postulacion {
     return fechaPostulacion;
   }
   
-  public void setFechaPostulacion(LocalDate fechaPostulacion) {
+  public void setFechaPostulacion(
+      LocalDate fechaPostulacion) {
     this.fechaPostulacion = fechaPostulacion;
   }
   
@@ -65,9 +67,11 @@ public class Postulacion {
    */
   
   public Dtpostulacion obtenerDtpostulacion() {
-    Dtpostulacion dtPostulacion = new Dtpostulacion(this.postulante.getNickname(),
+    Dtpostulacion dtPostulacion = new Dtpostulacion(
+        this.postulante.getNickname(),
         this.getDescrpMotivacion(),
-        this.getFechaPostulacion(), this.getCvReducido(), this.ofertaLaboral.getNombre());
+        this.getFechaPostulacion(), this.getCvReducido(),
+        this.ofertaLaboral.getNombre());
     return dtPostulacion;
   }
   

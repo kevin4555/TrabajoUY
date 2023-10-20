@@ -47,8 +47,10 @@ public class ManejadorOfertas {
   
   public void agregarOferta(OfertaLaboral ofertaLaboral)
       throws OfertaLaboralYaExisteException {
-    if (!coleccionOfertaLaboral.containsKey(ofertaLaboral.getNombre())) {
-      coleccionOfertaLaboral.put(ofertaLaboral.getNombre(), ofertaLaboral);
+    if (!coleccionOfertaLaboral
+        .containsKey(ofertaLaboral.getNombre())) {
+      coleccionOfertaLaboral.put(ofertaLaboral.getNombre(),
+          ofertaLaboral);
     } else {
       throw new OfertaLaboralYaExisteException(
           "La oferta laboral que desea ingresar ya existe");
@@ -59,12 +61,15 @@ public class ManejadorOfertas {
    * Obtener DTOfertaLaboral .
    */
   
-  public DtOfertaLaboral obtenerDtofertaLaboral(String nombreOferta)
+  public DtOfertaLaboral obtenerDtofertaLaboral(
+      String nombreOferta)
       throws DtOfertaNoExisteException, IOException {
     if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
-      throw new DtOfertaNoExisteException("No existe la oferta solicitada");
+      throw new DtOfertaNoExisteException(
+          "No existe la oferta solicitada");
     } else {
-      return coleccionOfertaLaboral.get(nombreOferta).obtenerDtOfertaLaboral();
+      return coleccionOfertaLaboral.get(nombreOferta)
+          .obtenerDtOfertaLaboral();
     }
   }
   
@@ -72,12 +77,14 @@ public class ManejadorOfertas {
    * Obtener oferta laboral .
    */
   
-  public OfertaLaboral obtenerOfertaLaboral(String nomOferta)
+  public OfertaLaboral obtenerOfertaLaboral(
+      String nomOferta)
       throws OfertaLaboralNoExisteException {
     if (coleccionOfertaLaboral.containsKey(nomOferta)) {
       return coleccionOfertaLaboral.get(nomOferta);
     } else {
-      throw new OfertaLaboralNoExisteException("No existe la oferta solicitada");
+      throw new OfertaLaboralNoExisteException(
+          "No existe la oferta solicitada");
     }
   }
   
@@ -87,7 +94,8 @@ public class ManejadorOfertas {
   
   public List<String> listarOfertasLaborales() {
     List<String> resultado = new ArrayList<String>();
-    for (Map.Entry<String, OfertaLaboral> entry : this.coleccionOfertaLaboral.entrySet()) {
+    for (Map.Entry<String, OfertaLaboral> entry : this.coleccionOfertaLaboral
+        .entrySet()) {
       resultado.add(entry.getKey());
     }
     return resultado;
@@ -101,9 +109,11 @@ public class ManejadorOfertas {
    * Obtener DTOfertasLaboralesConfirmadas .
    */
   
-  public List<DtOfertaLaboral> obtenerDtofertasConfirmadas() throws IOException {
+  public List<DtOfertaLaboral> obtenerDtofertasConfirmadas()
+      throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
-    for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
+    for (OfertaLaboral oferta : coleccionOfertaLaboral
+        .values()) {
       if (oferta.getEstado() == EstadoOferta.CONFIRMADA) {
         listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }
@@ -116,9 +126,11 @@ public class ManejadorOfertas {
    * Obtener obtenerDTOfertasPorKeyword .
    */
   
-  public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(String keyword) throws IOException {
+  public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(
+      String keyword) throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
-    for (OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
+    for (OfertaLaboral oferta : coleccionOfertaLaboral
+        .values()) {
       if (oferta.tieneKeyword(keyword)) {
         listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }

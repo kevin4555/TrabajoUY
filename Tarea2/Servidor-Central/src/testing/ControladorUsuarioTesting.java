@@ -67,8 +67,10 @@ public class ControladorUsuarioTesting {
   
   @BeforeClass
   public static void setUp() {
-    controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    controladorUsuario = Fabrica.getInstance()
+        .obtenerControladorUsuario();
+    controladorOferta = Fabrica.getInstance()
+        .obtenerControladorOferta();
     manejadorUsuario = ManejadorUsuario.getInstance();
     manejadorOfertas = ManejadorOfertas.getInstance();
     manejadorSettings = ManejadorSettings.getInstance();
@@ -77,14 +79,18 @@ public class ControladorUsuarioTesting {
     fechaDate1 = LocalDate.parse("1988-11-10");
     fechaDate2 = LocalDate.parse("1988-09-02");
     
-    postulante1 = new Postulante("NicknameTest", "NombreTest", "ApellidoTest", "EmailTest",
+    postulante1 = new Postulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
         fechaDate1, "NacionalidadTest", null, "1234");
-    new Postulante("NicknameTest2", "NombreTest2", "ApellidoTest2", "EmailTest2", fechaDate2,
+    new Postulante("NicknameTest2", "NombreTest2",
+        "ApellidoTest2", "EmailTest2", fechaDate2,
         "NacionalidadTest2", null, "1234");
-    empresa1 = new Empresa("nicknameEmpresa1", "nombre1", "apellido1", "email1",
-        "descripcion1", "sitioWeb1", null, "1234");
-    new Empresa("nicknameEmpresa2", "nombre2", "apellido2", "email2", "descripcion2",
-        "sitioWeb2", null, "1234");
+    empresa1 = new Empresa("nicknameEmpresa1", "nombre1",
+        "apellido1", "email1", "descripcion1", "sitioWeb1",
+        null, "1234");
+    new Empresa("nicknameEmpresa2", "nombre2", "apellido2",
+        "email2", "descripcion2", "sitioWeb2", null,
+        "1234");
     
   }
   
@@ -102,81 +108,120 @@ public class ControladorUsuarioTesting {
   
   @Test
   public void listarUsuuariosListaVacia() {
-    List<String> lista = controladorUsuario.listaDeUsuarios();
+    List<String> lista = controladorUsuario
+        .listaDeUsuarios();
     Assert.assertTrue(lista.isEmpty());
   }
   
   @Test
-  public void obtenerUsuarioTest() throws UsuarioYaExisteException, UsuarioNoExisteException,
+  public void obtenerUsuarioTest()
+      throws UsuarioYaExisteException,
+      UsuarioNoExisteException,
       UsuarioEmailRepetidoException {
-    controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
-        "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
-    Usuario usuarioResultado = controladorUsuario.obtenerUsuario("NicknameTest");
-    Assert.assertEquals("NicknameTest", usuarioResultado.getNickname());
-    Assert.assertEquals("NombreTest", usuarioResultado.getNombre());
-    Assert.assertEquals("ApellidoTest", usuarioResultado.getApellido());
-    Assert.assertEquals("EmailTest".toLowerCase(), usuarioResultado.getEmail());
+    controladorUsuario.altaPostulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
+        fechaDate1, "NacionalidadTest", null, "1234");
+    Usuario usuarioResultado = controladorUsuario
+        .obtenerUsuario("NicknameTest");
+    Assert.assertEquals("NicknameTest",
+        usuarioResultado.getNickname());
+    Assert.assertEquals("NombreTest",
+        usuarioResultado.getNombre());
+    Assert.assertEquals("ApellidoTest",
+        usuarioResultado.getApellido());
+    Assert.assertEquals("EmailTest".toLowerCase(),
+        usuarioResultado.getEmail());
   }
   
   @Test
-  public void obtenerUsuarioManejadorVacio() throws UsuarioNoExisteException {
+  public void obtenerUsuarioManejadorVacio()
+      throws UsuarioNoExisteException {
     try {
       controladorUsuario.obtenerUsuario("Carlitos");
     } catch (UsuarioNoExisteException e) {
-      Assert.assertEquals("Usuario: Carlitos no existe", e.getMessage());
+      Assert.assertEquals("Usuario: Carlitos no existe",
+          e.getMessage());
     }
   }
   
   @Test
-  public void obtenerDtUsuario() throws UsuarioYaExisteException, UsuarioNoExisteException,
+  public void obtenerDtUsuario()
+      throws UsuarioYaExisteException,
+      UsuarioNoExisteException,
       UsuarioEmailRepetidoException, IOException {
-    controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
-        "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
-    Dtusuario dtResultado = controladorUsuario.obtenerDtusuario("NicknameTest");
-    Assert.assertEquals("NicknameTest", dtResultado.getNickname());
-    Assert.assertEquals("NombreTest", dtResultado.getNombre());
-    Assert.assertEquals("ApellidoTest", dtResultado.getApellido());
-    Assert.assertEquals("EmailTest".toLowerCase(), dtResultado.getEmail());
-    Assert.assertTrue(dtResultado.getOfertasColeccion().isEmpty());
+    controladorUsuario.altaPostulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
+        fechaDate1, "NacionalidadTest", null, "1234");
+    Dtusuario dtResultado = controladorUsuario
+        .obtenerDtusuario("NicknameTest");
+    Assert.assertEquals("NicknameTest",
+        dtResultado.getNickname());
+    Assert.assertEquals("NombreTest",
+        dtResultado.getNombre());
+    Assert.assertEquals("ApellidoTest",
+        dtResultado.getApellido());
+    Assert.assertEquals("EmailTest".toLowerCase(),
+        dtResultado.getEmail());
+    Assert.assertTrue(
+        dtResultado.getOfertasColeccion().isEmpty());
     ;
   }
   
   @Test
-  public void altaPostulanteTest() throws UsuarioYaExisteException, UsuarioNoExisteException,
+  public void altaPostulanteTest()
+      throws UsuarioYaExisteException,
+      UsuarioNoExisteException,
       UsuarioEmailRepetidoException {
     
-    controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
-        "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
-    Postulante postulanteResultado = controladorUsuario.obtenerPostulante("NicknameTest");
-    Assert.assertEquals(postulante1.getNickname(), postulanteResultado.getNickname());
-    Assert.assertEquals(postulante1.getNombre(), postulanteResultado.getNombre());
-    Assert.assertEquals(postulante1.getApellido(), postulanteResultado.getApellido());
-    Assert.assertEquals(postulante1.getEmail().toLowerCase(), postulanteResultado.getEmail());
-    Assert.assertEquals(postulante1.getFechaNacimiento().toString(),
-        postulanteResultado.getFechaNacimiento().toString());
-    Assert.assertEquals(postulante1.getNacionalidad(), postulanteResultado.getNacionalidad());
+    controladorUsuario.altaPostulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
+        fechaDate1, "NacionalidadTest", null, "1234");
+    Postulante postulanteResultado = controladorUsuario
+        .obtenerPostulante("NicknameTest");
+    Assert.assertEquals(postulante1.getNickname(),
+        postulanteResultado.getNickname());
+    Assert.assertEquals(postulante1.getNombre(),
+        postulanteResultado.getNombre());
+    Assert.assertEquals(postulante1.getApellido(),
+        postulanteResultado.getApellido());
+    Assert.assertEquals(
+        postulante1.getEmail().toLowerCase(),
+        postulanteResultado.getEmail());
+    Assert.assertEquals(
+        postulante1.getFechaNacimiento().toString(),
+        postulanteResultado.getFechaNacimiento()
+            .toString());
+    Assert.assertEquals(postulante1.getNacionalidad(),
+        postulanteResultado.getNacionalidad());
   }
   
   @Test
   public void listarUsuariosUsuarioUnicoTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
-    controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
-        "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException {
+    controladorUsuario.altaPostulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
+        fechaDate1, "NacionalidadTest", null, "1234");
     List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("NicknameTest");
-    List<String> listaResultado = controladorUsuario.listaDeUsuarios();
+    List<String> listaResultado = controladorUsuario
+        .listaDeUsuarios();
     Assert.assertEquals(listaEsperada, listaResultado);
     
   }
   
   @Test
   public void listarUsuariosTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
-    controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
-        "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
-    controladorUsuario.altaPostulante("NicknameTest2", "NombreTest2", "ApellidoTest2",
-        "EmailTest2", fechaDate2, "NacionalidadTest2", null, "1234");
-    List<String> listaResultado = controladorUsuario.listaDeUsuarios();
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException {
+    controladorUsuario.altaPostulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
+        fechaDate1, "NacionalidadTest", null, "1234");
+    controladorUsuario.altaPostulante("NicknameTest2",
+        "NombreTest2", "ApellidoTest2", "EmailTest2",
+        fechaDate2, "NacionalidadTest2", null, "1234");
+    List<String> listaResultado = controladorUsuario
+        .listaDeUsuarios();
     Collections.sort(listaResultado);
     List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("NicknameTest");
@@ -186,28 +231,43 @@ public class ControladorUsuarioTesting {
   }
   
   @Test
-  public void obtenerEmpresaTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioNoExisteException {
-    controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1",
-        "descripcion1", "sitioWeb1", null, "1234");
-    Empresa empresaResultado = controladorUsuario.obtenerEmpresa("nicknameEmpresa1");
-    Assert.assertEquals(empresa1.getNickname(), empresaResultado.getNickname());
-    Assert.assertEquals(empresa1.getNombre(), empresaResultado.getNombre());
-    Assert.assertEquals(empresa1.getApellido(), empresaResultado.getApellido());
-    Assert.assertEquals(empresa1.getEmail().toLowerCase(), empresaResultado.getEmail());
-    Assert.assertEquals(empresa1.getDescripcion(), empresaResultado.getDescripcion());
-    Assert.assertEquals(empresa1.getSitioWeb().toLowerCase(), empresaResultado.getSitioWeb());
+  public void obtenerEmpresaTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      UsuarioNoExisteException {
+    controladorUsuario.altaEmpresa("nicknameEmpresa1",
+        "nombre1", "apellido1", "email1", "descripcion1",
+        "sitioWeb1", null, "1234");
+    Empresa empresaResultado = controladorUsuario
+        .obtenerEmpresa("nicknameEmpresa1");
+    Assert.assertEquals(empresa1.getNickname(),
+        empresaResultado.getNickname());
+    Assert.assertEquals(empresa1.getNombre(),
+        empresaResultado.getNombre());
+    Assert.assertEquals(empresa1.getApellido(),
+        empresaResultado.getApellido());
+    Assert.assertEquals(empresa1.getEmail().toLowerCase(),
+        empresaResultado.getEmail());
+    Assert.assertEquals(empresa1.getDescripcion(),
+        empresaResultado.getDescripcion());
+    Assert.assertEquals(
+        empresa1.getSitioWeb().toLowerCase(),
+        empresaResultado.getSitioWeb());
     
   }
   
   @Test
   public void listarEmpresasTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
-    controladorUsuario.altaEmpresa("nicknameEmpresa1", "nombre1", "apellido1", "email1",
-        "descripcion1", "sitioWeb1", null, "1234");
-    controladorUsuario.altaEmpresa("nicknameEmpresa2", "nombre2", "apellido2", "email2",
-        "descripcion2", "sitioWeb2", null, "1234");
-    List<String> listaResultado = controladorUsuario.listarEmpresas();
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException {
+    controladorUsuario.altaEmpresa("nicknameEmpresa1",
+        "nombre1", "apellido1", "email1", "descripcion1",
+        "sitioWeb1", null, "1234");
+    controladorUsuario.altaEmpresa("nicknameEmpresa2",
+        "nombre2", "apellido2", "email2", "descripcion2",
+        "sitioWeb2", null, "1234");
+    List<String> listaResultado = controladorUsuario
+        .listarEmpresas();
     List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("nicknameEmpresa1");
     listaEsperada.add("nicknameEmpresa2");
@@ -219,12 +279,16 @@ public class ControladorUsuarioTesting {
   
   @Test
   public void listarPostulantesTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
-    controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
-        "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
-    controladorUsuario.altaPostulante("NicknameTest2", "NombreTest2", "ApellidoTest2",
-        "EmailTest2", fechaDate2, "NacionalidadTest2", null, "1234");
-    List<String> listaResultado = controladorUsuario.listarPostulantes();
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException {
+    controladorUsuario.altaPostulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
+        fechaDate1, "NacionalidadTest", null, "1234");
+    controladorUsuario.altaPostulante("NicknameTest2",
+        "NombreTest2", "ApellidoTest2", "EmailTest2",
+        fechaDate2, "NacionalidadTest2", null, "1234");
+    List<String> listaResultado = controladorUsuario
+        .listarPostulantes();
     Collections.sort(listaResultado);
     List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("NicknameTest");
@@ -234,24 +298,37 @@ public class ControladorUsuarioTesting {
   }
   
   @Test
-  public void editarDatosBasicosDeUsuarioTest() throws UsuarioYaExisteException,
-      UsuarioNoExisteException, UsuarioEmailRepetidoException, IOException {
-    controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
-        "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
+  public void editarDatosBasicosDeUsuarioTest()
+      throws UsuarioYaExisteException,
+      UsuarioNoExisteException,
+      UsuarioEmailRepetidoException, IOException {
+    controladorUsuario.altaPostulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
+        fechaDate1, "NacionalidadTest", null, "1234");
     Dtusuario dtUsuario = postulante1.obtenerDtusuario();
-    controladorUsuario.editarDatosBasicos(dtUsuario, "nombreNuevo", "apellidoNuevo");
-    Usuario resultado = controladorUsuario.obtenerUsuario("NicknameTest");
-    Assert.assertEquals("nombreNuevo", resultado.getNombre());
-    Assert.assertEquals("apellidoNuevo", resultado.getApellido());
+    controladorUsuario.editarDatosBasicos(dtUsuario,
+        "nombreNuevo", "apellidoNuevo");
+    Usuario resultado = controladorUsuario
+        .obtenerUsuario("NicknameTest");
+    Assert.assertEquals("nombreNuevo",
+        resultado.getNombre());
+    Assert.assertEquals("apellidoNuevo",
+        resultado.getApellido());
     
   }
   
   @Test
-  public void listarOfertasDeEmpresaTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, OfertaLaboralYaExisteException, UsuarioNoExisteException,
-      OfertaLaboralNoExisteException, TipoPublicacionNoExisteException,
-      TipoPublicacionYaExisteException, KeywordNoExisteException, KeywordYaExisteException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+  public void listarOfertasDeEmpresaTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      OfertaLaboralYaExisteException,
+      UsuarioNoExisteException,
+      OfertaLaboralNoExisteException,
+      TipoPublicacionNoExisteException,
+      TipoPublicacionYaExisteException,
+      KeywordNoExisteException, KeywordYaExisteException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones tecnológicas sostenibles."
             + " Nuestro enfoque se centra en desarrollar y comercializar productos y "
             + "servicios que aborden los desafíos ambientales más apremiantes de nuestro"
@@ -263,23 +340,30 @@ public class ControladorUsuarioTesting {
             + " armoniosa entre la tecnología la naturaleza, y trabajamos "
             + "incansablemente para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
-    controladorOferta.altaOfertaLaboral("nombre", "descripcion", "09:00", "18:00", 90000f,
-        "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech", keywords, null, null);
-    List<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
+    controladorOferta.altaOfertaLaboral("nombre",
+        "descripcion", "09:00", "18:00", 90000f,
+        "Montevideo", "Montevideo", fechaDate1, "Premium",
+        "EcoTech", keywords, null, null);
+    List<String> resultado = controladorUsuario
+        .obtenerOfertasEmpresa("EcoTech");
     List<String> esperado = new ArrayList<String>();
     esperado.add("nombre");
     Assert.assertEquals(esperado, resultado);
   }
   
   @Test
-  public void listarOfertasDeEmpresaVaciaTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioNoExisteException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+  public void listarOfertasDeEmpresaVaciaTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      UsuarioNoExisteException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra en"
             + " desarrollar y comercializar productos y servicios que"
@@ -292,18 +376,25 @@ public class ControladorUsuarioTesting {
             + "armoniosa entre la tecnología la naturaleza, y trabajamos "
             + "incansablemente para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
-    List<String> resultado = controladorUsuario.obtenerOfertasEmpresa("EcoTech");
+    List<String> resultado = controladorUsuario
+        .obtenerOfertasEmpresa("EcoTech");
     List<String> esperado = new ArrayList<String>();
     Assert.assertEquals(esperado, resultado);
   }
   
   @Test
-  public void registrarPostulacionTest() throws UsuarioNoExisteException,
-      OfertaLaboralNoExisteException, UsuarioYaExisteException, UsuarioEmailRepetidoException,
-      TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, KeywordYaExisteException,
+  public void registrarPostulacionTest()
+      throws UsuarioNoExisteException,
+      OfertaLaboralNoExisteException,
+      UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      TipoPublicacionYaExisteException,
+      OfertaLaboralYaExisteException,
+      TipoPublicacionNoExisteException,
+      KeywordNoExisteException, KeywordYaExisteException,
       UsuarioYaExistePostulacion {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones"
             + " tecnológicas sostenibles. Nuestro enfoque se centra"
             + " en desarrollar y comercializar productos y servicios"
@@ -320,22 +411,27 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    controladorOferta.altaOfertaLaboral(
+        "Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea"
             + " experiencias de usuario excepcionales.",
-        "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
+        "09:00", "18:00", 90000f, "Montevideo",
+        "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
-    controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
-        fechaDate2, "Uruguaya", null, "1234");
+    controladorUsuario.altaPostulante("maro", "María",
+        "Rodríguez", "marrod@gmail.com", fechaDate2,
+        "Uruguaya", null, "1234");
     controladorUsuario.registrarPostulacion(
         "Ingeniero en Sistemas, experiencia en desarrollo web y"
             + " aplicaciones móviles. Conocimientos en JavaScript y React.",
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend");
-    List<String> resultado = controladorUsuario.listaOfertasUsuario("maro");
+    List<String> resultado = controladorUsuario
+        .listaOfertasUsuario("maro");
     List<String> esperado = new ArrayList<String>();
     esperado.add("Desarrollador Frontend");
     Assert.assertEquals(esperado, resultado);
@@ -343,26 +439,40 @@ public class ControladorUsuarioTesting {
   }
   
   @Test
-  public void editarPostulanteTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioNoExisteException {
-    controladorUsuario.altaPostulante("NicknameTest", "NombreTest", "ApellidoTest",
-        "EmailTest", fechaDate1, "NacionalidadTest", null, "1234");
+  public void editarPostulanteTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      UsuarioNoExisteException {
+    controladorUsuario.altaPostulante("NicknameTest",
+        "NombreTest", "ApellidoTest", "EmailTest",
+        fechaDate1, "NacionalidadTest", null, "1234");
     LocalDate fechaNueva = LocalDate.parse("2023-09-24");
-    controladorUsuario.editarPostulante("NicknameTest", "nombreNuevo", "apellidoNuevo",
-        fechaNueva, "nacionalidadNueva", null, "contrasenia");
-    Postulante postulanteResultado = controladorUsuario.obtenerPostulante("NicknameTest");
-    Assert.assertEquals("NicknameTest", postulanteResultado.getNickname());
-    Assert.assertEquals("nombreNuevo", postulanteResultado.getNombre());
-    Assert.assertEquals("apellidoNuevo", postulanteResultado.getApellido());
-    Assert.assertEquals(fechaNueva, postulanteResultado.getFechaNacimiento());
-    Assert.assertEquals("nacionalidadNueva", postulanteResultado.getNacionalidad());
-    Assert.assertEquals("contrasenia", postulanteResultado.getContrasenia());
+    controladorUsuario.editarPostulante("NicknameTest",
+        "nombreNuevo", "apellidoNuevo", fechaNueva,
+        "nacionalidadNueva", null, "contrasenia");
+    Postulante postulanteResultado = controladorUsuario
+        .obtenerPostulante("NicknameTest");
+    Assert.assertEquals("NicknameTest",
+        postulanteResultado.getNickname());
+    Assert.assertEquals("nombreNuevo",
+        postulanteResultado.getNombre());
+    Assert.assertEquals("apellidoNuevo",
+        postulanteResultado.getApellido());
+    Assert.assertEquals(fechaNueva,
+        postulanteResultado.getFechaNacimiento());
+    Assert.assertEquals("nacionalidadNueva",
+        postulanteResultado.getNacionalidad());
+    Assert.assertEquals("contrasenia",
+        postulanteResultado.getContrasenia());
   }
   
   @Test
-  public void editarEmrpesaTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioNoExisteException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+  public void editarEmrpesaTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      UsuarioNoExisteException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra en "
             + "desarrollar y comercializar productos y servicios que "
@@ -376,25 +486,40 @@ public class ControladorUsuarioTesting {
             + " armoniosa entre la tecnología la naturaleza, y trabajamos"
             + " incansablemente para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
-    controladorUsuario.editarEmpresa("EcoTech", "nombreNuevo", "apellidoNuevo",
-        "sitioWebNuevo", "descripcionNueva", null, "contrasenia");
-    Empresa empresaResultado = controladorUsuario.obtenerEmpresa("EcoTech");
-    Assert.assertEquals("EcoTech", empresaResultado.getNickname());
-    Assert.assertEquals("nombreNuevo", empresaResultado.getNombre());
-    Assert.assertEquals("apellidoNuevo", empresaResultado.getApellido());
-    Assert.assertEquals("sitioWebNuevo".toLowerCase(), empresaResultado.getSitioWeb());
-    Assert.assertEquals("descripcionNueva", empresaResultado.getDescripcion());
-    Assert.assertEquals("contrasenia", empresaResultado.getContrasenia());
+    controladorUsuario.editarEmpresa("EcoTech",
+        "nombreNuevo", "apellidoNuevo", "sitioWebNuevo",
+        "descripcionNueva", null, "contrasenia");
+    Empresa empresaResultado = controladorUsuario
+        .obtenerEmpresa("EcoTech");
+    Assert.assertEquals("EcoTech",
+        empresaResultado.getNickname());
+    Assert.assertEquals("nombreNuevo",
+        empresaResultado.getNombre());
+    Assert.assertEquals("apellidoNuevo",
+        empresaResultado.getApellido());
+    Assert.assertEquals("sitioWebNuevo".toLowerCase(),
+        empresaResultado.getSitioWeb());
+    Assert.assertEquals("descripcionNueva",
+        empresaResultado.getDescripcion());
+    Assert.assertEquals("contrasenia",
+        empresaResultado.getContrasenia());
     
   }
   
   @Test
   public void obtenerDtPostulacionTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
-      TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
-      OfertaLaboralNoExisteException, UsuarioNoExistePostulacion, UsuarioYaExistePostulacion {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      KeywordYaExisteException,
+      TipoPublicacionYaExisteException,
+      OfertaLaboralYaExisteException,
+      TipoPublicacionNoExisteException,
+      KeywordNoExisteException, UsuarioNoExisteException,
+      OfertaLaboralNoExisteException,
+      UsuarioNoExistePostulacion,
+      UsuarioYaExistePostulacion {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra "
             + "en desarrollar y comercializar productos y servicios "
@@ -412,29 +537,36 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    controladorOferta.altaOfertaLaboral(
+        "Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
             + "experiencias de usuario excepcionales.",
-        "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
+        "09:00", "18:00", 90000f, "Montevideo",
+        "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
-    controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
-        fechaDate2, "Uruguaya", null, "1234");
+    controladorUsuario.altaPostulante("maro", "María",
+        "Rodríguez", "marrod@gmail.com", fechaDate2,
+        "Uruguaya", null, "1234");
     controladorUsuario.registrarPostulacion(
         "Ingeniero en Sistemas, experiencia en desarrollo web y "
             + "aplicaciones móviles. Conocimientos en JavaScript y React.",
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend");
-    Dtpostulacion postulacionResultado = controladorUsuario.obtenerDtpostulacion("maro",
-        "Desarrollador Frontend");
-    Assert.assertEquals("maro", postulacionResultado.getnicknamePostulante());
+    Dtpostulacion postulacionResultado = controladorUsuario
+        .obtenerDtpostulacion("maro",
+            "Desarrollador Frontend");
+    Assert.assertEquals("maro",
+        postulacionResultado.getnicknamePostulante());
     Assert.assertEquals(
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         postulacionResultado.getDescripMotivacion());
-    Assert.assertEquals(fechaDate1, postulacionResultado.getFechaPostulacion());
+    Assert.assertEquals(fechaDate1,
+        postulacionResultado.getFechaPostulacion());
     Assert.assertEquals(
         "Ingeniero en Sistemas, experiencia en desarrollo web y "
             + "aplicaciones móviles. Conocimientos en JavaScript y React.",
@@ -444,11 +576,16 @@ public class ControladorUsuarioTesting {
   
   @Test
   public void obtenerDtOfertasIngresadasTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
-      TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      KeywordYaExisteException,
+      TipoPublicacionYaExisteException,
+      OfertaLaboralYaExisteException,
+      TipoPublicacionNoExisteException,
+      KeywordNoExisteException, UsuarioNoExisteException,
       IOException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra "
             + "en desarrollar y comercializar productos y servicios "
@@ -466,37 +603,52 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    controladorOferta.altaOfertaLaboral(
+        "Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
             + "experiencias de usuario excepcionales.",
-        "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
+        "09:00", "18:00", 90000f, "Montevideo",
+        "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
     List<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasIngresadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
-    Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
-    Assert.assertEquals("Únete a nuestro equipo de desarrollo frontend y crea "
-        + "experiencias de usuario excepcionales.", oferta.getDescripcion());
+    Assert.assertEquals("Desarrollador Frontend",
+        oferta.getNombre());
+    Assert.assertEquals(
+        "Únete a nuestro equipo de desarrollo frontend y crea "
+            + "experiencias de usuario excepcionales.",
+        oferta.getDescripcion());
     Assert.assertEquals("09:00", oferta.getHorarioInicio());
     Assert.assertEquals("18:00", oferta.getHorarioFinal());
-    Assert.assertEquals(String.valueOf(90000f), String.valueOf(oferta.getRemuneracion()));
-    Assert.assertEquals("Montevideo", oferta.getDepartamento());
+    Assert.assertEquals(String.valueOf(90000f),
+        String.valueOf(oferta.getRemuneracion()));
+    Assert.assertEquals("Montevideo",
+        oferta.getDepartamento());
     Assert.assertEquals("Montevideo", oferta.getCiudad());
     Assert.assertEquals("EcoTech", oferta.getEmpresa());
-    Assert.assertEquals(keywords.get(0), oferta.getKeywords().get(0));
+    Assert.assertEquals(keywords.get(0),
+        oferta.getKeywords().get(0));
     Assert.assertEquals(null, oferta.getImagen());
     
   }
   
   @Test
-  public void obtenerDtOfertasConfirmadasTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, KeywordYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
-      TipoPublicacionYaExisteException, OfertaLaboralNoExisteException, IOException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+  public void obtenerDtOfertasConfirmadasTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      KeywordYaExisteException,
+      OfertaLaboralYaExisteException,
+      TipoPublicacionNoExisteException,
+      KeywordNoExisteException, UsuarioNoExisteException,
+      TipoPublicacionYaExisteException,
+      OfertaLaboralNoExisteException, IOException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra en "
             + "desarrollar y comercializar productos y servicios que "
@@ -514,37 +666,51 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    controladorOferta.altaOfertaLaboral(
+        "Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
             + "experiencias de usuario excepcionales.",
-        "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
+        "09:00", "18:00", 90000f, "Montevideo",
+        "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
-    controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend",
-        EstadoOferta.CONFIRMADA, fechaDate1);
+    controladorOferta.aceptarRechazarOfertaLaboral(
+        "Desarrollador Frontend", EstadoOferta.CONFIRMADA,
+        fechaDate1);
     List<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasConfirmadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
-    Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
-    Assert.assertEquals("Únete a nuestro equipo de desarrollo frontend y crea "
-        + "experiencias de usuario excepcionales.", oferta.getDescripcion());
+    Assert.assertEquals("Desarrollador Frontend",
+        oferta.getNombre());
+    Assert.assertEquals(
+        "Únete a nuestro equipo de desarrollo frontend y crea "
+            + "experiencias de usuario excepcionales.",
+        oferta.getDescripcion());
     Assert.assertEquals("09:00", oferta.getHorarioInicio());
     Assert.assertEquals("18:00", oferta.getHorarioFinal());
-    Assert.assertEquals(String.valueOf(90000f), String.valueOf(oferta.getRemuneracion()));
-    Assert.assertEquals("Montevideo", oferta.getDepartamento());
+    Assert.assertEquals(String.valueOf(90000f),
+        String.valueOf(oferta.getRemuneracion()));
+    Assert.assertEquals("Montevideo",
+        oferta.getDepartamento());
     Assert.assertEquals("Montevideo", oferta.getCiudad());
     
   }
   
   @Test
   public void obtenerDtOfertasRechazadasTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
-      TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      KeywordYaExisteException,
+      TipoPublicacionYaExisteException,
+      OfertaLaboralYaExisteException,
+      TipoPublicacionNoExisteException,
+      KeywordNoExisteException, UsuarioNoExisteException,
       OfertaLaboralNoExisteException, IOException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra en "
             + "desarrollar y comercializar productos y servicios que "
@@ -560,33 +726,45 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    controladorOferta.altaOfertaLaboral(
+        "Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea experiencias"
             + " de usuario excepcionales.",
-        "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
+        "09:00", "18:00", 90000f, "Montevideo",
+        "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
-    controladorOferta.aceptarRechazarOfertaLaboral("Desarrollador Frontend",
-        EstadoOferta.RECHAZADA, fechaDate1);
+    controladorOferta.aceptarRechazarOfertaLaboral(
+        "Desarrollador Frontend", EstadoOferta.RECHAZADA,
+        fechaDate1);
     List<DtOfertaLaboral> listaResultado = controladorUsuario
         .obtenerDtofertasRechazadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
-    Assert.assertEquals("Desarrollador Frontend", oferta.getNombre());
-    Assert.assertEquals("Únete a nuestro equipo de desarrollo frontend y crea experiencias "
-        + "de usuario excepcionales.", oferta.getDescripcion());
+    Assert.assertEquals("Desarrollador Frontend",
+        oferta.getNombre());
+    Assert.assertEquals(
+        "Únete a nuestro equipo de desarrollo frontend y crea experiencias "
+            + "de usuario excepcionales.",
+        oferta.getDescripcion());
     Assert.assertEquals("09:00", oferta.getHorarioInicio());
     Assert.assertEquals("18:00", oferta.getHorarioFinal());
-    Assert.assertEquals(String.valueOf(90000f), String.valueOf(oferta.getRemuneracion()));
-    Assert.assertEquals("Montevideo", oferta.getDepartamento());
+    Assert.assertEquals(String.valueOf(90000f),
+        String.valueOf(oferta.getRemuneracion()));
+    Assert.assertEquals("Montevideo",
+        oferta.getDepartamento());
     Assert.assertEquals("Montevideo", oferta.getCiudad());
   }
   
   @Test
-  public void confirmarContraseniaTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioNoExisteException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+  public void confirmarContraseniaTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      UsuarioNoExisteException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra en "
             + "desarrollar y comercializar productos y servicios que "
@@ -598,22 +776,30 @@ public class ControladorUsuarioTesting {
             + "comunidades adoptar prácticas más ecológicas sin "
             + "comprometer la eficiencia. Creemos en la convergencia "
             + "armoniosa entre la tecnología la naturaleza, y trabajamos "
-            + "incansablemente para impulsar un futuro más " + "limpio y sostenible.",
+            + "incansablemente para impulsar un futuro más "
+            + "limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     
-    Assert.assertTrue(controladorUsuario.confirmarContrasenia("EcoTech", "1234"));
-    Assert.assertTrue(
-        controladorUsuario.confirmarContrasenia("info@EcoTech.com".toLowerCase(), "1234"));
-    Assert.assertFalse(controladorUsuario.confirmarContrasenia("EcoTech", "pepe"));
+    Assert.assertTrue(controladorUsuario
+        .confirmarContrasenia("EcoTech", "1234"));
+    Assert
+        .assertTrue(controladorUsuario.confirmarContrasenia(
+            "info@EcoTech.com".toLowerCase(), "1234"));
+    Assert.assertFalse(controladorUsuario
+        .confirmarContrasenia("EcoTech", "pepe"));
     Assert.assertFalse(
-        controladorUsuario.confirmarContrasenia("info@EcoTech.com".toLowerCase(), "pepe"));
+        controladorUsuario.confirmarContrasenia(
+            "info@EcoTech.com".toLowerCase(), "pepe"));
     
   }
   
   @Test
-  public void obtenerDtUsuariosTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, UsuarioNoExisteException, IOException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+  public void obtenerDtUsuariosTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      UsuarioNoExisteException, IOException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra "
             + "en desarrollar y comercializar productos y servicios "
@@ -628,49 +814,77 @@ public class ControladorUsuarioTesting {
             + "la naturaleza, y trabajamos incansablemente para impulsar "
             + "un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
-    controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
-        fechaDate2, "Uruguaya", null, "1234");
-    List<Dtusuario> listaRes = controladorUsuario.obtenerDtusuarios();
-    Dtpostulante postulante = (Dtpostulante) controladorUsuario.obtenerDtusuario("maro");
-    Dtempresa empresa = (Dtempresa) controladorUsuario.obtenerDtusuario("EcoTech");
+    controladorUsuario.altaPostulante("maro", "María",
+        "Rodríguez", "marrod@gmail.com", fechaDate2,
+        "Uruguaya", null, "1234");
+    List<Dtusuario> listaRes = controladorUsuario
+        .obtenerDtusuarios();
+    Dtpostulante postulante = (Dtpostulante) controladorUsuario
+        .obtenerDtusuario("maro");
+    Dtempresa empresa = (Dtempresa) controladorUsuario
+        .obtenerDtusuario("EcoTech");
     for (Dtusuario usuario : listaRes) {
       if (usuario.getNickname() == empresa.getNickname()) {
         Dtempresa dtempresa = (Dtempresa) usuario;
-        Assert.assertEquals(dtempresa.getNickname(), empresa.getNickname());
-        Assert.assertEquals(dtempresa.getNombre(), empresa.getNombre());
-        Assert.assertEquals(dtempresa.getApellido(), empresa.getApellido());
-        Assert.assertEquals(dtempresa.getEmail(), empresa.getEmail());
-        Assert.assertEquals(dtempresa.getContrasenia(), empresa.getContrasenia());
-        Assert.assertEquals(dtempresa.getDescripcion(), empresa.getDescripcion());
-        Assert.assertEquals(dtempresa.getSitioWeb(), empresa.getSitioWeb());
-        Assert.assertEquals(dtempresa.getOfertasColeccion().size(),
+        Assert.assertEquals(dtempresa.getNickname(),
+            empresa.getNickname());
+        Assert.assertEquals(dtempresa.getNombre(),
+            empresa.getNombre());
+        Assert.assertEquals(dtempresa.getApellido(),
+            empresa.getApellido());
+        Assert.assertEquals(dtempresa.getEmail(),
+            empresa.getEmail());
+        Assert.assertEquals(dtempresa.getContrasenia(),
+            empresa.getContrasenia());
+        Assert.assertEquals(dtempresa.getDescripcion(),
+            empresa.getDescripcion());
+        Assert.assertEquals(dtempresa.getSitioWeb(),
+            empresa.getSitioWeb());
+        Assert.assertEquals(
+            dtempresa.getOfertasColeccion().size(),
             empresa.getOfertasColeccion().size());
-        Assert.assertEquals(dtempresa.getOfertasLaborales().size(),
+        Assert.assertEquals(
+            dtempresa.getOfertasLaborales().size(),
             empresa.getOfertasLaborales().size());
-        Assert.assertEquals(dtempresa.getImagen(), empresa.getImagen());
+        Assert.assertEquals(dtempresa.getImagen(),
+            empresa.getImagen());
         
-      } else if (usuario.getNickname() == postulante.getNickname()) {
+      } else if (usuario.getNickname() == postulante
+          .getNickname()) {
         Dtpostulante dtpostulante = (Dtpostulante) usuario;
-        Assert.assertEquals(dtpostulante.getNickname(), postulante.getNickname());
-        Assert.assertEquals(dtpostulante.getNombre(), postulante.getNombre());
-        Assert.assertEquals(dtpostulante.getApellido(), postulante.getApellido());
-        Assert.assertEquals(dtpostulante.getEmail(), postulante.getEmail());
-        Assert.assertEquals(dtpostulante.getContrasenia(), postulante.getContrasenia());
-        Assert.assertEquals(dtpostulante.getFechaNacimiento(),
+        Assert.assertEquals(dtpostulante.getNickname(),
+            postulante.getNickname());
+        Assert.assertEquals(dtpostulante.getNombre(),
+            postulante.getNombre());
+        Assert.assertEquals(dtpostulante.getApellido(),
+            postulante.getApellido());
+        Assert.assertEquals(dtpostulante.getEmail(),
+            postulante.getEmail());
+        Assert.assertEquals(dtpostulante.getContrasenia(),
+            postulante.getContrasenia());
+        Assert.assertEquals(
+            dtpostulante.getFechaNacimiento(),
             postulante.getFechaNacimiento());
-        Assert.assertEquals(dtpostulante.getNacionalidad(), postulante.getNacionalidad());
-        Assert.assertEquals(dtpostulante.getOfertasColeccion().size(),
+        Assert.assertEquals(dtpostulante.getNacionalidad(),
+            postulante.getNacionalidad());
+        Assert.assertEquals(
+            dtpostulante.getOfertasColeccion().size(),
             postulante.getOfertasColeccion().size());
       }
     }
   }
   
   @Test
-  public void comprarPaqueteTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, TipoPublicacionYaExisteException,
-      PaquetePublicacionYaExisteException, TipoPublicacionNoExisteException,
-      UsuarioNoExisteException, PaquetePublicacionNoExisteException, IOException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+  public void comprarPaqueteTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      TipoPublicacionYaExisteException,
+      PaquetePublicacionYaExisteException,
+      TipoPublicacionNoExisteException,
+      UsuarioNoExisteException,
+      PaquetePublicacionNoExisteException, IOException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra "
             + "en desarrollar y comercializar productos y servicios "
@@ -682,34 +896,47 @@ public class ControladorUsuarioTesting {
             + "comunidades adoptar prácticas más ecológicas sin "
             + "comprometer la eficiencia. Creemos en la convergencia "
             + "armoniosa entre la tecnología la naturaleza, y trabajamos "
-            + "incansablemente para impulsar un futuro " + "más limpio y sostenible.",
+            + "incansablemente para impulsar un futuro "
+            + "más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    DtcantidadTipoPublicacion dtCantidadTipo = new DtcantidadTipoPublicacion("Premium", 2);
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    DtcantidadTipoPublicacion dtCantidadTipo = new DtcantidadTipoPublicacion(
+        "Premium", 2);
     List<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
     listaCantidad.add(dtCantidadTipo);
-    controladorOferta.registrarPaquete("Paquete", "Descripcion", 10, 20f, null, fechaDate1,
+    controladorOferta.registrarPaquete("Paquete",
+        "Descripcion", 10, 20f, null, fechaDate1,
         listaCantidad);
-    controladorUsuario.comprarPaquete("EcoTech", "Paquete", fechaDate2);
+    controladorUsuario.comprarPaquete("EcoTech", "Paquete",
+        fechaDate2);
     List<DtpaquetePublicacion> listaRes = controladorUsuario
         .obtenerDtpaquetesDeEmpresa("EcoTech");
     DtpaquetePublicacion paquete = listaRes.get(0);
     Assert.assertEquals("Paquete", paquete.getNombre());
-    Assert.assertEquals("Descripcion", paquete.getDescripcion());
+    Assert.assertEquals("Descripcion",
+        paquete.getDescripcion());
     Assert.assertEquals(10, paquete.getPeriodoValidez());
-    Assert.assertEquals(String.valueOf(20f), String.valueOf(paquete.getDescuento()));
+    Assert.assertEquals(String.valueOf(20f),
+        String.valueOf(paquete.getDescuento()));
     Assert.assertEquals(fechaDate1, paquete.getFechaAlta());
     
   }
   
   @Test
   public void obtenerPostulacionesTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
-      TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
-      OfertaLaboralNoExisteException, UsuarioYaExistePostulacion {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      KeywordYaExisteException,
+      TipoPublicacionYaExisteException,
+      OfertaLaboralYaExisteException,
+      TipoPublicacionNoExisteException,
+      KeywordNoExisteException, UsuarioNoExisteException,
+      OfertaLaboralNoExisteException,
+      UsuarioYaExistePostulacion {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra "
             + "en desarrollar y comercializar productos y servicios "
@@ -727,15 +954,19 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    controladorOferta.altaOfertaLaboral(
+        "Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
             + "experiencias de usuario excepcionales.",
-        "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
+        "09:00", "18:00", 90000f, "Montevideo",
+        "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
-    controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
-        fechaDate2, "Uruguaya", null, "1234");
+    controladorUsuario.altaPostulante("maro", "María",
+        "Rodríguez", "marrod@gmail.com", fechaDate2,
+        "Uruguaya", null, "1234");
     controladorUsuario.registrarPostulacion(
         "Ingeniero en Sistemas, experiencia en desarrollo web y "
             + "aplicaciones móviles. Conocimientos en JavaScript y React.",
@@ -746,24 +977,33 @@ public class ControladorUsuarioTesting {
     List<Dtpostulacion> listaRes = controladorUsuario
         .obtenerDtpostulacionesDePostulante("maro");
     Dtpostulacion postulacion = listaRes.get(0);
-    Assert.assertEquals("maro", postulacion.getnicknamePostulante());
-    Assert.assertEquals(fechaDate1, postulacion.getFechaPostulacion());
+    Assert.assertEquals("maro",
+        postulacion.getnicknamePostulante());
+    Assert.assertEquals(fechaDate1,
+        postulacion.getFechaPostulacion());
     Assert.assertEquals(
         "Ingeniero en Sistemas, experiencia en desarrollo web y "
             + "aplicaciones móviles. Conocimientos en JavaScript y React.",
         postulacion.getCvReducido());
-    Assert.assertEquals("Me entusiasma la posibilidad de trabajar en proyectos "
-        + "desafiantes y seguir creciendo como profesional en " + "el campo de la tecnología.",
+    Assert.assertEquals(
+        "Me entusiasma la posibilidad de trabajar en proyectos "
+            + "desafiantes y seguir creciendo como profesional en "
+            + "el campo de la tecnología.",
         postulacion.getDescripMotivacion());
     
   }
   
   @Test
-  public void listarPaquetesNoCompradosTest() throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException, TipoPublicacionYaExisteException,
-      PaquetePublicacionYaExisteException, TipoPublicacionNoExisteException,
-      UsuarioNoExisteException, PaquetePublicacionNoExisteException, IOException {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+  public void listarPaquetesNoCompradosTest()
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      TipoPublicacionYaExisteException,
+      PaquetePublicacionYaExisteException,
+      TipoPublicacionNoExisteException,
+      UsuarioNoExisteException,
+      PaquetePublicacionNoExisteException, IOException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra en "
             + "desarrollar y comercializar productos y servicios que "
@@ -779,41 +1019,55 @@ public class ControladorUsuarioTesting {
             + "la naturaleza, y trabajamos incansablemente "
             + "para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    DtcantidadTipoPublicacion dtCantidadTipo = new DtcantidadTipoPublicacion("Premium", 2);
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    DtcantidadTipoPublicacion dtCantidadTipo = new DtcantidadTipoPublicacion(
+        "Premium", 2);
     List<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
     listaCantidad.add(dtCantidadTipo);
-    controladorOferta.registrarPaquete("Paquete", "Descripcion", 10, 20f, null, fechaDate1,
+    controladorOferta.registrarPaquete("Paquete",
+        "Descripcion", 10, 20f, null, fechaDate1,
         listaCantidad);
-    controladorUsuario.comprarPaquete("EcoTech", "Paquete", fechaDate2);
-    controladorOferta.registrarPaquete("Paquete2", "Descripcion", 10, 20f, null, fechaDate1,
+    controladorUsuario.comprarPaquete("EcoTech", "Paquete",
+        fechaDate2);
+    controladorOferta.registrarPaquete("Paquete2",
+        "Descripcion", 10, 20f, null, fechaDate1,
         listaCantidad);
-    controladorOferta.registrarPaquete("Paquete3", "Descripcion", 10, 20f, null, fechaDate1,
+    controladorOferta.registrarPaquete("Paquete3",
+        "Descripcion", 10, 20f, null, fechaDate1,
         listaCantidad);
     List<String> listaEsperada = new ArrayList<String>();
     listaEsperada.add("Paquete2");
     listaEsperada.add("Paquete3");
     Collections.sort(listaEsperada);
-    List<String> listaRes = controladorUsuario.listarPaquetesNoCompradosDeEmpresa("EcoTech");
+    List<String> listaRes = controladorUsuario
+        .listarPaquetesNoCompradosDeEmpresa("EcoTech");
     Collections.sort(listaRes);
     Assert.assertEquals(listaEsperada, listaRes);
     
     List<DtCompraPaquete> listaCompra = (ArrayList<DtCompraPaquete>) controladorUsuario
         .obtenerDtCompraPaqueteDeEmpresa("EcoTech");
     DtCompraPaquete dtcompra = listaCompra.get(0);
-    Assert.assertEquals(dtcompra.getPaquete().getNombre(), "Paquete");
-    Assert.assertEquals(dtcompra.getFechaCompra(), fechaDate2);
-    Assert.assertEquals(dtcompra.getPublicacionesRestantes().get(0).getCantidad(), 2);
-    LocalDate fechaVencimiento = LocalDate
-        .of(fechaDate2.getYear(), fechaDate2.getMonthValue(), fechaDate2.getDayOfMonth())
-        .plusDays(10);
-    Assert.assertEquals(dtcompra.getFechaVencimiento(), fechaVencimiento);
-    DtCantidadTipoPublicacionRestante dtCantidadRestante = dtcompra.getPublicacionesRestantes()
-        .get(0);
-    DttipoPublicacion dttipo = dtCantidadRestante.getTipoPublicacion();
-    Assert.assertEquals(String.valueOf(dttipo.getCosto()), String.valueOf(4000f));
-    Assert.assertEquals(dttipo.getDescripcion(), "Obtén máxima visibilidad");
+    Assert.assertEquals(dtcompra.getPaquete().getNombre(),
+        "Paquete");
+    Assert.assertEquals(dtcompra.getFechaCompra(),
+        fechaDate2);
+    Assert.assertEquals(dtcompra.getPublicacionesRestantes()
+        .get(0).getCantidad(), 2);
+    LocalDate fechaVencimiento = LocalDate.of(
+        fechaDate2.getYear(), fechaDate2.getMonthValue(),
+        fechaDate2.getDayOfMonth()).plusDays(10);
+    Assert.assertEquals(dtcompra.getFechaVencimiento(),
+        fechaVencimiento);
+    DtCantidadTipoPublicacionRestante dtCantidadRestante = dtcompra
+        .getPublicacionesRestantes().get(0);
+    DttipoPublicacion dttipo = dtCantidadRestante
+        .getTipoPublicacion();
+    Assert.assertEquals(String.valueOf(dttipo.getCosto()),
+        String.valueOf(4000f));
+    Assert.assertEquals(dttipo.getDescripcion(),
+        "Obtén máxima visibilidad");
     Assert.assertEquals(dttipo.getDuracionDia(), 30);
     Assert.assertEquals(dttipo.getExposicion(), "1");
     Assert.assertEquals(dttipo.getFechaAlta(), fechaDate2);
@@ -822,11 +1076,17 @@ public class ControladorUsuarioTesting {
   
   @Test
   public void postulacionesTest()
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException, KeywordYaExisteException,
-      TipoPublicacionYaExisteException, OfertaLaboralYaExisteException,
-      TipoPublicacionNoExisteException, KeywordNoExisteException, UsuarioNoExisteException,
-      OfertaLaboralNoExisteException, UsuarioYaExistePostulacion {
-    controladorUsuario.altaEmpresa("EcoTech", "Sophia", "Johnson", "info@EcoTech.com",
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException,
+      KeywordYaExisteException,
+      TipoPublicacionYaExisteException,
+      OfertaLaboralYaExisteException,
+      TipoPublicacionNoExisteException,
+      KeywordNoExisteException, UsuarioNoExisteException,
+      OfertaLaboralNoExisteException,
+      UsuarioYaExistePostulacion {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+        "Johnson", "info@EcoTech.com",
         "EcoTech Innovations es una empresa líder en soluciones "
             + "tecnológicas sostenibles. Nuestro enfoque se centra "
             + "en desarrollar y comercializar productos y servicios "
@@ -844,21 +1104,26 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaKeyword("keyword");
     List<String> keywords = new ArrayList<String>();
     keywords.add("keyword");
-    controladorOferta.altaTipoPublicacion("Premium", "Obtén máxima visibilidad", "1", 30,
-        4000f, fechaDate2);
-    controladorOferta.altaOfertaLaboral("Desarrollador Frontend",
+    controladorOferta.altaTipoPublicacion("Premium",
+        "Obtén máxima visibilidad", "1", 30, 4000f,
+        fechaDate2);
+    controladorOferta.altaOfertaLaboral(
+        "Desarrollador Frontend",
         "Únete a nuestro equipo de desarrollo frontend y crea "
             + "experiencias de usuario excepcionales.",
-        "09:00", "18:00", 90000f, "Montevideo", "Montevideo", fechaDate1, "Premium", "EcoTech",
+        "09:00", "18:00", 90000f, "Montevideo",
+        "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
-    controladorUsuario.altaPostulante("maro", "María", "Rodríguez", "marrod@gmail.com",
-        fechaDate2, "Uruguaya", null, "1234");
+    controladorUsuario.altaPostulante("maro", "María",
+        "Rodríguez", "marrod@gmail.com", fechaDate2,
+        "Uruguaya", null, "1234");
     Boolean noHayPostulacion = false;
     Boolean postulacionRepetida = false;
     try {
       
-      Dtpostulacion dtpostulacion = controladorUsuario.obtenerDtpostulacion("maro",
-          "Desarrollador Frontend");
+      Dtpostulacion dtpostulacion = controladorUsuario
+          .obtenerDtpostulacion("maro",
+              "Desarrollador Frontend");
     } catch (UsuarioNoExistePostulacion e) {
       noHayPostulacion = true;
     }

@@ -23,10 +23,12 @@ public class Postulante extends Usuario {
    * Constructor.
    */
   
-  public Postulante(String nickname, String nombre, String apellido,
-      String email, LocalDate fechaNacimiento,
-      String nacionalidad, BufferedImage imagen, String contrasenia) {
-    super(nickname, nombre, apellido, email, imagen, contrasenia);
+  public Postulante(String nickname, String nombre,
+      String apellido, String email,
+      LocalDate fechaNacimiento, String nacionalidad,
+      BufferedImage imagen, String contrasenia) {
+    super(nickname, nombre, apellido, email, imagen,
+        contrasenia);
     setFechaNacimiento(fechaNacimiento);
     setNacionalidad(nacionalidad);
     this.postulaciones = new ArrayList<Postulacion>();
@@ -36,7 +38,8 @@ public class Postulante extends Usuario {
     return fechaNacimiento;
   }
   
-  public void setFechaNacimiento(LocalDate fechaNacimiento) {
+  public void setFechaNacimiento(
+      LocalDate fechaNacimiento) {
     this.fechaNacimiento = fechaNacimiento;
   }
   
@@ -52,9 +55,16 @@ public class Postulante extends Usuario {
     return postulaciones;
   }
   
-  public Dtpostulante obtenerDtpostulante() throws IOException {
-    return new Dtpostulante(this.nickname, this.nombre, this.apellido, this.email, this.getImagen(),
-        this.getContrasenia(), this.obtenerDtofertas(), this.fechaNacimiento, this.nacionalidad);
+  /**
+   * Metodo obtenerDtpostulante.
+   */
+  
+  public Dtpostulante obtenerDtpostulante()
+      throws IOException {
+    return new Dtpostulante(this.nickname, this.nombre,
+        this.apellido, this.email, this.getImagen(),
+        this.getContrasenia(), this.obtenerDtofertas(),
+        this.fechaNacimiento, this.nacionalidad);
   }
   
   public void agregarPostulacion(Postulacion postulacion) {
@@ -65,7 +75,8 @@ public class Postulante extends Usuario {
   public List<String> listarNombreOfertasUsuario() {
     List<String> listaOfertas = new ArrayList<String>();
     for (Postulacion postulacion : postulaciones) {
-      listaOfertas.add(postulacion.getNombreOfertaLaboral());
+      listaOfertas
+          .add(postulacion.getNombreOfertaLaboral());
     }
     return listaOfertas;
   }
@@ -75,26 +86,32 @@ public class Postulante extends Usuario {
     
     return this.obtenerDtpostulante();
   }
+  
   /**
    * Obtener DTPostulacion.
    */
   
-  public Dtpostulacion obtenerDtpostulacion(String nombreOferta) {
+  public Dtpostulacion obtenerDtpostulacion(
+      String nombreOferta) {
     for (Postulacion postulacion : postulaciones) {
-      if (postulacion.getNombreOfertaLaboral().equals(nombreOferta)) {
+      if (postulacion.getNombreOfertaLaboral()
+          .equals(nombreOferta)) {
         return postulacion.obtenerDtpostulacion();
       }
     }
     return null;
   }
+  
   /**
    * Obtener DTOfertaLaboral.
    */
   
-  public List<DtOfertaLaboral> obtenerDtofertas() throws IOException {
+  public List<DtOfertaLaboral> obtenerDtofertas()
+      throws IOException {
     List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
     for (Postulacion postulacion : postulaciones) {
-      listaResultado.add(postulacion.getOfertaLaboral().obtenerDtOfertaLaboral());
+      listaResultado.add(postulacion.getOfertaLaboral()
+          .obtenerDtOfertaLaboral());
     }
     return listaResultado;
   }
@@ -106,18 +123,22 @@ public class Postulante extends Usuario {
   public List<Dtpostulacion> obtenerDtpostulaciones() {
     List<Dtpostulacion> listaResultado = new ArrayList<Dtpostulacion>();
     for (Postulacion postulacion : postulaciones) {
-      listaResultado.add(postulacion.obtenerDtpostulacion());
+      listaResultado
+          .add(postulacion.obtenerDtpostulacion());
     }
     return listaResultado;
   }
+  
   /**
-   * Metodo para saber si esta postulado un postulante .
+   * Metodo para saber si esta postulado un
+   * postulante .
    */
   
   public Boolean estaPostulado(String nombreOferta) {
     
     for (Postulacion postulacion : postulaciones) {
-      if (postulacion.getOfertaLaboral().getNombre().equals(nombreOferta)) {
+      if (postulacion.getOfertaLaboral().getNombre()
+          .equals(nombreOferta)) {
         return true;
       }
     }
