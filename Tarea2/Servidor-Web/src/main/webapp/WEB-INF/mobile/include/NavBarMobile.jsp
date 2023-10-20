@@ -29,32 +29,31 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					%> <img class="rounded-pill imgPerfil"
 					src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%
  }
+ %> <%
+ }
  %>
-					<%
-					}
-					%>
 				
 			</div>
 		</div>
 		<div class="row w-100 justify-content-between align-items-center">
 			<div class="col-5">
-				<form class="form-inline">
-					<div class="input-group">
-						<input class="form-control" type="search"
-							placeholder="Buscar oferta" aria-label="Search">
-						<button class="btn btn-outline-success" disabled>
-							<i class="bi bi-search text-white"></i>
-						</button>
-					</div>
-				</form>
+				<div class="container-fluid">
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarToggleExternalContent"
+						aria-controls="navbarToggleExternalContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
 			</div>
 
 			<div class="col-3">
 				<ul class="navbar-nav justify-content-end fs-3">
 					<%
-						if (usuario != null)
-						{
-						%>
+					if (usuario != null)
+					{
+					%>
 					<li class="nav-item">
 
 						<div class="dropdown selectUsuario">
@@ -80,13 +79,11 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
  String contextPath = request.getContextPath();
  %> <a class="nav-link text-white" href="<%=contextPath%>/login">Acceder</a>
 						<%
- }
- %>
+						}
+						%>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </nav>
-</body>
-</html>

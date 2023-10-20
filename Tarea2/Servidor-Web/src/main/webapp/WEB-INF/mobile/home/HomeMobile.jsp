@@ -16,6 +16,7 @@
 </head>
 <body class="mb-4">
     <jsp:include page="../../mobile/include/NavBarMobile.jsp" />
+    <jsp:include page="../../mobile/include/MenuMobile.jsp" />
     <main class="container pt-5">
         <div class="row">
 
