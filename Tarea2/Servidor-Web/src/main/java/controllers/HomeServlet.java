@@ -75,10 +75,29 @@ public class HomeServlet extends HttpServlet {
 
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		initSesion(request);
+		
+		HttpSession sesion = request.getSession();
+		String userAgent = request.getHeader("User-Agent");
 		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
 		ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) controladorOferta.obtenerDtOfertasConfirmadas();
 		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
-		request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
+		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
+		{
+			System.out.println(sesion.getAttribute("estadoSesion"));
+			if(sesion.getAttribute("estadoSesion") == EstadoSesion.LOGIN_CORRECTO)
+			{
+				request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
+			}
+			else 
+			{
+				request.getRequestDispatcher("/WEB-INF/mobile/home/LoginMobile.jsp").forward(request, response);
+			}
+		}
+		else 
+		{
+			request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
+		}
+		
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
