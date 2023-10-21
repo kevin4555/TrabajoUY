@@ -17,81 +17,7 @@ import javax.imageio.ImageIO;
 @XmlAccessorType
 public class DtOfertaLaboral implements Serializable {
   
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
-  }
-  
-  public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
-  }
-  
-  public void setCiudad(String ciudad) {
-    this.ciudad = ciudad;
-  }
-  
-  public void setDepartamento(String departamento) {
-    this.departamento = departamento;
-  }
-  
-  public void setHorarioInicio(String horarioInicio) {
-    this.horarioInicio = horarioInicio;
-  }
-  
-  public void setHorarioFinal(String horarioFinal) {
-    this.horarioFinal = horarioFinal;
-  }
-  
-  public void setRemuneracion(Float remuneracion) {
-    this.remuneracion = remuneracion;
-  }
-  
-  public void setFechaAlta(LocalDate fechaAlta) {
-    this.fechaAlta = fechaAlta;
-  }
-  
-  public void setFechaResolucion(
-      LocalDate fechaResolucion) {
-    this.fechaResolucion = fechaResolucion;
-  }
-  
-  public void setPostulaciones(
-      List<Dtpostulacion> postulaciones) {
-    this.postulaciones = postulaciones;
-  }
-  
-  public void setEstadoOferta(EstadoOferta estadoOferta) {
-    this.estadoOferta = estadoOferta;
-  }
-  
-  public void setImagen(BufferedImage imagen) {
-    this.imagen = imagen;
-  }
-  
-  public void setImagenBase64(String imagenBase64) {
-    this.imagenBase64 = imagenBase64;
-  }
-  
-  public void setPaqueteAsociado(
-      DtpaquetePublicacion paqueteAsociado) {
-    this.paqueteAsociado = paqueteAsociado;
-  }
-  
-  public void setKeywords(List<String> keywords) {
-    this.keywords = keywords;
-  }
-  
-  public void setEstaVencida(Boolean estaVencida) {
-    this.estaVencida = estaVencida;
-  }
-  
-  public void setNombreTipoPublicacion(
-      String nombreTipoPublicacion) {
-    this.nombreTipoPublicacion = nombreTipoPublicacion;
-  }
-  
-  public void setEmpresa(String empresa) {
-    this.empresa = empresa;
-  }
+
   
   private String nombre;
   private String descripcion;
@@ -111,6 +37,7 @@ public class DtOfertaLaboral implements Serializable {
   private Boolean estaVencida;
   private String nombreTipoPublicacion;
   private String empresa;
+  private int visitas;
   
   /**
    * Contructor.
@@ -124,7 +51,7 @@ public class DtOfertaLaboral implements Serializable {
       LocalDate fechaResolucion, EstadoOferta estado,
       BufferedImage imagen, DtpaquetePublicacion paquete,
       List<String> keywords, Boolean estaVencida,
-      String nombreTipoPublicacion, String empresa)
+      String nombreTipoPublicacion, String empresa, int visitas)
       throws IOException {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -150,7 +77,7 @@ public class DtOfertaLaboral implements Serializable {
     this.estaVencida = estaVencida;
     this.nombreTipoPublicacion = nombreTipoPublicacion;
     this.empresa = empresa;
-    
+    this.visitas = visitas;
   }
   
   public DtOfertaLaboral() {
@@ -226,6 +153,89 @@ public class DtOfertaLaboral implements Serializable {
   
   public String getImagenBase64() {
     return imagenBase64;
+  }
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+  
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
+  
+  public void setCiudad(String ciudad) {
+    this.ciudad = ciudad;
+  }
+  
+  public void setDepartamento(String departamento) {
+    this.departamento = departamento;
+  }
+  
+  public void setHorarioInicio(String horarioInicio) {
+    this.horarioInicio = horarioInicio;
+  }
+  
+  public void setHorarioFinal(String horarioFinal) {
+    this.horarioFinal = horarioFinal;
+  }
+  
+  public void setRemuneracion(Float remuneracion) {
+    this.remuneracion = remuneracion;
+  }
+  
+  public void setFechaAlta(LocalDate fechaAlta) {
+    this.fechaAlta = fechaAlta;
+  }
+  
+  public void setFechaResolucion(
+      LocalDate fechaResolucion) {
+    this.fechaResolucion = fechaResolucion;
+  }
+  
+  public void setPostulaciones(
+      List<Dtpostulacion> postulaciones) {
+    this.postulaciones = postulaciones;
+  }
+  
+  public void setEstadoOferta(EstadoOferta estadoOferta) {
+    this.estadoOferta = estadoOferta;
+  }
+  
+  public void setImagen(BufferedImage imagen) {
+    this.imagen = imagen;
+  }
+  
+  public void setImagenBase64(String imagenBase64) {
+    this.imagenBase64 = imagenBase64;
+  }
+  
+  public void setPaqueteAsociado(
+      DtpaquetePublicacion paqueteAsociado) {
+    this.paqueteAsociado = paqueteAsociado;
+  }
+  
+  public void setKeywords(List<String> keywords) {
+    this.keywords = keywords;
+  }
+  
+  public void setEstaVencida(Boolean estaVencida) {
+    this.estaVencida = estaVencida;
+  }
+  
+  public void setNombreTipoPublicacion(
+      String nombreTipoPublicacion) {
+    this.nombreTipoPublicacion = nombreTipoPublicacion;
+  }
+  
+  public void setEmpresa(String empresa) {
+    this.empresa = empresa;
+  }
+
+  public int getVisitas() {
+    return visitas;
+  }
+
+  public void setVisitas(int visitas) {
+    this.visitas = visitas;
   }
   
 }

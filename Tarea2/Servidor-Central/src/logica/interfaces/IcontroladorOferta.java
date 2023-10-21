@@ -152,5 +152,11 @@ public interface IcontroladorOferta {
   
   Boolean estaCompradoPaquete(String nombrePaquete)
       throws PaquetePublicacionNoExisteException;
+
+  Boolean existeOfertaLaboral(String nombreOferta);
+
+  void agregarVisitaOferta(String nombreOferta) throws OfertaLaboralNoExisteException;
+
+  List<DtOfertaLaboral> obtenerOfertasMasVisitadas() throws IOException;
   
 }

@@ -16,6 +16,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.Empresa;
@@ -403,4 +405,26 @@ public class ControladorOferta
         .getInstance().obtenerPaquete(nombrePaquete);
     return paquete.getEstaComprado();
   }
+  
+  @Override
+  public Boolean existeOfertaLaboral(String nombreOferta) {
+    return ManejadorOfertas.getInstance().existeOfertaLaboral(nombreOferta);
+  }
+  
+  @Override
+  public void agregarVisitaOferta(String nombreOferta) throws OfertaLaboralNoExisteException {
+    OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+    oferta.agregarVisita();
+  }
+  
+  @Override
+  public List<DtOfertaLaboral> obtenerOfertasMasVisitadas() throws IOException{
+    ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) ManejadorOfertas.getInstance().obtenerDtOfertas();
+    Comparator<DtOfertaLaboral> comparador =  (oferta1, oferta2) -> (int) (oferta1.getVisitas() - oferta2.getVisitas());
+    ofertas.sort(Collections.reverseOrder(comparador));
+    return ofertas;
+  }
+  
+  
+  
 }

@@ -2,9 +2,13 @@ package logica.interfaces;
 
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.PostulanteNoEsOfertaFavoritaException;
+import excepciones.PostulanteYaEsOfertaFavoritaException;
 import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoEstaSeguidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioNoExistePostulacion;
+import excepciones.UsuarioYaEstaSeguidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
@@ -128,4 +132,17 @@ public interface IcontroladorUsuario {
   List<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
+
+  void agregarSeguidor(String nicknameUsuario, String nicknameSeguidor)
+      throws UsuarioNoExisteException, UsuarioYaEstaSeguidoException;
+  
+  void dejarDeSeguir(String nicknameUsuario, String nicknameSeguidor)
+      throws UsuarioNoExisteException, UsuarioNoEstaSeguidoException;
+  
+  void agregarOfertaFavorita(String nicknamePostulante, String nombreOferta)
+      throws UsuarioNoExisteException, PostulanteYaEsOfertaFavoritaException,
+      OfertaLaboralNoExisteException;
+
+  void removerOfertaFavorita(String nicknamePsotulante, String nombreOferta)
+      throws UsuarioNoExisteException, PostulanteNoEsOfertaFavoritaException;
 }

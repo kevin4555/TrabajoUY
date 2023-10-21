@@ -31,6 +31,7 @@ public class OfertaLaboral {
   private List<Postulacion> postulaciones;
   private CompraPaquete compraPaquete;
   private Empresa empresa;
+  private int cantidadVisitas;
   
   /**
    * Constructor .
@@ -58,6 +59,7 @@ public class OfertaLaboral {
     this.compraPaquete = null;
     this.fechaResolucion = null;
     this.empresa = empresa;
+    this.cantidadVisitas = 0;
     
   }
   
@@ -166,15 +168,12 @@ public class OfertaLaboral {
       estaVencida = this.estaVencida();
     }
     
-    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(
-        this.getNombre(), this.getDescripcion(),
-        this.getCiudad(), this.getDepartamento(),
-        this.getHorarioInicial(), this.getHorarioFinal(),
-        this.getRemunaracion(), this.getFechaAlta(),
-        this.obtenerDtPostulacion(), fechaResolucion,
-        estado, imagen, paquete, keywords, estaVencida,
-        this.tipoPublicacion.getNombre(),
-        this.empresa.getNickname());
+    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(this.getNombre(),
+        this.getDescripcion(), this.getCiudad(), this.getDepartamento(),
+        this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
+        this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
+        paquete, keywords, estaVencida, this.tipoPublicacion.getNombre(),
+        this.empresa.getNickname(), this.cantidadVisitas);
     return dtOfertaLaboral;
   }
   
@@ -250,4 +249,13 @@ public class OfertaLaboral {
         .plusDays(tipoPublicacion.getDuracionDia());
     return fechaActual.isAfter(fechaVencimiento);
   }
+  
+  public void agregarVisita() {
+    this.cantidadVisitas++;
+  }
+
+  public int getCantidadVisitas() {
+    return cantidadVisitas;
+  }
+  
 }

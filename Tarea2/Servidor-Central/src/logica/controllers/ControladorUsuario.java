@@ -2,9 +2,13 @@ package logica.controllers;
 
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.PostulanteNoEsOfertaFavoritaException;
+import excepciones.PostulanteYaEsOfertaFavoritaException;
 import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoEstaSeguidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioNoExistePostulacion;
+import excepciones.UsuarioYaEstaSeguidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
@@ -332,5 +336,61 @@ public class ControladorUsuario
     Empresa empresa = ManejadorUsuario.getInstance()
         .obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtCompraPaquetes();
+  }
+  
+  @Override
+  public void agregarSeguidor(String nicknameUsuario, String nicknameSeguidor)
+      throws UsuarioNoExisteException, UsuarioYaEstaSeguidoException {
+    Usuario usuario = ManejadorUsuario.getInstance().obtenerUsuario(nicknameUsuario);
+    if (usuario.estaSeguidoPor(nicknameSeguidor)) {
+      throw new UsuarioYaEstaSeguidoException(
+          "El usuario " + nicknameUsuario + " ya está seguido por " + nicknameSeguidor);
+    }
+    Usuario seguidor = ManejadorUsuario.getInstance().obtenerUsuario(nicknameSeguidor);
+    usuario.agregarSeguidor(nicknameSeguidor);
+    seguidor.seguir(nicknameUsuario);
+  }
+  
+  @Override
+  public void dejarDeSeguir(String nicknameUsuario, String nicknameSeguidor)
+      throws UsuarioNoExisteException, UsuarioNoEstaSeguidoException {
+    Usuario usuario = ManejadorUsuario.getInstance().obtenerUsuario(nicknameUsuario);
+    if (!usuario.estaSeguidoPor(nicknameSeguidor)) {
+      throw new UsuarioNoEstaSeguidoException(
+          "El usuario " + nicknameUsuario + " no está seguido por " + nicknameSeguidor);
+    }
+    Usuario seguidor = ManejadorUsuario.getInstance().obtenerUsuario(nicknameSeguidor);
+    usuario.removerSeguidor(nicknameSeguidor);
+    seguidor.dejarDeSeguir(nicknameUsuario);
+  }
+  
+  @Override
+  public void agregarOfertaFavorita(String nicknamePostulante, String nombreOferta)
+      throws UsuarioNoExisteException, PostulanteYaEsOfertaFavoritaException,
+      OfertaLaboralNoExisteException {
+    Postulante postulante = ManejadorUsuario.getInstance()
+        .obtenerPostulante(nicknamePostulante);
+    if (postulante.esOfertaFavorita(nombreOferta)) {
+      throw new PostulanteYaEsOfertaFavoritaException("El postulante " + nicknamePostulante
+          + " ya tiene como favorita la oferta " + nombreOferta);
+    }
+    IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    if (!controladorOferta.existeOfertaLaboral(nombreOferta)) {
+      throw new OfertaLaboralNoExisteException(
+          "La oferta laboral " + nombreOferta + " no existe");
+    }
+    postulante.agregarOfertaFavorita(nombreOferta);
+  }
+  
+  @Override
+  public void removerOfertaFavorita(String nicknamePsotulante, String nombreOferta)
+      throws UsuarioNoExisteException, PostulanteNoEsOfertaFavoritaException {
+    Postulante postulante = ManejadorUsuario.getInstance()
+        .obtenerPostulante(nicknamePsotulante);
+    if (!postulante.esOfertaFavorita(nombreOferta)) {
+      throw new PostulanteNoEsOfertaFavoritaException(
+          "La oferta " + nombreOferta + " no es una oferta favorita de " + nicknamePsotulante);
+    }
+    postulante.removerOfertaFavorita(nombreOferta);
   }
 }
