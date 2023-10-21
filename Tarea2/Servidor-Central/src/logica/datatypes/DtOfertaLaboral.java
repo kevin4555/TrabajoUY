@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -14,7 +15,7 @@ import javax.imageio.ImageIO;
  * Clase DTOfertaLaboral.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtOfertaLaboral implements Serializable {
   
   public void setNombre(String nombre) {

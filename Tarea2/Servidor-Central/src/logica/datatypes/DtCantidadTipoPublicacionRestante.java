@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 
@@ -7,7 +8,7 @@ import java.io.Serializable;
  * Clase DtCantidadTipoPublicacionRestante.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtCantidadTipoPublicacionRestante
     implements Serializable {
   

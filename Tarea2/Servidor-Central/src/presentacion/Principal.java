@@ -1,5 +1,6 @@
 package presentacion;
 
+
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -27,6 +28,7 @@ import logica.controllers.Fabrica;
 import logica.controllers.Loader;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
+import logica.webServices.WSControladorOferta;
 
 /**
  * Clase Principal .
@@ -59,6 +61,9 @@ public class Principal extends JFrame {
         try {
           Principal frame = new Principal();
           frame.ventanaPrincipal.setVisible(true);
+          //Para publicar el servidor (Cristhian)
+          WSControladorOferta p = new WSControladorOferta();
+          p.publicar();
         } catch (Exception e) {
           e.printStackTrace();
         }

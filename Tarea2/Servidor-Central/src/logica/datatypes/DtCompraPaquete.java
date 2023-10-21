@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,7 +10,7 @@ import java.util.List;
  * Clase DtCompraPaquete.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtCompraPaquete implements Serializable {
   
   public void setFechaCompra(LocalDate fechaCompra) {

@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -13,7 +14,7 @@ import javax.imageio.ImageIO;
  * Clase Dtusuario.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Dtusuario implements Serializable {
   private String nickname;
   private String nombre;

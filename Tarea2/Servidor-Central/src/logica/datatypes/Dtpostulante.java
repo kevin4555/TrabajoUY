@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.util.List;
  * Clase DTPostulante.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Dtpostulante extends Dtusuario
     implements Serializable {
   private LocalDate fechaNacimiento;

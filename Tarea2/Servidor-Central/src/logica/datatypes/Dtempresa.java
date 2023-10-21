@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.util.List;
  * Clase DTEmpresa.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Dtempresa extends Dtusuario
     implements Serializable {
   

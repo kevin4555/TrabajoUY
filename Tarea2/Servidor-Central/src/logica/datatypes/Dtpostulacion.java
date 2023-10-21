@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -8,7 +9,7 @@ import java.time.LocalDate;
  * Clase Dtpostulacion.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Dtpostulacion implements Serializable {
   
   private String nicknamePostulante;
