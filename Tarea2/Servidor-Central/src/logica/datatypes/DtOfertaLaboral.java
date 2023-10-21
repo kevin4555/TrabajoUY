@@ -38,6 +38,7 @@ public class DtOfertaLaboral implements Serializable {
   private String nombreTipoPublicacion;
   private String empresa;
   private int visitas;
+  private String exposicion;
   
   /**
    * Contructor.
@@ -51,7 +52,7 @@ public class DtOfertaLaboral implements Serializable {
       LocalDate fechaResolucion, EstadoOferta estado,
       BufferedImage imagen, DtpaquetePublicacion paquete,
       List<String> keywords, Boolean estaVencida,
-      String nombreTipoPublicacion, String empresa, int visitas)
+      String nombreTipoPublicacion, String empresa, int visitas, String exposicion)
       throws IOException {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -78,6 +79,7 @@ public class DtOfertaLaboral implements Serializable {
     this.nombreTipoPublicacion = nombreTipoPublicacion;
     this.empresa = empresa;
     this.visitas = visitas;
+    this.exposicion = exposicion;
   }
   
   public DtOfertaLaboral() {
@@ -236,6 +238,14 @@ public class DtOfertaLaboral implements Serializable {
 
   public void setVisitas(int visitas) {
     this.visitas = visitas;
+  }
+
+  public String getExposicion() {
+    return exposicion;
+  }
+
+  public void setExposicion(String exposicion) {
+    this.exposicion = exposicion;
   }
   
 }

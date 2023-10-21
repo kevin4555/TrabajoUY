@@ -422,9 +422,23 @@ public class ControladorOferta
     ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) ManejadorOfertas.getInstance().obtenerDtOfertas();
     Comparator<DtOfertaLaboral> comparador =  (oferta1, oferta2) -> (int) (oferta1.getVisitas() - oferta2.getVisitas());
     ofertas.sort(Collections.reverseOrder(comparador));
+    //ofertas.sort(comparador.reversed()); puede ser otra opcion hay que probar cual anda
     return ofertas;
   }
   
-  
+  @Override
+  public List<DtOfertaLaboral> buscarOfertas(String parametro) throws IOException{
+    List<DtOfertaLaboral> resultado = new ArrayList<DtOfertaLaboral>();
+    ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) ManejadorOfertas.getInstance().obtenerDtOfertas();
+    for(DtOfertaLaboral oferta : ofertas) {
+      if(oferta.getNombre().contains(parametro) || oferta.getDescripcion().contains(parametro)) {
+        resultado.add(oferta);
+      }
+    }
+    Comparator<DtOfertaLaboral> comparadorExposicion = (oferta1, oferta2) -> oferta1.getExposicion().compareTo(oferta2.getExposicion());
+    Comparator<DtOfertaLaboral> comparadorFechan = (oferta1, oferta2) -> oferta1.getFechaAlta().compareTo(oferta2.getFechaAlta());
+    Collections.sort(resultado, comparadorExposicion.thenComparing(comparadorFechan.reversed()) );
+    return resultado;
+  }
   
 }

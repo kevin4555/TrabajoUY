@@ -158,5 +158,7 @@ public interface IcontroladorOferta {
   void agregarVisitaOferta(String nombreOferta) throws OfertaLaboralNoExisteException;
 
   List<DtOfertaLaboral> obtenerOfertasMasVisitadas() throws IOException;
+
+  List<DtOfertaLaboral> buscarOfertas(String parametro) throws IOException;
   
 }

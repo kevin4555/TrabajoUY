@@ -173,7 +173,7 @@ public class OfertaLaboral {
         this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
         this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
         paquete, keywords, estaVencida, this.tipoPublicacion.getNombre(),
-        this.empresa.getNickname(), this.cantidadVisitas);
+        this.empresa.getNickname(), this.cantidadVisitas, tipoPublicacion.getExposicion());
     return dtOfertaLaboral;
   }
   
