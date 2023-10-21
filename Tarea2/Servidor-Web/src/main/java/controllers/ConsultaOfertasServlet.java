@@ -19,72 +19,123 @@ import logica.interfaces.IcontroladorUsuario;
  * Servlet implementation class OfertasServlet
  */
 @WebServlet("/consultaOfertas")
-public class ConsultaOfertasServlet extends HttpServlet {
+public class ConsultaOfertasServlet extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ConsultaOfertasServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    
-    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-    	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	
-    	
-    	String nicknameEmpresa = request.getParameter("nicknameEmpresa");
-    	String keyword = request.getParameter("keyword");
-    	
-    	if(nicknameEmpresa == null && keyword == null ) {
-    	  ArrayList<String> listaNickEmpresas = (ArrayList<String>) controladorUsuario.listarEmpresas();
-    	  ArrayList<Dtusuario> listaEmpresas = new ArrayList<Dtusuario>();
-       for (String nickEmpresa : listaNickEmpresas) {
-         try {
-           Dtusuario empresa = controladorUsuario.obtenerDtusuario(nickEmpresa);
-           listaEmpresas.add(empresa);
-         } catch (UsuarioNoExisteException e) {
-           request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
-           e.printStackTrace();
-         }
-    	  }
-    	  request.setAttribute("listaEmpresas", listaEmpresas);
-    	  request.getRequestDispatcher("/WEB-INF/consultas/listarEmpresas.jsp").forward(request, response);
-    	  return;
-    	}
-    	if( nicknameEmpresa != null) {
-    		try {
-				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ConsultaOfertasServlet()
+	{
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+
+		String nicknameEmpresa = request.getParameter("nicknameEmpresa");
+		String keyword = request.getParameter("keyword");
+		String userAgent = request.getHeader("User-Agent");
+
+		if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
+		{
+			if (nicknameEmpresa == null && keyword == null)
+			{
+				ArrayList<String> listaNickEmpresas = (ArrayList<String>) controladorUsuario.listarEmpresas();
+				ArrayList<Dtusuario> listaEmpresas = new ArrayList<Dtusuario>();
+
+				for (String nickEmpresa : listaNickEmpresas)
+				{
+					try
+					{
+						Dtusuario empresa = controladorUsuario.obtenerDtusuario(nickEmpresa);
+						listaEmpresas.add(empresa);
+					}
+					catch (UsuarioNoExisteException e)
+					{
+						request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+						e.printStackTrace();
+					}
+				}
+
+				request.setAttribute("listaEmpresas", listaEmpresas);
+				String forwardPath = "/WEB-INF/mobile/consultas/listarEmpresasMobile.jsp";
+				request.getRequestDispatcher(forwardPath).forward(request, response);
+				return;
+			}
+		}
+		else
+		{
+			if (nicknameEmpresa == null && keyword == null)
+			{
+				ArrayList<String> listaNickEmpresas = (ArrayList<String>) controladorUsuario.listarEmpresas();
+				ArrayList<Dtusuario> listaEmpresas = new ArrayList<Dtusuario>();
+
+				for (String nickEmpresa : listaNickEmpresas)
+				{
+					try
+					{
+						Dtusuario empresa = controladorUsuario.obtenerDtusuario(nickEmpresa);
+						listaEmpresas.add(empresa);
+					}
+					catch (UsuarioNoExisteException e)
+					{
+						request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+						e.printStackTrace();
+					}
+				}
+
+				request.setAttribute("listaEmpresas", listaEmpresas);
+				String forwardPath = "/WEB-INF/consultas/listarEmpresas.jsp";
+				request.getRequestDispatcher(forwardPath).forward(request, response);
+				return;
+			}
+		}
+
+		if (nicknameEmpresa != null)
+		{
+			try
+			{
+				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario
+						.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
 				request.setAttribute("listaOfertas", ofertas);
-			} catch (UsuarioNoExisteException e) {
-			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+			}
+			catch (UsuarioNoExisteException e)
+			{
+				request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 			}
-    	}
-    	else if(keyword != null) {
-    		ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorOfertas.obtenerDtofertasPorKeyword(keyword);
-    		request.setAttribute("listaOfertas", ofertas);
-    	}
-    	request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
-    }
-    
+		}
+		else if (keyword != null)
+		{
+			ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorOfertas
+					.obtenerDtofertasPorKeyword(keyword);
+			request.setAttribute("listaOfertas", ofertas);
+		}
+		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
+	}
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		procesarRequest(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  procesarRequest(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		procesarRequest(request, response);
 	}
 
 }
-
-
