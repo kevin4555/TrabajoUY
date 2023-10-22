@@ -52,7 +52,8 @@
           />
         </div>
       </div>
-      <div class="col-md-6 mt-3">
+      <div class="row mt-3">
+      <div class="col">
         <label for="inputNickname" class="form-label"
           ><strong>*Nickname</strong></label
         >
@@ -65,6 +66,11 @@
           required
         />
       </div>
+      <div class="col alert alert-sm" id="bloqueAviso">
+        	<span id="chequeoNickname"></span>
+        </div>
+      </div>
+        
       <div class="col-md-6 mt-3">
         <label for="inputEmail4" class="form-label"
           ><strong>*Email</strong></label
