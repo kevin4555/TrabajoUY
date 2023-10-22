@@ -98,7 +98,7 @@ public class ControladorUsuario
   @Override
   public void registrarPostulacion(String cvReducido,
       String motivacion, LocalDate fechaPostulacion,
-      String nickname, String nomOferta)
+      String nickname, String nomOferta, String linkVideo)
       throws UsuarioNoExisteException,
       OfertaLaboralNoExisteException,
       UsuarioYaExistePostulacion {
@@ -117,7 +117,7 @@ public class ControladorUsuario
     OfertaLaboral oferta = controladorOferta
         .obtenerOfertaLaboral(nomOferta);
     Postulacion postulacion = new Postulacion(motivacion,
-        fechaPostulacion, cvReducido, postulante, oferta);
+        fechaPostulacion, cvReducido, postulante, oferta, linkVideo);
     postulante.agregarPostulacion(postulacion);
     oferta.agregarPostulacion(postulacion);
     

@@ -47,7 +47,7 @@ public interface IcontroladorUsuario {
   
   public void registrarPostulacion(String cvReducido,
       String motivacion, LocalDate fechaPostulacion,
-      String nickname, String nomOferta)
+      String nickname, String nomOferta, String linkVideo)
       throws UsuarioNoExisteException,
       OfertaLaboralNoExisteException,
       UsuarioYaExistePostulacion;

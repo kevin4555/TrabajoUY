@@ -13,20 +13,21 @@ public class Postulacion {
   private String descrpMotivacion;
   private LocalDate fechaPostulacion;
   private String cvReducido;
+  private String linkVideo;
   
   /**
    * Constructor .
    */
   
-  public Postulacion(String descrpMotivacion,
-      LocalDate fechaPostulacion, String cvReducido,
-      Postulante postulante, OfertaLaboral ofertaLaboral) {
+  public Postulacion(String descrpMotivacion, LocalDate fechaPostulacion, String cvReducido,
+      Postulante postulante, OfertaLaboral ofertaLaboral, String linkVideo) {
     super();
     setDescrpMotivacion(descrpMotivacion);
     setFechaPostulacion(fechaPostulacion);
     setCvReducido(cvReducido);
     this.postulante = postulante;
     this.ofertaLaboral = ofertaLaboral;
+    this.linkVideo = linkVideo;
   }
   
   public String getDescrpMotivacion() {
@@ -71,7 +72,7 @@ public class Postulacion {
         this.postulante.getNickname(),
         this.getDescrpMotivacion(),
         this.getFechaPostulacion(), this.getCvReducido(),
-        this.ofertaLaboral.getNombre());
+        this.ofertaLaboral.getNombre(), this.linkVideo);
     return dtPostulacion;
   }
   
