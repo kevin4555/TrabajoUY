@@ -11,6 +11,7 @@ import java.util.Map;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
+import logica.datatypes.Dtempresa;
 import logica.datatypes.Dtusuario;
 
 /**
@@ -198,6 +199,14 @@ public class ManejadorUsuario {
         Empresa empresa = (Empresa) usuario;
         listaResultado.add(empresa.obtenerDtempresa());
       }
+    }
+    return listaResultado;
+  }
+  
+  public List<Dtempresa> obtenerDtEmpresas() throws IOException {
+    List<Dtempresa> listaResultado = new ArrayList<Dtempresa>();
+    for (Empresa empresa : colEmpresas.values()) {
+      listaResultado.add(empresa.obtenerDtempresa());
     }
     return listaResultado;
   }

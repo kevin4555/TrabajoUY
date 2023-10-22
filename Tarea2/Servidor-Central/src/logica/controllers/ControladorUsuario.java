@@ -14,6 +14,7 @@ import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
@@ -24,6 +25,7 @@ import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtusuario;
@@ -401,5 +403,18 @@ public class ControladorUsuario
           "La oferta " + nombreOferta + " no es una oferta favorita de " + nicknamePsotulante);
     }
     postulante.removerOfertaFavorita(nombreOferta);
+  }
+  
+  @Override
+  public List<Dtempresa> buscarEmpresas(String parametro) throws IOException{
+    List<Dtempresa> listaResultado = new ArrayList<Dtempresa>();
+    List<Dtempresa> dtempresas = ManejadorUsuario.getInstance().obtenerDtEmpresas();
+    for(Dtempresa empresa : dtempresas) {
+      if(empresa.getNombre().contains(parametro) || empresa.getDescripcion().contains(parametro)) {
+        listaResultado.add(empresa);
+      }
+    }
+    //agregar orden cuando quede aclarado
+    return listaResultado;
   }
 }

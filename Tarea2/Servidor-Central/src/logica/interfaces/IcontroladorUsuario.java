@@ -20,6 +20,7 @@ import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtusuario;
@@ -148,4 +149,6 @@ public interface IcontroladorUsuario {
 
   List<DtOfertaLaboral> obtenerDtofertasFinalizadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
+
+  List<Dtempresa> buscarEmpresas(String parametro) throws IOException;
 }
