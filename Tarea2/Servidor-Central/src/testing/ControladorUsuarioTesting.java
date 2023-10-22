@@ -429,7 +429,7 @@ public class ControladorUsuarioTesting {
             + " aplicaciones móviles. Conocimientos en JavaScript y React.",
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
-        fechaDate1, "maro", "Desarrollador Frontend");
+        fechaDate1, "maro", "Desarrollador Frontend", null);
     List<String> resultado = controladorUsuario
         .listaOfertasUsuario("maro");
     List<String> esperado = new ArrayList<String>();
@@ -555,7 +555,7 @@ public class ControladorUsuarioTesting {
             + "aplicaciones móviles. Conocimientos en JavaScript y React.",
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
-        fechaDate1, "maro", "Desarrollador Frontend");
+        fechaDate1, "maro", "Desarrollador Frontend", null);
     Dtpostulacion postulacionResultado = controladorUsuario
         .obtenerDtpostulacion("maro",
             "Desarrollador Frontend");
@@ -973,7 +973,7 @@ public class ControladorUsuarioTesting {
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en "
             + "el campo de la tecnología.",
-        fechaDate1, "maro", "Desarrollador Frontend");
+        fechaDate1, "maro", "Desarrollador Frontend", null);
     List<Dtpostulacion> listaRes = controladorUsuario
         .obtenerDtpostulacionesDePostulante("maro");
     Dtpostulacion postulacion = listaRes.get(0);
@@ -1133,7 +1133,7 @@ public class ControladorUsuarioTesting {
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en "
             + "el campo de la tecnología.",
-        fechaDate1, "maro", "Desarrollador Frontend");
+        fechaDate1, "maro", "Desarrollador Frontend", null);
     
     try {
       controladorUsuario.registrarPostulacion(
@@ -1142,7 +1142,7 @@ public class ControladorUsuarioTesting {
           "Me entusiasma la posibilidad de trabajar en proyectos "
               + "desafiantes y seguir creciendo como profesional en "
               + "el campo de la tecnología.",
-          fechaDate1, "maro", "Desarrollador Frontend");
+          fechaDate1, "maro", "Desarrollador Frontend", null);
     } catch (UsuarioYaExistePostulacion e) {
       postulacionRepetida = true;
     }

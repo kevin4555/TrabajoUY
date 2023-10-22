@@ -52,7 +52,7 @@ public class PostulacionServlet extends HttpServlet {
           .obtenerControladorUsuario();
       try {
         controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(),
-            usuario.getNickname(), nombreOferta);
+            usuario.getNickname(), nombreOferta, null);
         String url = request.getContextPath() + "/perfil?nicknameUsuario="
             + usuario.getNickname();
         response.sendRedirect(url);

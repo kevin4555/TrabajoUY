@@ -578,7 +578,7 @@ public class PostulacionOfertaLaboral
             .toLocalDate();
         controlUsuarioLab.registrarPostulacion(
             this.cvReducido, this.motivacion, fechaPos,
-            nombrePostulante, this.nomOfertaLaboral);
+            nombrePostulante, this.nomOfertaLaboral, null);
         JOptionPane.showMessageDialog(this,
             "La postulacion fue hecha con exito",
             "Registrar Usuario",

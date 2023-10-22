@@ -492,7 +492,7 @@ public class ControladorOfertaTest {
     
     controladorUsuario.registrarPostulacion(
         "cvReducidoString", "MotivacionTesting", fechaDate,
-        "nicknameTesting", "test");
+        "nicknameTesting", "test", null);
     
     List<String> resultado = controladorUsuario
         .listaOfertasUsuario("nicknameTesting");
@@ -813,7 +813,7 @@ public class ControladorOfertaTest {
         fechaDate, "Montevideo", null, "nuevaContraseña");
     
     controladorUsuario.registrarPostulacion("cvReducido",
-        "motivacion", fechaDate, "nicknameTesting", "test");
+        "motivacion", fechaDate, "nicknameTesting", "test", null);
     
     Assert.assertEquals(controladorOferta
         .estaPostulado("nicknameTesting", "test"), true);
@@ -1086,7 +1086,7 @@ public class ControladorOfertaTest {
             + " aplicaciones móviles. Conocimientos en JavaScript y React.",
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
-        fechaDate, "maro", "test");
+        fechaDate, "maro", "test", null);
     
     List<Dtpostulacion> dtPostulacion = controladorOferta
         .obtenerDtPostulacionesDeOferta("test");

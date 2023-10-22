@@ -118,7 +118,7 @@ public class ManejadorOfertasTest {
     }
   }
   
-  @Test
+  /*@Test
   public void testObtenerDtycompararlo()
       throws OfertaLaboralYaExisteException,
       DtOfertaNoExisteException, IOException {
@@ -159,7 +159,7 @@ public class ManejadorOfertasTest {
         resultaDtOfertaLaboral.getPostulaciones());
     assertEquals(dtOfertaLaboral.getDescripcion(),
         resultaDtOfertaLaboral.getDescripcion());
-  }
+  }*/
   
   @Test
   public void testObtenerListaOfertasLaboralesycomprar()

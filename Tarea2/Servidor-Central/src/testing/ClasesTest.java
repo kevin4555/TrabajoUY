@@ -224,7 +224,7 @@ public class ClasesTest {
     
     Postulacion postulacion = new Postulacion(
         "DescripcionPostulacion", fechaDate,
-        "cvReducidoPostulacion", postulante, ofertaLaboral);
+        "cvReducidoPostulacion", postulante, ofertaLaboral, null);
     
     Dtpostulacion dtpostulacion = postulacion
         .obtenerDtpostulacion();
