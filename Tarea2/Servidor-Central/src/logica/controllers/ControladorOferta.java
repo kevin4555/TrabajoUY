@@ -3,6 +3,7 @@ package logica.controllers;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoSePuedeFinalizar;
 import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
@@ -447,6 +448,18 @@ public class ControladorOferta
     Collections.sort(resultado,
         comparadorExposicion.thenComparing(comparadorFechan.reversed()));
     return resultado;
+  }
+  
+  @Override
+  public void finalizarOferta(String nombreOferta)
+      throws OfertaLaboralNoExisteException, OfertaLaboralNoSePuedeFinalizar {
+    OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+    if (!oferta.estaVencida() || oferta.getEstado() != EstadoOferta.CONFIRMADA) {
+      throw new OfertaLaboralNoSePuedeFinalizar(
+          "La oferta " + nombreOferta + " no puede ser finalizada");
+    }
+    oferta.finalizarOferta();
+    // agregar persistencia
   }
   
 }

@@ -260,6 +260,13 @@ public class ControladorUsuario
   }
   
   @Override
+  public List<DtOfertaLaboral> obtenerDtofertasFinalizadasDeEmpresa(String nicknameEmpresa)
+      throws UsuarioNoExisteException, IOException {
+    Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
+    return empresa.obtenerDtofertasFinalizadas();
+  }
+  
+  @Override
   public Boolean confirmarContrasenia(String clave,
       String contrasenia) throws UsuarioNoExisteException {
     Usuario usuario = ManejadorUsuario.getInstance()

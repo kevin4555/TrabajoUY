@@ -32,6 +32,7 @@ public class OfertaLaboral {
   private CompraPaquete compraPaquete;
   private Empresa empresa;
   private int cantidadVisitas;
+  private LocalDate fechaFinalizacion;
   
   /**
    * Constructor .
@@ -60,6 +61,7 @@ public class OfertaLaboral {
     this.fechaResolucion = null;
     this.empresa = empresa;
     this.cantidadVisitas = 0;
+    this.fechaFinalizacion = null;
     
   }
   
@@ -152,8 +154,7 @@ public class OfertaLaboral {
    * Metodo obtener DTOfertaLaboral .
    */
   
-  public DtOfertaLaboral obtenerDtOfertaLaboral()
-      throws IOException {
+  public DtOfertaLaboral obtenerDtOfertaLaboral() throws IOException {
     DtpaquetePublicacion paquete = null;
     if (compraPaquete != null) {
       paquete = compraPaquete.obtenerDtpaquete();
@@ -173,7 +174,8 @@ public class OfertaLaboral {
         this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
         this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
         paquete, keywords, estaVencida, this.tipoPublicacion.getNombre(),
-        this.empresa.getNickname(), this.cantidadVisitas, tipoPublicacion.getExposicion());
+        this.empresa.getNickname(), this.cantidadVisitas, tipoPublicacion.getExposicion(),
+        this.fechaFinalizacion);
     return dtOfertaLaboral;
   }
   
@@ -258,4 +260,8 @@ public class OfertaLaboral {
     return cantidadVisitas;
   }
   
+  public void finalizarOferta() {
+    this.estado = EstadoOferta.FINALIZADA;
+    this.fechaFinalizacion = LocalDate.now();
+  }
 }
