@@ -11,6 +11,9 @@ const btnRegistrarUsuario = document.getElementById('btnRegistrarUsuario');
 const inputNickname = document.getElementById('inputNickname');
 const chequeoNickname = document.getElementById('chequeoNickname');
 const bloqueAviso = document.getElementById('bloqueAviso');
+const bloqueAvisoEmail = document.getElementById('bloqueAvisoEmail');
+const chequeoEmail = document.getElementById('chequeoEmail');
+const inputEmail = document.getElementById('inputEmail');
 
 
 let postulanteSeleccionado = false;
@@ -60,7 +63,7 @@ inputNickname.addEventListener('change', () => {
                 bloqueAviso.classList.add('alert-danger');
                 
             } else {
-                chequeoNickname.innerHTML = `<strong>Éxtio!</strong> El nickname esta disponible.`;
+                chequeoNickname.innerHTML = `<strong>Éxito!</strong> El nickname esta disponible.`;
                 bloqueAviso.classList.add('alert-success');
                 bloqueAviso.classList.remove('alert-danger');
             }
@@ -69,4 +72,27 @@ inputNickname.addEventListener('change', () => {
             console.error('Error al verificar disponibilidad del nickname:', error);
         });
 });
+
+inputEmail.addEventListener('change', () => {
+    const email = inputEmail.value;
+
+    fetch('chequeoEmail?email=' + email)
+        .then(response => response.json())
+        .then(data => {
+            if (data.disponible) {
+                chequeoEmail.innerHTML =  `<strong>Error!</strong> El email ya esta en uso.`;
+                bloqueAvisoEmail.classList.remove('alert-success');
+                bloqueAvisoEmail.classList.add('alert-danger');
+                
+            } else {
+                chequeoEmail.innerHTML = `<strong>Éxito!</strong> El email esta disponible.`;
+                bloqueAvisoEmail.classList.add('alert-success');
+                bloqueAvisoEmail.classList.remove('alert-danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar disponibilidad del email:', error);
+        });
+});
+
 
