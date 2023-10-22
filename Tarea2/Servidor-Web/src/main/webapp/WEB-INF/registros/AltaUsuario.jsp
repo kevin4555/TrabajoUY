@@ -52,7 +52,8 @@
           />
         </div>
       </div>
-      <div class="col-md-6 mt-3">
+      <div class="row mt-3">
+      <div class="col">
         <label for="inputNickname" class="form-label"
           ><strong>*Nickname</strong></label
         >
@@ -65,6 +66,11 @@
           required
         />
       </div>
+      <div class="col alert alert-sm" id="bloqueAviso">
+        	<span id="chequeoNickname"></span>
+        </div>
+      </div>
+        
       <div class="col-md-6 mt-3">
         <label for="inputEmail4" class="form-label"
           ><strong>*Email</strong></label
@@ -80,27 +86,27 @@
       </div>
       <div class="col-md-6 mt-3">
         <label for="inputPassword" class="form-label"
-          ><strong>*Contraseña</strong></label
+          ><strong>*ContraseÃ±a</strong></label
         >
         <input
           type="password"
           class="form-control"
           id="inputPassword"
           name="contrasenia"
-          placeholder="Ingrese su contraseña"
+          placeholder="Ingrese su contraseÃ±a"
           required
         />
       </div>
       <div class="col-md-6 mt-3">
         <label for="inputPassword4" class="form-label"
-          ><strong>*Confirmar contraseña</strong></label
+          ><strong>*Confirmar contraseÃ±a</strong></label
         >
         <input
           type="password"
           class="form-control"
           id="inputPasswordConfirm"
           name="contraseniaConf"
-          placeholder="Ingrese su contraseña"
+          placeholder="Ingrese su contraseÃ±a"
           required
         />
       </div>
@@ -166,11 +172,11 @@
         />
       </div>
       <div class="col-md-6 mt-3" id="divDescripcionEmpresa">
-        <label class="form-label"><strong>*Descripción</strong></label>
+        <label class="form-label"><strong>*DescripciÃ³n</strong></label>
         <input
           type="text"
           class="form-control"
-          placeholder="Ingrese una descripción"
+          placeholder="Ingrese una descripciÃ³n"
           id="inputDescripcion"
           name="descripcion"
           required
@@ -188,7 +194,7 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <!--Instalación bootstrap-->
+    <!--InstalaciÃ³n bootstrap-->
   </body>
 
 </body>
