@@ -264,6 +264,8 @@ public class ControladorUsuario
       throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasFinalizadas();
+    //agregar persistencia
+    
   }
   
   @Override

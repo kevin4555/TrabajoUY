@@ -33,6 +33,7 @@ public class OfertaLaboral {
   private Empresa empresa;
   private int cantidadVisitas;
   private LocalDate fechaFinalizacion;
+  private LocalDate fechaSeleccion;
   
   /**
    * Constructor .
@@ -62,6 +63,7 @@ public class OfertaLaboral {
     this.empresa = empresa;
     this.cantidadVisitas = 0;
     this.fechaFinalizacion = null;
+    this.fechaSeleccion = null;
     
   }
   
@@ -263,5 +265,18 @@ public class OfertaLaboral {
   public void finalizarOferta() {
     this.estado = EstadoOferta.FINALIZADA;
     this.fechaFinalizacion = LocalDate.now();
+  }
+  
+  public void ordenarPostulaciones(List<String> nicknamesPostulantes) {
+    this.fechaSeleccion = LocalDate.now();
+    List<Postulacion> listaOrdenada = new ArrayList<Postulacion>();
+    for (String nickname : nicknamesPostulantes) {
+      for (Postulacion postulacion : postulaciones) {
+        if (postulacion.getPostulante().getNickname().equals(nickname)) {
+          listaOrdenada.add(postulacion);
+        }
+      }
+    }
+    this.postulaciones = listaOrdenada;
   }
 }

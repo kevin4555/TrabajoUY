@@ -164,5 +164,8 @@ public interface IcontroladorOferta {
 
   void finalizarOferta(String nombreOferta)
       throws OfertaLaboralNoExisteException, OfertaLaboralNoSePuedeFinalizar;
+
+  void ordenarPostulaciones(String nombreOferta, List<String> nicknamesPostulantes)
+      throws OfertaLaboralNoExisteException;
   
 }

@@ -462,4 +462,10 @@ public class ControladorOferta
     // agregar persistencia
   }
   
+  @Override
+  public void ordenarPostulaciones(String nombreOferta, List<String> nicknamesPostulantes)
+      throws OfertaLaboralNoExisteException {
+    OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+    oferta.ordenarPostulaciones(nicknamesPostulantes);
+  }
 }
