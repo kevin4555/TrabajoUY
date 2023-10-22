@@ -66,15 +66,15 @@
 
 		<div class="col-md-6 mt-3"></div>
 		<div class="col-md-6 mt-3">
-			<label for="inputPassword" class="form-label"><strong>*Contraseña</strong></label>
+			<label for="inputPassword" class="form-label"><strong>*ContraseÃ±a</strong></label>
 			<input type="password" class="form-control" id="inputPassword"
-				name="contrasenia" placeholder="Ingrese su contraseña" required />
+				name="contrasenia" placeholder="Ingrese su contraseÃ±a" required />
 		</div>
 		<div class="col-md-6 mt-3">
 			<label for="inputPassword4" class="form-label"><strong>*Confirmar
-					contraseña</strong></label> <input type="password" class="form-control"
+					contraseÃ±a</strong></label> <input type="password" class="form-control"
 				id="inputPasswordConfirm" name="contraseniaConf"
-				placeholder="Ingrese su contraseña" required />
+				placeholder="Ingrese su contraseÃ±a" required />
 		</div>
 		<div class="col-md-6 mt-3">
 			<label for="imagenUsuario" class="form-label"><strong>Foto
@@ -116,9 +116,9 @@
 				id="inputSitioWeb" name="sitioWeb" />
 		</div>
 		<div class="col-md-6 mt-3" id="divDescripcionEmpresa">
-			<label class="form-label"><strong>*Descripción</strong></label> <input
+			<label class="form-label"><strong>*DescripciÃ³n</strong></label> <input
 				type="text" class="form-control"
-				placeholder="Ingrese una descripción" id="inputDescripcion"
+				placeholder="Ingrese una descripciÃ³n" id="inputDescripcion"
 				name="descripcion" required />
 		</div>
 		<div class="col-6 mt-3" id="radioTipoUsuario">
@@ -132,7 +132,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
-	<!--Instalación bootstrap-->
+	<!--InstalaciÃ³n bootstrap-->
 </body>
 
 </body>

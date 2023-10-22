@@ -95,3 +95,25 @@ inputEmail.addEventListener('change', () => {
         });
 });
 
+inputEmail.addEventListener('change', () => {
+    const email = inputEmail.value;
+
+    fetch('chequeoEmail?email=' + email)
+        .then(response => response.json())
+        .then(data => {
+            if (data.disponible) {
+                chequeoEmail.innerHTML =  `<strong>Error!</strong> El email ya esta en uso.`;
+                bloqueAvisoEmail.classList.remove('alert-success');
+                bloqueAvisoEmail.classList.add('alert-danger');
+                
+            } else {
+                chequeoEmail.innerHTML = `<strong>Éxito!</strong> El email esta disponible.`;
+                bloqueAvisoEmail.classList.add('alert-success');
+                bloqueAvisoEmail.classList.remove('alert-danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar disponibilidad del email:', error);
+        });
+});
+
