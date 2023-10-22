@@ -2,6 +2,7 @@ package logica.classes;
 
 import java.time.LocalDate;
 import logica.datatypes.DttipoPublicacion;
+
 /**
  * Clase TipoPublicación .
  */
@@ -19,8 +20,9 @@ public class TipoPublicacion {
    * Constructor .
    */
   
-  public TipoPublicacion(String nombre, String descripcion, 
-      String exposicion, int duracion, Float costo, LocalDate fechaPub) {
+  public TipoPublicacion(String nombre, String descripcion,
+      String exposicion, int duracion, Float costo,
+      LocalDate fechaPub) {
     this.setNombre(nombre);
     this.setDescripcion(descripcion);
     this.setExposicion(exposicion);
@@ -77,13 +79,13 @@ public class TipoPublicacion {
     this.fechaAlta = fechaAlta;
   }
   
-  
   /**
    * Obtener DTtipo de publicación .
    */
   public DttipoPublicacion obtenerDttipoPublicacion() {
-    return new DttipoPublicacion(this.getNombre(), this.getDescripcion(), 
-        this.getExposicion(), this.getDuracionDia(),
-        this.costo, this.getFechaAlta());
+    return new DttipoPublicacion(this.getNombre(),
+        this.getDescripcion(), this.getExposicion(),
+        this.getDuracionDia(), this.costo,
+        this.getFechaAlta());
   }
 }

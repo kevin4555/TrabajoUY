@@ -2,8 +2,10 @@ package logica.classes;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import logica.datatypes.Dtusuario;
 
 /**
@@ -16,12 +18,14 @@ public abstract class Usuario {
   protected String email;
   private BufferedImage imagen;
   private String contrasenia;
+  private Set<String> seguidos;
+  private Set<String> seguidores;
   
   /**
    * Constuctor clase Usuario.
    */
-  public Usuario(String nickname, String nombre, String apellido, 
-      String email, BufferedImage imagen,
+  public Usuario(String nickname, String nombre,
+      String apellido, String email, BufferedImage imagen,
       String contrasenia) {
     super();
     this.nickname = nickname;
@@ -30,6 +34,8 @@ public abstract class Usuario {
     this.email = email;
     this.contrasenia = contrasenia;
     this.imagen = imagen;
+    this.seguidos = new HashSet<String>();
+    this.seguidores = new HashSet<String>();
   }
   
   public String getNickname() {
@@ -74,5 +80,26 @@ public abstract class Usuario {
   
   public abstract List<String> listarNombreOfertasUsuario();
   
-  public abstract  Dtusuario obtenerDtusuario() throws IOException;
+  public abstract Dtusuario obtenerDtusuario()
+      throws IOException;
+  
+  public void seguir(String nicknameSeguido) {
+    this.seguidos.add(nicknameSeguido);
+  }
+  
+  public void agregarSeguidor(String nicknameSeguidor) {
+    this.seguidores.add(nicknameSeguidor);
+  }
+    
+  public Boolean estaSeguidoPor(String nicknameSeguidor) {
+    return this.seguidores.contains(nicknameSeguidor);
+  }
+  
+  public void dejarDeSeguir(String nicknameSeguido) {
+    this.seguidos.remove(nicknameSeguido);
+  }
+  
+  public void removerSeguidor(String nicknameSeguidor) {
+    this.seguidores.remove(nicknameSeguidor);
+  }
 }

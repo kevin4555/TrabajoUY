@@ -34,7 +34,8 @@ import logica.interfaces.IcontroladorOferta;
  */
 
 @SuppressWarnings("serial")
-public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
+public class AgregarTipoPublicacionAlPaquete
+    extends JInternalFrame {
   
   // Controlador de usuarios que se utilizará para
   // las acciones del JFrame
@@ -56,7 +57,8 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   /**
    * Create the frame.
    */
-  public AgregarTipoPublicacionAlPaquete(IcontroladorOferta icontOfeLab) {
+  public AgregarTipoPublicacionAlPaquete(
+      IcontroladorOferta icontOfeLab) {
     // Se inicializa con el controlador de oferta
     controladorOfertaLaboral = icontOfeLab;
     this.tipoPublicacionSeleccionada = "";
@@ -73,14 +75,16 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     
     JPanel panelBotones = new JPanel();
     getContentPane().add(panelBotones, BorderLayout.SOUTH);
-    panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
+    panelBotones.setLayout(
+        new FlowLayout(FlowLayout.CENTER, 120, 20));
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evento) {
         try {
           agregarTipoPublicacionAlPaquete();
-        } catch (PaquetePublicacionYaFueComprado | TipoDePublicacionYaFueIngresado e) {
+        } catch (PaquetePublicacionYaFueComprado
+            | TipoDePublicacionYaFueIngresado e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
         }
@@ -103,11 +107,13 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     getContentPane().add(panelDatos, BorderLayout.CENTER);
     GridBagLayout gblPanelDatos = new GridBagLayout();
     gblPanelDatos.columnWidths = new int[] { 113, 739, 0 };
-    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0 };
-    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
+    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0,
+        Double.MIN_VALUE };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
     panelDatos.setLayout(gblPanelDatos);
     
     GridBagConstraints gbcLblSeleccion = new GridBagConstraints();
@@ -115,44 +121,53 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     gbcLblSeleccion.anchor = GridBagConstraints.EAST;
     gbcLblSeleccion.gridx = 0;
     gbcLblSeleccion.gridy = 1;
-    JLabel lblSeleccion = new JLabel("Seleccionar Paquete:");
+    JLabel lblSeleccion = new JLabel(
+        "Seleccionar Paquete:");
     panelDatos.add(lblSeleccion, gbcLblSeleccion);
     
     this.comboBoxSeleccionPaquete = new JComboBox<String>();
-    this.comboBoxSeleccionPaquete.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        cargarTipoPublicacionNoIncluidasEnPaquete(evento);
-        
-      }
-    });
+    this.comboBoxSeleccionPaquete
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            cargarTipoPublicacionNoIncluidasEnPaquete(
+                evento);
+            
+          }
+        });
     
     GridBagConstraints gbcComboBoxSeleccionUsuario = new GridBagConstraints();
-    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionUsuario.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionUsuario.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionUsuario.gridx = 1;
     gbcComboBoxSeleccionUsuario.gridy = 1;
-    panelDatos.add(this.comboBoxSeleccionPaquete, gbcComboBoxSeleccionUsuario);
+    panelDatos.add(this.comboBoxSeleccionPaquete,
+        gbcComboBoxSeleccionUsuario);
     
     GridBagConstraints gbcLblOfertas = new GridBagConstraints();
     gbcLblOfertas.anchor = GridBagConstraints.EAST;
     gbcLblOfertas.insets = new Insets(0, 0, 5, 5);
     gbcLblOfertas.gridx = 0;
     gbcLblOfertas.gridy = 12;
-    JLabel lblTiposPublicaciones = new JLabel("Tipos de publicaciones:");
+    JLabel lblTiposPublicaciones = new JLabel(
+        "Tipos de publicaciones:");
     panelDatos.add(lblTiposPublicaciones, gbcLblOfertas);
     
     this.comboBoxSeleccionTiposPublicaciones = new JComboBox<String>();
-    this.comboBoxSeleccionTiposPublicaciones.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evento) {
-        cargarDatosTipoPublicacion(evento);
-      }
-    });
+    this.comboBoxSeleccionTiposPublicaciones
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            cargarDatosTipoPublicacion(evento);
+          }
+        });
     GridBagConstraints gbcComboBoxSeleccionOferta = new GridBagConstraints();
-    gbcComboBoxSeleccionOferta.insets = new Insets(0, 0, 5, 0);
+    gbcComboBoxSeleccionOferta.insets = new Insets(0, 0, 5,
+        0);
     gbcComboBoxSeleccionOferta.fill = GridBagConstraints.HORIZONTAL;
     gbcComboBoxSeleccionOferta.gridx = 1;
     gbcComboBoxSeleccionOferta.gridy = 12;
-    panelDatos.add(this.comboBoxSeleccionTiposPublicaciones, gbcComboBoxSeleccionOferta);
+    panelDatos.add(this.comboBoxSeleccionTiposPublicaciones,
+        gbcComboBoxSeleccionOferta);
     
     GridBagConstraints gbcLblHorarioOferta = new GridBagConstraints();
     gbcLblHorarioOferta.anchor = GridBagConstraints.EAST;
@@ -165,11 +180,13 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     this.textFieldExposicion = new JTextField();
     this.textFieldExposicion.setEditable(false);
     GridBagConstraints gbcTextFieldNombreOferta = new GridBagConstraints();
-    gbcTextFieldNombreOferta.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldNombreOferta.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldNombreOferta.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldNombreOferta.gridx = 1;
     gbcTextFieldNombreOferta.gridy = 13;
-    panelDatos.add(this.textFieldExposicion, gbcTextFieldNombreOferta);
+    panelDatos.add(this.textFieldExposicion,
+        gbcTextFieldNombreOferta);
     this.textFieldExposicion.setColumns(10);
     
     GridBagConstraints gbcLblRemuneracion = new GridBagConstraints();
@@ -183,11 +200,13 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     this.textFieldCosto = new JTextField();
     this.textFieldCosto.setEditable(false);
     GridBagConstraints gbcTextFieldRemuneracion = new GridBagConstraints();
-    gbcTextFieldRemuneracion.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldRemuneracion.insets = new Insets(0, 0, 5,
+        0);
     gbcTextFieldRemuneracion.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldRemuneracion.gridx = 1;
     gbcTextFieldRemuneracion.gridy = 14;
-    panelDatos.add(this.textFieldCosto, gbcTextFieldRemuneracion);
+    panelDatos.add(this.textFieldCosto,
+        gbcTextFieldRemuneracion);
     this.textFieldCosto.setColumns(10);
     
     GridBagConstraints gbcLblCiudad = new GridBagConstraints();
@@ -205,7 +224,8 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     gbcTextFieldCiudad.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldCiudad.gridx = 1;
     gbcTextFieldCiudad.gridy = 15;
-    panelDatos.add(this.textFieldDuracion, gbcTextFieldCiudad);
+    panelDatos.add(this.textFieldDuracion,
+        gbcTextFieldCiudad);
     this.textFieldDuracion.setColumns(10);
     
     GridBagConstraints gbcLblFechaAlta = new GridBagConstraints();
@@ -223,21 +243,27 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     gbcTextFieldFechaAlta.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldFechaAlta.gridx = 1;
     gbcTextFieldFechaAlta.gridy = 16;
-    panelDatos.add(this.textFieldFechaAlta, gbcTextFieldFechaAlta);
+    panelDatos.add(this.textFieldFechaAlta,
+        gbcTextFieldFechaAlta);
     this.textFieldFechaAlta.setColumns(10);
     
     GridBagConstraints gbcLblDescripcionEmpresa = new GridBagConstraints();
-    gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5, 5);
+    gbcLblDescripcionEmpresa.insets = new Insets(0, 0, 5,
+        5);
     gbcLblDescripcionEmpresa.anchor = GridBagConstraints.EAST;
     gbcLblDescripcionEmpresa.gridx = 0;
     gbcLblDescripcionEmpresa.gridy = 17;
-    JLabel lblDescripcionEmpresa = new JLabel("Descripcion");
-    panelDatos.add(lblDescripcionEmpresa, gbcLblDescripcionEmpresa);
+    JLabel lblDescripcionEmpresa = new JLabel(
+        "Descripcion");
+    panelDatos.add(lblDescripcionEmpresa,
+        gbcLblDescripcionEmpresa);
     
     scrollPane = new JScrollPane();
-    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    scrollPane.setVerticalScrollBarPolicy(
+        ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     scrollPane.setEnabled(false);
-    scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    scrollPane.setHorizontalScrollBarPolicy(
+        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     GridBagConstraints gbcScrollPane = new GridBagConstraints();
     gbcScrollPane.gridheight = 2;
     gbcScrollPane.insets = new Insets(0, 0, 5, 0);
@@ -257,16 +283,20 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     gbcLblCantidadInlcuidaa.insets = new Insets(0, 0, 5, 5);
     gbcLblCantidadInlcuidaa.gridx = 0;
     gbcLblCantidadInlcuidaa.gridy = 20;
-    JLabel lblCantidadInlcuida = new JLabel("Ingresa Cantidad");
-    panelDatos.add(lblCantidadInlcuida, gbcLblCantidadInlcuidaa);
+    JLabel lblCantidadInlcuida = new JLabel(
+        "Ingresa Cantidad");
+    panelDatos.add(lblCantidadInlcuida,
+        gbcLblCantidadInlcuidaa);
     
     this.textFieldCantidadIncluida = new JTextField();
     GridBagConstraints gbcTextFieldCantidadInlcuida = new GridBagConstraints();
-    gbcTextFieldCantidadInlcuida.insets = new Insets(0, 0, 5, 0);
+    gbcTextFieldCantidadInlcuida.insets = new Insets(0, 0,
+        5, 0);
     gbcTextFieldCantidadInlcuida.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldCantidadInlcuida.gridx = 1;
     gbcTextFieldCantidadInlcuida.gridy = 20;
-    panelDatos.add(this.textFieldCantidadIncluida, gbcTextFieldCantidadInlcuida);
+    panelDatos.add(this.textFieldCantidadIncluida,
+        gbcTextFieldCantidadInlcuida);
     this.textFieldCantidadIncluida.setColumns(10);
     
   }
@@ -277,12 +307,14 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
   
   public void cargarPaquetes() {
     try {
-      List<String> listaPaquetes = this.controladorOfertaLaboral.listarPaquetes();
+      List<String> listaPaquetes = this.controladorOfertaLaboral
+          .listarPaquetes();
       String[] arrayEmpresas;
       arrayEmpresas = listaPaquetes.toArray(new String[0]);
       Arrays.sort(arrayEmpresas);
       DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayEmpresas);
+      model = new DefaultComboBoxModel<String>(
+          arrayEmpresas);
       this.comboBoxSeleccionPaquete.setModel(model);
       
     } catch (Exception e) {
@@ -296,13 +328,14 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
    */
   
   @SuppressWarnings({})
-  public void cargarTipoPublicacionNoIncluidasEnPaquete(ActionEvent evento) {
+  public void cargarTipoPublicacionNoIncluidasEnPaquete(
+      ActionEvent evento) {
     
     try {
-      String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
+      String nombrePaquete = comboBoxSeleccionPaquete
+          .getSelectedItem().toString();
       
-      /*
-       * if (nombrePaquete != paqueteSeleccionado) {
+      /* if (nombrePaquete != paqueteSeleccionado) {
        * paqueteSeleccionado = nombrePaquete;
        * limpiarDatosPublicaciones();
        * DTPaquetePublicacion dtPaquetePublicaciones =
@@ -317,8 +350,7 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
        * this.textAreaDescripcionPaquete.setText(
        * dtPaquetePublicaciones.getDescripcion ());
        * 
-       * }
-       */
+       * } */
       
       List<String> listaTipoDePublicaciones = this.controladorOfertaLaboral
           .listarTipoDePublicaciones();
@@ -327,8 +359,10 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
           .listarTipoPublicacionDePaquete(nombrePaquete);
       List<String> listaTipoDePublicacionesNoIncluidas = new ArrayList<String>();
       for (String nombreTipoPublicacion : listaTipoDePublicaciones) {
-        if (!listaTipoDePublicacionesDePaquete.contains(nombreTipoPublicacion)) {
-          listaTipoDePublicacionesNoIncluidas.add(nombreTipoPublicacion);
+        if (!listaTipoDePublicacionesDePaquete
+            .contains(nombreTipoPublicacion)) {
+          listaTipoDePublicacionesNoIncluidas
+              .add(nombreTipoPublicacion);
         }
       }
       
@@ -336,8 +370,10 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
           .toArray(new String[0]);
       Arrays.sort(arrayTiposPublicacionesNoIncluidas);
       DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(arrayTiposPublicacionesNoIncluidas);
-      this.comboBoxSeleccionTiposPublicaciones.setModel(model);
+      model = new DefaultComboBoxModel<String>(
+          arrayTiposPublicacionesNoIncluidas);
+      this.comboBoxSeleccionTiposPublicaciones
+          .setModel(model);
     } catch (PaquetePublicacionNoExisteException e1) {
       // TODO Auto-generated catch block
       e1.printStackTrace();
@@ -345,19 +381,26 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
     
   }
   
-  protected void cargarDatosTipoPublicacion(ActionEvent evento) {
-    String tipoPublicacion = comboBoxSeleccionTiposPublicaciones.getSelectedItem().toString();
+  protected void cargarDatosTipoPublicacion(
+      ActionEvent evento) {
+    String tipoPublicacion = comboBoxSeleccionTiposPublicaciones
+        .getSelectedItem().toString();
     if (tipoPublicacionSeleccionada != tipoPublicacion) {
       
       try {
         DttipoPublicacion dtTipoPublicacion;
-        dtTipoPublicacion = controladorOfertaLaboral.obtenerDttipoPublicacion(tipoPublicacion);
-        this.textFieldExposicion.setText(dtTipoPublicacion.getExposicion());
-        this.textFieldCosto.setText(String.valueOf(dtTipoPublicacion.getCosto()));
-        this.textFieldDuracion
-            .setText(String.valueOf(dtTipoPublicacion.getDuracionDia()) + " días");
-        this.textFieldFechaAlta.setText(dtTipoPublicacion.getFechaAlta().toString());
-        this.textAreaDescripcion.setText(dtTipoPublicacion.getDescripcion());
+        dtTipoPublicacion = controladorOfertaLaboral
+            .obtenerDttipoPublicacion(tipoPublicacion);
+        this.textFieldExposicion
+            .setText(dtTipoPublicacion.getExposicion());
+        this.textFieldCosto.setText(
+            String.valueOf(dtTipoPublicacion.getCosto()));
+        this.textFieldDuracion.setText(String.valueOf(
+            dtTipoPublicacion.getDuracionDia()) + " días");
+        this.textFieldFechaAlta.setText(
+            dtTipoPublicacion.getFechaAlta().toString());
+        this.textAreaDescripcion
+            .setText(dtTipoPublicacion.getDescripcion());
         
       } catch (TipoPublicacionNoExisteException e1) {
         // TODO Auto-generated catch block
@@ -372,44 +415,58 @@ public class AgregarTipoPublicacionAlPaquete extends JInternalFrame {
    */
   
   public void agregarTipoPublicacionAlPaquete()
-      throws PaquetePublicacionYaFueComprado, TipoDePublicacionYaFueIngresado {
+      throws PaquetePublicacionYaFueComprado,
+      TipoDePublicacionYaFueIngresado {
     
     try {
-      if (comboBoxSeleccionTiposPublicaciones.getSelectedIndex() == -1
-          || comboBoxSeleccionPaquete.getSelectedIndex() == -1) {
+      if (comboBoxSeleccionTiposPublicaciones
+          .getSelectedIndex() == -1
+          || comboBoxSeleccionPaquete
+              .getSelectedIndex() == -1) {
         JOptionPane.showMessageDialog(this,
             "Debe seleccionar un paquete y un tipo de publicacion",
-            "Agregar tipo de publicacion a paquete", JOptionPane.ERROR_MESSAGE);
+            "Agregar tipo de publicacion a paquete",
+            JOptionPane.ERROR_MESSAGE);
       } else {
-        String tipoPublicacion = comboBoxSeleccionTiposPublicaciones.getSelectedItem()
-            .toString();
-        String nombrePaquete = comboBoxSeleccionPaquete.getSelectedItem().toString();
-        int cantidadIncluida = Integer.parseInt(this.textFieldCantidadIncluida.getText());
+        String tipoPublicacion = comboBoxSeleccionTiposPublicaciones
+            .getSelectedItem().toString();
+        String nombrePaquete = comboBoxSeleccionPaquete
+            .getSelectedItem().toString();
+        int cantidadIncluida = Integer.parseInt(
+            this.textFieldCantidadIncluida.getText());
         if (cantidadIncluida <= 0) {
           JOptionPane.showMessageDialog(this,
               "La cantidad incluida debe ser un número mayor a cero",
-              "Agregar tipo de publicacion a paquete", JOptionPane.ERROR_MESSAGE);
+              "Agregar tipo de publicacion a paquete",
+              JOptionPane.ERROR_MESSAGE);
         } else {
-          this.controladorOfertaLaboral.agregarTipoPublicacionAlPaquete(cantidadIncluida,
-              tipoPublicacion, nombrePaquete);
-          JOptionPane.showMessageDialog(this, "El tipo de publicación se agregó con con éxito",
-              "Agregar tipo de publicacion a paquete", JOptionPane.INFORMATION_MESSAGE);
+          this.controladorOfertaLaboral
+              .agregarTipoPublicacionAlPaquete(
+                  cantidadIncluida, tipoPublicacion,
+                  nombrePaquete);
+          JOptionPane.showMessageDialog(this,
+              "El tipo de publicación se agregó con con éxito",
+              "Agregar tipo de publicacion a paquete",
+              JOptionPane.INFORMATION_MESSAGE);
           limpiarTodosLosDatos();
         }
         
       }
       
-    } catch (TipoPublicacionNoExisteException | PaquetePublicacionNoExisteException evento) {
+    } catch (TipoPublicacionNoExisteException
+        | PaquetePublicacionNoExisteException evento) {
       // no imprime nada
     } catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(this,
           "La cantidad incluida debe ser un número mayor a cero",
-          "Agregar tipo de publicacion a paquete", JOptionPane.ERROR_MESSAGE);
+          "Agregar tipo de publicacion a paquete",
+          JOptionPane.ERROR_MESSAGE);
       
     } catch (PaquetePublicacionYaFueComprado evento) {
       JOptionPane.showMessageDialog(this,
           "El paquete ya fue comprado",
-          "Agregar tipo de publicacion a paquete", JOptionPane.ERROR_MESSAGE);
+          "Agregar tipo de publicacion a paquete",
+          JOptionPane.ERROR_MESSAGE);
     }
   }
   

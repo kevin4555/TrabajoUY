@@ -11,6 +11,7 @@ import java.util.Map;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
+import logica.datatypes.Dtempresa;
 import logica.datatypes.Dtusuario;
 
 /**
@@ -58,11 +59,13 @@ public class ManejadorUsuario {
    * Obtener empresa .
    */
   
-  public Empresa obtenerEmpresa(String nickEmpresa) throws UsuarioNoExisteException {
+  public Empresa obtenerEmpresa(String nickEmpresa)
+      throws UsuarioNoExisteException {
     if (colEmpresas.containsKey(nickEmpresa)) {
       return colEmpresas.get(nickEmpresa);
     } else {
-      throw new UsuarioNoExisteException("Empresa " + nickEmpresa + " no existe");
+      throw new UsuarioNoExisteException(
+          "Empresa " + nickEmpresa + " no existe");
     }
   }
   
@@ -71,17 +74,23 @@ public class ManejadorUsuario {
    */
   
   public void agregarEmpresa(Empresa empresa)
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException {
     if (!colUsuarios.containsKey(empresa.getNickname())
         && !usuariosEmail.containsKey(empresa.getEmail())
-        && !usuariosEmail.containsKey(empresa.getNickname())) {
+        && !usuariosEmail
+            .containsKey(empresa.getNickname())) {
       colEmpresas.put(empresa.getNickname(), empresa);
       colUsuarios.put(empresa.getNickname(), empresa);
       usuariosEmail.put(empresa.getEmail(), empresa);
-    } else if (colUsuarios.containsKey(empresa.getNickname())
-        || usuariosEmail.containsKey(empresa.getNickname())) {
-      throw new UsuarioYaExisteException("Empresa " + empresa.getNickname() + " ya existe");
-    } else if (usuariosEmail.containsKey(empresa.getEmail())) {
+    } else if (colUsuarios
+        .containsKey(empresa.getNickname())
+        || usuariosEmail
+            .containsKey(empresa.getNickname())) {
+      throw new UsuarioYaExisteException("Empresa "
+          + empresa.getNickname() + " ya existe");
+    } else if (usuariosEmail
+        .containsKey(empresa.getEmail())) {
       throw new UsuarioEmailRepetidoException(
           "El email: " + empresa.getEmail() + " ya existe");
     }
@@ -91,11 +100,13 @@ public class ManejadorUsuario {
    * Obtener postulante .
    */
   
-  public Postulante obtenerPostulante(String nickPostulante) throws UsuarioNoExisteException {
+  public Postulante obtenerPostulante(String nickPostulante)
+      throws UsuarioNoExisteException {
     if (colPostulantes.containsKey(nickPostulante)) {
       return colPostulantes.get(nickPostulante);
     } else {
-      throw new UsuarioNoExisteException("Postulante " + nickPostulante + " no existe");
+      throw new UsuarioNoExisteException(
+          "Postulante " + nickPostulante + " no existe");
     }
   }
   
@@ -104,20 +115,26 @@ public class ManejadorUsuario {
    */
   
   public void agregarPostulante(Postulante postulante)
-      throws UsuarioYaExisteException, UsuarioEmailRepetidoException {
+      throws UsuarioYaExisteException,
+      UsuarioEmailRepetidoException {
     if (!colUsuarios.containsKey(postulante.getNickname())
         && !usuariosEmail.containsKey(postulante.getEmail())
-        && !usuariosEmail.containsKey(postulante.getNickname())) {
-      colPostulantes.put(postulante.getNickname(), postulante);
+        && !usuariosEmail
+            .containsKey(postulante.getNickname())) {
+      colPostulantes.put(postulante.getNickname(),
+          postulante);
       colUsuarios.put(postulante.getNickname(), postulante);
       usuariosEmail.put(postulante.getEmail(), postulante);
-    } else if (colUsuarios.containsKey(postulante.getNickname())
-        || usuariosEmail.containsKey(postulante.getNickname())) {
-      throw new UsuarioYaExisteException(
-          "Postulante " + postulante.getNickname() + " ya existe");
-    } else if (usuariosEmail.containsKey(postulante.getEmail())) {
-      throw new UsuarioEmailRepetidoException(
-          "El email: " + postulante.getEmail() + " ya existe");
+    } else if (colUsuarios
+        .containsKey(postulante.getNickname())
+        || usuariosEmail
+            .containsKey(postulante.getNickname())) {
+      throw new UsuarioYaExisteException("Postulante "
+          + postulante.getNickname() + " ya existe");
+    } else if (usuariosEmail
+        .containsKey(postulante.getEmail())) {
+      throw new UsuarioEmailRepetidoException("El email: "
+          + postulante.getEmail() + " ya existe");
     }
   }
   
@@ -149,13 +166,15 @@ public class ManejadorUsuario {
    * Obtener usuario .
    */
   
-  public Usuario obtenerUsuario(String clave) throws UsuarioNoExisteException {
+  public Usuario obtenerUsuario(String clave)
+      throws UsuarioNoExisteException {
     if (colUsuarios.containsKey(clave)) {
       return colUsuarios.get(clave);
     } else if (usuariosEmail.containsKey(clave)) {
       return usuariosEmail.get(clave);
     } else {
-      throw new UsuarioNoExisteException("Usuario: " + clave + " no existe");
+      throw new UsuarioNoExisteException(
+          "Usuario: " + clave + " no existe");
     }
   }
   
@@ -167,17 +186,27 @@ public class ManejadorUsuario {
    * Obtener lista de DTUsuario .
    */
   
-  public List<Dtusuario> obtenerDtusuarios() throws IOException {
+  public List<Dtusuario> obtenerDtusuarios()
+      throws IOException {
     List<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
     for (Usuario usuario : colUsuarios.values()) {
       if (usuario instanceof Postulante) {
         Postulante postulante = (Postulante) usuario;
-        listaResultado.add(postulante.obtenerDtpostulante());
+        listaResultado
+            .add(postulante.obtenerDtpostulante());
       }
       if (usuario instanceof Empresa) {
         Empresa empresa = (Empresa) usuario;
         listaResultado.add(empresa.obtenerDtempresa());
       }
+    }
+    return listaResultado;
+  }
+  
+  public List<Dtempresa> obtenerDtEmpresas() throws IOException {
+    List<Dtempresa> listaResultado = new ArrayList<Dtempresa>();
+    for (Empresa empresa : colEmpresas.values()) {
+      listaResultado.add(empresa.obtenerDtempresa());
     }
     return listaResultado;
   }

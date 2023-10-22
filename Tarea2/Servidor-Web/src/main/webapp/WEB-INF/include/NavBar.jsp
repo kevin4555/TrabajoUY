@@ -38,11 +38,13 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					<li class="nav-item"><a class="nav-link text-white"
 						href="<%=request.getContextPath()%>/home">Inicio</a></li>
 					<%
-					if (usuario != null) {
+					if (usuario != null)
+					{
 					%>
 					<li class="nav-item">
 						<%
-						if (usuario.getImagen() != null) {
+						if (usuario.getImagen() != null)
+						{
 						%> <img class="rounded-pill imgPerfil"
 						src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%
  }
@@ -50,7 +52,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					</li>
 					<div class="dropdown selectUsuario">
 						<button type="button" class="btn dropdown-toggle"
-							data-bs-toggle="dropdown" aria-expanded="true" >
+							data-bs-toggle="dropdown" aria-expanded="true">
 							<%=usuario.getNickname()%>
 						</button>
 						<ul class="dropdown-menu">
@@ -66,7 +68,9 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					</div>
 
 					<%
-					} else {
+					}
+					else
+					{
 					%>
 					<li class="nav-item">
 						<%

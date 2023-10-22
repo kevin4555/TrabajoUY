@@ -208,12 +208,12 @@ pageEncoding="UTF-8"%>
 					</div>
 
 					<%
-					String contextPath = request.getContextPath();
+					String contextPath3 = request.getContextPath();
 					%>
 					<div class="col" id="botonesConfirmarCancelar">
 						<div class="mb-3">
 							<input class="btn btn-primary" type="submit" value="Confirmar" />
-							<a class="btn btn-primary" href="<%=contextPath%>/home">Cancelar</a>
+							<a class="btn btn-primary" href="<%=contextPath3%>/home">Cancelar</a>
 						</div>
 					</div>
 

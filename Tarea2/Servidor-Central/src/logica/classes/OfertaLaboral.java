@@ -31,14 +31,19 @@ public class OfertaLaboral {
   private List<Postulacion> postulaciones;
   private CompraPaquete compraPaquete;
   private Empresa empresa;
+  private int cantidadVisitas;
+  private LocalDate fechaFinalizacion;
+  private LocalDate fechaSeleccion;
   
   /**
    * Constructor .
    */
   
-  public OfertaLaboral(String nombre, String descripcion, String horarioInicial,
-      String horarioFinal, float remuneracion, String ciudad, String departamento,
-      LocalDate fechaAlta, TipoPublicacion tipoPublicacion, BufferedImage imagen,
+  public OfertaLaboral(String nombre, String descripcion,
+      String horarioInicial, String horarioFinal,
+      float remuneracion, String ciudad,
+      String departamento, LocalDate fechaAlta,
+      TipoPublicacion tipoPublicacion, BufferedImage imagen,
       Empresa empresa) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -56,6 +61,9 @@ public class OfertaLaboral {
     this.compraPaquete = null;
     this.fechaResolucion = null;
     this.empresa = empresa;
+    this.cantidadVisitas = 0;
+    this.fechaFinalizacion = null;
+    this.fechaSeleccion = null;
     
   }
   
@@ -115,7 +123,8 @@ public class OfertaLaboral {
     return tipoPublicacion;
   }
   
-  public void setTipoPublicacion(TipoPublicacion tipoPublicacion) {
+  public void setTipoPublicacion(
+      TipoPublicacion tipoPublicacion) {
     this.tipoPublicacion = tipoPublicacion;
   }
   
@@ -167,7 +176,8 @@ public class OfertaLaboral {
         this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
         this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
         paquete, keywords, estaVencida, this.tipoPublicacion.getNombre(),
-        this.empresa.getNickname());
+        this.empresa.getNickname(), this.cantidadVisitas, tipoPublicacion.getExposicion(),
+        this.fechaFinalizacion);
     return dtOfertaLaboral;
   }
   
@@ -199,11 +209,13 @@ public class OfertaLaboral {
     return compraPaquete;
   }
   
-  public void setCompraPaquete(CompraPaquete compraPaquete) {
+  public void setCompraPaquete(
+      CompraPaquete compraPaquete) {
     this.compraPaquete = compraPaquete;
   }
   
-  public void resolucionOferta(EstadoOferta estado, LocalDate fechaResolucion) {
+  public void resolucionOferta(EstadoOferta estado,
+      LocalDate fechaResolucion) {
     this.estado = estado;
     this.fechaResolucion = fechaResolucion;
   }
@@ -223,7 +235,8 @@ public class OfertaLaboral {
     return resultado;
   }
   
-  public DtpaquetePublicacion obtenerDtpaquete() throws IOException {
+  public DtpaquetePublicacion obtenerDtpaquete()
+      throws IOException {
     return compraPaquete.obtenerDtpaquete();
   }
   
@@ -233,9 +246,37 @@ public class OfertaLaboral {
   
   public Boolean estaVencida() {
     LocalDate fechaActual = LocalDate.now();
-    LocalDate fechaVencimiento = LocalDate.of(fechaResolucion.getYear(),
-        fechaResolucion.getMonthValue(), fechaResolucion.getDayOfMonth())
+    LocalDate fechaVencimiento = LocalDate
+        .of(fechaResolucion.getYear(),
+            fechaResolucion.getMonthValue(),
+            fechaResolucion.getDayOfMonth())
         .plusDays(tipoPublicacion.getDuracionDia());
     return fechaActual.isAfter(fechaVencimiento);
+  }
+  
+  public void agregarVisita() {
+    this.cantidadVisitas++;
+  }
+
+  public int getCantidadVisitas() {
+    return cantidadVisitas;
+  }
+  
+  public void finalizarOferta() {
+    this.estado = EstadoOferta.FINALIZADA;
+    this.fechaFinalizacion = LocalDate.now();
+  }
+  
+  public void ordenarPostulaciones(List<String> nicknamesPostulantes) {
+    this.fechaSeleccion = LocalDate.now();
+    List<Postulacion> listaOrdenada = new ArrayList<Postulacion>();
+    for (String nickname : nicknamesPostulantes) {
+      for (Postulacion postulacion : postulaciones) {
+        if (postulacion.getPostulante().getNickname().equals(nickname)) {
+          listaOrdenada.add(postulacion);
+        }
+      }
+    }
+    this.postulaciones = listaOrdenada;
   }
 }

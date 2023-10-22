@@ -53,13 +53,15 @@ public class ManejadorSettings {
    * Obtener tipo de publicacion .
    */
   
-  public TipoPublicacion obtenerTipoPublicacion(String nombre)
+  public TipoPublicacion obtenerTipoPublicacion(
+      String nombre)
       throws TipoPublicacionNoExisteException {
     if (colTipoPublicaciones.containsKey(nombre)) {
       return colTipoPublicaciones.get(nombre);
     } else {
       throw new TipoPublicacionNoExisteException(
-          "El tipo de publicación " + nombre + " no existe");
+          "El tipo de publicación " + nombre
+              + " no existe");
     }
   }
   
@@ -69,11 +71,14 @@ public class ManejadorSettings {
   
   public void addTipoPublicacion(TipoPublicacion tpoPublic)
       throws TipoPublicacionYaExisteException {
-    if (!colTipoPublicaciones.containsKey(tpoPublic.getNombre())) {
-      colTipoPublicaciones.put(tpoPublic.getNombre(), tpoPublic);
+    if (!colTipoPublicaciones
+        .containsKey(tpoPublic.getNombre())) {
+      colTipoPublicaciones.put(tpoPublic.getNombre(),
+          tpoPublic);
     } else {
       throw new TipoPublicacionYaExisteException(
-          "El tipo publicacion " + tpoPublic.getNombre() + " ya existe");
+          "El tipo publicacion " + tpoPublic.getNombre()
+              + " ya existe");
     }
   }
   
@@ -81,11 +86,13 @@ public class ManejadorSettings {
    * Agregar keyword .
    */
   
-  public void addKeyword(Keyword keyword) throws KeywordYaExisteException {
+  public void addKeyword(Keyword keyword)
+      throws KeywordYaExisteException {
     if (!colKeywords.containsKey(keyword.getNombre())) {
       colKeywords.put(keyword.getNombre(), keyword);
     } else {
-      throw new KeywordYaExisteException("La keyword " + keyword.getNombre() + " ya existe");
+      throw new KeywordYaExisteException("La keyword "
+          + keyword.getNombre() + " ya existe");
     }
   }
   
@@ -93,11 +100,13 @@ public class ManejadorSettings {
    * Obtener keyword .
    */
   
-  public Keyword obtenerKeyword(String nombre) throws KeywordNoExisteException {
+  public Keyword obtenerKeyword(String nombre)
+      throws KeywordNoExisteException {
     if (colKeywords.containsKey(nombre)) {
       return colKeywords.get(nombre);
     } else {
-      throw new KeywordNoExisteException("La keyword " + nombre + " no existe");
+      throw new KeywordNoExisteException(
+          "La keyword " + nombre + " no existe");
     }
   }
   

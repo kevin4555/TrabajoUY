@@ -15,7 +15,8 @@ public class CantidadTipoPublicacionRestante {
    * Constructor.
    */
   
-  public CantidadTipoPublicacionRestante(int cantidad, TipoPublicacion tipoPublicacion) {
+  public CantidadTipoPublicacionRestante(int cantidad,
+      TipoPublicacion tipoPublicacion) {
     this.cantidad = cantidad;
     this.tipoPublicacion = tipoPublicacion;
   }
@@ -37,12 +38,14 @@ public class CantidadTipoPublicacionRestante {
   }
   
   /**
-   * Metodo obtenerDtCantidadTipoPublicacionRestante.
+   * Metodo
+   * obtenerDtCantidadTipoPublicacionRestante.
    */
   
   public DtCantidadTipoPublicacionRestante obtenerDtTipoCantidadRestante() {
     DtCantidadTipoPublicacionRestante resultado = new DtCantidadTipoPublicacionRestante(
-        cantidad, tipoPublicacion.obtenerDttipoPublicacion());
+        cantidad,
+        tipoPublicacion.obtenerDttipoPublicacion());
     return resultado;
   }
 }

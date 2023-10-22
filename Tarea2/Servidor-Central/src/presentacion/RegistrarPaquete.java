@@ -58,12 +58,12 @@ public class RegistrarPaquete extends JInternalFrame {
   private GridBagConstraints gbcTextField;
   private JTextPane textPane;
   
-  
   /**
    * Constructor .
    */
   
-  public RegistrarPaquete(IcontroladorOferta contralodorOferta) {
+  public RegistrarPaquete(
+      IcontroladorOferta contralodorOferta) {
     this.controladorOferta = contralodorOferta;
     
     setIconifiable(true);
@@ -76,7 +76,8 @@ public class RegistrarPaquete extends JInternalFrame {
     setBounds(100, 100, 594, 502);
     JPanel panelBotones = new JPanel();
     getContentPane().add(panelBotones, BorderLayout.SOUTH);
-    panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 20));
+    panelBotones.setLayout(
+        new FlowLayout(FlowLayout.CENTER, 120, 20));
     
     this.btnConfirmar = new JButton("Confirmar");
     btnConfirmar.addActionListener(new ActionListener() {
@@ -101,11 +102,14 @@ public class RegistrarPaquete extends JInternalFrame {
     getContentPane().add(panelDatos, BorderLayout.CENTER);
     GridBagLayout gblPanelDatos = new GridBagLayout();
     gblPanelDatos.columnWidths = new int[] { 113, 739, 0 };
-    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0 };
-    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+    gblPanelDatos.rowHeights = new int[] { 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    gblPanelDatos.columnWeights = new double[] { 0.0, 1.0,
+        Double.MIN_VALUE };
+    gblPanelDatos.rowWeights = new double[] { 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        Double.MIN_VALUE };
     panelDatos.setLayout(gblPanelDatos);
     
     GridBagConstraints gbcLblNombre = new GridBagConstraints();
@@ -159,7 +163,8 @@ public class RegistrarPaquete extends JInternalFrame {
     gbcTextFieldDescuento.fill = GridBagConstraints.HORIZONTAL;
     gbcTextFieldDescuento.gridx = 1;
     gbcTextFieldDescuento.gridy = 3;
-    panelDatos.add(this.textFieldDescuento, gbcTextFieldDescuento);
+    panelDatos.add(this.textFieldDescuento,
+        gbcTextFieldDescuento);
     this.textFieldDescuento.setColumns(10);
     
     GridBagConstraints gbcLblDescripcion = new GridBagConstraints();
@@ -171,9 +176,11 @@ public class RegistrarPaquete extends JInternalFrame {
     panelDatos.add(lblDescripcion, gbcLblDescripcion);
     
     scrollPane = new JScrollPane();
-    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    scrollPane.setVerticalScrollBarPolicy(
+        ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     scrollPane.setEnabled(false);
-    scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    scrollPane.setHorizontalScrollBarPolicy(
+        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     GridBagConstraints gbcScrollPane = new GridBagConstraints();
     gbcScrollPane.gridheight = 2;
     gbcScrollPane.insets = new Insets(0, 0, 5, 0);
@@ -203,20 +210,22 @@ public class RegistrarPaquete extends JInternalFrame {
     gbcTextField.gridy = 4;
     panelDatos.add(selectImageButton, gbcTextField);
     
-    selectImageButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evento) {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(null);
-        
-        if (result == JFileChooser.APPROVE_OPTION) {
-          
-          File fotoPerfil = new File(fileChooser.getSelectedFile().getAbsolutePath());
-          obtenerImagen(fotoPerfil);
-          
-        }
-      }
-    });
+    selectImageButton
+        .addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evento) {
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showOpenDialog(null);
+            
+            if (result == JFileChooser.APPROVE_OPTION) {
+              
+              File fotoPerfil = new File(fileChooser
+                  .getSelectedFile().getAbsolutePath());
+              obtenerImagen(fotoPerfil);
+              
+            }
+          }
+        });
     
     textPane = new JTextPane();
     GridBagConstraints gbcTextPane = new GridBagConstraints();
@@ -234,13 +243,14 @@ public class RegistrarPaquete extends JInternalFrame {
     gbcBtnButtonBorrar.gridx = 0;
     gbcBtnButtonBorrar.gridy = 5;
     panelDatos.add(quitarImageButton, gbcBtnButtonBorrar);
-    quitarImageButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent evento) {
-        fotoPaquete = null;
-        textPane.setText("");
-      }
-    });
+    quitarImageButton
+        .addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evento) {
+            fotoPaquete = null;
+            textPane.setText("");
+          }
+        });
     
     GridBagConstraints gbcLblFechaAlta = new GridBagConstraints();
     gbcLblFechaAlta.insets = new Insets(0, 0, 5, 5);
@@ -271,20 +281,26 @@ public class RegistrarPaquete extends JInternalFrame {
         if (this.textPane.getText() == "") {
           fotoPaquete = null;
         }
-        LocalDate fechaAltaPaquete = this.fechaAltaChooser.getDate().toInstant()
+        LocalDate fechaAltaPaquete = this.fechaAltaChooser
+            .getDate().toInstant()
             .atZone(ZoneId.systemDefault()).toLocalDate();
-        this.controladorOferta.registrarPaquete(nombre, descripcion, Integer.parseInt(validez),
-            Float.parseFloat(descuento), fotoPaquete, fechaAltaPaquete, null);
-        JOptionPane.showMessageDialog(this, "El paquete se ha creado con éxito",
-            "Registrar Paquete", JOptionPane.INFORMATION_MESSAGE);
+        this.controladorOferta.registrarPaquete(nombre,
+            descripcion, Integer.parseInt(validez),
+            Float.parseFloat(descuento), fotoPaquete,
+            fechaAltaPaquete, null);
+        JOptionPane.showMessageDialog(this,
+            "El paquete se ha creado con éxito",
+            "Registrar Paquete",
+            JOptionPane.INFORMATION_MESSAGE);
         return true;
       } catch (NumberFormatException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
       } catch (PaquetePublicacionYaExisteException e) {
         JOptionPane.showMessageDialog(this,
-            "Ya existe registrado un paquete con el nombre " + nombre, "Registrar Paquete",
-            JOptionPane.ERROR_MESSAGE);
+            "Ya existe registrado un paquete con el nombre "
+                + nombre,
+            "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
       } catch (TipoPublicacionYaExisteException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -304,21 +320,26 @@ public class RegistrarPaquete extends JInternalFrame {
         || this.textFieldNombre.getText().isEmpty()
         || this.textFieldDescuento.getText().isEmpty()
         || this.textFieldValidez.getText().isEmpty()) {
-      JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Paquete",
-          JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+          "No puede haber campos vacíos",
+          "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
-    if (this.fechaAltaChooser.getDate() == null 
-        || (this.fechaAltaChooser.getDate().compareTo(Date.from(LocalDate.now()
-        .atStartOfDay(ZoneId.systemDefault()).toInstant()))) > 0) {
-      JOptionPane.showMessageDialog(this, "Debe ingresar una Fecha de Alta",
+    if (this.fechaAltaChooser.getDate() == null
+        || (this.fechaAltaChooser.getDate()
+            .compareTo(Date.from(LocalDate.now()
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()))) > 0) {
+      JOptionPane.showMessageDialog(this,
+          "Debe ingresar una Fecha de Alta",
           "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
     try {
-      if (Float.parseFloat(this.textFieldDescuento.getText()) <= 0) {
+      if (Float.parseFloat(
+          this.textFieldDescuento.getText()) <= 0) {
         JOptionPane.showMessageDialog(this,
             "El descuento(en porcentaje) debe ser mayor a 0",
             "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
@@ -326,13 +347,14 @@ public class RegistrarPaquete extends JInternalFrame {
       }
     } catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(this,
-          "El descuento(en porcentaje) debe ser un número entre 1 y 100", "Registrar Paquete",
-          JOptionPane.ERROR_MESSAGE);
+          "El descuento(en porcentaje) debe ser un número entre 1 y 100",
+          "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
       return false;
     }
     
     try {
-      if (Integer.parseInt(this.textFieldValidez.getText()) <= 0) {
+      if (Integer
+          .parseInt(this.textFieldValidez.getText()) <= 0) {
         JOptionPane.showMessageDialog(this,
             "El período de validez(en días) debe ser un número entero mayor a cero",
             "Registrar Paquete", JOptionPane.ERROR_MESSAGE);
@@ -354,22 +376,26 @@ public class RegistrarPaquete extends JInternalFrame {
   
   public void obtenerImagen(File imagenPerfil) {
     try {
-      BufferedImage originalImage = ImageIO.read(imagenPerfil);
+      BufferedImage originalImage = ImageIO
+          .read(imagenPerfil);
       fotoPaquete = originalImage;
-      this.textPane.setCaretPosition(textPane.getStyledDocument().getLength());
+      this.textPane.setCaretPosition(
+          textPane.getStyledDocument().getLength());
       this.textPane.setText("");
       int newWidth = 100; // Ancho deseado
       int newHeight = 100; // Alto deseado
-      Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight,
-          Image.SCALE_SMOOTH);
+      Image scaledImage = originalImage.getScaledInstance(
+          newWidth, newHeight, Image.SCALE_SMOOTH);
       ImageIcon icono = new ImageIcon(scaledImage);
       this.textPane.insertIcon(icono);
       
     } catch (IOException e) {
-      JOptionPane.showMessageDialog(this, "No se cargo la imagen", "Registrar Usuario",
+      JOptionPane.showMessageDialog(this,
+          "No se cargo la imagen", "Registrar Usuario",
           JOptionPane.ERROR_MESSAGE);
     } catch (java.lang.NullPointerException e2) {
-      JOptionPane.showMessageDialog(this, "Debe ingresar una imagen valida",
+      JOptionPane.showMessageDialog(this,
+          "Debe ingresar una imagen valida",
           "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
     }
   }
