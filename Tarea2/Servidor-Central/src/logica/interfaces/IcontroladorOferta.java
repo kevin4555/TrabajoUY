@@ -3,6 +3,7 @@ package logica.interfaces;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoSePuedeFinalizar;
 import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
@@ -152,5 +153,19 @@ public interface IcontroladorOferta {
   
   Boolean estaCompradoPaquete(String nombrePaquete)
       throws PaquetePublicacionNoExisteException;
+
+  Boolean existeOfertaLaboral(String nombreOferta);
+
+  void agregarVisitaOferta(String nombreOferta) throws OfertaLaboralNoExisteException;
+
+  List<DtOfertaLaboral> obtenerOfertasMasVisitadas() throws IOException;
+
+  List<DtOfertaLaboral> buscarOfertas(String parametro) throws IOException;
+
+  void finalizarOferta(String nombreOferta)
+      throws OfertaLaboralNoExisteException, OfertaLaboralNoSePuedeFinalizar;
+
+  void ordenarPostulaciones(String nombreOferta, List<String> nicknamesPostulantes)
+      throws OfertaLaboralNoExisteException;
   
 }

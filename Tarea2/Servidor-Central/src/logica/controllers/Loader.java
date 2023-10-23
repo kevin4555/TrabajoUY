@@ -449,7 +449,7 @@ public class Loader {
         "Estoy emocionada por la oportunidad de formar parte de un equipo "
             + "dinámico y contribuir con mis habilidades de liderazgo.",
         LocalDate.parse("2023-10-01"), "lgarcia",
-        "Desarrollador Frontend");
+        "Desarrollador Frontend", null);
     
     controladorUsuario.registrarPostulacion(
         "Estudiante de Comunicación, habilidades en redacción y manejo de redes "
@@ -457,7 +457,7 @@ public class Loader {
         "Me encantaría formar parte de un equipo que me permita desarrollar "
             + "mis habilidades en comunicación y marketing.",
         LocalDate.parse("2023-09-30"), "matilo",
-        "Estratega de Negocios");
+        "Estratega de Negocios", null);
     
     controladorUsuario.registrarPostulacion(
         "Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles."
@@ -465,7 +465,7 @@ public class Loader {
         "Me entusiasma la posibilidad de trabajar en proyectos desafiantes y "
             + "seguir creciendo como profesional en el campo de la tecnología.",
         LocalDate.parse("2023-10-02"), "maro",
-        "Desarrollador Frontend");
+        "Desarrollador Frontend", null);
     
     controladorUsuario.registrarPostulacion(
         "Técnico en Electricidad, experiencia en mantenimiento industrial. "
@@ -473,14 +473,14 @@ public class Loader {
         "Estoy interesado en formar parte de un equipo que me permita aplicar "
             + "mis habilidades técnicas y contribuir al mantenimiento eficiente.",
         LocalDate.parse("2023-09-30"), "javierf",
-        "Diseñador UX/UI");
+        "Diseñador UX/UI", null);
     
     controladorUsuario.registrarPostulacion(
         "Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.",
         "Me gustaría combinar mi pasión por la música con una oportunidad laboral "
             + "que me permita seguir creciendo como artista.",
         LocalDate.parse("2023-09-30"), "valen25",
-        "Estratega de Negocios");
+        "Estratega de Negocios", null);
     
     controladorUsuario.registrarPostulacion(
         "Licenciada en Administración, me considero genia, experiencia en gestión "
@@ -488,7 +488,7 @@ public class Loader {
         "Estoy emocionada por la oportunidad de formar parte de un equipo "
             + "dinámico y contribuir con mis habilidades de liderazgo.",
         LocalDate.parse("2023-10-02"), "lgarcia",
-        "Estratega de Negocios");
+        "Estratega de Negocios", null);
     
     datosCargados = true;
     

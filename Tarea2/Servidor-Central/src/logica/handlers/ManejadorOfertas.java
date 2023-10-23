@@ -137,4 +137,16 @@ public class ManejadorOfertas {
     }
     return listaResultado;
   }
+  
+  public Boolean existeOfertaLaboral(String nombreOferta) {
+    return coleccionOfertaLaboral.containsKey(nombreOferta);
+  }
+  
+  public List<DtOfertaLaboral> obtenerDtOfertas() throws IOException{
+    List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
+    for(OfertaLaboral oferta : coleccionOfertaLaboral.values()) {
+      listaResultado.add(oferta.obtenerDtOfertaLaboral());
+    }
+    return listaResultado;
+  }
 }

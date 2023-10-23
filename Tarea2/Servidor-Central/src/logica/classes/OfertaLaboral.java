@@ -31,6 +31,9 @@ public class OfertaLaboral {
   private List<Postulacion> postulaciones;
   private CompraPaquete compraPaquete;
   private Empresa empresa;
+  private int cantidadVisitas;
+  private LocalDate fechaFinalizacion;
+  private LocalDate fechaSeleccion;
   
   /**
    * Constructor .
@@ -58,6 +61,9 @@ public class OfertaLaboral {
     this.compraPaquete = null;
     this.fechaResolucion = null;
     this.empresa = empresa;
+    this.cantidadVisitas = 0;
+    this.fechaFinalizacion = null;
+    this.fechaSeleccion = null;
     
   }
   
@@ -150,8 +156,7 @@ public class OfertaLaboral {
    * Metodo obtener DTOfertaLaboral .
    */
   
-  public DtOfertaLaboral obtenerDtOfertaLaboral()
-      throws IOException {
+  public DtOfertaLaboral obtenerDtOfertaLaboral() throws IOException {
     DtpaquetePublicacion paquete = null;
     if (compraPaquete != null) {
       paquete = compraPaquete.obtenerDtpaquete();
@@ -166,15 +171,13 @@ public class OfertaLaboral {
       estaVencida = this.estaVencida();
     }
     
-    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(
-        this.getNombre(), this.getDescripcion(),
-        this.getCiudad(), this.getDepartamento(),
-        this.getHorarioInicial(), this.getHorarioFinal(),
-        this.getRemunaracion(), this.getFechaAlta(),
-        this.obtenerDtPostulacion(), fechaResolucion,
-        estado, imagen, paquete, keywords, estaVencida,
-        this.tipoPublicacion.getNombre(),
-        this.empresa.getNickname());
+    DtOfertaLaboral dtOfertaLaboral = new DtOfertaLaboral(this.getNombre(),
+        this.getDescripcion(), this.getCiudad(), this.getDepartamento(),
+        this.getHorarioInicial(), this.getHorarioFinal(), this.getRemunaracion(),
+        this.getFechaAlta(), this.obtenerDtPostulacion(), fechaResolucion, estado, imagen,
+        paquete, keywords, estaVencida, this.tipoPublicacion.getNombre(),
+        this.empresa.getNickname(), this.cantidadVisitas, tipoPublicacion.getExposicion(),
+        this.fechaFinalizacion);
     return dtOfertaLaboral;
   }
   
@@ -249,5 +252,31 @@ public class OfertaLaboral {
             fechaResolucion.getDayOfMonth())
         .plusDays(tipoPublicacion.getDuracionDia());
     return fechaActual.isAfter(fechaVencimiento);
+  }
+  
+  public void agregarVisita() {
+    this.cantidadVisitas++;
+  }
+
+  public int getCantidadVisitas() {
+    return cantidadVisitas;
+  }
+  
+  public void finalizarOferta() {
+    this.estado = EstadoOferta.FINALIZADA;
+    this.fechaFinalizacion = LocalDate.now();
+  }
+  
+  public void ordenarPostulaciones(List<String> nicknamesPostulantes) {
+    this.fechaSeleccion = LocalDate.now();
+    List<Postulacion> listaOrdenada = new ArrayList<Postulacion>();
+    for (String nickname : nicknamesPostulantes) {
+      for (Postulacion postulacion : postulaciones) {
+        if (postulacion.getPostulante().getNickname().equals(nickname)) {
+          listaOrdenada.add(postulacion);
+        }
+      }
+    }
+    this.postulaciones = listaOrdenada;
   }
 }

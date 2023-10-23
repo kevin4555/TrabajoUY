@@ -3,6 +3,7 @@ package logica.controllers;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoSePuedeFinalizar;
 import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
@@ -16,6 +17,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.Empresa;
@@ -402,5 +405,67 @@ public class ControladorOferta
     PaquetePublicacion paquete = ManejadorPaquetes
         .getInstance().obtenerPaquete(nombrePaquete);
     return paquete.getEstaComprado();
+  }
+  
+  @Override
+  public Boolean existeOfertaLaboral(String nombreOferta) {
+    return ManejadorOfertas.getInstance().existeOfertaLaboral(nombreOferta);
+  }
+  
+  @Override
+  public void agregarVisitaOferta(String nombreOferta) throws OfertaLaboralNoExisteException {
+    OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+    oferta.agregarVisita();
+  }
+  
+  @Override
+  public List<DtOfertaLaboral> obtenerOfertasMasVisitadas() throws IOException {
+    ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) ManejadorOfertas
+        .getInstance().obtenerDtOfertas();
+    Comparator<DtOfertaLaboral> comparador = (oferta1,
+        oferta2) -> (int) (oferta1.getVisitas() - oferta2.getVisitas());
+    ofertas.sort(Collections.reverseOrder(comparador));
+    // ofertas.sort(comparador.reversed()); puede ser otra opcion hay que probar
+    // cual anda
+    return ofertas;
+  }
+  
+  @Override
+  public List<DtOfertaLaboral> buscarOfertas(String parametro) throws IOException {
+    List<DtOfertaLaboral> resultado = new ArrayList<DtOfertaLaboral>();
+    ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) ManejadorOfertas
+        .getInstance().obtenerDtofertasConfirmadas();
+    for (DtOfertaLaboral oferta : ofertas) {
+      if ((oferta.getNombre().contains(parametro)
+          || oferta.getDescripcion().contains(parametro)) && !oferta.getEstaVencida()) {
+        resultado.add(oferta);
+      }
+    }
+    Comparator<DtOfertaLaboral> comparadorExposicion = (oferta1, oferta2) -> oferta1
+        .getExposicion().compareTo(oferta2.getExposicion());
+    Comparator<DtOfertaLaboral> comparadorFechan = (oferta1, oferta2) -> oferta1.getFechaAlta()
+        .compareTo(oferta2.getFechaAlta());
+    Collections.sort(resultado,
+        comparadorExposicion.thenComparing(comparadorFechan.reversed()));
+    return resultado;
+  }
+  
+  @Override
+  public void finalizarOferta(String nombreOferta)
+      throws OfertaLaboralNoExisteException, OfertaLaboralNoSePuedeFinalizar {
+    OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+    if (!oferta.estaVencida() || oferta.getEstado() != EstadoOferta.CONFIRMADA) {
+      throw new OfertaLaboralNoSePuedeFinalizar(
+          "La oferta " + nombreOferta + " no puede ser finalizada");
+    }
+    oferta.finalizarOferta();
+    // agregar persistencia
+  }
+  
+  @Override
+  public void ordenarPostulaciones(String nombreOferta, List<String> nicknamesPostulantes)
+      throws OfertaLaboralNoExisteException {
+    OfertaLaboral oferta = ManejadorOfertas.getInstance().obtenerOfertaLaboral(nombreOferta);
+    oferta.ordenarPostulaciones(nicknamesPostulantes);
   }
 }

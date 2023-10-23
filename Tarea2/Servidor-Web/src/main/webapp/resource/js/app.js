@@ -8,6 +8,13 @@ const divFechaNacimiento = document.getElementById('divFechaNacimiento');
 const divSitioWeb = document.getElementById('divSitioWeb');
 const divDescripcionEmpresa = document.getElementById('divDescripcionEmpresa');
 const btnRegistrarUsuario = document.getElementById('btnRegistrarUsuario');
+const inputNickname = document.getElementById('inputNickname');
+const chequeoNickname = document.getElementById('chequeoNickname');
+const bloqueAviso = document.getElementById('bloqueAviso');
+const bloqueAvisoEmail = document.getElementById('bloqueAvisoEmail');
+const chequeoEmail = document.getElementById('chequeoEmail');
+const inputEmail = document.getElementById('inputEmail');
+
 
 let postulanteSeleccionado = false;
 let empresaSeleccionado = false;
@@ -44,16 +51,48 @@ radioEmpresa.addEventListener('click', () => {
 
 });
 
-btnRegistrarUsuario.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (postulanteSeleccionado) {
-        document.location.assign('./Postulante/indexPostulante.html');
-    }
-    if (empresaSeleccionado) {
-        document.location.assign('./Empresa/indexEmpresa.html');
-    }
+inputNickname.addEventListener('change', () => {
+    const nickname = inputNickname.value;
+
+    fetch('chequeoNickname?nickname=' + nickname)
+        .then(response => response.json())
+        .then(data => {
+            if (data.disponible) {
+                chequeoNickname.innerHTML =  `<strong>Error!</strong> El nickname ya esta en uso.`;
+                bloqueAviso.classList.remove('alert-success');
+                bloqueAviso.classList.add('alert-danger');
+                
+            } else {
+                chequeoNickname.innerHTML = `<strong>Éxito!</strong> El nickname esta disponible.`;
+                bloqueAviso.classList.add('alert-success');
+                bloqueAviso.classList.remove('alert-danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar disponibilidad del nickname:', error);
+        });
+});
+
+inputEmail.addEventListener('change', () => {
+    const email = inputEmail.value;
+
+    fetch('chequeoEmail?email=' + email)
+        .then(response => response.json())
+        .then(data => {
+            if (data.disponible) {
+                chequeoEmail.innerHTML =  `<strong>Error!</strong> El email ya esta en uso.`;
+                bloqueAvisoEmail.classList.remove('alert-success');
+                bloqueAvisoEmail.classList.add('alert-danger');
+                
+            } else {
+                chequeoEmail.innerHTML = `<strong>Éxito!</strong> El email esta disponible.`;
+                bloqueAvisoEmail.classList.add('alert-success');
+                bloqueAvisoEmail.classList.remove('alert-danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar disponibilidad del email:', error);
+        });
 });
 
 
-
-formularioAltaUsuario

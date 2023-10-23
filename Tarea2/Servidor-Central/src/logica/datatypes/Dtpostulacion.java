@@ -21,18 +21,21 @@ public class Dtpostulacion implements Serializable {
   
   private String nombreOferta;
   
+  private String linkVideo;
+  
   /**
    * Contructor.
    */
   
   public Dtpostulacion(String postulante,
       String descripMotivacion, LocalDate fechaPostulacion,
-      String cvReducido, String nombreOferta) {
+      String cvReducido, String nombreOferta, String linkVideo) {
     this.nicknamePostulante = postulante;
     this.descripMotivacion = descripMotivacion;
     this.fechaPostulacion = fechaPostulacion;
     this.cvReducido = cvReducido;
     this.nombreOferta = nombreOferta;
+    this.linkVideo = linkVideo;
   }
   
   public Dtpostulacion() {

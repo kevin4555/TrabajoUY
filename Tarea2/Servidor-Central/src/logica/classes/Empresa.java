@@ -157,6 +157,16 @@ public class Empresa extends Usuario {
     return listaResultado;
   }
   
+  public List<DtOfertaLaboral> obtenerDtofertasFinalizadas() throws IOException {
+    List<DtOfertaLaboral> listaResultado = new ArrayList<DtOfertaLaboral>();
+    for (OfertaLaboral oferta : ofertasLaborales) {
+      if (oferta.getEstado() == EstadoOferta.FINALIZADA) {
+        listaResultado.add(oferta.obtenerDtOfertaLaboral());
+      }
+    }
+    return listaResultado;
+  }
+  
   public void comprarPaquete(CompraPaquete compraPaquete) {
     compraPaquetes.add(compraPaquete);
   }

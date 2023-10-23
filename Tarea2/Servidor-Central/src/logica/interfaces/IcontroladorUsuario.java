@@ -2,9 +2,13 @@ package logica.interfaces;
 
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.PostulanteNoEsOfertaFavoritaException;
+import excepciones.PostulanteYaEsOfertaFavoritaException;
 import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoEstaSeguidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioNoExistePostulacion;
+import excepciones.UsuarioYaEstaSeguidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
@@ -16,6 +20,7 @@ import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
+import logica.datatypes.Dtempresa;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtusuario;
@@ -43,7 +48,7 @@ public interface IcontroladorUsuario {
   
   public void registrarPostulacion(String cvReducido,
       String motivacion, LocalDate fechaPostulacion,
-      String nickname, String nomOferta)
+      String nickname, String nomOferta, String linkVideo)
       throws UsuarioNoExisteException,
       OfertaLaboralNoExisteException,
       UsuarioYaExistePostulacion;
@@ -128,4 +133,22 @@ public interface IcontroladorUsuario {
   List<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
+
+  void agregarSeguidor(String nicknameUsuario, String nicknameSeguidor)
+      throws UsuarioNoExisteException, UsuarioYaEstaSeguidoException;
+  
+  void dejarDeSeguir(String nicknameUsuario, String nicknameSeguidor)
+      throws UsuarioNoExisteException, UsuarioNoEstaSeguidoException;
+  
+  void agregarOfertaFavorita(String nicknamePostulante, String nombreOferta)
+      throws UsuarioNoExisteException, PostulanteYaEsOfertaFavoritaException,
+      OfertaLaboralNoExisteException;
+
+  void removerOfertaFavorita(String nicknamePsotulante, String nombreOferta)
+      throws UsuarioNoExisteException, PostulanteNoEsOfertaFavoritaException;
+
+  List<DtOfertaLaboral> obtenerDtofertasFinalizadasDeEmpresa(String nicknameEmpresa)
+      throws UsuarioNoExisteException, IOException;
+
+  List<Dtempresa> buscarEmpresas(String parametro) throws IOException;
 }

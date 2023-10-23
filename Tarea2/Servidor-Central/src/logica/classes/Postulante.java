@@ -4,7 +4,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
@@ -18,6 +21,7 @@ public class Postulante extends Usuario {
   private LocalDate fechaNacimiento;
   private String nacionalidad;
   private List<Postulacion> postulaciones;
+  private Set<String> ofertasFavoritas;
   
   /**
    * Constructor.
@@ -32,6 +36,7 @@ public class Postulante extends Usuario {
     setFechaNacimiento(fechaNacimiento);
     setNacionalidad(nacionalidad);
     this.postulaciones = new ArrayList<Postulacion>();
+    this.ofertasFavoritas = new HashSet<String>();
   }
   
   public LocalDate getFechaNacimiento() {
@@ -143,6 +148,17 @@ public class Postulante extends Usuario {
       }
     }
     return false;
-    
+  }
+  
+  public void agregarOfertaFavorita(String nombreOferta) {
+    this.ofertasFavoritas.add(nombreOferta);
+  }
+  
+  public void removerOfertaFavorita(String nombreOferta) {
+    this.ofertasFavoritas.remove(nombreOferta);
+  }
+  
+  public Boolean esOfertaFavorita(String nombreOferta) {
+    return this.ofertasFavoritas.contains(nombreOferta);
   }
 }
