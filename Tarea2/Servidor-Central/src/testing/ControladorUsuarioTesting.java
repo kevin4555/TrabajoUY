@@ -25,13 +25,13 @@ import logica.controllers.Fabrica;
 import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtpostulante;
-import logica.datatypes.DttipoPublicacion;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtCantidadTipoPublicacion;
+import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtPostulante;
+import logica.datatypes.DtTipoPublicacion;
+import logica.datatypes.DtUsuario;
 import logica.datatypes.EstadoOferta;
 import logica.handlers.ManejadorOfertas;
 import logica.handlers.ManejadorPaquetes;
@@ -152,7 +152,7 @@ public class ControladorUsuarioTesting {
     controladorUsuario.altaPostulante("NicknameTest",
         "NombreTest", "ApellidoTest", "EmailTest",
         fechaDate1, "NacionalidadTest", null, "1234");
-    Dtusuario dtResultado = controladorUsuario
+    DtUsuario dtResultado = controladorUsuario
         .obtenerDtusuario("NicknameTest");
     Assert.assertEquals("NicknameTest",
         dtResultado.getNickname());
@@ -305,7 +305,7 @@ public class ControladorUsuarioTesting {
     controladorUsuario.altaPostulante("NicknameTest",
         "NombreTest", "ApellidoTest", "EmailTest",
         fechaDate1, "NacionalidadTest", null, "1234");
-    Dtusuario dtUsuario = postulante1.obtenerDtusuario();
+    DtUsuario dtUsuario = postulante1.obtenerDtusuario();
     controladorUsuario.editarDatosBasicos(dtUsuario,
         "nombreNuevo", "apellidoNuevo");
     Usuario resultado = controladorUsuario
@@ -556,7 +556,7 @@ public class ControladorUsuarioTesting {
         "Me entusiasma la posibilidad de trabajar en proyectos "
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend", null);
-    Dtpostulacion postulacionResultado = controladorUsuario
+    DtPostulacion postulacionResultado = controladorUsuario
         .obtenerDtpostulacion("maro",
             "Desarrollador Frontend");
     Assert.assertEquals("maro",
@@ -817,15 +817,15 @@ public class ControladorUsuarioTesting {
     controladorUsuario.altaPostulante("maro", "María",
         "Rodríguez", "marrod@gmail.com", fechaDate2,
         "Uruguaya", null, "1234");
-    List<Dtusuario> listaRes = controladorUsuario
+    List<DtUsuario> listaRes = controladorUsuario
         .obtenerDtusuarios();
-    Dtpostulante postulante = (Dtpostulante) controladorUsuario
+    DtPostulante postulante = (DtPostulante) controladorUsuario
         .obtenerDtusuario("maro");
-    Dtempresa empresa = (Dtempresa) controladorUsuario
+    DtEmpresa empresa = (DtEmpresa) controladorUsuario
         .obtenerDtusuario("EcoTech");
-    for (Dtusuario usuario : listaRes) {
+    for (DtUsuario usuario : listaRes) {
       if (usuario.getNickname() == empresa.getNickname()) {
-        Dtempresa dtempresa = (Dtempresa) usuario;
+        DtEmpresa dtempresa = (DtEmpresa) usuario;
         Assert.assertEquals(dtempresa.getNickname(),
             empresa.getNickname());
         Assert.assertEquals(dtempresa.getNombre(),
@@ -851,7 +851,7 @@ public class ControladorUsuarioTesting {
         
       } else if (usuario.getNickname() == postulante
           .getNickname()) {
-        Dtpostulante dtpostulante = (Dtpostulante) usuario;
+        DtPostulante dtpostulante = (DtPostulante) usuario;
         Assert.assertEquals(dtpostulante.getNickname(),
             postulante.getNickname());
         Assert.assertEquals(dtpostulante.getNombre(),
@@ -902,18 +902,18 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaTipoPublicacion("Premium",
         "Obtén máxima visibilidad", "1", 30, 4000f,
         fechaDate2);
-    DtcantidadTipoPublicacion dtCantidadTipo = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion dtCantidadTipo = new DtCantidadTipoPublicacion(
         "Premium", 2);
-    List<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> listaCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     listaCantidad.add(dtCantidadTipo);
     controladorOferta.registrarPaquete("Paquete",
         "Descripcion", 10, 20f, null, fechaDate1,
         listaCantidad);
     controladorUsuario.comprarPaquete("EcoTech", "Paquete",
         fechaDate2);
-    List<DtpaquetePublicacion> listaRes = controladorUsuario
+    List<DtPaquetePublicacion> listaRes = controladorUsuario
         .obtenerDtpaquetesDeEmpresa("EcoTech");
-    DtpaquetePublicacion paquete = listaRes.get(0);
+    DtPaquetePublicacion paquete = listaRes.get(0);
     Assert.assertEquals("Paquete", paquete.getNombre());
     Assert.assertEquals("Descripcion",
         paquete.getDescripcion());
@@ -974,9 +974,9 @@ public class ControladorUsuarioTesting {
             + "desafiantes y seguir creciendo como profesional en "
             + "el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend", null);
-    List<Dtpostulacion> listaRes = controladorUsuario
+    List<DtPostulacion> listaRes = controladorUsuario
         .obtenerDtpostulacionesDePostulante("maro");
-    Dtpostulacion postulacion = listaRes.get(0);
+    DtPostulacion postulacion = listaRes.get(0);
     Assert.assertEquals("maro",
         postulacion.getnicknamePostulante());
     Assert.assertEquals(fechaDate1,
@@ -1022,9 +1022,9 @@ public class ControladorUsuarioTesting {
     controladorOferta.altaTipoPublicacion("Premium",
         "Obtén máxima visibilidad", "1", 30, 4000f,
         fechaDate2);
-    DtcantidadTipoPublicacion dtCantidadTipo = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion dtCantidadTipo = new DtCantidadTipoPublicacion(
         "Premium", 2);
-    List<DtcantidadTipoPublicacion> listaCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> listaCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     listaCantidad.add(dtCantidadTipo);
     controladorOferta.registrarPaquete("Paquete",
         "Descripcion", 10, 20f, null, fechaDate1,
@@ -1062,7 +1062,7 @@ public class ControladorUsuarioTesting {
         fechaVencimiento);
     DtCantidadTipoPublicacionRestante dtCantidadRestante = dtcompra
         .getPublicacionesRestantes().get(0);
-    DttipoPublicacion dttipo = dtCantidadRestante
+    DtTipoPublicacion dttipo = dtCantidadRestante
         .getTipoPublicacion();
     Assert.assertEquals(String.valueOf(dttipo.getCosto()),
         String.valueOf(4000f));
@@ -1121,7 +1121,7 @@ public class ControladorUsuarioTesting {
     Boolean postulacionRepetida = false;
     try {
       
-      Dtpostulacion dtpostulacion = controladorUsuario
+      DtPostulacion dtpostulacion = controladorUsuario
           .obtenerDtpostulacion("maro",
               "Desarrollador Frontend");
     } catch (UsuarioNoExistePostulacion e) {

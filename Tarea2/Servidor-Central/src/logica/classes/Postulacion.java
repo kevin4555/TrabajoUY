@@ -1,7 +1,7 @@
 package logica.classes;
 
 import java.time.LocalDate;
-import logica.datatypes.Dtpostulacion;
+import logica.datatypes.DtPostulacion;
 
 /**
  * Clase Postulación .
@@ -67,8 +67,8 @@ public class Postulacion {
    * Obtener DTPostulacion.
    */
   
-  public Dtpostulacion obtenerDtpostulacion() {
-    Dtpostulacion dtPostulacion = new Dtpostulacion(
+  public DtPostulacion obtenerDtpostulacion() {
+    DtPostulacion dtPostulacion = new DtPostulacion(
         this.postulante.getNickname(),
         this.getDescrpMotivacion(),
         this.getFechaPostulacion(), this.getCvReducido(),

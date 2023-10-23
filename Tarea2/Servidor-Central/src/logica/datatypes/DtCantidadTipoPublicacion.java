@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 
@@ -7,20 +8,20 @@ import java.io.Serializable;
  * Clase DTCantidadTipoPublicacion.
  */
 
-@XmlAccessorType
-public class DtcantidadTipoPublicacion
-    implements Serializable {
-  
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DtCantidadTipoPublicacion implements Serializable {
+
+  private static final long serialVersionUID = -7434270955531327533L;
   String nombreTipoPublicacion;
   int cantidad;
   
-  public DtcantidadTipoPublicacion(String nombre,
+  public DtCantidadTipoPublicacion(String nombre,
       int cantidad) {
     this.nombreTipoPublicacion = nombre;
     this.cantidad = cantidad;
   }
   
-  public DtcantidadTipoPublicacion() {
+  public DtCantidadTipoPublicacion() {
   }
   
   public String getNombreTipoPublicacion() {

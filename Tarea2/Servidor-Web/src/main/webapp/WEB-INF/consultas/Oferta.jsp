@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.datatypes.Dtpostulacion"%>
-<%@page import="logica.datatypes.DtpaquetePublicacion"%>
+<%@page import="logica.datatypes.DtPostulacion"%>
+<%@page import="logica.datatypes.DtPaquetePublicacion"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 
@@ -23,11 +23,11 @@
 			<jsp:include page="../include/Menu.jsp" />
 			<%
 			DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
-			HttpSession sesion = request.getSession();
-			EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
-			Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
-			TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-			Map<String, String> mapImagenes = (Map<String, String>) request.getAttribute("mapImagenes");
+						HttpSession sesion = request.getSession();
+						EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
+						DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
+						TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+						Map<String, String> mapImagenes = (Map<String, String>) request.getAttribute("mapImagenes");
 			%>
 			<div class="col-8">
 				<section>
@@ -63,10 +63,10 @@
 												<li class="list-group-item"><b>Fecha de alta:</b> <%=oferta.getFechaAlta()%></li>
 												<li class="list-group-item"><b>Keywords:</b> <%
  if (oferta.getKeywords() != null) {
-   for (String keyword : oferta.getKeywords()) {
-     out.print(keyword + ", ");
+     for (String keyword : oferta.getKeywords()) {
+       out.print(keyword + ", ");
+     }
    }
- }
  %></li>
 												<%
 												if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa())) {
@@ -79,7 +79,7 @@
 											</ul>
 											<%
 											if (tipoUsuario.equals(TipoUsuario.POSTULANTE)) {
-											  if ((Boolean) request.getAttribute("estaPostulado")) {
+																													  if ((Boolean) request.getAttribute("estaPostulado")) {
 											%>
 											<div class="text-center">
 												<a
@@ -112,7 +112,7 @@
 							%>
 							<%
 							if (oferta.getPaqueteAsociado() != null) {
-							  DtpaquetePublicacion paquete = oferta.getPaqueteAsociado();
+																	  DtPaquetePublicacion paquete = oferta.getPaqueteAsociado();
 							%>
 							<div>
 								<h1>Paquete</h1>
@@ -127,8 +127,8 @@
 											<div class="card-body">
 												<%
 												String contextPath = request.getContextPath();
-												String paqueteUrl = contextPath + "/paquete?nombrePaquete="
-												    + java.net.URLEncoder.encode(oferta.getPaqueteAsociado().getNombre(), "UTF-8");
+																						String paqueteUrl = contextPath + "/paquete?nombrePaquete="
+																						    + java.net.URLEncoder.encode(oferta.getPaqueteAsociado().getNombre(), "UTF-8");
 												%>
 
 												<h1 class="card-title"><%=oferta.getPaqueteAsociado().getNombre()%></h1>
@@ -160,7 +160,7 @@
 								<h1>Postulaciones</h1>
 							</div>
 							<%
-							for (Dtpostulacion postulacion : oferta.getPostulaciones()) {
+							for (DtPostulacion postulacion : oferta.getPostulaciones()) {
 							%>
 							<div class="card">
 								<%

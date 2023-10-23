@@ -28,10 +28,10 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.DttipoPublicacion;
+import logica.datatypes.DtCantidadTipoPublicacion;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtTipoPublicacion;
 import logica.datatypes.EstadoOferta;
 import logica.handlers.ManejadorOfertas;
 import logica.handlers.ManejadorPaquetes;
@@ -229,7 +229,7 @@ public class ControladorOferta
       String descripcion, int periodoValDias,
       float descuento, BufferedImage imagen,
       LocalDate fechaAlta,
-      List<DtcantidadTipoPublicacion> cantidadTipoPublicacion)
+      List<DtCantidadTipoPublicacion> cantidadTipoPublicacion)
       throws PaquetePublicacionYaExisteException,
       TipoPublicacionYaExisteException,
       TipoPublicacionNoExisteException {
@@ -241,7 +241,7 @@ public class ControladorOferta
         new ArrayList<CantidadTotalTipoPublicacion>();
     
     if (cantidadTipoPublicacion != null) {
-      for (DtcantidadTipoPublicacion dtCantidad : cantidadTipoPublicacion) {
+      for (DtCantidadTipoPublicacion dtCantidad : cantidadTipoPublicacion) {
         TipoPublicacion publicacionParticularPublicacion = manejadorSettings
             .obtenerTipoPublicacion(
                 dtCantidad.getNombreTipoPublicacion());
@@ -325,7 +325,7 @@ public class ControladorOferta
   }
   
   @Override
-  public List<Dtpostulacion> obtenerDtPostulacionesDeOferta(
+  public List<DtPostulacion> obtenerDtPostulacionesDeOferta(
       String nombreOferta)
       throws OfertaLaboralNoExisteException {
     OfertaLaboral oferta = ManejadorOfertas.getInstance()
@@ -344,7 +344,7 @@ public class ControladorOferta
   }
   
   @Override
-  public DtpaquetePublicacion obtenerDtPaquetePublicacion(
+  public DtPaquetePublicacion obtenerDtPaquetePublicacion(
       String nombreOferta)
       throws OfertaLaboralNoExisteException,
       OfertaLaboralNoTienePaquete, IOException {
@@ -368,7 +368,7 @@ public class ControladorOferta
   }
   
   @Override
-  public DtpaquetePublicacion obtenerDtpaquete(
+  public DtPaquetePublicacion obtenerDtpaquete(
       String nombrePaquete)
       throws PaquetePublicacionNoExisteException,
       IOException {
@@ -378,7 +378,7 @@ public class ControladorOferta
   }
   
   @Override
-  public DttipoPublicacion obtenerDttipoPublicacion(
+  public DtTipoPublicacion obtenerDttipoPublicacion(
       String nombreTipo)
       throws TipoPublicacionNoExisteException {
     TipoPublicacion tipoPublicacion = ManejadorSettings
@@ -393,7 +393,7 @@ public class ControladorOferta
   }
   
   @Override
-  public List<DtpaquetePublicacion> listarDtpaquetes()
+  public List<DtPaquetePublicacion> listarDtpaquetes()
       throws IOException {
     return ManejadorPaquetes.getInstance()
         .listarDtpaquetes();

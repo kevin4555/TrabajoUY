@@ -1,10 +1,10 @@
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 
 <%
 EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
-Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
+DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
 TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 %>
 

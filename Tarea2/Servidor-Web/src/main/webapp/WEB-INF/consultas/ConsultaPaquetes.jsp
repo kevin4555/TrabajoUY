@@ -1,4 +1,4 @@
-<%@page import="logica.datatypes.DtpaquetePublicacion"%>
+<%@page import="logica.datatypes.DtPaquetePublicacion"%>
 
 
 <!DOCTYPE html>
@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Paquetes</title>
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resource/css/general.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/css/general.css">
     <jsp:include page="../include/Head.jsp"/>
 </head>
 <body>
@@ -16,8 +16,10 @@
             <jsp:include page="../include/Menu.jsp"/>
             <div class="col-8">
                 <section>
-                    <% java.util.List<DtpaquetePublicacion> listaPaquetes = (java.util.List<DtpaquetePublicacion>) request.getAttribute("listaPaquetes");
-                    for (DtpaquetePublicacion paquete : listaPaquetes) { %>
+                    <%
+                    java.util.List<DtPaquetePublicacion> listaPaquetes = (java.util.List<DtPaquetePublicacion>) request.getAttribute("listaPaquetes");
+                                        for (DtPaquetePublicacion paquete : listaPaquetes) {
+                    %>
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-md-3 justify-content-center align-items-center d-flex">

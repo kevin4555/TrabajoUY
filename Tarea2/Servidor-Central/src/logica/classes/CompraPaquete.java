@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
-import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.DtPaquetePublicacion;
 
 /**
  * Clase CompraPaquete.
@@ -61,7 +61,7 @@ public class CompraPaquete {
     return this.paquete.getNombre();
   }
   
-  public DtpaquetePublicacion obtenerDtpaquete()
+  public DtPaquetePublicacion obtenerDtpaquete()
       throws IOException {
     return this.paquete
         .obtenerDtPaquete();
@@ -94,7 +94,7 @@ public class CompraPaquete {
           .add(cantidad
               .obtenerDtTipoCantidadRestante());
     }
-    DtpaquetePublicacion dtpaquete = paquete
+    DtPaquetePublicacion dtpaquete = paquete
         .obtenerDtPaquete();
     return new DtCompraPaquete(
         fechaCompra,

@@ -25,10 +25,10 @@ import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtUsuario;
 import logica.handlers.ManejadorUsuario;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
@@ -64,7 +64,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public void editarDatosBasicos(Dtusuario dtusuario,
+  public void editarDatosBasicos(DtUsuario dtusuario,
       String nombreNuevo, String apellidoNuevo)
       throws UsuarioNoExisteException {
     ManejadorUsuario manejadorUsuario = ManejadorUsuario
@@ -165,7 +165,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public Dtusuario obtenerDtusuario(String nickname)
+  public DtUsuario obtenerDtusuario(String nickname)
       throws UsuarioNoExisteException, IOException {
     Usuario usuario = this.obtenerUsuario(nickname);
     return usuario.obtenerDtusuario();
@@ -220,7 +220,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public Dtpostulacion obtenerDtpostulacion(
+  public DtPostulacion obtenerDtpostulacion(
       String nicknamePostulante, String nombreOferta)
       throws UsuarioNoExisteException,
       UsuarioNoExistePostulacion {
@@ -279,7 +279,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<Dtusuario> obtenerDtusuarios()
+  public List<DtUsuario> obtenerDtusuarios()
       throws IOException {
     return ManejadorUsuario.getInstance()
         .obtenerDtusuarios();
@@ -304,7 +304,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<DtpaquetePublicacion> obtenerDtpaquetesDeEmpresa(
+  public List<DtPaquetePublicacion> obtenerDtpaquetesDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance()
@@ -314,7 +314,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<Dtpostulacion> obtenerDtpostulacionesDePostulante(
+  public List<DtPostulacion> obtenerDtpostulacionesDePostulante(
       String nicknamePostulante)
       throws UsuarioNoExisteException {
     Postulante postulante = ManejadorUsuario.getInstance()
@@ -406,10 +406,10 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<Dtempresa> buscarEmpresas(String parametro) throws IOException{
-    List<Dtempresa> listaResultado = new ArrayList<Dtempresa>();
-    List<Dtempresa> dtempresas = ManejadorUsuario.getInstance().obtenerDtEmpresas();
-    for(Dtempresa empresa : dtempresas) {
+  public List<DtEmpresa> buscarEmpresas(String parametro) throws IOException{
+    List<DtEmpresa> listaResultado = new ArrayList<DtEmpresa>();
+    List<DtEmpresa> dtempresas = ManejadorUsuario.getInstance().obtenerDtEmpresas();
+    for(DtEmpresa empresa : dtempresas) {
       if(empresa.getNombre().contains(parametro) || empresa.getDescripcion().contains(parametro)) {
         listaResultado.add(empresa);
       }

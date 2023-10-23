@@ -1,11 +1,13 @@
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 <%@page import="java.util.ArrayList"%>
 
 <%
+p
+
 EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
-Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
+DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
 TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 %>
 <nav class="navbar navbar-expand-lg">
@@ -23,15 +25,15 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 				if (usuario != null)
 				{
 				%>
+				<ul class="list-unstyled">
 				<li class="nav-item">
-					<%
-					if (usuario.getImagen() != null)
-					{
-					%> <img class="rounded-pill imgPerfil"
-					src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%
- }
- %>
+					<% if (usuario.getImagen() != null){%> 
+						<img class="rounded-pill imgPerfil"
+						src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%
+					 }
+					 %>
 				</li>
+				</ul>
 				<%
 				}
 				%>

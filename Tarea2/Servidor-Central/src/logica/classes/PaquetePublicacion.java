@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.DtCantidadTipoPublicacion;
+import logica.datatypes.DtPaquetePublicacion;
 
 /**
  * Clase Paquete publicacion .
@@ -115,14 +115,14 @@ public class PaquetePublicacion {
    * Metodo obtener DTPaquete .
    */
   
-  public DtpaquetePublicacion obtenerDtPaquete()
+  public DtPaquetePublicacion obtenerDtPaquete()
       throws IOException {
-    List<DtcantidadTipoPublicacion> listDtcantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> listDtcantidad = new ArrayList<DtCantidadTipoPublicacion>();
     for (CantidadTotalTipoPublicacion cantidad : cantidadTipoPublicaciones) {
       listDtcantidad
           .add(cantidad.obtenerDtcantidadTipoPublicacion());
     }
-    return new DtpaquetePublicacion(nombre, descripcion,
+    return new DtPaquetePublicacion(nombre, descripcion,
         periodoValidez, descuento, costo, imagen,
         listDtcantidad, fechaAlta);
   }

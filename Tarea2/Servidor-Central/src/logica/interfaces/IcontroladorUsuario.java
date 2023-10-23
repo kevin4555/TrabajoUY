@@ -20,10 +20,10 @@ import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtUsuario;
 
 /**
  * Interface ControladorUsuario .
@@ -38,7 +38,7 @@ public interface IcontroladorUsuario {
   
   public List<String> listaDeUsuarios();
   
-  public void editarDatosBasicos(Dtusuario usuario,
+  public void editarDatosBasicos(DtUsuario usuario,
       String nombreNuevo, String apellidoNuevo)
       throws UsuarioNoExisteException;
   
@@ -68,7 +68,7 @@ public interface IcontroladorUsuario {
   public Postulante obtenerPostulante(String nomPostulante)
       throws UsuarioNoExisteException;
   
-  public Dtusuario obtenerDtusuario(String nickname)
+  public DtUsuario obtenerDtusuario(String nickname)
       throws UsuarioNoExisteException, IOException;
   
   public List<String> listaOfertasUsuario(
@@ -91,7 +91,7 @@ public interface IcontroladorUsuario {
       BufferedImage imagen, String contrasenia)
       throws UsuarioNoExisteException;
   
-  public Dtpostulacion obtenerDtpostulacion(
+  public DtPostulacion obtenerDtpostulacion(
       String nicknamePostulante, String nombreOferta)
       throws UsuarioNoExisteException,
       UsuarioNoExistePostulacion;
@@ -111,13 +111,13 @@ public interface IcontroladorUsuario {
   Boolean confirmarContrasenia(String clave,
       String contrasenia) throws UsuarioNoExisteException;
   
-  List<Dtusuario> obtenerDtusuarios() throws IOException;
+  List<DtUsuario> obtenerDtusuarios() throws IOException;
   
-  List<DtpaquetePublicacion> obtenerDtpaquetesDeEmpresa(
+  List<DtPaquetePublicacion> obtenerDtpaquetesDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
   
-  List<Dtpostulacion> obtenerDtpostulacionesDePostulante(
+  List<DtPostulacion> obtenerDtpostulacionesDePostulante(
       String nicknamePostulante)
       throws UsuarioNoExisteException;
   
@@ -150,5 +150,5 @@ public interface IcontroladorUsuario {
   List<DtOfertaLaboral> obtenerDtofertasFinalizadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
 
-  List<Dtempresa> buscarEmpresas(String parametro) throws IOException;
+  List<DtEmpresa> buscarEmpresas(String parametro) throws IOException;
 }

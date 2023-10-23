@@ -2,11 +2,11 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.time.LocalDate"%>
-<%@page import="logica.datatypes.Dtpostulacion"%>
+<%@page import="logica.datatypes.DtPostulacion"%>
 <%@page import="model.TipoUsuario"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.Dtpostulante"%>
+<%@page import="logica.datatypes.DtPostulante"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,13 +21,13 @@
 </head>
 <body class="mb-4">
 	<%
-	Dtpostulante postulante = (Dtpostulante) request.getAttribute("postulante");
-	DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("ofertas");
-	Dtpostulacion postulacion = (Dtpostulacion) request.getAttribute("postulacion");
-	EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
-	Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
-	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-	String contextPath = request.getContextPath();
+	DtPostulante postulante = (DtPostulante) request.getAttribute("postulante");
+		DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("ofertas");
+		DtPostulacion postulacion = (DtPostulacion) request.getAttribute("postulacion");
+		EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
+		DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
+		TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+		String contextPath = request.getContextPath();
 	%>
 	<jsp:include page="../include/NavBar.jsp" />
 	<main class="container pt-5">

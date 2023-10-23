@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,7 +10,7 @@ import java.util.List;
  * Clase DtCompraPaquete.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtCompraPaquete implements Serializable {
   
   public void setFechaCompra(LocalDate fechaCompra) {
@@ -29,14 +30,14 @@ public class DtCompraPaquete implements Serializable {
     this.publicacionesRestantes = publicacionesRestantes;
   }
   
-  public void setPaquete(DtpaquetePublicacion paquete) {
+  public void setPaquete(DtPaquetePublicacion paquete) {
     this.paquete = paquete;
   }
   
   private LocalDate fechaCompra;
   private LocalDate fechaVencimiento;
   private List<DtCantidadTipoPublicacionRestante> publicacionesRestantes;
-  private DtpaquetePublicacion paquete;
+  private DtPaquetePublicacion paquete;
   
   /**
    * Constructor.
@@ -45,7 +46,7 @@ public class DtCompraPaquete implements Serializable {
   public DtCompraPaquete(LocalDate fechaCompra,
       LocalDate fechaVencimiento,
       List<DtCantidadTipoPublicacionRestante> publicacionesRestantes,
-      DtpaquetePublicacion paquete) {
+      DtPaquetePublicacion paquete) {
     this.fechaCompra = fechaCompra;
     this.fechaVencimiento = fechaVencimiento;
     this.publicacionesRestantes = publicacionesRestantes;
@@ -64,7 +65,7 @@ public class DtCompraPaquete implements Serializable {
     return publicacionesRestantes;
   }
   
-  public DtpaquetePublicacion getPaquete() {
+  public DtPaquetePublicacion getPaquete() {
     return paquete;
   }
   

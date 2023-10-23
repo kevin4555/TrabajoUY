@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -14,11 +15,10 @@ import javax.imageio.ImageIO;
  * Clase DTOfertaLaboral.
  */
 
-@XmlAccessorType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtOfertaLaboral implements Serializable {
-  
 
-  
+  private static final long serialVersionUID = -8050558380197586821L;
   private String nombre;
   private String descripcion;
   private String ciudad;
@@ -28,11 +28,11 @@ public class DtOfertaLaboral implements Serializable {
   private Float remuneracion;
   private LocalDate fechaAlta;
   private LocalDate fechaResolucion;
-  private List<Dtpostulacion> postulaciones;
+  private List<DtPostulacion> postulaciones;
   private EstadoOferta estadoOferta;
   private BufferedImage imagen;
   private String imagenBase64;
-  private DtpaquetePublicacion paqueteAsociado;
+  private DtPaquetePublicacion paqueteAsociado;
   private List<String> keywords;
   private Boolean estaVencida;
   private String nombreTipoPublicacion;
@@ -49,9 +49,9 @@ public class DtOfertaLaboral implements Serializable {
       String ciudad, String departamento,
       String horarioInicial, String horarioFinal,
       Float remuneracion, LocalDate fechaAlta,
-      List<Dtpostulacion> postulaciones,
+      List<DtPostulacion> postulaciones,
       LocalDate fechaResolucion, EstadoOferta estado,
-      BufferedImage imagen, DtpaquetePublicacion paquete,
+      BufferedImage imagen, DtPaquetePublicacion paquete,
       List<String> keywords, Boolean estaVencida,
       String nombreTipoPublicacion, String empresa, int visitas, String exposicion, LocalDate fechaFinalizacion)
       throws IOException {
@@ -111,7 +111,7 @@ public class DtOfertaLaboral implements Serializable {
     return fechaAlta;
   }
   
-  public List<Dtpostulacion> getPostulaciones() {
+  public List<DtPostulacion> getPostulaciones() {
     return postulaciones;
   }
   
@@ -135,7 +135,7 @@ public class DtOfertaLaboral implements Serializable {
     return imagen;
   }
   
-  public DtpaquetePublicacion getPaqueteAsociado() {
+  public DtPaquetePublicacion getPaqueteAsociado() {
     return paqueteAsociado;
   }
   
@@ -196,7 +196,7 @@ public class DtOfertaLaboral implements Serializable {
   }
   
   public void setPostulaciones(
-      List<Dtpostulacion> postulaciones) {
+      List<DtPostulacion> postulaciones) {
     this.postulaciones = postulaciones;
   }
   
@@ -213,7 +213,7 @@ public class DtOfertaLaboral implements Serializable {
   }
   
   public void setPaqueteAsociado(
-      DtpaquetePublicacion paqueteAsociado) {
+      DtPaquetePublicacion paqueteAsociado) {
     this.paqueteAsociado = paqueteAsociado;
   }
   

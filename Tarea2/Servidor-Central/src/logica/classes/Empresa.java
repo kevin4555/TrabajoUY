@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtUsuario;
 import logica.datatypes.EstadoOferta;
 
 /**
@@ -89,13 +89,13 @@ public class Empresa extends Usuario {
    * Obtener DTEmpresa.
    */
   
-  public Dtempresa obtenerDtempresa() throws IOException {
+  public DtEmpresa obtenerDtempresa() throws IOException {
     
     List<DtOfertaLaboral> listaDtofertas = new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : ofertasLaborales) {
       listaDtofertas.add(oferta.obtenerDtOfertaLaboral());
     }
-    Dtempresa resultado = new Dtempresa(this.nickname,
+    DtEmpresa resultado = new DtEmpresa(this.nickname,
         this.nombre, this.apellido, this.email,
         this.getImagen(), this.getContrasenia(),
         listaDtofertas, this.descripcion, this.sitioWeb);
@@ -108,7 +108,7 @@ public class Empresa extends Usuario {
   }
   
   @Override
-  public Dtusuario obtenerDtusuario() throws IOException {
+  public DtUsuario obtenerDtusuario() throws IOException {
     return this.obtenerDtempresa();
   }
   
@@ -191,9 +191,9 @@ public class Empresa extends Usuario {
    * Obtener DTPaquetePublicacion.
    */
   
-  public List<DtpaquetePublicacion> obtenerDtpaquetes()
+  public List<DtPaquetePublicacion> obtenerDtpaquetes()
       throws IOException {
-    List<DtpaquetePublicacion> listaReultado = new ArrayList<DtpaquetePublicacion>();
+    List<DtPaquetePublicacion> listaReultado = new ArrayList<DtPaquetePublicacion>();
     for (CompraPaquete compraPaquete : compraPaquetes) {
       listaReultado.add(compraPaquete.obtenerDtpaquete());
     }

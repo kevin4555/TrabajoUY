@@ -33,10 +33,10 @@ import logica.classes.TipoPublicacion;
 import logica.controllers.ControladorOferta;
 import logica.controllers.ControladorUsuario;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.DttipoPublicacion;
+import logica.datatypes.DtCantidadTipoPublicacion;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtTipoPublicacion;
 import logica.datatypes.EstadoOferta;
 import logica.handlers.ManejadorOfertas;
 import logica.handlers.ManejadorPaquetes;
@@ -343,9 +343,9 @@ public class ControladorOfertaTest {
         "tipoPublicacionPrueba", "descripcionPrueba",
         "alta", 20, 50f, fechaDate);
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
-    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion nuevoDt = new DtCantidadTipoPublicacion(
         "tipoPublicacionPrueba", 5);
-    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     arrayDtCantidad.add(nuevoDt);
     controladorOferta.registrarPaquete("paquetePrueba",
         "descripcionPrueba", 20, 50f, null, fechaDate,
@@ -374,9 +374,9 @@ public class ControladorOfertaTest {
         "tipoPublicacionPrueba", "descripcionPrueba",
         "alta", 20, 50f, fechaDate);
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
-    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion nuevoDt = new DtCantidadTipoPublicacion(
         "tipoPublicacionPrueba", 5);
-    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     arrayDtCantidad.add(nuevoDt);
     controladorOferta.registrarPaquete("paquetePrueba",
         "descripcionPrueba", 20, 50f, null, fechaDate,
@@ -633,12 +633,12 @@ public class ControladorOfertaTest {
         "Montevideo", "Montevideo", fechaDate,
         "tipoTesting", "nicknameEmpresa1", listaKeyword,
         null, "nombrePruebaPrimero");
-    DtpaquetePublicacion paquetePublicacionDt = controladorOferta
+    DtPaquetePublicacion paquetePublicacionDt = controladorOferta
         .obtenerDtPaquetePublicacion("test");
-    List<DtcantidadTipoPublicacion> resultado = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> resultado = new ArrayList<DtCantidadTipoPublicacion>();
     
     for (CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion : arrayPruebaSegundo) {
-      DtcantidadTipoPublicacion dtCantidadTipoPublicacion = cantidadTotalTipoPublicacion
+      DtCantidadTipoPublicacion dtCantidadTipoPublicacion = cantidadTotalTipoPublicacion
           .obtenerDtcantidadTipoPublicacion();
       resultado.add(dtCantidadTipoPublicacion);
     }
@@ -875,9 +875,9 @@ public class ControladorOfertaTest {
         "tipoPublicacionPrueba", "descripcionPrueba",
         "alta", 20, 50f, fechaDate);
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
-    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion nuevoDt = new DtCantidadTipoPublicacion(
         "tipoPublicacionPrueba", 5);
-    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     arrayDtCantidad.add(nuevoDt);
     controladorOferta.registrarPaquete("paquetePrueba",
         "descripcionPrueba", 20, 50f, null, fechaDate,
@@ -886,7 +886,7 @@ public class ControladorOfertaTest {
         "paquetePruebaSegundo", "descripcionPruebaSegundo",
         20, 50f, null, fechaDate, arrayDtCantidad);
     
-    List<DtpaquetePublicacion> listaDtpaquetePublicaciones = controladorOferta
+    List<DtPaquetePublicacion> listaDtpaquetePublicaciones = controladorOferta
         .listarDtpaquetes();
     
     Assert.assertEquals(
@@ -911,9 +911,9 @@ public class ControladorOfertaTest {
         "tipoPublicacionPrueba", "descripcionPrueba",
         "alta", 20, 50f, fechaDate);
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
-    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion nuevoDt = new DtCantidadTipoPublicacion(
         "tipoPublicacionPrueba", 5);
-    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     arrayDtCantidad.add(nuevoDt);
     controladorOferta.registrarPaquete("paquetePrueba",
         "descripcionPrueba", 20, 50f, null, fechaDate,
@@ -940,7 +940,7 @@ public class ControladorOfertaTest {
         "alta", 20, 50f, fechaDate);
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
     
-    DttipoPublicacion dttipoPublicacion = controladorOferta
+    DtTipoPublicacion dttipoPublicacion = controladorOferta
         .obtenerDttipoPublicacion("tipoPublicacionPrueba");
     
     Assert.assertEquals(dttipoPublicacion.getNombre(),
@@ -965,15 +965,15 @@ public class ControladorOfertaTest {
         "tipoPublicacionPrueba", "descripcionPrueba",
         "alta", 20, 50f, fechaDate);
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
-    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion nuevoDt = new DtCantidadTipoPublicacion(
         "tipoPublicacionPrueba", 5);
-    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     arrayDtCantidad.add(nuevoDt);
     controladorOferta.registrarPaquete("paquetePrueba",
         "descripcionPrueba", 20, 50f, null, fechaDate,
         arrayDtCantidad);
     
-    DtpaquetePublicacion dtpaquetePublicacion = controladorOferta
+    DtPaquetePublicacion dtpaquetePublicacion = controladorOferta
         .obtenerDtpaquete("paquetePrueba");
     
     Assert.assertEquals(dtpaquetePublicacion.getNombre(),
@@ -1088,7 +1088,7 @@ public class ControladorOfertaTest {
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         fechaDate, "maro", "test", null);
     
-    List<Dtpostulacion> dtPostulacion = controladorOferta
+    List<DtPostulacion> dtPostulacion = controladorOferta
         .obtenerDtPostulacionesDeOferta("test");
     
     Assert.assertEquals(
@@ -1201,9 +1201,9 @@ public class ControladorOfertaTest {
         "tipoPublicacionPrueba", "descripcionPrueba",
         "alta", 20, 50f, fechaDate);
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
-    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion nuevoDt = new DtCantidadTipoPublicacion(
         "tipoPublicacionPrueba", 5);
-    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     arrayDtCantidad.add(nuevoDt);
     controladorOferta.registrarPaquete("paquetePrueba",
         "descripcionPrueba", 20, 50f, null, fechaDate,
@@ -1231,9 +1231,9 @@ public class ControladorOfertaTest {
         "tipoPublicacionPrueba", "descripcionPrueba",
         "alta", 20, 50f, fechaDate);
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
-    DtcantidadTipoPublicacion nuevoDt = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion nuevoDt = new DtCantidadTipoPublicacion(
         "tipoPublicacionPrueba", 5);
-    List<DtcantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> arrayDtCantidad = new ArrayList<DtCantidadTipoPublicacion>();
     arrayDtCantidad.add(nuevoDt);
     controladorOferta.registrarPaquete("paquetePrueba",
         "descripcionPrueba", 20, 50f, null, fechaDate,

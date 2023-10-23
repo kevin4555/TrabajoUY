@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtUsuario;
 
 /**
  * Clase Usuario.
@@ -80,7 +80,7 @@ public abstract class Usuario {
   
   public abstract List<String> listarNombreOfertasUsuario();
   
-  public abstract Dtusuario obtenerDtusuario()
+  public abstract DtUsuario obtenerDtusuario()
       throws IOException;
   
   public void seguir(String nicknameSeguido) {

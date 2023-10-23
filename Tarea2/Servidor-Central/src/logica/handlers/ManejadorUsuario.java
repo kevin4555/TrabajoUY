@@ -11,8 +11,8 @@ import java.util.Map;
 import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtUsuario;
 
 /**
  * Clase Manejador usuario .
@@ -186,9 +186,9 @@ public class ManejadorUsuario {
    * Obtener lista de DTUsuario .
    */
   
-  public List<Dtusuario> obtenerDtusuarios()
+  public List<DtUsuario> obtenerDtusuarios()
       throws IOException {
-    List<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
+    List<DtUsuario> listaResultado = new ArrayList<DtUsuario>();
     for (Usuario usuario : colUsuarios.values()) {
       if (usuario instanceof Postulante) {
         Postulante postulante = (Postulante) usuario;
@@ -203,8 +203,8 @@ public class ManejadorUsuario {
     return listaResultado;
   }
   
-  public List<Dtempresa> obtenerDtEmpresas() throws IOException {
-    List<Dtempresa> listaResultado = new ArrayList<Dtempresa>();
+  public List<DtEmpresa> obtenerDtEmpresas() throws IOException {
+    List<DtEmpresa> listaResultado = new ArrayList<DtEmpresa>();
     for (Empresa empresa : colEmpresas.values()) {
       listaResultado.add(empresa.obtenerDtempresa());
     }

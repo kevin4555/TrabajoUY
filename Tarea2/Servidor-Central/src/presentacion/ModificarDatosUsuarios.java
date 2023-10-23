@@ -36,9 +36,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.Dtpostulante;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtPostulante;
+import logica.datatypes.DtUsuario;
 import logica.interfaces.IcontroladorUsuario;
 
 /**
@@ -467,7 +467,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
       this.textPane.setText("");
-      Dtusuario dtUsuario;
+      DtUsuario dtUsuario;
       try {
         dtUsuario = this.controladorUsuario
             .obtenerDtusuario(nicknameUsuario);
@@ -496,18 +496,18 @@ public class ModificarDatosUsuarios extends JInternalFrame {
         ImageIcon icono = new ImageIcon(scaledImage);
         this.textPane.insertIcon(icono);
       }
-      if (dtUsuario instanceof Dtempresa) {
+      if (dtUsuario instanceof DtEmpresa) {
         tipoUsuario = "Empresa";
-        Dtempresa dtEmpresa = (Dtempresa) dtUsuario;
+        DtEmpresa dtEmpresa = (DtEmpresa) dtUsuario;
         this.textAreaDescripcion
             .setText(dtEmpresa.getDescripcion());
         this.textFieldSitioWeb
             .setText(dtEmpresa.getSitioWeb());
         cambiarPanel(panelEmpresa);
       }
-      if (dtUsuario instanceof Dtpostulante) {
+      if (dtUsuario instanceof DtPostulante) {
         tipoUsuario = "Postulante";
-        Dtpostulante dtPostulante = (Dtpostulante) dtUsuario;
+        DtPostulante dtPostulante = (DtPostulante) dtUsuario;
         this.textFieldNacionalidad
             .setText(dtPostulante.getNacionalidad());
         this.fechaNacimientoChooser.setDate(

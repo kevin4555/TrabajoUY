@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -8,8 +9,10 @@ import java.time.LocalDate;
  * Clase DttipoPublicacion.
  */
 
-@XmlAccessorType
-public class DttipoPublicacion implements Serializable {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DtTipoPublicacion implements Serializable {
+	
+  private static final long serialVersionUID = -5978261198147353774L;
   private String nombre;
   private String descripcion;
   private String exposicion;
@@ -21,7 +24,7 @@ public class DttipoPublicacion implements Serializable {
    * Contructor.
    */
   
-  public DttipoPublicacion(String nombre,
+  public DtTipoPublicacion(String nombre,
       String descripcion, String exposicion,
       int duracionDia, float costo, LocalDate fechaAlta) {
     this.nombre = nombre;
@@ -32,7 +35,7 @@ public class DttipoPublicacion implements Serializable {
     this.fechaAlta = fechaAlta;
   }
   
-  public DttipoPublicacion() {
+  public DtTipoPublicacion() {
   }
   
   public void setNombre(String nombre) {

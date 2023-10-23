@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
@@ -21,9 +21,9 @@
 				<div class="col-8">
 					<section>
 						<%
-						ArrayList<Dtusuario> listaEmpresas = (ArrayList<Dtusuario>) request.getAttribute("listaEmpresas");
-						for (Dtusuario empresa : listaEmpresas)
-						{
+						ArrayList<DtUsuario> listaEmpresas = (ArrayList<DtUsuario>) request.getAttribute("listaEmpresas");
+										for (DtUsuario empresa : listaEmpresas)
+										{
 						%>
 						<div class="card">
 							<div class="row g-0">

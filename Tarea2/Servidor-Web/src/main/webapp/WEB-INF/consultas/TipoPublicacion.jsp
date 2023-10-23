@@ -1,4 +1,4 @@
-<%@page import="logica.datatypes.DttipoPublicacion"%>
+<%@page import="logica.datatypes.DtTipoPublicacion"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -14,7 +14,9 @@
     <jsp:include page="../include/Head.jsp" />
 </head>
 <body>
-<% DttipoPublicacion tipoPublicacion = (DttipoPublicacion) request.getAttribute("tipoPublicacion"); %>
+<%
+DtTipoPublicacion tipoPublicacion = (DtTipoPublicacion) request.getAttribute("tipoPublicacion");
+%>
 	<jsp:include page="../include/NavBar.jsp" />
 
 <main class="container pt-5">

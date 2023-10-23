@@ -26,7 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import logica.datatypes.DttipoPublicacion;
+import logica.datatypes.DtTipoPublicacion;
 import logica.interfaces.IcontroladorOferta;
 
 /**
@@ -388,7 +388,7 @@ public class AgregarTipoPublicacionAlPaquete
     if (tipoPublicacionSeleccionada != tipoPublicacion) {
       
       try {
-        DttipoPublicacion dtTipoPublicacion;
+        DtTipoPublicacion dtTipoPublicacion;
         dtTipoPublicacion = controladorOfertaLaboral
             .obtenerDttipoPublicacion(tipoPublicacion);
         this.textFieldExposicion

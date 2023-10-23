@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtpostulante;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtPostulante;
+import logica.datatypes.DtUsuario;
 
 /**
  * Clase Postulante .
@@ -64,9 +64,9 @@ public class Postulante extends Usuario {
    * Metodo obtenerDtpostulante.
    */
   
-  public Dtpostulante obtenerDtpostulante()
+  public DtPostulante obtenerDtpostulante()
       throws IOException {
-    return new Dtpostulante(this.nickname, this.nombre,
+    return new DtPostulante(this.nickname, this.nombre,
         this.apellido, this.email, this.getImagen(),
         this.getContrasenia(), this.obtenerDtofertas(),
         this.fechaNacimiento, this.nacionalidad);
@@ -87,7 +87,7 @@ public class Postulante extends Usuario {
   }
   
   @Override
-  public Dtusuario obtenerDtusuario() throws IOException {
+  public DtUsuario obtenerDtusuario() throws IOException {
     
     return this.obtenerDtpostulante();
   }
@@ -96,7 +96,7 @@ public class Postulante extends Usuario {
    * Obtener DTPostulacion.
    */
   
-  public Dtpostulacion obtenerDtpostulacion(
+  public DtPostulacion obtenerDtpostulacion(
       String nombreOferta) {
     for (Postulacion postulacion : postulaciones) {
       if (postulacion.getNombreOfertaLaboral()
@@ -125,8 +125,8 @@ public class Postulante extends Usuario {
    * Obtener DTPostulaciones .
    */
   
-  public List<Dtpostulacion> obtenerDtpostulaciones() {
-    List<Dtpostulacion> listaResultado = new ArrayList<Dtpostulacion>();
+  public List<DtPostulacion> obtenerDtpostulaciones() {
+    List<DtPostulacion> listaResultado = new ArrayList<DtPostulacion>();
     for (Postulacion postulacion : postulaciones) {
       listaResultado
           .add(postulacion.obtenerDtpostulacion());

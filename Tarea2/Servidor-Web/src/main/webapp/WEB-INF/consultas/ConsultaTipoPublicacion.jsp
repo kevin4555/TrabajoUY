@@ -1,4 +1,4 @@
-<%@page import="logica.datatypes.DttipoPublicacion"%>
+<%@page import="logica.datatypes.DtTipoPublicacion"%>
 <%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Tipos de publicaciones</title>
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resource/css/general.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/css/general.css">
     <jsp:include page="../include/Head.jsp"/>
 </head>
 <body>
@@ -17,8 +17,8 @@
             <div class="col-8">
                 <section>
                     <%
-                        ArrayList<DttipoPublicacion> listaTipoPublicacion = (ArrayList<DttipoPublicacion>) request.getAttribute("listaTipoPublicacion");
-                        for (DttipoPublicacion tipoPublicacion : listaTipoPublicacion) {
+                    ArrayList<DtTipoPublicacion> listaTipoPublicacion = (ArrayList<DtTipoPublicacion>) request.getAttribute("listaTipoPublicacion");
+                                            for (DtTipoPublicacion tipoPublicacion : listaTipoPublicacion) {
                     %>
                     <div class="card">
                         <div class="row g-0">

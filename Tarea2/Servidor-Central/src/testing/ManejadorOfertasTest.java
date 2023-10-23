@@ -16,7 +16,7 @@ import logica.classes.Empresa;
 import logica.classes.OfertaLaboral;
 import logica.classes.TipoPublicacion;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtpostulacion;
+import logica.datatypes.DtPostulacion;
 import logica.datatypes.EstadoOferta;
 import logica.handlers.ManejadorOfertas;
 import org.junit.Before;

@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -8,9 +9,10 @@ import java.time.LocalDate;
  * Clase Dtpostulacion.
  */
 
-@XmlAccessorType
-public class Dtpostulacion implements Serializable {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DtPostulacion implements Serializable {
   
+  private static final long serialVersionUID = -5291054783279291754L;
   private String nicknamePostulante;
   
   private String descripMotivacion;
@@ -27,7 +29,7 @@ public class Dtpostulacion implements Serializable {
    * Contructor.
    */
   
-  public Dtpostulacion(String postulante,
+  public DtPostulacion(String postulante,
       String descripMotivacion, LocalDate fechaPostulacion,
       String cvReducido, String nombreOferta, String linkVideo) {
     this.nicknamePostulante = postulante;
@@ -35,10 +37,10 @@ public class Dtpostulacion implements Serializable {
     this.fechaPostulacion = fechaPostulacion;
     this.cvReducido = cvReducido;
     this.nombreOferta = nombreOferta;
-    this.linkVideo = linkVideo;
+    this.setLinkVideo(linkVideo);
   }
   
-  public Dtpostulacion() {
+  public DtPostulacion() {
   }
   
   public String getNicknamePostulante() {
@@ -87,5 +89,19 @@ public class Dtpostulacion implements Serializable {
   public String getNombreOferta() {
     return nombreOferta;
   }
+
+/**
+ * @return the linkVideo
+ */
+public String getLinkVideo() {
+	return linkVideo;
+}
+
+/**
+ * @param linkVideo the linkVideo to set
+ */
+public void setLinkVideo(String linkVideo) {
+	this.linkVideo = linkVideo;
+}
   
 }

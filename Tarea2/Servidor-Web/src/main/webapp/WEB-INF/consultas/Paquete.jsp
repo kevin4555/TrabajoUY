@@ -1,10 +1,10 @@
 <%@page import="model.TipoUsuario"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DtpaquetePublicacion"%>
+<%@page import="logica.datatypes.DtPaquetePublicacion"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     
-<%@page import="logica.datatypes.DtcantidadTipoPublicacion"%>
+<%@page import="logica.datatypes.DtCantidadTipoPublicacion"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.time.LocalDate" %>
@@ -20,28 +20,33 @@
 	<jsp:include page="../include/Head.jsp" />
 </head>
   <body>
-  	<% DtpaquetePublicacion paquete = (DtpaquetePublicacion) request.getAttribute("paquete"); 
-	EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
-	Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
-	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-	%>
+  	<%
+  	DtPaquetePublicacion paquete = (DtPaquetePublicacion) request.getAttribute("paquete"); 
+  	  	  		EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
+  	  	  		DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
+  	  	  		TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+  	%>
 	<jsp:include page="../include/NavBar.jsp" />
     <main class="container pt-5">
       <div class="row">
         <jsp:include page="../include/Menu.jsp" />
         <div class="col-9 d-flex flex-column align-items-center flex-grow-1">
           <div class="card mb-3" style="max-width: 540px">
-          <% String error = request.getParameter("error");
-				if (error != null && !error.isEmpty()) { %>
+          <%
+          String error = request.getParameter("error");
+          		if (error != null && !error.isEmpty()) {
+          %>
           <div class="alert alert-danger  alert-dismissible fade show" role="alert">
-			   <%= error %>
+			   <%=error%>
 			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
-          <% } %>
+          <%
+          }
+          %>
             <div class="row g-0">
               <div class="col-4 d-flex align-items-center">
                 <img
-                  src="data:image/png;base64,<%= paquete.getImagenBase64() %>"
+                  src="data:image/png;base64,<%=paquete.getImagenBase64()%>"
                   class="img-fluid rounded-start"
                   alt="Imagen Paquete"
                 />
@@ -50,31 +55,31 @@
                 <div class="card-body">
                   <div class="card-header bg-white px-0">
                     <h1 class="m-0 fs-2">
-                      <i class="bi bi-box-seam text-primary"></i> Paquete <%= paquete.getNombre() %>
+                      <i class="bi bi-box-seam text-primary"></i> Paquete <%=paquete.getNombre()%>
                     </h1>
                   </div>
                   <p class="card-text py-2 fst-italic">
-                    <%= paquete.getDescripcion() %>
+                    <%=paquete.getDescripcion()%>
                   </p>
                   <ul class="list-unstyled">
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
-                      Período: <%= paquete.getPeriodoValidez() %> días
+                      Período: <%=paquete.getPeriodoValidez()%> días
                     </li>
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
-                      Descuento del <%= paquete.getDescuento() %> % por publicación
+                      Descuento del <%=paquete.getDescuento()%> % por publicación
                     </li>
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
                       <%
-						LocalDate fechaAlta = paquete.getFechaAlta(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
-						Date fechaAltaDate = Date.from(fechaAlta.atStartOfDay(ZoneId.systemDefault()).toInstant());
-						SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						String newParsedDate = outputDateFormat.format(fechaAltaDate);
-						%>
+                      LocalDate fechaAlta = paquete.getFechaAlta(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
+                      				Date fechaAltaDate = Date.from(fechaAlta.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                      				SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                      				String newParsedDate = outputDateFormat.format(fechaAltaDate);
+                      %>
 						
-						Fecha <%= newParsedDate %>
+						Fecha <%=newParsedDate%>
                     </li>
                   </ul>
                   <div class="publicacionesPaquete">
@@ -87,9 +92,11 @@
                       </thead>
                       <tbody>
                       <%
-                      List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones = paquete.getCantidadTipoPublicaciones();
-						%>
-                      	<% for (DtcantidadTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) { %>
+                      List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones = paquete.getCantidadTipoPublicaciones();
+                      %>
+                      	<%
+                      	for (DtCantidadTipoPublicacion cantidadTipoPublicacion : cantidadTipoPublicaciones) {
+                      	%>
 					        <tr>
 					            <%
 					            

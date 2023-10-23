@@ -25,9 +25,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.DttipoPublicacion;
+import logica.datatypes.DtCantidadTipoPublicacion;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtTipoPublicacion;
 import logica.interfaces.IcontroladorOferta;
 
 /**
@@ -434,7 +434,7 @@ public class ConsultaPaquete extends JInternalFrame {
         if (nombrePaquete != paqueteSeleccionado) {
           paqueteSeleccionado = nombrePaquete;
           limpiarDatosPublicaciones();
-          DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
+          DtPaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
               .obtenerDtpaquete(nombrePaquete);
           this.textFieldDescuento.setText(String.valueOf(
               dtPaquetePublicaciones.getDescuento()) + "%");
@@ -496,12 +496,12 @@ public class ConsultaPaquete extends JInternalFrame {
             .getSelectedItem().toString();
         String nombrePaquete = comboBoxSeleccionPaquete
             .getSelectedItem().toString();
-        DtpaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
+        DtPaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
             .obtenerDtpaquete(nombrePaquete);
-        List<DtcantidadTipoPublicacion> dtCantidadPublicaciones = dtPaquetePublicaciones
+        List<DtCantidadTipoPublicacion> dtCantidadPublicaciones = dtPaquetePublicaciones
             .getCantidadTipoPublicaciones();
         int cantidadRestante = 0;
-        for (DtcantidadTipoPublicacion dtCantidadTipoPublicacion : dtCantidadPublicaciones) {
+        for (DtCantidadTipoPublicacion dtCantidadTipoPublicacion : dtCantidadPublicaciones) {
           if (dtCantidadTipoPublicacion
               .getNombreTipoPublicacion()
               .equals(tipoPublicacion)) {
@@ -512,7 +512,7 @@ public class ConsultaPaquete extends JInternalFrame {
         
         if (tipoPublicacionSeleccionada != tipoPublicacion) {
           
-          DttipoPublicacion dtTipoPublicacion;
+          DtTipoPublicacion dtTipoPublicacion;
           dtTipoPublicacion = controladorOfertaLaboral
               .obtenerDttipoPublicacion(tipoPublicacion);
           this.textFieldExposicion

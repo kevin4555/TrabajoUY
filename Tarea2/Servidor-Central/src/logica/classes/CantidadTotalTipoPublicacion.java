@@ -1,6 +1,6 @@
 package logica.classes;
 
-import logica.datatypes.DtcantidadTipoPublicacion;
+import logica.datatypes.DtCantidadTipoPublicacion;
 
 /**
  * Clase CantidadTotalTipoPublicacion.
@@ -33,8 +33,8 @@ public class CantidadTotalTipoPublicacion {
    * Metodo obtenerDtCantidadTipoPublicacion.
    */
   
-  public DtcantidadTipoPublicacion obtenerDtcantidadTipoPublicacion() {
-    return new DtcantidadTipoPublicacion(
+  public DtCantidadTipoPublicacion obtenerDtcantidadTipoPublicacion() {
+    return new DtCantidadTipoPublicacion(
         this.tipoPublicacion.getNombre(),
         this.cantidadTotal);
     

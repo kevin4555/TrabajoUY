@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
-<%@page import="logica.datatypes.Dtpostulante"%>
-<%@page import="logica.datatypes.Dtempresa"%>
+<%@page import="logica.datatypes.DtPostulante"%>
+<%@page import="logica.datatypes.DtEmpresa"%>
 <%@page import="logica.datatypes.EstadoOferta"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -19,8 +19,8 @@
 		<div class="row">
 			<jsp:include page="../include/Menu.jsp" />
 			<%
-			Dtusuario usuario = (Dtusuario) request.getAttribute("usuario");
-			String tipoUsuario = (String) request.getAttribute("tipoUsuario");
+			DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
+						String tipoUsuario = (String) request.getAttribute("tipoUsuario");
 			%>
 
 			<div class="menuMiPerfil container mt-3 col-8">
@@ -86,7 +86,7 @@
 											</tr>
 											<%
 											if (tipoUsuario.equals("empresa")) {
-											  Dtempresa empresa = (Dtempresa) request.getAttribute("usuario");
+																													  DtEmpresa empresa = (DtEmpresa) request.getAttribute("usuario");
 											%>
 											<tr>
 												<td><strong>Sitio web</strong></td>
@@ -101,7 +101,7 @@
 											%>
 											<%
 											if (tipoUsuario.equals("postulante")) {
-											  Dtpostulante postulante = (Dtpostulante) request.getAttribute("usuario");
+																				  DtPostulante postulante = (DtPostulante) request.getAttribute("usuario");
 											%>
 											<tr>
 												<td><strong>Nacionalidad</strong></td>

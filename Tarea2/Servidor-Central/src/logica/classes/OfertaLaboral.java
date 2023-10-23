@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtPostulacion;
 import logica.datatypes.EstadoOferta;
 
 /**
@@ -144,8 +144,8 @@ public class OfertaLaboral {
    * Metodo obtener DTPostulacion .
    */
   
-  public List<Dtpostulacion> obtenerDtPostulacion() {
-    List<Dtpostulacion> listaDtpostulaciones = new ArrayList<Dtpostulacion>();
+  public List<DtPostulacion> obtenerDtPostulacion() {
+    List<DtPostulacion> listaDtpostulaciones = new ArrayList<DtPostulacion>();
     for (Postulacion iter : postulaciones) {
       listaDtpostulaciones.add(iter.obtenerDtpostulacion());
     }
@@ -157,7 +157,7 @@ public class OfertaLaboral {
    */
   
   public DtOfertaLaboral obtenerDtOfertaLaboral() throws IOException {
-    DtpaquetePublicacion paquete = null;
+    DtPaquetePublicacion paquete = null;
     if (compraPaquete != null) {
       paquete = compraPaquete.obtenerDtpaquete();
     }
@@ -235,7 +235,7 @@ public class OfertaLaboral {
     return resultado;
   }
   
-  public DtpaquetePublicacion obtenerDtpaquete()
+  public DtPaquetePublicacion obtenerDtpaquete()
       throws IOException {
     return compraPaquete.obtenerDtpaquete();
   }

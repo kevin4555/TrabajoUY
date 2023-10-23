@@ -43,7 +43,7 @@ import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
-import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.DtPaquetePublicacion;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
@@ -582,7 +582,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
         List<DtCantidadTipoPublicacionRestante> cantidadTipoPublicacion =
             new ArrayList<DtCantidadTipoPublicacionRestante>();
         for (DtCompraPaquete compraPaquete : listaCompraPaquetesaux) {
-          DtpaquetePublicacion dtPaquete = compraPaquete
+          DtPaquetePublicacion dtPaquete = compraPaquete
               .getPaquete();
           if (dtPaquete.getNombre().equals(nombrePaquete)) {
             cantidadTipoPublicacion = compraPaquete
@@ -663,7 +663,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
                   this.dateChooser.getDate().toInstant()
                       .atZone(ZoneId.systemDefault())
                       .toLocalDate())) {
-                DtpaquetePublicacion dtpaquete = compra
+                DtPaquetePublicacion dtpaquete = compra
                     .getPaquete();
                 listaCompraPaquetes
                     .add(dtpaquete.getNombre());
@@ -764,7 +764,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
           List<DtCantidadTipoPublicacionRestante> cantidadTipoPublicacion = 
               new ArrayList<DtCantidadTipoPublicacionRestante>();
           for (DtCompraPaquete compraPaquete : listaCompraPaquetesaux) {
-            DtpaquetePublicacion dtPaquete = compraPaquete
+            DtPaquetePublicacion dtPaquete = compraPaquete
                 .getPaquete();
             if (dtPaquete.getNombre()
                 .equals(nombrePaquete)) {

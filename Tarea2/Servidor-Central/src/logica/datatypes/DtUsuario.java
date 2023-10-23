@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -13,8 +14,10 @@ import javax.imageio.ImageIO;
  * Clase Dtusuario.
  */
 
-@XmlAccessorType
-public class Dtusuario implements Serializable {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DtUsuario implements Serializable {
+	
+  private static final long serialVersionUID = 6770805630368299744L;
   private String nickname;
   private String nombre;
   private String apellido;
@@ -24,14 +27,14 @@ public class Dtusuario implements Serializable {
   private String contrasenia;
   private List<DtOfertaLaboral> ofertasColeccion;
   
-  public Dtusuario() {
+  public DtUsuario() {
   }
   
   /**
    * Contructor.
    */
   
-  public Dtusuario(String nickname, String nombre,
+  public DtUsuario(String nickname, String nombre,
       String apellido, String email, BufferedImage imagen,
       String contrasenia,
       List<DtOfertaLaboral> ofertasColeccion)

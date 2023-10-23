@@ -1,5 +1,5 @@
-<%@page import="logica.datatypes.Dtpostulante"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtPostulante"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList" %>
 
@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Usuarios</title>
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resource/css/general.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/css/general.css">
     <jsp:include page="../include/Head.jsp"/>
 </head>
 <body>
@@ -19,16 +19,16 @@
             <div class="col-8">
                 <section>
                     <%
-                    ArrayList<Dtusuario> listaUsuarios = (ArrayList<Dtusuario>) request.getAttribute("listaUsuarios");
-                    String tipoEsperadoVar = (String) request.getAttribute("tipoEsperado");
-                    for (Dtusuario usuario : listaUsuarios) {
-                        String tipoUser = usuario.getClass().getSimpleName();
+                    ArrayList<DtUsuario> listaUsuarios = (ArrayList<DtUsuario>) request.getAttribute("listaUsuarios");
+                                                            String tipoEsperadoVar = (String) request.getAttribute("tipoEsperado");
+                                                            for (DtUsuario usuario : listaUsuarios) {
+                                                                String tipoUser = usuario.getClass().getSimpleName();
                     %>
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-md-3 justify-content-center align-items-center d-flex">
                                     <img
-                                    	src="data:image/png;base64,<%= usuario.getImagenBase64() %>"
+                                    	src="data:image/png;base64,<%=usuario.getImagenBase64()%>"
                                         class="img-fluid rounded-start"
                                         alt="Imagen PerfilUsuario"
                                     />
@@ -36,11 +36,11 @@
                                 <div class="col-md-9">
                                     <div class="card-body">
                                         <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            <%= usuario.getNickname() %>
+                                            <%=usuario.getNickname()%>
                                         </h5>
-                                        <p class="card-text"><%= usuario.getNombre()+" " + usuario.getApellido() %></p>
+                                        <p class="card-text"><%=usuario.getNombre()+" " + usuario.getApellido()%></p>
                                         <%
-                                        if (usuario instanceof Dtpostulante) {
+                                        if (usuario instanceof DtPostulante) {
                                         %>
                                             <p class="card-text">Tipo: Postulante</p>
                                         <%

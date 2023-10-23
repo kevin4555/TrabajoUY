@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -10,10 +11,10 @@ import java.util.List;
  * Clase DTEmpresa.
  */
 
-@XmlAccessorType
-public class Dtempresa extends Dtusuario
-    implements Serializable {
-  
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DtEmpresa extends DtUsuario implements Serializable {
+	
+  private static final long serialVersionUID = -8154138493877341107L;
   private String descripcion;
   private String sitioWeb;
   
@@ -21,7 +22,7 @@ public class Dtempresa extends Dtusuario
    * Contructor.
    */
   
-  public Dtempresa(String nickname, String nombre,
+  public DtEmpresa(String nickname, String nombre,
       String apellido, String email, BufferedImage imagen,
       String contrasenia,
       List<DtOfertaLaboral> ofertasColeccion,
@@ -33,7 +34,7 @@ public class Dtempresa extends Dtusuario
     this.sitioWeb = sitioWeb;
   }
   
-  public Dtempresa(String nickname, String nombre,
+  public DtEmpresa(String nickname, String nombre,
       String apellido, String email, BufferedImage imagen,
       String contrasenia,
       List<DtOfertaLaboral> ofertasColeccion)
@@ -42,7 +43,7 @@ public class Dtempresa extends Dtusuario
         contrasenia, ofertasColeccion);
   }
   
-  public Dtempresa() {
+  public DtEmpresa() {
   }
   
   public void setDescripcion(String descripcion) {

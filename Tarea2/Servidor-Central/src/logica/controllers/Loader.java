@@ -23,7 +23,7 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import logica.classes.Keyword;
-import logica.datatypes.DtcantidadTipoPublicacion;
+import logica.datatypes.DtCantidadTipoPublicacion;
 import logica.datatypes.EstadoOferta;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
@@ -204,39 +204,39 @@ public class Loader {
     controladorOferta.altaKeyword("Logística");
     controladorOferta.altaKeyword("Contabilidad");
     
-    List<DtcantidadTipoPublicacion> paquete1 = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> paquete1 = new ArrayList<DtCantidadTipoPublicacion>();
     
-    DtcantidadTipoPublicacion tipo1 = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion tipo1 = new DtCantidadTipoPublicacion(
         "Premium", 1);
-    DtcantidadTipoPublicacion tipo2 = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion tipo2 = new DtCantidadTipoPublicacion(
         "Destacada", 1);
-    DtcantidadTipoPublicacion tipo3 = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion tipo3 = new DtCantidadTipoPublicacion(
         "Estándar", 1);
     paquete1.add(tipo1);
     paquete1.add(tipo2);
     paquete1.add(tipo3);
     
-    List<DtcantidadTipoPublicacion> paquete3 = new ArrayList<DtcantidadTipoPublicacion>();
-    DtcantidadTipoPublicacion tipo4 = new DtcantidadTipoPublicacion(
+    List<DtCantidadTipoPublicacion> paquete3 = new ArrayList<DtCantidadTipoPublicacion>();
+    DtCantidadTipoPublicacion tipo4 = new DtCantidadTipoPublicacion(
         "Estándar", 2);
-    DtcantidadTipoPublicacion tipo5 = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion tipo5 = new DtCantidadTipoPublicacion(
         "Básica", 1);
     
-    List<DtcantidadTipoPublicacion> paquete2 = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> paquete2 = new ArrayList<DtCantidadTipoPublicacion>();
     
     paquete2.add(tipo4);
     paquete2.add(tipo5);
     
-    DtcantidadTipoPublicacion tipo6 = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion tipo6 = new DtCantidadTipoPublicacion(
         "Premium", 2);
-    DtcantidadTipoPublicacion tipo7 = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion tipo7 = new DtCantidadTipoPublicacion(
         "Estándar", 2);
     paquete3.add(tipo6);
     paquete3.add(tipo7);
     
-    List<DtcantidadTipoPublicacion> paquete4 = new ArrayList<DtcantidadTipoPublicacion>();
+    List<DtCantidadTipoPublicacion> paquete4 = new ArrayList<DtCantidadTipoPublicacion>();
     
-    DtcantidadTipoPublicacion tipo8 = new DtcantidadTipoPublicacion(
+    DtCantidadTipoPublicacion tipo8 = new DtCantidadTipoPublicacion(
         "Destacada", 2);
     paquete4.add(tipo8);
     

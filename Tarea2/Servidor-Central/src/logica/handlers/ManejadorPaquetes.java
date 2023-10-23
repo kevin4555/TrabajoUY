@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import logica.classes.PaquetePublicacion;
-import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.DtPaquetePublicacion;
 
 /**
  * Clase Manejador Paquetes .
@@ -111,9 +111,9 @@ public class ManejadorPaquetes {
    * Lista de DTPaquetesPublicacion .
    */
   
-  public List<DtpaquetePublicacion> listarDtpaquetes()
+  public List<DtPaquetePublicacion> listarDtpaquetes()
       throws IOException {
-    List<DtpaquetePublicacion> listaResultado = new ArrayList<DtpaquetePublicacion>();
+    List<DtPaquetePublicacion> listaResultado = new ArrayList<DtPaquetePublicacion>();
     for (PaquetePublicacion paquete : colPaquetes
         .values()) {
       listaResultado.add(paquete.obtenerDtPaquete());

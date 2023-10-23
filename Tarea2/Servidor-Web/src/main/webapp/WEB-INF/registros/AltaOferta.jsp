@@ -1,6 +1,6 @@
-<%@page import="logica.datatypes.DtpaquetePublicacion"%>
+<%@page import="logica.datatypes.DtPaquetePublicacion"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="logica.datatypes.DttipoPublicacion"%>
+<%@page import="logica.datatypes.DtTipoPublicacion"%>
 <%@page import="logica.datatypes.DtCompraPaquete"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
@@ -19,8 +19,9 @@ pageEncoding="UTF-8"%>
 	<main
 		class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
 		<%
-			String mensaje = (String) request.getAttribute("mensajeError");
-			if(mensaje != null){%>
+		String mensaje = (String) request.getAttribute("mensajeError");
+			if(mensaje != null){
+		%>
 		<div class="alert alert-danger alert-dismissible fade show"
 			role="alert">
 			<strong>Error:</strong>
@@ -41,9 +42,9 @@ pageEncoding="UTF-8"%>
 							<option value="">-- Selecciona un tipo de publicación --
 							</option>
 							<%
-							ArrayList<DttipoPublicacion> listaTipoPublicacion = (ArrayList<DttipoPublicacion>) request.getAttribute("listaTipoPublicacion");
-							if (!(listaTipoPublicacion.isEmpty())) {
-								for (DttipoPublicacion opcion : listaTipoPublicacion) {
+							ArrayList<DtTipoPublicacion> listaTipoPublicacion = (ArrayList<DtTipoPublicacion>) request.getAttribute("listaTipoPublicacion");
+												if (!(listaTipoPublicacion.isEmpty())) {
+													for (DtTipoPublicacion opcion : listaTipoPublicacion) {
 							%>
 								<option value="<%=opcion.getNombre()%>"><%=opcion.getNombre()%></option>
 							<%

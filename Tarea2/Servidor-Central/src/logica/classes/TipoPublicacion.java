@@ -1,7 +1,7 @@
 package logica.classes;
 
 import java.time.LocalDate;
-import logica.datatypes.DttipoPublicacion;
+import logica.datatypes.DtTipoPublicacion;
 
 /**
  * Clase TipoPublicación .
@@ -82,8 +82,8 @@ public class TipoPublicacion {
   /**
    * Obtener DTtipo de publicación .
    */
-  public DttipoPublicacion obtenerDttipoPublicacion() {
-    return new DttipoPublicacion(this.getNombre(),
+  public DtTipoPublicacion obtenerDttipoPublicacion() {
+    return new DtTipoPublicacion(this.getNombre(),
         this.getDescripcion(), this.getExposicion(),
         this.getDuracionDia(), this.costo,
         this.getFechaAlta());

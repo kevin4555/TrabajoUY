@@ -28,10 +28,10 @@ import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.DttipoPublicacion;
+import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtTipoPublicacion;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -145,7 +145,7 @@ public class ClasesTest {
     }
     costo = cantidadTotal * ((100 - 50f) / 100);
     
-    DtpaquetePublicacion dtpaquetePublicacion = paquetePublicacion
+    DtPaquetePublicacion dtpaquetePublicacion = paquetePublicacion
         .obtenerDtPaquete();
     
     Assert.assertEquals(dtpaquetePublicacion.getNombre(),
@@ -182,7 +182,7 @@ public class ClasesTest {
     TipoPublicacion tipoPublicacion = new TipoPublicacion(
         "tipoTesting", "Uso para testing", "baja", 50, 500f,
         fechaDate);
-    DttipoPublicacion dttipoPublicacion = tipoPublicacion
+    DtTipoPublicacion dttipoPublicacion = tipoPublicacion
         .obtenerDttipoPublicacion();
     Assert.assertEquals(dttipoPublicacion.getDescripcion(),
         tipoPublicacion.getDescripcion());
@@ -226,7 +226,7 @@ public class ClasesTest {
         "DescripcionPostulacion", fechaDate,
         "cvReducidoPostulacion", postulante, ofertaLaboral, null);
     
-    Dtpostulacion dtpostulacion = postulacion
+    DtPostulacion dtpostulacion = postulacion
         .obtenerDtpostulacion();
     
     Assert.assertEquals(dtpostulacion.getNombreOferta(),
@@ -318,7 +318,7 @@ public class ClasesTest {
       
     }
     
-    Dtempresa dtEmpresa = empresa.obtenerDtempresa();
+    DtEmpresa dtEmpresa = empresa.obtenerDtempresa();
     
     Assert.assertEquals(dtEmpresa.getNickname(),
         empresa.getNickname());

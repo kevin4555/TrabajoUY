@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -11,9 +12,10 @@ import java.util.List;
  * Clase DTPostulante.
  */
 
-@XmlAccessorType
-public class Dtpostulante extends Dtusuario
-    implements Serializable {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DtPostulante extends DtUsuario implements Serializable {
+	
+  private static final long serialVersionUID = 3400870199280854013L;
   private LocalDate fechaNacimiento;
   private String nacionalidad;
   
@@ -21,7 +23,7 @@ public class Dtpostulante extends Dtusuario
    * Contructor.
    */
   
-  public Dtpostulante(String nickname, String nombre,
+  public DtPostulante(String nickname, String nombre,
       String apellido, String email, BufferedImage imagen,
       String contrasenia,
       List<DtOfertaLaboral> ofertasColeccion,
@@ -33,7 +35,7 @@ public class Dtpostulante extends Dtusuario
     this.nacionalidad = nacionalidad;
   }
   
-  public Dtpostulante() {
+  public DtPostulante() {
   }
   
   public void setFechaNacimiento(

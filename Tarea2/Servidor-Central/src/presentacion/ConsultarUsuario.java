@@ -34,10 +34,10 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtpostulante;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtPostulante;
+import logica.datatypes.DtUsuario;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
@@ -546,7 +546,7 @@ public class ConsultarUsuario extends JInternalFrame {
         e.printStackTrace();
         return;
       }
-      Dtpostulacion dtPostulacion;
+      DtPostulacion dtPostulacion;
       this.textFieldHorarioOferta
           .setText(dtOferta.getHorarioInicio() + " - "
               + dtOferta.getHorarioFinal());
@@ -615,7 +615,7 @@ public class ConsultarUsuario extends JInternalFrame {
     if (nicknameUsuario != usuarioSeleccionado) {
       usuarioSeleccionado = nicknameUsuario;
       limpiarDatosOfertas();
-      Dtusuario dtUsuario;
+      DtUsuario dtUsuario;
       try {
         dtUsuario = this.controladorUsuario
             .obtenerDtusuario(nicknameUsuario);
@@ -642,18 +642,18 @@ public class ConsultarUsuario extends JInternalFrame {
         this.textPane.insertIcon(icono);
       }
       
-      if (dtUsuario instanceof Dtempresa) {
+      if (dtUsuario instanceof DtEmpresa) {
         tipoUsuario = "Empresa";
-        Dtempresa dtEmpresa = (Dtempresa) dtUsuario;
+        DtEmpresa dtEmpresa = (DtEmpresa) dtUsuario;
         this.textAreaDescripcion
             .setText(dtEmpresa.getDescripcion());
         this.textFieldSitioWeb
             .setText(dtEmpresa.getSitioWeb());
         cambiarPanel(panelEmpresa);
       }
-      if (dtUsuario instanceof Dtpostulante) {
+      if (dtUsuario instanceof DtPostulante) {
         tipoUsuario = "Postulante";
-        Dtpostulante dtPostulante = (Dtpostulante) dtUsuario;
+        DtPostulante dtPostulante = (DtPostulante) dtUsuario;
         this.textFieldNacionalidad
             .setText(dtPostulante.getNacionalidad());
         this.textFieldFechaNacimiento.setText(

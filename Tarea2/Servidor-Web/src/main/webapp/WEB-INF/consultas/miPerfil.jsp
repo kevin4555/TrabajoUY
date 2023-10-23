@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
-<%@page import="logica.datatypes.Dtpostulante"%>
-<%@page import="logica.datatypes.Dtempresa"%>
+<%@page import="logica.datatypes.DtPostulante"%>
+<%@page import="logica.datatypes.DtEmpresa"%>
 <%@page import="logica.datatypes.DtCompraPaquete"%>
-<%@page import="logica.datatypes.Dtpostulacion"%>
-<%@page import="logica.datatypes.DtpaquetePublicacion"%>
+<%@page import="logica.datatypes.DtPostulacion"%>
+<%@page import="logica.datatypes.DtPaquetePublicacion"%>
 <%@page import="logica.datatypes.DtCantidadTipoPublicacionRestante"%>
-<%@page import="logica.datatypes.DttipoPublicacion"%>
+<%@page import="logica.datatypes.DtTipoPublicacion"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -23,9 +23,9 @@
 		<div class="row">
 			<jsp:include page="../include/Menu.jsp" />
 			<%
-			Dtusuario usuario = (Dtusuario) request.getAttribute("usuario");
-			String tipoUsuario = (String) request.getAttribute("tipoUsuario");
-			List<DtCompraPaquete> paquetesComprados = (List<DtCompraPaquete>) request.getAttribute("compraPaquetes");
+			DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
+									String tipoUsuario = (String) request.getAttribute("tipoUsuario");
+									List<DtCompraPaquete> paquetesComprados = (List<DtCompraPaquete>) request.getAttribute("compraPaquetes");
 			%>
 			<div class="menuMiPerfil container mt-3 col-8">
 				<!-- Tab panes -->
@@ -64,7 +64,7 @@
 									data-bs-toggle="tab" href="#paquetes">Paquetes comprados</a></li>
 								<%
 								} else {
-								if (tipoUsuario.equals("postulante")) {
+																																						if (tipoUsuario.equals("postulante")) {
 								%>
 								<li class="nav-item"><a class="nav-link"
 									data-bs-toggle="tab" href="#postulaciones">Postulaciones</a></li>
@@ -99,7 +99,7 @@
 											</tr>
 											<%
 											if (tipoUsuario.equals("empresa")) {
-											  Dtempresa empresa = (Dtempresa) request.getAttribute("usuario");
+																																																								  DtEmpresa empresa = (DtEmpresa) request.getAttribute("usuario");
 											%>
 											<tr>
 												<td><strong>Sitio web</strong></td>
@@ -114,7 +114,7 @@
 											%>
 											<%
 											if (tipoUsuario.equals("postulante")) {
-											  Dtpostulante postulante = (Dtpostulante) request.getAttribute("usuario");
+																																															  DtPostulante postulante = (DtPostulante) request.getAttribute("usuario");
 											%>
 											<tr>
 												<td><strong>Nacionalidad</strong></td>
@@ -156,7 +156,7 @@
 										<tbody>
 											<%
 											List<DtOfertaLaboral> ofertasColeccion = usuario.getOfertasColeccion();
-											for (DtOfertaLaboral oferta : ofertasColeccion) {
+																																						for (DtOfertaLaboral oferta : ofertasColeccion) {
 											%>
 											<tr>
 												<td><a
@@ -192,10 +192,10 @@
 											<tbody>
 												<%
 												if (paquetesComprados != null) {
-												  for (DtCompraPaquete paquete : paquetesComprados) {
-												    DtpaquetePublicacion dtPaquete = paquete.getPaquete();
-												    List<DtCantidadTipoPublicacionRestante> tiposPublicaciones = (List<DtCantidadTipoPublicacionRestante>) paquete
-												    .getPublicacionesRestantes();
+																																										  for (DtCompraPaquete paquete : paquetesComprados) {
+																																										    DtPaquetePublicacion dtPaquete = paquete.getPaquete();
+																																										    List<DtCantidadTipoPublicacionRestante> tiposPublicaciones = (List<DtCantidadTipoPublicacionRestante>) paquete
+																																										    .getPublicacionesRestantes();
 												%>
 												<tr>
 													<td><a
@@ -209,7 +209,7 @@
 														<ul class="navbar-nav justify-content-evenly">
 															<%
 															for (DtCantidadTipoPublicacionRestante cantidadTiposPublicaciones : tiposPublicaciones) {
-															  DttipoPublicacion dtTiposPublicaciones = cantidadTiposPublicaciones.getTipoPublicacion();
+																																									  DtTipoPublicacion dtTiposPublicaciones = cantidadTiposPublicaciones.getTipoPublicacion();
 															%>
 															<li class="nav-item"><a
 																href="<%=request.getContextPath()%>/tipoPublicacion?nombreTipoPublicacion=<%=dtTiposPublicaciones.getNombre()%>"><%=dtTiposPublicaciones.getNombre()%></a>
@@ -249,8 +249,8 @@
 										</thead>
 										<tbody>
 											<%
-											List<Dtpostulacion> postulaciones = (List<Dtpostulacion>) request.getAttribute("postulaciones");
-											for (Dtpostulacion postulacion : postulaciones) {
+											List<DtPostulacion> postulaciones = (List<DtPostulacion>) request.getAttribute("postulaciones");
+																				for (DtPostulacion postulacion : postulaciones) {
 											%>
 											<tr>
 												<td><a

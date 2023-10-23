@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -14,8 +15,10 @@ import javax.imageio.ImageIO;
  * Clase DTPaquetePublicacion.
  */
 
-@XmlAccessorType
-public class DtpaquetePublicacion implements Serializable {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DtPaquetePublicacion implements Serializable {
+
+  private static final long serialVersionUID = 7096923820607804084L;
   private String nombre;
   private String descripcion;
   private int periodoValidez;
@@ -23,11 +26,11 @@ public class DtpaquetePublicacion implements Serializable {
   private float costo;
   private BufferedImage imagen;
   
-  public DtpaquetePublicacion() {
+  public DtPaquetePublicacion() {
   }
   
   private String imagenBase64;
-  private List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones;
+  private List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones;
   
   public void setNombre(String nombre) {
     this.nombre = nombre;
@@ -58,7 +61,7 @@ public class DtpaquetePublicacion implements Serializable {
   }
   
   public void setCantidadTipoPublicaciones(
-      List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones) {
+      List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones) {
     this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
   }
   
@@ -72,10 +75,10 @@ public class DtpaquetePublicacion implements Serializable {
    * Contructor.
    */
   
-  public DtpaquetePublicacion(String nombre,
+  public DtPaquetePublicacion(String nombre,
       String descripcion, int periodoValidez,
       float descuento, float costo, BufferedImage imagen,
-      List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones,
+      List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones,
       LocalDate fechaAlta) throws IOException {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -98,7 +101,7 @@ public class DtpaquetePublicacion implements Serializable {
     return imagen;
   }
   
-  public List<DtcantidadTipoPublicacion> getCantidadTipoPublicaciones() {
+  public List<DtCantidadTipoPublicacion> getCantidadTipoPublicaciones() {
     return cantidadTipoPublicaciones;
   }
   

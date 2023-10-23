@@ -1,4 +1,4 @@
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.DtUsuario"%>
 <!DOCTYPE html>
 <html>
 <head>

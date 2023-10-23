@@ -1,6 +1,6 @@
-<%@page import="logica.datatypes.Dtusuario"%>
-<%@page import="logica.datatypes.Dtpostulante"%>
-<%@page import="logica.datatypes.Dtempresa"%>
+<%@page import="logica.datatypes.DtUsuario"%>
+<%@page import="logica.datatypes.DtPostulante"%>
+<%@page import="logica.datatypes.DtEmpresa"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
 		<div class="row mt-3">
 			<%
 			TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-			Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
+						DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
 			%>
 			<div class="col">
 				<label class="form-label"><strong>*Nombre</strong></label> <input
@@ -65,7 +65,7 @@
 		</div>
 		<%
 		if (tipoUsuario.equals(TipoUsuario.POSTULANTE)) {
-		  Dtpostulante postulante = (Dtpostulante) session.getAttribute("usuarioLogueado");
+				  DtPostulante postulante = (DtPostulante) session.getAttribute("usuarioLogueado");
 		%>
 
 		<div class="col-md-6 mt-3" id="divNacionalidad">
@@ -85,7 +85,7 @@
 		%>
 		<%
 		if (tipoUsuario.equals(TipoUsuario.EMPRESA)) {
-		  Dtempresa empresa = (Dtempresa) session.getAttribute("usuarioLogueado");
+				  DtEmpresa empresa = (DtEmpresa) session.getAttribute("usuarioLogueado");
 		%>
 		<div class="col-md-6 mt-3" id="divSitioWeb">
 			<label class="form-label"><strong>Sitio Web</strong></label> <input
