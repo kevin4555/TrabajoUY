@@ -38,9 +38,8 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 
 			</div>
 		</div>
-		<div
-			class="row w-100 justify-content-between align-items-center ">
-			<div class="col-4">
+		<div class="row w-100 justify-content-between align-items-center ">
+			<div class="col-5">
 				<div>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse"
@@ -55,36 +54,10 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 			<div class="col-4">
 				<ul class="navbar-nav justify-content-end fs-3">
 					<%
-					if (usuario != null)
-					{
+					String contextPath = request.getContextPath();
 					%>
-					<li class="nav-item ">
-						<div class="dropdown selectUsuario">
-							<button type="button" class="btn dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="true">
-								<%=usuario.getNickname()%>
-							</button>
-							<ul class="opcUsuario dropdown-menu">
-								<li>
-									<%
-									String contextPath = request.getContextPath();
-									%> <a class="dropdown-item"
-									href="<%=contextPath%>/perfil?nicknameUsuario=<%=usuario.getNickname()%>">Perfil</a>
-								</li>
-								<li><a class="dropdown-item btn btn-primary"
-									href="<%=contextPath%>/logout">Cerrar Sesion</a></li>
-							</ul>
-						</div> <%
- }
- else
- {
- %> <%
- String contextPath = request.getContextPath();
- %> <a class="nav-link text-white" href="<%=contextPath%>/login">Acceder</a>
-						<%
-						}
-						%>
-					</li>
+					<li><a class="cerrarSesionBtn btn btn-primary"
+						href="<%=contextPath%>/logout">Cerrar Sesion</a></li>
 				</ul>
 			</div>
 		</div>

@@ -14,13 +14,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Detalles de la Oferta</title>
-<jsp:include page="../include/Head.jsp" />
+<jsp:include page="../../mobile/include/HeadMobile.jsp" />
 </head>
 <body>
-	<jsp:include page="../include/NavBar.jsp" />
-	<main class="container pt-5">
-		<div class="row">
-			<jsp:include page="../include/Menu.jsp" />
+	<jsp:include page="../../mobile/include/NavBarMobile.jsp" />
+	<main class="container pt-2">
+		<div class="espacio">
+			<jsp:include page="../../mobile/include/MenuMobile.jsp" />
+		</div>
+		<div class="col-md-4 justify-content-center align-items-center d-flex">
+
 			<%
 			DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
 			HttpSession sesion = request.getSession();
@@ -29,7 +32,9 @@
 			TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
 			Map<String, String> mapImagenes = (Map<String, String>) request.getAttribute("mapImagenes");
 			%>
-			<div class="col-8">
+
+			<div
+				class="col-8">
 				<section>
 					<div class="row">
 						<div class="col">

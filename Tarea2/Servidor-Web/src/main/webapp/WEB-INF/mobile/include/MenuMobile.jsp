@@ -32,11 +32,11 @@
 	<div class="collapse bg-light" id="navbarToggleExternalContent">
 		<div class="border border-dark shadow-3 p-2 d-inline-block w-auto">
 			<a class="btn btn-block border-bottom m-0"
-				href="<%=request.getContextPath()%>/consultaOfertas">Consulta
+				href="<%=request.getContextPath()%>/consultaOfertas">Ver
 				ofertas</a> <a class="btn btn-block border-bottom m-0"
 				href="<%=request.getContextPath()%>/consultaOfertas">Postularse</a>
 			<a class="btn btn-block m-0"
-				href="<%=request.getContextPath()%>/consultaOfertas">Consulta
+				href="<%=request.getContextPath()%>/listarOfertas">Ver
 				Postulacion</a>
 		</div>
 	</div>

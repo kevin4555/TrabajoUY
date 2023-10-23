@@ -15,9 +15,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="<%=request.getContextPath()%>/resource/js/reproductorYT.js"></script>
+<script src="<%=request.getContextPath()%>/resource/js/obtenerId.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resource/css/general.css" />
+	
 <meta charset="UTF-8">
 <title>Ver Postulacion</title>
-<jsp:include page="../include/Head.jsp" />
+<jsp:include page="../../mobile/include/HeadMobile.jsp" />
 </head>
 <body class="mb-4">
 	<%
@@ -29,10 +36,13 @@
 	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
 	String contextPath = request.getContextPath();
 	%>
-	<jsp:include page="../include/NavBar.jsp" />
-	<main class="container pt-5">
-		<div class="row">
-			<jsp:include page="../include/Menu.jsp" />
+	<jsp:include page="../../mobile/include/NavBarMobile.jsp" />
+	<main class="container pt-2">
+		<div class="espacio">
+			<jsp:include page="../../mobile/include/MenuMobile.jsp" />
+		</div>
+		<div class="col-md-4 justify-content-center align-items-center d-flex">
+
 			<div class="col-8">
 				<div class="card">
 					<div class="row g-0">
@@ -70,11 +80,16 @@
 									<%=newParsedDate%>
 									<br> <br>
 								</p>
+								<%
+								String video = "https://m.youtube.com/watch?v=u4IkJgTu22E&pp=ygUXbGEgZ2VudGUgdGllbmUgY29sb21iZXM%3D";
+								String videoId;
+								%>
+								<p class="card-text videoContainer" id="video-container"></p>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-3">
+				<div class="col-md-8">
 					<div class="card">
 						<img src="data:image/png;base64,<%=oferta.getImagenBase64()%>"
 							class="card-img-top" alt="Imagen Oferta">
@@ -92,8 +107,6 @@
 			</div>
 		</div>
 	</main>
+
 </body>
 </html>
-
-
-

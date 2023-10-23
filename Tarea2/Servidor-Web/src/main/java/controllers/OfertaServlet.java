@@ -31,64 +31,89 @@ import excepciones.UsuarioNoExisteException;
  * Servlet implementation class OfertaServlet
  */
 @WebServlet("/oferta")
-public class OfertaServlet extends HttpServlet {
+public class OfertaServlet extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public OfertaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    
-    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-    	IcontroladorUsuario controladorUsuarios = Fabrica.getInstance().obtenerControladorUsuario();
-    	String nombreOferta = request.getParameter("nombreOferta");
-    	HttpSession sesion = request.getSession();
-    	
-    	try {
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public OfertaServlet()
+	{
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+		IcontroladorUsuario controladorUsuarios = Fabrica.getInstance().obtenerControladorUsuario();
+		String nombreOferta = request.getParameter("nombreOferta");
+		HttpSession sesion = request.getSession();
+		String userAgent = request.getHeader("User-Agent");
+		
+		try
+		{
 			DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
 			Map<String, String> mapImagen = new HashMap<String, String>();
-			for(Dtpostulacion postulacion : oferta.getPostulaciones()) {
-			  Dtusuario postulante = controladorUsuarios.obtenerDtusuario(postulacion.getnicknamePostulante());
-			  mapImagen.put(postulante.getNickname(), postulante.getImagenBase64());
+			for (Dtpostulacion postulacion : oferta.getPostulaciones())
+			{
+				Dtusuario postulante = controladorUsuarios.obtenerDtusuario(postulacion.getnicknamePostulante());
+				mapImagen.put(postulante.getNickname(), postulante.getImagenBase64());
 			}
 			request.setAttribute("mapImagenes", mapImagen);
 			request.setAttribute("oferta", oferta);
-			if (sesion.getAttribute("estadoSesion") == EstadoSesion.LOGIN_CORRECTO) {
-     Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
-     if(usuario instanceof Dtpostulante) {
-       Boolean estaPostulado = controladorOferta.estaPostulado(usuario.getNickname(), nombreOferta);
-       request.setAttribute("estaPostulado", estaPostulado);
-     }
-     if(usuario instanceof Dtempresa) {
-       Boolean miOferta = usuario.getNickname().equals(oferta.getEmpresa());
-       request.setAttribute("miOferta", miOferta);
-     }
-   }
-			request.getRequestDispatcher("/WEB-INF/consultas/Oferta.jsp").forward(request, response);
-			return;
-		} catch (OfertaLaboralNoExisteException | UsuarioNoExisteException e) {
-		  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
-		  e.printStackTrace();
-		  return;			
+			if (sesion.getAttribute("estadoSesion") == EstadoSesion.LOGIN_CORRECTO)
+			{
+				Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+				if (usuario instanceof Dtpostulante)
+				{
+					Boolean estaPostulado = controladorOferta.estaPostulado(usuario.getNickname(), nombreOferta);
+					request.setAttribute("estaPostulado", estaPostulado);
+				}
+				if (usuario instanceof Dtempresa)
+				{
+					Boolean miOferta = usuario.getNickname().equals(oferta.getEmpresa());
+					request.setAttribute("miOferta", miOferta);
+				}
+			}
+			
 		}
-    	
-    }
+		catch (OfertaLaboralNoExisteException | UsuarioNoExisteException e)
+		{
+			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+			e.printStackTrace();
+			return;
+		}
+		
+		if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
+		{
+			request.getRequestDispatcher("/WEB-INF/mobile/consultas/OfertaMobile.jsp").forward(request, response);
+		}
+		else 
+		{
+			request.getRequestDispatcher("/WEB-INF/consultas/Oferta.jsp").forward(request, response);
+		}
+		
+
+	}
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		procesarRequest(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
