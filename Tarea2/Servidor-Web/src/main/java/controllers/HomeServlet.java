@@ -85,7 +85,7 @@ public class HomeServlet extends HttpServlet {
 		{
 			if(sesion.getAttribute("estadoSesion") == EstadoSesion.LOGIN_CORRECTO)
 			{
-				request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/mobile/home/HomeMobile.jsp").forward(request, response);
 			}
 			else 
 			{
