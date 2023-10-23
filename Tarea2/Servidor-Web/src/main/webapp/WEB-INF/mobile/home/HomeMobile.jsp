@@ -28,8 +28,7 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 					<%
 					ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request
 							.getAttribute("listaOfertasConfirmadas");
-					for (DtOfertaLaboral oferta : listaOfertasConfirmadas)
-					{
+					for (DtOfertaLaboral oferta : listaOfertasConfirmadas) {
 					%>
 					<div class="card mb-3">
 						<div class="row g-0">

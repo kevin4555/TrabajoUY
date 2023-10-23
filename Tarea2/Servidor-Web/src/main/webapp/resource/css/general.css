@@ -106,11 +106,6 @@ footer {
 	width: 16.875rem;
 }
 
-.cerrarSesionBtn {
-	background-color: rgb(58, 73, 214);
-	border-radius: var(--bs-navbar-toggler-border-radius);
-	padding: 0rem;
-}
 
 .videoContainer {
 	width: 100%;

@@ -18,20 +18,19 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					alt="Logo" class="navbar-brand img-fluid">
 				</a>
 			</div>
-			<div class="col-4">
+			<div class="col-3">
+				
 				<%
-				if (usuario != null)
+				if (usuario != null && usuario.getImagen() != null)
 				{
 				%>
-				<li class="nav-item">
-					<%
-					if (usuario.getImagen() != null)
-					{
-					%> <img class="rounded-pill imgPerfil"
-					src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%
- }
- %>
-				</li>
+				
+					<ul class="list-unstyled">
+					<li class="nav-item mt-3">
+					<img class="rounded-pill imgPerfil "
+					src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> 
+					</li>
+					</ul>
 				<%
 				}
 				%>
@@ -39,9 +38,9 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 			</div>
 		</div>
 		<div class="row w-100 justify-content-between align-items-center ">
-			<div class="col-5">
+			<div class="col-5 ">
 				<div>
-					<button class="navbar-toggler" type="button"
+					<button class="navbar-toggler ms-2" type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#navbarToggleExternalContent"
 						aria-controls="navbarToggleExternalContent" aria-expanded="false"
@@ -56,7 +55,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					<%
 					String contextPath = request.getContextPath();
 					%>
-					<li><a class="cerrarSesionBtn btn btn-primary"
+					<li><a class="btn btn-outline-light p-0"
 						href="<%=contextPath%>/logout">Cerrar Sesion</a></li>
 				</ul>
 			</div>
