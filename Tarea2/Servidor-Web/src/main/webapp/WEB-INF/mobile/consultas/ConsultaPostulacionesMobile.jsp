@@ -1,5 +1,9 @@
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.datatypes.Dtpostulacion"%>
+<%@page import="logica.interfaces.IcontroladorOferta"%>
+<%@page import="logica.controllers.Fabrica"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -28,33 +32,36 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 			<div class="col-8">
 				<section>
 					<%
-					ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request
-							.getAttribute("listaOfertasConfirmadas");
-					Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
-					for (DtOfertaLaboral oferta : listaOfertasConfirmadas)
+					Dtusuario usuario = (Dtusuario) request.getAttribute("usuario");
+					IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+					List<Dtpostulacion> postulaciones = (List<Dtpostulacion>) request.getAttribute("postulaciones");
+					for (Dtpostulacion postulacion : postulaciones)
 					{
+						DtOfertaLaboral ofertaLaboral = controladorOferta.obtenerDtOfertaLaboral(postulacion.getNombreOferta());
 					%>
+
 					<div class="card mb-3">
 						<div class="row g-0">
 							<div
 								class="col-md-4 justify-content-center align-items-center d-flex">
-								<img src="data:image/png;base64,<%=oferta.getImagenBase64()%>"
+								<img
+									src="data:image/png;base64,<%=ofertaLaboral.getImagenBase64()%>"
 									class="img-fluid rounded-start" alt="Imagen Oferta" />
 							</div>
 							<div class="col-md-8">
 								<div class="card-body">
 									<h5 class="card-header p-0 border-0 bg-white text-start">
-										<p><%=oferta.getNombre()%></p>
+										<p><%=ofertaLaboral.getNombre()%></p>
 									</h5>
-									<p class="card-text"><%=oferta.getDescripcion()%></p>
+									<p class="card-text"><%=ofertaLaboral.getDescripcion()%></p>
 								</div>
 								<div class="card-footer border-0 bg-white text-end">
 									<%
 									String contextPath = request.getContextPath();
 									%>
 									<a
-										href="<%=contextPath%>/verPostulacion?nombreOferta=<%=oferta.getNombre()%>&nicknamePostulante=<%=usuario.getNickname()%>"
-										class="btn btn-primary">Mas Info</a>
+										href="<%=request.getContextPath()%>/verPostulacion?nombreOferta=<%=postulacion.getNombreOferta()%>&nicknamePostulante=<%=usuario.getNickname()%>"
+										class="btn btn-primary">Ir a Mi Postulacion</a>
 								</div>
 							</div>
 						</div>

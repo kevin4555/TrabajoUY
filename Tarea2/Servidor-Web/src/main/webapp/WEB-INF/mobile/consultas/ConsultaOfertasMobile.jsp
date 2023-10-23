@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
+<%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -21,6 +22,7 @@
 				<div class="col-8">
 					<section>
 						<%
+						Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
 						ArrayList<DtOfertaLaboral> listaOfertas = (ArrayList<DtOfertaLaboral>) request.getAttribute("listaOfertas");
 						if (listaOfertas.isEmpty())
 						{
@@ -48,9 +50,10 @@
 									<div class="card-footer border-0 bg-white text-end">
 										<%
 										String contextPath = request.getContextPath();
+										
 										%>
 										<a
-											href="<%=contextPath%>/oferta?nombreOferta=<%=oferta.getNombre()%>"
+											href="<%=contextPath%>/verPostulacion?nombreOferta=<%=oferta.getNombre()%>&nicknamePostulante=<%=usuario.getNickname()%>"
 											class="btn btn-primary">Mas Info</a>
 
 									</div>

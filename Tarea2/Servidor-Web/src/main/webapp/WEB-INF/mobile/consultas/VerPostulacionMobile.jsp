@@ -17,11 +17,11 @@
 <head>
 
 <script src="https://www.youtube.com/iframe_api"></script>
-<script src="<%=request.getContextPath()%>/resource/js/reproductorYT.js"></script>
-<script src="<%=request.getContextPath()%>/resource/js/obtenerId.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resource/javaScript/reproductorYT.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resource/css/general.css" />
-	
+
 <meta charset="UTF-8">
 <title>Ver Postulacion</title>
 <jsp:include page="../../mobile/include/HeadMobile.jsp" />
@@ -82,9 +82,11 @@
 								</p>
 								<%
 								String video = "https://m.youtube.com/watch?v=u4IkJgTu22E&pp=ygUXbGEgZ2VudGUgdGllbmUgY29sb21iZXM%3D";
-								String videoId;
 								%>
-								<p class="card-text videoContainer" id="video-container"></p>
+								<div>
+									<iframe class="videoContainer" src="<%=video%>"
+										frameborder="0" allowfullscreen></iframe>
+								</div>
 							</div>
 						</div>
 					</div>

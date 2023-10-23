@@ -34,7 +34,7 @@
 			<a class="btn btn-block border-bottom m-0"
 				href="<%=request.getContextPath()%>/consultaOfertas">Ver
 				ofertas</a> <a class="btn btn-block border-bottom m-0"
-				href="<%=request.getContextPath()%>/consultaOfertas">Postularse</a>
+				href="<%=request.getContextPath()%>/postulacion">Postularse</a>
 			<a class="btn btn-block m-0"
 				href="<%=request.getContextPath()%>/listarOfertas">Ver
 				Postulacion</a>

@@ -41,14 +41,34 @@ public class ConsultaPostulacionesServlet extends HttpServlet
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
+		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
+		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
 		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
 		ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) controladorOferta
 				.obtenerDtOfertasConfirmadas();
-		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
+
+		try {
+			ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) controladorUsuario
+					.obtenerDtpostulacionesDePostulante(usuario.getNickname());
+			for (Dtpostulacion dtpostulacion : postulaciones)
+			{
+				dTOfertas.add(controladorOferta.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
+			}
+			request.setAttribute("postulaciones", postulaciones);
+			request.setAttribute("ofertasPostuladas", dTOfertas);
+			request.setAttribute("tipoUsuario", "postulante");
+			request.setAttribute("usuario", usuario);
+		} catch(UsuarioNoExisteException | OfertaLaboralNoExisteException e)
+		{
+			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+			e.printStackTrace();
+		}
+		
 		if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
 		{
-			request.getRequestDispatcher("/WEB-INF/mobile/consultas/ConsultaPostulaciones.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/mobile/consultas/ConsultaPostulacionesMobile.jsp").forward(request, response);
 		}
 
 	}

@@ -37,7 +37,7 @@
 		</div>
 		<div class="mb-3">
 			<input class="btn btn-primary" type="submit" value="Confirmar" /> <a
-				class="btn btn-primary" href="<%= contextPath %>/home">Cancelar</a>
+				class="btn btn-primary" href="<%= contextPath %>/login">Cancelar</a>
 		</div>
 	</form>
 </body>

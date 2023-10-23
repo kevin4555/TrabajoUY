@@ -33,8 +33,7 @@
 			Map<String, String> mapImagenes = (Map<String, String>) request.getAttribute("mapImagenes");
 			%>
 
-			<div
-				class="col-8">
+			<div class="col-8">
 				<section>
 					<div class="row">
 						<div class="col">
