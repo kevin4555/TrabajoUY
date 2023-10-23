@@ -28,13 +28,12 @@ import java.time.LocalDate;
 import java.util.List;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.DttipoPublicacion;
+import logica.datatypes.DtCantidadTipoPublicacion;
+import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtTipoPublicacion;
 import logica.datatypes.EstadoOferta;
 import logica.interfaces.IcontroladorOferta;
-import logica.interfaces.IcontroladorUsuario;
 
 //Le faltan los metodos que retoran una clase, pense que no iban 
 
@@ -146,7 +145,7 @@ public class WSControladorOferta {
       String descripcion, int periodoValDias,
       float descuento, BufferedImage imagen,
       LocalDate fechaAlta,
-      List<DtcantidadTipoPublicacion> cantidadTipoPublicacion)
+      List<DtCantidadTipoPublicacion> cantidadTipoPublicacion)
       throws PaquetePublicacionYaExisteException,
       TipoPublicacionYaExisteException,
       TipoPublicacionNoExisteException {
@@ -185,7 +184,7 @@ public class WSControladorOferta {
     return controladorOferta.obtenerDtofertasPorKeyword(keyword);
   }
   
-  public List<Dtpostulacion> obtenerDtPostulacionesDeOferta(
+  public List<DtPostulacion> obtenerDtPostulacionesDeOferta(
       String nombreOferta)
       throws OfertaLaboralNoExisteException {
     return controladorOferta.obtenerDtPostulacionesDeOferta(nombreOferta);
@@ -197,7 +196,7 @@ public class WSControladorOferta {
     return controladorOferta.estaCompradoPorPaqueteOferta(nombreOferta);
   }
   
-  public DtpaquetePublicacion obtenerDtPaquetePublicacion(
+  public DtPaquetePublicacion obtenerDtPaquetePublicacion(
       String nombreOferta)
       throws OfertaLaboralNoExisteException,
       OfertaLaboralNoTienePaquete, IOException {
@@ -210,14 +209,14 @@ public class WSControladorOferta {
     return controladorOferta.listarTipoDePublicaciones();
   }
   
-  public DtpaquetePublicacion obtenerDtpaquete(
+  public DtPaquetePublicacion obtenerDtpaquete(
       String nombrePaquete)
       throws PaquetePublicacionNoExisteException,
       IOException {
     return controladorOferta.obtenerDtpaquete(nombrePaquete);
   }
   
-  public DttipoPublicacion obtenerDttipoPublicacion(
+  public DtTipoPublicacion obtenerDttipoPublicacion(
       String nombreTipo)
       throws TipoPublicacionNoExisteException {
     return controladorOferta.obtenerDttipoPublicacion(nombreTipo);
@@ -227,7 +226,7 @@ public class WSControladorOferta {
     return controladorOferta.listarPaquetesNoComprados();
   }
   
-  public List<DtpaquetePublicacion> listarDtpaquetes()
+  public List<DtPaquetePublicacion> listarDtpaquetes()
       throws IOException {
     return controladorOferta.listarDtpaquetes();
   }
