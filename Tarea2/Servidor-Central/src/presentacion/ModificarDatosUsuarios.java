@@ -470,7 +470,7 @@ public class ModificarDatosUsuarios extends JInternalFrame {
       DtUsuario dtUsuario;
       try {
         dtUsuario = this.controladorUsuario
-            .obtenerDtusuario(nicknameUsuario);
+            .obtenerDtUsuario(nicknameUsuario);
       } catch (UsuarioNoExisteException | IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

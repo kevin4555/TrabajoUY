@@ -558,7 +558,7 @@ public class ConsultarUsuario extends JInternalFrame {
       if (tipoUsuario.equals("Postulante")) {
         try {
           dtPostulacion = controladorUsuario
-              .obtenerDtpostulacion(nicknameUsu, oferta);
+              .obtenerDtPostulacion(nicknameUsu, oferta);
           this.textPaneMotivacion.setText(
               dtPostulacion.getDescripMotivacion());
           this.textPaneMotivacion.setVisible(true);
@@ -618,7 +618,7 @@ public class ConsultarUsuario extends JInternalFrame {
       DtUsuario dtUsuario;
       try {
         dtUsuario = this.controladorUsuario
-            .obtenerDtusuario(nicknameUsuario);
+            .obtenerDtUsuario(nicknameUsuario);
       } catch (UsuarioNoExisteException | IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

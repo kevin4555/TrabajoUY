@@ -471,7 +471,7 @@ public class PostulacionOfertaLaboral
         this.seleccionEmpresa = this.comboBoxEmpresasRegistradasPostulacion
             .getSelectedItem().toString();
         List<DtOfertaLaboral> ofertasConfirmadasEmpresa = this.controlUsuarioLab
-            .obtenerDtofertasConfirmadasDeEmpresa(
+            .obtenerDtOfertasConfirmadasDeEmpresa(
                 this.seleccionEmpresa);
         List<String> nombreOfertasConfirmadas = new ArrayList<String>();
         for (DtOfertaLaboral dtOfertaLaboral : ofertasConfirmadasEmpresa) {
@@ -631,7 +631,7 @@ public class PostulacionOfertaLaboral
                 fechaAlta.getMonthValue(),
                 fechaAlta.getDayOfMonth())
             .plusDays(this.controlOfertaLab
-                .obtenerDttipoPublicacion(
+                .obtenerDtTipoPublicacion(
                     nombreTipoPublicacion)
                 .getDuracionDia());
         if (fechaPostulacion.isAfter(fechaVencimiento)

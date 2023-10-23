@@ -56,7 +56,7 @@ public interface IcontroladorUsuario {
   public void altaPostulante(String nickname, String nombre,
       String apellido, String email, LocalDate fechaNac,
       String nacionalidad, BufferedImage imagen,
-      String constrasenia) throws UsuarioYaExisteException,
+      String contrasenia) throws UsuarioYaExisteException,
       UsuarioEmailRepetidoException;
   
   public void altaEmpresa(String nickname, String nombre,
@@ -68,7 +68,7 @@ public interface IcontroladorUsuario {
   public Postulante obtenerPostulante(String nomPostulante)
       throws UsuarioNoExisteException;
   
-  public DtUsuario obtenerDtusuario(String nickname)
+  public DtUsuario obtenerDtUsuario(String nickname)
       throws UsuarioNoExisteException, IOException;
   
   public List<String> listaOfertasUsuario(
@@ -91,33 +91,33 @@ public interface IcontroladorUsuario {
       BufferedImage imagen, String contrasenia)
       throws UsuarioNoExisteException;
   
-  public DtPostulacion obtenerDtpostulacion(
+  public DtPostulacion obtenerDtPostulacion(
       String nicknamePostulante, String nombreOferta)
       throws UsuarioNoExisteException,
       UsuarioNoExistePostulacion;
   
-  List<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(
+  List<DtOfertaLaboral> obtenerDtOfertasIngresadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
   
-  List<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
+  List<DtOfertaLaboral> obtenerDtOfertasConfirmadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
   
-  List<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(
+  List<DtOfertaLaboral> obtenerDtOfertasRechazadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
   
   Boolean confirmarContrasenia(String clave,
       String contrasenia) throws UsuarioNoExisteException;
   
-  List<DtUsuario> obtenerDtusuarios() throws IOException;
+  List<DtUsuario> obtenerDtUsuarios() throws IOException;
   
-  List<DtPaquetePublicacion> obtenerDtpaquetesDeEmpresa(
+  List<DtPaquetePublicacion> obtenerDtPaquetesDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
   
-  List<DtPostulacion> obtenerDtpostulacionesDePostulante(
+  List<DtPostulacion> obtenerDtPostulacionesDePostulante(
       String nicknamePostulante)
       throws UsuarioNoExisteException;
   
@@ -147,7 +147,7 @@ public interface IcontroladorUsuario {
   void removerOfertaFavorita(String nicknamePsotulante, String nombreOferta)
       throws UsuarioNoExisteException, PostulanteNoEsOfertaFavoritaException;
 
-  List<DtOfertaLaboral> obtenerDtofertasFinalizadasDeEmpresa(String nicknameEmpresa)
+  List<DtOfertaLaboral> obtenerDtOfertasFinalizadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException;
 
   List<DtEmpresa> buscarEmpresas(String parametro) throws IOException;

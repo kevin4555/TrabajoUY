@@ -178,7 +178,7 @@ public class WSControladorOferta {
   
   public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(
       String keyword) throws IOException {
-    return controladorOferta.obtenerDtofertasPorKeyword(keyword);
+    return controladorOferta.obtenerDtOfertasPorKeyword(keyword);
   }
   
   public List<DtPostulacion> obtenerDtPostulacionesDeOferta(
@@ -210,13 +210,13 @@ public class WSControladorOferta {
       String nombrePaquete)
       throws PaquetePublicacionNoExisteException,
       IOException {
-    return controladorOferta.obtenerDtpaquete(nombrePaquete);
+    return controladorOferta.obtenerDtPaquete(nombrePaquete);
   }
   
-  public DtTipoPublicacion obtenerDttipoPublicacion(
+  public DtTipoPublicacion obtenerDtTipoPublicacion(
       String nombreTipo)
       throws TipoPublicacionNoExisteException {
-    return controladorOferta.obtenerDttipoPublicacion(nombreTipo);
+    return controladorOferta.obtenerDtTipoPublicacion(nombreTipo);
   }
   
   public List<String> listarPaquetesNoComprados() {
@@ -225,7 +225,7 @@ public class WSControladorOferta {
   
   public List<DtPaquetePublicacion> listarDtpaquetes()
       throws IOException {
-    return controladorOferta.listarDtpaquetes();
+    return controladorOferta.listarDtPaquetes();
   }
   
   public Boolean estaCompradoPaquete(String nombrePaquete)

@@ -113,7 +113,7 @@ public interface IcontroladorOferta {
   public List<DtOfertaLaboral> obtenerDtOfertasConfirmadas()
       throws IOException;
   
-  List<DtOfertaLaboral> obtenerDtofertasPorKeyword(
+  List<DtOfertaLaboral> obtenerDtOfertasPorKeyword(
       String keyword) throws IOException;
   
   public List<DtPostulacion> obtenerDtPostulacionesDeOferta(
@@ -137,18 +137,18 @@ public interface IcontroladorOferta {
       String nomOfertaLab)
       throws OfertaLaboralNoExisteException;
   
-  DtPaquetePublicacion obtenerDtpaquete(
+  DtPaquetePublicacion obtenerDtPaquete(
       String nombrePaquete)
       throws PaquetePublicacionNoExisteException,
       IOException;
   
-  DtTipoPublicacion obtenerDttipoPublicacion(
+  DtTipoPublicacion obtenerDtTipoPublicacion(
       String nombreTipo)
       throws TipoPublicacionNoExisteException;
   
   List<String> listarPaquetesNoComprados();
   
-  List<DtPaquetePublicacion> listarDtpaquetes()
+  List<DtPaquetePublicacion> listarDtPaquetes()
       throws IOException;
   
   Boolean estaCompradoPaquete(String nombrePaquete)

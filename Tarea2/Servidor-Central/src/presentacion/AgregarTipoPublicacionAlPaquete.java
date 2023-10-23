@@ -390,7 +390,7 @@ public class AgregarTipoPublicacionAlPaquete
       try {
         DtTipoPublicacion dtTipoPublicacion;
         dtTipoPublicacion = controladorOfertaLaboral
-            .obtenerDttipoPublicacion(tipoPublicacion);
+            .obtenerDtTipoPublicacion(tipoPublicacion);
         this.textFieldExposicion
             .setText(dtTipoPublicacion.getExposicion());
         this.textFieldCosto.setText(

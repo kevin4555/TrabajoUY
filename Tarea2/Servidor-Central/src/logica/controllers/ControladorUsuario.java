@@ -165,7 +165,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public DtUsuario obtenerDtusuario(String nickname)
+  public DtUsuario obtenerDtUsuario(String nickname)
       throws UsuarioNoExisteException, IOException {
     Usuario usuario = this.obtenerUsuario(nickname);
     return usuario.obtenerDtusuario();
@@ -220,7 +220,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public DtPostulacion obtenerDtpostulacion(
+  public DtPostulacion obtenerDtPostulacion(
       String nicknamePostulante, String nombreOferta)
       throws UsuarioNoExisteException,
       UsuarioNoExistePostulacion {
@@ -235,7 +235,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<DtOfertaLaboral> obtenerDtofertasIngresadasDeEmpresa(
+  public List<DtOfertaLaboral> obtenerDtOfertasIngresadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance()
@@ -244,7 +244,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<DtOfertaLaboral> obtenerDtofertasConfirmadasDeEmpresa(
+  public List<DtOfertaLaboral> obtenerDtOfertasConfirmadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance()
@@ -253,7 +253,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<DtOfertaLaboral> obtenerDtofertasRechazadasDeEmpresa(
+  public List<DtOfertaLaboral> obtenerDtOfertasRechazadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance()
@@ -262,7 +262,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<DtOfertaLaboral> obtenerDtofertasFinalizadasDeEmpresa(String nicknameEmpresa)
+  public List<DtOfertaLaboral> obtenerDtOfertasFinalizadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasFinalizadas();
@@ -279,7 +279,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<DtUsuario> obtenerDtusuarios()
+  public List<DtUsuario> obtenerDtUsuarios()
       throws IOException {
     return ManejadorUsuario.getInstance()
         .obtenerDtusuarios();
@@ -304,7 +304,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<DtPaquetePublicacion> obtenerDtpaquetesDeEmpresa(
+  public List<DtPaquetePublicacion> obtenerDtPaquetesDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance()
@@ -314,7 +314,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<DtPostulacion> obtenerDtpostulacionesDePostulante(
+  public List<DtPostulacion> obtenerDtPostulacionesDePostulante(
       String nicknamePostulante)
       throws UsuarioNoExisteException {
     Postulante postulante = ManejadorUsuario.getInstance()

@@ -318,7 +318,7 @@ public class ControladorOferta
   }
   
   @Override
-  public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(
+  public List<DtOfertaLaboral> obtenerDtOfertasPorKeyword(
       String keyword) throws IOException {
     return ManejadorOfertas.getInstance()
         .obtenerDtofertasPorKeyword(keyword);
@@ -368,7 +368,7 @@ public class ControladorOferta
   }
   
   @Override
-  public DtPaquetePublicacion obtenerDtpaquete(
+  public DtPaquetePublicacion obtenerDtPaquete(
       String nombrePaquete)
       throws PaquetePublicacionNoExisteException,
       IOException {
@@ -378,7 +378,7 @@ public class ControladorOferta
   }
   
   @Override
-  public DtTipoPublicacion obtenerDttipoPublicacion(
+  public DtTipoPublicacion obtenerDtTipoPublicacion(
       String nombreTipo)
       throws TipoPublicacionNoExisteException {
     TipoPublicacion tipoPublicacion = ManejadorSettings
@@ -393,7 +393,7 @@ public class ControladorOferta
   }
   
   @Override
-  public List<DtPaquetePublicacion> listarDtpaquetes()
+  public List<DtPaquetePublicacion> listarDtPaquetes()
       throws IOException {
     return ManejadorPaquetes.getInstance()
         .listarDtpaquetes();

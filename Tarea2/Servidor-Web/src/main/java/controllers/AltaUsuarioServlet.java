@@ -81,10 +81,10 @@ public class AltaUsuarioServlet extends HttpServlet {
 			}
 		}
 		if(request.getParameter("tipoUsuario").equals("empresa")) {
-			String descriopcion = request.getParameter("descripcion");
+			String descripcion = request.getParameter("descripcion");
 			String sitioWeb = request.getParameter("sitioWeb");
 			try {
-				controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descriopcion, sitioWeb, imagen, contrasenia);
+				controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descripcion, sitioWeb, imagen, contrasenia);
 				sesion.setAttribute("tipoUsuario", TipoUsuario.EMPRESA);
 			} catch (UsuarioYaExisteException | UsuarioEmailRepetidoException e) {
 				request.setAttribute("mensajeError", "nickname o email repetido");

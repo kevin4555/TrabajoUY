@@ -7,10 +7,20 @@ import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
+
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExisteException;
 import logica.controllers.Fabrica;
+import logica.datatypes.DtCompraPaquete;
+import logica.datatypes.DtUsuario;
 import logica.interfaces.IcontroladorUsuario;
 
 @WebService
@@ -36,6 +46,34 @@ public class WSControladorUsuario {
   public Endpoint getEndpoint() {
           return endpoint;
   }
+  
+  public ArrayList<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(String nicknameEmpresa) throws UsuarioNoExisteException, IOException{ 
+	return  (ArrayList<DtCompraPaquete>) controladorUsuario
+  .obtenerDtCompraPaqueteDeEmpresa(nicknameEmpresa);
+  }
+  
+  public void altaPostulante(String nickname, String nombre,
+	      String apellido, String email, LocalDate fechaNacimiento,
+	      String nacionalidad, BufferedImage imagen,
+	      String contrasenia) throws UsuarioYaExisteException,
+	      UsuarioEmailRepetidoException{ 
+		  controladorUsuario.altaPostulante(nickname, nombre, apellido, email, fechaNacimiento, nacionalidad, imagen, contrasenia);
+	  }
+  public void altaEmpresa(String nickname, String nombre,
+	      String apellido, String email, String descripcion,
+	      String link, BufferedImage imagen, String contrasenia)
+	      throws UsuarioYaExisteException,
+	      UsuarioEmailRepetidoException{ 
+	  	controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, descripcion, link, imagen, contrasenia);
+	  }
+  
+  public DtUsuario obtenerDtusuario(String nickname) throws UsuarioNoExisteException, IOException{ 
+		return  controladorUsuario.obtenerDtUsuario(nickname);
+	  }
+  
+  public ArrayList<DtUsuario> obtenerDtUsuarios() throws IOException{ 
+		return  (ArrayList<DtUsuario>) controladorUsuario.obtenerDtUsuarios();
+	  }
 
   /*@WebMethod
   public String obtenerApellido(DataPersona dp){

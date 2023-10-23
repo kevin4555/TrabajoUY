@@ -435,7 +435,7 @@ public class ConsultaPaquete extends JInternalFrame {
           paqueteSeleccionado = nombrePaquete;
           limpiarDatosPublicaciones();
           DtPaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
-              .obtenerDtpaquete(nombrePaquete);
+              .obtenerDtPaquete(nombrePaquete);
           this.textFieldDescuento.setText(String.valueOf(
               dtPaquetePublicaciones.getDescuento()) + "%");
           this.textFieldValidez.setText(String.valueOf(
@@ -497,7 +497,7 @@ public class ConsultaPaquete extends JInternalFrame {
         String nombrePaquete = comboBoxSeleccionPaquete
             .getSelectedItem().toString();
         DtPaquetePublicacion dtPaquetePublicaciones = this.controladorOfertaLaboral
-            .obtenerDtpaquete(nombrePaquete);
+            .obtenerDtPaquete(nombrePaquete);
         List<DtCantidadTipoPublicacion> dtCantidadPublicaciones = dtPaquetePublicaciones
             .getCantidadTipoPublicaciones();
         int cantidadRestante = 0;
@@ -514,7 +514,7 @@ public class ConsultaPaquete extends JInternalFrame {
           
           DtTipoPublicacion dtTipoPublicacion;
           dtTipoPublicacion = controladorOfertaLaboral
-              .obtenerDttipoPublicacion(tipoPublicacion);
+              .obtenerDtTipoPublicacion(tipoPublicacion);
           this.textFieldExposicion
               .setText(dtTipoPublicacion.getExposicion());
           this.textFieldCosto.setText(

@@ -153,7 +153,7 @@ public class ControladorUsuarioTesting {
         "NombreTest", "ApellidoTest", "EmailTest",
         fechaDate1, "NacionalidadTest", null, "1234");
     DtUsuario dtResultado = controladorUsuario
-        .obtenerDtusuario("NicknameTest");
+        .obtenerDtUsuario("NicknameTest");
     Assert.assertEquals("NicknameTest",
         dtResultado.getNickname());
     Assert.assertEquals("NombreTest",
@@ -557,7 +557,7 @@ public class ControladorUsuarioTesting {
             + "desafiantes y seguir creciendo como profesional en el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend", null);
     DtPostulacion postulacionResultado = controladorUsuario
-        .obtenerDtpostulacion("maro",
+        .obtenerDtPostulacion("maro",
             "Desarrollador Frontend");
     Assert.assertEquals("maro",
         postulacionResultado.getnicknamePostulante());
@@ -614,7 +614,7 @@ public class ControladorUsuarioTesting {
         "Montevideo", fechaDate1, "Premium", "EcoTech",
         keywords, null, null);
     List<DtOfertaLaboral> listaResultado = controladorUsuario
-        .obtenerDtofertasIngresadasDeEmpresa("EcoTech");
+        .obtenerDtOfertasIngresadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend",
@@ -680,7 +680,7 @@ public class ControladorUsuarioTesting {
         "Desarrollador Frontend", EstadoOferta.CONFIRMADA,
         fechaDate1);
     List<DtOfertaLaboral> listaResultado = controladorUsuario
-        .obtenerDtofertasConfirmadasDeEmpresa("EcoTech");
+        .obtenerDtOfertasConfirmadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend",
@@ -740,7 +740,7 @@ public class ControladorUsuarioTesting {
         "Desarrollador Frontend", EstadoOferta.RECHAZADA,
         fechaDate1);
     List<DtOfertaLaboral> listaResultado = controladorUsuario
-        .obtenerDtofertasRechazadasDeEmpresa("EcoTech");
+        .obtenerDtOfertasRechazadasDeEmpresa("EcoTech");
     Assert.assertEquals(1, listaResultado.size());
     DtOfertaLaboral oferta = listaResultado.get(0);
     Assert.assertEquals("Desarrollador Frontend",
@@ -818,11 +818,11 @@ public class ControladorUsuarioTesting {
         "Rodríguez", "marrod@gmail.com", fechaDate2,
         "Uruguaya", null, "1234");
     List<DtUsuario> listaRes = controladorUsuario
-        .obtenerDtusuarios();
+        .obtenerDtUsuarios();
     DtPostulante postulante = (DtPostulante) controladorUsuario
-        .obtenerDtusuario("maro");
+        .obtenerDtUsuario("maro");
     DtEmpresa empresa = (DtEmpresa) controladorUsuario
-        .obtenerDtusuario("EcoTech");
+        .obtenerDtUsuario("EcoTech");
     for (DtUsuario usuario : listaRes) {
       if (usuario.getNickname() == empresa.getNickname()) {
         DtEmpresa dtempresa = (DtEmpresa) usuario;
@@ -912,7 +912,7 @@ public class ControladorUsuarioTesting {
     controladorUsuario.comprarPaquete("EcoTech", "Paquete",
         fechaDate2);
     List<DtPaquetePublicacion> listaRes = controladorUsuario
-        .obtenerDtpaquetesDeEmpresa("EcoTech");
+        .obtenerDtPaquetesDeEmpresa("EcoTech");
     DtPaquetePublicacion paquete = listaRes.get(0);
     Assert.assertEquals("Paquete", paquete.getNombre());
     Assert.assertEquals("Descripcion",
@@ -975,7 +975,7 @@ public class ControladorUsuarioTesting {
             + "el campo de la tecnología.",
         fechaDate1, "maro", "Desarrollador Frontend", null);
     List<DtPostulacion> listaRes = controladorUsuario
-        .obtenerDtpostulacionesDePostulante("maro");
+        .obtenerDtPostulacionesDePostulante("maro");
     DtPostulacion postulacion = listaRes.get(0);
     Assert.assertEquals("maro",
         postulacion.getnicknamePostulante());
@@ -1122,7 +1122,7 @@ public class ControladorUsuarioTesting {
     try {
       
       DtPostulacion dtpostulacion = controladorUsuario
-          .obtenerDtpostulacion("maro",
+          .obtenerDtPostulacion("maro",
               "Desarrollador Frontend");
     } catch (UsuarioNoExistePostulacion e) {
       noHayPostulacion = true;

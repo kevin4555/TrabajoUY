@@ -851,7 +851,7 @@ public class ControladorOfertaTest {
         null, null);
     
     List<DtOfertaLaboral> resultadoOfertaLaboralDt = controladorOferta
-        .obtenerDtofertasPorKeyword("Keyword1");
+        .obtenerDtOfertasPorKeyword("Keyword1");
     
     Assert.assertEquals(
         resultadoOfertaLaboralDt.get(0).getNombre(),
@@ -887,7 +887,7 @@ public class ControladorOfertaTest {
         20, 50f, null, fechaDate, arrayDtCantidad);
     
     List<DtPaquetePublicacion> listaDtpaquetePublicaciones = controladorOferta
-        .listarDtpaquetes();
+        .listarDtPaquetes();
     
     Assert.assertEquals(
         listaDtpaquetePublicaciones.get(0).getNombre(),
@@ -941,7 +941,7 @@ public class ControladorOfertaTest {
     manejadorSettings.addTipoPublicacion(publicacionPrueba);
     
     DtTipoPublicacion dttipoPublicacion = controladorOferta
-        .obtenerDttipoPublicacion("tipoPublicacionPrueba");
+        .obtenerDtTipoPublicacion("tipoPublicacionPrueba");
     
     Assert.assertEquals(dttipoPublicacion.getNombre(),
         "tipoPublicacionPrueba");
@@ -974,7 +974,7 @@ public class ControladorOfertaTest {
         arrayDtCantidad);
     
     DtPaquetePublicacion dtpaquetePublicacion = controladorOferta
-        .obtenerDtpaquete("paquetePrueba");
+        .obtenerDtPaquete("paquetePrueba");
     
     Assert.assertEquals(dtpaquetePublicacion.getNombre(),
         "paquetePrueba");
