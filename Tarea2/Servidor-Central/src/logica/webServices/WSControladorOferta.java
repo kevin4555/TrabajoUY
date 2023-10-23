@@ -42,10 +42,8 @@ import logica.interfaces.IcontroladorOferta;
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
 public class WSControladorOferta {
   
-  private Fabrica factory = Fabrica
-      .getInstance();
-  private IcontroladorOferta controladorOferta = factory
-      .obtenerControladorOferta();
+  private Fabrica factory = Fabrica.getInstance();
+  private IcontroladorOferta controladorOferta = factory.obtenerControladorOferta();
   private Endpoint endpoint = null;
   
   // Constructor
@@ -66,8 +64,7 @@ public class WSControladorOferta {
   }
   
   public List<String> listarTipoDePublicaciones() {
-    return controladorOferta
-        .listarTipoDePublicaciones();
+    return controladorOferta.listarTipoDePublicaciones();
   }
   
   public void altaOfertaLaboral(
@@ -242,14 +239,7 @@ public class WSControladorOferta {
   
   
   
-  /* @WebMethod public String
-   * obtenerApellido(DataPersona dp){ Logica l = new
-   * Logica(); return l.obtenerApellido(dp); }
-   * 
-   * @WebMethod public DataMaestro
-   * obtenerConvocados(String apellido){ Logica l =
-   * new Logica(); return
-   * l.obtenerConvocados(apellido); } */
+  
   @WebMethod
   public byte[] getFile(
       @WebParam(name = "fileName") String name)
