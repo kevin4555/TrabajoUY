@@ -1,10 +1,11 @@
+<%@page import="logica.webServices.DtUsuario"%>
+<%@page import="logica.webServices.DtPaquetePublicacion"%>
 <%@page import="model.TipoUsuario"%>
-<%@page import="logica.datatypes.DtUsuario"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DtPaquetePublicacion"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     
-<%@page import="logica.datatypes.DtCantidadTipoPublicacion"%>
+
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.time.LocalDate" %>

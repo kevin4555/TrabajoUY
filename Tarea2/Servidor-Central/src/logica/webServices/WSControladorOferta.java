@@ -15,16 +15,19 @@ import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
+import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
+import jakarta.xml.bind.annotation.XmlList;
 import jakarta.xml.ws.Endpoint;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtOfertaLaboral;
@@ -54,7 +57,7 @@ public class WSControladorOferta {
   @WebMethod(exclude = true)
   public void publicar() {
     endpoint = Endpoint.publish(
-        "http://localhost:8085/webservices",
+        "http://localhost:8085/webservices/ofertas",
         this);
   }
   
@@ -62,11 +65,12 @@ public class WSControladorOferta {
   public Endpoint getEndpoint() {
     return endpoint;
   }
-  
-  public List<String> listarTipoDePublicaciones() {
-    return controladorOferta.listarTipoDePublicaciones();
+  @WebMethod
+  @XmlList
+  public ArrayList<String> listarTipoDePublicaciones() {
+    return (ArrayList<String>) controladorOferta.listarTipoDePublicaciones();
   }
-  
+  @WebMethod
   public void altaOfertaLaboral(
       String nombre,
       String descripcion,
@@ -78,7 +82,7 @@ public class WSControladorOferta {
       LocalDate fechaAlta,
       String nomTipoPublicacion,
       String nicknameEmpresa,
-      List<String> listakeywords,
+      ArrayList<String> listakeywords,
       BufferedImage imagen,
       String nombrePaquete)
       throws OfertaLaboralYaExisteException,
@@ -95,7 +99,7 @@ public class WSControladorOferta {
         listakeywords, imagen,
         nombrePaquete);
   }
-  
+  @WebMethod
   public void agregarTipoPublicacionAlPaquete(int cantIncluida,
       String nomTipoPublicacion,
       String nomTipoPaquete)
@@ -106,11 +110,12 @@ public class WSControladorOferta {
     controladorOferta.agregarTipoPublicacionAlPaquete(cantIncluida,
         nomTipoPublicacion, nomTipoPaquete);
   }
-  
-  public List<String> listarPaquetes() {
-    return controladorOferta.listarPaquetes();
+  @WebMethod
+  @XmlList
+  public ArrayList<String> listarPaquetes() {
+    return (ArrayList<String>) controladorOferta.listarPaquetes();
   }
-  
+  @WebMethod
   public void altaTipoPublicacion(String nombre,
       String descripcion, String exposicion, int duracion,
       float costo, LocalDate fechaPub)
@@ -118,31 +123,33 @@ public class WSControladorOferta {
     controladorOferta.altaTipoPublicacion(nombre, descripcion, exposicion,
         duracion, costo, fechaPub);
   }
-  
+  @WebMethod
   public void altaKeyword(String nomKeyword)
       throws KeywordYaExisteException {
     controladorOferta.altaKeyword(nomKeyword);
   }
-  
-  public List<String> listarKeywords() {
-    return controladorOferta.listarKeywords();
+  @WebMethod
+  @XmlList
+  public ArrayList<String> listarKeywords() {
+    return (ArrayList<String>) controladorOferta.listarKeywords();
   }
-  
+  @WebMethod
   public DtOfertaLaboral obtenerDtOfertaLaboral(String nomOferta)
       throws OfertaLaboralNoExisteException, IOException {
     return controladorOferta.obtenerDtOfertaLaboral(nomOferta);
   }
-  
-  public List<String> obtenerOfertasEmpresa(String nicknameEmpresa)
+  @WebMethod
+  @XmlList
+  public ArrayList<String> obtenerOfertasEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
-    return controladorOferta.obtenerOfertasEmpresa(nicknameEmpresa);
+    return (ArrayList<String>) controladorOferta.obtenerOfertasEmpresa(nicknameEmpresa);
   }
-  
+  @WebMethod
   public void registrarPaquete(String nombre,
       String descripcion, int periodoValDias,
       float descuento, BufferedImage imagen,
       LocalDate fechaAlta,
-      List<DtCantidadTipoPublicacion> cantidadTipoPublicacion)
+      ArrayList<DtCantidadTipoPublicacion> cantidadTipoPublicacion)
       throws PaquetePublicacionYaExisteException,
       TipoPublicacionYaExisteException,
       TipoPublicacionNoExisteException {
@@ -150,19 +157,20 @@ public class WSControladorOferta {
         nombre, descripcion, periodoValDias, descuento, imagen, fechaAlta,
         cantidadTipoPublicacion);
   }
-  
+  @WebMethod
   public boolean estaPostulado(String postulante,
       String nomOfertaLaboral)
       throws UsuarioNoExisteException,
       OfertaLaboralNoExisteException {
     return controladorOferta.estaPostulado(postulante, nomOfertaLaboral);
   }
-  
-  public List<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab)
+  @WebMethod
+  @XmlList
+  public ArrayList<String> obtenerKeywordsDeOfertaLaboral(String nomOfertaLab)
       throws OfertaLaboralNoExisteException {
-    return controladorOferta.obtenerKeywordsDeOfertaLaboral(nomOfertaLab);
+    return (ArrayList<String>) controladorOferta.obtenerKeywordsDeOfertaLaboral(nomOfertaLab);
   }
-  
+  @WebMethod
   public void aceptarRechazarOfertaLaboral(
       String nombreOferta, EstadoOferta estadoOferta,
       LocalDate fechaResolucion)
@@ -170,64 +178,66 @@ public class WSControladorOferta {
     controladorOferta.aceptarRechazarOfertaLaboral(nombreOferta, estadoOferta,
         fechaResolucion);
   }
-  
-  public List<DtOfertaLaboral> obtenerDtOfertasConfirmadas()
+  @WebMethod
+  public ArrayList<DtOfertaLaboral> obtenerDtOfertasConfirmadas()
       throws IOException {
-    return controladorOferta.obtenerDtOfertasConfirmadas();
+    return (ArrayList<DtOfertaLaboral>) controladorOferta.obtenerDtOfertasConfirmadas();
   }
-  
-  public List<DtOfertaLaboral> obtenerDtofertasPorKeyword(
+  @WebMethod
+  public ArrayList<DtOfertaLaboral> obtenerDtofertasPorKeyword(
       String keyword) throws IOException {
-    return controladorOferta.obtenerDtOfertasPorKeyword(keyword);
+    return (ArrayList<DtOfertaLaboral>) controladorOferta.obtenerDtOfertasPorKeyword(keyword);
   }
-  
-  public List<DtPostulacion> obtenerDtPostulacionesDeOferta(
+  @WebMethod
+  public ArrayList<DtPostulacion> obtenerDtPostulacionesDeOferta(
       String nombreOferta)
       throws OfertaLaboralNoExisteException {
-    return controladorOferta.obtenerDtPostulacionesDeOferta(nombreOferta);
+    return (ArrayList<DtPostulacion>) controladorOferta.obtenerDtPostulacionesDeOferta(nombreOferta);
   }
-  
+  @WebMethod
   public boolean estaCompradoPorPaqueteOferta(
       String nombreOferta)
       throws OfertaLaboralNoExisteException {
     return controladorOferta.estaCompradoPorPaqueteOferta(nombreOferta);
   }
-  
+  @WebMethod
   public DtPaquetePublicacion obtenerDtPaquetePublicacion(
       String nombreOferta)
       throws OfertaLaboralNoExisteException,
       OfertaLaboralNoTienePaquete, IOException {
     return controladorOferta.obtenerDtPaquetePublicacion(nombreOferta);
   }
-  
-  public List<String> listarTipoPublicacionDePaquete(
+  @WebMethod
+  @XmlList
+  public ArrayList<String> listarTipoPublicacionDePaquete(
       String nombrePaquete)
       throws PaquetePublicacionNoExisteException {
-    return controladorOferta.listarTipoDePublicaciones();
+    return (ArrayList<String>) controladorOferta.listarTipoDePublicaciones();
   }
-  
+  @WebMethod
   public DtPaquetePublicacion obtenerDtpaquete(
       String nombrePaquete)
       throws PaquetePublicacionNoExisteException,
       IOException {
     return controladorOferta.obtenerDtPaquete(nombrePaquete);
   }
-  
+  @WebMethod
   public DtTipoPublicacion obtenerDtTipoPublicacion(
       String nombreTipo)
       throws TipoPublicacionNoExisteException {
     return controladorOferta.obtenerDtTipoPublicacion(nombreTipo);
   }
-  
-  public List<String> listarPaquetesNoComprados() {
-    return controladorOferta.listarPaquetesNoComprados();
+  @WebMethod
+  @XmlList
+  public ArrayList<String> listarPaquetesNoComprados() {
+    return (ArrayList<String>) controladorOferta.listarPaquetesNoComprados();
   }
-  
-  public List<DtPaquetePublicacion> listarDtpaquetes()
+  @WebMethod
+  public ArrayList<DtPaquetePublicacion> listarDtpaquetes()
       throws IOException {
-    return controladorOferta.listarDtPaquetes();
+    return (ArrayList<DtPaquetePublicacion>) controladorOferta.listarDtPaquetes();
   }
-  
+  @WebMethod
   public Boolean estaCompradoPaquete(String nombrePaquete)
       throws PaquetePublicacionNoExisteException {
     return controladorOferta.estaCompradoPaquete(nombrePaquete);
@@ -238,8 +248,7 @@ public class WSControladorOferta {
   
   
   
-  
-  
+  /*
   @WebMethod
   public byte[] getFile(
       @WebParam(name = "fileName") String name)
@@ -258,4 +267,5 @@ public class WSControladorOferta {
     }
     return byteArray;
   }
+  */
 }

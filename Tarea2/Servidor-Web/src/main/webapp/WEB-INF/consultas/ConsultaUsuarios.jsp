@@ -1,5 +1,4 @@
-<%@page import="logica.datatypes.DtPostulante"%>
-<%@page import="logica.datatypes.DtUsuario"%>
+<%@page import="logica.webServices.DtUsuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList" %>
 
