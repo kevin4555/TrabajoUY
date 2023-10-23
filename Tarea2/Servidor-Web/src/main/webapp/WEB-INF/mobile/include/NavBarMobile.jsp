@@ -1,6 +1,7 @@
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
+<%@page import="java.util.ArrayList"%>
 
 <%
 EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
@@ -17,7 +18,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					alt="Logo" class="navbar-brand img-fluid">
 				</a>
 			</div>
-			<div class="col-5">
+			<div class="col-4">
 				<%
 				if (usuario != null)
 				{
@@ -29,15 +30,18 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					%> <img class="rounded-pill imgPerfil"
 					src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%
  }
- %> <%
- }
  %>
-				
+				</li>
+				<%
+				}
+				%>
+
 			</div>
 		</div>
-		<div class="row w-100 justify-content-between align-items-center">
+		<div
+			class="row w-100 justify-content-between align-items-center ">
 			<div class="col-4">
-				<div class="container-fluid">
+				<div>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#navbarToggleExternalContent"
@@ -48,14 +52,13 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 				</div>
 			</div>
 
-			<div class="col-5">
+			<div class="col-4">
 				<ul class="navbar-nav justify-content-end fs-3">
 					<%
 					if (usuario != null)
 					{
 					%>
-					<li class="nav-item">
-
+					<li class="nav-item ">
 						<div class="dropdown selectUsuario">
 							<button type="button" class="btn dropdown-toggle"
 								data-bs-toggle="dropdown" aria-expanded="true">

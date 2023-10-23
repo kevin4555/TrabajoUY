@@ -96,28 +96,41 @@ public class ConsultaOfertasServlet extends HttpServlet
 				return;
 			}
 		}
+		if (userAgent != null && userAgent.toLowerCase().contains("mobile")) {
+		    ArrayList<DtOfertaLaboral> ofertas = null;
 
-		if (nicknameEmpresa != null)
-		{
-			try
-			{
-				ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario
-						.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
-				request.setAttribute("listaOfertas", ofertas);
-			}
-			catch (UsuarioNoExisteException e)
-			{
-				request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
-				e.printStackTrace();
-			}
+		    if (nicknameEmpresa != null) {
+		        try {
+		            ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
+		        } catch (UsuarioNoExisteException e) {
+		            request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+		            e.printStackTrace();
+		            return;
+		        }
+		    } else if (keyword != null) {
+		        ofertas = (ArrayList<DtOfertaLaboral>) controladorOfertas.obtenerDtofertasPorKeyword(keyword);
+		    }
+
+		    request.setAttribute("listaOfertas", ofertas);
+		    request.getRequestDispatcher("/WEB-INF/mobile/consultas/ConsultaOfertasMobile.jsp").forward(request, response);
+		} else {
+		    ArrayList<DtOfertaLaboral> ofertas = null;
+
+		    if (nicknameEmpresa != null) {
+		        try {
+		            ofertas = (ArrayList<DtOfertaLaboral>) controladorUsuario.obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa);
+		        } catch (UsuarioNoExisteException e) {
+		            request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+		            e.printStackTrace();
+		            return;
+		        }
+		    } else if (keyword != null) {
+		        ofertas = (ArrayList<DtOfertaLaboral>) controladorOfertas.obtenerDtofertasPorKeyword(keyword);
+		    }
+
+		    request.setAttribute("listaOfertas", ofertas);
+		    request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
 		}
-		else if (keyword != null)
-		{
-			ArrayList<DtOfertaLaboral> ofertas = (ArrayList<DtOfertaLaboral>) controladorOfertas
-					.obtenerDtofertasPorKeyword(keyword);
-			request.setAttribute("listaOfertas", ofertas);
-		}
-		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaOfertas.jsp").forward(request, response);
 	}
 
 	/**

@@ -12,9 +12,11 @@
 </head>
 <body>
 	<jsp:include page="../../mobile/include/NavBarMobile.jsp" />
-	<main class="container pt-5">
+	<main class="container pt-2">
 		<div class="row">
-			<jsp:include page="../../mobile/include/MenuMobile.jsp" />
+			<div class="espacio">
+				<jsp:include page="../../mobile/include/MenuMobile.jsp" />
+			</div>
 			<div class="row justify-content-center">
 				<div class="col-8">
 					<section>
