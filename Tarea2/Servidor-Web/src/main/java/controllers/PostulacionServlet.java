@@ -52,12 +52,13 @@ public class PostulacionServlet extends HttpServlet
 		String nombreOferta = request.getParameter("nombreOferta");
 		String cVReducido = request.getParameter("cVReducido");
 		String motivacion = request.getParameter("motivacion");
+		String video = request.getParameter("video");
 		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
 		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
 		try
 		{
 			controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(), usuario.getNickname(),
-					nombreOferta, null);
+					nombreOferta, video);
 			String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 			response.sendRedirect(url);
 			return;
