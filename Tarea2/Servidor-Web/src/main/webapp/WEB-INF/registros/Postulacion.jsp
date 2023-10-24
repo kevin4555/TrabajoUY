@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script
+	src="<%=request.getContextPath()%>/resource/javaScript/testLink.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -21,21 +23,22 @@
 			<jsp:include page="../include/Menu.jsp" />
 			<div class="col">
 				<%
-	DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
-	%>
+				DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
+				%>
 				<div class="card">
 					<div class="row g-0">
 						<%
-									if (oferta != null && oferta.getImagen() != null) {
-									%>
+						if (oferta != null && oferta.getImagen() != null)
+						{
+						%>
 						<div
 							class="col-md-4 justify-content-center align-items-center d-flex">
 							<img src="data:image/png;base64,<%=oferta.getImagenBase64()%>"
 								class="img-fluid rounded-start" alt="Imagen Oferta" />
 						</div>
 						<%
-									}
-									%>
+						}
+						%>
 						<div class="col-md-8">
 							<div class="card-body">
 								<h5 class="card-header p-0 border-0 bg-white text-start">
@@ -51,22 +54,23 @@
 									<li class="list-group-item"><b>Departamento:</b> <%=oferta.getDepartamento()%></li>
 									<li class="list-group-item"><b>Ciudad:</b> <%=oferta.getCiudad()%></li>
 									<li class="list-group-item"><b>Fecha de alta:</b> <%=oferta.getFechaAlta()%></li>
-									<li class="list-group-item"><b>Keywords:</b> 
-									<%if (oferta.getKeywords() != null) {
-										for (String keyword : oferta.getKeywords()) {
-											out.print(keyword + ", ");
-											}
-									}
-									%>
-									</li>
+									<li class="list-group-item"><b>Keywords:</b> <%
+ if (oferta.getKeywords() != null)
+ {
+ 	for (String keyword : oferta.getKeywords())
+ 	{
+ 		out.print(keyword + ", ");
+ 	}
+ }
+ %></li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 				<form
-					action="<%=request.getContextPath()%>/postulacion?nombreOferta=<%= oferta.getNombre() %>"
-					method="post">
+					action="<%=request.getContextPath()%>/postulacion?nombreOferta=<%=oferta.getNombre()%>"
+					method="post" onsubmit="return validateForm()">
 					<div class="camposForm">
 						<div class="form-group">
 							<label for="textAreaCV">*CV reducido</label>
@@ -79,6 +83,13 @@
 							<label for="textAreaMotivacion">*Motivacion</label>
 							<textarea class="form-control" id="textAreaDescripcionMotivacion"
 								name="motivacion" rows="3" required></textarea>
+						</div>
+					</div>
+					<div class="camposForm mb-3">
+						<div class="form-group">
+							<label for="textAreaMotivacion">Video</label>
+							<textarea class="form-control" id="textAreaVideo" name="video"
+								rows="3"></textarea>
 						</div>
 					</div>
 					<div class="col" id="botonesConfirmarCancelar">

@@ -55,6 +55,7 @@ public class PostulacionServlet extends HttpServlet
 		String video = request.getParameter("video");
 		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
 		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+
 		try
 		{
 			controladorUsuario.registrarPostulacion(cVReducido, motivacion, LocalDate.now(), usuario.getNickname(),
@@ -95,7 +96,8 @@ public class PostulacionServlet extends HttpServlet
 			request.setAttribute("oferta", oferta);
 			if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
 			{
-				request.getRequestDispatcher("/WEB-INF/mobile/registros/PostulacionMobile.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/mobile/registros/PostulacionMobile.jsp").forward(request,
+						response);
 			}
 			else
 			{
