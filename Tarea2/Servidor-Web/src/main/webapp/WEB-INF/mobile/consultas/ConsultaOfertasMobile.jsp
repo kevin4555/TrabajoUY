@@ -37,7 +37,8 @@
 							<div class="row g-0">
 								<div
 									class="col-md-4 justify-content-center align-items-center d-flex">
-									<img src="data:image/png;base64,<%=oferta.getImagenBase64()%>"
+									<img
+										src="data:image/png;base64,<%=oferta.getImagenBase64()%>"
 										class="img img-fluid rounded-start" alt="Imagen Oferta" />
 								</div>
 								<div class="col-md-8">
@@ -50,10 +51,9 @@
 									<div class="card-footer border-0 bg-white text-end">
 										<%
 										String contextPath = request.getContextPath();
-										
 										%>
 										<a
-											href="<%=contextPath%>/verPostulacion?nombreOferta=<%=oferta.getNombre()%>&nicknamePostulante=<%=usuario.getNickname()%>"
+											href="<%=contextPath%>/oferta?nombreOferta=<%=oferta.getNombre()%>"
 											class="btn btn-primary">Mas Info</a>
 
 									</div>
