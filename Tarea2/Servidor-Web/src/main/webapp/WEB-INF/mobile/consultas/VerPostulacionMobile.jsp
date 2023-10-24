@@ -68,7 +68,7 @@
 								String newParsedDate = outputDateFormat.format(fechaDate);
 								%>
 								<p class="card-text">
-									<strong>Postulante: </strong><a href="<%=perfilUrl%>"><%=postulante.getNombre()%>
+									<strong>Postulante: </strong><a><%=postulante.getNombre()%>
 										<%=postulante.getApellido()%></a> <br> <br> <strong>CV
 										reducido: </strong>
 									<%=postulacion.getCvReducido()%>
