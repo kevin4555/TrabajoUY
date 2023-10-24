@@ -24,8 +24,8 @@
 	<jsp:include page="../../mobile/include/NavBarMobile.jsp" />
 	<main class="container pt-2">
 		<div class="row">
-		<div class="espacio">
-			<jsp:include page="../../mobile/include/MenuMobile.jsp" />
+			<div class="espacio">
+				<jsp:include page="../../mobile/include/MenuMobile.jsp" />
 			</div>
 			<%
 			Dtusuario usuario = (Dtusuario) request.getAttribute("usuario");
@@ -142,7 +142,9 @@
 														+ java.net.URLEncoder.encode(postulacion.getNombreOferta(), "UTF-8");
 												%>
 												<h5 class="card-title text-center">
-													<a href="<%=ofertaUrl%>" class="card-link"><%=postulacion.getNombreOferta()%></a>
+													<a
+														href="<%=request.getContextPath()%>/verPostulacion?nombreOferta=<%=postulacion.getNombreOferta()%>&nicknamePostulante=<%=usuario.getNickname()%>"
+														class="card-link"><%=postulacion.getNombreOferta()%></a>
 												</h5>
 												<br>
 											</div>
