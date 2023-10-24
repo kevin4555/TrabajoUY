@@ -17,8 +17,7 @@
 <head>
 
 <script src="https://www.youtube.com/iframe_api"></script>
-<script
-	src="<%=request.getContextPath()%>/resource/javaScript/reproductorYT.js"></script>
+
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resource/css/general.css" />
 
@@ -47,8 +46,7 @@
 				<div class="card">
 					<div class="row g-0">
 						<%
-						if (postulante != null && postulante.getImagenBase64() != null)
-						{
+						if (postulante != null && postulante.getImagenBase64() != null) {
 						%>
 						<div class="col-md-4">
 							<img
@@ -81,15 +79,24 @@
 									<br> <br>
 								</p>
 								<%
-								String video = "https://m.youtube.com/watch?v=u4IkJgTu22E&pp=ygUXbGEgZ2VudGUgdGllbmUgY29sb21iZXM%3D";
+								String video = "https://www.youtube.com/watch?v=9NX8DWYnUsg&ab_channel=AngelCalBustillo";
 								String videoId = "";
+
+								if (video != null && video.contains("v=")) {
+									int startIndex = video.indexOf("v=") + 2;
+									int endIndex = video.indexOf("&", startIndex);
+									if (endIndex == -1) {
+										videoId = video.substring(startIndex);
+									} else {
+										videoId = video.substring(startIndex, endIndex);
+									}
+								}
 								%>
-								<button id="botonProcesar">Ver Video</button>
-								<div>
+								<p class="card-text">
 									<iframe class="videoContainer"
 										src="https://www.youtube.com/embed/<%=videoId%>"
 										frameborder="0" allowfullscreen></iframe>
-								</div>
+								</p>
 							</div>
 						</div>
 					</div>

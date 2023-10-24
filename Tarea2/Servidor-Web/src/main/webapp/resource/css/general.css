@@ -117,3 +117,8 @@ footer {
 	height: 100%;
 	display: none;
 }
+
+.videoBorder
+{
+	background-color: black;
+}
