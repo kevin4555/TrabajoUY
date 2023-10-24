@@ -82,9 +82,12 @@
 								</p>
 								<%
 								String video = "https://m.youtube.com/watch?v=u4IkJgTu22E&pp=ygUXbGEgZ2VudGUgdGllbmUgY29sb21iZXM%3D";
+								String videoId = "";
 								%>
+								<button id="botonProcesar">Ver Video</button>
 								<div>
-									<iframe class="videoContainer" src="<%=video%>"
+									<iframe class="videoContainer"
+										src="https://www.youtube.com/embed/<%=videoId%>"
 										frameborder="0" allowfullscreen></iframe>
 								</div>
 							</div>

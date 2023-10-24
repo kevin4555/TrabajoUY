@@ -23,15 +23,17 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 				if (usuario != null)
 				{
 				%>
-				<li class="nav-item">
-					<%
-					if (usuario.getImagen() != null)
-					{
-					%> <img class="rounded-pill imgPerfil"
-					src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%
+
+				<%
+				if (usuario.getImagen() != null)
+				{
+				%>
+				<ul class="list-unstyled">
+					<li class="nav-item"><img class="rounded-pill imgPerfil"
+						src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%
  }
- %>
-				</li>
+ %></li>
+				</ul>
 				<%
 				}
 				%>
