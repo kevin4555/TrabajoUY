@@ -1,5 +1,6 @@
 package logica.classes;
 
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -9,9 +10,10 @@ import java.util.List;
 import java.util.Set;
 
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.DtPostulacion;
-import logica.datatypes.DtPostulante;
-import logica.datatypes.DtUsuario;
+import logica.datatypes.Dtpostulacion;
+import logica.datatypes.Dtpostulante;
+import logica.datatypes.Dtusuario;
+import logica.datatypes.ListAdapter;
 
 /**
  * Clase Postulante .
@@ -20,6 +22,7 @@ import logica.datatypes.DtUsuario;
 public class Postulante extends Usuario {
   private LocalDate fechaNacimiento;
   private String nacionalidad;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<Postulacion> postulaciones;
   private Set<String> ofertasFavoritas;
   

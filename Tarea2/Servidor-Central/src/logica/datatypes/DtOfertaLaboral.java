@@ -2,6 +2,7 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,11 +29,13 @@ public class DtOfertaLaboral implements Serializable {
   private Float remuneracion;
   private LocalDate fechaAlta;
   private LocalDate fechaResolucion;
-  private List<DtPostulacion> postulaciones;
+  @XmlJavaTypeAdapter(ListAdapter.class)
+  private List<Dtpostulacion> postulaciones;
   private EstadoOferta estadoOferta;
   private BufferedImage imagen;
   private String imagenBase64;
-  private DtPaquetePublicacion paqueteAsociado;
+  private DtpaquetePublicacion paqueteAsociado;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<String> keywords;
   private Boolean estaVencida;
   private String nombreTipoPublicacion;
@@ -41,6 +44,9 @@ public class DtOfertaLaboral implements Serializable {
   private String exposicion;
   private LocalDate fechaFinalizacion;
   
+
+  
+
   /**
    * Contructor.
    */
@@ -236,6 +242,46 @@ public class DtOfertaLaboral implements Serializable {
 
   public int getVisitas() {
     return visitas;
+  
+  /**
+   * Contructor.
+   */
+  
+  public DtOfertaLaboral(String nombre, String descripcion,
+      String ciudad, String departamento,
+      String horarioInicial, String horarioFinal,
+      Float remuneracion, LocalDate fechaAlta,
+      List<Dtpostulacion> postulaciones,
+      LocalDate fechaResolucion, EstadoOferta estado,
+      BufferedImage imagen, DtpaquetePublicacion paquete,
+      List<String> keywords, Boolean estaVencida,
+      String nombreTipoPublicacion, String empresa)
+      throws IOException {
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.ciudad = ciudad;
+    this.departamento = departamento;
+    this.horarioInicio = horarioInicial;
+    this.horarioFinal = horarioFinal;
+    this.remuneracion = remuneracion;
+    this.fechaAlta = fechaAlta;
+    this.fechaResolucion = fechaResolucion;
+    this.postulaciones = postulaciones;
+    this.estadoOferta = estado;
+    this.imagen = imagen;
+    
+    if (imagen != null) {
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      ImageIO.write(this.imagen, "png", baos);
+      this.imagenBase64 = Base64.getEncoder()
+          .encodeToString(baos.toByteArray());
+    }
+    this.paqueteAsociado = paquete;
+    this.keywords = keywords;
+    this.estaVencida = estaVencida;
+    this.nombreTipoPublicacion = nombreTipoPublicacion;
+    this.empresa = empresa;
+    
   }
 
   public void setVisitas(int visitas) {

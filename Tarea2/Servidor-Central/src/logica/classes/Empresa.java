@@ -1,6 +1,7 @@
 package logica.classes;
 
 import excepciones.OfertaLaboralYaExisteException;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import logica.datatypes.DtEmpresa;
 import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.DtUsuario;
 import logica.datatypes.EstadoOferta;
+import logica.datatypes.ListAdapter;
 
 /**
  * Clase Empresa.
@@ -19,7 +21,9 @@ import logica.datatypes.EstadoOferta;
 public class Empresa extends Usuario {
   private String descripcion;
   private String sitioWeb;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<OfertaLaboral> ofertasLaborales;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<CompraPaquete> compraPaquetes;
   
   /**

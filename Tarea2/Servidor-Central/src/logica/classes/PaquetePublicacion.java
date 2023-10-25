@@ -2,13 +2,15 @@ package logica.classes;
 
 import excepciones.PaquetePublicacionYaFueComprado;
 import excepciones.TipoDePublicacionYaFueIngresado;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import logica.datatypes.DtCantidadTipoPublicacion;
-import logica.datatypes.DtPaquetePublicacion;
+import logica.datatypes.DtcantidadTipoPublicacion;
+import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.ListAdapter;
 
 /**
  * Clase Paquete publicacion .
@@ -21,6 +23,7 @@ public class PaquetePublicacion {
   private float descuento;
   private float costo;
   private BufferedImage imagen;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<CantidadTotalTipoPublicacion> cantidadTipoPublicaciones;
   private Boolean estaComprado;
   private LocalDate fechaAlta;

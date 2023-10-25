@@ -2,6 +2,8 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlList;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -36,6 +38,8 @@ public class DtCompraPaquete implements Serializable {
   
   private LocalDate fechaCompra;
   private LocalDate fechaVencimiento;
+  
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<DtCantidadTipoPublicacionRestante> publicacionesRestantes;
   private DtPaquetePublicacion paquete;
   

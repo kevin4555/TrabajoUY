@@ -79,7 +79,7 @@ public class ControladorUsuario
   }
   
   @Override
-  public List<String> obtenerOfertasEmpresa(
+  public List<String> obtenerOfertasEmpresaUsuario(
       String nicknameEmpresa)
       throws UsuarioNoExisteException {
     ManejadorUsuario manejadorUsuarios = ManejadorUsuario
