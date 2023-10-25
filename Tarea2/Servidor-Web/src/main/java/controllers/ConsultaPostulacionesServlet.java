@@ -46,8 +46,7 @@ public class ConsultaPostulacionesServlet extends HttpServlet
 		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
 		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
 		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) controladorOferta
-				.obtenerDtOfertasConfirmadas();
+		ArrayList<DtOfertaLaboral> dTOfertas = new ArrayList<DtOfertaLaboral>(); 
 
 		try {
 			ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) controladorUsuario
@@ -55,7 +54,9 @@ public class ConsultaPostulacionesServlet extends HttpServlet
 			for (Dtpostulacion dtpostulacion : postulaciones)
 			{
 				dTOfertas.add(controladorOferta.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
+				System.out.println(controladorOferta.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
 			}
+			
 			request.setAttribute("postulaciones", postulaciones);
 			request.setAttribute("ofertasPostuladas", dTOfertas);
 			request.setAttribute("tipoUsuario", "postulante");

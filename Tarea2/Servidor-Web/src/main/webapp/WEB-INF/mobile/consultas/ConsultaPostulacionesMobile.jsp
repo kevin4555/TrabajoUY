@@ -1,8 +1,6 @@
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="logica.datatypes.Dtpostulacion"%>
-<%@page import="logica.interfaces.IcontroladorOferta"%>
-<%@page import="logica.controllers.Fabrica"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -33,11 +31,18 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 				<section>
 					<%
 					Dtusuario usuario = (Dtusuario) request.getAttribute("usuario");
-					IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-					List<Dtpostulacion> postulaciones = (List<Dtpostulacion>) request.getAttribute("postulaciones");
-					for (Dtpostulacion postulacion : postulaciones)
-					{
-						DtOfertaLaboral ofertaLaboral = controladorOferta.obtenerDtOfertaLaboral(postulacion.getNombreOferta());
+					ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) request.getAttribute("postulaciones");
+					ArrayList<DtOfertaLaboral> ofertasPostuladas = (ArrayList<DtOfertaLaboral>) request.getAttribute("ofertasPostuladas");
+					
+					int indice = postulaciones.size()-1;
+					int indiceRecorrer = 0;
+					DtOfertaLaboral ofertaLaboral = null;
+					for (Dtpostulacion postulacion : postulaciones) {
+						if(indiceRecorrer <= indice)
+						{
+							ofertaLaboral = ofertasPostuladas.get(indiceRecorrer);
+							indiceRecorrer++;
+						}
 					%>
 
 					<div class="card mb-3">
@@ -68,6 +73,7 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 					</div>
 					<%
 					}
+					
 					%>
 				</section>
 			</div>
