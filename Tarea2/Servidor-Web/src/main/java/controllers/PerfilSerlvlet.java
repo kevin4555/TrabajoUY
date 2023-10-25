@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,6 +19,7 @@ import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtpostulante;
 import logica.datatypes.Dtusuario;
+import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 import model.EstadoSesion;
 import model.TipoUsuario;
@@ -47,7 +49,7 @@ public class PerfilSerlvlet extends HttpServlet
 		String nicknameUsuario = request.getParameter("nicknameUsuario");
 		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
 		String userAgent = request.getHeader("User-Agent");
-		
+
 		try
 		{
 			Dtusuario usuario = controladorUsuario.obtenerDtusuario(nicknameUsuario);
@@ -74,6 +76,7 @@ public class PerfilSerlvlet extends HttpServlet
 			{
 				ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) controladorUsuario
 						.obtenerDtpostulacionesDePostulante(nicknameUsuario);
+
 				request.setAttribute("postulaciones", postulaciones);
 				request.setAttribute("tipoUsuario", "postulante");
 			}
@@ -85,21 +88,15 @@ public class PerfilSerlvlet extends HttpServlet
 			e.printStackTrace();
 		}
 
-		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
+		if (usuarioLogueado != null && nicknameUsuario.equals(usuarioLogueado.getNickname()))
 		{
-			if(TipoUsuario.POSTULANTE == sesion.getAttribute("tipoUsuario"))
-				request.getRequestDispatcher("/WEB-INF/mobile/consultas/MiPerfilMobile.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/consultas/miPerfil.jsp").forward(request, response);
 		}
-		else
-		{
-			if (usuarioLogueado != null && nicknameUsuario.equals(usuarioLogueado.getNickname()))
-			{
-				request.getRequestDispatcher("/WEB-INF/consultas/miPerfil.jsp").forward(request, response);
-			}
 
-			request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
