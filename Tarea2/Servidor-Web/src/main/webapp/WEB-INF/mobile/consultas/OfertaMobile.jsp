@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.datatypes.DtPostulacion"%>
-<%@page import="logica.datatypes.DtPaquetePublicacion"%>
+<%@page import="logica.datatypes.Dtpostulacion"%>
+<%@page import="logica.datatypes.DtpaquetePublicacion"%>
 <%@page import="logica.datatypes.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
-<%@page import="logica.datatypes.DtUsuario"%>
+<%@page import="logica.datatypes.Dtusuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 
@@ -14,21 +14,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Detalles de la Oferta</title>
-<jsp:include page="../include/Head.jsp" />
+<jsp:include page="../../mobile/include/HeadMobile.jsp" />
 </head>
 <body>
-	<jsp:include page="../include/NavBar.jsp" />
-	<main class="container pt-5">
-		<div class="row">
-			<jsp:include page="../include/Menu.jsp" />
+	<jsp:include page="../../mobile/include/NavBarMobile.jsp" />
+	<main class="container pt-2">
+		<div class="espacio">
+			<jsp:include page="../../mobile/include/MenuMobile.jsp" />
+		</div>
+		<div class="col-md-4 justify-content-center align-items-center d-flex">
+
 			<%
 			DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
-						HttpSession sesion = request.getSession();
-						EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
-						DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
-						TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
-						Map<String, String> mapImagenes = (Map<String, String>) request.getAttribute("mapImagenes");
+			HttpSession sesion = request.getSession();
+			EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
+			Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
+			TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
+			Map<String, String> mapImagenes = (Map<String, String>) request.getAttribute("mapImagenes");
 			%>
+
 			<div class="col-8">
 				<section>
 					<div class="row">

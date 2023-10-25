@@ -14,13 +14,13 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 <title>Postulacion a oferta laboral</title>
-<jsp:include page="../include/Head.jsp" />
+<jsp:include page="../../mobile/include/HeadMobile.jsp" />
 </head>
 <body>
-	<jsp:include page="../include/NavBar.jsp" />
+	<jsp:include page="../../mobile/include/NavBarMobile.jsp" />
 	<main class="container pt-5">
 		<div class="row">
-			<jsp:include page="../include/Menu.jsp" />
+			<jsp:include page="../../mobile/include/MenuMobile.jsp" />
 			<div class="col">
 				<%
 				DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("oferta");
@@ -96,7 +96,6 @@
 						<input class="btn btn-primary" type="submit" value="Postularse" />
 					</div>
 				</form>
-
 			</div>
 		</div>
 	</main>

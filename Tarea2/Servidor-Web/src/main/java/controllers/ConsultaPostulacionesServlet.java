@@ -5,14 +5,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.Dtusuario;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
+import model.EstadoSesion;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
@@ -21,15 +24,15 @@ import excepciones.UsuarioNoExistePostulacion;
 /**
  * Servlet implementation class VerPostulacionServlet
  */
-@WebServlet("/verPostulacion")
-public class VerPostulacionServlet extends HttpServlet
+@WebServlet("/listarOfertas")
+public class ConsultaPostulacionesServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public VerPostulacionServlet()
+	public ConsultaPostulacionesServlet()
 	{
 		super();
 		// TODO Auto-generated constructor stub
@@ -38,45 +41,36 @@ public class VerPostulacionServlet extends HttpServlet
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		String nicknamePostulante = request.getParameter("nicknamePostulante");
-		String nombreOferta = request.getParameter("nombreOferta");
+		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
+		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) controladorOferta
+				.obtenerDtOfertasConfirmadas();
 
-		if (nombreOferta == null || nicknamePostulante == null)
+		try {
+			ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) controladorUsuario
+					.obtenerDtpostulacionesDePostulante(usuario.getNickname());
+			for (Dtpostulacion dtpostulacion : postulaciones)
+			{
+				dTOfertas.add(controladorOferta.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
+			}
+			request.setAttribute("postulaciones", postulaciones);
+			request.setAttribute("ofertasPostuladas", dTOfertas);
+			request.setAttribute("tipoUsuario", "postulante");
+			request.setAttribute("usuario", usuario);
+		} catch(UsuarioNoExisteException | OfertaLaboralNoExisteException e)
 		{
-			request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
-			return;
-		}
-
-		try
-		{
-			Dtusuario postulante = controladorUsuario.obtenerDtusuario(nicknamePostulante);
-			DtOfertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
-			Dtpostulacion postulacion = controladorUsuario.obtenerDtpostulacion(nicknamePostulante, nombreOferta);
-
-			request.setAttribute("ofertas", dtOferta);
-			request.setAttribute("postulacion", postulacion);
-			request.setAttribute("postulante", postulante);
-
-		}
-		catch (UsuarioNoExisteException | UsuarioNoExistePostulacion | OfertaLaboralNoExisteException e)
-		{
-			request.setAttribute("error", e.getMessage());
-			request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
-			return;
 		}
+		
 		if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
 		{
-			request.getRequestDispatcher("/WEB-INF/mobile/consultas/VerPostulacionMobile.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/WEB-INF/mobile/consultas/ConsultaPostulacionesMobile.jsp").forward(request, response);
 		}
-		else
-		{
-			request.getRequestDispatcher("/WEB-INF/consultas/VerPostulacion.jsp").forward(request, response);
-		}
+
 	}
 
 	/**

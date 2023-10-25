@@ -38,7 +38,7 @@ import logica.interfaces.IcontroladorUsuario;
  */
 public class ControladorUsuario
     implements IcontroladorUsuario {
-  
+
   @Override
   public Empresa obtenerEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException {
@@ -47,7 +47,7 @@ public class ControladorUsuario
     Empresa emp = manejUsu.obtenerEmpresa(nicknameEmpresa);
     return emp;
   }
-  
+
   @Override
   public List<String> listarEmpresas() {
     ManejadorUsuario manejUsu = ManejadorUsuario
@@ -55,14 +55,14 @@ public class ControladorUsuario
     List<String> nomEmpresas = manejUsu.listarEmpresas();
     return nomEmpresas;
   }
-  
+
   @Override
   public List<String> listaDeUsuarios() {
     ManejadorUsuario manejadorUsuarios = ManejadorUsuario
         .getInstance();
     return manejadorUsuarios.listarUsuarios();
   }
-  
+
   @Override
   public void editarDatosBasicos(DtUsuario dtusuario,
       String nombreNuevo, String apellidoNuevo)
@@ -77,7 +77,7 @@ public class ControladorUsuario
     // alguna magia para distinguir
     // la empresa del postulante
   }
-  
+
   @Override
   public List<String> obtenerOfertasEmpresaUsuario(
       String nicknameEmpresa)
@@ -87,16 +87,16 @@ public class ControladorUsuario
     Empresa empr = manejadorUsuarios
         .obtenerEmpresa(nicknameEmpresa);
     return empr.obtenerNombresOfertas();
-    
+
   }
-  
+
   @Override
   public List<String> listarPostulantes() {
     ManejadorUsuario manejadorUsuarios = ManejadorUsuario
         .getInstance();
     return manejadorUsuarios.listarPostulantes();
   }
-  
+
   @Override
   public void registrarPostulacion(String cvReducido,
       String motivacion, LocalDate fechaPostulacion,
@@ -115,16 +115,16 @@ public class ControladorUsuario
     Fabrica fabrica = Fabrica.getInstance();
     IcontroladorOferta controladorOferta = fabrica
         .obtenerControladorOferta();
-    
+
     OfertaLaboral oferta = controladorOferta
         .obtenerOfertaLaboral(nomOferta);
     Postulacion postulacion = new Postulacion(motivacion,
         fechaPostulacion, cvReducido, postulante, oferta, linkVideo);
     postulante.agregarPostulacion(postulacion);
     oferta.agregarPostulacion(postulacion);
-    
+
   }
-  
+
   @Override
   public void altaPostulante(String nickname, String nombre,
       String apellido, String email, LocalDate fechaNac,
@@ -138,7 +138,7 @@ public class ControladorUsuario
         nacionalidad, imagen, constrasenia);
     manejadorUsuario.agregarPostulante(postulante);
   }
-  
+
   @Override
   public void altaEmpresa(String nickname, String nombre,
       String apellido, String email, String descripcion,
@@ -151,9 +151,9 @@ public class ControladorUsuario
         apellido, email.toLowerCase(), descripcion,
         link.toLowerCase(), imagen, contrasenia);
     manejadorUsuarios.agregarEmpresa(empresa);
-    
+
   }
-  
+
   @Override
   public Usuario obtenerUsuario(String nickname)
       throws UsuarioNoExisteException {
@@ -163,21 +163,21 @@ public class ControladorUsuario
         .obtenerUsuario(nickname);
     return usuario;
   }
-  
+
   @Override
   public DtUsuario obtenerDtUsuario(String nickname)
       throws UsuarioNoExisteException, IOException {
     Usuario usuario = this.obtenerUsuario(nickname);
     return usuario.obtenerDtusuario();
   }
-  
+
   @Override
   public List<String> listaOfertasUsuario(String nickname)
       throws UsuarioNoExisteException {
     Usuario usuario = this.obtenerUsuario(nickname);
     return usuario.listarNombreOfertasUsuario();
   }
-  
+
   @Override
   public Postulante obtenerPostulante(String nomPostulante)
       throws UsuarioNoExisteException {
@@ -186,7 +186,7 @@ public class ControladorUsuario
     return manejadorUsuario
         .obtenerPostulante(nomPostulante);
   }
-  
+
   @Override
   public void editarPostulante(String nickname,
       String nombre, String apellido,
@@ -202,13 +202,13 @@ public class ControladorUsuario
     postulante.setImagen(imagen);
     postulante.setContrasenia(contrasenia);
   }
-  
+
   @Override
   public void editarEmpresa(String nickname, String nombre,
       String apellido, String sitioWeb, String descripcion,
       BufferedImage imagen, String contrasenia)
       throws UsuarioNoExisteException {
-    
+
     Empresa empresa = ManejadorUsuario.getInstance()
         .obtenerEmpresa(nickname);
     empresa.setNombre(nombre);
@@ -218,7 +218,7 @@ public class ControladorUsuario
     empresa.setImagen(imagen);
     empresa.setContrasenia(contrasenia);
   }
-  
+
   @Override
   public DtPostulacion obtenerDtPostulacion(
       String nicknamePostulante, String nombreOferta)
@@ -233,7 +233,7 @@ public class ControladorUsuario
     }
     return postulante.obtenerDtpostulacion(nombreOferta);
   }
-  
+
   @Override
   public List<DtOfertaLaboral> obtenerDtOfertasIngresadasDeEmpresa(
       String nicknameEmpresa)
@@ -242,7 +242,7 @@ public class ControladorUsuario
         .obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasIngresadas();
   }
-  
+
   @Override
   public List<DtOfertaLaboral> obtenerDtOfertasConfirmadasDeEmpresa(
       String nicknameEmpresa)
@@ -251,7 +251,7 @@ public class ControladorUsuario
         .obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasConfirmadas();
   }
-  
+
   @Override
   public List<DtOfertaLaboral> obtenerDtOfertasRechazadasDeEmpresa(
       String nicknameEmpresa)
@@ -260,16 +260,16 @@ public class ControladorUsuario
         .obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasRechazadas();
   }
-  
+
   @Override
   public List<DtOfertaLaboral> obtenerDtOfertasFinalizadasDeEmpresa(String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     Empresa empresa = ManejadorUsuario.getInstance().obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasFinalizadas();
-    //agregar persistencia
-    
+    // agregar persistencia
+
   }
-  
+
   @Override
   public Boolean confirmarContrasenia(String clave,
       String contrasenia) throws UsuarioNoExisteException {
@@ -277,14 +277,14 @@ public class ControladorUsuario
         .obtenerUsuario(clave);
     return contrasenia.equals(usuario.getContrasenia());
   }
-  
+
   @Override
   public List<DtUsuario> obtenerDtUsuarios()
       throws IOException {
     return ManejadorUsuario.getInstance()
         .obtenerDtusuarios();
   }
-  
+
   @Override
   public void comprarPaquete(String nicknameEmpresa,
       String nombrePaquete, LocalDate fechaCompra)
@@ -300,9 +300,9 @@ public class ControladorUsuario
         paquete);
     empresa.comprarPaquete(compra);
     paquete.setEstaComprado(true);
-    
+
   }
-  
+
   @Override
   public List<DtPaquetePublicacion> obtenerDtPaquetesDeEmpresa(
       String nicknameEmpresa)
@@ -310,9 +310,9 @@ public class ControladorUsuario
     Empresa empresa = ManejadorUsuario.getInstance()
         .obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtpaquetes();
-    
+
   }
-  
+
   @Override
   public List<DtPostulacion> obtenerDtPostulacionesDePostulante(
       String nicknamePostulante)
@@ -321,7 +321,7 @@ public class ControladorUsuario
         .obtenerPostulante(nicknamePostulante);
     return postulante.obtenerDtpostulaciones();
   }
-  
+
   @Override
   public List<String> listarPaquetesNoCompradosDeEmpresa(
       String nicknameEmpresa)
@@ -339,7 +339,7 @@ public class ControladorUsuario
     }
     return listaResultado;
   }
-  
+
   @Override
   public List<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(
       String nicknameEmpresa)
@@ -348,7 +348,7 @@ public class ControladorUsuario
         .obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtCompraPaquetes();
   }
-  
+
   @Override
   public void agregarSeguidor(String nicknameUsuario, String nicknameSeguidor)
       throws UsuarioNoExisteException, UsuarioYaEstaSeguidoException {
@@ -361,7 +361,7 @@ public class ControladorUsuario
     usuario.agregarSeguidor(nicknameSeguidor);
     seguidor.seguir(nicknameUsuario);
   }
-  
+
   @Override
   public void dejarDeSeguir(String nicknameUsuario, String nicknameSeguidor)
       throws UsuarioNoExisteException, UsuarioNoEstaSeguidoException {
@@ -374,7 +374,7 @@ public class ControladorUsuario
     usuario.removerSeguidor(nicknameSeguidor);
     seguidor.dejarDeSeguir(nicknameUsuario);
   }
-  
+
   @Override
   public void agregarOfertaFavorita(String nicknamePostulante, String nombreOferta)
       throws UsuarioNoExisteException, PostulanteYaEsOfertaFavoritaException,
@@ -392,7 +392,7 @@ public class ControladorUsuario
     }
     postulante.agregarOfertaFavorita(nombreOferta);
   }
-  
+
   @Override
   public void removerOfertaFavorita(String nicknamePsotulante, String nombreOferta)
       throws UsuarioNoExisteException, PostulanteNoEsOfertaFavoritaException {
@@ -404,17 +404,17 @@ public class ControladorUsuario
     }
     postulante.removerOfertaFavorita(nombreOferta);
   }
-  
+
   @Override
-  public List<DtEmpresa> buscarEmpresas(String parametro) throws IOException{
+  public List<DtEmpresa> buscarEmpresas(String parametro) throws IOException {
     List<DtEmpresa> listaResultado = new ArrayList<DtEmpresa>();
     List<DtEmpresa> dtempresas = ManejadorUsuario.getInstance().obtenerDtEmpresas();
-    for(DtEmpresa empresa : dtempresas) {
-      if(empresa.getNombre().contains(parametro) || empresa.getDescripcion().contains(parametro)) {
+    for (DtEmpresa empresa : dtempresas) {
+      if (empresa.getNombre().contains(parametro) || empresa.getDescripcion().contains(parametro)) {
         listaResultado.add(empresa);
       }
     }
-    //agregar orden cuando quede aclarado
+    // agregar orden cuando quede aclarado
     return listaResultado;
   }
 }
