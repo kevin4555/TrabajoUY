@@ -1,5 +1,6 @@
 package logica.classes;
 
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtpaquetePublicacion;
 import logica.datatypes.Dtpostulacion;
 import logica.datatypes.EstadoOferta;
+import logica.datatypes.ListAdapter;
 
 /**
  * Clase Oferta laboral .
@@ -26,8 +28,10 @@ public class OfertaLaboral {
   private LocalDate fechaResolucion;
   private BufferedImage imagen;
   private EstadoOferta estado;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<Keyword> listaKeywords;
   private TipoPublicacion tipoPublicacion;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<Postulacion> postulaciones;
   private CompraPaquete compraPaquete;
   private Empresa empresa;

@@ -351,7 +351,7 @@ public class ControladorUsuarioTesting {
         "Montevideo", "Montevideo", fechaDate1, "Premium",
         "EcoTech", keywords, null, null);
     List<String> resultado = controladorUsuario
-        .obtenerOfertasEmpresa("EcoTech");
+        .obtenerOfertasEmpresaUsuario("EcoTech");
     List<String> esperado = new ArrayList<String>();
     esperado.add("nombre");
     Assert.assertEquals(esperado, resultado);
@@ -377,7 +377,7 @@ public class ControladorUsuarioTesting {
             + "incansablemente para impulsar un futuro más limpio y sostenible.",
         "http://www.EcoTechInnovations.com", null, "1234");
     List<String> resultado = controladorUsuario
-        .obtenerOfertasEmpresa("EcoTech");
+        .obtenerOfertasEmpresaUsuario("EcoTech");
     List<String> esperado = new ArrayList<String>();
     Assert.assertEquals(esperado, resultado);
   }

@@ -2,6 +2,7 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class Dtusuario implements Serializable {
   private BufferedImage imagen;
   private String imagenBase64;
   private String contrasenia;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<DtOfertaLaboral> ofertasColeccion;
   
   public Dtusuario() {

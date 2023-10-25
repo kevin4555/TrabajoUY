@@ -28,7 +28,7 @@ import logica.controllers.Fabrica;
 import logica.controllers.Loader;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
-import logica.webServices.WSControladorOferta;
+import logica.webServices.Publicador;
 
 /**
  * Clase Principal .
@@ -62,7 +62,7 @@ public class Principal extends JFrame {
           Principal frame = new Principal();
           frame.ventanaPrincipal.setVisible(true);
           //Para publicar el servidor (Cristhian)
-          WSControladorOferta p = new WSControladorOferta();
+          Publicador p = new Publicador();
           p.publicar();
         } catch (Exception e) {
           e.printStackTrace();

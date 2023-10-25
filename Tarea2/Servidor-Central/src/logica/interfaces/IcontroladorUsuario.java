@@ -37,7 +37,7 @@ public interface IcontroladorUsuario {
       String nombreNuevo, String apellidoNuevo)
       throws UsuarioNoExisteException;
   
-  public List<String> obtenerOfertasEmpresa(
+  public List<String> obtenerOfertasEmpresaUsuario(
       String nicknameEmpresa)
       throws UsuarioNoExisteException;
   

@@ -2,6 +2,7 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -103,11 +104,13 @@ public class DtOfertaLaboral implements Serializable {
   private Float remuneracion;
   private LocalDate fechaAlta;
   private LocalDate fechaResolucion;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<Dtpostulacion> postulaciones;
   private EstadoOferta estadoOferta;
   private BufferedImage imagen;
   private String imagenBase64;
   private DtpaquetePublicacion paqueteAsociado;
+  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<String> keywords;
   private Boolean estaVencida;
   private String nombreTipoPublicacion;
