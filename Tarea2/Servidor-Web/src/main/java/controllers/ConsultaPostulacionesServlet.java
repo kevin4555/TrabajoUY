@@ -1,25 +1,21 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.controllers.Fabrica;
-import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtusuario;
-import logica.interfaces.IcontroladorOferta;
-import logica.interfaces.IcontroladorUsuario;
-import model.EstadoSesion;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioNoExisteException;
-import excepciones.UsuarioNoExistePostulacion;
+import logica.webservices.DtOfertaLaboral;
+import logica.webservices.DtPostulacion;
+import logica.webservices.DtUsuario;
+import logica.webservices.IOException_Exception;
+import logica.webservices.OfertaLaboralNoExisteException_Exception;
+import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException_Exception;
 
 /**
  * Servlet implementation class VerPostulacionServlet
@@ -43,25 +39,25 @@ public class ConsultaPostulacionesServlet extends HttpServlet
 	{
 		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
-		Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
-		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		DtUsuario usuario = (DtUsuario) sesion.getAttribute("usuarioLogueado");
+		PublicadorService publicadorService = new PublicadorService();
+  logica.webservices.Publicador cliente = publicadorService.getPublicadorPort();
 		ArrayList<DtOfertaLaboral> dTOfertas = new ArrayList<DtOfertaLaboral>(); 
 
 		try {
-			ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) controladorUsuario
-					.obtenerDtpostulacionesDePostulante(usuario.getNickname());
-			for (Dtpostulacion dtpostulacion : postulaciones)
+			ArrayList<DtPostulacion> postulaciones = (ArrayList<DtPostulacion>) cliente
+					.obtenerDtpostulacionesDePostulante(usuario.getNickname()).getItem();
+			for (DtPostulacion dtpostulacion : postulaciones)
 			{
-				dTOfertas.add(controladorOferta.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
-				System.out.println(controladorOferta.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
+				dTOfertas.add(cliente.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
+				System.out.println(cliente.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
 			}
 			
 			request.setAttribute("postulaciones", postulaciones);
 			request.setAttribute("ofertasPostuladas", dTOfertas);
 			request.setAttribute("tipoUsuario", "postulante");
 			request.setAttribute("usuario", usuario);
-		} catch(UsuarioNoExisteException | OfertaLaboralNoExisteException e)
+		} catch( UsuarioNoExisteException_Exception | IOException_Exception | OfertaLaboralNoExisteException_Exception e)
 		{
 			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
