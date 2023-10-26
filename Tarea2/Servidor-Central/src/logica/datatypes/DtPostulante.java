@@ -2,6 +2,8 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
@@ -16,6 +18,7 @@ import java.util.List;
 public class DtPostulante extends DtUsuario implements Serializable {
 	
   private static final long serialVersionUID = 3400870199280854013L;
+  @XmlTransient
   private LocalDate fechaNacimiento;
   private String nacionalidad;
   

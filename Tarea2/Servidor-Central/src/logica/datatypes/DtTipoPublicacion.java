@@ -2,6 +2,8 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -18,6 +20,7 @@ public class DtTipoPublicacion implements Serializable {
   private String exposicion;
   private int duracionDia;
   private float costo;
+  @XmlTransient
   private LocalDate fechaAlta;
   
   /**

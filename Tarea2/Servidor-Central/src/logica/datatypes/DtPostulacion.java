@@ -2,6 +2,8 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -16,7 +18,7 @@ public class DtPostulacion implements Serializable {
   private String nicknamePostulante;
   
   private String descripMotivacion;
-  
+  @XmlTransient
   private LocalDate fechaPostulacion;
   
   private String cvReducido;

@@ -3,6 +3,7 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -26,11 +27,14 @@ public class DtOfertaLaboral implements Serializable {
   private String horarioInicio;
   private String horarioFinal;
   private Float remuneracion;
+  @XmlTransient
   private LocalDate fechaAlta;
+  @XmlTransient
   private LocalDate fechaResolucion;
   @XmlJavaTypeAdapter(ListAdapter.class)
   private List<DtPostulacion> postulaciones;
   private EstadoOferta estadoOferta;
+  @XmlTransient
   private BufferedImage imagen;
   private String imagenBase64;
   private DtPaquetePublicacion paqueteAsociado;
@@ -41,6 +45,7 @@ public class DtOfertaLaboral implements Serializable {
   private String empresa;
   private int visitas;
   private String exposicion;
+  @XmlTransient
   private LocalDate fechaFinalizacion;
   
   /**

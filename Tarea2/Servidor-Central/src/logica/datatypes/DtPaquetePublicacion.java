@@ -2,6 +2,7 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -25,6 +26,7 @@ public class DtPaquetePublicacion implements Serializable {
   private int periodoValidez;
   private float descuento;
   private float costo;
+  @XmlTransient
   private BufferedImage imagen;
   
   public DtPaquetePublicacion() {

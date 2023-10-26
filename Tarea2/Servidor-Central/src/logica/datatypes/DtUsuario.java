@@ -3,6 +3,7 @@ package logica.datatypes;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -28,6 +29,7 @@ public class DtUsuario implements Serializable {
   private String nombre;
   private String apellido;
   private String email;
+  @XmlTransient
   private BufferedImage imagen;
   private String imagenBase64;
   private String contrasenia;

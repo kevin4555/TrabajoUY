@@ -3,6 +3,7 @@ package logica.datatypes;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlList;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,7 +16,20 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DtCompraPaquete implements Serializable {
   
-  public void setFechaCompra(LocalDate fechaCompra) {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7738489149194847484L;
+	@XmlTransient
+	private LocalDate fechaCompra;
+	@XmlTransient
+	private LocalDate fechaVencimiento;
+	@XmlJavaTypeAdapter(ListAdapter.class)
+	private List<DtCantidadTipoPublicacionRestante> publicacionesRestantes;
+	private DtPaquetePublicacion paquete;
+
+public void setFechaCompra(LocalDate fechaCompra) {
+	
     this.fechaCompra = fechaCompra;
   }
   
@@ -36,12 +50,7 @@ public class DtCompraPaquete implements Serializable {
     this.paquete = paquete;
   }
   
-  private LocalDate fechaCompra;
-  private LocalDate fechaVencimiento;
   
-  @XmlJavaTypeAdapter(ListAdapter.class)
-  private List<DtCantidadTipoPublicacionRestante> publicacionesRestantes;
-  private DtPaquetePublicacion paquete;
   
   /**
    * Constructor.
