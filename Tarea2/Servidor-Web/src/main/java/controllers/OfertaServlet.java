@@ -1,31 +1,25 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-
-import excepciones.OfertaLaboralNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.controllers.Fabrica;
-import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtpostulante;
-import logica.datatypes.Dtusuario;
-import logica.interfaces.IcontroladorOferta;
-import logica.interfaces.IcontroladorUsuario;
+import logica.webservices.DtEmpresa;
+import logica.webservices.DtOfertaLaboral;
+import logica.webservices.DtPostulacion;
+import logica.webservices.DtPostulante;
+import logica.webservices.DtUsuario;
+import logica.webservices.OfertaLaboralNoExisteException;
+import logica.webservices.OfertaLaboralNoExisteException_Exception;
+import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException;
+import logica.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
-
-import java.io.IOException;
-
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class OfertaServlet
@@ -47,32 +41,32 @@ public class OfertaServlet extends HttpServlet
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		IcontroladorUsuario controladorUsuarios = Fabrica.getInstance().obtenerControladorUsuario();
+	 PublicadorService publicadorService = new PublicadorService();
+	 logica.webservices.Publicador port = publicadorService.getPublicadorPort();
 		String nombreOferta = request.getParameter("nombreOferta");
 		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
 		
 		try
 		{
-			DtOfertaLaboral oferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
+			DtOfertaLaboral oferta = port.obtenerDtOfertaLaboral(nombreOferta);
 			Map<String, String> mapImagen = new HashMap<String, String>();
-			for (Dtpostulacion postulacion : oferta.getPostulaciones())
+			for (DtPostulacion postulacion : oferta.getPostulaciones())
 			{
-				Dtusuario postulante = controladorUsuarios.obtenerDtusuario(postulacion.getnicknamePostulante());
+				DtUsuario postulante = port.obtenerDtusuario(postulacion.getNicknamePostulante());
 				mapImagen.put(postulante.getNickname(), postulante.getImagenBase64());
 			}
 			request.setAttribute("mapImagenes", mapImagen);
 			request.setAttribute("oferta", oferta);
 			if (sesion.getAttribute("estadoSesion") == EstadoSesion.LOGIN_CORRECTO)
 			{
-				Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
-				if (usuario instanceof Dtpostulante)
+				DtUsuario usuario = (DtUsuario) sesion.getAttribute("usuarioLogueado");
+				if (usuario instanceof DtPostulante)
 				{
-					Boolean estaPostulado = controladorOferta.estaPostulado(usuario.getNickname(), nombreOferta);
+					Boolean estaPostulado = port.estaPostulado(usuario.getNickname(), nombreOferta);
 					request.setAttribute("estaPostulado", estaPostulado);
 				}
-				if (usuario instanceof Dtempresa)
+				if (usuario instanceof DtEmpresa)
 				{
 					Boolean miOferta = usuario.getNickname().equals(oferta.getEmpresa());
 					request.setAttribute("miOferta", miOferta);
@@ -80,7 +74,7 @@ public class OfertaServlet extends HttpServlet
 			}
 			
 		}
-		catch (OfertaLaboralNoExisteException | UsuarioNoExisteException e)
+		catch (OfertaLaboralNoExisteException_Exception | UsuarioNoExisteException_Exception e)
 		{
 			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
