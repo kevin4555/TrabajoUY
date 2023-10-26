@@ -10,16 +10,16 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtpostulacionArray complex type.
+ * <p>Clase Java para dtPostulacionArray complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="dtpostulacionArray">
+ * <complexType name="dtPostulacionArray">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="item" type="{http://webServices.logica/}dtpostulacion" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="item" type="{http://webServices.logica/}dtPostulacion" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -29,13 +29,13 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtpostulacionArray", propOrder = {
+@XmlType(name = "dtPostulacionArray", propOrder = {
     "item"
 })
-public class DtpostulacionArray {
+public class DtPostulacionArray {
 
     @XmlElement(nillable = true)
-    protected List<Dtpostulacion> item;
+    protected List<DtPostulacion> item;
 
     /**
      * Gets the value of the item property.
@@ -55,13 +55,13 @@ public class DtpostulacionArray {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Dtpostulacion }
+     * {@link DtPostulacion }
      * 
      * 
      * @return
      *     The value of the item property.
      */
-    public List<Dtpostulacion> getItem() {
+    public List<DtPostulacion> getItem() {
         if (item == null) {
             item = new ArrayList<>();
         }

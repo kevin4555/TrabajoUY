@@ -10,16 +10,16 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtusuarioArray complex type.
+ * <p>Clase Java para dtUsuarioArray complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="dtusuarioArray">
+ * <complexType name="dtUsuarioArray">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="item" type="{http://webServices.logica/}dtusuario" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="item" type="{http://webServices.logica/}dtUsuario" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -29,13 +29,13 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtusuarioArray", propOrder = {
+@XmlType(name = "dtUsuarioArray", propOrder = {
     "item"
 })
-public class DtusuarioArray {
+public class DtUsuarioArray {
 
     @XmlElement(nillable = true)
-    protected List<Dtusuario> item;
+    protected List<DtUsuario> item;
 
     /**
      * Gets the value of the item property.
@@ -55,13 +55,13 @@ public class DtusuarioArray {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Dtusuario }
+     * {@link DtUsuario }
      * 
      * 
      * @return
      *     The value of the item property.
      */
-    public List<Dtusuario> getItem() {
+    public List<DtUsuario> getItem() {
         if (item == null) {
             item = new ArrayList<>();
         }

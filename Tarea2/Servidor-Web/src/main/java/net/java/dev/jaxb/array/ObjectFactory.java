@@ -1,5 +1,5 @@
 
-package logica.webservices.net.java.dev.jaxb.array;
+package net.java.dev.jaxb.array;
 
 import jakarta.xml.bind.annotation.XmlRegistry;
 

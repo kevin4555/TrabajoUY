@@ -3,16 +3,17 @@ package logica.webservices;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtusuario complex type.
+ * <p>Clase Java para dtUsuario complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="dtusuario">
+ * <complexType name="dtUsuario">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
@@ -33,7 +34,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtusuario", propOrder = {
+@XmlType(name = "dtUsuario", propOrder = {
     "nickname",
     "nombre",
     "apellido",
@@ -43,7 +44,11 @@ import jakarta.xml.bind.annotation.XmlType;
     "contrasenia",
     "ofertasColeccion"
 })
-public class Dtusuario {
+@XmlSeeAlso({
+    DtEmpresa.class,
+    DtPostulante.class
+})
+public class DtUsuario {
 
     protected String nickname;
     protected String nombre;

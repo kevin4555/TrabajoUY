@@ -220,13 +220,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Dtpostulacion }
+     * Create an instance of {@link DtPostulacion }
      * 
      * @return
-     *     the new instance of {@link Dtpostulacion }
+     *     the new instance of {@link DtPostulacion }
      */
-    public Dtpostulacion createDtpostulacion() {
-        return new Dtpostulacion();
+    public DtPostulacion createDtPostulacion() {
+        return new DtPostulacion();
     }
 
     /**
@@ -240,13 +240,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtpaquetePublicacion }
+     * Create an instance of {@link DtOfertaLaboral }
      * 
      * @return
-     *     the new instance of {@link DtpaquetePublicacion }
+     *     the new instance of {@link DtOfertaLaboral }
      */
-    public DtpaquetePublicacion createDtpaquetePublicacion() {
-        return new DtpaquetePublicacion();
+    public DtOfertaLaboral createDtOfertaLaboral() {
+        return new DtOfertaLaboral();
     }
 
     /**
@@ -270,33 +270,53 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtOfertaLaboral }
+     * Create an instance of {@link DtPaquetePublicacion }
      * 
      * @return
-     *     the new instance of {@link DtOfertaLaboral }
+     *     the new instance of {@link DtPaquetePublicacion }
      */
-    public DtOfertaLaboral createDtOfertaLaboral() {
-        return new DtOfertaLaboral();
+    public DtPaquetePublicacion createDtPaquetePublicacion() {
+        return new DtPaquetePublicacion();
     }
 
     /**
-     * Create an instance of {@link Dtusuario }
+     * Create an instance of {@link DtUsuario }
      * 
      * @return
-     *     the new instance of {@link Dtusuario }
+     *     the new instance of {@link DtUsuario }
      */
-    public Dtusuario createDtusuario() {
-        return new Dtusuario();
+    public DtUsuario createDtUsuario() {
+        return new DtUsuario();
     }
 
     /**
-     * Create an instance of {@link DtcantidadTipoPublicacion }
+     * Create an instance of {@link DtEmpresa }
      * 
      * @return
-     *     the new instance of {@link DtcantidadTipoPublicacion }
+     *     the new instance of {@link DtEmpresa }
      */
-    public DtcantidadTipoPublicacion createDtcantidadTipoPublicacion() {
-        return new DtcantidadTipoPublicacion();
+    public DtEmpresa createDtEmpresa() {
+        return new DtEmpresa();
+    }
+
+    /**
+     * Create an instance of {@link DtPostulante }
+     * 
+     * @return
+     *     the new instance of {@link DtPostulante }
+     */
+    public DtPostulante createDtPostulante() {
+        return new DtPostulante();
+    }
+
+    /**
+     * Create an instance of {@link DtCantidadTipoPublicacion }
+     * 
+     * @return
+     *     the new instance of {@link DtCantidadTipoPublicacion }
+     */
+    public DtCantidadTipoPublicacion createDtCantidadTipoPublicacion() {
+        return new DtCantidadTipoPublicacion();
     }
 
     /**
@@ -310,23 +330,23 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DttipoPublicacion }
+     * Create an instance of {@link DtTipoPublicacion }
      * 
      * @return
-     *     the new instance of {@link DttipoPublicacion }
+     *     the new instance of {@link DtTipoPublicacion }
      */
-    public DttipoPublicacion createDttipoPublicacion() {
-        return new DttipoPublicacion();
+    public DtTipoPublicacion createDtTipoPublicacion() {
+        return new DtTipoPublicacion();
     }
 
     /**
-     * Create an instance of {@link DtpostulacionArray }
+     * Create an instance of {@link DtPostulacionArray }
      * 
      * @return
-     *     the new instance of {@link DtpostulacionArray }
+     *     the new instance of {@link DtPostulacionArray }
      */
-    public DtpostulacionArray createDtpostulacionArray() {
-        return new DtpostulacionArray();
+    public DtPostulacionArray createDtPostulacionArray() {
+        return new DtPostulacionArray();
     }
 
     /**
@@ -340,33 +360,33 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtpaquetePublicacionArray }
+     * Create an instance of {@link DtPaquetePublicacionArray }
      * 
      * @return
-     *     the new instance of {@link DtpaquetePublicacionArray }
+     *     the new instance of {@link DtPaquetePublicacionArray }
      */
-    public DtpaquetePublicacionArray createDtpaquetePublicacionArray() {
-        return new DtpaquetePublicacionArray();
+    public DtPaquetePublicacionArray createDtPaquetePublicacionArray() {
+        return new DtPaquetePublicacionArray();
     }
 
     /**
-     * Create an instance of {@link DtusuarioArray }
+     * Create an instance of {@link DtUsuarioArray }
      * 
      * @return
-     *     the new instance of {@link DtusuarioArray }
+     *     the new instance of {@link DtUsuarioArray }
      */
-    public DtusuarioArray createDtusuarioArray() {
-        return new DtusuarioArray();
+    public DtUsuarioArray createDtUsuarioArray() {
+        return new DtUsuarioArray();
     }
 
     /**
-     * Create an instance of {@link DtcantidadTipoPublicacionArray }
+     * Create an instance of {@link DtCantidadTipoPublicacionArray }
      * 
      * @return
-     *     the new instance of {@link DtcantidadTipoPublicacionArray }
+     *     the new instance of {@link DtCantidadTipoPublicacionArray }
      */
-    public DtcantidadTipoPublicacionArray createDtcantidadTipoPublicacionArray() {
-        return new DtcantidadTipoPublicacionArray();
+    public DtCantidadTipoPublicacionArray createDtCantidadTipoPublicacionArray() {
+        return new DtCantidadTipoPublicacionArray();
     }
 
     /**

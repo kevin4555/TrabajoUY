@@ -7,12 +7,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtpostulacion complex type.
+ * <p>Clase Java para dtPostulacion complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="dtpostulacion">
+ * <complexType name="dtPostulacion">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
@@ -21,6 +21,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="fechaPostulacion" type="{http://webServices.logica/}localDate" minOccurs="0"/>
  *         <element name="cvReducido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nombreOferta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="linkVideo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -30,20 +31,22 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtpostulacion", propOrder = {
+@XmlType(name = "dtPostulacion", propOrder = {
     "nicknamePostulante",
     "descripMotivacion",
     "fechaPostulacion",
     "cvReducido",
-    "nombreOferta"
+    "nombreOferta",
+    "linkVideo"
 })
-public class Dtpostulacion {
+public class DtPostulacion {
 
     protected String nicknamePostulante;
     protected String descripMotivacion;
     protected LocalDate fechaPostulacion;
     protected String cvReducido;
     protected String nombreOferta;
+    protected String linkVideo;
 
     /**
      * Obtiene el valor de la propiedad nicknamePostulante.
@@ -163,6 +166,30 @@ public class Dtpostulacion {
      */
     public void setNombreOferta(String value) {
         this.nombreOferta = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad linkVideo.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLinkVideo() {
+        return linkVideo;
+    }
+
+    /**
+     * Define el valor de la propiedad linkVideo.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLinkVideo(String value) {
+        this.linkVideo = value;
     }
 
 }
