@@ -4,10 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
-
 import javax.imageio.ImageIO;
-
-import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,9 +13,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import logica.controllers.Fabrica;
-import logica.datatypes.Dtusuario;
-import logica.interfaces.IcontroladorUsuario;
+import logica.webservices.DtUsuario;
+import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -41,12 +38,13 @@ public class ModificarDatosServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession sesion = request.getSession();
-    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+    	PublicadorService publicadorService = new PublicadorService();
+     logica.webservices.Publicador port = publicadorService.getPublicadorPort();
     	if(sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO) {
     	  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
     	  return;
     	}
-    	Dtusuario usuario = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+    	DtUsuario usuario = (DtUsuario) sesion.getAttribute("usuarioLogueado");
     	String nombre = request.getParameter("nombre");
     	String apellido = request.getParameter("apellido");
     	String contrasenia = request.getParameter("contrasenia");
@@ -73,11 +71,11 @@ public class ModificarDatosServlet extends HttpServlet {
     		String sitioWeb = request.getParameter("sitioWeb");
     		
     		try {
-				controladorUsuario.editarEmpresa(usuario.getNickname(), nombre, apellido, sitioWeb, descripcion, imagen, contrasenia);
+    		  port.editarEmpresa(usuario.getNickname(), nombre, apellido, sitioWeb, descripcion, imagen, contrasenia);
 				String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 				return;
-			} catch (UsuarioNoExisteException | IOException e) {
+			} catch (UsuarioNoExisteException_Exception | IOException e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 				return;
@@ -87,13 +85,13 @@ public class ModificarDatosServlet extends HttpServlet {
     		String nacionalidad = request.getParameter("nacionalidad");
     		LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
     		try {
-				controladorUsuario.editarPostulante(usuario.getNickname(), nombre, apellido, fechaNacimiento, nacionalidad, imagen, contrasenia);
-				Dtusuario usuariomodificado = controladorUsuario.obtenerDtusuario(usuario.getNickname());
+    		  port.editarPostulante(usuario.getNickname(), nombre, apellido, fechaNacimiento, nacionalidad, imagen, contrasenia);
+				DtUsuario usuariomodificado = port.obtenerDtusuario(usuario.getNickname());
 				sesion.setAttribute("usuarioLogueado", usuariomodificado);
 				String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 				return;
-			} catch (UsuarioNoExisteException | IOException e) {
+			} catch (UsuarioNoExisteException_Exception | IOException e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 				return;
