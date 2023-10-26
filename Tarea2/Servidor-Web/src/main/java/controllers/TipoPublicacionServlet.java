@@ -2,15 +2,15 @@ package controllers;
 
 import java.io.IOException;
 
-import excepciones.TipoPublicacionNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.controllers.Fabrica;
-import logica.datatypes.DttipoPublicacion;
-import logica.interfaces.IcontroladorOferta;
+import logica.webservices.DtTipoPublicacion;
+import logica.webservices.PublicadorService;
+import logica.webservices.TipoPublicacionNoExisteException_Exception;
+
 
 /**
  * Servlet implementation class TipoPostulacionServlet
@@ -29,12 +29,14 @@ public class TipoPublicacionServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String nombreTipo = request.getParameter("nombreTipoPublicacion");
-    	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+    	
+    	logica.webservices.PublicadorService service = new PublicadorService();
+		logica.webservices.Publicador port = service.getPublicadorPort();
     	try {
-			DttipoPublicacion tipoPublicacion = controladorOfertas.obtenerDttipoPublicacion(nombreTipo);
+			DtTipoPublicacion tipoPublicacion = port.obtenerDttipoPublicacion(nombreTipo);
 			request.setAttribute("tipoPublicacion", tipoPublicacion);
 			request.getRequestDispatcher("/WEB-INF/consultas/TipoPublicacion.jsp").forward(request, response);
-		} catch (TipoPublicacionNoExisteException e) {
+		} catch (TipoPublicacionNoExisteException_Exception e) {
 			request.setAttribute("error", e.getMessage());
 			request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 			e.printStackTrace();

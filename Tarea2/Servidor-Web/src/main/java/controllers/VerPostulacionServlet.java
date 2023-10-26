@@ -5,12 +5,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.controllers.Fabrica;
-import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtusuario;
-import logica.interfaces.IcontroladorOferta;
-import logica.interfaces.IcontroladorUsuario;
+import logica.webservices.DtOfertaLaboral;
+import logica.webservices.DtPostulacion;
+import logica.webservices.DtUsuario;
+import logica.webservices.IOException_Exception;
+import logica.webservices.OfertaLaboralNoExisteException_Exception;
+import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException_Exception;
+import logica.webservices.UsuarioNoExistePostulacion_Exception;
 
 import java.io.IOException;
 
@@ -38,8 +40,9 @@ public class VerPostulacionServlet extends HttpServlet
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+		logica.webservices.PublicadorService service = new PublicadorService();
+		logica.webservices.Publicador port = service.getPublicadorPort();
+		
 		String nicknamePostulante = request.getParameter("nicknamePostulante");
 		String nombreOferta = request.getParameter("nombreOferta");
 		String userAgent = request.getHeader("User-Agent");
@@ -52,16 +55,16 @@ public class VerPostulacionServlet extends HttpServlet
 
 		try
 		{
-			Dtusuario postulante = controladorUsuario.obtenerDtusuario(nicknamePostulante);
-			DtOfertaLaboral dtOferta = controladorOferta.obtenerDtOfertaLaboral(nombreOferta);
-			Dtpostulacion postulacion = controladorUsuario.obtenerDtpostulacion(nicknamePostulante, nombreOferta);
+			DtUsuario postulante = port.obtenerDtusuario(nicknamePostulante);
+			DtOfertaLaboral dtOferta = port.obtenerDtOfertaLaboral(nombreOferta);
+			DtPostulacion postulacion = port.obtenerDtpostulacion(nicknamePostulante, nombreOferta);
 
 			request.setAttribute("ofertas", dtOferta);
 			request.setAttribute("postulacion", postulacion);
 			request.setAttribute("postulante", postulante);
 
 		}
-		catch (UsuarioNoExisteException | UsuarioNoExistePostulacion | OfertaLaboralNoExisteException e)
+		catch (UsuarioNoExisteException_Exception | UsuarioNoExistePostulacion_Exception | IOException_Exception | OfertaLaboralNoExisteException_Exception e)
 		{
 			request.setAttribute("error", e.getMessage());
 			request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);

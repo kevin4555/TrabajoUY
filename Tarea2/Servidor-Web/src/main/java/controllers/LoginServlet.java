@@ -2,21 +2,19 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.controllers.Fabrica;
-import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.Dtpostulante;
-import logica.datatypes.Dtusuario;
-import logica.interfaces.IcontroladorOferta;
-import logica.interfaces.IcontroladorUsuario;
+import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException_Exception;
+import logica.webservices.DtPostulante;
+import logica.webservices.DtEmpresa;
+import logica.webservices.DtOfertaLaboral;
+import logica.webservices.DtUsuario;
+import logica.webservices.IOException_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -46,7 +44,8 @@ public class LoginServlet extends HttpServlet
 		String userAgent = request.getHeader("User-Agent");
 
 		HttpSession sesion = request.getSession();
-		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+		PublicadorService publicadorService = new PublicadorService();
+  logica.webservices.Publicador port = publicadorService.getPublicadorPort();
 		if (nombreEmail == null || contraseniaIngresada == null)
 		{
 			if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
@@ -64,15 +63,14 @@ public class LoginServlet extends HttpServlet
 		}
 		try
 		{
-			Dtusuario usuario = controladorUsuario.obtenerDtusuario(nombreEmail);
+		 DtUsuario usuario = port.obtenerDtusuario(nombreEmail);
 			if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
 			{
-				if (controladorUsuario.confirmarContrasenia(nombreEmail, contraseniaIngresada))
+				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada))
 				{
-					if (usuario instanceof Dtpostulante)
+					if (usuario instanceof DtPostulante)
 					{
-						IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-						ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) controladorOferta.obtenerDtOfertasConfirmadas();
+						ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) port.obtenerDtOfertasConfirmadas().getItem();
 						request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 						sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
 						sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
@@ -95,13 +93,13 @@ public class LoginServlet extends HttpServlet
 			}
 			else
 			{
-				if (controladorUsuario.confirmarContrasenia(nombreEmail, contraseniaIngresada))
+				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada))
 				{
-					if (usuario instanceof Dtempresa)
+					if (usuario instanceof DtEmpresa)
 					{
 						sesion.setAttribute("tipoUsuario", TipoUsuario.EMPRESA);
 					}
-					else if (usuario instanceof Dtpostulante)
+					else if (usuario instanceof DtPostulante)
 					{
 						sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
 					}
@@ -118,7 +116,7 @@ public class LoginServlet extends HttpServlet
 				}
 			}
 		}
-		catch (UsuarioNoExisteException e)
+		catch (UsuarioNoExisteException_Exception | IOException_Exception e)
 		{
 			sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
 			request.setAttribute("error", "usuario incorrecta");
