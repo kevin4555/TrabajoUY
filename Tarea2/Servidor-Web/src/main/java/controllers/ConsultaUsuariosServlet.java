@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import logica.webservices.DtUsuario;
 import logica.webservices.IOException_Exception;
+import logica.webservices.Publicador;
 import logica.webservices.PublicadorService;
 import logica.webservices.UsuarioNoExisteException_Exception;
 
@@ -32,7 +33,7 @@ public class ConsultaUsuariosServlet extends HttpServlet {
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PublicadorService publicadorService = new PublicadorService();
-		logica.webservices.Publicador cliente = publicadorService.getPublicadorPort();
+		Publicador cliente = publicadorService.getPublicadorPort();
 		
 		ArrayList<String> listaUsuarios =  (ArrayList<String>) cliente.listaDeUsuarios().getItem();
 		Collections.sort(listaUsuarios);

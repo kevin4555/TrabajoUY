@@ -11,6 +11,9 @@ import logica.webservices.DtTipoPublicacion;
 import logica.webservices.PublicadorService;
 import logica.webservices.TipoPublicacionNoExisteException_Exception;
 
+import logica.webservices.Publicador;
+import logica.webservices.PublicadorService;
+import logica.webservices.TipoPublicacionNoExisteException_Exception;
 
 /**
  * Servlet implementation class TipoPostulacionServlet
@@ -29,11 +32,10 @@ public class TipoPublicacionServlet extends HttpServlet {
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String nombreTipo = request.getParameter("nombreTipoPublicacion");
-    	
-    	logica.webservices.PublicadorService service = new PublicadorService();
-		logica.webservices.Publicador port = service.getPublicadorPort();
+    	PublicadorService publicadorService = new PublicadorService();
+		Publicador cliente = publicadorService.getPublicadorPort();
     	try {
-			DtTipoPublicacion tipoPublicacion = port.obtenerDttipoPublicacion(nombreTipo);
+			DtTipoPublicacion tipoPublicacion = cliente.obtenerDttipoPublicacion(nombreTipo);
 			request.setAttribute("tipoPublicacion", tipoPublicacion);
 			request.getRequestDispatcher("/WEB-INF/consultas/TipoPublicacion.jsp").forward(request, response);
 		} catch (TipoPublicacionNoExisteException_Exception e) {

@@ -39,25 +39,25 @@ public class ConsultaPostulacionesServlet extends HttpServlet
 	{
 		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
-		DtUsuario usuario = (DtUsuario) sesion.getAttribute("usuarioLogueado");
 		PublicadorService publicadorService = new PublicadorService();
-  logica.webservices.Publicador cliente = publicadorService.getPublicadorPort();
-		ArrayList<DtOfertaLaboral> dTOfertas = new ArrayList<DtOfertaLaboral>(); 
+		logica.webservices.Publicador cliente = publicadorService.getPublicadorPort();
+		DtUsuario usuario = (DtUsuario) sesion.getAttribute("usuarioLogueado");
+		ArrayList<DtOfertaLaboral> dTOfertas = new ArrayList<DtOfertaLaboral>();
 
 		try {
 			ArrayList<DtPostulacion> postulaciones = (ArrayList<DtPostulacion>) cliente
 					.obtenerDtpostulacionesDePostulante(usuario.getNickname()).getItem();
-			for (DtPostulacion dtpostulacion : postulaciones)
+			for (DtPostulacion dtPostulacion : postulaciones)
 			{
-				dTOfertas.add(cliente.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
-				System.out.println(cliente.obtenerDtOfertaLaboral(dtpostulacion.getNombreOferta()));
+				dTOfertas.add(cliente.obtenerDtOfertaLaboral(dtPostulacion.getNombreOferta()));
+				System.out.println(cliente.obtenerDtOfertaLaboral(dtPostulacion.getNombreOferta()));
 			}
 			
 			request.setAttribute("postulaciones", postulaciones);
 			request.setAttribute("ofertasPostuladas", dTOfertas);
 			request.setAttribute("tipoUsuario", "postulante");
 			request.setAttribute("usuario", usuario);
-		} catch( UsuarioNoExisteException_Exception | IOException_Exception | OfertaLaboralNoExisteException_Exception e)
+		} catch(UsuarioNoExisteException_Exception | IOException_Exception | OfertaLaboralNoExisteException_Exception e)
 		{
 			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
