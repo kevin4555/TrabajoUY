@@ -33,12 +33,16 @@ public class HomeServlet extends HttpServlet {
 
 	private static void initSesion(HttpServletRequest request) {
 		
+	 
+	
+
+	  
+	  
 		HttpSession sesion = request.getSession();
 		PublicadorService publicadorService = new PublicadorService();
-		Publicador cliente = (Publicador) publicadorService.getPublicadorPort();
+		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
 		
-		String[] array = cliente.listarKeywords();
-		ArrayList<String> listaKeywords = new ArrayList<>(Arrays.asList(array));
+		ArrayList<String> listaKeywords = (ArrayList<String>) port.listarKeywords().getItem();
 		sesion.setAttribute("listaKeywords", listaKeywords);
 		
 		if (sesion.getAttribute("estadoSesion") == null) {
