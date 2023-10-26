@@ -19,7 +19,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="fechaCompra" type="{http://webServices.logica/}localDate" minOccurs="0"/>
  *         <element name="fechaVencimiento" type="{http://webServices.logica/}localDate" minOccurs="0"/>
  *         <element name="publicacionesRestantes" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="paquete" type="{http://webServices.logica/}dtpaquetePublicacion" minOccurs="0"/>
+ *         <element name="paquete" type="{http://webServices.logica/}dtPaquetePublicacion" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -40,7 +40,7 @@ public class DtCompraPaquete {
     protected LocalDate fechaCompra;
     protected LocalDate fechaVencimiento;
     protected String publicacionesRestantes;
-    protected DtpaquetePublicacion paquete;
+    protected DtPaquetePublicacion paquete;
 
     /**
      * Obtiene el valor de la propiedad fechaCompra.
@@ -119,10 +119,10 @@ public class DtCompraPaquete {
      * 
      * @return
      *     possible object is
-     *     {@link DtpaquetePublicacion }
+     *     {@link DtPaquetePublicacion }
      *     
      */
-    public DtpaquetePublicacion getPaquete() {
+    public DtPaquetePublicacion getPaquete() {
         return paquete;
     }
 
@@ -131,10 +131,10 @@ public class DtCompraPaquete {
      * 
      * @param value
      *     allowed object is
-     *     {@link DtpaquetePublicacion }
+     *     {@link DtPaquetePublicacion }
      *     
      */
-    public void setPaquete(DtpaquetePublicacion value) {
+    public void setPaquete(DtPaquetePublicacion value) {
         this.paquete = value;
     }
 

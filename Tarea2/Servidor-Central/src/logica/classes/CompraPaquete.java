@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
-import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.ListAdapter;
 
 /**

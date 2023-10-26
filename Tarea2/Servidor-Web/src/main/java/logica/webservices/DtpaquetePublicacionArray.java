@@ -10,16 +10,16 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtpaquetePublicacionArray complex type.
+ * <p>Clase Java para dtPaquetePublicacionArray complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="dtpaquetePublicacionArray">
+ * <complexType name="dtPaquetePublicacionArray">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="item" type="{http://webServices.logica/}dtpaquetePublicacion" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="item" type="{http://webServices.logica/}dtPaquetePublicacion" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -29,13 +29,13 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtpaquetePublicacionArray", propOrder = {
+@XmlType(name = "dtPaquetePublicacionArray", propOrder = {
     "item"
 })
-public class DtpaquetePublicacionArray {
+public class DtPaquetePublicacionArray {
 
     @XmlElement(nillable = true)
-    protected List<DtpaquetePublicacion> item;
+    protected List<DtPaquetePublicacion> item;
 
     /**
      * Gets the value of the item property.
@@ -55,13 +55,13 @@ public class DtpaquetePublicacionArray {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link DtpaquetePublicacion }
+     * {@link DtPaquetePublicacion }
      * 
      * 
      * @return
      *     The value of the item property.
      */
-    public List<DtpaquetePublicacion> getItem() {
+    public List<DtPaquetePublicacion> getItem() {
         if (item == null) {
             item = new ArrayList<>();
         }

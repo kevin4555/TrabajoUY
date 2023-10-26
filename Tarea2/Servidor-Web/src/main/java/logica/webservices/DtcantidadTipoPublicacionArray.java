@@ -10,16 +10,16 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtcantidadTipoPublicacionArray complex type.
+ * <p>Clase Java para dtCantidadTipoPublicacionArray complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="dtcantidadTipoPublicacionArray">
+ * <complexType name="dtCantidadTipoPublicacionArray">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="item" type="{http://webServices.logica/}dtcantidadTipoPublicacion" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="item" type="{http://webServices.logica/}dtCantidadTipoPublicacion" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -29,13 +29,13 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtcantidadTipoPublicacionArray", propOrder = {
+@XmlType(name = "dtCantidadTipoPublicacionArray", propOrder = {
     "item"
 })
-public class DtcantidadTipoPublicacionArray {
+public class DtCantidadTipoPublicacionArray {
 
     @XmlElement(nillable = true)
-    protected List<DtcantidadTipoPublicacion> item;
+    protected List<DtCantidadTipoPublicacion> item;
 
     /**
      * Gets the value of the item property.
@@ -55,13 +55,13 @@ public class DtcantidadTipoPublicacionArray {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link DtcantidadTipoPublicacion }
+     * {@link DtCantidadTipoPublicacion }
      * 
      * 
      * @return
      *     The value of the item property.
      */
-    public List<DtcantidadTipoPublicacion> getItem() {
+    public List<DtCantidadTipoPublicacion> getItem() {
         if (item == null) {
             item = new ArrayList<>();
         }

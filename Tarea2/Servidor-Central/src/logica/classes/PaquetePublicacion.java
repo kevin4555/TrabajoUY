@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import logica.datatypes.DtcantidadTipoPublicacion;
-import logica.datatypes.DtpaquetePublicacion;
+import logica.datatypes.DtCantidadTipoPublicacion;
+import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.ListAdapter;
 
 /**

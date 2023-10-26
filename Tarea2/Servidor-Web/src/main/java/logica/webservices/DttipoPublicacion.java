@@ -7,12 +7,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dttipoPublicacion complex type.
+ * <p>Clase Java para dtTipoPublicacion complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="dttipoPublicacion">
+ * <complexType name="dtTipoPublicacion">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
@@ -31,7 +31,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dttipoPublicacion", propOrder = {
+@XmlType(name = "dtTipoPublicacion", propOrder = {
     "nombre",
     "descripcion",
     "exposicion",
@@ -39,7 +39,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "costo",
     "fechaAlta"
 })
-public class DttipoPublicacion {
+public class DtTipoPublicacion {
 
     protected String nombre;
     protected String descripcion;

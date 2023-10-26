@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Set;
 
 import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtpostulante;
-import logica.datatypes.Dtusuario;
+import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtPostulante;
+import logica.datatypes.DtUsuario;
 import logica.datatypes.ListAdapter;
 
 /**

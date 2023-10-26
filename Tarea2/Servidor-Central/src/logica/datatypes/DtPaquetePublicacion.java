@@ -33,7 +33,7 @@ public class DtPaquetePublicacion implements Serializable {
   private String imagenBase64;
   
   @XmlJavaTypeAdapter(ListAdapter.class)
-  private List<DtcantidadTipoPublicacion> cantidadTipoPublicaciones;
+  private List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones;
   
   public void setNombre(String nombre) {
     this.nombre = nombre;

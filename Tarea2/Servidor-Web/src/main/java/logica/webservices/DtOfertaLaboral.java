@@ -30,11 +30,14 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="estadoOferta" type="{http://webServices.logica/}estadoOferta" minOccurs="0"/>
  *         <element name="imagen" type="{http://webServices.logica/}bufferedImage" minOccurs="0"/>
  *         <element name="imagenBase64" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="paqueteAsociado" type="{http://webServices.logica/}dtpaquetePublicacion" minOccurs="0"/>
+ *         <element name="paqueteAsociado" type="{http://webServices.logica/}dtPaquetePublicacion" minOccurs="0"/>
  *         <element name="keywords" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="estaVencida" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         <element name="nombreTipoPublicacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="empresa" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="visitas" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         <element name="exposicion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaFinalizacion" type="{http://webServices.logica/}localDate" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -62,7 +65,10 @@ import jakarta.xml.bind.annotation.XmlType;
     "keywords",
     "estaVencida",
     "nombreTipoPublicacion",
-    "empresa"
+    "empresa",
+    "visitas",
+    "exposicion",
+    "fechaFinalizacion"
 })
 public class DtOfertaLaboral {
 
@@ -80,11 +86,14 @@ public class DtOfertaLaboral {
     protected EstadoOferta estadoOferta;
     protected BufferedImage imagen;
     protected String imagenBase64;
-    protected DtpaquetePublicacion paqueteAsociado;
+    protected DtPaquetePublicacion paqueteAsociado;
     protected String keywords;
     protected Boolean estaVencida;
     protected String nombreTipoPublicacion;
     protected String empresa;
+    protected int visitas;
+    protected String exposicion;
+    protected LocalDate fechaFinalizacion;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -403,10 +412,10 @@ public class DtOfertaLaboral {
      * 
      * @return
      *     possible object is
-     *     {@link DtpaquetePublicacion }
+     *     {@link DtPaquetePublicacion }
      *     
      */
-    public DtpaquetePublicacion getPaqueteAsociado() {
+    public DtPaquetePublicacion getPaqueteAsociado() {
         return paqueteAsociado;
     }
 
@@ -415,10 +424,10 @@ public class DtOfertaLaboral {
      * 
      * @param value
      *     allowed object is
-     *     {@link DtpaquetePublicacion }
+     *     {@link DtPaquetePublicacion }
      *     
      */
-    public void setPaqueteAsociado(DtpaquetePublicacion value) {
+    public void setPaqueteAsociado(DtPaquetePublicacion value) {
         this.paqueteAsociado = value;
     }
 
@@ -516,6 +525,70 @@ public class DtOfertaLaboral {
      */
     public void setEmpresa(String value) {
         this.empresa = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad visitas.
+     * 
+     */
+    public int getVisitas() {
+        return visitas;
+    }
+
+    /**
+     * Define el valor de la propiedad visitas.
+     * 
+     */
+    public void setVisitas(int value) {
+        this.visitas = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad exposicion.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getExposicion() {
+        return exposicion;
+    }
+
+    /**
+     * Define el valor de la propiedad exposicion.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setExposicion(String value) {
+        this.exposicion = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaFinalizacion.
+     * 
+     * @return
+     *     possible object is
+     *     {@link LocalDate }
+     *     
+     */
+    public LocalDate getFechaFinalizacion() {
+        return fechaFinalizacion;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaFinalizacion.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link LocalDate }
+     *     
+     */
+    public void setFechaFinalizacion(LocalDate value) {
+        this.fechaFinalizacion = value;
     }
 
 }
