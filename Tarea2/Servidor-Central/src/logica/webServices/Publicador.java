@@ -231,7 +231,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtOfertaLaboral[] obtenerDtofertasPorKeyword(
+  public DtOfertaLaboral[] obtenerDtOfertasPorKeyword(
       String keyword) throws IOException {
     return controladorOferta.obtenerDtOfertasPorKeyword(keyword) 
         .toArray(new DtOfertaLaboral[0]);
@@ -276,7 +276,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtTipoPublicacion obtenerDttipoPublicacion(
+  public DtTipoPublicacion obtenerDtTipoPublicacion(
       String nombreTipo)
       throws TipoPublicacionNoExisteException {
     return controladorOferta.obtenerDtTipoPublicacion(nombreTipo);
@@ -288,7 +288,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtPaquetePublicacion[] listarDtpaquetes()
+  public DtPaquetePublicacion[] listarDtPaquetes()
       throws IOException {
     return controladorOferta.listarDtPaquetes()
         .toArray(new DtPaquetePublicacion[0]);
@@ -327,10 +327,10 @@ public class Publicador {
   }
   
   @WebMethod
-  public void editarDatosBasicos(DtUsuario dtusuario,
+  public void editarDatosBasicos(DtUsuario dtUsuario,
       String nombreNuevo, String apellidoNuevo)
       throws UsuarioNoExisteException {
-    controladorUsuario.editarDatosBasicos(dtusuario, nombreNuevo,
+    controladorUsuario.editarDatosBasicos(dtUsuario, nombreNuevo,
         apellidoNuevo);
   }
   
@@ -385,7 +385,7 @@ public class Publicador {
    * } */
   
   @WebMethod
-  public DtUsuario obtenerDtusuario(String nickname)
+  public DtUsuario obtenerDtUsuario(String nickname)
       throws UsuarioNoExisteException, IOException {
     return controladorUsuario.obtenerDtUsuario(nickname);
   }
@@ -422,7 +422,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtPostulacion obtenerDtpostulacion(
+  public DtPostulacion obtenerDtPostulacion(
       String nicknamePostulante, String nombreOferta)
       throws UsuarioNoExisteException,
       UsuarioNoExistePostulacion {
@@ -431,7 +431,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtOfertaLaboral[] obtenerDtofertasIngresadasDeEmpresa(
+  public DtOfertaLaboral[] obtenerDtOfertasIngresadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     return controladorUsuario.obtenerDtOfertasIngresadasDeEmpresa(nicknameEmpresa)
@@ -439,7 +439,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtOfertaLaboral[] obtenerDtofertasConfirmadasDeEmpresa(
+  public DtOfertaLaboral[] obtenerDtOfertasConfirmadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     return controladorUsuario
@@ -448,7 +448,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtOfertaLaboral[] obtenerDtofertasRechazadasDeEmpresa(
+  public DtOfertaLaboral[] obtenerDtOfertasRechazadasDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     return controladorUsuario
@@ -478,7 +478,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtPaquetePublicacion[] obtenerDtpaquetesDeEmpresa(
+  public DtPaquetePublicacion[] obtenerDtPaquetesDeEmpresa(
       String nicknameEmpresa)
       throws UsuarioNoExisteException, IOException {
     return controladorUsuario.obtenerDtPaquetesDeEmpresa(nicknameEmpresa)
@@ -486,7 +486,7 @@ public class Publicador {
   }
   
   @WebMethod
-  public DtPostulacion[] obtenerDtpostulacionesDePostulante(
+  public DtPostulacion[] obtenerDtPostulacionesDePostulante(
       String nicknamePostulante)
       throws UsuarioNoExisteException {
     return controladorUsuario
