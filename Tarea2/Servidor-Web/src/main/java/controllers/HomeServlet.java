@@ -6,29 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.controllers.Fabrica;
-import logica.controllers.Loader;
 import logica.datatypes.DtOfertaLaboral;
-import logica.interfaces.IcontroladorOferta;
+import logica.webServices.Publicador;
+import logica.webservices.PublicadorService;
 import model.EstadoSesion;
 import model.TipoUsuario;
-
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-
-import excepciones.KeywordNoExisteException;
-import excepciones.KeywordYaExisteException;
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.OfertaLaboralYaExisteException;
-import excepciones.PaquetePublicacionNoExisteException;
-import excepciones.PaquetePublicacionYaExisteException;
-import excepciones.TipoPublicacionNoExisteException;
-import excepciones.TipoPublicacionYaExisteException;
-import excepciones.UsuarioEmailRepetidoException;
-import excepciones.UsuarioNoExisteException;
-import excepciones.UsuarioYaExisteException;
-import excepciones.UsuarioYaExistePostulacion;
+import java.util.Arrays;
 
 
 
@@ -47,22 +32,13 @@ public class HomeServlet extends HttpServlet {
 
 
 	private static void initSesion(HttpServletRequest request) {
-		if (!Loader.datosCargados()) {
-			Loader loader = new Loader();
-			try {
-			 loader.cargarDatos();
-				loader.confirmarOfertas();
-			} catch (UsuarioNoExisteException | OfertaLaboralNoExisteException | ParseException
-					| UsuarioYaExisteException | UsuarioEmailRepetidoException | TipoPublicacionYaExisteException
-					| KeywordYaExisteException | KeywordNoExisteException | TipoPublicacionNoExisteException
-					| OfertaLaboralYaExisteException | PaquetePublicacionYaExisteException | UsuarioYaExistePostulacion | PaquetePublicacionNoExisteException | IOException e) {
-				// COMPLETAR con paginas de errores
-				e.printStackTrace();
-			}
-		}
+		
 		HttpSession sesion = request.getSession();
-		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		ArrayList<String> listaKeywords = (ArrayList<String>) controladorOferta.listarKeywords();
+		PublicadorService publicadorService = new PublicadorService();
+		Publicador cliente = (Publicador) publicadorService.getPublicadorPort();
+		
+		String[] array = cliente.listarKeywords();
+		ArrayList<String> listaKeywords = new ArrayList<>(Arrays.asList(array));
 		sesion.setAttribute("listaKeywords", listaKeywords);
 		
 		if (sesion.getAttribute("estadoSesion") == null) {
@@ -78,8 +54,9 @@ public class HomeServlet extends HttpServlet {
 		
 		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
-		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) controladorOferta.obtenerDtOfertasConfirmadas();
+		PublicadorService publicadorService = new PublicadorService();
+		Publicador cliente = (Publicador) publicadorService.getPublicadorPort();
+		ArrayList<DtOfertaLaboral> dTOfertas = new ArrayList<>(Arrays.asList(cliente.obtenerDtOfertasConfirmadas()));
 		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
 		{
