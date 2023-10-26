@@ -3,7 +3,6 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import excepciones.OfertaLaboralNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,18 +10,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.controllers.Fabrica;
-import logica.datatypes.DtCompraPaquete;
-import logica.datatypes.DtOfertaLaboral;
-import logica.datatypes.Dtempresa;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.datatypes.Dtpostulacion;
-import logica.datatypes.Dtpostulante;
-import logica.datatypes.Dtusuario;
-import logica.interfaces.IcontroladorOferta;
-import logica.interfaces.IcontroladorUsuario;
-import model.EstadoSesion;
-import model.TipoUsuario;
+import logica.webservices.DtPostulacion;
+import logica.webservices.DtOfertaLaboral;
+import logica.webservices.DtUsuario;
+import logica.webservices.IOException_Exception;
+import logica.webservices.DtEmpresa;
+import logica.webservices.DtPostulante;
+import logica.webservices.DtCompraPaquete;
+import logica.webservices.Publicador;
+import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException_Exception;
 
 /**
  * Servlet implementation class PerfilSerlvlet
@@ -42,28 +39,32 @@ public class PerfilSerlvlet extends HttpServlet
 	}
 
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
+			throws ServletException, IOException, UsuarioNoExisteException
 	{
 		HttpSession sesion = request.getSession();
-		Dtusuario usuarioLogueado = (Dtusuario) sesion.getAttribute("usuarioLogueado");
+		DtUsuario usuarioLogueado = (DtUsuario) sesion.getAttribute("usuarioLogueado");
 		String nicknameUsuario = request.getParameter("nicknameUsuario");
-		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		String userAgent = request.getHeader("User-Agent");
+
+		logica.webservices.PublicadorService service = new PublicadorService();
+		logica.webservices.Publicador port = service.getPublicadorPort();
 
 		try
 		{
-			Dtusuario usuario = controladorUsuario.obtenerDtusuario(nicknameUsuario);
+			DtUsuario usuario = port.obtenerDtusuario(nicknameUsuario);
 			request.setAttribute("usuario", usuario);
-			if (usuario instanceof Dtempresa)
+			if (usuario instanceof DtEmpresa)
 			{
-				ArrayList<DtOfertaLaboral> ofertasConfirmadas = (ArrayList<DtOfertaLaboral>) controladorUsuario
-						.obtenerDtofertasConfirmadasDeEmpresa(nicknameUsuario);
-				ArrayList<DtOfertaLaboral> ofertasIngresadas = (ArrayList<DtOfertaLaboral>) controladorUsuario
-						.obtenerDtofertasIngresadasDeEmpresa(nicknameUsuario);
-				ArrayList<DtOfertaLaboral> ofertasRechazadas = (ArrayList<DtOfertaLaboral>) controladorUsuario
-						.obtenerDtofertasRechazadasDeEmpresa(nicknameUsuario);
-				ArrayList<DtCompraPaquete> compraPaquetes = (ArrayList<DtCompraPaquete>) controladorUsuario
-						.obtenerDtCompraPaqueteDeEmpresa(nicknameUsuario);
+				ArrayList<DtOfertaLaboral> ofertasConfirmadas = (ArrayList<DtOfertaLaboral>) port
+						.obtenerDtofertasConfirmadasDeEmpresa(nicknameUsuario).getItem();
+				
+				ArrayList<DtOfertaLaboral> ofertasIngresadas = (ArrayList<DtOfertaLaboral>) port
+						.obtenerDtofertasIngresadasDeEmpresa(nicknameUsuario).getItem();
+				
+				ArrayList<DtOfertaLaboral> ofertasRechazadas = (ArrayList<DtOfertaLaboral>) port
+						.obtenerDtofertasRechazadasDeEmpresa(nicknameUsuario).getItem();
+				
+				ArrayList<DtCompraPaquete> compraPaquetes = (ArrayList<DtCompraPaquete>) port
+						.obtenerDtCompraPaqueteDeEmpresa(nicknameUsuario).getItem();
 
 				request.setAttribute("ofertasConfirmadas", ofertasConfirmadas);
 				request.setAttribute("ofertasIngresadas", ofertasIngresadas);
@@ -72,17 +73,17 @@ public class PerfilSerlvlet extends HttpServlet
 				request.setAttribute("tipoUsuario", "empresa");
 			}
 
-			if (usuario instanceof Dtpostulante)
+			if (usuario instanceof DtPostulante)
 			{
-				ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) controladorUsuario
-						.obtenerDtpostulacionesDePostulante(nicknameUsuario);
+				ArrayList<DtPostulacion> postulaciones = (ArrayList<DtPostulacion>) port
+						.obtenerDtpostulacionesDePostulante(nicknameUsuario).getItem();
 
 				request.setAttribute("postulaciones", postulaciones);
 				request.setAttribute("tipoUsuario", "postulante");
 			}
 
 		}
-		catch (UsuarioNoExisteException e)
+		catch (UsuarioNoExisteException_Exception | IOException_Exception e)
 		{
 			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
@@ -96,15 +97,21 @@ public class PerfilSerlvlet extends HttpServlet
 		request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
 	}
 
-	
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		procesarRequest(request, response);
+		try
+		{
+			procesarRequest(request, response);
+		}
+		catch (ServletException | IOException | UsuarioNoExisteException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -421,6 +421,8 @@ public interface Publicador {
         String arg5)
         throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception, UsuarioYaExistePostulacion_Exception
     ;
+    
+    
 
     /**
      * 
@@ -1013,5 +1015,7 @@ public interface Publicador {
         String arg0)
         throws IOException_Exception, UsuarioNoExisteException_Exception
     ;
+
+	
 
 }
