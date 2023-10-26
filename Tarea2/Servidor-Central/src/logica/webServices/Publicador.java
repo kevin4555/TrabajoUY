@@ -51,6 +51,8 @@ public class Publicador {
       .obtenerControladorUsuario();
   private Endpoint endpoint = null;
   
+  private String UrlBase = "http://localhost:8085"; // ToDo : Cambiar por lo que es te en el archivo de propiedades 
+  
   // Constructor
   public Publicador() {
   }
@@ -58,9 +60,7 @@ public class Publicador {
   
   @WebMethod(exclude = true)
   public void publicar() {
-    endpoint = Endpoint.publish(
-        "http://localhost:8085/webservices",
-        this);
+    endpoint = Endpoint.publish(UrlBase + "/webservices", this);
   }
   
   @WebMethod(exclude = true)
