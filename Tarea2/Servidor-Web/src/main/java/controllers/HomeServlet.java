@@ -32,12 +32,6 @@ public class HomeServlet extends HttpServlet {
 
 
 	private static void initSesion(HttpServletRequest request) {
-		
-	 
-	
-
-	  
-	  
 		HttpSession sesion = request.getSession();
 		PublicadorService publicadorService = new PublicadorService();
 		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
