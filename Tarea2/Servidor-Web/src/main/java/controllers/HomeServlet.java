@@ -6,8 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.datatypes.DtOfertaLaboral;
-import logica.webServices.Publicador;
+import logica.webservices.DtOfertaLaboral;
+import logica.webservices.IOException_Exception;
 import logica.webservices.PublicadorService;
 import model.EstadoSesion;
 import model.TipoUsuario;
@@ -53,8 +53,15 @@ public class HomeServlet extends HttpServlet {
 		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
 		PublicadorService publicadorService = new PublicadorService();
-		Publicador cliente = (Publicador) publicadorService.getPublicadorPort();
-		ArrayList<DtOfertaLaboral> dTOfertas = new ArrayList<>(Arrays.asList(cliente.obtenerDtOfertasConfirmadas()));
+		logica.webservices.Publicador cliente =  publicadorService.getPublicadorPort();
+		ArrayList<DtOfertaLaboral> dTOfertas;
+		try {
+			dTOfertas = (ArrayList<DtOfertaLaboral>) cliente.obtenerDtOfertasConfirmadas().getItem();
+		} catch (IOException_Exception e) {
+			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+			e.printStackTrace();
+			return;
+		}
 		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
 		{
