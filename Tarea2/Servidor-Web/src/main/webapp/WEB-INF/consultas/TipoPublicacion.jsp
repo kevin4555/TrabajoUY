@@ -45,7 +45,7 @@ DtTipoPublicacion tipoPublicacion = (DtTipoPublicacion) request.getAttribute("ti
                                 <li class="text-secondary">
                                     <i class="bi bi-arrow-right-circle text-primary"></i>
                                     <%
-										String fechaAlta = tipoPublicacion.getFechaAltaString(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
+										String fechaAlta = tipoPublicacion.getFechaAltaString();
 									%>
 										
 										Fecha <%= fechaAlta %>
