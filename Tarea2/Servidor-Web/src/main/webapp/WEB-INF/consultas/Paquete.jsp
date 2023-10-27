@@ -1,5 +1,4 @@
-<%@page import="logica.webServices.DtUsuario"%>
-<%@page import="logica.webServices.DtPaquetePublicacion"%>
+
 <%@page import="model.TipoUsuario"%>
 <%@page import="logica.webservices.DtUsuario"%>
 <%@page import="model.EstadoSesion"%>
