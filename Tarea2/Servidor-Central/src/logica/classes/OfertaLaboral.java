@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.DtPostulacion;

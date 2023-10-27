@@ -3,15 +3,14 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import excepciones.TipoPublicacionNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.controllers.Fabrica;
-import logica.datatypes.DttipoPublicacion;
-import logica.interfaces.IcontroladorOferta;
+import logica.webservices.DtTipoPublicacion;
+import logica.webservices.PublicadorService;
+import logica.webservices.TipoPublicacionNoExisteException_Exception;
 
 /**
  * Servlet implementation class ConsultaTipoPostulacionServlet
@@ -29,13 +28,16 @@ public class ConsultaTipoPublicacionServlet extends HttpServlet {
     }
 
     private void procesarResquest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
-    	ArrayList<String> listaTipoPublicacion = (ArrayList<String>) controladorOfertas.listarTipoDePublicaciones();
-    	ArrayList<DttipoPublicacion> listaDTTipo = new ArrayList<DttipoPublicacion>();
+    	PublicadorService publicadorService = new PublicadorService();
+		logica.webservices.Publicador cliente = publicadorService.getPublicadorPort();
+    	
+    	
+    	ArrayList<String> listaTipoPublicacion = (ArrayList<String>) cliente.listarTipoDePublicaciones().getItem();
+    	ArrayList<DtTipoPublicacion> listaDTTipo = new ArrayList<DtTipoPublicacion>();
     	for(String tipo : listaTipoPublicacion) {
     		try {
-				listaDTTipo.add(controladorOfertas.obtenerDttipoPublicacion(tipo));
-			} catch (TipoPublicacionNoExisteException e) {
+				listaDTTipo.add(cliente.obtenerDttipoPublicacion(tipo));
+			} catch (TipoPublicacionNoExisteException_Exception e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 			}

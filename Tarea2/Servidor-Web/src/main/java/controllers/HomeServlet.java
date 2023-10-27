@@ -6,14 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webServices.*;
+import logica.datatypes.DtOfertaLaboral;
+import logica.webServices.Publicador;
+import logica.webservices.PublicadorService;
 import model.EstadoSesion;
 import model.TipoUsuario;
-
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 
 
@@ -32,11 +32,11 @@ public class HomeServlet extends HttpServlet {
 
 
 	private static void initSesion(HttpServletRequest request) {
-		
 		HttpSession sesion = request.getSession();
-		WSControladorOfertaProxy service = new WSControladorOfertaProxy();
-        WSControladorOferta controladorOferta = service.getWSControladorOferta();
-		ArrayList<String> listaKeywords =  controladorOferta.listarKeywords();
+		PublicadorService publicadorService = new PublicadorService();
+		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
+		
+		ArrayList<String> listaKeywords = (ArrayList<String>) port.listarKeywords().getItem();
 		sesion.setAttribute("listaKeywords", listaKeywords);
 		
 		if (sesion.getAttribute("estadoSesion") == null) {
@@ -52,8 +52,9 @@ public class HomeServlet extends HttpServlet {
 		
 		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
-		IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
-		ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) controladorOferta.obtenerDtOfertasConfirmadas();
+		PublicadorService publicadorService = new PublicadorService();
+		Publicador cliente = (Publicador) publicadorService.getPublicadorPort();
+		ArrayList<DtOfertaLaboral> dTOfertas = new ArrayList<>(Arrays.asList(cliente.obtenerDtOfertasConfirmadas()));
 		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
 		{

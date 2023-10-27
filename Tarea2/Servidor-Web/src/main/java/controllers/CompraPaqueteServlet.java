@@ -1,24 +1,20 @@
 package controllers;
 
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.controllers.Fabrica;
-import logica.datatypes.DtpaquetePublicacion;
-import logica.interfaces.IcontroladorOferta;
-import logica.interfaces.IcontroladorUsuario;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import excepciones.PaquetePublicacionNoExisteException;
-import excepciones.UsuarioNoExisteException;
+import logica.webServices.Publicador;
+import logica.webservices.PublicadorService;
 
 /**
  * Servlet implementation class ConsultaPaquetes
@@ -36,11 +32,13 @@ public class CompraPaqueteServlet extends HttpServlet {
     }
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
+     PublicadorService publicadorService = new PublicadorService();
+     Publicador cliente = (Publicador) publicadorService.getPublicadorPort();
     	String nicknameempresa = request.getParameter("nicknameEmpresa");
     	String nombrePaquete = request.getParameter("nombrePaquete");
     	try {
-        ArrayList<String> paquetesNoComprados = (ArrayList<String>) controladorUsuario.listarPaquetesNoCompradosDeEmpresa(nicknameempresa);
+    	   String[] array = cliente.listarPaquetesNoCompradosDeEmpresa(nicknameempresa);
+        ArrayList<String> paquetesNoComprados = new ArrayList<>(Arrays.asList(array));
         Boolean permitido = false;
         for(String paquete : paquetesNoComprados) {
           if(paquete.equals(nombrePaquete)) {
@@ -49,7 +47,7 @@ public class CompraPaqueteServlet extends HttpServlet {
           }
         }
         if(permitido) {
-          controladorUsuario.comprarPaquete(nicknameempresa, nombrePaquete, LocalDate.now());
+          cliente.comprarPaquete(nicknameempresa, nombrePaquete, LocalDate.now());
           String url = request.getContextPath() + "/perfil?nicknameUsuario="
               + nicknameempresa;
           response.sendRedirect(url);

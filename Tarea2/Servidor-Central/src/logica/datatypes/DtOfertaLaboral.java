@@ -1,7 +1,10 @@
+
 package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,10 +17,8 @@ import javax.imageio.ImageIO;
 /**
  * Clase DTOfertaLaboral.
  */
-
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DtOfertaLaboral implements Serializable {
-
   private static final long serialVersionUID = -8050558380197586821L;
   private String nombre;
   private String descripcion;
@@ -26,10 +27,13 @@ public class DtOfertaLaboral implements Serializable {
   private String horarioInicio;
   private String horarioFinal;
   private Float remuneracion;
+  @XmlTransient
   private LocalDate fechaAlta;
+  @XmlTransient
   private LocalDate fechaResolucion;
   private List<DtPostulacion> postulaciones;
   private EstadoOferta estadoOferta;
+  @XmlTransient
   private BufferedImage imagen;
   private String imagenBase64;
   private DtPaquetePublicacion paqueteAsociado;
@@ -39,12 +43,15 @@ public class DtOfertaLaboral implements Serializable {
   private String empresa;
   private int visitas;
   private String exposicion;
+  @XmlTransient
   private LocalDate fechaFinalizacion;
+  private String fechaAltaString;
+  private String fechaResolucionString;
+  private String fechaFinalizacionString;
   
   /**
    * Contructor.
    */
-  
   public DtOfertaLaboral(String nombre, String descripcion,
       String ciudad, String departamento,
       String horarioInicial, String horarioFinal,
@@ -53,7 +60,8 @@ public class DtOfertaLaboral implements Serializable {
       LocalDate fechaResolucion, EstadoOferta estado,
       BufferedImage imagen, DtPaquetePublicacion paquete,
       List<String> keywords, Boolean estaVencida,
-      String nombreTipoPublicacion, String empresa, int visitas, String exposicion, LocalDate fechaFinalizacion)
+      String nombreTipoPublicacion, String empresa, int visitas,
+      String exposicion, LocalDate fechaFinalizacion)
       throws IOException {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -67,7 +75,6 @@ public class DtOfertaLaboral implements Serializable {
     this.postulaciones = postulaciones;
     this.estadoOferta = estado;
     this.imagen = imagen;
-    
     if (imagen != null) {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       ImageIO.write(this.imagen, "png", baos);
@@ -82,6 +89,15 @@ public class DtOfertaLaboral implements Serializable {
     this.visitas = visitas;
     this.exposicion = exposicion;
     this.fechaFinalizacion = fechaFinalizacion;
+    this.fechaAltaString = fechaAlta.toString();
+    this.fechaResolucionString = null;
+    this.fechaFinalizacionString = null;
+    if(fechaResolucion != null) {
+      this.fechaResolucionString = fechaResolucion.toString();
+    }
+    if(fechaFinalizacion != null) {
+      this.fechaFinalizacionString = fechaFinalizacion.toString();
+    }
   }
   
   public DtOfertaLaboral() {
@@ -158,6 +174,7 @@ public class DtOfertaLaboral implements Serializable {
   public String getImagenBase64() {
     return imagenBase64;
   }
+  
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -233,29 +250,53 @@ public class DtOfertaLaboral implements Serializable {
   public void setEmpresa(String empresa) {
     this.empresa = empresa;
   }
-
+  
   public int getVisitas() {
     return visitas;
   }
-
+    
   public void setVisitas(int visitas) {
     this.visitas = visitas;
   }
-
+  
   public String getExposicion() {
     return exposicion;
   }
-
+  
   public void setExposicion(String exposicion) {
     this.exposicion = exposicion;
   }
-
+  
   public LocalDate getFechaFinalizacion() {
     return fechaFinalizacion;
   }
-
+  
   public void setFechaFinalizacion(LocalDate fechaFinalizacion) {
     this.fechaFinalizacion = fechaFinalizacion;
+  }
+
+  public String getFechaAltaString() {
+    return fechaAltaString;
+  }
+
+  public void setFechaAltaString(String fechaAltaString) {
+    this.fechaAltaString = fechaAltaString;
+  }
+
+  public String getFechaResolucionString() {
+    return fechaResolucionString;
+  }
+
+  public void setFechaResolucionString(String fechaResolucionString) {
+    this.fechaResolucionString = fechaResolucionString;
+  }
+
+  public String getFechaFinalizacionString() {
+    return fechaFinalizacionString;
+  }
+
+  public void setFechaFinalizacionString(String fechaFinalizacionString) {
+    this.fechaFinalizacionString = fechaFinalizacionString;
   }
   
 }

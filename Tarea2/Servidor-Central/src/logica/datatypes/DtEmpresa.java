@@ -22,26 +22,16 @@ public class DtEmpresa extends DtUsuario implements Serializable {
    * Contructor.
    */
   
-  public DtEmpresa(String nickname, String nombre,
-      String apellido, String email, BufferedImage imagen,
-      String contrasenia,
-      List<DtOfertaLaboral> ofertasColeccion,
-      String descripcion, String sitioWeb)
+  public DtEmpresa(String nickname, String nombre, String apellido, String email,
+      BufferedImage imagen, String contrasenia, List<DtOfertaLaboral> ofertasColeccion,
+      String descripcion, String sitioWeb, List<String> seguidos, List<String> seguidores)
       throws IOException {
-    super(nickname, nombre, apellido, email, imagen,
-        contrasenia, ofertasColeccion);
+    super(nickname, nombre, apellido, email, imagen, contrasenia, ofertasColeccion, seguidos,
+        seguidores);
     this.descripcion = descripcion;
     this.sitioWeb = sitioWeb;
   }
   
-  public DtEmpresa(String nickname, String nombre,
-      String apellido, String email, BufferedImage imagen,
-      String contrasenia,
-      List<DtOfertaLaboral> ofertasColeccion)
-      throws IOException {
-    super(nickname, nombre, apellido, email, imagen,
-        contrasenia, ofertasColeccion);
-  }
   
   public DtEmpresa() {
   }

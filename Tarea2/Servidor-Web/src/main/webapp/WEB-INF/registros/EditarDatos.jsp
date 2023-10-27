@@ -1,6 +1,6 @@
-<%@page import="logica.datatypes.DtUsuario"%>
-<%@page import="logica.datatypes.DtPostulante"%>
-<%@page import="logica.datatypes.DtEmpresa"%>
+<%@page import="logica.webservices.DtUsuario"%>
+<%@page import="logica.webservices.DtPostulante"%>
+<%@page import="logica.webservices.DtEmpresa"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 <!DOCTYPE html>
@@ -78,7 +78,7 @@
 		<div class="col-md-6 mt-3" id="divFechaNacimiento">
 			<label class="form-label"><strong>*Fecha de
 					Nacimiento</strong></label> <input name="fechaNacimiento" type="date"
-				class="form-control" id="inputFechaNacimiento" value="<%=postulante.getFechaNacimiento()%>" required />
+				class="form-control" id="inputFechaNacimiento" value="<%=postulante.getFechaNacimientoString()%>" required />
 		</div>
 		<%
 		}

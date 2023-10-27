@@ -2,12 +2,12 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.time.LocalDate"%>
-<%@page import="logica.datatypes.DtPostulacion"%>
+<%@page import="logica.webservices.DtPostulacion"%>
 <%@page import="model.TipoUsuario"%>
-<%@page import="logica.datatypes.DtUsuario"%>
+<%@page import="logica.webservices.DtUsuario"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DtPostulante"%>
-<%@page import="logica.datatypes.DtOfertaLaboral"%>
+<%@page import="logica.webservices.DtPostulante"%>
+<%@page import="logica.webservices.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -37,7 +37,8 @@
 				<div class="card">
 					<div class="row g-0">
 						<%
-						if (postulante != null && postulante.getImagenBase64() != null) {
+						if (postulante != null && postulante.getImagenBase64() != null)
+						{
 						%>
 						<div class="col-md-4">
 							<img
@@ -52,11 +53,8 @@
 								<h5 class="card-title">Postulación a oferta laboral</h5>
 								<%
 								String perfilUrl = contextPath + "/perfil?nicknameUsuario="
-								    + java.net.URLEncoder.encode(postulante.getNickname(), "UTF-8");
-								LocalDate fecha = postulacion.getFechaPostulacion();
-								Date fechaDate = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
-								SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-								String newParsedDate = outputDateFormat.format(fechaDate);
+										+ java.net.URLEncoder.encode(postulante.getNickname(), "UTF-8");
+								String fecha = postulacion.getFechaPostulacionString();
 								%>
 								<p class="card-text">
 									<strong>Postulante: </strong><a href="<%=perfilUrl%>"><%=postulante.getNombre()%>
@@ -66,7 +64,7 @@
 									<br> <br> <strong>Motivación: </strong>
 									<%=postulacion.getDescripMotivacion()%>
 									<br> <br> <strong>Fecha de postulación: </strong>
-									<%=newParsedDate%>
+									<%=fecha%>
 									<br> <br>
 								</p>
 							</div>
@@ -82,14 +80,15 @@
 							String ofertaUrl = contextPath + "/oferta?nombreOferta=" + java.net.URLEncoder.encode(oferta.getNombre(), "UTF-8");
 							%>
 							<h5 class="card-title text-center">
-								<a href="<%=ofertaUrl%>" class="card-link"><%=oferta.getNombre()%></a></h5>
-						
-							</div>
-                    </div>
-                </div>
-            </div>
-            </div>
-    </main>
+								<a href="<%=ofertaUrl%>" class="card-link"><%=oferta.getNombre()%></a>
+							</h5>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 </body>
 </html>
 

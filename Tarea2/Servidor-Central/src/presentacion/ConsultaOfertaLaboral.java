@@ -426,7 +426,7 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
     limpiarInformacion(); // correccion
     try {
       ofertasLaborales = (controlUsuarioLab
-          .obtenerOfertasEmpresa(empresa))
+          .obtenerOfertasEmpresaUsuario(empresa))
           .toArray(new String[0]);
       DefaultComboBoxModel<String> model;
       model = new DefaultComboBoxModel<String>(

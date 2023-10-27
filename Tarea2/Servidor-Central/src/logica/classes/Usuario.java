@@ -102,4 +102,13 @@ public abstract class Usuario {
   public void removerSeguidor(String nicknameSeguidor) {
     this.seguidores.remove(nicknameSeguidor);
   }
+
+  public Set<String> getSeguidos() {
+    return seguidos;
+  }
+
+  public Set<String> getSeguidores() {
+    return seguidores;
+  }
+  
 }

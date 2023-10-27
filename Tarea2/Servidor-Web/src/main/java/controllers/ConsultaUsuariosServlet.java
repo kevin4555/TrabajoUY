@@ -1,21 +1,19 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.controllers.Fabrica;
-import logica.datatypes.Dtusuario;
-import logica.interfaces.IcontroladorUsuario;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-
-
-import excepciones.UsuarioNoExisteException;
+import logica.webservices.DtUsuario;
+import logica.webservices.IOException_Exception;
+import logica.webservices.Publicador;
+import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException_Exception;
 
 /**
  * Servlet implementation class ConsultaUsuariosServlet
@@ -34,14 +32,16 @@ public class ConsultaUsuariosServlet extends HttpServlet {
 
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		IcontroladorUsuario controladorUsuario = Fabrica.getInstance().obtenerControladorUsuario();
-		ArrayList<String> listaUsuarios = (ArrayList<String>) controladorUsuario.listaDeUsuarios();
+		PublicadorService publicadorService = new PublicadorService();
+		Publicador cliente = publicadorService.getPublicadorPort();
+		
+		ArrayList<String> listaUsuarios =  (ArrayList<String>) cliente.listaDeUsuarios().getItem();
 		Collections.sort(listaUsuarios);
-		ArrayList<Dtusuario> listaResultado = new ArrayList<Dtusuario>();
+		ArrayList<DtUsuario> listaResultado = new ArrayList<DtUsuario>();
 		for (String nick : listaUsuarios) {
 			try {
-				listaResultado.add(controladorUsuario.obtenerDtusuario(nick));
-			} catch (UsuarioNoExisteException e) {
+				listaResultado.add(cliente.obtenerDtusuario(nick));
+			} catch (IOException_Exception | UsuarioNoExisteException_Exception e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 			}

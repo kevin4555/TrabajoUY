@@ -1,106 +1,124 @@
 body {
-  background-color: #fafafa;
+	background-color: #fafafa;
 }
+
 .header-right a {
-  color: #ffffff;
+	color: #ffffff;
 }
 
 .menu {
-  text-align: center;
-  padding: 0.675rem;
-  margin: 0.675rem;
+	text-align: center;
+	padding: 0.675rem;
+	margin: 0.675rem;
 }
 
 nav {
-  background-color: rgb(58, 73, 214);
+	background-color: rgb(58, 73, 214);
 }
 
 footer {
-  height: 4.875rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(58, 73, 214);
-  font-size: 1.485rem;
-  padding: 2.025rem;
-  color: white;
+	height: 4.875rem;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: rgb(58, 73, 214);
+	font-size: 1.485rem;
+	padding: 2.025rem;
+	color: white;
 }
 
 .tablaKeyword {
-  height: 22rem;
+	height: 22rem;
 }
 
 .cabezaTabla {
-  position: sticky;
-  top: 0;
+	position: sticky;
+	top: 0;
 }
 
 .dropdown {
-  display: inline-block;
-  width: auto;
-  max-width: 30rem;
-  margin: 0 auto;
-  padding: 1.35rem;
-  background-color: white;
-  border: 0.0675rem solid #ccc;
-  border-radius: 0.3375rem;
-  box-shadow: 0rem 0rem 0.675rem rgba(0, 0, 0, 0.2);
+	display: inline-block;
+	width: auto;
+	max-width: 30rem;
+	margin: 0 auto;
+	padding: 1.35rem;
+	background-color: white;
+	border: 0.0675rem solid #ccc;
+	border-radius: 0.3375rem;
+	box-shadow: 0rem 0rem 0.675rem rgba(0, 0, 0, 0.2);
 }
 
 .btn .btn-secondary {
-  background-color: rgb(58, 73, 214);
-  border: #000 solid 0.0675rem;
+	background-color: rgb(58, 73, 214);
+	border: #000 solid 0.0675rem;
 }
 
 .volverPaquete {
-  position: absolute;
-  top: 12%;
+	position: absolute;
+	top: 12%;
 }
 
 .login {
-  background-color: #40576d;
-  background-size: cover;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+	background-color: #40576d;
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .formLogin {
-  max-width: 32.0625rem;
-  margin: 0 auto;
-  background-color: #a1a0a0;
-  padding: 2.025rem;
-  border-radius: 0.675rem;
+	max-width: 32.0625rem;
+	margin: 0 auto;
+	background-color: #a1a0a0;
+	padding: 2.025rem;
+	border-radius: 0.675rem;
 }
 
 .imgPerfil {
-  width: 4.05rem;
+	width: 4.05rem;
 }
 
-.dropdown-menu
-{
+.dropdown-menu {
 	--bs-dropdown-item-padding-x: 0rem;
 }
 
-.espacio
-{
+.container {
+	padding-left: 0rem;
+	padding-right: 0rem;
+}
+
+.espacio {
 	padding: 0.03375rem;
 }
 
-.opcUsuario
-{
+.opcUsuario {
 	padding: 0.675rem;
 	min-width: 125px;
 	max-width: 125px;
 }
+
 .selectUsuario {
-  padding: 0.03375rem;
+	padding: 0.03375rem;
 }
 
 .fotoDePerfil {
-  width: 16.875rem;
+	width: 16.875rem;
 }
 
+.cerrarSesionBtn {
+	background-color: rgb(58, 73, 214);
+	border-radius: var(--bs-navbar-toggler-border-radius);
+	padding: 0rem;
+}
 
+.videoContainer {
+	width: 100%;
+	height: 100%;
+	display: none;
+}
 
+.videoBorder
+{
+	background-color: black;
+}

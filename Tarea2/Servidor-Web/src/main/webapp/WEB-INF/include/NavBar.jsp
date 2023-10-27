@@ -1,4 +1,4 @@
-<%@page import="logica.datatypes.DtUsuario"%>
+<%@page import="logica.webservices.DtUsuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 
@@ -43,7 +43,7 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 					%>
 					<li class="nav-item">
 						<%
-						if (usuario.getImagen() != null)
+						if (usuario.getImagenBase64() != null)
 						{
 						%> <img class="rounded-pill imgPerfil"
 						src="data:image/png;base64,<%=usuario.getImagenBase64()%>" /> <%

@@ -1,13 +1,14 @@
 package logica.classes;
 
-import excepciones.OfertaLaboralYaExisteException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import excepciones.OfertaLaboralYaExisteException;
 import logica.datatypes.DtCompraPaquete;
-import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.DtUsuario;
 import logica.datatypes.EstadoOferta;
@@ -95,10 +96,18 @@ public class Empresa extends Usuario {
     for (OfertaLaboral oferta : ofertasLaborales) {
       listaDtofertas.add(oferta.obtenerDtOfertaLaboral());
     }
+    List<String> seguidos = new ArrayList<String>();
+    for(String nickname : this.getSeguidos()) {
+      seguidos.add(nickname);
+    }
+    List<String> seguidores = new ArrayList<String>();
+    for(String nickname : this.getSeguidores()) {
+      seguidores.add(nickname);
+    }
     DtEmpresa resultado = new DtEmpresa(this.nickname,
         this.nombre, this.apellido, this.email,
         this.getImagen(), this.getContrasenia(),
-        listaDtofertas, this.descripcion, this.sitioWeb);
+        listaDtofertas, this.descripcion, this.sitioWeb, seguidos, seguidores);
     return resultado;
   }
   
