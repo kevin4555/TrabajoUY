@@ -47,6 +47,9 @@ public class DtOfertaLaboral implements Serializable {
   private String exposicion;
   @XmlTransient
   private LocalDate fechaFinalizacion;
+  private String fechaAltaString;
+  private String fechaResolucionString;
+  private String fechaFinalizacionString;
   
   /**
    * Contructor.
@@ -88,6 +91,15 @@ public class DtOfertaLaboral implements Serializable {
     this.visitas = visitas;
     this.exposicion = exposicion;
     this.fechaFinalizacion = fechaFinalizacion;
+    this.fechaAltaString = fechaAlta.toString();
+    this.fechaResolucionString = null;
+    this.fechaFinalizacionString = null;
+    if(fechaResolucion != null) {
+      this.fechaResolucionString = fechaResolucion.toString();
+    }
+    if(fechaFinalizacion != null) {
+      this.fechaFinalizacionString = fechaFinalizacion.toString();
+    }
   }
   
   public DtOfertaLaboral() {
@@ -244,45 +256,7 @@ public class DtOfertaLaboral implements Serializable {
   public int getVisitas() {
     return visitas;
   }
-  
-  /**
-   * Contructor.
-   */
-  public DtOfertaLaboral(String nombre, String descripcion,
-      String ciudad, String departamento,
-      String horarioInicial, String horarioFinal,
-      Float remuneracion, LocalDate fechaAlta,
-      List<DtPostulacion> postulaciones,
-      LocalDate fechaResolucion, EstadoOferta estado,
-      BufferedImage imagen, DtPaquetePublicacion paquete,
-      List<String> keywords, Boolean estaVencida,
-      String nombreTipoPublicacion, String empresa)
-      throws IOException {
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.ciudad = ciudad;
-    this.departamento = departamento;
-    this.horarioInicio = horarioInicial;
-    this.horarioFinal = horarioFinal;
-    this.remuneracion = remuneracion;
-    this.fechaAlta = fechaAlta;
-    this.fechaResolucion = fechaResolucion;
-    this.postulaciones = postulaciones;
-    this.estadoOferta = estado;
-    this.imagen = imagen;
-    if (imagen != null) {
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      ImageIO.write(this.imagen, "png", baos);
-      this.imagenBase64 = Base64.getEncoder()
-          .encodeToString(baos.toByteArray());
-    }
-    this.paqueteAsociado = paquete;
-    this.keywords = keywords;
-    this.estaVencida = estaVencida;
-    this.nombreTipoPublicacion = nombreTipoPublicacion;
-    this.empresa = empresa;
-  }
-  
+    
   public void setVisitas(int visitas) {
     this.visitas = visitas;
   }
@@ -302,4 +276,29 @@ public class DtOfertaLaboral implements Serializable {
   public void setFechaFinalizacion(LocalDate fechaFinalizacion) {
     this.fechaFinalizacion = fechaFinalizacion;
   }
+
+  public String getFechaAltaString() {
+    return fechaAltaString;
+  }
+
+  public void setFechaAltaString(String fechaAltaString) {
+    this.fechaAltaString = fechaAltaString;
+  }
+
+  public String getFechaResolucionString() {
+    return fechaResolucionString;
+  }
+
+  public void setFechaResolucionString(String fechaResolucionString) {
+    this.fechaResolucionString = fechaResolucionString;
+  }
+
+  public String getFechaFinalizacionString() {
+    return fechaFinalizacionString;
+  }
+
+  public void setFechaFinalizacionString(String fechaFinalizacionString) {
+    this.fechaFinalizacionString = fechaFinalizacionString;
+  }
+  
 }

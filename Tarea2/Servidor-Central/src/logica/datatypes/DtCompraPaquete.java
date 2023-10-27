@@ -27,9 +27,46 @@ public class DtCompraPaquete implements Serializable {
 	@XmlJavaTypeAdapter(ListAdapter.class)
 	private List<DtCantidadTipoPublicacionRestante> publicacionesRestantes;
 	private DtPaquetePublicacion paquete;
+	private String fechaCompraString;
+	private String fechaVencimientoString;
 
-public void setFechaCompra(LocalDate fechaCompra) {
-	
+
+  
+  
+  
+  /**
+   * Constructor.
+   */
+  
+  public DtCompraPaquete(LocalDate fechaCompra,
+      LocalDate fechaVencimiento,
+      List<DtCantidadTipoPublicacionRestante> publicacionesRestantes,
+      DtPaquetePublicacion paquete) {
+    this.fechaCompra = fechaCompra;
+    this.fechaVencimiento = fechaVencimiento;
+    this.publicacionesRestantes = publicacionesRestantes;
+    this.paquete = paquete;
+    this.fechaCompraString = fechaCompra.toString();
+    this.fechaVencimientoString = fechaVencimiento.toString();
+  }
+  
+  public LocalDate getFechaCompra() {
+    return fechaCompra;
+  }
+  
+  public LocalDate getFechaVencimiento() {
+    return fechaVencimiento;
+  }
+  
+  public List<DtCantidadTipoPublicacionRestante> getPublicacionesRestantes() {
+    return publicacionesRestantes;
+  }
+  
+  public DtPaquetePublicacion getPaquete() {
+    return paquete;
+  }
+  public void setFechaCompra(LocalDate fechaCompra) {
+    
     this.fechaCompra = fechaCompra;
   }
   
@@ -49,37 +86,21 @@ public void setFechaCompra(LocalDate fechaCompra) {
   public void setPaquete(DtPaquetePublicacion paquete) {
     this.paquete = paquete;
   }
-  
-  
-  
-  /**
-   * Constructor.
-   */
-  
-  public DtCompraPaquete(LocalDate fechaCompra,
-      LocalDate fechaVencimiento,
-      List<DtCantidadTipoPublicacionRestante> publicacionesRestantes,
-      DtPaquetePublicacion paquete) {
-    this.fechaCompra = fechaCompra;
-    this.fechaVencimiento = fechaVencimiento;
-    this.publicacionesRestantes = publicacionesRestantes;
-    this.paquete = paquete;
+
+  public String getFechaCompraString() {
+    return fechaCompraString;
   }
-  
-  public LocalDate getFechaCompra() {
-    return fechaCompra;
+
+  public void setFechaCompraString(String fechaCompraString) {
+    this.fechaCompraString = fechaCompraString;
   }
-  
-  public LocalDate getFechaVencimiento() {
-    return fechaVencimiento;
+
+  public String getFechaVencimientoString() {
+    return fechaVencimientoString;
   }
-  
-  public List<DtCantidadTipoPublicacionRestante> getPublicacionesRestantes() {
-    return publicacionesRestantes;
-  }
-  
-  public DtPaquetePublicacion getPaquete() {
-    return paquete;
+
+  public void setFechaVencimientoString(String fechaVencimientoString) {
+    this.fechaVencimientoString = fechaVencimientoString;
   }
   
 }

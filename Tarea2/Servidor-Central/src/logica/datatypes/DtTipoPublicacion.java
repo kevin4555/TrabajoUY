@@ -22,6 +22,7 @@ public class DtTipoPublicacion implements Serializable {
   private float costo;
   @XmlTransient
   private LocalDate fechaAlta;
+  private String fechaAltaString;
   
   /**
    * Contructor.
@@ -36,6 +37,7 @@ public class DtTipoPublicacion implements Serializable {
     this.duracionDia = duracionDia;
     this.costo = costo;
     this.fechaAlta = fechaAlta;
+    this.fechaAltaString = fechaAlta.toString();
   }
   
   public DtTipoPublicacion() {
@@ -87,6 +89,14 @@ public class DtTipoPublicacion implements Serializable {
   
   public LocalDate getFechaAlta() {
     return fechaAlta;
+  }
+
+  public String getFechaAltaString() {
+    return fechaAltaString;
+  }
+
+  public void setFechaAltaString(String fechaAltaString) {
+    this.fechaAltaString = fechaAltaString;
   }
   
 }

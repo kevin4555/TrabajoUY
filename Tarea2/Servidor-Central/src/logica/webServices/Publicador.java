@@ -133,10 +133,11 @@ public class Publicador {
   @WebMethod
   public void altaTipoPublicacion(String nombre,
       String descripcion, String exposicion, int duracion,
-      float costo, LocalDate fechaPub)
+      float costo, String fechaPub)
       throws TipoPublicacionYaExisteException {
+    LocalDate fecha = LocalDate.parse(fechaPub);
     controladorOferta.altaTipoPublicacion(nombre, descripcion, exposicion,
-        duracion, costo, fechaPub);
+        duracion, costo, fecha);
   }
   /* @WebMethod public TipoPublicacion
    * obtenerTipoPublicacion( String nomTpoPublic)
@@ -179,7 +180,7 @@ public class Publicador {
   public void registrarPaquete(String nombre,
       String descripcion, int periodoValDias,
       float descuento, BufferedImage imagen,
-      LocalDate fechaAlta,
+      String fechaAlta,
       DtCantidadTipoPublicacion[] cantidadTipoPublicacion)
       throws PaquetePublicacionYaExisteException,
       TipoPublicacionYaExisteException,
@@ -188,8 +189,9 @@ public class Publicador {
     for (DtCantidadTipoPublicacion elemento : cantidadTipoPublicacion) {
       listaDeDtcantidadTipoPublicacion.add(elemento);
     }
+    LocalDate fecha = LocalDate.parse(fechaAlta);
     controladorOferta.registrarPaquete(
-        nombre, descripcion, periodoValDias, descuento, imagen, fechaAlta,
+        nombre, descripcion, periodoValDias, descuento, imagen, fecha,
         listaDeDtcantidadTipoPublicacion);
   }
   /* @WebMethod public PaquetePublicacion
@@ -349,23 +351,24 @@ public class Publicador {
   
   @WebMethod
   public void registrarPostulacion(String cvReducido,
-      String motivacion, LocalDate fechaPostulacion,
+      String motivacion, String fechaPostulacion,
       String nickname, String nomOferta, String linkVideo)
       throws UsuarioNoExisteException,
       OfertaLaboralNoExisteException,
       UsuarioYaExistePostulacion {
+    LocalDate fecha = LocalDate.parse(fechaPostulacion);
     controladorUsuario.registrarPostulacion(cvReducido, motivacion,
-        fechaPostulacion, nickname, nomOferta, linkVideo);
+        fecha, nickname, nomOferta, linkVideo);
   }
   
   @WebMethod
   public void altaPostulante(String nickname, String nombre,
-      String apellido, String email, LocalDate fechaNac,
+      String apellido, String email, String fechaNac,
       String nacionalidad, BufferedImage imagen,
       String constrasenia) throws UsuarioYaExisteException,
       UsuarioEmailRepetidoException {
-    controladorUsuario.altaEmpresa(nickname, nombre, apellido, email, email,
-        nacionalidad, imagen, constrasenia);
+    LocalDate fecha = LocalDate.parse(fechaNac);
+    controladorUsuario.altaPostulante(nickname, nombre, apellido, email, fecha, nacionalidad, imagen, constrasenia);
   }
   
   @WebMethod
@@ -405,11 +408,12 @@ public class Publicador {
   @WebMethod
   public void editarPostulante(String nickname,
       String nombre, String apellido,
-      LocalDate fechaNacimiento, String nacionalidad,
+      String fechaNacimiento, String nacionalidad,
       BufferedImage imagen, String contrasenia)
       throws UsuarioNoExisteException {
+    LocalDate fecha = LocalDate.parse(fechaNacimiento);
     controladorUsuario.editarPostulante(nickname, nombre, apellido,
-        fechaNacimiento, nacionalidad, imagen, contrasenia);
+        fecha, nacionalidad, imagen, contrasenia);
   }
   
   @WebMethod
@@ -470,11 +474,12 @@ public class Publicador {
   
   @WebMethod
   public void comprarPaquete(String nicknameEmpresa,
-      String nombrePaquete, LocalDate fechaCompra)
+      String nombrePaquete, String fechaCompra)
       throws UsuarioNoExisteException,
       PaquetePublicacionNoExisteException {
+    LocalDate fecha = LocalDate.parse(fechaCompra);
     controladorUsuario.comprarPaquete(nicknameEmpresa, nombrePaquete,
-        fechaCompra);
+        fecha);
   }
   
   @WebMethod

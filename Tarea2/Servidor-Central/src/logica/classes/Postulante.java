@@ -69,10 +69,18 @@ public class Postulante extends Usuario {
   
   public DtPostulante obtenerDtpostulante()
       throws IOException {
+    List<String> seguidos = new ArrayList<String>();
+    for(String nickname : this.getSeguidos()) {
+      seguidos.add(nickname);
+    }
+    List<String> seguidores = new ArrayList<String>();
+    for(String nickname : this.getSeguidores()) {
+      seguidores.add(nickname);
+    }
     return new DtPostulante(this.nickname, this.nombre,
         this.apellido, this.email, this.getImagen(),
         this.getContrasenia(), this.obtenerDtofertas(),
-        this.fechaNacimiento, this.nacionalidad);
+        this.fechaNacimiento, this.nacionalidad, seguidos, seguidores);
   }
   
   public void agregarPostulacion(Postulacion postulacion) {

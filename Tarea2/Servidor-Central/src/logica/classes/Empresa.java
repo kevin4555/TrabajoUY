@@ -99,10 +99,18 @@ public class Empresa extends Usuario {
     for (OfertaLaboral oferta : ofertasLaborales) {
       listaDtofertas.add(oferta.obtenerDtOfertaLaboral());
     }
+    List<String> seguidos = new ArrayList<String>();
+    for(String nickname : this.getSeguidos()) {
+      seguidos.add(nickname);
+    }
+    List<String> seguidores = new ArrayList<String>();
+    for(String nickname : this.getSeguidores()) {
+      seguidores.add(nickname);
+    }
     DtEmpresa resultado = new DtEmpresa(this.nickname,
         this.nombre, this.apellido, this.email,
         this.getImagen(), this.getContrasenia(),
-        listaDtofertas, this.descripcion, this.sitioWeb);
+        listaDtofertas, this.descripcion, this.sitioWeb, seguidos, seguidores);
     return resultado;
   }
   

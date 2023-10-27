@@ -27,6 +27,8 @@ public class DtPostulacion implements Serializable {
   
   private String linkVideo;
   
+  private String fechaPostulacionString;
+  
   /**
    * Contructor.
    */
@@ -40,6 +42,7 @@ public class DtPostulacion implements Serializable {
     this.cvReducido = cvReducido;
     this.nombreOferta = nombreOferta;
     this.setLinkVideo(linkVideo);
+    this.fechaPostulacionString = fechaPostulacion.toString();
   }
   
   public DtPostulacion() {
@@ -104,6 +107,14 @@ public String getLinkVideo() {
  */
 public void setLinkVideo(String linkVideo) {
 	this.linkVideo = linkVideo;
+}
+
+public String getFechaPostulacionString() {
+  return fechaPostulacionString;
+}
+
+public void setFechaPostulacionString(String fechaPostulacionString) {
+  this.fechaPostulacionString = fechaPostulacionString;
 }
   
 }
