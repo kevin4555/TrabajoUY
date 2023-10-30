@@ -128,5 +128,21 @@ public class DtUsuario implements Serializable {
   public String getImagenBase64() {
     return imagenBase64;
   }
+
+  public List<String> getSeguidos() {
+    return seguidos;
+  }
+
+  public void setSeguidos(List<String> seguidos) {
+    this.seguidos = seguidos;
+  }
+
+  public List<String> getSeguidores() {
+    return seguidores;
+  }
+
+  public void setSeguidores(List<String> seguidores) {
+    this.seguidores = seguidores;
+  }
   
 }
