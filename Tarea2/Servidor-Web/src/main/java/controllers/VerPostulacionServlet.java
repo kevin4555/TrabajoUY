@@ -16,9 +16,7 @@ import logica.webservices.UsuarioNoExistePostulacion_Exception;
 
 import java.io.IOException;
 
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioNoExisteException;
-import excepciones.UsuarioNoExistePostulacion;
+
 
 /**
  * Servlet implementation class VerPostulacionServlet
@@ -55,9 +53,9 @@ public class VerPostulacionServlet extends HttpServlet
 
 		try
 		{
-			DtUsuario postulante = port.obtenerDtusuario(nicknamePostulante);
+			DtUsuario postulante = port.obtenerDtUsuario(nicknamePostulante);
 			DtOfertaLaboral dtOferta = port.obtenerDtOfertaLaboral(nombreOferta);
-			DtPostulacion postulacion = port.obtenerDtpostulacion(nicknamePostulante, nombreOferta);
+			DtPostulacion postulacion = port.obtenerDtPostulacion(nicknamePostulante, nombreOferta);
 
 			request.setAttribute("ofertas", dtOferta);
 			request.setAttribute("postulacion", postulacion);

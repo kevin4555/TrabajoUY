@@ -1,26 +1,23 @@
 package controllers;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.PublicadorService;
 import logica.webservices.DtOfertaLaboral;
 import logica.webservices.DtUsuario;
 import logica.webservices.IOException_Exception;
 import logica.webservices.OfertaLaboralNoExisteException_Exception;
-import logica.webservices.Publicador;
+import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException_Exception;
+import logica.webservices.UsuarioYaExistePostulacion_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
-import java.io.IOException;
-import java.time.LocalDate;
-
-import excepciones.OfertaLaboralNoExisteException;
-import excepciones.UsuarioNoExisteException;
-import excepciones.UsuarioYaExistePostulacion;
 
 /**
  * Servlet implementation class PostulacionServlet
@@ -58,22 +55,23 @@ public class PostulacionServlet extends HttpServlet
 		String cVReducido = request.getParameter("cVReducido");
 		String motivacion = request.getParameter("motivacion");
 		String video = request.getParameter("video");
+		String fecha = "";
 		DtUsuario usuario = (DtUsuario) sesion.getAttribute("usuarioLogueado");
 
+		
 		try
 		{
-			port.registrarPostulacion(cVReducido, motivacion, LocalDate.now(), usuario.getNickname(), nombreOferta,
+			port.registrarPostulacion(cVReducido, motivacion, fecha, usuario.getNickname(), nombreOferta,
 					video);
 			String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 			response.sendRedirect(url);
 			return;
 		}
-		catch (UsuarioNoExisteException | OfertaLaboralNoExisteException | UsuarioYaExistePostulacion e)
+		catch (OfertaLaboralNoExisteException_Exception | UsuarioNoExisteException_Exception | UsuarioYaExistePostulacion_Exception e)
 		{
 			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -111,7 +109,7 @@ public class PostulacionServlet extends HttpServlet
 				request.getRequestDispatcher("/WEB-INF/registros/Postulacion.jsp").forward(request, response);
 			}
 		}
-		catch (OfertaLaboralNoExisteException | IOException_Exception | OfertaLaboralNoExisteException_Exception e)
+		catch (IOException_Exception | OfertaLaboralNoExisteException_Exception e)
 		{
 			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();

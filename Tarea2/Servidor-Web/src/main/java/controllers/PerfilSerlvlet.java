@@ -3,21 +3,19 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import excepciones.UsuarioNoExisteException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.DtPostulacion;
+import logica.webservices.DtCompraPaquete;
+import logica.webservices.DtEmpresa;
 import logica.webservices.DtOfertaLaboral;
+import logica.webservices.DtPostulacion;
+import logica.webservices.DtPostulante;
 import logica.webservices.DtUsuario;
 import logica.webservices.IOException_Exception;
-import logica.webservices.DtEmpresa;
-import logica.webservices.DtPostulante;
-import logica.webservices.DtCompraPaquete;
-import logica.webservices.Publicador;
 import logica.webservices.PublicadorService;
 import logica.webservices.UsuarioNoExisteException_Exception;
 
@@ -39,7 +37,7 @@ public class PerfilSerlvlet extends HttpServlet
 	}
 
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, UsuarioNoExisteException
+			throws ServletException, IOException
 	{
 		HttpSession sesion = request.getSession();
 		DtUsuario usuarioLogueado = (DtUsuario) sesion.getAttribute("usuarioLogueado");
@@ -50,18 +48,18 @@ public class PerfilSerlvlet extends HttpServlet
 
 		try
 		{
-			DtUsuario usuario = port.obtenerDtusuario(nicknameUsuario);
+			DtUsuario usuario = port.obtenerDtUsuario(nicknameUsuario);
 			request.setAttribute("usuario", usuario);
 			if (usuario instanceof DtEmpresa)
 			{
 				ArrayList<DtOfertaLaboral> ofertasConfirmadas = (ArrayList<DtOfertaLaboral>) port
-						.obtenerDtofertasConfirmadasDeEmpresa(nicknameUsuario).getItem();
+						.obtenerDtOfertasConfirmadasDeEmpresa(nicknameUsuario).getItem();
 				
 				ArrayList<DtOfertaLaboral> ofertasIngresadas = (ArrayList<DtOfertaLaboral>) port
-						.obtenerDtofertasIngresadasDeEmpresa(nicknameUsuario).getItem();
+						.obtenerDtOfertasIngresadasDeEmpresa(nicknameUsuario).getItem();
 				
 				ArrayList<DtOfertaLaboral> ofertasRechazadas = (ArrayList<DtOfertaLaboral>) port
-						.obtenerDtofertasRechazadasDeEmpresa(nicknameUsuario).getItem();
+						.obtenerDtOfertasRechazadasDeEmpresa(nicknameUsuario).getItem();
 				
 				ArrayList<DtCompraPaquete> compraPaquetes = (ArrayList<DtCompraPaquete>) port
 						.obtenerDtCompraPaqueteDeEmpresa(nicknameUsuario).getItem();
@@ -76,7 +74,7 @@ public class PerfilSerlvlet extends HttpServlet
 			if (usuario instanceof DtPostulante)
 			{
 				ArrayList<DtPostulacion> postulaciones = (ArrayList<DtPostulacion>) port
-						.obtenerDtpostulacionesDePostulante(nicknameUsuario).getItem();
+						.obtenerDtPostulacionesDePostulante(nicknameUsuario).getItem();
 
 				request.setAttribute("postulaciones", postulaciones);
 				request.setAttribute("tipoUsuario", "postulante");
@@ -103,15 +101,11 @@ public class PerfilSerlvlet extends HttpServlet
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		try
-		{
+
 			procesarRequest(request, response);
-		}
-		catch (ServletException | IOException | UsuarioNoExisteException e)
-		{
+
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 
 	/**
