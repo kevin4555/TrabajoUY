@@ -29,23 +29,13 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
      * @return
-     *     returns logica.webservices.DtCompraPaqueteArray
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
+     *     returns net.java.dev.jaxb.array.StringArray
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerDtCompraPaqueteDeEmpresaRequest", output = "http://webServices.logica/Publicador/obtenerDtCompraPaqueteDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtCompraPaqueteDeEmpresa/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtCompraPaqueteDeEmpresa/Fault/IOException")
-    })
-    public DtCompraPaqueteArray obtenerDtCompraPaqueteDeEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
-    ;
+    @Action(input = "http://webServices.logica/Publicador/listarKeywordsRequest", output = "http://webServices.logica/Publicador/listarKeywordsResponse")
+    public StringArray listarKeywords();
 
     /**
      * 
@@ -54,8 +44,65 @@ public interface Publicador {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/listarTipoDePublicacionesRequest", output = "http://webServices.logica/Publicador/listarTipoDePublicacionesResponse")
-    public StringArray listarTipoDePublicaciones();
+    @Action(input = "http://webServices.logica/Publicador/listarEmpresasRequest", output = "http://webServices.logica/Publicador/listarEmpresasResponse")
+    public StringArray listarEmpresas();
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg10
+     * @param arg11
+     * @param arg12
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @param arg8
+     * @param arg9
+     * @throws KeywordNoExisteException_Exception
+     * @throws OfertaLaboralYaExisteException_Exception
+     * @throws TipoPublicacionNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webServices.logica/Publicador/altaOfertaLaboralRequest", output = "http://webServices.logica/Publicador/altaOfertaLaboralResponse", fault = {
+        @FaultAction(className = OfertaLaboralYaExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaOfertaLaboral/Fault/OfertaLaboralYaExisteException"),
+        @FaultAction(className = TipoPublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaOfertaLaboral/Fault/TipoPublicacionNoExisteException"),
+        @FaultAction(className = KeywordNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaOfertaLaboral/Fault/KeywordNoExisteException"),
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaOfertaLaboral/Fault/UsuarioNoExisteException")
+    })
+    public void altaOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        float arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7,
+        @WebParam(name = "arg8", partName = "arg8")
+        String arg8,
+        @WebParam(name = "arg9", partName = "arg9")
+        String arg9,
+        @WebParam(name = "arg10", partName = "arg10")
+        StringArray arg10,
+        @WebParam(name = "arg11", partName = "arg11")
+        String arg11,
+        @WebParam(name = "arg12", partName = "arg12")
+        String arg12)
+        throws KeywordNoExisteException_Exception, OfertaLaboralYaExisteException_Exception, TipoPublicacionNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
 
     /**
      * 
@@ -82,24 +129,6 @@ public interface Publicador {
         @WebParam(name = "arg2", partName = "arg2")
         String arg2)
         throws PaquetePublicacionNoExisteException_Exception, PaquetePublicacionYaFueComprado_Exception, TipoDePublicacionYaFueIngresado_Exception, TipoPublicacionNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/listaOfertasUsuarioRequest", output = "http://webServices.logica/Publicador/listaOfertasUsuarioResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/listaOfertasUsuario/Fault/UsuarioNoExisteException")
-    })
-    public StringArray listaOfertasUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws UsuarioNoExisteException_Exception
     ;
 
     /**
@@ -148,6 +177,24 @@ public interface Publicador {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/listaOfertasUsuarioRequest", output = "http://webServices.logica/Publicador/listaOfertasUsuarioResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/listaOfertasUsuario/Fault/UsuarioNoExisteException")
+    })
+    public StringArray listaOfertasUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @param arg1
      * @param arg2
      * @param arg3
@@ -186,6 +233,284 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
+     *     returns logica.webservices.DtCompraPaqueteArray
+     * @throws IOException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/obtenerDtCompraPaqueteDeEmpresaRequest", output = "http://webServices.logica/Publicador/obtenerDtCompraPaqueteDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtCompraPaqueteDeEmpresa/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtCompraPaqueteDeEmpresa/Fault/IOException")
+    })
+    public DtCompraPaqueteArray obtenerDtCompraPaqueteDeEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/listarTipoDePublicacionesRequest", output = "http://webServices.logica/Publicador/listarTipoDePublicacionesResponse")
+    public StringArray listarTipoDePublicaciones();
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @throws TipoPublicacionYaExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webServices.logica/Publicador/altaTipoPublicacionRequest", output = "http://webServices.logica/Publicador/altaTipoPublicacionResponse", fault = {
+        @FaultAction(className = TipoPublicacionYaExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaTipoPublicacion/Fault/TipoPublicacionYaExisteException")
+    })
+    public void altaTipoPublicacion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        int arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        float arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5)
+        throws TipoPublicacionYaExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws PaquetePublicacionNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/listarTipoPublicacionDePaqueteRequest", output = "http://webServices.logica/Publicador/listarTipoPublicacionDePaqueteResponse", fault = {
+        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/listarTipoPublicacionDePaquete/Fault/PaquetePublicacionNoExisteException")
+    })
+    public StringArray listarTipoPublicacionDePaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PaquetePublicacionNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/obtenerOfertasEmpresaUsuarioRequest", output = "http://webServices.logica/Publicador/obtenerOfertasEmpresaUsuarioResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerOfertasEmpresaUsuario/Fault/UsuarioNoExisteException")
+    })
+    public StringArray obtenerOfertasEmpresaUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.webservices.DtTipoPublicacion
+     * @throws TipoPublicacionNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/obtenerDtTipoPublicacionRequest", output = "http://webServices.logica/Publicador/obtenerDtTipoPublicacionResponse", fault = {
+        @FaultAction(className = TipoPublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtTipoPublicacion/Fault/TipoPublicacionNoExisteException")
+    })
+    public DtTipoPublicacion obtenerDtTipoPublicacion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws TipoPublicacionNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @throws OfertaLaboralNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webServices.logica/Publicador/aceptarRechazarOfertaLaboralRequest", output = "http://webServices.logica/Publicador/aceptarRechazarOfertaLaboralResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/aceptarRechazarOfertaLaboral/Fault/OfertaLaboralNoExisteException")
+    })
+    public void aceptarRechazarOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        EstadoOferta arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        LocalDate arg2)
+        throws OfertaLaboralNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @throws OfertaLaboralNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     * @throws UsuarioYaExistePostulacion_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webServices.logica/Publicador/registrarPostulacionRequest", output = "http://webServices.logica/Publicador/registrarPostulacionResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/registrarPostulacion/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/registrarPostulacion/Fault/OfertaLaboralNoExisteException"),
+        @FaultAction(className = UsuarioYaExistePostulacion_Exception.class, value = "http://webServices.logica/Publicador/registrarPostulacion/Fault/UsuarioYaExistePostulacion")
+    })
+    public void registrarPostulacion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5)
+        throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception, UsuarioYaExistePostulacion_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/listarPostulantesRequest", output = "http://webServices.logica/Publicador/listarPostulantesResponse")
+    public StringArray listarPostulantes();
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns boolean
+     * @throws OfertaLaboralNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/estaPostuladoRequest", output = "http://webServices.logica/Publicador/estaPostuladoResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/estaPostulado/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/estaPostulado/Fault/OfertaLaboralNoExisteException")
+    })
+    public boolean estaPostulado(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webServices.logica/Publicador/editarPostulanteRequest", output = "http://webServices.logica/Publicador/editarPostulanteResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/editarPostulante/Fault/UsuarioNoExisteException")
+    })
+    public void editarPostulante(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        BufferedImage arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webServices.logica/Publicador/editarEmpresaRequest", output = "http://webServices.logica/Publicador/editarEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/editarEmpresa/Fault/UsuarioNoExisteException")
+    })
+    public void editarEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        BufferedImage arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/listarPaquetesRequest", output = "http://webServices.logica/Publicador/listarPaquetesResponse")
+    public StringArray listarPaquetes();
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns logica.webservices.DtOfertaLaboralArray
      * @throws IOException_Exception
      * @throws UsuarioNoExisteException_Exception
@@ -201,16 +526,6 @@ public interface Publicador {
         String arg0)
         throws IOException_Exception, UsuarioNoExisteException_Exception
     ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/listarPaquetesRequest", output = "http://webServices.logica/Publicador/listarPaquetesResponse")
-    public StringArray listarPaquetes();
 
     /**
      * 
@@ -292,321 +607,6 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws PaquetePublicacionNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/listarTipoPublicacionDePaqueteRequest", output = "http://webServices.logica/Publicador/listarTipoPublicacionDePaqueteResponse", fault = {
-        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/listarTipoPublicacionDePaquete/Fault/PaquetePublicacionNoExisteException")
-    })
-    public StringArray listarTipoPublicacionDePaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws PaquetePublicacionNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerOfertasEmpresaUsuarioRequest", output = "http://webServices.logica/Publicador/obtenerOfertasEmpresaUsuarioResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerOfertasEmpresaUsuario/Fault/UsuarioNoExisteException")
-    })
-    public StringArray obtenerOfertasEmpresaUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @throws TipoPublicacionYaExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webServices.logica/Publicador/altaTipoPublicacionRequest", output = "http://webServices.logica/Publicador/altaTipoPublicacionResponse", fault = {
-        @FaultAction(className = TipoPublicacionYaExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaTipoPublicacion/Fault/TipoPublicacionYaExisteException")
-    })
-    public void altaTipoPublicacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        int arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        float arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5)
-        throws TipoPublicacionYaExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @throws OfertaLaboralNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webServices.logica/Publicador/aceptarRechazarOfertaLaboralRequest", output = "http://webServices.logica/Publicador/aceptarRechazarOfertaLaboralResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/aceptarRechazarOfertaLaboral/Fault/OfertaLaboralNoExisteException")
-    })
-    public void aceptarRechazarOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        EstadoOferta arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        LocalDate arg2)
-        throws OfertaLaboralNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @throws OfertaLaboralNoExisteException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     * @throws UsuarioYaExistePostulacion_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webServices.logica/Publicador/registrarPostulacionRequest", output = "http://webServices.logica/Publicador/registrarPostulacionResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/registrarPostulacion/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/registrarPostulacion/Fault/OfertaLaboralNoExisteException"),
-        @FaultAction(className = UsuarioYaExistePostulacion_Exception.class, value = "http://webServices.logica/Publicador/registrarPostulacion/Fault/UsuarioYaExistePostulacion")
-    })
-    public void registrarPostulacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5)
-        throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception, UsuarioYaExistePostulacion_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.webservices.DtTipoPublicacion
-     * @throws TipoPublicacionNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerDtTipoPublicacionRequest", output = "http://webServices.logica/Publicador/obtenerDtTipoPublicacionResponse", fault = {
-        @FaultAction(className = TipoPublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtTipoPublicacion/Fault/TipoPublicacionNoExisteException")
-    })
-    public DtTipoPublicacion obtenerDtTipoPublicacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws TipoPublicacionNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/listarKeywordsRequest", output = "http://webServices.logica/Publicador/listarKeywordsResponse")
-    public StringArray listarKeywords();
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/listarEmpresasRequest", output = "http://webServices.logica/Publicador/listarEmpresasResponse")
-    public StringArray listarEmpresas();
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg10
-     * @param arg11
-     * @param arg12
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @param arg7
-     * @param arg8
-     * @param arg9
-     * @throws KeywordNoExisteException_Exception
-     * @throws OfertaLaboralYaExisteException_Exception
-     * @throws TipoPublicacionNoExisteException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webServices.logica/Publicador/altaOfertaLaboralRequest", output = "http://webServices.logica/Publicador/altaOfertaLaboralResponse", fault = {
-        @FaultAction(className = OfertaLaboralYaExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaOfertaLaboral/Fault/OfertaLaboralYaExisteException"),
-        @FaultAction(className = TipoPublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaOfertaLaboral/Fault/TipoPublicacionNoExisteException"),
-        @FaultAction(className = KeywordNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaOfertaLaboral/Fault/KeywordNoExisteException"),
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/altaOfertaLaboral/Fault/UsuarioNoExisteException")
-    })
-    public void altaOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        float arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7,
-        @WebParam(name = "arg8", partName = "arg8")
-        String arg8,
-        @WebParam(name = "arg9", partName = "arg9")
-        String arg9,
-        @WebParam(name = "arg10", partName = "arg10")
-        StringArray arg10,
-        @WebParam(name = "arg11", partName = "arg11")
-        String arg11,
-        @WebParam(name = "arg12", partName = "arg12")
-        String arg12)
-        throws KeywordNoExisteException_Exception, OfertaLaboralYaExisteException_Exception, TipoPublicacionNoExisteException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webServices.logica/Publicador/editarPostulanteRequest", output = "http://webServices.logica/Publicador/editarPostulanteResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/editarPostulante/Fault/UsuarioNoExisteException")
-    })
-    public void editarPostulante(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        BufferedImage arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webServices.logica/Publicador/editarEmpresaRequest", output = "http://webServices.logica/Publicador/editarEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/editarEmpresa/Fault/UsuarioNoExisteException")
-    })
-    public void editarEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        BufferedImage arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/listarPostulantesRequest", output = "http://webServices.logica/Publicador/listarPostulantesResponse")
-    public StringArray listarPostulantes();
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns boolean
-     * @throws OfertaLaboralNoExisteException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/estaPostuladoRequest", output = "http://webServices.logica/Publicador/estaPostuladoResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/estaPostulado/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/estaPostulado/Fault/OfertaLaboralNoExisteException")
-    })
-    public boolean estaPostulado(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
      *     returns logica.webservices.DtUsuario
      * @throws IOException_Exception
      * @throws UsuarioNoExisteException_Exception
@@ -637,40 +637,36 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns logica.webservices.DtOfertaLaboralArray
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
+     *     returns boolean
+     * @throws OfertaLaboralNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerDtOfertasIngresadasDeEmpresaRequest", output = "http://webServices.logica/Publicador/obtenerDtOfertasIngresadasDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasIngresadasDeEmpresa/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasIngresadasDeEmpresa/Fault/IOException")
+    @Action(input = "http://webServices.logica/Publicador/estaCompradoPorPaqueteOfertaRequest", output = "http://webServices.logica/Publicador/estaCompradoPorPaqueteOfertaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/estaCompradoPorPaqueteOferta/Fault/OfertaLaboralNoExisteException")
     })
-    public DtOfertaLaboralArray obtenerDtOfertasIngresadasDeEmpresa(
+    public boolean estaCompradoPorPaqueteOferta(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
+        throws OfertaLaboralNoExisteException_Exception
     ;
 
     /**
      * 
      * @param arg0
      * @return
-     *     returns logica.webservices.DtOfertaLaboralArray
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
+     *     returns logica.webservices.DtPostulacionArray
+     * @throws OfertaLaboralNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerDtOfertasRechazadasDeEmpresaRequest", output = "http://webServices.logica/Publicador/obtenerDtOfertasRechazadasDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasRechazadasDeEmpresa/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasRechazadasDeEmpresa/Fault/IOException")
+    @Action(input = "http://webServices.logica/Publicador/obtenerDtPostulacionesDeOfertaRequest", output = "http://webServices.logica/Publicador/obtenerDtPostulacionesDeOfertaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtPostulacionesDeOferta/Fault/OfertaLaboralNoExisteException")
     })
-    public DtOfertaLaboralArray obtenerDtOfertasRechazadasDeEmpresa(
+    public DtPostulacionArray obtenerDtPostulacionesDeOferta(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
+        throws OfertaLaboralNoExisteException_Exception
     ;
 
     /**
@@ -711,65 +707,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns boolean
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/confirmarContraseniaRequest", output = "http://webServices.logica/Publicador/confirmarContraseniaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/confirmarContrasenia/Fault/UsuarioNoExisteException")
-    })
-    public boolean confirmarContrasenia(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.webservices.DtPaquetePublicacionArray
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerDtPaquetesDeEmpresaRequest", output = "http://webServices.logica/Publicador/obtenerDtPaquetesDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtPaquetesDeEmpresa/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtPaquetesDeEmpresa/Fault/IOException")
-    })
-    public DtPaquetePublicacionArray obtenerDtPaquetesDeEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.webservices.DtOfertaLaboralArray
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerDtOfertasPorKeywordRequest", output = "http://webServices.logica/Publicador/obtenerDtOfertasPorKeywordResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasPorKeyword/Fault/IOException")
-    })
-    public DtOfertaLaboralArray obtenerDtOfertasPorKeyword(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception
-    ;
-
-    /**
-     * 
      * @return
      *     returns logica.webservices.DtOfertaLaboralArray
      * @throws IOException_Exception
@@ -781,34 +718,6 @@ public interface Publicador {
     })
     public DtOfertaLaboralArray obtenerDtOfertasConfirmadas()
         throws IOException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/listarPaquetesNoCompradosRequest", output = "http://webServices.logica/Publicador/listarPaquetesNoCompradosResponse")
-    public StringArray listarPaquetesNoComprados();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.webservices.DtPostulacionArray
-     * @throws OfertaLaboralNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerDtPostulacionesDeOfertaRequest", output = "http://webServices.logica/Publicador/obtenerDtPostulacionesDeOfertaResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtPostulacionesDeOferta/Fault/OfertaLaboralNoExisteException")
-    })
-    public DtPostulacionArray obtenerDtPostulacionesDeOferta(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoExisteException_Exception
     ;
 
     /**
@@ -832,19 +741,40 @@ public interface Publicador {
     /**
      * 
      * @param arg0
+     * @param arg1
      * @return
      *     returns boolean
-     * @throws PaquetePublicacionNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/estaCompradoPaqueteRequest", output = "http://webServices.logica/Publicador/estaCompradoPaqueteResponse", fault = {
-        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/estaCompradoPaquete/Fault/PaquetePublicacionNoExisteException")
+    @Action(input = "http://webServices.logica/Publicador/confirmarContraseniaRequest", output = "http://webServices.logica/Publicador/confirmarContraseniaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/confirmarContrasenia/Fault/UsuarioNoExisteException")
     })
-    public boolean estaCompradoPaquete(
+    public boolean confirmarContrasenia(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.webservices.DtOfertaLaboralArray
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/obtenerDtOfertasPorKeywordRequest", output = "http://webServices.logica/Publicador/obtenerDtOfertasPorKeywordResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasPorKeyword/Fault/IOException")
+    })
+    public DtOfertaLaboralArray obtenerDtOfertasPorKeyword(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws PaquetePublicacionNoExisteException_Exception
+        throws IOException_Exception
     ;
 
     /**
@@ -871,20 +801,32 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
      * @return
-     *     returns boolean
-     * @throws OfertaLaboralNoExisteException_Exception
+     *     returns net.java.dev.jaxb.array.StringArray
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/estaCompradoPorPaqueteOfertaRequest", output = "http://webServices.logica/Publicador/estaCompradoPorPaqueteOfertaResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/estaCompradoPorPaqueteOferta/Fault/OfertaLaboralNoExisteException")
+    @Action(input = "http://webServices.logica/Publicador/listarPaquetesNoCompradosRequest", output = "http://webServices.logica/Publicador/listarPaquetesNoCompradosResponse")
+    public StringArray listarPaquetesNoComprados();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.webservices.DtPaquetePublicacionArray
+     * @throws IOException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/obtenerDtPaquetesDeEmpresaRequest", output = "http://webServices.logica/Publicador/obtenerDtPaquetesDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtPaquetesDeEmpresa/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtPaquetesDeEmpresa/Fault/IOException")
     })
-    public boolean estaCompradoPorPaqueteOferta(
+    public DtPaquetePublicacionArray obtenerDtPaquetesDeEmpresa(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws OfertaLaboralNoExisteException_Exception
+        throws IOException_Exception, UsuarioNoExisteException_Exception
     ;
 
     /**
@@ -907,61 +849,60 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
      * @return
-     *     returns logica.webservices.DtUsuarioArray
-     * @throws IOException_Exception
+     *     returns boolean
+     * @throws PaquetePublicacionNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webServices.logica/Publicador/obtenerDtUsuariosRequest", output = "http://webServices.logica/Publicador/obtenerDtUsuariosResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtUsuarios/Fault/IOException")
+    @Action(input = "http://webServices.logica/Publicador/estaCompradoPaqueteRequest", output = "http://webServices.logica/Publicador/estaCompradoPaqueteResponse", fault = {
+        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/estaCompradoPaquete/Fault/PaquetePublicacionNoExisteException")
     })
-    public DtUsuarioArray obtenerDtUsuarios()
-        throws IOException_Exception
+    public boolean estaCompradoPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PaquetePublicacionNoExisteException_Exception
     ;
 
     /**
      * 
      * @param arg0
-     * @param arg1
-     * @param arg2
-     * @throws PaquetePublicacionNoExisteException_Exception
+     * @return
+     *     returns logica.webservices.DtOfertaLaboralArray
+     * @throws IOException_Exception
      * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
-    @Action(input = "http://webServices.logica/Publicador/comprarPaqueteRequest", output = "http://webServices.logica/Publicador/comprarPaqueteResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/comprarPaquete/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/comprarPaquete/Fault/PaquetePublicacionNoExisteException")
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/obtenerDtOfertasRechazadasDeEmpresaRequest", output = "http://webServices.logica/Publicador/obtenerDtOfertasRechazadasDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasRechazadasDeEmpresa/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasRechazadasDeEmpresa/Fault/IOException")
     })
-    public void comprarPaquete(
+    public DtOfertaLaboralArray obtenerDtOfertasRechazadasDeEmpresa(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2)
-        throws PaquetePublicacionNoExisteException_Exception, UsuarioNoExisteException_Exception
+        String arg0)
+        throws IOException_Exception, UsuarioNoExisteException_Exception
     ;
 
     /**
      * 
      * @param arg0
-     * @param arg1
-     * @param arg2
+     * @return
+     *     returns logica.webservices.DtOfertaLaboralArray
+     * @throws IOException_Exception
      * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
-    @Action(input = "http://webServices.logica/Publicador/editarDatosBasicosRequest", output = "http://webServices.logica/Publicador/editarDatosBasicosResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/editarDatosBasicos/Fault/UsuarioNoExisteException")
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/obtenerDtOfertasIngresadasDeEmpresaRequest", output = "http://webServices.logica/Publicador/obtenerDtOfertasIngresadasDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasIngresadasDeEmpresa/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtOfertasIngresadasDeEmpresa/Fault/IOException")
     })
-    public void editarDatosBasicos(
+    public DtOfertaLaboralArray obtenerDtOfertasIngresadasDeEmpresa(
         @WebParam(name = "arg0", partName = "arg0")
-        DtUsuario arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2)
-        throws UsuarioNoExisteException_Exception
+        String arg0)
+        throws IOException_Exception, UsuarioNoExisteException_Exception
     ;
 
     /**
@@ -992,6 +933,65 @@ public interface Publicador {
     })
     public DtPaquetePublicacionArray listarDtPaquetes()
         throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns logica.webservices.DtUsuarioArray
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webServices.logica/Publicador/obtenerDtUsuariosRequest", output = "http://webServices.logica/Publicador/obtenerDtUsuariosResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webServices.logica/Publicador/obtenerDtUsuarios/Fault/IOException")
+    })
+    public DtUsuarioArray obtenerDtUsuarios()
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webServices.logica/Publicador/editarDatosBasicosRequest", output = "http://webServices.logica/Publicador/editarDatosBasicosResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/editarDatosBasicos/Fault/UsuarioNoExisteException")
+    })
+    public void editarDatosBasicos(
+        @WebParam(name = "arg0", partName = "arg0")
+        DtUsuario arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @throws PaquetePublicacionNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webServices.logica/Publicador/comprarPaqueteRequest", output = "http://webServices.logica/Publicador/comprarPaqueteResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/comprarPaquete/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webServices.logica/Publicador/comprarPaquete/Fault/PaquetePublicacionNoExisteException")
+    })
+    public void comprarPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2)
+        throws PaquetePublicacionNoExisteException_Exception, UsuarioNoExisteException_Exception
     ;
 
     /**
