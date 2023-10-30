@@ -11,6 +11,7 @@ import logica.webservices.DtPaquetePublicacion;
 import logica.webservices.IOException_Exception;
 import logica.webservices.OfertaLaboralNoExisteException_Exception;
 import logica.webservices.OfertaLaboralNoTienePaquete_Exception;
+import logica.webservices.PaquetePublicacionNoExisteException_Exception;
 import logica.webservices.PublicadorService;
 
 
@@ -35,11 +36,11 @@ public class PaqueteServlet extends HttpServlet {
       logica.webservices.Publicador port = publicadorService.getPublicadorPort();
       try {
        String nombrePaquete = request.getParameter("nombrePaquete");
-       DtPaquetePublicacion paquete = port.obtenerDtPaquetePublicacion(nombrePaquete);
+       DtPaquetePublicacion paquete = port.obtenerDtpaquete(nombrePaquete);
        request.setAttribute("paquete", paquete);       
        request.getRequestDispatcher("/WEB-INF/consultas/Paquete.jsp").forward(request, response);
        return;
-      } catch (IOException_Exception | OfertaLaboralNoExisteException_Exception | OfertaLaboralNoTienePaquete_Exception e) {
+      } catch (IOException_Exception  | PaquetePublicacionNoExisteException_Exception e) {
        request.setAttribute("error", e.getMessage());
        request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
        e.printStackTrace();
