@@ -6,15 +6,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import excepciones.PaquetePublicacionNoExisteException;
-import excepciones.UsuarioNoExisteException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.webServices.Publicador;
+import logica.webservices.DtPostulacion;
+import logica.webservices.PaquetePublicacionNoExisteException;
 import logica.webservices.PublicadorService;
+import logica.webservices.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class ConsultaPaquetes
@@ -32,13 +33,12 @@ public class CompraPaqueteServlet extends HttpServlet {
     }
 
     private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     PublicadorService publicadorService = new PublicadorService();
-     Publicador cliente = (Publicador) publicadorService.getPublicadorPort();
+      PublicadorService publicadorService = new PublicadorService();
+      logica.webservices.Publicador port = publicadorService.getPublicadorPort();
     	String nicknameempresa = request.getParameter("nicknameEmpresa");
     	String nombrePaquete = request.getParameter("nombrePaquete");
     	try {
-    	   String[] array = cliente.listarPaquetesNoCompradosDeEmpresa(nicknameempresa);
-        ArrayList<String> paquetesNoComprados = new ArrayList<>(Arrays.asList(array));
+    	  ArrayList<String> paquetesNoComprados = (ArrayList<String>) port.listarPaquetesNoCompradosDeEmpresa(nicknameempresa).getItem();
         Boolean permitido = false;
         for(String paquete : paquetesNoComprados) {
           if(paquete.equals(nombrePaquete)) {
@@ -47,7 +47,7 @@ public class CompraPaqueteServlet extends HttpServlet {
           }
         }
         if(permitido) {
-          cliente.comprarPaquete(nicknameempresa, nombrePaquete, LocalDate.now());
+          port.comprarPaquete(nicknameempresa, nombrePaquete, LocalDate.now().toString());
           String url = request.getContextPath() + "/perfil?nicknameUsuario="
               + nicknameempresa;
           response.sendRedirect(url);
@@ -59,7 +59,7 @@ public class CompraPaqueteServlet extends HttpServlet {
           response.sendRedirect(url);
           return;
         }
-      } catch (UsuarioNoExisteException | PaquetePublicacionNoExisteException e) {
+      } catch (Exception e) {
     	  request.setAttribute("error", e.getMessage());
         request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
         e.printStackTrace();
