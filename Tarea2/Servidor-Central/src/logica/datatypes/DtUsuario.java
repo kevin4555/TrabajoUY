@@ -3,6 +3,7 @@ package logica.datatypes;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -28,11 +29,13 @@ public class DtUsuario implements Serializable {
   private String nombre;
   private String apellido;
   private String email;
+  @XmlTransient
   private BufferedImage imagen;
   private String imagenBase64;
   private String contrasenia;
-  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<DtOfertaLaboral> ofertasColeccion;
+  private List<String> seguidos;
+  private List<String> seguidores;
   
   public DtUsuario() {
   }
@@ -41,11 +44,9 @@ public class DtUsuario implements Serializable {
    * Contructor.
    */
   
-  public DtUsuario(String nickname, String nombre,
-      String apellido, String email, BufferedImage imagen,
-      String contrasenia,
-      List<DtOfertaLaboral> ofertasColeccion)
-      throws IOException {
+  public DtUsuario(String nickname, String nombre, String apellido, String email,
+      BufferedImage imagen, String contrasenia, List<DtOfertaLaboral> ofertasColeccion,
+      List<String> seguidos, List<String> seguidores) throws IOException {
     this.nickname = nickname;
     this.nombre = nombre;
     this.apellido = apellido;
@@ -55,11 +56,12 @@ public class DtUsuario implements Serializable {
     if (imagen != null) {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       ImageIO.write(this.imagen, "png", baos);
-      this.imagenBase64 = Base64.getEncoder()
-          .encodeToString(baos.toByteArray());
+      this.imagenBase64 = Base64.getEncoder().encodeToString(baos.toByteArray());
     }
     this.contrasenia = contrasenia;
     this.ofertasColeccion = ofertasColeccion;
+    this.seguidos = seguidos;
+    this.seguidores = seguidores;
   }
   
   public void setNickname(String nickname) {

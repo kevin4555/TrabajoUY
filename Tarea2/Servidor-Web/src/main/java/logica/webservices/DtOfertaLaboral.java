@@ -1,8 +1,11 @@
 
 package logica.webservices;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlSchemaType;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -24,20 +27,19 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="horarioInicio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="horarioFinal" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="remuneracion" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
- *         <element name="fechaAlta" type="{http://webServices.logica/}localDate" minOccurs="0"/>
- *         <element name="fechaResolucion" type="{http://webServices.logica/}localDate" minOccurs="0"/>
- *         <element name="postulaciones" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="postulaciones" type="{http://webServices.logica/}dtPostulacion" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="estadoOferta" type="{http://webServices.logica/}estadoOferta" minOccurs="0"/>
- *         <element name="imagen" type="{http://webServices.logica/}bufferedImage" minOccurs="0"/>
  *         <element name="imagenBase64" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="paqueteAsociado" type="{http://webServices.logica/}dtPaquetePublicacion" minOccurs="0"/>
- *         <element name="keywords" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="keywords" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="estaVencida" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         <element name="nombreTipoPublicacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="empresa" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="visitas" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         <element name="exposicion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="fechaFinalizacion" type="{http://webServices.logica/}localDate" minOccurs="0"/>
+ *         <element name="fechaAltaString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaResolucionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaFinalizacionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -55,11 +57,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "horarioInicio",
     "horarioFinal",
     "remuneracion",
-    "fechaAlta",
-    "fechaResolucion",
     "postulaciones",
     "estadoOferta",
-    "imagen",
     "imagenBase64",
     "paqueteAsociado",
     "keywords",
@@ -68,7 +67,9 @@ import jakarta.xml.bind.annotation.XmlType;
     "empresa",
     "visitas",
     "exposicion",
-    "fechaFinalizacion"
+    "fechaAltaString",
+    "fechaResolucionString",
+    "fechaFinalizacionString"
 })
 public class DtOfertaLaboral {
 
@@ -79,21 +80,22 @@ public class DtOfertaLaboral {
     protected String horarioInicio;
     protected String horarioFinal;
     protected Float remuneracion;
-    protected LocalDate fechaAlta;
-    protected LocalDate fechaResolucion;
-    protected String postulaciones;
+    @XmlElement(nillable = true)
+    protected List<DtPostulacion> postulaciones;
     @XmlSchemaType(name = "string")
     protected EstadoOferta estadoOferta;
-    protected BufferedImage imagen;
     protected String imagenBase64;
     protected DtPaquetePublicacion paqueteAsociado;
-    protected String keywords;
+    @XmlElement(nillable = true)
+    protected List<String> keywords;
     protected Boolean estaVencida;
     protected String nombreTipoPublicacion;
     protected String empresa;
     protected int visitas;
     protected String exposicion;
-    protected LocalDate fechaFinalizacion;
+    protected String fechaAltaString;
+    protected String fechaResolucionString;
+    protected String fechaFinalizacionString;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -264,75 +266,34 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaAlta.
+     * Gets the value of the postulaciones property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the postulaciones property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPostulaciones().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtPostulacion }
+     * 
      * 
      * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
+     *     The value of the postulaciones property.
      */
-    public LocalDate getFechaAlta() {
-        return fechaAlta;
-    }
-
-    /**
-     * Define el valor de la propiedad fechaAlta.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setFechaAlta(LocalDate value) {
-        this.fechaAlta = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad fechaResolucion.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
-     */
-    public LocalDate getFechaResolucion() {
-        return fechaResolucion;
-    }
-
-    /**
-     * Define el valor de la propiedad fechaResolucion.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setFechaResolucion(LocalDate value) {
-        this.fechaResolucion = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad postulaciones.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPostulaciones() {
-        return postulaciones;
-    }
-
-    /**
-     * Define el valor de la propiedad postulaciones.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPostulaciones(String value) {
-        this.postulaciones = value;
+    public List<DtPostulacion> getPostulaciones() {
+        if (postulaciones == null) {
+            postulaciones = new ArrayList<>();
+        }
+        return this.postulaciones;
     }
 
     /**
@@ -357,30 +318,6 @@ public class DtOfertaLaboral {
      */
     public void setEstadoOferta(EstadoOferta value) {
         this.estadoOferta = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad imagen.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BufferedImage }
-     *     
-     */
-    public BufferedImage getImagen() {
-        return imagen;
-    }
-
-    /**
-     * Define el valor de la propiedad imagen.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BufferedImage }
-     *     
-     */
-    public void setImagen(BufferedImage value) {
-        this.imagen = value;
     }
 
     /**
@@ -432,27 +369,34 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Obtiene el valor de la propiedad keywords.
+     * Gets the value of the keywords property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the keywords property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getKeywords().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *     The value of the keywords property.
      */
-    public String getKeywords() {
-        return keywords;
-    }
-
-    /**
-     * Define el valor de la propiedad keywords.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setKeywords(String value) {
-        this.keywords = value;
+    public List<String> getKeywords() {
+        if (keywords == null) {
+            keywords = new ArrayList<>();
+        }
+        return this.keywords;
     }
 
     /**
@@ -568,27 +512,75 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaFinalizacion.
+     * Obtiene el valor de la propiedad fechaAltaString.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaFinalizacion() {
-        return fechaFinalizacion;
+    public String getFechaAltaString() {
+        return fechaAltaString;
     }
 
     /**
-     * Define el valor de la propiedad fechaFinalizacion.
+     * Define el valor de la propiedad fechaAltaString.
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaFinalizacion(LocalDate value) {
-        this.fechaFinalizacion = value;
+    public void setFechaAltaString(String value) {
+        this.fechaAltaString = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaResolucionString.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaResolucionString() {
+        return fechaResolucionString;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaResolucionString.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaResolucionString(String value) {
+        this.fechaResolucionString = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaFinalizacionString.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaFinalizacionString() {
+        return fechaFinalizacionString;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaFinalizacionString.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaFinalizacionString(String value) {
+        this.fechaFinalizacionString = value;
     }
 
 }

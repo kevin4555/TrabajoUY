@@ -21,7 +21,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="exposicion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="duracionDia" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         <element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
- *         <element name="fechaAlta" type="{http://webServices.logica/}localDate" minOccurs="0"/>
+ *         <element name="fechaAltaString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -37,7 +37,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "exposicion",
     "duracionDia",
     "costo",
-    "fechaAlta"
+    "fechaAltaString"
 })
 public class DtTipoPublicacion {
 
@@ -46,7 +46,7 @@ public class DtTipoPublicacion {
     protected String exposicion;
     protected int duracionDia;
     protected float costo;
-    protected LocalDate fechaAlta;
+    protected String fechaAltaString;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -153,27 +153,27 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaAlta.
+     * Obtiene el valor de la propiedad fechaAltaString.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaAlta() {
-        return fechaAlta;
+    public String getFechaAltaString() {
+        return fechaAltaString;
     }
 
     /**
-     * Define el valor de la propiedad fechaAlta.
+     * Define el valor de la propiedad fechaAltaString.
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaAlta(LocalDate value) {
-        this.fechaAlta = value;
+    public void setFechaAltaString(String value) {
+        this.fechaAltaString = value;
     }
 
 }

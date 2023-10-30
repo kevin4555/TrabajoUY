@@ -1,8 +1,11 @@
 
 package logica.webservices;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -21,10 +24,11 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="apellido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="imagen" type="{http://webServices.logica/}bufferedImage" minOccurs="0"/>
  *         <element name="imagenBase64" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="contrasenia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="ofertasColeccion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="ofertasColeccion" type="{http://webServices.logica/}dtOfertaLaboral" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="seguidos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="seguidores" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -39,10 +43,11 @@ import jakarta.xml.bind.annotation.XmlType;
     "nombre",
     "apellido",
     "email",
-    "imagen",
     "imagenBase64",
     "contrasenia",
-    "ofertasColeccion"
+    "ofertasColeccion",
+    "seguidos",
+    "seguidores"
 })
 @XmlSeeAlso({
     DtEmpresa.class,
@@ -54,10 +59,14 @@ public class DtUsuario {
     protected String nombre;
     protected String apellido;
     protected String email;
-    protected BufferedImage imagen;
     protected String imagenBase64;
     protected String contrasenia;
-    protected String ofertasColeccion;
+    @XmlElement(nillable = true)
+    protected List<DtOfertaLaboral> ofertasColeccion;
+    @XmlElement(nillable = true)
+    protected List<String> seguidos;
+    @XmlElement(nillable = true)
+    protected List<String> seguidores;
 
     /**
      * Obtiene el valor de la propiedad nickname.
@@ -156,30 +165,6 @@ public class DtUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad imagen.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BufferedImage }
-     *     
-     */
-    public BufferedImage getImagen() {
-        return imagen;
-    }
-
-    /**
-     * Define el valor de la propiedad imagen.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BufferedImage }
-     *     
-     */
-    public void setImagen(BufferedImage value) {
-        this.imagen = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad imagenBase64.
      * 
      * @return
@@ -228,27 +213,96 @@ public class DtUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad ofertasColeccion.
+     * Gets the value of the ofertasColeccion property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the ofertasColeccion property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getOfertasColeccion().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtOfertaLaboral }
+     * 
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *     The value of the ofertasColeccion property.
      */
-    public String getOfertasColeccion() {
-        return ofertasColeccion;
+    public List<DtOfertaLaboral> getOfertasColeccion() {
+        if (ofertasColeccion == null) {
+            ofertasColeccion = new ArrayList<>();
+        }
+        return this.ofertasColeccion;
     }
 
     /**
-     * Define el valor de la propiedad ofertasColeccion.
+     * Gets the value of the seguidos property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the seguidos property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSeguidos().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     * @return
+     *     The value of the seguidos property.
      */
-    public void setOfertasColeccion(String value) {
-        this.ofertasColeccion = value;
+    public List<String> getSeguidos() {
+        if (seguidos == null) {
+            seguidos = new ArrayList<>();
+        }
+        return this.seguidos;
+    }
+
+    /**
+     * Gets the value of the seguidores property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the seguidores property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSeguidores().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     * @return
+     *     The value of the seguidores property.
+     */
+    public List<String> getSeguidores() {
+        if (seguidores == null) {
+            seguidores = new ArrayList<>();
+        }
+        return this.seguidores;
     }
 
 }

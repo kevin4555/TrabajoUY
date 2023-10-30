@@ -1,8 +1,11 @@
 
 package logica.webservices;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -21,9 +24,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="periodoValidez" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         <element name="descuento" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
- *         <element name="imagen" type="{http://webServices.logica/}bufferedImage" minOccurs="0"/>
  *         <element name="imagenBase64" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="cantidadTipoPublicaciones" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="cantidadTipoPublicaciones" type="{http://webServices.logica/}dtCantidadTipoPublicacion" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="fechaAlta" type="{http://webServices.logica/}localDate" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
@@ -40,7 +42,6 @@ import jakarta.xml.bind.annotation.XmlType;
     "periodoValidez",
     "descuento",
     "costo",
-    "imagen",
     "imagenBase64",
     "cantidadTipoPublicaciones",
     "fechaAlta"
@@ -52,9 +53,9 @@ public class DtPaquetePublicacion {
     protected int periodoValidez;
     protected float descuento;
     protected float costo;
-    protected BufferedImage imagen;
     protected String imagenBase64;
-    protected String cantidadTipoPublicaciones;
+    @XmlElement(nillable = true)
+    protected List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones;
     protected LocalDate fechaAlta;
 
     /**
@@ -154,30 +155,6 @@ public class DtPaquetePublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad imagen.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BufferedImage }
-     *     
-     */
-    public BufferedImage getImagen() {
-        return imagen;
-    }
-
-    /**
-     * Define el valor de la propiedad imagen.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BufferedImage }
-     *     
-     */
-    public void setImagen(BufferedImage value) {
-        this.imagen = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad imagenBase64.
      * 
      * @return
@@ -202,27 +179,34 @@ public class DtPaquetePublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad cantidadTipoPublicaciones.
+     * Gets the value of the cantidadTipoPublicaciones property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the cantidadTipoPublicaciones property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCantidadTipoPublicaciones().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtCantidadTipoPublicacion }
+     * 
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *     The value of the cantidadTipoPublicaciones property.
      */
-    public String getCantidadTipoPublicaciones() {
-        return cantidadTipoPublicaciones;
-    }
-
-    /**
-     * Define el valor de la propiedad cantidadTipoPublicaciones.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCantidadTipoPublicaciones(String value) {
-        this.cantidadTipoPublicaciones = value;
+    public List<DtCantidadTipoPublicacion> getCantidadTipoPublicaciones() {
+        if (cantidadTipoPublicaciones == null) {
+            cantidadTipoPublicaciones = new ArrayList<>();
+        }
+        return this.cantidadTipoPublicaciones;
     }
 
     /**

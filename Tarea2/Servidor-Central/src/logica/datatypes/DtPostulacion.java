@@ -2,6 +2,8 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -16,7 +18,7 @@ public class DtPostulacion implements Serializable {
   private String nicknamePostulante;
   
   private String descripMotivacion;
-  
+  @XmlTransient
   private LocalDate fechaPostulacion;
   
   private String cvReducido;
@@ -24,6 +26,8 @@ public class DtPostulacion implements Serializable {
   private String nombreOferta;
   
   private String linkVideo;
+  
+  private String fechaPostulacionString;
   
   /**
    * Contructor.
@@ -38,6 +42,7 @@ public class DtPostulacion implements Serializable {
     this.cvReducido = cvReducido;
     this.nombreOferta = nombreOferta;
     this.setLinkVideo(linkVideo);
+    this.fechaPostulacionString = fechaPostulacion.toString();
   }
   
   public DtPostulacion() {
@@ -102,6 +107,14 @@ public String getLinkVideo() {
  */
 public void setLinkVideo(String linkVideo) {
 	this.linkVideo = linkVideo;
+}
+
+public String getFechaPostulacionString() {
+  return fechaPostulacionString;
+}
+
+public void setFechaPostulacionString(String fechaPostulacionString) {
+  this.fechaPostulacionString = fechaPostulacionString;
 }
   
 }
