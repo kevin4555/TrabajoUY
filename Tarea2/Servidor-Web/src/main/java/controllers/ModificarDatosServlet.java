@@ -1,9 +1,12 @@
 package controllers;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.Base64;
+
 import javax.imageio.ImageIO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -14,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import logica.webservices.DtUsuario;
+import logica.webservices.IOException_Exception;
 import logica.webservices.PublicadorService;
 import logica.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
@@ -49,7 +53,7 @@ public class ModificarDatosServlet extends HttpServlet {
     	String apellido = request.getParameter("apellido");
     	String contrasenia = request.getParameter("contrasenia");
     	String contraseniaConf = request.getParameter("contraseniaConf");
-    	BufferedImage imagen = usuario.getImagen();
+    	BufferedImage imagen = null;
     	if(!contraseniaConf.equals(contrasenia)) {
        request.setAttribute("mensajeError", "contraseña incorrecta");
        request.getRequestDispatcher("/WEB-INF/registros/EditarDatos.jsp").forward(request, response);
@@ -69,9 +73,9 @@ public class ModificarDatosServlet extends HttpServlet {
     	if(sesion.getAttribute("tipoUsuario") == TipoUsuario.EMPRESA) {
     		String descripcion = request.getParameter("descripcion");
     		String sitioWeb = request.getParameter("sitioWeb");
-    		
+    		String imagenString = imageToBase64String(imagen);
     		try {
-    		  port.editarEmpresa(usuario.getNickname(), nombre, apellido, sitioWeb, descripcion, imagen, contrasenia);
+    		  port.editarEmpresa(usuario.getNickname(), nombre, apellido, sitioWeb, descripcion, imagenString, contrasenia);
 				String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 				return;
@@ -83,15 +87,15 @@ public class ModificarDatosServlet extends HttpServlet {
     	}
     	else if(sesion.getAttribute("tipoUsuario") == TipoUsuario.POSTULANTE) {
     		String nacionalidad = request.getParameter("nacionalidad");
-    		LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
+    		String fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento")).toString();
     		try {
-    		  port.editarPostulante(usuario.getNickname(), nombre, apellido, fechaNacimiento, nacionalidad, imagen, contrasenia);
-				DtUsuario usuariomodificado = port.obtenerDtusuario(usuario.getNickname());
+    		  port.editarPostulante(usuario.getNickname(), nombre, apellido, fechaNacimiento, nacionalidad, imageToBase64String(imagen), contrasenia);
+				DtUsuario usuariomodificado = port.obtenerDtUsuario(usuario.getNickname());
 				sesion.setAttribute("usuarioLogueado", usuariomodificado);
 				String url = request.getContextPath() + "/perfil?nicknameUsuario=" + usuario.getNickname();
 				response.sendRedirect(url);
 				return;
-			} catch (UsuarioNoExisteException_Exception | IOException e) {
+			} catch (UsuarioNoExisteException_Exception | IOException | IOException_Exception e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();
 				return;
@@ -112,5 +116,18 @@ public class ModificarDatosServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		procesarRequest(request, response);
 	}
+	
+	public static String imageToBase64String(BufferedImage image) {
+	  try {
+	   ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	   ImageIO.write(image, "png", baos); // Puedes cambiar "png" al formato de imagen deseado (por ejemplo, "jpg"
+	            // para JPEG)
+	   byte[] imageBytes = baos.toByteArray();
+	   return Base64.getEncoder().encodeToString(imageBytes);
+	  } catch (IOException e) {
+	   e.printStackTrace();
+	   return null;
+	  }
+	 }
 
 }

@@ -36,7 +36,7 @@ public class ConsultaTipoPublicacionServlet extends HttpServlet {
     	ArrayList<DtTipoPublicacion> listaDTTipo = new ArrayList<DtTipoPublicacion>();
     	for(String tipo : listaTipoPublicacion) {
     		try {
-				listaDTTipo.add(cliente.obtenerDttipoPublicacion(tipo));
+				listaDTTipo.add(cliente.obtenerDtTipoPublicacion(tipo));
 			} catch (TipoPublicacionNoExisteException_Exception e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();

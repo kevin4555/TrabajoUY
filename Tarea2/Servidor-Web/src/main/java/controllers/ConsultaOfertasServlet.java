@@ -47,7 +47,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
         
         for (String nickEmpresa : listaNickEmpresas) {
           try {
-            DtUsuario empresa = cliente.obtenerDtusuario(nickEmpresa);
+            DtUsuario empresa = cliente.obtenerDtUsuario(nickEmpresa);
             listaEmpresas.add(empresa);
           } catch (IOException_Exception | UsuarioNoExisteException_Exception e) {
             request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
@@ -68,7 +68,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
         
         for (String nickEmpresa : listaNickEmpresas) {
           try {
-            DtUsuario empresa = cliente.obtenerDtusuario(nickEmpresa);
+            DtUsuario empresa = cliente.obtenerDtUsuario(nickEmpresa);
             listaEmpresas.add(empresa);
           } catch (IOException_Exception | UsuarioNoExisteException_Exception e) {
             request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
@@ -88,7 +88,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
       if (nicknameEmpresa != null) {
         try {
           ofertas = (ArrayList<DtOfertaLaboral>) cliente
-              .obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa).getItem();
+              .obtenerDtOfertasConfirmadasDeEmpresa(nicknameEmpresa).getItem();
         } catch (IOException_Exception | UsuarioNoExisteException_Exception e) {
           request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
           e.printStackTrace();
@@ -96,7 +96,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
         }
       } else if (keyword != null) {
         try {
-          ofertas = (ArrayList<DtOfertaLaboral>) cliente.obtenerDtofertasPorKeyword(keyword)
+          ofertas = (ArrayList<DtOfertaLaboral>) cliente.obtenerDtOfertasPorKeyword(keyword)
               .getItem();
         } catch (IOException_Exception e) {
           // TODO Auto-generated catch block
@@ -113,7 +113,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
       if (nicknameEmpresa != null) {
         try {
           ofertas = (ArrayList<DtOfertaLaboral>) cliente
-              .obtenerDtofertasConfirmadasDeEmpresa(nicknameEmpresa).getItem();
+              .obtenerDtOfertasConfirmadasDeEmpresa(nicknameEmpresa).getItem();
         } catch (IOException_Exception | UsuarioNoExisteException_Exception e) {
           request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
           e.printStackTrace();
@@ -121,7 +121,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
         }
       } else if (keyword != null) {
         try {
-          ofertas = (ArrayList<DtOfertaLaboral>) cliente.obtenerDtofertasPorKeyword(keyword)
+          ofertas = (ArrayList<DtOfertaLaboral>) cliente.obtenerDtOfertasPorKeyword(keyword)
               .getItem();
         } catch (IOException_Exception e) {
           // TODO Auto-generated catch block

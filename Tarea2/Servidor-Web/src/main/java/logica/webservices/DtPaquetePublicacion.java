@@ -24,9 +24,9 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="periodoValidez" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         <element name="descuento" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
+ *         <element name="fechaAltaString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagenBase64" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="cantidadTipoPublicaciones" type="{http://webServices.logica/}dtCantidadTipoPublicacion" maxOccurs="unbounded" minOccurs="0"/>
- *         <element name="fechaAlta" type="{http://webServices.logica/}localDate" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -42,9 +42,9 @@ import jakarta.xml.bind.annotation.XmlType;
     "periodoValidez",
     "descuento",
     "costo",
+    "fechaAltaString",
     "imagenBase64",
-    "cantidadTipoPublicaciones",
-    "fechaAlta"
+    "cantidadTipoPublicaciones"
 })
 public class DtPaquetePublicacion {
 
@@ -53,10 +53,10 @@ public class DtPaquetePublicacion {
     protected int periodoValidez;
     protected float descuento;
     protected float costo;
+    protected String fechaAltaString;
     protected String imagenBase64;
     @XmlElement(nillable = true)
     protected List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones;
-    protected LocalDate fechaAlta;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -155,6 +155,30 @@ public class DtPaquetePublicacion {
     }
 
     /**
+     * Obtiene el valor de la propiedad fechaAltaString.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaAltaString() {
+        return fechaAltaString;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaAltaString.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaAltaString(String value) {
+        this.fechaAltaString = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad imagenBase64.
      * 
      * @return
@@ -207,30 +231,6 @@ public class DtPaquetePublicacion {
             cantidadTipoPublicaciones = new ArrayList<>();
         }
         return this.cantidadTipoPublicaciones;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad fechaAlta.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
-     */
-    public LocalDate getFechaAlta() {
-        return fechaAlta;
-    }
-
-    /**
-     * Define el valor de la propiedad fechaAlta.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setFechaAlta(LocalDate value) {
-        this.fechaAlta = value;
     }
 
 }

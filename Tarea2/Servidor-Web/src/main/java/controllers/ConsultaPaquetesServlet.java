@@ -33,7 +33,7 @@ public class ConsultaPaquetesServlet extends HttpServlet {
     logica.webservices.Publicador cliente = publicadorService.getPublicadorPort();
     ArrayList<DtPaquetePublicacion> listaPaquetes;
     try {
-      listaPaquetes = (ArrayList<DtPaquetePublicacion>) cliente.listarDtpaquetes().getItem();
+      listaPaquetes = (ArrayList<DtPaquetePublicacion>) cliente.listarDtPaquetes().getItem();
       request.setAttribute("listaPaquetes", listaPaquetes);
       request.getRequestDispatcher("/WEB-INF/consultas/ConsultaPaquetes.jsp").forward(request,
           response);

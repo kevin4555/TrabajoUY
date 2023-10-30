@@ -260,16 +260,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
-     * 
-     * @return
-     *     the new instance of {@link LocalDate }
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
-    }
-
-    /**
      * Create an instance of {@link DtUsuario }
      * 
      * @return
@@ -347,6 +337,16 @@ public class ObjectFactory {
      */
     public DtCantidadTipoPublicacionRestante createDtCantidadTipoPublicacionRestante() {
         return new DtCantidadTipoPublicacionRestante();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     * @return
+     *     the new instance of {@link LocalDate }
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
     }
 
     /**
