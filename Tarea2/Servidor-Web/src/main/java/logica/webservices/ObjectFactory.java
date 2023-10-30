@@ -230,16 +230,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtOfertaLaboral }
-     * 
-     * @return
-     *     the new instance of {@link DtOfertaLaboral }
-     */
-    public DtOfertaLaboral createDtOfertaLaboral() {
-        return new DtOfertaLaboral();
-    }
-
-    /**
      * Create an instance of {@link DtPaquetePublicacion }
      * 
      * @return
@@ -267,6 +257,16 @@ public class ObjectFactory {
      */
     public LocalDate createLocalDate() {
         return new LocalDate();
+    }
+
+    /**
+     * Create an instance of {@link DtOfertaLaboral }
+     * 
+     * @return
+     *     the new instance of {@link DtOfertaLaboral }
+     */
+    public DtOfertaLaboral createDtOfertaLaboral() {
+        return new DtOfertaLaboral();
     }
 
     /**

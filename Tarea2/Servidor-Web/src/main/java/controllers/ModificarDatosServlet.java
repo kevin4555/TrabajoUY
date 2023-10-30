@@ -87,7 +87,7 @@ public class ModificarDatosServlet extends HttpServlet {
     	}
     	else if(sesion.getAttribute("tipoUsuario") == TipoUsuario.POSTULANTE) {
     		String nacionalidad = request.getParameter("nacionalidad");
-    		LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
+    		String fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento")).toString();
     		try {
     		  port.editarPostulante(usuario.getNickname(), nombre, apellido, fechaNacimiento, nacionalidad, imageToBase64String(imagen), contrasenia);
 				DtUsuario usuariomodificado = port.obtenerDtUsuario(usuario.getNickname());

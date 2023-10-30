@@ -341,15 +341,17 @@ public class Publicador {
 
 	@WebMethod
 	public void editarPostulante(String nickname, String nombre, String apellido, String fechaNacimiento,
-			String nacionalidad, BufferedImage imagen, String contrasenia) throws UsuarioNoExisteException {
+			String nacionalidad, String imagen, String contrasenia) throws UsuarioNoExisteException {
 		LocalDate fecha = LocalDate.parse(fechaNacimiento);
-		controladorUsuario.editarPostulante(nickname, nombre, apellido, fecha, nacionalidad, imagen, contrasenia);
+		BufferedImage imagenBufferImage = base64StringToImage(imagen);
+		controladorUsuario.editarPostulante(nickname, nombre, apellido, fecha, nacionalidad, imagenBufferImage, contrasenia);
 	}
 
 	@WebMethod
 	public void editarEmpresa(String nickname, String nombre, String apellido, String sitioWeb, String descripcion,
-			BufferedImage imagen, String contrasenia) throws UsuarioNoExisteException {
-		controladorUsuario.editarEmpresa(nickname, nombre, apellido, sitioWeb, descripcion, imagen, contrasenia);
+	    String imagen, String contrasenia) throws UsuarioNoExisteException {
+	  BufferedImage imagenBufferImage = base64StringToImage(imagen);
+		controladorUsuario.editarEmpresa(nickname, nombre, apellido, sitioWeb, descripcion, imagenBufferImage, contrasenia);
 	}
 
 	@WebMethod
