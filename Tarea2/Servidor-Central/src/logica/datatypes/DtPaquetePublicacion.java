@@ -28,13 +28,43 @@ public class DtPaquetePublicacion implements Serializable {
   private float costo;
   @XmlTransient
   private BufferedImage imagen;
-  
-  public DtPaquetePublicacion() {
-  }
-  
+  @XmlTransient
+  private LocalDate fechaAlta;
+  private String fechaAltaString;
   private String imagenBase64;
   
   private List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones;
+  public DtPaquetePublicacion() {
+  }
+  
+  /**
+   * Contructor.
+   */
+  
+  public DtPaquetePublicacion(String nombre,
+      String descripcion, int periodoValidez,
+      float descuento, float costo, BufferedImage imagen,
+      List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones,
+      LocalDate fechaAlta) throws IOException {
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.periodoValidez = periodoValidez;
+    this.descuento = descuento;
+    this.costo = costo;
+    this.imagen = imagen;
+    this.imagenBase64 = null;
+    if (imagen != null) {
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      ImageIO.write(this.imagen, "png", baos);
+      this.imagenBase64 = Base64.getEncoder()
+          .encodeToString(baos.toByteArray());
+    }
+    this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
+    this.fechaAlta = fechaAlta;
+    this.fechaAltaString = fechaAlta.toString();
+  }
+  
+
   
   public void setNombre(String nombre) {
     this.nombre = nombre;
@@ -71,36 +101,9 @@ public class DtPaquetePublicacion implements Serializable {
   
   public void setFechaAlta(LocalDate fechaAlta) {
     this.fechaAlta = fechaAlta;
+    this.fechaAltaString = fechaAlta.toString();
   }
-  
-  private LocalDate fechaAlta;
-  
-  /**
-   * Contructor.
-   */
-  
-  public DtPaquetePublicacion(String nombre,
-      String descripcion, int periodoValidez,
-      float descuento, float costo, BufferedImage imagen,
-      List<DtCantidadTipoPublicacion> cantidadTipoPublicaciones,
-      LocalDate fechaAlta) throws IOException {
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.periodoValidez = periodoValidez;
-    this.descuento = descuento;
-    this.costo = costo;
-    this.imagen = imagen;
-    this.imagenBase64 = null;
-    if (imagen != null) {
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      ImageIO.write(this.imagen, "png", baos);
-      this.imagenBase64 = Base64.getEncoder()
-          .encodeToString(baos.toByteArray());
-    }
-    this.cantidadTipoPublicaciones = cantidadTipoPublicaciones;
-    this.fechaAlta = fechaAlta;
-  }
-  
+    
   public BufferedImage getImagen() {
     return imagen;
   }
@@ -135,6 +138,13 @@ public class DtPaquetePublicacion implements Serializable {
   
   public String getImagenBase64() {
     return imagenBase64;
+  }
+  public String getFechaAltaString() {
+    return fechaAltaString;
+  }
+  public void setFechaAltaString(String fechaAltaString) {
+    this.fechaAltaString = fechaAltaString;
+    this.fechaAlta = LocalDate.parse(fechaAltaString);
   }
   
 }

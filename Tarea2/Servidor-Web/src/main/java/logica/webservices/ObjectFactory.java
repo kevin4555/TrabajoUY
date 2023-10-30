@@ -230,6 +230,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtOfertaLaboral }
+     * 
+     * @return
+     *     the new instance of {@link DtOfertaLaboral }
+     */
+    public DtOfertaLaboral createDtOfertaLaboral() {
+        return new DtOfertaLaboral();
+    }
+
+    /**
      * Create an instance of {@link DtPaquetePublicacion }
      * 
      * @return
@@ -247,26 +257,6 @@ public class ObjectFactory {
      */
     public DtCantidadTipoPublicacion createDtCantidadTipoPublicacion() {
         return new DtCantidadTipoPublicacion();
-    }
-
-    /**
-     * Create an instance of {@link LocalDate }
-     * 
-     * @return
-     *     the new instance of {@link LocalDate }
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
-    }
-
-    /**
-     * Create an instance of {@link DtOfertaLaboral }
-     * 
-     * @return
-     *     the new instance of {@link DtOfertaLaboral }
-     */
-    public DtOfertaLaboral createDtOfertaLaboral() {
-        return new DtOfertaLaboral();
     }
 
     /**
@@ -347,6 +337,16 @@ public class ObjectFactory {
      */
     public DtCantidadTipoPublicacionRestante createDtCantidadTipoPublicacionRestante() {
         return new DtCantidadTipoPublicacionRestante();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     * @return
+     *     the new instance of {@link LocalDate }
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
     }
 
     /**
