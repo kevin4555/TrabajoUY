@@ -410,6 +410,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtEmpresaArray }
+     * 
+     * @return
+     *     the new instance of {@link DtEmpresaArray }
+     */
+    public DtEmpresaArray createDtEmpresaArray() {
+        return new DtEmpresaArray();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link IOException }{@code >}
      * 
      * @param value
