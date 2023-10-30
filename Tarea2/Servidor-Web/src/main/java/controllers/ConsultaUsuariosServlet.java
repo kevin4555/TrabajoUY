@@ -40,7 +40,7 @@ public class ConsultaUsuariosServlet extends HttpServlet {
 		ArrayList<DtUsuario> listaResultado = new ArrayList<DtUsuario>();
 		for (String nick : listaUsuarios) {
 			try {
-				listaResultado.add(cliente.obtenerDtusuario(nick));
+				listaResultado.add(cliente.obtenerDtUsuario(nick));
 			} catch (IOException_Exception | UsuarioNoExisteException_Exception e) {
 			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 				e.printStackTrace();

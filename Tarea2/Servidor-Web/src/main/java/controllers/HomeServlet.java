@@ -1,19 +1,19 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.datatypes.DtOfertaLaboral;
-import logica.webServices.Publicador;
+import logica.webservices.IOException_Exception;
 import logica.webservices.PublicadorService;
 import model.EstadoSesion;
 import model.TipoUsuario;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 
@@ -53,9 +53,16 @@ public class HomeServlet extends HttpServlet {
 		HttpSession sesion = request.getSession();
 		String userAgent = request.getHeader("User-Agent");
 		PublicadorService publicadorService = new PublicadorService();
-		Publicador cliente = (Publicador) publicadorService.getPublicadorPort();
-		ArrayList<DtOfertaLaboral> dTOfertas = new ArrayList<>(Arrays.asList(cliente.obtenerDtOfertasConfirmadas()));
-		request.setAttribute("listaOfertasConfirmadas", dTOfertas);
+		logica.webservices.Publicador cliente =  publicadorService.getPublicadorPort();
+		List<logica.webservices.DtOfertaLaboral> dTOfertas;
+    try {
+      dTOfertas = cliente.obtenerDtOfertasConfirmadas().getItem();
+      request.setAttribute("listaOfertasConfirmadas", dTOfertas);
+    } catch (IOException_Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+		
 		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
 		{
 			if(sesion.getAttribute("estadoSesion") == EstadoSesion.LOGIN_CORRECTO)

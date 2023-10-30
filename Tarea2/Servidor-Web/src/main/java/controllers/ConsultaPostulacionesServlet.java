@@ -46,7 +46,7 @@ public class ConsultaPostulacionesServlet extends HttpServlet
 
 		try {
 			ArrayList<DtPostulacion> postulaciones = (ArrayList<DtPostulacion>) cliente
-					.obtenerDtpostulacionesDePostulante(usuario.getNickname()).getItem();
+					.obtenerDtPostulacionesDePostulante(usuario.getNickname()).getItem();
 			for (DtPostulacion dtPostulacion : postulaciones)
 			{
 				dTOfertas.add(cliente.obtenerDtOfertaLaboral(dtPostulacion.getNombreOferta()));
