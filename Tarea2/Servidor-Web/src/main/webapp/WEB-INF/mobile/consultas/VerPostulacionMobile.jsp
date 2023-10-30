@@ -2,12 +2,12 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.time.LocalDate"%>
-<%@page import="logica.datatypes.Dtpostulacion"%>
+<%@page import="logica.webservices.DtPostulacion"%>
 <%@page import="model.TipoUsuario"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.webservices.DtUsuario"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.Dtpostulante"%>
-<%@page import="logica.datatypes.DtOfertaLaboral"%>
+<%@page import="logica.webservices.DtPostulante"%>
+<%@page import="logica.webservices.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -27,11 +27,11 @@
 </head>
 <body class="mb-4">
 	<%
-	Dtpostulante postulante = (Dtpostulante) request.getAttribute("postulante");
+	DtPostulante postulante = (DtPostulante) request.getAttribute("postulante");
 	DtOfertaLaboral oferta = (DtOfertaLaboral) request.getAttribute("ofertas");
-	Dtpostulacion postulacion = (Dtpostulacion) request.getAttribute("postulacion");
+	DtPostulacion postulacion = (DtPostulacion) request.getAttribute("postulacion");
 	EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
-	Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
+	DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
 	TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
 	String contextPath = request.getContextPath();
 	%>
@@ -62,10 +62,7 @@
 								<%
 								String perfilUrl = contextPath + "/perfil?nicknameUsuario="
 										+ java.net.URLEncoder.encode(postulante.getNickname(), "UTF-8");
-								LocalDate fecha = postulacion.getFechaPostulacion();
-								Date fechaDate = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
-								SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-								String newParsedDate = outputDateFormat.format(fechaDate);
+								String fecha = postulacion.getFechaPostulacionString();
 								%>
 								<p class="card-text">
 									<strong>Postulante: </strong><a><%=postulante.getNombre()%>
@@ -75,7 +72,7 @@
 									<br> <br> <strong>Motivación: </strong>
 									<%=postulacion.getDescripMotivacion()%>
 									<br> <br> <strong>Fecha de postulación: </strong>
-									<%=newParsedDate%>
+									<%=fecha%>
 									<br> <br>
 								</p>
 								<%

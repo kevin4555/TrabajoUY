@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.datatypes.DtOfertaLaboral"%>
+<%@page import="logica.webservices.DtOfertaLaboral"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@
 				<div class="card">
 					<div class="row g-0">
 						<%
-						if (oferta != null && oferta.getImagen() != null)
+						if (oferta != null && oferta.getImagenBase64() != null)
 						{
 						%>
 						<div
@@ -53,7 +53,7 @@
 										- <%=oferta.getHorarioFinal()%></li>
 									<li class="list-group-item"><b>Departamento:</b> <%=oferta.getDepartamento()%></li>
 									<li class="list-group-item"><b>Ciudad:</b> <%=oferta.getCiudad()%></li>
-									<li class="list-group-item"><b>Fecha de alta:</b> <%=oferta.getFechaAlta()%></li>
+									<li class="list-group-item"><b>Fecha de alta:</b> <%=oferta.getFechaAltaString()%></li>
 									<li class="list-group-item"><b>Keywords:</b> <%
  if (oferta.getKeywords() != null)
  {

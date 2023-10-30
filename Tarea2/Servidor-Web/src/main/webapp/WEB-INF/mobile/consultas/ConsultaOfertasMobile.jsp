@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="logica.datatypes.DtOfertaLaboral"%>
-<%@page import="logica.datatypes.Dtusuario"%>
+<%@page import="logica.webservices.DtOfertaLaboral"%>
+<%@page import="logica.webservices.DtUsuario"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
 				<div class="col-8">
 					<section>
 						<%
-						Dtusuario usuario = (Dtusuario) session.getAttribute("usuarioLogueado");
+						DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
 						ArrayList<DtOfertaLaboral> listaOfertas = (ArrayList<DtOfertaLaboral>) request.getAttribute("listaOfertas");
 						if (listaOfertas.isEmpty())
 						{

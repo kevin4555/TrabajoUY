@@ -1,6 +1,6 @@
-<%@page import="logica.datatypes.DtUsuario"%> <%@page
+<%@page import="logica.webservices.DtUsuario"%> <%@page
 import="model.TipoUsuario"%> <%@page import="model.EstadoSesion"%> <%@page
-import="java.util.ArrayList"%> <% p EstadoSesion estadoSesion = (EstadoSesion)
+import="java.util.ArrayList"%> <% EstadoSesion estadoSesion = (EstadoSesion)
 session.getAttribute("estadoSesion"); DtUsuario usuario = (DtUsuario)
 session.getAttribute("usuarioLogueado"); TipoUsuario tipoUsuario = (TipoUsuario)
 session.getAttribute("tipoUsuairo"); %>
@@ -20,7 +20,7 @@ session.getAttribute("tipoUsuairo"); %>
         </a>
       </div>
       <div class="col-4">
-        <% if (usuario != null) { %> <% if (usuario.getImagen() != null) { %>
+        <% if (usuario != null) { %> <% if (usuario.getImagenBase64() != null) { %>
         <ul class="list-unstyled">
           <li class="nav-item">
             <img
