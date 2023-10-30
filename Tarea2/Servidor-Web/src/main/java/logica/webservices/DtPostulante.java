@@ -16,8 +16,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <extension base="{http://webServices.logica/}dtUsuario">
  *       <sequence>
- *         <element name="fechaNacimiento" type="{http://webServices.logica/}localDate" minOccurs="0"/>
  *         <element name="nacionalidad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaNacimientoString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </extension>
  *   </complexContent>
@@ -28,39 +28,15 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dtPostulante", propOrder = {
-    "fechaNacimiento",
-    "nacionalidad"
+    "nacionalidad",
+    "fechaNacimientoString"
 })
 public class DtPostulante
     extends DtUsuario
 {
 
-    protected LocalDate fechaNacimiento;
     protected String nacionalidad;
-
-    /**
-     * Obtiene el valor de la propiedad fechaNacimiento.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
-     */
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    /**
-     * Define el valor de la propiedad fechaNacimiento.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setFechaNacimiento(LocalDate value) {
-        this.fechaNacimiento = value;
-    }
+    protected String fechaNacimientoString;
 
     /**
      * Obtiene el valor de la propiedad nacionalidad.
@@ -84,6 +60,30 @@ public class DtPostulante
      */
     public void setNacionalidad(String value) {
         this.nacionalidad = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaNacimientoString.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaNacimientoString() {
+        return fechaNacimientoString;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaNacimientoString.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaNacimientoString(String value) {
+        this.fechaNacimientoString = value;
     }
 
 }

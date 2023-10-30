@@ -18,10 +18,10 @@ import jakarta.xml.bind.annotation.XmlType;
  *       <sequence>
  *         <element name="nicknamePostulante" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="descripMotivacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="fechaPostulacion" type="{http://webServices.logica/}localDate" minOccurs="0"/>
  *         <element name="cvReducido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nombreOferta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="linkVideo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaPostulacionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -34,19 +34,19 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "dtPostulacion", propOrder = {
     "nicknamePostulante",
     "descripMotivacion",
-    "fechaPostulacion",
     "cvReducido",
     "nombreOferta",
-    "linkVideo"
+    "linkVideo",
+    "fechaPostulacionString"
 })
 public class DtPostulacion {
 
     protected String nicknamePostulante;
     protected String descripMotivacion;
-    protected LocalDate fechaPostulacion;
     protected String cvReducido;
     protected String nombreOferta;
     protected String linkVideo;
+    protected String fechaPostulacionString;
 
     /**
      * Obtiene el valor de la propiedad nicknamePostulante.
@@ -94,30 +94,6 @@ public class DtPostulacion {
      */
     public void setDescripMotivacion(String value) {
         this.descripMotivacion = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad fechaPostulacion.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
-     */
-    public LocalDate getFechaPostulacion() {
-        return fechaPostulacion;
-    }
-
-    /**
-     * Define el valor de la propiedad fechaPostulacion.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setFechaPostulacion(LocalDate value) {
-        this.fechaPostulacion = value;
     }
 
     /**
@@ -190,6 +166,30 @@ public class DtPostulacion {
      */
     public void setLinkVideo(String value) {
         this.linkVideo = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaPostulacionString.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaPostulacionString() {
+        return fechaPostulacionString;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaPostulacionString.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaPostulacionString(String value) {
+        this.fechaPostulacionString = value;
     }
 
 }

@@ -1,15 +1,14 @@
 
 package logica.classes;
 
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtPaquetePublicacion;
-import logica.datatypes.ListAdapter;
 
 /**
  * Clase CompraPaquete.
@@ -17,7 +16,6 @@ import logica.datatypes.ListAdapter;
 public class CompraPaquete {
   private LocalDate fechaVencimiento;
   private LocalDate fechaCompra;
-  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<CantidadTipoPublicacionRestante> cantidadesRestantes;
   private PaquetePublicacion paquete;
   

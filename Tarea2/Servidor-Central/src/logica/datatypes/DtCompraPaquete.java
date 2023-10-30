@@ -24,7 +24,6 @@ public class DtCompraPaquete implements Serializable {
 	private LocalDate fechaCompra;
 	@XmlTransient
 	private LocalDate fechaVencimiento;
-	@XmlJavaTypeAdapter(ListAdapter.class)
 	private List<DtCantidadTipoPublicacionRestante> publicacionesRestantes;
 	private DtPaquetePublicacion paquete;
 	private String fechaCompraString;

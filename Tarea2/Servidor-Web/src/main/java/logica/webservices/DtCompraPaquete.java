@@ -1,8 +1,11 @@
 
 package logica.webservices;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -16,10 +19,10 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="fechaCompra" type="{http://webServices.logica/}localDate" minOccurs="0"/>
- *         <element name="fechaVencimiento" type="{http://webServices.logica/}localDate" minOccurs="0"/>
- *         <element name="publicacionesRestantes" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="publicacionesRestantes" type="{http://webServices.logica/}dtCantidadTipoPublicacionRestante" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="paquete" type="{http://webServices.logica/}dtPaquetePublicacion" minOccurs="0"/>
+ *         <element name="fechaCompraString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaVencimientoString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -30,88 +33,48 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dtCompraPaquete", propOrder = {
-    "fechaCompra",
-    "fechaVencimiento",
     "publicacionesRestantes",
-    "paquete"
+    "paquete",
+    "fechaCompraString",
+    "fechaVencimientoString"
 })
 public class DtCompraPaquete {
 
-    protected LocalDate fechaCompra;
-    protected LocalDate fechaVencimiento;
-    protected String publicacionesRestantes;
+    @XmlElement(nillable = true)
+    protected List<DtCantidadTipoPublicacionRestante> publicacionesRestantes;
     protected DtPaquetePublicacion paquete;
+    protected String fechaCompraString;
+    protected String fechaVencimientoString;
 
     /**
-     * Obtiene el valor de la propiedad fechaCompra.
+     * Gets the value of the publicacionesRestantes property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the publicacionesRestantes property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPublicacionesRestantes().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtCantidadTipoPublicacionRestante }
+     * 
      * 
      * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
+     *     The value of the publicacionesRestantes property.
      */
-    public LocalDate getFechaCompra() {
-        return fechaCompra;
-    }
-
-    /**
-     * Define el valor de la propiedad fechaCompra.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setFechaCompra(LocalDate value) {
-        this.fechaCompra = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad fechaVencimiento.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
-     */
-    public LocalDate getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    /**
-     * Define el valor de la propiedad fechaVencimiento.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setFechaVencimiento(LocalDate value) {
-        this.fechaVencimiento = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad publicacionesRestantes.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPublicacionesRestantes() {
-        return publicacionesRestantes;
-    }
-
-    /**
-     * Define el valor de la propiedad publicacionesRestantes.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPublicacionesRestantes(String value) {
-        this.publicacionesRestantes = value;
+    public List<DtCantidadTipoPublicacionRestante> getPublicacionesRestantes() {
+        if (publicacionesRestantes == null) {
+            publicacionesRestantes = new ArrayList<>();
+        }
+        return this.publicacionesRestantes;
     }
 
     /**
@@ -136,6 +99,54 @@ public class DtCompraPaquete {
      */
     public void setPaquete(DtPaquetePublicacion value) {
         this.paquete = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaCompraString.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaCompraString() {
+        return fechaCompraString;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaCompraString.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaCompraString(String value) {
+        this.fechaCompraString = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaVencimientoString.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaVencimientoString() {
+        return fechaVencimientoString;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaVencimientoString.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaVencimientoString(String value) {
+        this.fechaVencimientoString = value;
     }
 
 }

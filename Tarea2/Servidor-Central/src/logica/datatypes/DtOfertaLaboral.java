@@ -31,14 +31,12 @@ public class DtOfertaLaboral implements Serializable {
   private LocalDate fechaAlta;
   @XmlTransient
   private LocalDate fechaResolucion;
-  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<DtPostulacion> postulaciones;
   private EstadoOferta estadoOferta;
   @XmlTransient
   private BufferedImage imagen;
   private String imagenBase64;
   private DtPaquetePublicacion paqueteAsociado;
-  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<String> keywords;
   private Boolean estaVencida;
   private String nombreTipoPublicacion;

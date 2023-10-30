@@ -230,16 +230,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
-     * 
-     * @return
-     *     the new instance of {@link LocalDate }
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
-    }
-
-    /**
      * Create an instance of {@link DtOfertaLaboral }
      * 
      * @return
@@ -250,26 +240,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BufferedImage }
-     * 
-     * @return
-     *     the new instance of {@link BufferedImage }
-     */
-    public BufferedImage createBufferedImage() {
-        return new BufferedImage();
-    }
-
-    /**
-     * Create an instance of {@link Raster }
-     * 
-     * @return
-     *     the new instance of {@link Raster }
-     */
-    public Raster createRaster() {
-        return new Raster();
-    }
-
-    /**
      * Create an instance of {@link DtPaquetePublicacion }
      * 
      * @return
@@ -277,6 +247,26 @@ public class ObjectFactory {
      */
     public DtPaquetePublicacion createDtPaquetePublicacion() {
         return new DtPaquetePublicacion();
+    }
+
+    /**
+     * Create an instance of {@link DtCantidadTipoPublicacion }
+     * 
+     * @return
+     *     the new instance of {@link DtCantidadTipoPublicacion }
+     */
+    public DtCantidadTipoPublicacion createDtCantidadTipoPublicacion() {
+        return new DtCantidadTipoPublicacion();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     * @return
+     *     the new instance of {@link LocalDate }
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
     }
 
     /**
@@ -310,13 +300,33 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtCantidadTipoPublicacion }
+     * Create an instance of {@link DtTipoPublicacion }
      * 
      * @return
-     *     the new instance of {@link DtCantidadTipoPublicacion }
+     *     the new instance of {@link DtTipoPublicacion }
      */
-    public DtCantidadTipoPublicacion createDtCantidadTipoPublicacion() {
-        return new DtCantidadTipoPublicacion();
+    public DtTipoPublicacion createDtTipoPublicacion() {
+        return new DtTipoPublicacion();
+    }
+
+    /**
+     * Create an instance of {@link BufferedImage }
+     * 
+     * @return
+     *     the new instance of {@link BufferedImage }
+     */
+    public BufferedImage createBufferedImage() {
+        return new BufferedImage();
+    }
+
+    /**
+     * Create an instance of {@link Raster }
+     * 
+     * @return
+     *     the new instance of {@link Raster }
+     */
+    public Raster createRaster() {
+        return new Raster();
     }
 
     /**
@@ -330,13 +340,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtTipoPublicacion }
+     * Create an instance of {@link DtCantidadTipoPublicacionRestante }
      * 
      * @return
-     *     the new instance of {@link DtTipoPublicacion }
+     *     the new instance of {@link DtCantidadTipoPublicacionRestante }
      */
-    public DtTipoPublicacion createDtTipoPublicacion() {
-        return new DtTipoPublicacion();
+    public DtCantidadTipoPublicacionRestante createDtCantidadTipoPublicacionRestante() {
+        return new DtCantidadTipoPublicacionRestante();
     }
 
     /**
@@ -357,16 +367,6 @@ public class ObjectFactory {
      */
     public DtOfertaLaboralArray createDtOfertaLaboralArray() {
         return new DtOfertaLaboralArray();
-    }
-
-    /**
-     * Create an instance of {@link DtPaquetePublicacionArray }
-     * 
-     * @return
-     *     the new instance of {@link DtPaquetePublicacionArray }
-     */
-    public DtPaquetePublicacionArray createDtPaquetePublicacionArray() {
-        return new DtPaquetePublicacionArray();
     }
 
     /**
@@ -397,6 +397,16 @@ public class ObjectFactory {
      */
     public DtCompraPaqueteArray createDtCompraPaqueteArray() {
         return new DtCompraPaqueteArray();
+    }
+
+    /**
+     * Create an instance of {@link DtPaquetePublicacionArray }
+     * 
+     * @return
+     *     the new instance of {@link DtPaquetePublicacionArray }
+     */
+    public DtPaquetePublicacionArray createDtPaquetePublicacionArray() {
+        return new DtPaquetePublicacionArray();
     }
 
     /**

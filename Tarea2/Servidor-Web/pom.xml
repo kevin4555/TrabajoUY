@@ -22,11 +22,6 @@
 			<version>4.0.0</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>SeridorCentral</groupId>
-			<artifactId>SeridorCentral</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

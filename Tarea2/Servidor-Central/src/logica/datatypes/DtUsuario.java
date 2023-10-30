@@ -33,11 +33,8 @@ public class DtUsuario implements Serializable {
   private BufferedImage imagen;
   private String imagenBase64;
   private String contrasenia;
-  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<DtOfertaLaboral> ofertasColeccion;
-  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<String> seguidos;
-  @XmlJavaTypeAdapter(ListAdapter.class)
   private List<String> seguidores;
   
   public DtUsuario() {
