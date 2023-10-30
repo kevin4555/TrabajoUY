@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.datatypes.DtUsuario"%>
-<%@page import="logica.datatypes.DtOfertaLaboral"%>
-<%@page import="logica.datatypes.DtPostulante"%>
-<%@page import="logica.datatypes.DtEmpresa"%>
-<%@page import="logica.datatypes.EstadoOferta"%>
+<%@page import="logica.webservices.DtUsuario"%>
+<%@page import="logica.webservices.DtOfertaLaboral"%>
+<%@page import="logica.webservices.DtPostulante"%>
+<%@page import="logica.webservices.DtEmpresa"%>
+<%@page import="logica.webservices.EstadoOferta"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -30,7 +30,7 @@
 						<div class="row">
 							<div class="col-4">
 								<%
-								if (usuario.getImagen() != null) {
+								if (usuario.getImagenBase64() != null) {
 								%>
 								<img src="data:image/png;base64,<%=usuario.getImagenBase64()%>"
 									alt="Imagen de Perfil" width="200" height="200">
@@ -109,7 +109,7 @@
 											</tr>
 											<tr>
 												<td><strong>Fecha de nacimiento</strong></td>
-												<td><%=postulante.getFechaNacimiento()%></td>
+												<td><%=postulante.getFechaNacimientoString()%></td>
 											</tr>
 											<%
 											}

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.datatypes.DtUsuario"%>
-<%@page import="logica.datatypes.DtOfertaLaboral"%>
-<%@page import="logica.datatypes.DtPostulante"%>
-<%@page import="logica.datatypes.DtEmpresa"%>
-<%@page import="logica.datatypes.DtCompraPaquete"%>
-<%@page import="logica.datatypes.DtPostulacion"%>
-<%@page import="logica.datatypes.DtPaquetePublicacion"%>
-<%@page import="logica.datatypes.DtCantidadTipoPublicacionRestante"%>
-<%@page import="logica.datatypes.DtTipoPublicacion"%>
+<%@page import="logica.webservices.DtUsuario"%>
+<%@page import="logica.webservices.DtOfertaLaboral"%>
+<%@page import="logica.webservices.DtPostulante"%>
+<%@page import="logica.webservices.DtEmpresa"%>
+<%@page import="logica.webservices.DtCompraPaquete"%>
+<%@page import="logica.webservices.DtPostulacion"%>
+<%@page import="logica.webservices.DtPaquetePublicacion"%>
+<%@page import="logica.webservices.DtCantidadTipoPublicacionRestante"%>
+<%@page import="logica.webservices.DtTipoPublicacion"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
 						<div class="row">
 							<div class="col-4">
 								<%
-								if (usuario.getImagen() != null) {
+								if (usuario.getImagenBase64() != null) {
 								%>
 								<img src="data:image/png;base64,<%=usuario.getImagenBase64()%>"
 									alt="Imagen de Perfil" width="200" height="200">
@@ -122,7 +122,7 @@
 											</tr>
 											<tr>
 												<td><strong>Fecha de nacimiento</strong></td>
-												<td><%=postulante.getFechaNacimiento()%></td>
+												<td><%=postulante.getFechaNacimientoString()%></td>
 											</tr>
 											<%
 											}
@@ -203,7 +203,7 @@
 													<td><%=dtPaquete.getDescripcion()%></td>
 													<td><%=dtPaquete.getPeriodoValidez()%></td>
 													<td><%=dtPaquete.getDescuento()%>%</td>
-													<td><%=paquete.getFechaCompra()%></td>
+													<td><%=paquete.getFechaCompraString()%></td>
 													<td>
 
 														<ul class="navbar-nav justify-content-evenly">
@@ -257,7 +257,7 @@
 													href="<%=request.getContextPath()%>/oferta?nombreOferta=<%=postulacion.getNombreOferta()%>"><%=postulacion.getNombreOferta()%></a></td>
 												<td><%=postulacion.getDescripMotivacion()%></td>
 												<td><%=postulacion.getCvReducido()%></td>
-												<td><%=postulacion.getFechaPostulacion()%></td>
+												<td><%=postulacion.getFechaPostulacionString()%></td>
 
 											</tr>
 											<%

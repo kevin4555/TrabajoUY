@@ -1,6 +1,6 @@
-<%@page import="logica.datatypes.DtOfertaLaboral"%>
-<%@page import="logica.datatypes.Dtusuario"%>
-<%@page import="logica.datatypes.Dtpostulacion"%>
+<%@page import="logica.webservices.DtOfertaLaboral"%>
+<%@page import="logica.webservices.DtUsuario"%>
+<%@page import="logica.webservices.DtPostulacion"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -30,14 +30,14 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 			<div class="col-8">
 				<section>
 					<%
-					Dtusuario usuario = (Dtusuario) request.getAttribute("usuario");
-					ArrayList<Dtpostulacion> postulaciones = (ArrayList<Dtpostulacion>) request.getAttribute("postulaciones");
+					DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
+					ArrayList<DtPostulacion> postulaciones = (ArrayList<DtPostulacion>) request.getAttribute("postulaciones");
 					ArrayList<DtOfertaLaboral> ofertasPostuladas = (ArrayList<DtOfertaLaboral>) request.getAttribute("ofertasPostuladas");
 					
 					int indice = postulaciones.size()-1;
 					int indiceRecorrer = 0;
 					DtOfertaLaboral ofertaLaboral = null;
-					for (Dtpostulacion postulacion : postulaciones) {
+					for (DtPostulacion postulacion : postulaciones) {
 						if(indiceRecorrer <= indice)
 						{
 							ofertaLaboral = ofertasPostuladas.get(indiceRecorrer);

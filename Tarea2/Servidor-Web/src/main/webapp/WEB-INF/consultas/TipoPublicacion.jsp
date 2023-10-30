@@ -1,4 +1,4 @@
-<%@page import="logica.datatypes.DtTipoPublicacion"%>
+<%@page import="logica.webservices.DtTipoPublicacion"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -45,13 +45,10 @@ DtTipoPublicacion tipoPublicacion = (DtTipoPublicacion) request.getAttribute("ti
                                 <li class="text-secondary">
                                     <i class="bi bi-arrow-right-circle text-primary"></i>
                                     <%
-										LocalDate fechaAlta = tipoPublicacion.getFechaAlta(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
-										Date fechaAltaDate = Date.from(fechaAlta.atStartOfDay(ZoneId.systemDefault()).toInstant());
-										SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-										String newParsedDate = outputDateFormat.format(fechaAltaDate);
+										String fechaAlta = tipoPublicacion.getFechaAltaString(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
 									%>
 										
-										Fecha <%= newParsedDate %>
+										Fecha <%= fechaAlta %>
                                 </li>
                             </ul>
                             <div class="text-start">

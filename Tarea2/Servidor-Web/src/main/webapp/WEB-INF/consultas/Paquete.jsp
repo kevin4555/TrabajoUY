@@ -1,10 +1,10 @@
 <%@page import="model.TipoUsuario"%>
-<%@page import="logica.datatypes.DtUsuario"%>
+<%@page import="logica.webservices.DtUsuario"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DtPaquetePublicacion"%>
+<%@page import="logica.webservices.DtPaquetePublicacion"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     
-<%@page import="logica.datatypes.DtCantidadTipoPublicacion"%>
+<%@page import="logica.webservices.DtCantidadTipoPublicacion"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.time.LocalDate" %>
@@ -21,7 +21,7 @@
 </head>
   <body>
   	<%
-  	DtPaquetePublicacion paquete = (DtPaquetePublicacion) request.getAttribute("paquete"); 
+  				DtPaquetePublicacion paquete = (DtPaquetePublicacion) request.getAttribute("paquete"); 
   	  	  		EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
   	  	  		DtUsuario usuario = (DtUsuario) session.getAttribute("usuarioLogueado");
   	  	  		TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuario");
@@ -73,13 +73,10 @@
                     <li class="text-secondary">
                       <i class="bi bi-arrow-right-circle text-primary"></i>
                       <%
-                      LocalDate fechaAlta = paquete.getFechaAlta(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
-                      				Date fechaAltaDate = Date.from(fechaAlta.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                      				SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                      				String newParsedDate = outputDateFormat.format(fechaAltaDate);
+                      String fechaAlta = paquete.getFechaAltaString(); // Obtén la fecha como un objeto LocalDate desde tu objeto paquete
                       %>
 						
-						Fecha <%=newParsedDate%>
+						Fecha <%=fechaAlta%>
                     </li>
                   </ul>
                   <div class="publicacionesPaquete">
