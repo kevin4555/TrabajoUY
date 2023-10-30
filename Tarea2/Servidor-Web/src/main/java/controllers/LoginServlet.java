@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet
 		}
 		try
 		{
-		 DtUsuario usuario = port.obtenerDtusuario(nombreEmail);
+		 DtUsuario usuario = port.obtenerDtUsuario(nombreEmail);
 			if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
 			{
 				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada))

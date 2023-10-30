@@ -14,6 +14,7 @@ import logica.webservices.DtOfertaLaboral;
 import logica.webservices.DtPostulacion;
 import logica.webservices.DtPostulante;
 import logica.webservices.DtUsuario;
+import logica.webservices.IOException_Exception;
 import logica.webservices.OfertaLaboralNoExisteException;
 import logica.webservices.OfertaLaboralNoExisteException_Exception;
 import logica.webservices.PublicadorService;
@@ -53,7 +54,7 @@ public class OfertaServlet extends HttpServlet
 			Map<String, String> mapImagen = new HashMap<String, String>();
 			for (DtPostulacion postulacion : oferta.getPostulaciones())
 			{
-				DtUsuario postulante = port.obtenerDtusuario(postulacion.getNicknamePostulante());
+				DtUsuario postulante = port.obtenerDtUsuario(postulacion.getNicknamePostulante());
 				mapImagen.put(postulante.getNickname(), postulante.getImagenBase64());
 			}
 			request.setAttribute("mapImagenes", mapImagen);
@@ -74,7 +75,7 @@ public class OfertaServlet extends HttpServlet
 			}
 			
 		}
-		catch (OfertaLaboralNoExisteException_Exception | UsuarioNoExisteException_Exception e)
+		catch (OfertaLaboralNoExisteException_Exception | UsuarioNoExisteException_Exception | IOException_Exception e)
 		{
 			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
