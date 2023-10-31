@@ -74,6 +74,8 @@
 								<%
 								}
 								%>
+								<li class="nav-item"><a class="nav-link"
+									data-bs-toggle="tab" href="#seguidos">Seguidores/Seguidos</a></li>
 							</ul>
 
 							<!-- Tab panes -->
@@ -269,6 +271,41 @@
 								<%
 								}
 								%>
+								<div id="seguidos" class="container tab-pane fade">
+									<table class="table table-hover table-bordered">
+										<thead>
+											<tr>
+												<th>Seguidores</th>
+												<th>Seguidos</th>
+											</tr>
+										</thead>
+										<tbody>
+											<%
+											List<String> seguidores = (List<String>) usuario.getSeguidores();
+											List<String> seguidos = (List<String>) usuario.getSeguidos();								
+											%>
+											<tr>
+											<%
+											for (String seguidor: seguidores) {
+											%>
+											<td><a
+													href="<%= request.getContextPath() %>/perfil?nicknameUsuario=<%= seguidor %>"><%=seguidor%></a></td>
+													<%
+											}
+											%>
+											<%
+											for (String sigo: seguidos) {
+											%>
+											<td><a
+													href="<%= request.getContextPath() %>/perfil?nicknameUsuario=<%= sigo %>"><%=sigo%></a></td>
+													<%
+											}
+											%>
+											
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</section>
