@@ -75,7 +75,9 @@
 								}
 								%>
 								<li class="nav-item"><a class="nav-link"
-									data-bs-toggle="tab" href="#seguidos">Seguidores/Seguidos</a></li>
+									data-bs-toggle="tab" href="#seguidores">Seguidores</a></li>
+									<li class="nav-item"><a class="nav-link"
+									data-bs-toggle="tab" href="#seguidos">Seguidos</a></li>
 							</ul>
 
 							<!-- Tab panes -->
@@ -271,18 +273,16 @@
 								<%
 								}
 								%>
-								<div id="seguidos" class="container tab-pane fade">
+								<div id="seguidores" class="container tab-pane fade">
 									<table class="table table-hover table-bordered">
 										<thead>
 											<tr>
 												<th>Seguidores</th>
-												<th>Seguidos</th>
 											</tr>
 										</thead>
 										<tbody>
 											<%
-											List<String> seguidores = (List<String>) usuario.getSeguidores();
-											List<String> seguidos = (List<String>) usuario.getSeguidos();								
+											List<String> seguidores = (List<String>) usuario.getSeguidores();								
 											%>
 											<tr>
 											<%
@@ -293,6 +293,24 @@
 													<%
 											}
 											%>
+											
+											
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div id="seguidos" class="container tab-pane fade">
+									<table class="table table-hover table-bordered">
+										<thead>
+											<tr>
+												<th>Seguidos</th>
+											</tr>
+										</thead>
+										<tbody>
+											<%
+											List<String> seguidos = (List<String>) usuario.getSeguidos();								
+											%>
+											<tr>
 											<%
 											for (String sigo: seguidos) {
 											%>
@@ -301,7 +319,6 @@
 													<%
 											}
 											%>
-											
 											</tr>
 										</tbody>
 									</table>
