@@ -7,9 +7,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtTipoPublicacion complex type.
+ * <p>Java class for dtTipoPublicacion complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="dtTipoPublicacion">
@@ -49,7 +49,7 @@ public class DtTipoPublicacion {
     protected String fechaAltaString;
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -61,7 +61,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -73,7 +73,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad descripcion.
+     * Gets the value of the descripcion property.
      * 
      * @return
      *     possible object is
@@ -85,7 +85,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Define el valor de la propiedad descripcion.
+     * Sets the value of the descripcion property.
      * 
      * @param value
      *     allowed object is
@@ -97,7 +97,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad exposicion.
+     * Gets the value of the exposicion property.
      * 
      * @return
      *     possible object is
@@ -109,7 +109,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Define el valor de la propiedad exposicion.
+     * Sets the value of the exposicion property.
      * 
      * @param value
      *     allowed object is
@@ -121,7 +121,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad duracionDia.
+     * Gets the value of the duracionDia property.
      * 
      */
     public int getDuracionDia() {
@@ -129,7 +129,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Define el valor de la propiedad duracionDia.
+     * Sets the value of the duracionDia property.
      * 
      */
     public void setDuracionDia(int value) {
@@ -137,7 +137,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad costo.
+     * Gets the value of the costo property.
      * 
      */
     public float getCosto() {
@@ -145,7 +145,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Define el valor de la propiedad costo.
+     * Sets the value of the costo property.
      * 
      */
     public void setCosto(float value) {
@@ -153,7 +153,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaAltaString.
+     * Gets the value of the fechaAltaString property.
      * 
      * @return
      *     possible object is
@@ -165,7 +165,7 @@ public class DtTipoPublicacion {
     }
 
     /**
-     * Define el valor de la propiedad fechaAltaString.
+     * Sets the value of the fechaAltaString property.
      * 
      * @param value
      *     allowed object is

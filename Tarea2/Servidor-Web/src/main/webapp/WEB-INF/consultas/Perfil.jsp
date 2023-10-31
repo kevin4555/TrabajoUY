@@ -20,9 +20,11 @@
 			<jsp:include page="../include/Menu.jsp" />
 			<%
 			DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
-						String tipoUsuario = (String) request.getAttribute("tipoUsuario");
+			String tipoUsuario = (String) request.getAttribute("tipoUsuario");
+			DtUsuario usuarioLogueado = (DtUsuario) session.getAttribute("usuarioLogueado");
+			Boolean seguidoOno = (Boolean) request.getAttribute("seguidoOno");
 			%>
-
+			
 			<div class="menuMiPerfil container mt-3 col-8">
 				<!-- Tab panes -->
 				<div class="tab-content">
@@ -38,11 +40,41 @@
 								}
 								%>
 							</div>
-							<div class="col-8">
-								<h2 class="mb-3"><%=usuario.getNombre()%>
-									<%=usuario.getApellido()%></h2>
-								<label for="" class="labelNicknameEmail mb-3"><%=usuario.getNickname()%>
-									/ <%=usuario.getEmail()%></label>
+
+
+							<div class="row">
+								<div class="col-md-8">
+									<h2 class="mb-3"><%=usuario.getNombre()%>
+										<%=usuario.getApellido()%></h2>
+									<label for="" class="labelNicknameEmail mb-3"><%=usuario.getNickname()%>
+										/ <%=usuario.getEmail()%></label>
+								</div>
+								<div class="col-md-4">
+									<%
+									if (seguidoOno) {
+									%>
+									<form action="<%=request.getContextPath()%>/seguirDejarSeguir"
+										method="POST">
+										<input type="hidden" name="perfilUsuario"
+											value="<%=usuario.getNickname()%>"> <input
+											type="hidden" name="follow/unfollow" value="dejarSeguir">
+										<button class="btn btn-primary" type="submit">Dejar
+											de seguir</button>
+									</form>
+									<%
+									} else {
+									%>
+									<form action="<%=request.getContextPath()%>/seguirDejarSeguir"
+										method="POST">
+										<input type="hidden" name="perfilUsuario"
+											value="<%=usuario.getNickname()%>"> <input
+											type="hidden" name="follow/unfollow" value="seguir">
+										<button class="btn btn-primary" type="submit">Seguir</button>
+									</form>
+									<%
+									}
+									%>
+								</div>
 							</div>
 						</div>
 						<div class="menuMiPerfil container mt-3">
@@ -86,7 +118,7 @@
 											</tr>
 											<%
 											if (tipoUsuario.equals("empresa")) {
-																													  DtEmpresa empresa = (DtEmpresa) request.getAttribute("usuario");
+												DtEmpresa empresa = (DtEmpresa) request.getAttribute("usuario");
 											%>
 											<tr>
 												<td><strong>Sitio web</strong></td>
@@ -101,7 +133,7 @@
 											%>
 											<%
 											if (tipoUsuario.equals("postulante")) {
-																				  DtPostulante postulante = (DtPostulante) request.getAttribute("usuario");
+												DtPostulante postulante = (DtPostulante) request.getAttribute("usuario");
 											%>
 											<tr>
 												<td><strong>Nacionalidad</strong></td>
@@ -137,12 +169,11 @@
 												<%
 												List<DtOfertaLaboral> ofertasColeccion = usuario.getOfertasColeccion();
 												for (DtOfertaLaboral oferta : ofertasColeccion) {
-												  if (oferta.getEstadoOferta().equals(EstadoOferta.CONFIRMADA)) {
+													if (oferta.getEstadoOferta().equals(EstadoOferta.CONFIRMADA)) {
 												%>
 												<td><a
 													href="<%=request.getContextPath()%>/oferta?nombreOferta=<%=oferta.getNombre()%>"><%=oferta.getNombre()%></a></td>
-												<td><%=oferta.getHorarioInicio()%> -
-													<%=oferta.getHorarioFinal()%></td>
+												<td><%=oferta.getHorarioInicio()%> - <%=oferta.getHorarioFinal()%></td>
 												<td><%=oferta.getRemuneracion()%></td>
 												<td><%=oferta.getDescripcion()%></td>
 												<td><%=oferta.getDepartamento()%></td>

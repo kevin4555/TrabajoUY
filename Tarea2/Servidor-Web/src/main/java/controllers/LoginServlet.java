@@ -70,8 +70,6 @@ public class LoginServlet extends HttpServlet
 				{
 					if (usuario instanceof DtPostulante)
 					{
-						ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) port.obtenerDtOfertasConfirmadas().getItem();
-						request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 						sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
 						sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
 						sesion.setAttribute("usuarioLogueado", usuario);
@@ -95,6 +93,8 @@ public class LoginServlet extends HttpServlet
 			{
 				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada))
 				{
+					ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) port.obtenerDtOfertasConfirmadas().getItem();
+					request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 					if (usuario instanceof DtEmpresa)
 					{
 						sesion.setAttribute("tipoUsuario", TipoUsuario.EMPRESA);
