@@ -7,12 +7,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for PaquetePublicacionYaFueComprado complex type.
+ * <p>Java class for UsuarioYaEstaSeguidoException complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
- * <complexType name="PaquetePublicacionYaFueComprado">
+ * <complexType name="UsuarioYaEstaSeguidoException">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
@@ -26,10 +26,10 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PaquetePublicacionYaFueComprado", propOrder = {
+@XmlType(name = "UsuarioYaEstaSeguidoException", propOrder = {
     "message"
 })
-public class PaquetePublicacionYaFueComprado {
+public class UsuarioYaEstaSeguidoException {
 
     protected String message;
 

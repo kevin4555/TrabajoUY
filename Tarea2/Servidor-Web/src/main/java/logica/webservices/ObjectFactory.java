@@ -37,8 +37,10 @@ public class ObjectFactory {
     private final static QName _TipoPublicacionNoExisteException_QNAME = new QName("http://webServices.logica/", "TipoPublicacionNoExisteException");
     private final static QName _TipoPublicacionYaExisteException_QNAME = new QName("http://webServices.logica/", "TipoPublicacionYaExisteException");
     private final static QName _UsuarioEmailRepetidoException_QNAME = new QName("http://webServices.logica/", "UsuarioEmailRepetidoException");
+    private final static QName _UsuarioNoEstaSeguidoException_QNAME = new QName("http://webServices.logica/", "UsuarioNoEstaSeguidoException");
     private final static QName _UsuarioNoExisteException_QNAME = new QName("http://webServices.logica/", "UsuarioNoExisteException");
     private final static QName _UsuarioNoExistePostulacion_QNAME = new QName("http://webServices.logica/", "UsuarioNoExistePostulacion");
+    private final static QName _UsuarioYaEstaSeguidoException_QNAME = new QName("http://webServices.logica/", "UsuarioYaEstaSeguidoException");
     private final static QName _UsuarioYaExisteException_QNAME = new QName("http://webServices.logica/", "UsuarioYaExisteException");
     private final static QName _UsuarioYaExistePostulacion_QNAME = new QName("http://webServices.logica/", "UsuarioYaExistePostulacion");
 
@@ -180,6 +182,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UsuarioNoEstaSeguidoException }
+     * 
+     * @return
+     *     the new instance of {@link UsuarioNoEstaSeguidoException }
+     */
+    public UsuarioNoEstaSeguidoException createUsuarioNoEstaSeguidoException() {
+        return new UsuarioNoEstaSeguidoException();
+    }
+
+    /**
      * Create an instance of {@link UsuarioNoExisteException }
      * 
      * @return
@@ -197,6 +209,16 @@ public class ObjectFactory {
      */
     public UsuarioNoExistePostulacion createUsuarioNoExistePostulacion() {
         return new UsuarioNoExistePostulacion();
+    }
+
+    /**
+     * Create an instance of {@link UsuarioYaEstaSeguidoException }
+     * 
+     * @return
+     *     the new instance of {@link UsuarioYaEstaSeguidoException }
+     */
+    public UsuarioYaEstaSeguidoException createUsuarioYaEstaSeguidoException() {
+        return new UsuarioYaEstaSeguidoException();
     }
 
     /**
@@ -260,36 +282,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtUsuario }
-     * 
-     * @return
-     *     the new instance of {@link DtUsuario }
-     */
-    public DtUsuario createDtUsuario() {
-        return new DtUsuario();
-    }
-
-    /**
-     * Create an instance of {@link DtEmpresa }
-     * 
-     * @return
-     *     the new instance of {@link DtEmpresa }
-     */
-    public DtEmpresa createDtEmpresa() {
-        return new DtEmpresa();
-    }
-
-    /**
-     * Create an instance of {@link DtPostulante }
-     * 
-     * @return
-     *     the new instance of {@link DtPostulante }
-     */
-    public DtPostulante createDtPostulante() {
-        return new DtPostulante();
-    }
-
-    /**
      * Create an instance of {@link DtTipoPublicacion }
      * 
      * @return
@@ -340,6 +332,36 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtEmpresa }
+     * 
+     * @return
+     *     the new instance of {@link DtEmpresa }
+     */
+    public DtEmpresa createDtEmpresa() {
+        return new DtEmpresa();
+    }
+
+    /**
+     * Create an instance of {@link DtUsuario }
+     * 
+     * @return
+     *     the new instance of {@link DtUsuario }
+     */
+    public DtUsuario createDtUsuario() {
+        return new DtUsuario();
+    }
+
+    /**
+     * Create an instance of {@link DtPostulante }
+     * 
+     * @return
+     *     the new instance of {@link DtPostulante }
+     */
+    public DtPostulante createDtPostulante() {
+        return new DtPostulante();
+    }
+
+    /**
      * Create an instance of {@link LocalDate }
      * 
      * @return
@@ -370,16 +392,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtUsuarioArray }
-     * 
-     * @return
-     *     the new instance of {@link DtUsuarioArray }
-     */
-    public DtUsuarioArray createDtUsuarioArray() {
-        return new DtUsuarioArray();
-    }
-
-    /**
      * Create an instance of {@link DtCantidadTipoPublicacionArray }
      * 
      * @return
@@ -400,16 +412,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtPaquetePublicacionArray }
-     * 
-     * @return
-     *     the new instance of {@link DtPaquetePublicacionArray }
-     */
-    public DtPaquetePublicacionArray createDtPaquetePublicacionArray() {
-        return new DtPaquetePublicacionArray();
-    }
-
-    /**
      * Create an instance of {@link DtEmpresaArray }
      * 
      * @return
@@ -417,6 +419,26 @@ public class ObjectFactory {
      */
     public DtEmpresaArray createDtEmpresaArray() {
         return new DtEmpresaArray();
+    }
+
+    /**
+     * Create an instance of {@link DtUsuarioArray }
+     * 
+     * @return
+     *     the new instance of {@link DtUsuarioArray }
+     */
+    public DtUsuarioArray createDtUsuarioArray() {
+        return new DtUsuarioArray();
+    }
+
+    /**
+     * Create an instance of {@link DtPaquetePublicacionArray }
+     * 
+     * @return
+     *     the new instance of {@link DtPaquetePublicacionArray }
+     */
+    public DtPaquetePublicacionArray createDtPaquetePublicacionArray() {
+        return new DtPaquetePublicacionArray();
     }
 
     /**
@@ -589,6 +611,19 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioNoEstaSeguidoException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioNoEstaSeguidoException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioNoEstaSeguidoException")
+    public JAXBElement<UsuarioNoEstaSeguidoException> createUsuarioNoEstaSeguidoException(UsuarioNoEstaSeguidoException value) {
+        return new JAXBElement<>(_UsuarioNoEstaSeguidoException_QNAME, UsuarioNoEstaSeguidoException.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioNoExisteException }{@code >}
      * 
      * @param value
@@ -612,6 +647,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioNoExistePostulacion")
     public JAXBElement<UsuarioNoExistePostulacion> createUsuarioNoExistePostulacion(UsuarioNoExistePostulacion value) {
         return new JAXBElement<>(_UsuarioNoExistePostulacion_QNAME, UsuarioNoExistePostulacion.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioYaEstaSeguidoException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioYaEstaSeguidoException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioYaEstaSeguidoException")
+    public JAXBElement<UsuarioYaEstaSeguidoException> createUsuarioYaEstaSeguidoException(UsuarioYaEstaSeguidoException value) {
+        return new JAXBElement<>(_UsuarioYaEstaSeguidoException_QNAME, UsuarioYaEstaSeguidoException.class, null, value);
     }
 
     /**

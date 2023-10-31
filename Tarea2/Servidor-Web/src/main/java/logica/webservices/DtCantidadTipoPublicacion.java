@@ -7,9 +7,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtCantidadTipoPublicacion complex type.
+ * <p>Java class for dtCantidadTipoPublicacion complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="dtCantidadTipoPublicacion">
@@ -37,7 +37,7 @@ public class DtCantidadTipoPublicacion {
     protected int cantidad;
 
     /**
-     * Obtiene el valor de la propiedad nombreTipoPublicacion.
+     * Gets the value of the nombreTipoPublicacion property.
      * 
      * @return
      *     possible object is
@@ -49,7 +49,7 @@ public class DtCantidadTipoPublicacion {
     }
 
     /**
-     * Define el valor de la propiedad nombreTipoPublicacion.
+     * Sets the value of the nombreTipoPublicacion property.
      * 
      * @param value
      *     allowed object is
@@ -61,7 +61,7 @@ public class DtCantidadTipoPublicacion {
     }
 
     /**
-     * Obtiene el valor de la propiedad cantidad.
+     * Gets the value of the cantidad property.
      * 
      */
     public int getCantidad() {
@@ -69,7 +69,7 @@ public class DtCantidadTipoPublicacion {
     }
 
     /**
-     * Define el valor de la propiedad cantidad.
+     * Sets the value of the cantidad property.
      * 
      */
     public void setCantidad(int value) {

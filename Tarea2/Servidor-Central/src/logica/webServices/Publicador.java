@@ -1,6 +1,16 @@
 
 package logica.webServices;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -13,8 +23,10 @@ import excepciones.TipoDePublicacionYaFueIngresado;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoEstaSeguidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioNoExistePostulacion;
+import excepciones.UsuarioYaEstaSeguidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import jakarta.jws.WebMethod;
@@ -23,18 +35,6 @@ import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.Locale;
-
-import javax.imageio.ImageIO;
-
 import logica.controllers.Fabrica;
 import logica.datatypes.DtCantidadTipoPublicacion;
 import logica.datatypes.DtCompraPaquete;
@@ -382,4 +382,17 @@ public class Publicador {
 			return null;
 		}
 	}
+	
+	@WebMethod
+	public void agregarSeguidor(String nicknameUsuario, String nicknameSeguidor)
+		      throws UsuarioNoExisteException, UsuarioNoEstaSeguidoException, UsuarioYaEstaSeguidoException{
+		controladorUsuario.agregarSeguidor(nicknameUsuario, nicknameSeguidor);
+	}
+	
+	@WebMethod
+	public void dejarDeSeguir(String nicknameUsuario, String nicknameSeguidor)
+		      throws UsuarioNoExisteException, UsuarioNoEstaSeguidoException {
+		controladorUsuario.dejarDeSeguir(nicknameUsuario, nicknameSeguidor);
+	}
+	
 }
