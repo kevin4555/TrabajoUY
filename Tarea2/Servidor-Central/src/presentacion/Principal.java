@@ -51,6 +51,7 @@ public class Principal extends JFrame {
   private AgregarTipoPublicacionAlPaquete agregarTipoPublicacionAlPaquete;
   private RegistrarPaquete registrarPaquete;
   private ConsultaPaquete consultaPaquete;
+  private OfertasLaboralesMasVisitadas ofertasLaboralesMasVisitadas;
   
   /**
    * Launch the application.
@@ -131,6 +132,9 @@ public class Principal extends JFrame {
     consultaPaquete = new ConsultaPaquete(ico);
     consultaPaquete.setVisible(false);
     
+    ofertasLaboralesMasVisitadas = new OfertasLaboralesMasVisitadas(ico);
+    ofertasLaboralesMasVisitadas.setVisible(false);
+    
     ventanaPrincipal.getContentPane().setLayout(null);
     ventanaPrincipal.getContentPane()
         .add(consultarUsuInternalFrame);
@@ -152,6 +156,7 @@ public class Principal extends JFrame {
         .add(agregarTipoPublicacionAlPaquete);
     ventanaPrincipal.getContentPane().add(registrarPaquete);
     ventanaPrincipal.getContentPane().add(consultaPaquete);
+    ventanaPrincipal.getContentPane().add(ofertasLaboralesMasVisitadas);
   }
   
   private void initialize() {
@@ -324,6 +329,20 @@ public class Principal extends JFrame {
           }
         });
     menuOfertaLaboral.add(menuItemaceptarRechazarOferta);
+    
+    JMenuItem menuItemofertasLaboralesMasVisitadas = new JMenuItem(
+        "Oferta Laborales Mas Visitadas");
+    menuItemofertasLaboralesMasVisitadas
+        .addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent evento) {
+            // Muestro el InternalFrame para postularse a
+            // una
+            // oferta laboral
+            ofertasLaboralesMasVisitadas.cargarOfertasMasVisitadas();
+            ofertasLaboralesMasVisitadas.setVisible(true);
+          }
+        });
+    menuOfertaLaboral.add(menuItemofertasLaboralesMasVisitadas);
     
     JMenu menuPaquete = new JMenu("Paquetes");
     menuBar.add(menuPaquete);
