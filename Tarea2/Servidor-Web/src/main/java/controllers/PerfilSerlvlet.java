@@ -18,6 +18,7 @@ import logica.webservices.DtUsuario;
 import logica.webservices.IOException_Exception;
 import logica.webservices.PublicadorService;
 import logica.webservices.UsuarioNoExisteException_Exception;
+import model.TipoUsuario;
 
 /**
  * Servlet implementation class PerfilSerlvlet
@@ -45,7 +46,7 @@ public class PerfilSerlvlet extends HttpServlet
 		Boolean flag = usuarioLogueado.getSeguidos().contains(nicknameUsuario);
 		logica.webservices.PublicadorService service = new PublicadorService();
 		logica.webservices.Publicador port = service.getPublicadorPort();
-		
+		String userAgent = request.getHeader("User-Agent");
 		request.setAttribute("seguidoOno", flag);
 		
 		try
@@ -90,12 +91,19 @@ public class PerfilSerlvlet extends HttpServlet
 			e.printStackTrace();
 		}
 
-		if (usuarioLogueado != null && nicknameUsuario.equals(usuarioLogueado.getNickname()))
+		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
 		{
-			request.getRequestDispatcher("/WEB-INF/consultas/miPerfil.jsp").forward(request, response);
+			if(TipoUsuario.POSTULANTE == sesion.getAttribute("tipoUsuario"))
+				request.getRequestDispatcher("/WEB-INF/mobile/consultas/MiPerfilMobile.jsp").forward(request, response);
 		}
-
-		request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
+		else
+		{
+			if (usuarioLogueado != null && nicknameUsuario.equals(usuarioLogueado.getNickname()))
+			{
+				request.getRequestDispatcher("/WEB-INF/consultas/miPerfil.jsp").forward(request, response);
+			}
+			request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
+		}
 	}
 
 	/**

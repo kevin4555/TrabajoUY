@@ -22,22 +22,19 @@ import model.TipoUsuario;
  * Servlet implementation class LoginServlet
  */
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet
-{
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet()
-	{
+	public LoginServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
-	{
+			throws ServletException, IOException {
 		String nombreEmail = (String) request.getParameter("nombreEmail");
 		String contraseniaIngresada = (String) request.getParameter("contrasenia");
 
@@ -45,90 +42,66 @@ public class LoginServlet extends HttpServlet
 
 		HttpSession sesion = request.getSession();
 		PublicadorService publicadorService = new PublicadorService();
-  logica.webservices.Publicador port = publicadorService.getPublicadorPort();
-		if (nombreEmail == null || contraseniaIngresada == null)
-		{
-			if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
-			{
+		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
+		ArrayList<DtOfertaLaboral> dTOfertas;
+		if (nombreEmail == null || contraseniaIngresada == null) {
+			if (userAgent != null && userAgent.toLowerCase().contains("mobile")) {
 				sesion.setAttribute("estadoSesion", EstadoSesion.NO_LOGIN);
 				request.getRequestDispatcher("/WEB-INF/mobile/home/LoginMobile.jsp").forward(request, response);
 				return;
-			}
-			else
-			{
+			} else {
 				sesion.setAttribute("estadoSesion", EstadoSesion.NO_LOGIN);
 				request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
 				return;
 			}
 		}
-		try
-		{
-		 DtUsuario usuario = port.obtenerDtUsuario(nombreEmail);
-			if (userAgent != null && userAgent.toLowerCase().contains("mobile"))
-			{
-				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada))
-				{
-					if (usuario instanceof DtPostulante)
-					{
+		try {
+			dTOfertas = (ArrayList<DtOfertaLaboral>) port.obtenerDtOfertasConfirmadas().getItem();
+			request.setAttribute("listaOfertasConfirmadas", dTOfertas);
+			DtUsuario usuario = port.obtenerDtUsuario(nombreEmail);
+			if (userAgent != null && userAgent.toLowerCase().contains("mobile")) {
+				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada)) {
+					if (usuario instanceof DtPostulante) {
 						sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
 						sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
 						sesion.setAttribute("usuarioLogueado", usuario);
 						request.getRequestDispatcher("/WEB-INF/mobile/home/HomeMobile.jsp").forward(request, response);
-					}
-					else 
-					{
+					} else {
 						sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
 						request.setAttribute("error", "usuario incorrecto");
 						request.getRequestDispatcher("/WEB-INF/mobile/home/LoginMobile.jsp").forward(request, response);
 					}
-				}
-				else 
-				{
+				} else {
 					sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
 					request.setAttribute("error", "password incorrecta");
 					request.getRequestDispatcher("/WEB-INF/mobile/home/LoginMobile.jsp").forward(request, response);
 				}
-			}
-			else
-			{
-				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada))
-				{
-					ArrayList<DtOfertaLaboral> dTOfertas = (ArrayList<DtOfertaLaboral>) port.obtenerDtOfertasConfirmadas().getItem();
-					request.setAttribute("listaOfertasConfirmadas", dTOfertas);
-					if (usuario instanceof DtEmpresa)
-					{
+			} else {
+				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada)) {
+					if (usuario instanceof DtEmpresa) {
 						sesion.setAttribute("tipoUsuario", TipoUsuario.EMPRESA);
-					}
-					else if (usuario instanceof DtPostulante)
-					{
+					} else if (usuario instanceof DtPostulante) {
 						sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
 					}
 					sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
 					sesion.setAttribute("usuarioLogueado", usuario);
 					request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
-				}
-				else
-				{
+				} else {
 					sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
 					request.setAttribute("error", "password incorrecta");
 					request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
 
 				}
 			}
-		}
-		catch (UsuarioNoExisteException_Exception | IOException_Exception e)
-		{
+		} catch (UsuarioNoExisteException_Exception | IOException_Exception e) {
 			sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
 			request.setAttribute("error", "usuario incorrecta");
-			if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
-			{
+			if (userAgent != null && userAgent.toLowerCase().contains("mobile")) {
 				request.getRequestDispatcher("/WEB-INF/mobile/home/LoginMobile.jsp").forward(request, response);
-			}
-			else 
-			{
+			} else {
 				request.getRequestDispatcher("/WEB-INF/home/Login.jsp").forward(request, response);
 			}
-			
+
 		}
 
 	}
@@ -137,8 +110,8 @@ public class LoginServlet extends HttpServlet
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		procesarRequest(request, response);
 	}
 
@@ -146,8 +119,8 @@ public class LoginServlet extends HttpServlet
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
