@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -55,7 +56,8 @@ public class PostulacionServlet extends HttpServlet
 		String cVReducido = request.getParameter("cVReducido");
 		String motivacion = request.getParameter("motivacion");
 		String video = request.getParameter("video");
-		String fecha = "";
+		LocalDate fechaActual = LocalDate.now();
+		String fecha = fechaActual.toString();
 		DtUsuario usuario = (DtUsuario) sesion.getAttribute("usuarioLogueado");
 
 		
