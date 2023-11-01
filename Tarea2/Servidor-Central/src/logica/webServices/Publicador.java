@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoSePuedeFinalizar;
 import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
@@ -162,12 +163,7 @@ public class Publicador {
 		return controladorOferta.obtenerKeywordsDeOfertaLaboral(nomOfertaLab).toArray(new String[0]);
 	}
 
-	@WebMethod
-	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, String fechaResolucion)
-			throws OfertaLaboralNoExisteException {
-	  LocalDate fecha = LocalDate.parse(fechaResolucion);
-		controladorOferta.aceptarRechazarOfertaLaboral(nombreOferta, estadoOferta, fecha);
-	}
+	
 
 	@WebMethod
 	public DtOfertaLaboral[] obtenerDtOfertasConfirmadas() throws IOException {
@@ -395,5 +391,10 @@ public class Publicador {
 		      throws UsuarioNoExisteException, UsuarioNoEstaSeguidoException {
 		controladorUsuario.dejarDeSeguir(nicknameUsuario, nicknameSeguidor);
 	}
+	
+	@WebMethod
+ public void finalizarOferta(String nombreOferta) throws OfertaLaboralNoExisteException, OfertaLaboralNoSePuedeFinalizar {
+  controladorOferta.finalizarOferta(nombreOferta);
+ }
 	
 }
