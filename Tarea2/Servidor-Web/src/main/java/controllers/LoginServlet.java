@@ -56,8 +56,8 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 		try {
-			dTOfertas = (ArrayList<DtOfertaLaboral>) port.obtenerDtOfertasConfirmadas().getItem();
-			request.setAttribute("listaOfertasConfirmadas", dTOfertas);
+			//dTOfertas = (ArrayList<DtOfertaLaboral>) port.obtenerDtOfertasConfirmadas().getItem();
+			//request.setAttribute("listaOfertasConfirmadas", dTOfertas);
 			DtUsuario usuario = port.obtenerDtUsuario(nombreEmail);
 			if (userAgent != null && userAgent.toLowerCase().contains("mobile")) {
 				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada)) {
@@ -85,7 +85,8 @@ public class LoginServlet extends HttpServlet {
 					}
 					sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
 					sesion.setAttribute("usuarioLogueado", usuario);
-					request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
+					//request.getRequestDispatcher("/WEB-INF/home/Home.jsp").forward(request, response);
+					request.getRequestDispatcher("/home").forward(request, response); //Agregue esto
 				} else {
 					sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
 					request.setAttribute("error", "password incorrecta");

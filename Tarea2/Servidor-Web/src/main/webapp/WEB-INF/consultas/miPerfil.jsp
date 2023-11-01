@@ -10,6 +10,7 @@
 <%@page import="logica.webservices.DtCantidadTipoPublicacionRestante"%>
 <%@page import="logica.webservices.DtTipoPublicacion"%>
 <%@page import="java.util.List"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +25,8 @@
 			<jsp:include page="../include/Menu.jsp" />
 			<%
 			DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
-									String tipoUsuario = (String) request.getAttribute("tipoUsuario");
-									List<DtCompraPaquete> paquetesComprados = (List<DtCompraPaquete>) request.getAttribute("compraPaquetes");
+			String tipoUsuario = (String) request.getAttribute("tipoUsuario");
+			List<DtCompraPaquete> paquetesComprados = (List<DtCompraPaquete>) request.getAttribute("compraPaquetes");
 			%>
 			<div class="menuMiPerfil container mt-3 col-8">
 				<!-- Tab panes -->
@@ -64,7 +65,7 @@
 									data-bs-toggle="tab" href="#paquetes">Paquetes comprados</a></li>
 								<%
 								} else {
-																																						if (tipoUsuario.equals("postulante")) {
+								if (tipoUsuario.equals("postulante")) {
 								%>
 								<li class="nav-item"><a class="nav-link"
 									data-bs-toggle="tab" href="#postulaciones">Postulaciones</a></li>
@@ -76,7 +77,7 @@
 								%>
 								<li class="nav-item"><a class="nav-link"
 									data-bs-toggle="tab" href="#seguidores">Seguidores</a></li>
-									<li class="nav-item"><a class="nav-link"
+								<li class="nav-item"><a class="nav-link"
 									data-bs-toggle="tab" href="#seguidos">Seguidos</a></li>
 							</ul>
 
@@ -103,7 +104,7 @@
 											</tr>
 											<%
 											if (tipoUsuario.equals("empresa")) {
-																																																								  DtEmpresa empresa = (DtEmpresa) request.getAttribute("usuario");
+											  DtEmpresa empresa = (DtEmpresa) request.getAttribute("usuario");
 											%>
 											<tr>
 												<td><strong>Sitio web</strong></td>
@@ -118,7 +119,7 @@
 											%>
 											<%
 											if (tipoUsuario.equals("postulante")) {
-																																															  DtPostulante postulante = (DtPostulante) request.getAttribute("usuario");
+											  DtPostulante postulante = (DtPostulante) request.getAttribute("usuario");
 											%>
 											<tr>
 												<td><strong>Nacionalidad</strong></td>
@@ -160,7 +161,7 @@
 										<tbody>
 											<%
 											List<DtOfertaLaboral> ofertasColeccion = usuario.getOfertasColeccion();
-																																						for (DtOfertaLaboral oferta : ofertasColeccion) {
+											for (DtOfertaLaboral oferta : ofertasColeccion) {
 											%>
 											<tr>
 												<td><a
@@ -172,7 +173,28 @@
 												<td><%=oferta.getCiudad()%></td>
 												<td><a
 													href="<%=request.getContextPath()%>/tipoPublicacion?nombreTipoPublicacion=<%=oferta.getNombreTipoPublicacion()%>"><%=oferta.getNombreTipoPublicacion()%></a></td>
-												<td><%=oferta.getEstadoOferta()%></td>
+												<td>
+													<ul class="navbar-nav justify-content-evenly">
+
+														<li class="nav-item"><%=oferta.getEstadoOferta()%></li>
+														<%
+														
+														if (oferta.isEstaVencida()) {
+														%>
+														<li class="nav-item">
+															<form
+																action="<%=request.getContextPath()%>/finalizarOferta"
+																method="POST" class ="mt-3">
+																<input class="btn btn-primary" type="submit" 
+																	value="Finalizar"/>
+																	<input type="hidden" name="nombreOferta" value="<%=oferta.getNombre()%>" />
+															</form>
+														</li>
+														<%
+														}
+														%>
+													</ul>
+												</td>
 											</tr>
 											<%
 											}
@@ -196,10 +218,10 @@
 											<tbody>
 												<%
 												if (paquetesComprados != null) {
-																																										  for (DtCompraPaquete paquete : paquetesComprados) {
-																																										    DtPaquetePublicacion dtPaquete = paquete.getPaquete();
-																																										    List<DtCantidadTipoPublicacionRestante> tiposPublicaciones = (List<DtCantidadTipoPublicacionRestante>) paquete
-																																										    .getPublicacionesRestantes();
+												  for (DtCompraPaquete paquete : paquetesComprados) {
+												    DtPaquetePublicacion dtPaquete = paquete.getPaquete();
+												    List<DtCantidadTipoPublicacionRestante> tiposPublicaciones = (List<DtCantidadTipoPublicacionRestante>) paquete
+												    .getPublicacionesRestantes();
 												%>
 												<tr>
 													<td><a
@@ -213,7 +235,7 @@
 														<ul class="navbar-nav justify-content-evenly">
 															<%
 															for (DtCantidadTipoPublicacionRestante cantidadTiposPublicaciones : tiposPublicaciones) {
-																																									  DtTipoPublicacion dtTiposPublicaciones = cantidadTiposPublicaciones.getTipoPublicacion();
+															  DtTipoPublicacion dtTiposPublicaciones = cantidadTiposPublicaciones.getTipoPublicacion();
 															%>
 															<li class="nav-item"><a
 																href="<%=request.getContextPath()%>/tipoPublicacion?nombreTipoPublicacion=<%=dtTiposPublicaciones.getNombre()%>"><%=dtTiposPublicaciones.getNombre()%></a>
@@ -254,7 +276,7 @@
 										<tbody>
 											<%
 											List<DtPostulacion> postulaciones = (List<DtPostulacion>) request.getAttribute("postulaciones");
-																				for (DtPostulacion postulacion : postulaciones) {
+											for (DtPostulacion postulacion : postulaciones) {
 											%>
 											<tr>
 												<td><a
@@ -282,19 +304,19 @@
 										</thead>
 										<tbody>
 											<%
-											List<String> seguidores = (List<String>) usuario.getSeguidores();								
+											List<String> seguidores = (List<String>) usuario.getSeguidores();
 											%>
 											<tr>
-											<%
-											for (String seguidor: seguidores) {
-											%>
-											<td><a
-													href="<%= request.getContextPath() %>/perfil?nicknameUsuario=<%= seguidor %>"><%=seguidor%></a></td>
-													<%
-											}
-											%>
-											
-											
+												<%
+												for (String seguidor : seguidores) {
+												%>
+												<td><a
+													href="<%=request.getContextPath()%>/perfil?nicknameUsuario=<%=seguidor%>"><%=seguidor%></a></td>
+												<%
+												}
+												%>
+
+
 											</tr>
 										</tbody>
 									</table>
@@ -308,17 +330,17 @@
 										</thead>
 										<tbody>
 											<%
-											List<String> seguidos = (List<String>) usuario.getSeguidos();								
+											List<String> seguidos = (List<String>) usuario.getSeguidos();
 											%>
 											<tr>
-											<%
-											for (String sigo: seguidos) {
-											%>
-											<td><a
-													href="<%= request.getContextPath() %>/perfil?nicknameUsuario=<%= sigo %>"><%=sigo%></a></td>
-													<%
-											}
-											%>
+												<%
+												for (String sigo : seguidos) {
+												%>
+												<td><a
+													href="<%=request.getContextPath()%>/perfil?nicknameUsuario=<%=sigo%>"><%=sigo%></a></td>
+												<%
+												}
+												%>
 											</tr>
 										</tbody>
 									</table>

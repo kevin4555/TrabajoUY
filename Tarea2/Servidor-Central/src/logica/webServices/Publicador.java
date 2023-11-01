@@ -163,9 +163,10 @@ public class Publicador {
 	}
 
 	@WebMethod
-	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, LocalDate fechaResolucion)
+	public void aceptarRechazarOfertaLaboral(String nombreOferta, EstadoOferta estadoOferta, String fechaResolucion)
 			throws OfertaLaboralNoExisteException {
-		controladorOferta.aceptarRechazarOfertaLaboral(nombreOferta, estadoOferta, fechaResolucion);
+	  LocalDate fecha = LocalDate.parse(fechaResolucion);
+		controladorOferta.aceptarRechazarOfertaLaboral(nombreOferta, estadoOferta, fecha);
 	}
 
 	@WebMethod
