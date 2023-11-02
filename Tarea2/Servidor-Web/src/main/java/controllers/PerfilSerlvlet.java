@@ -18,53 +18,46 @@ import logica.webservices.DtUsuario;
 import logica.webservices.IOException_Exception;
 import logica.webservices.PublicadorService;
 import logica.webservices.UsuarioNoExisteException_Exception;
-import model.TipoUsuario;
 
 /**
  * Servlet implementation class PerfilSerlvlet
  */
 @WebServlet("/perfil")
-public class PerfilSerlvlet extends HttpServlet
-{
+public class PerfilSerlvlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public PerfilSerlvlet()
-	{
+	public PerfilSerlvlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
-	{
+			throws ServletException, IOException {
 		HttpSession sesion = request.getSession();
 		DtUsuario usuarioLogueado = (DtUsuario) sesion.getAttribute("usuarioLogueado");
 		String nicknameUsuario = request.getParameter("nicknameUsuario");
 		Boolean flag = usuarioLogueado.getSeguidos().contains(nicknameUsuario);
 		logica.webservices.PublicadorService service = new PublicadorService();
 		logica.webservices.Publicador port = service.getPublicadorPort();
-		String userAgent = request.getHeader("User-Agent");
 		request.setAttribute("seguidoOno", flag);
-		
-		try
-		{
+
+		try {
 			DtUsuario usuario = port.obtenerDtUsuario(nicknameUsuario);
 			request.setAttribute("usuario", usuario);
 
-			if (usuario instanceof DtEmpresa)
-			{
+			if (usuario instanceof DtEmpresa) {
 				ArrayList<DtOfertaLaboral> ofertasConfirmadas = (ArrayList<DtOfertaLaboral>) port
 						.obtenerDtOfertasConfirmadasDeEmpresa(nicknameUsuario).getItem();
-				
+
 				ArrayList<DtOfertaLaboral> ofertasIngresadas = (ArrayList<DtOfertaLaboral>) port
 						.obtenerDtOfertasIngresadasDeEmpresa(nicknameUsuario).getItem();
-				
+
 				ArrayList<DtOfertaLaboral> ofertasRechazadas = (ArrayList<DtOfertaLaboral>) port
 						.obtenerDtOfertasRechazadasDeEmpresa(nicknameUsuario).getItem();
-				
+
 				ArrayList<DtCompraPaquete> compraPaquetes = (ArrayList<DtCompraPaquete>) port
 						.obtenerDtCompraPaqueteDeEmpresa(nicknameUsuario).getItem();
 
@@ -75,8 +68,7 @@ public class PerfilSerlvlet extends HttpServlet
 				request.setAttribute("tipoUsuario", "empresa");
 			}
 
-			if (usuario instanceof DtPostulante)
-			{
+			if (usuario instanceof DtPostulante) {
 				ArrayList<DtPostulacion> postulaciones = (ArrayList<DtPostulacion>) port
 						.obtenerDtPostulacionesDePostulante(nicknameUsuario).getItem();
 
@@ -84,24 +76,14 @@ public class PerfilSerlvlet extends HttpServlet
 				request.setAttribute("tipoUsuario", "postulante");
 			}
 
-		}
-		catch (UsuarioNoExisteException_Exception | IOException_Exception e)
-		{
+		} catch (UsuarioNoExisteException_Exception | IOException_Exception e) {
 			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 
-		if(userAgent != null && userAgent.toLowerCase().contains("mobile"))
-		{
-			if(TipoUsuario.POSTULANTE == sesion.getAttribute("tipoUsuario"))
-				request.getRequestDispatcher("/WEB-INF/mobile/consultas/MiPerfilMobile.jsp").forward(request, response);
-		}
-		else
-		{
-			if (usuarioLogueado != null && nicknameUsuario.equals(usuarioLogueado.getNickname()))
-			{
-				request.getRequestDispatcher("/WEB-INF/consultas/miPerfil.jsp").forward(request, response);
-			}
+		if (usuarioLogueado != null && nicknameUsuario.equals(usuarioLogueado.getNickname())) {
+			request.getRequestDispatcher("/WEB-INF/consultas/miPerfil.jsp").forward(request, response);
+		} else {
 			request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
 		}
 	}
@@ -110,12 +92,12 @@ public class PerfilSerlvlet extends HttpServlet
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-			procesarRequest(request, response);
+		procesarRequest(request, response);
 
-			// TODO Auto-generated catch block
+		// TODO Auto-generated catch block
 
 	}
 
@@ -123,8 +105,8 @@ public class PerfilSerlvlet extends HttpServlet
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -55,6 +55,18 @@
 								String perfilUrl = contextPath + "/perfil?nicknameUsuario="
 										+ java.net.URLEncoder.encode(postulante.getNickname(), "UTF-8");
 								String fecha = postulacion.getFechaPostulacionString();
+								String video = postulacion.getLinkVideo();
+								String videoId = "";
+
+								if (video != null && video.contains("v=")) {
+									int startIndex = video.indexOf("v=") + 2;
+									int endIndex = video.indexOf("&", startIndex);
+									if (endIndex == -1) {
+										videoId = video.substring(startIndex);
+									} else {
+										videoId = video.substring(startIndex, endIndex);
+									}
+								}
 								%>
 								<p class="card-text">
 									<strong>Postulante: </strong><a href="<%=perfilUrl%>"><%=postulante.getNombre()%>
@@ -66,6 +78,16 @@
 									<br> <br> <strong>Fecha de postulación: </strong>
 									<%=fecha%>
 									<br> <br>
+									<iframe class="videoPostulacion"
+									
+										src="https://www.youtube.com/embed/<%=videoId%>"
+										frameborder="0" allowfullscreen></iframe>
+										<iframe class="videoContainer"
+										src="https://www.youtube.com/embed/u4IkJgTu22E?si=GFgWGxhFIOPSbp1K"
+										frameborder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+										allowfullscreen></iframe>
+										<br><br>
 								</p>
 							</div>
 						</div>
