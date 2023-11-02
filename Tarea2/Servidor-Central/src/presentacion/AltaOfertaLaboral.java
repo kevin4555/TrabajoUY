@@ -364,6 +364,7 @@ public class AltaOfertaLaboral extends JInternalFrame {
     this.comboBoxFormaDePago
         .addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent evento) {
+            dejarNoVisible();
             cargarDatosTipoPublicacion(evento);
             
           }
@@ -621,8 +622,13 @@ public class AltaOfertaLaboral extends JInternalFrame {
         lblTiposPublicaciones.setVisible(true);
         comboBoxSeleccionTiposPublicaciones
             .setVisible(true);
+        this.comboBoxSeleccionPaquete.removeAllItems();
         this.comboBoxSeleccionPaquete.setVisible(false);
         lblSeleccionPaquete.setVisible(false);
+        this.textFieldCantidadRestante.setText("");
+        this.textFieldCantidadRestante.setVisible(false);
+        this.lblCantidadTiposPublicaciones.setVisible(false);
+        
         List<String> listaTipoDePublicaciones = this.controladorOfertaLaboral
             .listarTipoDePublicaciones();
         String[] arrayTiposPublicaciones = listaTipoDePublicaciones
@@ -684,6 +690,9 @@ public class AltaOfertaLaboral extends JInternalFrame {
               this.comboBoxSeleccionPaquete
                   .setVisible(false);
               lblSeleccionPaquete.setVisible(false);
+              this.lblCantidadTiposPublicaciones.setVisible(false);
+              this.textFieldCantidadRestante.setVisible(false);
+              
               JOptionPane.showMessageDialog(this,
                   "La empresa no tiene ningún paquete comprado",
                   "Registrar Oferta Laboral",
@@ -745,12 +754,13 @@ public class AltaOfertaLaboral extends JInternalFrame {
    * Metodo cargar tipo publicacion en paquete .
    */
   
+  
   public void cargarTipoPublicacionEnPaquete(
       ActionEvent evento) {
     
     try {
       String nicknameEmpresa = "";
-      if (comboBoxSeleccionPaquete
+      if (this.comboBoxSeleccionPaquete
           .getSelectedIndex() != -1) {
         String nombrePaquete = comboBoxSeleccionPaquete
             .getSelectedItem().toString();
@@ -793,26 +803,22 @@ public class AltaOfertaLaboral extends JInternalFrame {
               JOptionPane.ERROR_MESSAGE);
         }
         
-      } else {
-        JOptionPane.showMessageDialog(this,
-            "Debe seleccionar un paquete",
-            "Registrar Oferta Laboral",
-            JOptionPane.ERROR_MESSAGE);
-      }
+        
+        List<String> listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
+            .listarTipoPublicacionDePaquete(nombrePaquete);
+        
+        String[] arrayTiposPublicacionesPaquete = listaTipoDePublicacionesDePaquete
+            .toArray(new String[0]);
+        Arrays.sort(arrayTiposPublicacionesPaquete);
+        DefaultComboBoxModel<String> model;
+        model = new DefaultComboBoxModel<String>(
+            arrayTiposPublicacionesPaquete);
+        this.comboBoxSeleccionTiposPublicaciones
+            .setModel(model);
+        
+      } 
       
-      String nombrePaquete = comboBoxSeleccionPaquete
-          .getSelectedItem().toString();
-      List<String> listaTipoDePublicacionesDePaquete = this.controladorOfertaLaboral
-          .listarTipoPublicacionDePaquete(nombrePaquete);
       
-      String[] arrayTiposPublicacionesPaquete = listaTipoDePublicacionesDePaquete
-          .toArray(new String[0]);
-      Arrays.sort(arrayTiposPublicacionesPaquete);
-      DefaultComboBoxModel<String> model;
-      model = new DefaultComboBoxModel<String>(
-          arrayTiposPublicacionesPaquete);
-      this.comboBoxSeleccionTiposPublicaciones
-          .setModel(model);
     } catch (PaquetePublicacionNoExisteException
         | UsuarioNoExisteException | IOException e1) {
       // TODO Auto-generated catch block
@@ -952,8 +958,8 @@ public class AltaOfertaLaboral extends JInternalFrame {
           JOptionPane.ERROR_MESSAGE);
       return false;
     }
-    if (Integer.parseInt(
-        this.textFieldCantidadRestante.getText()) == 0) {
+    if (this.comboBoxFormaDePago.getSelectedItem()
+        .equals("Por paquete") && Integer.parseInt(this.textFieldCantidadRestante.getText()) == 0) {
       JOptionPane.showMessageDialog(this,
           "No le quedan mas tipo de publicación disponibles del elegido",
           "Registrar Oferta Laboral",
@@ -1061,6 +1067,17 @@ public class AltaOfertaLaboral extends JInternalFrame {
     textFieldHoraInicio.setText("");
     textFieldHoraFin.setText("");
     this.textPane.setText("");
+    lblTiposPublicaciones.setVisible(false);
+    comboBoxSeleccionTiposPublicaciones.setVisible(false);
+    this.comboBoxSeleccionPaquete.setVisible(false);
+    lblSeleccionPaquete.setVisible(false);
+    comboBoxSeleccionTiposPublicaciones.setVisible(false);
+    lblCantidadTiposPublicaciones.setVisible(false);
+    this.textFieldCantidadRestante.setVisible(false);
+    this.textFieldCantidadRestante.setText("");
+  }
+  
+  private void dejarNoVisible() {
     lblTiposPublicaciones.setVisible(false);
     comboBoxSeleccionTiposPublicaciones.setVisible(false);
     this.comboBoxSeleccionPaquete.setVisible(false);
