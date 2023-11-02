@@ -76,7 +76,7 @@
 									<br> <br>
 								</p>
 								<%
-								String video = "https://www.youtube.com/watch?v=9NX8DWYnUsg&ab_channel=AngelCalBustillo";
+								String video = postulacion.getLinkVideo();
 								String videoId = "";
 
 								if (video != null && video.contains("v=")) {
@@ -90,9 +90,15 @@
 								}
 								%>
 								<p class="card-text">
-									<iframe class="videoContainer"
+									<iframe class="videoPostulacion"
+									
 										src="https://www.youtube.com/embed/<%=videoId%>"
 										frameborder="0" allowfullscreen></iframe>
+										<iframe class="videoContainer"
+										src="https://www.youtube.com/embed/u4IkJgTu22E?si=GFgWGxhFIOPSbp1K"
+										frameborder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+										allowfullscreen></iframe>
 								</p>
 							</div>
 						</div>

@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession sesion = request.getSession();
 		PublicadorService publicadorService = new PublicadorService();
 		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
-		ArrayList<DtOfertaLaboral> dTOfertas;
+
 		if (nombreEmail == null || contraseniaIngresada == null) {
 			if (userAgent != null && userAgent.toLowerCase().contains("mobile")) {
 				sesion.setAttribute("estadoSesion", EstadoSesion.NO_LOGIN);
@@ -56,8 +56,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 		try {
-			//dTOfertas = (ArrayList<DtOfertaLaboral>) port.obtenerDtOfertasConfirmadas().getItem();
-			//request.setAttribute("listaOfertasConfirmadas", dTOfertas);
+
 			DtUsuario usuario = port.obtenerDtUsuario(nombreEmail);
 			if (userAgent != null && userAgent.toLowerCase().contains("mobile")) {
 				if (port.confirmarContrasenia(nombreEmail, contraseniaIngresada)) {
@@ -65,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 						sesion.setAttribute("tipoUsuario", TipoUsuario.POSTULANTE);
 						sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_CORRECTO);
 						sesion.setAttribute("usuarioLogueado", usuario);
-						request.getRequestDispatcher("/WEB-INF/mobile/home/HomeMobile.jsp").forward(request, response);
+						request.getRequestDispatcher("/home").forward(request, response);
 					} else {
 						sesion.setAttribute("estadoSesion", EstadoSesion.LOGIN_INCORRECTO);
 						request.setAttribute("error", "usuario incorrecto");
