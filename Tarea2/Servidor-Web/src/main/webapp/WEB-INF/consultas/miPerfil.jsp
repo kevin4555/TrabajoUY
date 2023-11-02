@@ -189,6 +189,8 @@
 																<input class="btn btn-primary" type="submit" 
 																	value="Finalizar"/>
 																	<input type="hidden" name="nombreOferta" value="<%=oferta.getNombre()%>" />
+																	<input type="hidden" name="nicknameUsuario" value="<%=usuario.getNickname()%>" />
+																	
 															</form>
 														</li>
 														<%
