@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,10 +16,8 @@ import logica.webservices.DtPostulacion;
 import logica.webservices.DtPostulante;
 import logica.webservices.DtUsuario;
 import logica.webservices.IOException_Exception;
-import logica.webservices.OfertaLaboralNoExisteException;
 import logica.webservices.OfertaLaboralNoExisteException_Exception;
 import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException;
 import logica.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
 
