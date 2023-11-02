@@ -16,6 +16,13 @@
 			<artifactId>jakarta.xml.ws-api</artifactId>
 			<version>4.0.0</version>
 		</dependency>
+		<!-- Versión de Servlet API compatible con Java EE 9 -->
+		<dependency>
+    		<groupId>jakarta.servlet</groupId>
+    		<artifactId>jakarta.servlet-api</artifactId>
+    		<version>6.0.0</version> 
+    		<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>jaxws-rt</artifactId>
