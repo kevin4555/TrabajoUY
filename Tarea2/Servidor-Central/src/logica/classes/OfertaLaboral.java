@@ -129,6 +129,10 @@ public class OfertaLaboral {
     this.tipoPublicacion = tipoPublicacion;
   }
   
+  public LocalDate getFechaSeleccion() {
+    return fechaSeleccion;
+  }
+
   public void agregarKeyword(Keyword keyword) {
     listaKeywords.add(keyword);
   }
@@ -206,6 +210,10 @@ public class OfertaLaboral {
     return estado;
   }
   
+  public Empresa getEmpresa() {
+    return empresa;
+  }
+
   public CompraPaquete getCompraPaquete() {
     return compraPaquete;
   }
@@ -279,5 +287,16 @@ public class OfertaLaboral {
       }
     }
     this.postulaciones = listaOrdenada;
+  }
+  
+  public int obtenerPosicion(String nicknamePostulante) {
+    int posicion = 1;
+    for(Postulacion postulacion : postulaciones) {
+      if(nicknamePostulante.equals(postulacion.getPostulante().getNickname())){
+        break;
+      }
+      posicion++;
+    }
+    return posicion;
   }
 }

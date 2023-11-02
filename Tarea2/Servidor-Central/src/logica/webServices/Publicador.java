@@ -39,6 +39,7 @@ import jakarta.xml.ws.Endpoint;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtCantidadTipoPublicacion;
 import logica.datatypes.DtCompraPaquete;
+import logica.datatypes.DtDatosPdf;
 import logica.datatypes.DtEmpresa;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtPaquetePublicacion;
@@ -403,4 +404,9 @@ public class Publicador {
   controladorOferta.finalizarOferta(nombreOferta);
  }
 	
+ @WebMethod
+ public DtDatosPdf obtenerDatosPdf(String nicknamePostulante, String nombreOferta)
+     throws OfertaLaboralNoExisteException, UsuarioNoExisteException {
+   return controladorUsuario.obtenerDatosPdf(nicknamePostulante, nombreOferta);
+ }
 }

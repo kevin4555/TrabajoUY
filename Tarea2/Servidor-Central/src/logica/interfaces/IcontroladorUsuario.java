@@ -19,6 +19,7 @@ import logica.classes.Empresa;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.datatypes.DtCompraPaquete;
+import logica.datatypes.DtDatosPdf;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtEmpresa;
 import logica.datatypes.DtPaquetePublicacion;
@@ -151,4 +152,8 @@ public interface IcontroladorUsuario {
       throws UsuarioNoExisteException, IOException;
 
   List<DtEmpresa> buscarEmpresas(String parametro) throws IOException;
+
+  public DtDatosPdf obtenerDatosPdf(String nicknamePostulante, String nombreOferta)
+      throws OfertaLaboralNoExisteException, UsuarioNoExisteException;
+  
 }

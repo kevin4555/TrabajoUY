@@ -24,6 +24,7 @@ import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.datatypes.DtCompraPaquete;
+import logica.datatypes.DtDatosPdf;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtEmpresa;
 import logica.datatypes.DtPaquetePublicacion;
@@ -416,5 +417,38 @@ public class ControladorUsuario
     }
     // agregar orden cuando quede aclarado
     return listaResultado;
+  }
+  
+  @Override
+  public DtDatosPdf obtenerDatosPdf(String nicknamePostulante, String nombreOferta)
+      throws OfertaLaboralNoExisteException, UsuarioNoExisteException {
+    IcontroladorOferta controladorOfertas = Fabrica.getInstance().obtenerControladorOferta();
+    OfertaLaboral oferta = controladorOfertas.obtenerOfertaLaboral(nombreOferta);
+    Postulante postulante = ManejadorUsuario.getInstance()
+        .obtenerPostulante(nicknamePostulante);
+    if (!postulante.estaPostulado(nombreOferta)) {
+      throw new OfertaLaboralNoExisteException(
+          "el postulante no está postulado a la oferta " + nombreOferta);
+    }
+    ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) postulante
+        .getPostulaciones();
+    Postulacion postulacion = null;
+    for (Postulacion post : postulaciones) {
+      if (nombreOferta.equals(post.getNombreOfertaLaboral())) {
+        postulacion = post;
+        break;
+      }
+    }
+    if (oferta.getFechaSeleccion() == null) {
+      throw new OfertaLaboralNoExisteException(
+          "no se ha realizado la seleccion para la oferta laboral " + nombreOferta);
+    }
+    String nombrePostulante = postulante.getNombre();
+    String nombreEmpresa = oferta.getEmpresa().getNombre();
+    int posicion = oferta.obtenerPosicion(nicknamePostulante);
+    String fechaPostulacion = postulacion.getFechaPostulacion().toString();
+    String fechaResolucion = oferta.getFechaSeleccion().toString();
+    return new DtDatosPdf(nombrePostulante, nombreEmpresa, nombreOferta, posicion,
+        fechaPostulacion, fechaResolucion);
   }
 }
