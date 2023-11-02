@@ -119,12 +119,9 @@ public class AltaOfertaServlet extends HttpServlet {
 		BufferedImage imagen = null;
 		ArrayList<String> listKeywords = new ArrayList<>();
 		LocalDate fechaAlta = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH);
-		String fechaAltaString = fechaAlta.format(formatter);
+		String fechaAltaString = fechaAlta.toString();
 		String nombrePaquete = request.getParameter("nombrePaquete");
-		if (nombrePaquete.equals("")) {
-			nombrePaquete = null;
-		}
+		String imagenString = "";
 		if (request.getParameter("remuneracion") != null) {
 			remuneracion = Float.valueOf(request.getParameter("remuneracion"));
 		}
@@ -144,7 +141,7 @@ public class AltaOfertaServlet extends HttpServlet {
 				listKeywords.add(keyword);
 			}
 		}
-		if (nombrePaquete != null) {
+		if (nombrePaquete != null && !nombrePaquete.equals("")) {
 			try {
 				ArrayList<DtCompraPaquete> listaCompras = (ArrayList<DtCompraPaquete>) port
 						.obtenerDtCompraPaqueteDeEmpresa(empresa.getNickname()).getItem();
@@ -179,12 +176,14 @@ public class AltaOfertaServlet extends HttpServlet {
 			}
 		}
 		try {
-			String imagenString = imageToBase64String(imagen);
+		 if(imagen!= null) {
+		   imagenString = imageToBase64String(imagen);
+		 }
 			StringArray stringArray = new StringArray();
 			List<String> keywordsList = stringArray.getItem();
 			keywordsList.addAll(listKeywords);			
-			port.altaOfertaLaboral(imagenString, tipoPublicacion, nombreOferta, descripcion, remuneracion, horaInicio, horaFin, 
-					departamento, ciudad, fechaAltaString, stringArray, nombrePaquete, imagenString);
+			port.altaOfertaLaboral(nombreOferta, descripcion, horaInicio, horaFin, remuneracion, ciudad, departamento, 
+					fechaAltaString, tipoPublicacion, empresa.getNickname(), stringArray, imagenString, nombrePaquete);
 			String url = request.getContextPath() + "/perfil?nicknameUsuario="
 					+ URLEncoder.encode(empresa.getNickname(), "UTF-8");
 			response.sendRedirect(url);

@@ -7,12 +7,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para KeywordNoExisteException complex type.
+ * <p>Clase Java para OfertaLaboralNoSePuedeFinalizar complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
- * <complexType name="KeywordNoExisteException">
+ * <complexType name="OfertaLaboralNoSePuedeFinalizar">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
@@ -26,10 +26,10 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "KeywordNoExisteException", propOrder = {
+@XmlType(name = "OfertaLaboralNoSePuedeFinalizar", propOrder = {
     "message"
 })
-public class KeywordNoExisteException {
+public class OfertaLaboralNoSePuedeFinalizar {
 
     protected String message;
 

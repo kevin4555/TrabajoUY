@@ -79,24 +79,30 @@ public class Publicador {
 		return controladorOferta.listarTipoDePublicaciones().toArray(new String[0]);
 	}
 
-	@WebMethod
-	public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial, String horarioFinal,
-			float remuneracion, String ciudad, String departamento,
-			String fechaAlta, String nomTipoPublicacion, String nicknameEmpresa, String[] listakeywords, String imagen,
-			String nombrePaquete) throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException,
-			KeywordNoExisteException, UsuarioNoExisteException {
-
-		LocalDate fechaAltaLocalDate = LocalDate.parse(fechaAlta);
-		List<String> listaDeElementosKeywords = new ArrayList<>();
-		for (String elemento : listakeywords) {
-			listaDeElementosKeywords.add(elemento);
-		}
-
-		BufferedImage imagenBufferedImage = base64StringToImage(imagen);
-
-		controladorOferta.altaOfertaLaboral(nombre, descripcion, horarioInicial, horarioFinal, remuneracion, ciudad,
-				departamento, fechaAltaLocalDate, nomTipoPublicacion, nicknameEmpresa, listaDeElementosKeywords,
-				imagenBufferedImage, nombrePaquete);
+ @WebMethod
+ public void altaOfertaLaboral(String nombre, String descripcion, String horarioInicial,
+     String horarioFinal, float remuneracion, String ciudad, String departamento,
+     String fechaAlta, String nomTipoPublicacion, String nicknameEmpresa,
+     String[] listakeywords, String imagen, String nombrePaquete)
+     throws OfertaLaboralYaExisteException, TipoPublicacionNoExisteException,
+     KeywordNoExisteException, UsuarioNoExisteException {
+   
+   LocalDate fechaAltaLocalDate = LocalDate.parse(fechaAlta);
+   List<String> listaDeElementosKeywords = new ArrayList<>();
+   for (String elemento : listakeywords) {
+     listaDeElementosKeywords.add(elemento);
+   }
+   BufferedImage imagenBufferedImage = null;
+   if (!imagen.equals("")) {
+     imagenBufferedImage = base64StringToImage(imagen);
+   }
+   if (!nombrePaquete.equals("")) {
+     nombrePaquete = null;
+   }
+   
+   controladorOferta.altaOfertaLaboral(nombre, descripcion, horarioInicial, horarioFinal,
+       remuneracion, ciudad, departamento, fechaAltaLocalDate, nomTipoPublicacion,
+       nicknameEmpresa, listaDeElementosKeywords,	imagenBufferedImage, nombrePaquete);
 	}
 
 	@WebMethod

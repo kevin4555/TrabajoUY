@@ -28,6 +28,7 @@ public class ObjectFactory {
     private final static QName _KeywordNoExisteException_QNAME = new QName("http://webServices.logica/", "KeywordNoExisteException");
     private final static QName _KeywordYaExisteException_QNAME = new QName("http://webServices.logica/", "KeywordYaExisteException");
     private final static QName _OfertaLaboralNoExisteException_QNAME = new QName("http://webServices.logica/", "OfertaLaboralNoExisteException");
+    private final static QName _OfertaLaboralNoSePuedeFinalizar_QNAME = new QName("http://webServices.logica/", "OfertaLaboralNoSePuedeFinalizar");
     private final static QName _OfertaLaboralNoTienePaquete_QNAME = new QName("http://webServices.logica/", "OfertaLaboralNoTienePaquete");
     private final static QName _OfertaLaboralYaExisteException_QNAME = new QName("http://webServices.logica/", "OfertaLaboralYaExisteException");
     private final static QName _PaquetePublicacionNoExisteException_QNAME = new QName("http://webServices.logica/", "PaquetePublicacionNoExisteException");
@@ -89,6 +90,16 @@ public class ObjectFactory {
      */
     public OfertaLaboralNoExisteException createOfertaLaboralNoExisteException() {
         return new OfertaLaboralNoExisteException();
+    }
+
+    /**
+     * Create an instance of {@link OfertaLaboralNoSePuedeFinalizar }
+     * 
+     * @return
+     *     the new instance of {@link OfertaLaboralNoSePuedeFinalizar }
+     */
+    public OfertaLaboralNoSePuedeFinalizar createOfertaLaboralNoSePuedeFinalizar() {
+        return new OfertaLaboralNoSePuedeFinalizar();
     }
 
     /**
@@ -362,16 +373,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
-     * 
-     * @return
-     *     the new instance of {@link LocalDate }
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
-    }
-
-    /**
      * Create an instance of {@link DtPostulacionArray }
      * 
      * @return
@@ -491,6 +492,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://webServices.logica/", name = "OfertaLaboralNoExisteException")
     public JAXBElement<OfertaLaboralNoExisteException> createOfertaLaboralNoExisteException(OfertaLaboralNoExisteException value) {
         return new JAXBElement<>(_OfertaLaboralNoExisteException_QNAME, OfertaLaboralNoExisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link OfertaLaboralNoSePuedeFinalizar }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link OfertaLaboralNoSePuedeFinalizar }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://webServices.logica/", name = "OfertaLaboralNoSePuedeFinalizar")
+    public JAXBElement<OfertaLaboralNoSePuedeFinalizar> createOfertaLaboralNoSePuedeFinalizar(OfertaLaboralNoSePuedeFinalizar value) {
+        return new JAXBElement<>(_OfertaLaboralNoSePuedeFinalizar_QNAME, OfertaLaboralNoSePuedeFinalizar.class, null, value);
     }
 
     /**

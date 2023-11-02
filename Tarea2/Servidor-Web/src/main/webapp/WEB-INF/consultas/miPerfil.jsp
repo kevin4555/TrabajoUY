@@ -1,3 +1,4 @@
+<%@page import="logica.webservices.EstadoOferta"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="logica.webservices.DtUsuario"%>
@@ -179,7 +180,7 @@
 														<li class="nav-item"><%=oferta.getEstadoOferta()%></li>
 														<%
 														
-														if (oferta.isEstaVencida()) {
+														if (oferta.getEstadoOferta() ==EstadoOferta.CONFIRMADA && oferta.isEstaVencida()) {
 														%>
 														<li class="nav-item">
 															<form
