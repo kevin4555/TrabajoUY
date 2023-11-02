@@ -20,8 +20,8 @@ import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.datatypes.DtCompraPaquete;
 import logica.datatypes.DtDatosPdf;
-import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.DtPostulacion;
 import logica.datatypes.DtUsuario;
@@ -31,129 +31,145 @@ import logica.datatypes.DtUsuario;
  */
 
 public interface IcontroladorUsuario {
-  
+
   public Empresa obtenerEmpresa(String nicknameEmpresa)
-      throws UsuarioNoExisteException;
-  
+        throws UsuarioNoExisteException;
+
   public List<String> listarEmpresas();
-  
+
   public List<String> listaDeUsuarios();
-  
+
   public void editarDatosBasicos(DtUsuario usuario,
-      String nombreNuevo, String apellidoNuevo)
-      throws UsuarioNoExisteException;
-  
+        String nombreNuevo, String apellidoNuevo)
+        throws UsuarioNoExisteException;
+
   public List<String> obtenerOfertasEmpresaUsuario(
-      String nicknameEmpresa)
-      throws UsuarioNoExisteException;
-  
+        String nicknameEmpresa)
+        throws UsuarioNoExisteException;
+
   public void registrarPostulacion(String cvReducido,
-      String motivacion, LocalDate fechaPostulacion,
-      String nickname, String nomOferta, String linkVideo)
-      throws UsuarioNoExisteException,
-      OfertaLaboralNoExisteException,
-      UsuarioYaExistePostulacion;
-  
+        String motivacion, LocalDate fechaPostulacion,
+        String nickname, String nomOferta, String linkVideo)
+        throws UsuarioNoExisteException,
+        OfertaLaboralNoExisteException,
+        UsuarioYaExistePostulacion;
+
   public void altaPostulante(String nickname, String nombre,
-      String apellido, String email, LocalDate fechaNac,
-      String nacionalidad, BufferedImage imagen,
-      String contrasenia) throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException;
-  
+        String apellido, String email, LocalDate fechaNac,
+        String nacionalidad, BufferedImage imagen,
+        String contrasenia) throws UsuarioYaExisteException,
+        UsuarioEmailRepetidoException;
+
   public void altaEmpresa(String nickname, String nombre,
-      String apellido, String email, String descripcion,
-      String link, BufferedImage imagen, String contrasenia)
-      throws UsuarioYaExisteException,
-      UsuarioEmailRepetidoException;
-  
+        String apellido, String email, String descripcion,
+        String link, BufferedImage imagen,
+        String contrasenia)
+        throws UsuarioYaExisteException,
+        UsuarioEmailRepetidoException;
+
   public Postulante obtenerPostulante(String nomPostulante)
-      throws UsuarioNoExisteException;
-  
+        throws UsuarioNoExisteException;
+
   public DtUsuario obtenerDtUsuario(String nickname)
-      throws UsuarioNoExisteException, IOException;
-  
+        throws UsuarioNoExisteException, IOException;
+
   public List<String> listaOfertasUsuario(
-      String nicknameUsuario)
-      throws UsuarioNoExisteException;
-  
+        String nicknameUsuario)
+        throws UsuarioNoExisteException;
+
   public Usuario obtenerUsuario(String nickname)
-      throws UsuarioNoExisteException;
-  
+        throws UsuarioNoExisteException;
+
   List<String> listarPostulantes();
-  
+
   public void editarPostulante(String nickname,
-      String nombre, String apellido,
-      LocalDate fechaNacimiento, String nacionalidad,
-      BufferedImage imagen, String contrasenia)
-      throws UsuarioNoExisteException;
-  
+        String nombre, String apellido,
+        LocalDate fechaNacimiento, String nacionalidad,
+        BufferedImage imagen, String contrasenia)
+        throws UsuarioNoExisteException;
+
   public void editarEmpresa(String nickname, String nombre,
-      String apellido, String sitioWeb, String descripcion,
-      BufferedImage imagen, String contrasenia)
-      throws UsuarioNoExisteException;
-  
+        String apellido, String sitioWeb,
+        String descripcion,
+        BufferedImage imagen, String contrasenia)
+        throws UsuarioNoExisteException;
+
   public DtPostulacion obtenerDtPostulacion(
-      String nicknamePostulante, String nombreOferta)
-      throws UsuarioNoExisteException,
-      UsuarioNoExistePostulacion;
-  
+        String nicknamePostulante, String nombreOferta)
+        throws UsuarioNoExisteException,
+        UsuarioNoExistePostulacion;
+
   List<DtOfertaLaboral> obtenerDtOfertasIngresadasDeEmpresa(
-      String nicknameEmpresa)
-      throws UsuarioNoExisteException, IOException;
-  
-  List<DtOfertaLaboral> obtenerDtOfertasConfirmadasDeEmpresa(
-      String nicknameEmpresa)
-      throws UsuarioNoExisteException, IOException;
-  
+        String nicknameEmpresa)
+        throws UsuarioNoExisteException, IOException;
+
+  List<DtOfertaLaboral>
+        obtenerDtOfertasConfirmadasDeEmpresa(
+              String nicknameEmpresa)
+              throws UsuarioNoExisteException, IOException;
+
   List<DtOfertaLaboral> obtenerDtOfertasRechazadasDeEmpresa(
-      String nicknameEmpresa)
-      throws UsuarioNoExisteException, IOException;
-  
+        String nicknameEmpresa)
+        throws UsuarioNoExisteException, IOException;
+
   Boolean confirmarContrasenia(String clave,
-      String contrasenia) throws UsuarioNoExisteException;
-  
+        String contrasenia) throws UsuarioNoExisteException;
+
   List<DtUsuario> obtenerDtUsuarios() throws IOException;
-  
+
   List<DtPaquetePublicacion> obtenerDtPaquetesDeEmpresa(
-      String nicknameEmpresa)
-      throws UsuarioNoExisteException, IOException;
-  
+        String nicknameEmpresa)
+        throws UsuarioNoExisteException, IOException;
+
   List<DtPostulacion> obtenerDtPostulacionesDePostulante(
-      String nicknamePostulante)
-      throws UsuarioNoExisteException;
-  
+        String nicknamePostulante)
+        throws UsuarioNoExisteException;
+
   List<String> listarPaquetesNoCompradosDeEmpresa(
-      String nicknameEmpresa)
-      throws UsuarioNoExisteException;
-  
+        String nicknameEmpresa)
+        throws UsuarioNoExisteException;
+
   void comprarPaquete(String nicknameEmpresa,
-      String nombrePaquete, LocalDate fechaCompra)
-      throws UsuarioNoExisteException,
-      PaquetePublicacionNoExisteException;
-  
+        String nombrePaquete, LocalDate fechaCompra)
+        throws UsuarioNoExisteException,
+        PaquetePublicacionNoExisteException;
+
   List<DtCompraPaquete> obtenerDtCompraPaqueteDeEmpresa(
-      String nicknameEmpresa)
-      throws UsuarioNoExisteException, IOException;
+        String nicknameEmpresa)
+        throws UsuarioNoExisteException, IOException;
 
-  void agregarSeguidor(String nicknameUsuario, String nicknameSeguidor)
-      throws UsuarioNoExisteException, UsuarioYaEstaSeguidoException;
-  
-  void dejarDeSeguir(String nicknameUsuario, String nicknameSeguidor)
-      throws UsuarioNoExisteException, UsuarioNoEstaSeguidoException;
-  
-  void agregarOfertaFavorita(String nicknamePostulante, String nombreOferta)
-      throws UsuarioNoExisteException, PostulanteYaEsOfertaFavoritaException,
-      OfertaLaboralNoExisteException;
+  void agregarSeguidor(String nicknameUsuario,
+        String nicknameSeguidor)
+        throws UsuarioNoExisteException,
+        UsuarioYaEstaSeguidoException;
 
-  void removerOfertaFavorita(String nicknamePsotulante, String nombreOferta)
-      throws UsuarioNoExisteException, PostulanteNoEsOfertaFavoritaException;
+  void dejarDeSeguir(String nicknameUsuario,
+        String nicknameSeguidor)
+        throws UsuarioNoExisteException,
+        UsuarioNoEstaSeguidoException;
 
-  List<DtOfertaLaboral> obtenerDtOfertasFinalizadasDeEmpresa(String nicknameEmpresa)
-      throws UsuarioNoExisteException, IOException;
+  void agregarOfertaFavorita(String nicknamePostulante,
+        String nombreOferta)
+        throws UsuarioNoExisteException,
+        PostulanteYaEsOfertaFavoritaException,
+        OfertaLaboralNoExisteException;
 
-  List<DtEmpresa> buscarEmpresas(String parametro) throws IOException;
+  void removerOfertaFavorita(String nicknamePsotulante,
+        String nombreOferta)
+        throws UsuarioNoExisteException,
+        PostulanteNoEsOfertaFavoritaException;
 
-  public DtDatosPdf obtenerDatosPdf(String nicknamePostulante, String nombreOferta)
-      throws OfertaLaboralNoExisteException, UsuarioNoExisteException;
-  
+  List<DtOfertaLaboral>
+        obtenerDtOfertasFinalizadasDeEmpresa(
+              String nicknameEmpresa)
+              throws UsuarioNoExisteException, IOException;
+
+  List<DtEmpresa> buscarEmpresas(String parametro)
+        throws IOException;
+
+  public DtDatosPdf obtenerDatosPdf(
+        String nicknamePostulante, String nombreOferta)
+        throws OfertaLaboralNoExisteException,
+        UsuarioNoExisteException;
+
 }

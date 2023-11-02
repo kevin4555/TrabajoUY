@@ -3,7 +3,6 @@ package logica.datatypes;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
@@ -15,47 +14,58 @@ import java.util.List;
  */
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class DtPostulante extends DtUsuario implements Serializable {
-	
-  private static final long serialVersionUID = 3400870199280854013L;
+public class DtPostulante extends DtUsuario
+      implements
+      Serializable {
+
+  private static final long serialVersionUID =
+        3400870199280854013L;
   @XmlTransient
   private LocalDate fechaNacimiento;
   private String nacionalidad;
   private String fechaNacimientoString;
-  
+
   /**
    * Contructor.
    */
-  
-  public DtPostulante(String nickname, String nombre,
-      String apellido, String email, BufferedImage imagen,
-      String contrasenia,
-      List<DtOfertaLaboral> ofertasColeccion,
-      LocalDate fechaNacimiento, String nacionalidad, List<String> seguidos, List<String> seguidores)
-      throws IOException {
+
+  public DtPostulante(
+        String nickname,
+          String nombre,
+          String apellido,
+          String email,
+          BufferedImage imagen,
+          String contrasenia,
+          List<DtOfertaLaboral> ofertasColeccion,
+          LocalDate fechaNacimiento,
+          String nacionalidad,
+          List<String> seguidos,
+          List<String> seguidores)
+        throws IOException {
     super(nickname, nombre, apellido, email, imagen,
-        contrasenia, ofertasColeccion, seguidos, seguidores);
+          contrasenia, ofertasColeccion, seguidos,
+          seguidores);
     this.fechaNacimiento = fechaNacimiento;
     this.nacionalidad = nacionalidad;
     this.fechaNacimientoString = fechaNacimiento.toString();
   }
-  
+
   public DtPostulante() {
   }
-  
+
   public void setFechaNacimiento(
-      LocalDate fechaNacimiento) {
+        LocalDate fechaNacimiento) {
     this.fechaNacimiento = fechaNacimiento;
   }
-  
+
   public void setNacionalidad(String nacionalidad) {
     this.nacionalidad = nacionalidad;
   }
-  
+
   public String getNacionalidad() {
     return nacionalidad;
   }
-  
+
   public LocalDate getFechaNacimiento() {
     return fechaNacimiento;
   }
@@ -64,8 +74,9 @@ public class DtPostulante extends DtUsuario implements Serializable {
     return fechaNacimientoString;
   }
 
-  public void setFechaNacimientoString(String fechaNacimientoString) {
+  public void setFechaNacimientoString(
+        String fechaNacimientoString) {
     this.fechaNacimientoString = fechaNacimientoString;
   }
-  
+
 }

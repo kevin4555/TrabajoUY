@@ -5,7 +5,7 @@ package excepciones;
  */
 
 public class TipoPublicacionYaExisteException
-    extends Exception {
+      extends Exception {
   public TipoPublicacionYaExisteException(String message) {
     super(message);
   }

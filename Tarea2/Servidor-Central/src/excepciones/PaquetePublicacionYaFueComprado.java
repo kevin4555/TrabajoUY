@@ -5,8 +5,8 @@ package excepciones;
  */
 
 public class PaquetePublicacionYaFueComprado
-    extends Exception {
-  
+      extends Exception {
+
   public PaquetePublicacionYaFueComprado(String string) {
     super(string);
   }

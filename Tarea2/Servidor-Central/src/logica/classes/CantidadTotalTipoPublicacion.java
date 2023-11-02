@@ -9,35 +9,37 @@ import logica.datatypes.DtCantidadTipoPublicacion;
 public class CantidadTotalTipoPublicacion {
   private int cantidadTotal;
   private TipoPublicacion tipoPublicacion;
-  
-  public CantidadTotalTipoPublicacion(int cantidadTotal,
-      TipoPublicacion tipoPublicacion) {
+
+  public CantidadTotalTipoPublicacion(
+        int cantidadTotal,
+          TipoPublicacion tipoPublicacion) {
     this.cantidadTotal = cantidadTotal;
     this.tipoPublicacion = tipoPublicacion;
   }
-  
+
   public int getCantidadTotal() {
     return cantidadTotal;
   }
-  
+
   public TipoPublicacion getTipoPublicacion() {
     return tipoPublicacion;
   }
-  
+
   public double obtenerCostoTotalPublicaciones() {
     return this.tipoPublicacion.getCosto()
-        * this.cantidadTotal;
+          * this.cantidadTotal;
   }
-  
+
   /**
    * Metodo obtenerDtCantidadTipoPublicacion.
    */
-  
-  public DtCantidadTipoPublicacion obtenerDtcantidadTipoPublicacion() {
+
+  public DtCantidadTipoPublicacion
+        obtenerDtcantidadTipoPublicacion() {
     return new DtCantidadTipoPublicacion(
-        this.tipoPublicacion.getNombre(),
-        this.cantidadTotal);
-    
+          this.tipoPublicacion.getNombre(),
+          this.cantidadTotal);
+
   }
-  
+
 }

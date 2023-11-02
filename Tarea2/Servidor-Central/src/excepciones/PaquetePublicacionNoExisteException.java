@@ -6,9 +6,9 @@ package excepciones;
 
 @SuppressWarnings("serial")
 public class PaquetePublicacionNoExisteException
-    extends Exception {
+      extends Exception {
   public PaquetePublicacionNoExisteException(
-      String string) {
+        String string) {
     super(string);
   }
 }

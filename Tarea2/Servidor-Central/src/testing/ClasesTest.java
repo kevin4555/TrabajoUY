@@ -1,5 +1,8 @@
 package testing;
 
+import excepciones.OfertaLaboralYaExisteException;
+import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.TipoDePublicacionYaFueIngresado;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,14 +12,6 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import excepciones.OfertaLaboralYaExisteException;
-import excepciones.PaquetePublicacionYaFueComprado;
-import excepciones.TipoDePublicacionYaFueIngresado;
 import logica.classes.CantidadTipoPublicacionRestante;
 import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.CompraPaquete;
@@ -27,8 +22,8 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
-import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtEmpresa;
+import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.DtPostulacion;
 import logica.datatypes.DtTipoPublicacion;
@@ -41,400 +36,433 @@ import org.junit.Test;
  */
 
 public class ClasesTest {
-  
+
   private Date fechaDateParse;
   private LocalDate fechaDate;
   private String fecha = "24/08/2023";
-  
+
   /**
    * Metodo setUp.
    */
-  
+
   @Before
   public void setUp() {
     DateFormat dateFormat = new SimpleDateFormat(
-        "dd/MM/yyyy");
+          "dd/MM/yyyy");
     try {
       this.fechaDateParse = dateFormat.parse(fecha);
       fechaDate = fechaDateParse.toInstant()
-          .atZone(ZoneId.systemDefault()).toLocalDate();
-      
+            .atZone(ZoneId.systemDefault()).toLocalDate();
+
     } catch (ParseException e) {
       e.getMessage();
     }
   }
-  
+
   @Test
   public void cantidadTipoPublicacionRestanteClase() {
     TipoPublicacion tipoPublicacion = new TipoPublicacion(
-        "tipoTesting", "Uso para testing", "baja", 50, 500f,
-        fechaDate);
-    CantidadTipoPublicacionRestante cantidadTipoPublicacionRestante = 
-        new CantidadTipoPublicacionRestante(
-        5, tipoPublicacion);
+          "tipoTesting", "Uso para testing", "baja", 50,
+          500f,
+          fechaDate);
+    CantidadTipoPublicacionRestante cantidadTipoPublicacionRestante =
+          new CantidadTipoPublicacionRestante(
+                5, tipoPublicacion);
     Assert.assertEquals(
-        cantidadTipoPublicacionRestante.getCantidad(), 5);
+          cantidadTipoPublicacionRestante.getCantidad(), 5);
     Assert.assertEquals(cantidadTipoPublicacionRestante
-        .getTipoPublicacion(), tipoPublicacion);
-    
+          .getTipoPublicacion(), tipoPublicacion);
+
   }
-  
+
   @Test
   public void paquetePublicacionClase()
-      throws PaquetePublicacionYaFueComprado,
-      TipoDePublicacionYaFueIngresado, IOException {
-    TipoPublicacion tipoPublicacionInicial = new TipoPublicacion(
-        "tipoTestingInicial", "Uso para testing", "baja",
-        50, 500f, fechaDate);
-    CantidadTotalTipoPublicacion tipoTestingInicialTotal = new CantidadTotalTipoPublicacion(
-        5, tipoPublicacionInicial);
-    List<CantidadTotalTipoPublicacion> arrayPrueba = new ArrayList<CantidadTotalTipoPublicacion>();
+        throws PaquetePublicacionYaFueComprado,
+        TipoDePublicacionYaFueIngresado, IOException {
+    TipoPublicacion tipoPublicacionInicial =
+          new TipoPublicacion(
+                "tipoTestingInicial", "Uso para testing",
+                "baja",
+                50, 500f, fechaDate);
+    CantidadTotalTipoPublicacion tipoTestingInicialTotal =
+          new CantidadTotalTipoPublicacion(
+                5, tipoPublicacionInicial);
+    List<CantidadTotalTipoPublicacion> arrayPrueba =
+          new ArrayList<CantidadTotalTipoPublicacion>();
     arrayPrueba.add(tipoTestingInicialTotal);
-    List<CantidadTotalTipoPublicacion> arrayPrueba2 = new ArrayList<CantidadTotalTipoPublicacion>();
-    PaquetePublicacion paquetePublicacion = new PaquetePublicacion(
-        "nombrePruebaPrimero", "descripcionPrueba", 20, 50f,
-        null, arrayPrueba, fechaDate);
-    
+    List<CantidadTotalTipoPublicacion> arrayPrueba2 =
+          new ArrayList<CantidadTotalTipoPublicacion>();
+    PaquetePublicacion paquetePublicacion =
+          new PaquetePublicacion(
+                "nombrePruebaPrimero", "descripcionPrueba",
+                20, 50f,
+                null, arrayPrueba, fechaDate);
+
     paquetePublicacion.setNombre("nuevoNombre");
     paquetePublicacion.setDescripcion("nuevaDescripcion");
     paquetePublicacion.setImagen(null);
     paquetePublicacion
-        .setCantidadTotalTipoPublicaciones(arrayPrueba2);
+          .setCantidadTotalTipoPublicaciones(arrayPrueba2);
     paquetePublicacion.setPeriodoValidez(12);
     TipoPublicacion tipoPublicacion = new TipoPublicacion(
-        "tipoTesting", "Uso para testing", "baja", 50, 500f,
-        fechaDate);
+          "tipoTesting", "Uso para testing", "baja", 50,
+          500f,
+          fechaDate);
     paquetePublicacion
-        .agregarTipoPublicacion(tipoPublicacion, 5);
+          .agregarTipoPublicacion(tipoPublicacion, 5);
     paquetePublicacion
-        .agregarTipoPublicacion(tipoPublicacionInicial, 2);
+          .agregarTipoPublicacion(tipoPublicacionInicial,
+                2);
     try {
       paquetePublicacion.agregarTipoPublicacion(
-          tipoPublicacionInicial, 2);
+            tipoPublicacionInicial, 2);
     } catch (TipoDePublicacionYaFueIngresado e) {
       Assert.assertEquals("El tipo de publicación "
-          + tipoPublicacionInicial.getNombre()
-          + " ya fue ingresado", e.getMessage());
+            + tipoPublicacionInicial.getNombre()
+            + " ya fue ingresado", e.getMessage());
     }
-    
+
     paquetePublicacion.setEstaComprado(true);
     Assert.assertEquals(
-        paquetePublicacion.getEstaComprado(), true);
+          paquetePublicacion.getEstaComprado(), true);
     try {
       paquetePublicacion.agregarTipoPublicacion(
-          tipoPublicacionInicial, 2);
+            tipoPublicacionInicial, 2);
     } catch (PaquetePublicacionYaFueComprado e) {
       Assert.assertEquals(
-          "El paquete " + paquetePublicacion.getNombre()
-              + " ya fue comprado",
-          e.getMessage());
+            "El paquete " + paquetePublicacion.getNombre()
+                  + " ya fue comprado",
+            e.getMessage());
     }
-    
+
     // Calculo el costo para despues validarlo contra
     // el .getCosto()
-    List<CantidadTotalTipoPublicacion> cantidadTotalTipoPublicacions = paquetePublicacion
-        .obtenerCantidadTotalTipoPublicaciones();
+    List<CantidadTotalTipoPublicacion> cantidadTotalTipoPublicacions =
+          paquetePublicacion
+                .obtenerCantidadTotalTipoPublicaciones();
     float cantidadTotal = 0;
     float costo = 0;
     for (CantidadTotalTipoPublicacion cantidadTotalTipoPublicacion 
-        : cantidadTotalTipoPublicacions) {
+          : cantidadTotalTipoPublicacions) {
       cantidadTotal = cantidadTotal
-          + (cantidadTotalTipoPublicacion.getCantidadTotal()
-              * cantidadTotalTipoPublicacion
-                  .getTipoPublicacion().getCosto());
+            + (cantidadTotalTipoPublicacion
+                  .getCantidadTotal()
+                  * cantidadTotalTipoPublicacion
+                        .getTipoPublicacion().getCosto());
     }
     costo = cantidadTotal * ((100 - 50f) / 100);
-    
-    DtPaquetePublicacion dtpaquetePublicacion = paquetePublicacion
-        .obtenerDtPaquete();
-    
+
+    DtPaquetePublicacion dtpaquetePublicacion =
+          paquetePublicacion
+                .obtenerDtPaquete();
+
     Assert.assertEquals(dtpaquetePublicacion.getNombre(),
-        paquetePublicacion.getNombre());
+          paquetePublicacion.getNombre());
     Assert.assertEquals(
-        dtpaquetePublicacion.getDescripcion(),
-        paquetePublicacion.getDescripcion());
+          dtpaquetePublicacion.getDescripcion(),
+          paquetePublicacion.getDescripcion());
     Assert.assertEquals(dtpaquetePublicacion.getFechaAlta(),
-        paquetePublicacion.getFechaAlta());
-    
+          paquetePublicacion.getFechaAlta());
+
     Assert.assertEquals(String.valueOf(costo),
-        String.valueOf(paquetePublicacion.getCosto()));
+          String.valueOf(paquetePublicacion.getCosto()));
     Assert.assertEquals(
-        String.valueOf(paquetePublicacion.getDescuento()),
-        String.valueOf(50f));
+          String.valueOf(paquetePublicacion.getDescuento()),
+          String.valueOf(50f));
     Assert.assertEquals(paquetePublicacion.getNombre(),
-        "nuevoNombre");
+          "nuevoNombre");
     Assert.assertEquals(paquetePublicacion.getDescripcion(),
-        "nuevaDescripcion");
+          "nuevaDescripcion");
     Assert.assertEquals(paquetePublicacion.getImagen(),
-        null);
+          null);
     Assert.assertEquals(
-        paquetePublicacion.getPeriodoValidez(), 12);
+          paquetePublicacion.getPeriodoValidez(), 12);
     List<String> resultadoList = paquetePublicacion
-        .obtenerNombresTipoPublicaciones();
+          .obtenerNombresTipoPublicaciones();
     Assert.assertEquals(resultadoList.get(0),
-        "tipoTesting");
+          "tipoTesting");
     Assert.assertEquals(resultadoList.get(1),
-        "tipoTestingInicial");
+          "tipoTestingInicial");
   }
-  
+
   @Test
   public void tipoPublicacionClase() {
     TipoPublicacion tipoPublicacion = new TipoPublicacion(
-        "tipoTesting", "Uso para testing", "baja", 50, 500f,
-        fechaDate);
+          "tipoTesting", "Uso para testing", "baja", 50,
+          500f,
+          fechaDate);
     DtTipoPublicacion dttipoPublicacion = tipoPublicacion
-        .obtenerDttipoPublicacion();
+          .obtenerDttipoPublicacion();
     Assert.assertEquals(dttipoPublicacion.getDescripcion(),
-        tipoPublicacion.getDescripcion());
+          tipoPublicacion.getDescripcion());
     Assert.assertEquals(dttipoPublicacion.getExposicion(),
-        tipoPublicacion.getExposicion());
+          tipoPublicacion.getExposicion());
     Assert.assertEquals(dttipoPublicacion.getNombre(),
-        tipoPublicacion.getNombre());
+          tipoPublicacion.getNombre());
     Assert.assertEquals(
-        String.valueOf(dttipoPublicacion.getCosto()),
-        String.valueOf(tipoPublicacion.getCosto()));
+          String.valueOf(dttipoPublicacion.getCosto()),
+          String.valueOf(tipoPublicacion.getCosto()));
     Assert.assertEquals(dttipoPublicacion.getDuracionDia(),
-        tipoPublicacion.getDuracionDia());
+          tipoPublicacion.getDuracionDia());
     Assert.assertEquals(dttipoPublicacion.getFechaAlta(),
-        tipoPublicacion.getFechaAlta());
+          tipoPublicacion.getFechaAlta());
   }
-  
+
   @Test
   public void postulanteClase() throws IOException {
     Postulante postulante = new Postulante("NicknameTest",
-        "NombreTest", "ApellidoTest", "EmailTest",
-        fechaDate, "NacionalidadTest", null, "1234");
-    
+          "NombreTest", "ApellidoTest", "EmailTest",
+          fechaDate, "NacionalidadTest", null, "1234");
+
     Empresa empresa = new Empresa("nicknameEmpresa1",
-        "nombre1", "apellido1", "email1@test.com",
-        "descripcion1", "sitioWeb1", null,
-        "nuevaContraseña");
-    
+          "nombre1", "apellido1", "email1@test.com",
+          "descripcion1", "sitioWeb1", null,
+          "nuevaContraseña");
+
     TipoPublicacion tipoPublicacion = new TipoPublicacion(
-        "tipoTesting", "Uso para testing", "baja", 50, 500f,
-        fechaDate);
-    
+          "tipoTesting", "Uso para testing", "baja", 50,
+          500f,
+          fechaDate);
+
     List<String> listaKeyword = new ArrayList<String>();
     listaKeyword.add("Keyword1");
-    
+
     OfertaLaboral ofertaLaboral = new OfertaLaboral("test",
-        "descipcionTest", "09:00", "15:00", 500f,
-        "Montevideo", "Montevideo", fechaDate,
-        tipoPublicacion, null, empresa);
-    
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          tipoPublicacion, null, empresa);
+
     Postulacion postulacion = new Postulacion(
-        "DescripcionPostulacion", fechaDate,
-        "cvReducidoPostulacion", postulante, ofertaLaboral, null);
-    
+          "DescripcionPostulacion", fechaDate,
+          "cvReducidoPostulacion", postulante,
+          ofertaLaboral, null);
+
     DtPostulacion dtpostulacion = postulacion
-        .obtenerDtpostulacion();
-    
+          .obtenerDtpostulacion();
+
     Assert.assertEquals(dtpostulacion.getNombreOferta(),
-        postulacion.getNombreOfertaLaboral());
-    
+          postulacion.getNombreOfertaLaboral());
+
     postulante.agregarPostulacion(postulacion);
-    
+
     List<DtOfertaLaboral> dtOfertaLaboral = postulante
-        .obtenerDtofertas();
+          .obtenerDtofertas();
     List<Postulacion> postulacionList = postulante
-        .getPostulaciones();
-    
+          .getPostulaciones();
+
     Assert.assertEquals(dtOfertaLaboral.get(0).getNombre(),
-        ofertaLaboral.getNombre());
+          ofertaLaboral.getNombre());
     Assert.assertEquals(
-        dtOfertaLaboral.get(0).getEstadoOferta(),
-        ofertaLaboral.getEstado());
-    
+          dtOfertaLaboral.get(0).getEstadoOferta(),
+          ofertaLaboral.getEstado());
+
     Assert.assertEquals(
-        postulacionList.get(0).getCvReducido(),
-        postulacion.getCvReducido());
+          postulacionList.get(0).getCvReducido(),
+          postulacion.getCvReducido());
     Assert.assertEquals(
-        postulacionList.get(0).getNombreOfertaLaboral(),
-        postulacion.getNombreOfertaLaboral());
+          postulacionList.get(0).getNombreOfertaLaboral(),
+          postulacion.getNombreOfertaLaboral());
     Assert.assertEquals(
-        postulacionList.get(0).getDescrpMotivacion(),
-        postulacion.getDescrpMotivacion());
+          postulacionList.get(0).getDescrpMotivacion(),
+          postulacion.getDescrpMotivacion());
     Assert.assertEquals(
-        postulacionList.get(0).getPostulante(),
-        postulacion.getPostulante());
+          postulacionList.get(0).getPostulante(),
+          postulacion.getPostulante());
   }
-  
+
   @Test
   public void compraPaqueteClase() {
-    TipoPublicacion tipoPublicacionInicial = new TipoPublicacion(
-        "tipoTestingInicial", "Uso para testing", "baja",
-        50, 500f, fechaDate);
-    CantidadTotalTipoPublicacion tipoTestingInicialTotal = new CantidadTotalTipoPublicacion(
-        5, tipoPublicacionInicial);
-    List<CantidadTotalTipoPublicacion> arrayPrueba = new ArrayList<CantidadTotalTipoPublicacion>();
+    TipoPublicacion tipoPublicacionInicial =
+          new TipoPublicacion(
+                "tipoTestingInicial", "Uso para testing",
+                "baja",
+                50, 500f, fechaDate);
+    CantidadTotalTipoPublicacion tipoTestingInicialTotal =
+          new CantidadTotalTipoPublicacion(
+                5, tipoPublicacionInicial);
+    List<CantidadTotalTipoPublicacion> arrayPrueba =
+          new ArrayList<CantidadTotalTipoPublicacion>();
     arrayPrueba.add(tipoTestingInicialTotal);
-    List<CantidadTotalTipoPublicacion> arrayPrueba2 = new ArrayList<CantidadTotalTipoPublicacion>();
-    PaquetePublicacion paquetePublicacion = new PaquetePublicacion(
-        "nombrePruebaPrimero", "descripcionPrueba", 20, 50f,
-        null, arrayPrueba, fechaDate);
-    
+    List<CantidadTotalTipoPublicacion> arrayPrueba2 =
+          new ArrayList<CantidadTotalTipoPublicacion>();
+    PaquetePublicacion paquetePublicacion =
+          new PaquetePublicacion(
+                "nombrePruebaPrimero", "descripcionPrueba",
+                20, 50f,
+                null, arrayPrueba, fechaDate);
+
     CompraPaquete compraPaquete = new CompraPaquete(
-        fechaDate, paquetePublicacion);
-    
+          fechaDate, paquetePublicacion);
+
     LocalDate copiaFechaCompra = LocalDate.of(
-        fechaDate.getYear(), fechaDate.getMonth(),
-        fechaDate.getDayOfMonth());
+          fechaDate.getYear(), fechaDate.getMonth(),
+          fechaDate.getDayOfMonth());
     LocalDate fechaVencimiento = copiaFechaCompra
-        .plusDays(paquetePublicacion.getPeriodoValidez());
-    
+          .plusDays(paquetePublicacion.getPeriodoValidez());
+
     Assert.assertEquals(compraPaquete.getFechaCompra(),
-        fechaDate);
+          fechaDate);
     Assert.assertEquals(compraPaquete.getFechaVencimiento(),
-        fechaVencimiento);
+          fechaVencimiento);
   }
-  
+
   @Test
   public void empresaClase()
-      throws OfertaLaboralYaExisteException, IOException {
+        throws OfertaLaboralYaExisteException, IOException {
     Empresa empresa = new Empresa("nicknameEmpresa1",
-        "nombre1", "apellido1", "email1", "descripcion1",
-        "sitioWeb1", null, "1234");
+          "nombre1", "apellido1", "email1", "descripcion1",
+          "sitioWeb1", null, "1234");
     TipoPublicacion tipoPublicacion = new TipoPublicacion(
-        "tipoTesting", "Uso para testing", "baja", 50, 500f,
-        fechaDate);
-    
+          "tipoTesting", "Uso para testing", "baja", 50,
+          500f,
+          fechaDate);
+
     List<String> listaKeyword = new ArrayList<String>();
     listaKeyword.add("Keyword1");
-    
+
     OfertaLaboral ofertaLaboral = new OfertaLaboral("test",
-        "descipcionTest", "09:00", "15:00", 500f,
-        "Montevideo", "Montevideo", fechaDate,
-        tipoPublicacion, null, empresa);
-    
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          tipoPublicacion, null, empresa);
+
     empresa.agregarOferta(ofertaLaboral);
-    
+
     try {
       empresa.agregarOferta(ofertaLaboral);
     } catch (OfertaLaboralYaExisteException e) {
       Assert.assertEquals(e.getMessage(),
-          "La Oferta Laboral " + ofertaLaboral.getNombre()
-              + " ya esta asociada a la Empresa "
-              + empresa.getNickname());
-      
+            "La Oferta Laboral " + ofertaLaboral.getNombre()
+                  + " ya esta asociada a la Empresa "
+                  + empresa.getNickname());
+
     }
-    
+
     DtEmpresa dtEmpresa = empresa.obtenerDtempresa();
-    
+
     Assert.assertEquals(dtEmpresa.getNickname(),
-        empresa.getNickname());
+          empresa.getNickname());
     Assert.assertEquals(dtEmpresa.getEmail(),
-        empresa.getEmail());
-    
+          empresa.getEmail());
+
     List<String> nombreOferta = empresa
-        .listarNombreOfertasUsuario();
+          .listarNombreOfertasUsuario();
     Assert.assertEquals(nombreOferta.get(0),
-        ofertaLaboral.getNombre());
-    
-    CantidadTotalTipoPublicacion tipoTestingInicialTotal = new CantidadTotalTipoPublicacion(
-        5, tipoPublicacion);
-    List<CantidadTotalTipoPublicacion> arrayPrueba = new ArrayList<CantidadTotalTipoPublicacion>();
+          ofertaLaboral.getNombre());
+
+    CantidadTotalTipoPublicacion tipoTestingInicialTotal =
+          new CantidadTotalTipoPublicacion(
+                5, tipoPublicacion);
+    List<CantidadTotalTipoPublicacion> arrayPrueba =
+          new ArrayList<CantidadTotalTipoPublicacion>();
     arrayPrueba.add(tipoTestingInicialTotal);
-    
-    PaquetePublicacion paquetePublicacion = new PaquetePublicacion(
-        "nombrePruebaPrimero", "descripcionPrueba", 20, 50f,
-        null, arrayPrueba, fechaDate);
-    
+
+    PaquetePublicacion paquetePublicacion =
+          new PaquetePublicacion(
+                "nombrePruebaPrimero", "descripcionPrueba",
+                20, 50f,
+                null, arrayPrueba, fechaDate);
+
     CompraPaquete compraPaquete = new CompraPaquete(
-        fechaDate, paquetePublicacion);
-    
+          fechaDate, paquetePublicacion);
+
     empresa.comprarPaquete(compraPaquete);
-    
+
     Assert.assertEquals(empresa.estaCompradoPaquete(
-        paquetePublicacion.getNombre()), true);
-    
+          paquetePublicacion.getNombre()), true);
+
   }
-  
+
   @Test
   public void ofertaLaboralClase() throws IOException {
     Empresa empresa = new Empresa("nicknameEmpresa1",
-        "nombre1", "apellido1", "email1@test.com",
-        "descripcion1", "sitioWeb1", null,
-        "nuevaContraseña");
-    
+          "nombre1", "apellido1", "email1@test.com",
+          "descripcion1", "sitioWeb1", null,
+          "nuevaContraseña");
+
     TipoPublicacion tipoPublicacion = new TipoPublicacion(
-        "tipoTesting", "Uso para testing", "baja", 50, 500f,
-        fechaDate);
-    
+          "tipoTesting", "Uso para testing", "baja", 50,
+          500f,
+          fechaDate);
+
     List<String> listaKeyword = new ArrayList<String>();
     listaKeyword.add("Keyword1");
-    
+
     OfertaLaboral ofertaLaboral = new OfertaLaboral("test",
-        "descipcionTest", "09:00", "15:00", 500f,
-        "Montevideo", "Montevideo", fechaDate,
-        tipoPublicacion, null, empresa);
-    
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          tipoPublicacion, null, empresa);
+
     List<Keyword> keywordsList = new ArrayList<>();
     Keyword keyword = new Keyword("Keyword1");
     keywordsList.add(keyword);
-    
+
     ofertaLaboral.setDescripcion("nuevaDescripcion");
     Assert.assertEquals(ofertaLaboral.getDescripcion(),
-        "nuevaDescripcion");
+          "nuevaDescripcion");
     ofertaLaboral.setCiudad("Soriano");
     Assert.assertEquals(ofertaLaboral.getCiudad(),
-        "Soriano");
+          "Soriano");
     ofertaLaboral.setDepartamento("Soriano");
     Assert.assertEquals(ofertaLaboral.getDepartamento(),
-        "Soriano");
+          "Soriano");
     ofertaLaboral.setRemunaracion(50f);
     Assert.assertEquals(
-        String.valueOf(ofertaLaboral.getRemunaracion()),
-        String.valueOf(50f));
+          String.valueOf(ofertaLaboral.getRemunaracion()),
+          String.valueOf(50f));
     ofertaLaboral.setFechaAlta(fechaDate);
     Assert.assertEquals(ofertaLaboral.getFechaAlta(),
-        fechaDate);
+          fechaDate);
     ofertaLaboral.setKeyword(keywordsList);
     Assert.assertEquals(ofertaLaboral.getKeywords(),
-        keywordsList);
+          keywordsList);
     ofertaLaboral.setTipoPublicacion(tipoPublicacion);
     Assert.assertEquals(ofertaLaboral.getTipoPublicacion(),
-        tipoPublicacion);
+          tipoPublicacion);
     Assert.assertEquals(ofertaLaboral.getPostulacion(),
-        new ArrayList<Postulacion>());
+          new ArrayList<Postulacion>());
     Assert.assertEquals(ofertaLaboral.getCompraPaquete(),
-        null);
+          null);
     ofertaLaboral.setHorarioFinal(fecha);
     Assert.assertEquals(ofertaLaboral.getHorarioFinal(),
-        fecha);
+          fecha);
     ofertaLaboral.setHorarioInicial(fecha);
     Assert.assertEquals(ofertaLaboral.getHorarioInicial(),
-        fecha);
-    
-    CantidadTotalTipoPublicacion tipoTestingInicialTotal = new CantidadTotalTipoPublicacion(
-        5, tipoPublicacion);
-    List<CantidadTotalTipoPublicacion> arrayPrueba = new ArrayList<CantidadTotalTipoPublicacion>();
+          fecha);
+
+    CantidadTotalTipoPublicacion tipoTestingInicialTotal =
+          new CantidadTotalTipoPublicacion(
+                5, tipoPublicacion);
+    List<CantidadTotalTipoPublicacion> arrayPrueba =
+          new ArrayList<CantidadTotalTipoPublicacion>();
     arrayPrueba.add(tipoTestingInicialTotal);
-    
-    PaquetePublicacion paquetePublicacion = new PaquetePublicacion(
-        "nombrePruebaPrimero", "descripcionPrueba", 20, 50f,
-        null, arrayPrueba, fechaDate);
-    
+
+    PaquetePublicacion paquetePublicacion =
+          new PaquetePublicacion(
+                "nombrePruebaPrimero", "descripcionPrueba",
+                20, 50f,
+                null, arrayPrueba, fechaDate);
+
     CompraPaquete compraPaquete = new CompraPaquete(
-        fechaDate, paquetePublicacion);
-    
+          fechaDate, paquetePublicacion);
+
     empresa.comprarPaquete(compraPaquete);
-    
+
     ofertaLaboral.setCompraPaquete(compraPaquete);
-    
+
     DtOfertaLaboral dtOfertaLaboral = ofertaLaboral
-        .obtenerDtOfertaLaboral();
-    
+          .obtenerDtOfertaLaboral();
+
     Assert.assertEquals(dtOfertaLaboral.getNombre(),
-        ofertaLaboral.getNombre());
+          ofertaLaboral.getNombre());
     Assert.assertEquals(dtOfertaLaboral.getDescripcion(),
-        ofertaLaboral.getDescripcion());
+          ofertaLaboral.getDescripcion());
     Assert.assertEquals(
-        dtOfertaLaboral.getPaqueteAsociado().getNombre(),
-        paquetePublicacion.getNombre());
+          dtOfertaLaboral.getPaqueteAsociado().getNombre(),
+          paquetePublicacion.getNombre());
     Assert.assertEquals(
-        dtOfertaLaboral.getNombreTipoPublicacion(),
-        ofertaLaboral.getTipoPublicacion().getNombre());
-    
+          dtOfertaLaboral.getNombreTipoPublicacion(),
+          ofertaLaboral.getTipoPublicacion().getNombre());
+
   }
-  
+
 }

@@ -9,25 +9,25 @@ import logica.interfaces.IcontroladorUsuario;
 
 public class Fabrica {
   private static Fabrica instancia = null;
-  
+
   private Fabrica() {
   }
-  
+
   /**
    * Constructor.
    */
-  
+
   public static Fabrica getInstance() {
     if (instancia == null) {
       return new Fabrica();
     }
     return instancia;
   }
-  
+
   public IcontroladorUsuario obtenerControladorUsuario() {
     return new ControladorUsuario();
   }
-  
+
   public IcontroladorOferta obtenerControladorOferta() {
     return new ControladorOferta();
   }

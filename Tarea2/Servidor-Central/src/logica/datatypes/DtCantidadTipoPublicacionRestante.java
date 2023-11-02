@@ -9,37 +9,40 @@ import java.io.Serializable;
  */
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class DtCantidadTipoPublicacionRestante implements Serializable {
-  
-  
-  private static final long serialVersionUID = -8355208635138695346L; 
+public class DtCantidadTipoPublicacionRestante
+      implements
+      Serializable {
+
+  private static final long serialVersionUID =
+        -8355208635138695346L;
   private int cantidad;
   private DtTipoPublicacion tipoPublicacion;
-  
-  public DtCantidadTipoPublicacionRestante(int cantidad,
-      DtTipoPublicacion tipoPublicacion) {
+
+  public DtCantidadTipoPublicacionRestante(
+        int cantidad,
+          DtTipoPublicacion tipoPublicacion) {
     this.cantidad = cantidad;
     this.tipoPublicacion = tipoPublicacion;
   }
-  
+
   public void setCantidad(int cantidad) {
     this.cantidad = cantidad;
   }
-  
+
   public DtCantidadTipoPublicacionRestante() {
   }
-  
+
   public void setTipoPublicacion(
-      DtTipoPublicacion tipoPublicacion) {
+        DtTipoPublicacion tipoPublicacion) {
     this.tipoPublicacion = tipoPublicacion;
   }
-  
+
   public int getCantidad() {
     return cantidad;
   }
-  
+
   public DtTipoPublicacion getTipoPublicacion() {
     return tipoPublicacion;
   }
-  
+
 }
