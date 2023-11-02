@@ -409,4 +409,9 @@ public class Publicador {
      throws OfertaLaboralNoExisteException, UsuarioNoExisteException {
    return controladorUsuario.obtenerDatosPdf(nicknamePostulante, nombreOferta);
  }
+ 
+ @WebMethod
+ public void agregarVisitaAoferta(String nombreOferta) throws OfertaLaboralNoExisteException {
+   controladorOferta.agregarVisitaOferta(nombreOferta);
+ }
 }
