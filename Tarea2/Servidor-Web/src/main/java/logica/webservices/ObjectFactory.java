@@ -253,6 +253,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtDatosPdf }
+     * 
+     * @return
+     *     the new instance of {@link DtDatosPdf }
+     */
+    public DtDatosPdf createDtDatosPdf() {
+        return new DtDatosPdf();
+    }
+
+    /**
      * Create an instance of {@link DtPostulacion }
      * 
      * @return
