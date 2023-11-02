@@ -2,9 +2,12 @@ package logica.datatypes;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import logica.classes.OfertaLaboral;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -66,5 +69,18 @@ public class DtEmpresa extends DtUsuario
 
   public List<DtOfertaLaboral> getOfertasLaborales() {
     return getOfertasColeccion();
+  }
+  
+  public LocalDate obtenerUltimaFechaDeAlta() {
+    if (this.getOfertasColeccion().isEmpty()) {
+      return null;
+    }
+    LocalDate fecha = this.getOfertasColeccion().get(0).getFechaAlta();
+    for (DtOfertaLaboral oferta : this.getOfertasColeccion()) {
+      if (oferta.getFechaAlta().isAfter(fecha)) {
+        fecha = oferta.getFechaAlta();
+      }
+    }
+    return fecha;
   }
 }

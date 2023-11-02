@@ -455,9 +455,9 @@ public class ControladorOferta
                 .getInstance()
                 .obtenerDtofertasConfirmadas();
     for (DtOfertaLaboral oferta : ofertas) {
-      if ((oferta.getNombre().contains(parametro)
-            || oferta.getDescripcion().contains(parametro))
-            && !oferta.getEstaVencida()) {
+      if ((oferta.getNombre().toLowerCase().contains(parametro.toLowerCase())
+          || oferta.getDescripcion().toLowerCase().contains(parametro.toLowerCase()))
+          && !oferta.getEstaVencida()) {
         resultado.add(oferta);
       }
     }

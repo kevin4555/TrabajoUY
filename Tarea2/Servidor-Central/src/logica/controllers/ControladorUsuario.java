@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import logica.classes.CompraPaquete;
 import logica.classes.Empresa;
@@ -445,20 +447,31 @@ public class ControladorUsuario
   }
 
   @Override
-  public List<DtEmpresa> buscarEmpresas(String parametro)
-        throws IOException {
-    List<DtEmpresa> listaResultado =
-          new ArrayList<DtEmpresa>();
-    List<DtEmpresa> dtempresas = ManejadorUsuario
-          .getInstance().obtenerDtEmpresas();
+  public List<DtEmpresa> buscarEmpresas(String parametro) throws IOException {
+    List<DtEmpresa> listaAuxiliar = new ArrayList<DtEmpresa>();
+    List<DtEmpresa> dtempresas = ManejadorUsuario.getInstance().obtenerDtEmpresas();
     for (DtEmpresa empresa : dtempresas) {
-      if (empresa.getNombre().contains(parametro) || empresa
-            .getDescripcion().contains(parametro)) {
-        listaResultado.add(empresa);
+      if (empresa.getNombre().toLowerCase().contains(parametro.toLowerCase()) || empresa.getDescripcion().toLowerCase().contains(parametro.toLowerCase())) {
+        listaAuxiliar.add(empresa);
       }
     }
-    // agregar orden cuando quede aclarado
-    return listaResultado;
+    ArrayList<DtEmpresa> empresasSinOfertas = new ArrayList<DtEmpresa>();
+    ArrayList<DtEmpresa> empresasConOfertas = new ArrayList<DtEmpresa>();
+    for(DtEmpresa empresa : listaAuxiliar) {
+      if(empresa.getOfertasColeccion().isEmpty()) {
+        empresasSinOfertas.add(empresa);
+      }
+      else {
+        empresasConOfertas.add(empresa);
+      }
+    }
+    Comparator<DtEmpresa> comparadorFecha = (empresa1, empresa2) -> empresa1.obtenerUltimaFechaDeAlta()
+        .compareTo(empresa2.obtenerUltimaFechaDeAlta());
+    Collections.sort(empresasConOfertas, comparadorFecha.reversed());
+    for(DtEmpresa empresa : empresasSinOfertas) {
+      empresasConOfertas.add(empresa);
+    }
+    return empresasConOfertas;
   }
 
   @Override
