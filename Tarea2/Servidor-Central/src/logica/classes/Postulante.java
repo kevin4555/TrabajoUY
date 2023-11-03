@@ -22,7 +22,9 @@ public class Postulante extends Usuario {
   private List<Postulacion> postulaciones;
   private Set<String> ofertasFavoritas;
 
-  /**
+  
+
+/**
    * Constructor.
    */
 
@@ -78,11 +80,15 @@ public class Postulante extends Usuario {
     for (String nickname : this.getSeguidores()) {
       seguidores.add(nickname);
     }
+    List<String> ofetasFavoritas = new ArrayList<String>();
+    for (String oferta : this.getOfertasFavoritas()) {
+      ofetasFavoritas.add(oferta);
+    }
     return new DtPostulante(this.nickname, this.nombre,
           this.apellido, this.email, this.getImagen(),
           this.getContrasenia(), this.obtenerDtofertas(),
           this.fechaNacimiento, this.nacionalidad, seguidos,
-          seguidores);
+          seguidores,ofetasFavoritas);
   }
 
   public void agregarPostulacion(Postulacion postulacion) {
@@ -175,5 +181,7 @@ public class Postulante extends Usuario {
   public Boolean esOfertaFavorita(String nombreOferta) {
     return this.ofertasFavoritas.contains(nombreOferta);
   }
-  
+  public Set<String> getOfertasFavoritas() {
+		return ofertasFavoritas;
+	}
 }
