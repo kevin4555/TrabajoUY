@@ -2,7 +2,6 @@ package testing;
 
 import static org.junit.Assert.assertEquals;
 
-import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.TipoPublicacionNoExisteException;
@@ -106,64 +105,6 @@ public class ManejadorOfertasTest {
             e.getMessage());
     }
   }
-
-  @Test
-  public void testObtenerDtOfertaInexistente()
-        throws DtOfertaNoExisteException, IOException {
-    manejadorOfertas = ManejadorOfertas.getInstance();
-
-    try {
-      manejadorOfertas
-            .obtenerDtofertaLaboral("OfertaInexistente");
-    } catch (DtOfertaNoExisteException e) {
-      assertEquals("No existe la oferta solicitada",
-            e.getMessage());
-    }
-  }
-
-  /*
-   * @Test public void testObtenerDtycompararlo() throws
-   * OfertaLaboralYaExisteException,
-   * DtOfertaNoExisteException, IOException {
-   * manejadorOfertas = ManejadorOfertas.getInstance();
-   * List<Dtpostulacion> arrayDt = new
-   * ArrayList<Dtpostulacion>(); DtOfertaLaboral
-   * dtOfertaLaboral = new DtOfertaLaboral( "nombreTesting",
-   * "descripcionTesting", "ciudadTesting",
-   * "departamentoTesting", "09:00", "15:00", 100f,
-   * fechaDate, arrayDt, fechaDate, EstadoOferta.CONFIRMADA,
-   * null, null, null, false, "tipoTesting",
-   * empresa1.getNickname()); TipoPublicacion
-   * tipoCreadoPublicacion = new TipoPublicacion(
-   * "tipoTesting", "Uso para testing", "baja", 50, 500f,
-   * fechaDate); OfertaLaboral ofertaLaboral = new
-   * OfertaLaboral( "nombreTesting", "descripcionTesting",
-   * "09:00", "15:00", 100f, "ciudadTesting",
-   * "departamentoTesting", fechaDate,
-   * tipoCreadoPublicacion, null, empresa1);
-   * manejadorOfertas.agregarOferta(ofertaLaboral);
-   * DtOfertaLaboral resultaDtOfertaLaboral =
-   * manejadorOfertas
-   * .obtenerDtofertaLaboral("nombreTesting");
-   * assertEquals(dtOfertaLaboral.getNombre(),
-   * resultaDtOfertaLaboral.getNombre());
-   * assertEquals(dtOfertaLaboral.getCiudad(),
-   * resultaDtOfertaLaboral.getCiudad());
-   * assertEquals(dtOfertaLaboral.getDepartamento(),
-   * resultaDtOfertaLaboral.getDepartamento());
-   * assertEquals(dtOfertaLaboral.getHorarioInicio(),
-   * resultaDtOfertaLaboral.getHorarioInicio());
-   * assertEquals(dtOfertaLaboral.getHorarioFinal(),
-   * resultaDtOfertaLaboral.getHorarioFinal());
-   * assertEquals(dtOfertaLaboral.getRemuneracion(),
-   * resultaDtOfertaLaboral.getRemuneracion());
-   * assertEquals(dtOfertaLaboral.getFechaAlta(),
-   * resultaDtOfertaLaboral.getFechaAlta());
-   * assertEquals(dtOfertaLaboral.getPostulaciones(),
-   * resultaDtOfertaLaboral.getPostulaciones());
-   * assertEquals(dtOfertaLaboral.getDescripcion(),
-   * resultaDtOfertaLaboral.getDescripcion()); }
-   */
 
   @Test
   public void testObtenerListaOfertasLaboralesycomprar()

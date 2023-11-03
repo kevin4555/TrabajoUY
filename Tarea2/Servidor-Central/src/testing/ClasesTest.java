@@ -1,8 +1,20 @@
 package testing;
 
+import excepciones.KeywordNoExisteException;
+import excepciones.KeywordYaExisteException;
+import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
+import excepciones.PaquetePublicacionNoExisteException;
+import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.PaquetePublicacionYaFueComprado;
 import excepciones.TipoDePublicacionYaFueIngresado;
+import excepciones.TipoPublicacionNoExisteException;
+import excepciones.TipoPublicacionYaExisteException;
+import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaExisteException;
+import excepciones.UsuarioYaExistePostulacion;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,11 +34,20 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
+import logica.controllers.Fabrica;
+import logica.controllers.Loader;
+import logica.datatypes.DtCantidadTipoPublicacion;
+import logica.datatypes.DtCantidadTipoPublicacionRestante;
+import logica.datatypes.DtCompraPaquete;
+import logica.datatypes.DtDatosPdf;
 import logica.datatypes.DtEmpresa;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.DtPostulacion;
+import logica.datatypes.DtPostulante;
 import logica.datatypes.DtTipoPublicacion;
+import logica.datatypes.DtUsuario;
+import logica.datatypes.EstadoOferta;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -72,6 +93,19 @@ public class ClasesTest {
           cantidadTipoPublicacionRestante.getCantidad(), 5);
     Assert.assertEquals(cantidadTipoPublicacionRestante
           .getTipoPublicacion(), tipoPublicacion);
+
+    DtCantidadTipoPublicacion dtCantidadTipoPublicacionVacio =
+          new DtCantidadTipoPublicacion();
+    dtCantidadTipoPublicacionVacio.setNombreTipoPublicacion(
+          "setNombreTipoPublicacion");
+    dtCantidadTipoPublicacionVacio.setCantidad(20);
+
+    DtCantidadTipoPublicacionRestante dtCantidadTipoPublicacionRestanteVacio =
+          new DtCantidadTipoPublicacionRestante();
+
+    dtCantidadTipoPublicacionRestanteVacio.setCantidad(10);
+    dtCantidadTipoPublicacionRestanteVacio
+          .setTipoPublicacion(null);
 
   }
 
@@ -183,6 +217,29 @@ public class ClasesTest {
           "tipoTesting");
     Assert.assertEquals(resultadoList.get(1),
           "tipoTestingInicial");
+    BufferedImage imagenNueva = new BufferedImage(10, 20,
+          BufferedImage.TYPE_INT_ARGB);
+    DtPaquetePublicacion nuevoPaquete =
+          new DtPaquetePublicacion("nombrePaquete",
+                "descripcion", 15, 15f, 200f, imagenNueva,
+                null, fechaDate);
+    nuevoPaquete.setNombre("setNombre");
+    nuevoPaquete.setDescripcion("setDescripcion");
+    nuevoPaquete.setPeriodoValidez(20);
+    nuevoPaquete.setDescuento(20f);
+    nuevoPaquete.setCosto(200f);
+    nuevoPaquete.setImagen(null);
+    nuevoPaquete.setImagenBase64(null);
+    nuevoPaquete.setCantidadTipoPublicaciones(null);
+    nuevoPaquete.setFechaAlta(fechaDate);
+    nuevoPaquete.setFechaAltaString(fechaDate.toString());
+
+    String obtenerImagen = nuevoPaquete.getImagenBase64();
+    String obtenerFechaAltaString =
+          nuevoPaquete.getFechaAltaString();
+    DtPaquetePublicacion nuevoPaqueteVacio =
+          new DtPaquetePublicacion();
+
   }
 
   @Test
@@ -206,6 +263,20 @@ public class ClasesTest {
           tipoPublicacion.getDuracionDia());
     Assert.assertEquals(dttipoPublicacion.getFechaAlta(),
           tipoPublicacion.getFechaAlta());
+
+    DtTipoPublicacion nuevoTipoPublicacion =
+          new DtTipoPublicacion();
+    nuevoTipoPublicacion.setNombre("setNombre");
+    nuevoTipoPublicacion.setDescripcion("setDescripcion");
+    nuevoTipoPublicacion.setExposicion("setExposicion");
+    nuevoTipoPublicacion.setDuracionDia(20);
+    nuevoTipoPublicacion.setCosto(15f);
+    nuevoTipoPublicacion.setFechaAlta(fechaDate);
+    nuevoTipoPublicacion
+          .setFechaAltaString(fechaDate.toString());
+
+    String fechaAltaString =
+          nuevoTipoPublicacion.getFechaAltaString();
   }
 
   @Test
@@ -231,6 +302,11 @@ public class ClasesTest {
           "descipcionTest", "09:00", "15:00", 500f,
           "Montevideo", "Montevideo", fechaDate,
           tipoPublicacion, null, empresa);
+
+    DtPostulacion dtPostulacion =
+          postulante.obtenerDtpostulacion("oferta1");
+
+    Assert.assertEquals(null, dtPostulacion);
 
     Postulacion postulacion = new Postulacion(
           "DescripcionPostulacion", fechaDate,
@@ -268,6 +344,50 @@ public class ClasesTest {
     Assert.assertEquals(
           postulacionList.get(0).getPostulante(),
           postulacion.getPostulante());
+
+    postulante.agregarSeguidor("a");
+    postulante.agregarSeguidor("b");
+    postulante.seguir("a");
+    postulante.seguir("b");
+
+    DtPostulante dtPostulante =
+          postulante.obtenerDtpostulante();
+
+    List<String> seguidores = dtPostulante.getSeguidores();
+    List<String> seguidos = dtPostulante.getSeguidos();
+
+    Assert.assertEquals(seguidores.size(), 2);
+    Assert.assertEquals(seguidos.size(), 2);
+
+    DtUsuario nuevoUsuario = new DtUsuario();
+    BufferedImage imagenNueva = new BufferedImage(10, 20,
+          BufferedImage.TYPE_INT_ARGB);
+    DtUsuario nuevoUsuarioSecundario = new DtUsuario(
+          "nickname", "nombre", "apellido", "email",
+          imagenNueva, "contraseña", null, null, null);
+
+    nuevoUsuarioSecundario.setNickname("setNickname");
+    nuevoUsuarioSecundario.setNombre("setNombre");
+    nuevoUsuarioSecundario.setApellido("setApellido");
+    nuevoUsuarioSecundario.setEmail("setEmail");
+    nuevoUsuarioSecundario.setImagen(null);
+    nuevoUsuarioSecundario.setImagenBase64(null);
+    nuevoUsuarioSecundario.setContrasenia("setContrasenia");
+    nuevoUsuarioSecundario.setOfertasColeccion(null);
+    nuevoUsuarioSecundario.setSeguidos(null);
+    nuevoUsuarioSecundario.setSeguidores(null);
+
+    String obtenerImagen =
+          nuevoUsuarioSecundario.getImagenBase64();
+
+    DtPostulante dtPostulanteVacio = new DtPostulante();
+    dtPostulanteVacio.setFechaNacimiento(fechaDate);
+    dtPostulanteVacio.setNacionalidad("setNacionalidad");
+    dtPostulanteVacio.setFechaNacimientoString(fecha);
+
+    String fechaNacimientoString =
+          dtPostulanteVacio.getFechaNacimientoString();
+
   }
 
   @Test
@@ -304,6 +424,28 @@ public class ClasesTest {
           fechaDate);
     Assert.assertEquals(compraPaquete.getFechaVencimiento(),
           fechaVencimiento);
+    DtCompraPaquete dtCompraPaqueteVacio =
+          new DtCompraPaquete();
+    dtCompraPaqueteVacio.setFechaCompra(fechaDate);
+    dtCompraPaqueteVacio.setFechaVencimiento(fechaDate);
+    dtCompraPaqueteVacio.setPublicacionesRestantes(null);
+    dtCompraPaqueteVacio.setPaquete(null);
+    dtCompraPaqueteVacio.setFechaCompraString(fecha);
+    dtCompraPaqueteVacio.setFechaVencimientoString(fecha);
+
+    String fechaVencimientoString =
+          dtCompraPaqueteVacio.getFechaVencimientoString();
+    String fechaCompraString =
+          dtCompraPaqueteVacio.getFechaCompraString();
+
+    DtDatosPdf dtDatosPdfVacio = new DtDatosPdf();
+    dtDatosPdfVacio.setNombrePostulante("nombrePostulante");
+    dtDatosPdfVacio.setNombreEmpresa("setNombreEmpresa");
+    dtDatosPdfVacio.setNombreOferta("setNombreOferta");
+    dtDatosPdfVacio.setPosicion(12);
+    dtDatosPdfVacio.setFechaPostulacion(fecha);
+    dtDatosPdfVacio.setFechaResolucion(fecha);
+
   }
 
   @Test
@@ -370,10 +512,36 @@ public class ClasesTest {
     Assert.assertEquals(empresa.estaCompradoPaquete(
           paquetePublicacion.getNombre()), true);
 
+    empresa.agregarSeguidor("a");
+    empresa.agregarSeguidor("b");
+    empresa.seguir("a");
+    empresa.seguir("b");
+    dtEmpresa = empresa.obtenerDtempresa();
+    List<String> seguidores = dtEmpresa.getSeguidores();
+    List<String> seguidos = dtEmpresa.getSeguidos();
+
+    Assert.assertEquals(seguidores.size(), 2);
+    Assert.assertEquals(seguidos.size(), 2);
+
+    DtEmpresa empresaVacia = new DtEmpresa();
+    empresaVacia.setDescripcion("setDescripcion");
+    empresaVacia.setSitioWeb("setSitioWeb");
+
   }
 
   @Test
-  public void ofertaLaboralClase() throws IOException {
+  public void ofertaLaboralClase()
+        throws IOException, UsuarioNoExisteException,
+        OfertaLaboralNoExisteException, ParseException,
+        UsuarioYaExisteException,
+        UsuarioEmailRepetidoException,
+        TipoPublicacionYaExisteException,
+        KeywordYaExisteException, KeywordNoExisteException,
+        TipoPublicacionNoExisteException,
+        OfertaLaboralYaExisteException,
+        PaquetePublicacionYaExisteException,
+        UsuarioYaExistePostulacion,
+        PaquetePublicacionNoExisteException {
     Empresa empresa = new Empresa("nicknameEmpresa1",
           "nombre1", "apellido1", "email1@test.com",
           "descripcion1", "sitioWeb1", null,
@@ -452,6 +620,9 @@ public class ClasesTest {
     DtOfertaLaboral dtOfertaLaboral = ofertaLaboral
           .obtenerDtOfertaLaboral();
 
+    List<DtPostulacion> dtPostulacion =
+          dtOfertaLaboral.getPostulaciones();
+
     Assert.assertEquals(dtOfertaLaboral.getNombre(),
           ofertaLaboral.getNombre());
     Assert.assertEquals(dtOfertaLaboral.getDescripcion(),
@@ -462,6 +633,98 @@ public class ClasesTest {
     Assert.assertEquals(
           dtOfertaLaboral.getNombreTipoPublicacion(),
           ofertaLaboral.getTipoPublicacion().getNombre());
+    Assert.assertEquals(
+          dtOfertaLaboral.getFechaResolucion(), null);
+    Assert.assertEquals(dtOfertaLaboral.getImagenBase64(),
+          null);
+
+    dtOfertaLaboral.setNombre("nombreNuevo");
+    dtOfertaLaboral.setDescripcion("descripcionNueva");
+    dtOfertaLaboral.setCiudad("ciudadNueva");
+    dtOfertaLaboral.setDepartamento("departamentoNuevo");
+    dtOfertaLaboral.setHorarioInicio("10:00");
+    dtOfertaLaboral.setHorarioFinal("17:00");
+    dtOfertaLaboral.setRemuneracion(15f);
+    dtOfertaLaboral.setFechaAlta(fechaDate);
+    dtOfertaLaboral.setFechaResolucion(fechaDate);
+    List<DtPostulacion> postulaciones =
+          new ArrayList<DtPostulacion>();
+    dtOfertaLaboral.setPostulaciones(postulaciones);
+    dtOfertaLaboral
+          .setEstadoOferta(EstadoOferta.CONFIRMADA);
+    dtOfertaLaboral.setImagen(null);
+    dtOfertaLaboral.setImagenBase64(null);
+    dtOfertaLaboral.setPaqueteAsociado(null);
+    dtOfertaLaboral.setKeywords(null);
+    dtOfertaLaboral.setEstaVencida(true);
+    dtOfertaLaboral.setNombreTipoPublicacion(
+          "nombreTipoPublicacion");
+    dtOfertaLaboral.setEmpresa("Empresa1");
+    dtOfertaLaboral.setVisitas(5);
+    dtOfertaLaboral.setFechaFinalizacion(fechaDate);
+    dtOfertaLaboral
+          .setFechaAltaString(fechaDate.toString());
+    dtOfertaLaboral
+          .setFechaResolucionString(fechaDate.toString());
+    dtOfertaLaboral
+          .setFechaFinalizacionString(fechaDate.toString());
+    dtOfertaLaboral.setExposicion("Alta");
+
+    DtOfertaLaboral nuevoDtVacio = new DtOfertaLaboral();
+    BufferedImage nuevaImagen = new BufferedImage(10, 20,
+          BufferedImage.TYPE_INT_ARGB);
+    DtOfertaLaboral nuevoDtNoVacio = new DtOfertaLaboral(
+          "Nombre",
+          "Descripcion", "Ciudad",
+          "Departamento",
+          "10:00", "17:00",
+          15f,
+          fechaDate, postulaciones,
+          fechaDate, EstadoOferta.CONFIRMADA, nuevaImagen,
+          null, null, true,
+          "tipoTesting",
+          "nicknameEmpresa1", 5,
+          "Alta",
+          fechaDate);
+
+    String fechaAltaString =
+          dtOfertaLaboral.getFechaAltaString();
+    LocalDate fechaFinalizacion =
+          dtOfertaLaboral.getFechaFinalizacion();
+    String fechaResolucion =
+          dtOfertaLaboral.getFechaResolucionString();
+    String fechaFinalizacionString =
+          dtOfertaLaboral.getFechaFinalizacionString();
+
+    DtPostulacion nuevaPostulacionVacia =
+          new DtPostulacion();
+
+    nuevaPostulacionVacia
+          .setNicknamePostulante("setNicknamePostulante");
+    nuevaPostulacionVacia
+          .setDescripMotivacion("setDescripMotivacion");
+    nuevaPostulacionVacia.setFechaPostulacion(fechaDate);
+    nuevaPostulacionVacia.setCvReducido("setCvReducido");
+    nuevaPostulacionVacia
+          .setNombreOferta("setNombreOferta");
+    nuevaPostulacionVacia
+          .setFechaPostulacionString(fechaDate.toString());
+
+    String fechaPostulacionString =
+          nuevaPostulacionVacia.getFechaPostulacionString();
+    String linkVideo = nuevaPostulacionVacia.getLinkVideo();
+    String nicknamePostulante =
+          nuevaPostulacionVacia.getNicknamePostulante();
+
+    Loader nuevoLoader = new Loader();
+    nuevoLoader.cargarDatos();
+    nuevoLoader.confirmarOfertas();
+
+    Assert.assertEquals(true, nuevoLoader.datosCargados());
+
+    Fabrica nueva = Fabrica.getInstance();
+
+    nueva = Fabrica.getInstance();
 
   }
 
