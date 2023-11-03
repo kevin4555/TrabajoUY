@@ -440,9 +440,6 @@ public class ControladorOferta
           oferta2) -> (int) (oferta1.getVisitas()
                 - oferta2.getVisitas());
     ofertas.sort(Collections.reverseOrder(comparador));
-    // ofertas.sort(comparador.reversed()); puede ser otra
-    // opcion hay que probar
-    // cual anda
     return ofertas;
   }
 
@@ -451,7 +448,8 @@ public class ControladorOferta
         buscarOfertas(String parametro) throws IOException {
     List<DtOfertaLaboral> resultado =
           new ArrayList<DtOfertaLaboral>();
-    List<DtOfertaLaboral> ofertas = (List<DtOfertaLaboral>) ManejadorOfertas
+    List<DtOfertaLaboral> ofertas =
+          (List<DtOfertaLaboral>) ManejadorOfertas
                 .getInstance()
                 .obtenerDtofertasConfirmadas();
     for (DtOfertaLaboral oferta : ofertas) {
@@ -480,14 +478,14 @@ public class ControladorOferta
         OfertaLaboralNoSePuedeFinalizar {
     OfertaLaboral oferta = ManejadorOfertas.getInstance()
           .obtenerOfertaLaboral(nombreOferta);
-    if (!oferta.estaVencida() || oferta.getEstado()
-          != EstadoOferta.CONFIRMADA) {
+    if (oferta.getEstado()
+          != EstadoOferta.CONFIRMADA
+          || !oferta.estaVencida()) {
       throw new OfertaLaboralNoSePuedeFinalizar(
             "La oferta " + nombreOferta
                   + " no puede ser finalizada");
     }
     oferta.finalizarOferta();
-    // agregar persistencia
   }
 
   @Override

@@ -3,14 +3,19 @@ package testing;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoSePuedeFinalizar;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import excepciones.PostulanteNoEsOfertaFavoritaException;
+import excepciones.PostulanteYaEsOfertaFavoritaException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
+import excepciones.UsuarioNoEstaSeguidoException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioNoExistePostulacion;
+import excepciones.UsuarioYaEstaSeguidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.io.IOException;
@@ -18,13 +23,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import logica.classes.Empresa;
+import logica.classes.OfertaLaboral;
 import logica.classes.Postulante;
 import logica.classes.Usuario;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtCantidadTipoPublicacion;
 import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
+import logica.datatypes.DtDatosPdf;
 import logica.datatypes.DtEmpresa;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtPaquetePublicacion;
@@ -1184,4 +1192,504 @@ public class ControladorUsuarioTesting {
     Assert.assertTrue(postulacionRepetida);
 
   }
+
+  @Test
+  public void testObtenerDtOfertasFinalizadasDeEmpresa()
+        throws UsuarioNoExisteException, IOException,
+        UsuarioYaExisteException,
+        UsuarioEmailRepetidoException,
+        KeywordYaExisteException,
+        TipoPublicacionYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException,
+        OfertaLaboralNoExisteException,
+        OfertaLaboralNoSePuedeFinalizar {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+          "Johnson", "info@EcoTech.com",
+          "EcoTech Innovations es una empresa líder en soluciones ",
+          "http://www.EcoTechInnovations.com", null,
+          "1234");
+    controladorOferta.altaKeyword("keyword");
+    List<String> keywords = new ArrayList<String>();
+    keywords.add("keyword");
+    controladorOferta.altaTipoPublicacion("Premium",
+          "Obtén máxima visibilidad", "1", 30, 4000f,
+          fechaDate2);
+    controladorOferta.altaOfertaLaboral(
+          "Desarrollador Frontend",
+          "Únete a nuestro equipo de desarrollo",
+          "09:00", "18:00", 90000f, "Montevideo",
+          "Montevideo", fechaDate1, "Premium", "EcoTech",
+          keywords, null, null);
+
+    controladorOferta.altaOfertaLaboral(
+          "Desarrollador Frontend secundaria",
+          "Únete a nuestro equipo de desarrollo",
+          "09:00", "18:00", 90000f, "Montevideo",
+          "Montevideo", fechaDate1, "Premium", "EcoTech",
+          keywords, null, null);
+
+    controladorOferta.aceptarRechazarOfertaLaboral(
+          "Desarrollador Frontend", EstadoOferta.CONFIRMADA,
+          fechaDate1);
+
+    controladorOferta
+          .finalizarOferta("Desarrollador Frontend");
+
+    OfertaLaboral resultado = controladorOferta
+          .obtenerOfertaLaboral("Desarrollador Frontend");
+
+    List<DtOfertaLaboral> listOfertasFinalizadas =
+          controladorUsuario
+                .obtenerDtOfertasFinalizadasDeEmpresa(
+                      "EcoTech");
+
+    Assert.assertEquals(listOfertasFinalizadas.size(), 1);
+    Assert.assertEquals(
+          listOfertasFinalizadas.get(0).getNombre(),
+          "Desarrollador Frontend");
+
+  }
+
+  @Test
+  public void testAgregarSeguidor()
+        throws UsuarioYaExisteException,
+        UsuarioEmailRepetidoException,
+        TipoPublicacionYaExisteException,
+        KeywordYaExisteException, UsuarioNoExisteException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+          "Johnson", "info@EcoTech.com",
+          "EcoTech Innovations es una empresa líder en soluciones ",
+          "http://www.EcoTechInnovations.com", null,
+          "1234");
+    controladorOferta.altaKeyword("keyword");
+    List<String> keywords = new ArrayList<String>();
+    keywords.add("keyword");
+    controladorOferta.altaTipoPublicacion("Premium",
+          "Obtén máxima visibilidad", "1", 30, 4000f,
+          fechaDate2);
+    controladorUsuario.altaEmpresa("EcoTechSecunadria",
+          "Sophia",
+          "Johnson", "info@EcoTechSecundaria.com",
+          "EcoTech Innovations es una empresa líder en soluciones ",
+          "http://www.EcoTechInnovations.com", null,
+          "1234");
+
+    try {
+      controladorUsuario.agregarSeguidor("EcoTech",
+            "EcoTechSecunadria");
+    } catch (UsuarioNoExisteException
+          | UsuarioYaEstaSeguidoException e) {
+      // TODO Auto-generated catch block
+    }
+    Usuario ecoTech =
+          controladorUsuario.obtenerUsuario("EcoTech");
+
+    Usuario ecoTechSecundaria =
+          controladorUsuario
+                .obtenerUsuario("EcoTechSecunadria");
+
+    Set<String> seguidos = ecoTechSecundaria.getSeguidos();
+
+    Set<String> seguidores = ecoTech.getSeguidores();
+
+    Assert.assertEquals(
+          seguidos.size(), 1);
+
+    Assert.assertEquals(
+          seguidos.contains("EcoTech"), true);
+
+    Assert.assertEquals(
+          seguidores.size(), 1);
+
+    Assert.assertEquals(
+          seguidores.contains("EcoTechSecunadria"), true);
+
+    try {
+      controladorUsuario.agregarSeguidor("EcoTech",
+            "EcoTechSecunadria");
+    } catch (UsuarioNoExisteException e) {
+      // TODO Auto-generated catch block
+    } catch (UsuarioYaEstaSeguidoException e) {
+      Assert.assertEquals(
+            "El usuario EcoTech ya está seguido por EcoTechSecunadria",
+            e.getMessage());
+    }
+  }
+
+  @Test
+  public void testDejarDeSeguir()
+        throws UsuarioYaExisteException,
+        UsuarioEmailRepetidoException,
+        KeywordYaExisteException,
+        TipoPublicacionYaExisteException,
+        UsuarioNoExisteException,
+        UsuarioYaEstaSeguidoException,
+        UsuarioNoEstaSeguidoException {
+    controladorUsuario.altaEmpresa("EcoTech", "Sophia",
+          "Johnson", "info@EcoTech.com",
+          "EcoTech Innovations es una empresa líder en soluciones ",
+          "http://www.EcoTechInnovations.com", null,
+          "1234");
+    controladorOferta.altaKeyword("keyword");
+    List<String> keywords = new ArrayList<String>();
+    keywords.add("keyword");
+    controladorOferta.altaTipoPublicacion("Premium",
+          "Obtén máxima visibilidad", "1", 30, 4000f,
+          fechaDate2);
+    controladorUsuario.altaEmpresa("EcoTechSecunadria",
+          "Sophia",
+          "Johnson", "info@EcoTechSecundaria.com",
+          "EcoTech Innovations es una empresa líder en soluciones ",
+          "http://www.EcoTechInnovations.com", null,
+          "1234");
+
+    try {
+      controladorUsuario.dejarDeSeguir("EcoTech",
+            "EcoTechSecunadria");
+    } catch (UsuarioNoExisteException e) {
+      // TODO Auto-generated catch block
+    } catch (UsuarioNoEstaSeguidoException e) {
+      Assert.assertEquals(e.getMessage(),
+            "El usuario EcoTech no está seguido por EcoTechSecunadria");
+    }
+
+    controladorUsuario.agregarSeguidor("EcoTech",
+          "EcoTechSecunadria");
+
+    Usuario ecoTech =
+          controladorUsuario.obtenerUsuario("EcoTech");
+
+    Usuario ecoTechSecundaria =
+          controladorUsuario
+                .obtenerUsuario("EcoTechSecunadria");
+
+    Set<String> seguidos = ecoTechSecundaria.getSeguidos();
+
+    Set<String> seguidores = ecoTech.getSeguidores();
+
+    Assert.assertEquals(
+          seguidos.size(), 1);
+
+    Assert.assertEquals(
+          seguidos.contains("EcoTech"), true);
+
+    Assert.assertEquals(
+          seguidores.size(), 1);
+
+    Assert.assertEquals(
+          seguidores.contains("EcoTechSecunadria"), true);
+
+    controladorUsuario.dejarDeSeguir("EcoTech",
+          "EcoTechSecunadria");
+
+    seguidos = ecoTechSecundaria.getSeguidos();
+
+    seguidores = ecoTech.getSeguidores();
+
+    Assert.assertEquals(
+          seguidos.size(), 0);
+
+    Assert.assertEquals(
+          seguidos.contains("EcoTech"), false);
+
+    Assert.assertEquals(
+          seguidores.size(), 0);
+
+    Assert.assertEquals(
+          seguidores.contains("EcoTechSecunadria"), false);
+
+  }
+
+  @Test
+  public void testAgregarOfertaFavorita()
+        throws UsuarioYaExisteException,
+        UsuarioEmailRepetidoException,
+        TipoPublicacionYaExisteException,
+        KeywordYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException {
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 50, 500f, fechaDate1);
+    controladorUsuario.altaEmpresa("nicknameEmpresa1",
+          "nombre1", "apellido1", "email1@test.com",
+          "descripcion1", "sitioWeb1", null,
+          "nuevaContraseña");
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    listaKeyword.add("Keyword2");
+    Collections.sort(listaKeyword);
+    controladorOferta.altaKeyword("Keyword1");
+    controladorOferta.altaKeyword("Keyword2");
+
+    controladorOferta.altaOfertaLaboral("test",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate1,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorUsuario.altaPostulante("NicknameTest",
+          "NombreTest", "ApellidoTest", "EmailTest",
+          fechaDate1, "NacionalidadTest", null, "1234");
+
+    try {
+      controladorUsuario.agregarOfertaFavorita(
+            "NicknameTest",
+            "test");
+    } catch (UsuarioNoExisteException
+          | PostulanteYaEsOfertaFavoritaException
+          | OfertaLaboralNoExisteException e) {
+      // TODO Auto-generated catch block
+    }
+
+    Postulante postulante = (Postulante) controladorUsuario
+          .obtenerUsuario("NicknameTest");
+
+    Assert.assertEquals(postulante.esOfertaFavorita("test"),
+          true);
+
+    try {
+      controladorUsuario.agregarOfertaFavorita(
+            "NicknameTest",
+            "test");
+    } catch (UsuarioNoExisteException e) {
+      // TODO Auto-generated catch block
+    } catch (PostulanteYaEsOfertaFavoritaException e) {
+      Assert.assertEquals(
+            "El postulante NicknameTest ya tiene como favorita la oferta test",
+            e.getMessage());
+    } catch (OfertaLaboralNoExisteException e) {
+      // TODO Auto-generated catch block
+    }
+
+    try {
+      controladorUsuario.agregarOfertaFavorita(
+            "NicknameTest",
+            "testFinal");
+    } catch (UsuarioNoExisteException e) {
+      // TODO Auto-generated catch block
+    } catch (PostulanteYaEsOfertaFavoritaException e) {
+      // TODO Auto-generated catch block
+    } catch (OfertaLaboralNoExisteException e) {
+      Assert.assertEquals(e.getMessage(),
+            "La oferta laboral testFinal no existe");
+    }
+
+  }
+
+  @Test
+  public void testRemoverOfertaFavorita()
+        throws TipoPublicacionYaExisteException,
+        UsuarioYaExisteException,
+        UsuarioEmailRepetidoException,
+        KeywordYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException,
+        PostulanteNoEsOfertaFavoritaException {
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 50, 500f, fechaDate1);
+    controladorUsuario.altaEmpresa("nicknameEmpresa1",
+          "nombre1", "apellido1", "email1@test.com",
+          "descripcion1", "sitioWeb1", null,
+          "nuevaContraseña");
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    listaKeyword.add("Keyword2");
+    Collections.sort(listaKeyword);
+    controladorOferta.altaKeyword("Keyword1");
+    controladorOferta.altaKeyword("Keyword2");
+
+    controladorOferta.altaOfertaLaboral("test",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate1,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorUsuario.altaPostulante("NicknameTest",
+          "NombreTest", "ApellidoTest", "EmailTest",
+          fechaDate1, "NacionalidadTest", null, "1234");
+
+    try {
+      controladorUsuario.removerOfertaFavorita(
+            "NicknameTest",
+            "testFinal");
+    } catch (UsuarioNoExisteException e) {
+      // TODO Auto-generated catch block
+    } catch (PostulanteNoEsOfertaFavoritaException e) {
+      Assert.assertEquals(
+            "La oferta testFinal no es una oferta favorita de NicknameTest",
+            e.getMessage());
+    }
+
+    Postulante postulante = (Postulante) controladorUsuario
+          .obtenerUsuario("NicknameTest");
+
+    try {
+      controladorUsuario.agregarOfertaFavorita(
+            "NicknameTest",
+            "test");
+    } catch (UsuarioNoExisteException e) {
+      // TODO Auto-generated catch block
+
+    } catch (PostulanteYaEsOfertaFavoritaException e) {
+      // TODO Auto-generated catch block
+
+    } catch (OfertaLaboralNoExisteException e) {
+      // TODO Auto-generated catch block
+
+    }
+
+    Assert.assertEquals(postulante.esOfertaFavorita("test"),
+          true);
+
+    controladorUsuario.removerOfertaFavorita(
+          "NicknameTest",
+          "test");
+
+    Assert.assertEquals(postulante.esOfertaFavorita("test"),
+          false);
+  }
+
+  @Test
+  public void testObtenerDatosPdf()
+        throws TipoPublicacionYaExisteException,
+        UsuarioYaExisteException,
+        UsuarioEmailRepetidoException,
+        KeywordYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException,
+        UsuarioYaExistePostulacion,
+        OfertaLaboralNoExisteException {
+
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 50, 500f, fechaDate1);
+    controladorUsuario.altaEmpresa("nicknameEmpresa1",
+          "nombre1", "apellido1", "email1@test.com",
+          "descripcion1", "sitioWeb1", null,
+          "nuevaContraseña");
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    listaKeyword.add("Keyword2");
+    Collections.sort(listaKeyword);
+    controladorOferta.altaKeyword("Keyword1");
+    controladorOferta.altaKeyword("Keyword2");
+
+    controladorOferta.altaOfertaLaboral("test",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate1,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorUsuario.altaPostulante("a",
+          "NombreTest", "ApellidoTest", "EmailTesta",
+          fechaDate1, "NacionalidadTest", null, "1234");
+
+    controladorUsuario.altaPostulante("b",
+          "NombreTest", "ApellidoTest", "EmailTestb",
+          fechaDate1, "NacionalidadTest", null, "1234");
+
+    controladorUsuario.altaPostulante("c",
+          "NombreTest", "ApellidoTest", "EmailTestc",
+          fechaDate1, "NacionalidadTest", null, "1234");
+
+    try {
+      controladorUsuario.obtenerDatosPdf("a",
+            "test");
+    } catch (OfertaLaboralNoExisteException e) {
+      // TODO Auto-generated catch block
+    } catch (UsuarioNoExisteException e) {
+      Assert.assertEquals(e.getMessage(),
+            "el postulante no está postulado a la oferta test");
+    }
+
+    controladorUsuario.registrarPostulacion("cvReducido",
+          "motivacion", fechaDate1,
+          "b", "test", "linkVideo");
+
+    controladorUsuario.registrarPostulacion("cvReducido",
+          "motivacion", fechaDate1,
+          "c", "test", "linkVideo");
+
+    controladorUsuario.registrarPostulacion("cvReducido",
+          "motivacion", fechaDate1,
+          "a", "test", "linkVideo");
+
+    try {
+      controladorUsuario.obtenerDatosPdf("a",
+            "test");
+    } catch (OfertaLaboralNoExisteException e) {
+      Assert.assertEquals(e.getMessage(),
+            "no se ha realizado la seleccion para la oferta laboral test");
+    } catch (UsuarioNoExisteException e) {
+      // TODO Auto-generated catch block
+    }
+
+    List<String> postulantes = new ArrayList<String>();
+    postulantes.add("a");
+    postulantes.add("b");
+    postulantes.add("c");
+
+    controladorOferta.ordenarPostulaciones("test",
+          postulantes);
+
+    DtDatosPdf dtDatosPdfa =
+          controladorUsuario.obtenerDatosPdf("a",
+                "test");
+
+    OfertaLaboral test =
+          controladorOferta.obtenerOfertaLaboral("test");
+
+    Assert.assertEquals(dtDatosPdfa.getFechaPostulacion(),
+          fechaDate1.toString());
+    Assert.assertEquals(dtDatosPdfa.getFechaResolucion(),
+          test.getFechaSeleccion().toString());
+    Assert.assertEquals(dtDatosPdfa.getNombreEmpresa(),
+          "nombre1");
+    Assert.assertEquals(dtDatosPdfa.getNombreOferta(),
+          "test");
+    Assert.assertEquals(dtDatosPdfa.getNombrePostulante(),
+          "NombreTest");
+    Assert.assertEquals(dtDatosPdfa.getPosicion(), 1);
+
+  }
+
+  @Test
+  public void testBuscarEmpresas()
+        throws UsuarioYaExisteException,
+        UsuarioEmailRepetidoException, IOException {
+    controladorUsuario.altaEmpresa("nicknameEmpresa1",
+          "nombre1", "apellido1", "email1@test1.com",
+          "descripcion1", "sitioWeb1", null,
+          "nuevaContraseña");
+
+    controladorUsuario.altaEmpresa("nicknameEmpresa2",
+          "nombre2", "apellido1", "email1@test2.com",
+          "descripcion2", "sitioWeb1", null,
+          "nuevaContraseña");
+
+    List<DtEmpresa> resultadoEsperado =
+          controladorUsuario.buscarEmpresas("nombre");
+    Assert.assertEquals(resultadoEsperado.size(), 2);
+
+    resultadoEsperado =
+          controladorUsuario.buscarEmpresas("nombre1");
+    Assert.assertEquals(resultadoEsperado.size(), 1);
+
+    resultadoEsperado =
+          controladorUsuario.buscarEmpresas("descripcion");
+    Assert.assertEquals(resultadoEsperado.size(), 2);
+
+    resultadoEsperado =
+          controladorUsuario.buscarEmpresas("descripcion1");
+    Assert.assertEquals(resultadoEsperado.size(), 1);
+
+  }
+
 }
