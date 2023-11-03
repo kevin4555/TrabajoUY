@@ -37,17 +37,16 @@ public class Loader {
   }
 
   /**
-   * Constructor.
+   * Metodo getBufferImage.
    */
   public BufferedImage getBufferImage(String path) {
     InputStream input = ClassLoader.getSystemClassLoader()
           .getResourceAsStream(path);
     BufferedImage imagen = null;
     try {
-
       imagen = ImageIO.read(input);
     } catch (IOException e) {
-      e.printStackTrace();
+     //catchVacio
     }
     return imagen;
   }
@@ -509,7 +508,8 @@ public class Loader {
     datosCargados = true;
 
   }
-
+  
+  
   /**
    * Metodo confirmar ofertas.
    */

@@ -1,6 +1,5 @@
 package logica.handlers;
 
-import excepciones.DtOfertaNoExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import java.io.IOException;
@@ -58,22 +57,7 @@ public class ManejadorOfertas {
     }
   }
 
-  /**
-   * Obtener DTOfertaLaboral .
-   */
-
-  public DtOfertaLaboral obtenerDtofertaLaboral(
-        String nombreOferta)
-        throws DtOfertaNoExisteException, IOException {
-    if (!coleccionOfertaLaboral.containsKey(nombreOferta)) {
-      throw new DtOfertaNoExisteException(
-            "No existe la oferta solicitada");
-    } else {
-      return coleccionOfertaLaboral.get(nombreOferta)
-            .obtenerDtOfertaLaboral();
-    }
-  }
-
+ 
   /**
    * Obtener oferta laboral .
    */

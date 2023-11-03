@@ -1648,7 +1648,7 @@ public class ControladorOfertaTest {
         UsuarioYaExisteException,
         UsuarioEmailRepetidoException,
         OfertaLaboralNoExisteException,
-        UsuarioYaExistePostulacion {
+        UsuarioYaExistePostulacion, IOException {
     manejadorOfertas = ManejadorOfertas.getInstance();
     controladorUsuario = new ControladorUsuario();
     controladorOferta = new ControladorOferta();
@@ -1714,10 +1714,25 @@ public class ControladorOfertaTest {
     Assert.assertEquals("nicknameTestingPrimero",
           postulacionesOrdenadas.get(0).getPostulante()
                 .getNickname());
-    
+
     Assert.assertEquals("nicknameTestingSegundo",
           postulacionesOrdenadas.get(1).getPostulante()
                 .getNickname());
+
+    controladorOferta.aceptarRechazarOfertaLaboral(
+          "testPrimera", EstadoOferta.CONFIRMADA,
+          fechaDate);
+
+    DtOfertaLaboral obtenerDtOfertaLaboral =
+          controladorOferta
+                .obtenerDtOfertaLaboral("testPrimera");
+    Assert.assertEquals(obtenerDtOfertaLaboral.getCiudad(),
+          resultado.getCiudad());
+    Assert.assertEquals(
+          obtenerDtOfertaLaboral.getDepartamento(),
+          resultado.getDepartamento());
+    Assert.assertEquals(obtenerDtOfertaLaboral.getNombre(),
+          resultado.getNombre());
 
   }
 

@@ -19,7 +19,7 @@ public class Fabrica {
 
   public static Fabrica getInstance() {
     if (instancia == null) {
-      return new Fabrica();
+      instancia = new Fabrica();
     }
     return instancia;
   }
