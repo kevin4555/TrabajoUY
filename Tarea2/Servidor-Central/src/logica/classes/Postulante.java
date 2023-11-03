@@ -175,4 +175,5 @@ public class Postulante extends Usuario {
   public Boolean esOfertaFavorita(String nombreOferta) {
     return this.ofertasFavoritas.contains(nombreOferta);
   }
+  
 }

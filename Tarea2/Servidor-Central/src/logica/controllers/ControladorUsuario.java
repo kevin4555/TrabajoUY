@@ -280,8 +280,6 @@ public class ControladorUsuario
     Empresa empresa = ManejadorUsuario.getInstance()
           .obtenerEmpresa(nicknameEmpresa);
     return empresa.obtenerDtofertasFinalizadas();
-    // agregar persistencia
-
   }
 
   @Override

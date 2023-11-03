@@ -3,6 +3,7 @@ package testing;
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
+import excepciones.OfertaLaboralNoSePuedeFinalizar;
 import excepciones.OfertaLaboralNoTienePaquete;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
@@ -29,6 +30,7 @@ import logica.classes.CantidadTotalTipoPublicacion;
 import logica.classes.Keyword;
 import logica.classes.OfertaLaboral;
 import logica.classes.PaquetePublicacion;
+import logica.classes.Postulacion;
 import logica.classes.TipoPublicacion;
 import logica.controllers.ControladorOferta;
 import logica.controllers.ControladorUsuario;
@@ -1301,4 +1303,422 @@ public class ControladorOfertaTest {
     Assert.assertTrue(controladorOferta
           .estaCompradoPaquete("paquetePrueba"));
   }
+
+  @Test
+  public void testExisteOfertaLaboral()
+        throws TipoPublicacionYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException,
+        KeywordYaExisteException {
+    manejadorOfertas = ManejadorOfertas.getInstance();
+    controladorUsuario = new ControladorUsuario();
+    controladorOferta = new ControladorOferta();
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 50, 500f, fechaDate);
+    try {
+      controladorUsuario.altaEmpresa("nicknameEmpresa1",
+            "nombre1", "apellido1", "email1@test.com",
+            "descripcion1", "sitioWeb1", null,
+            "nuevaContraseña");
+    } catch (UsuarioYaExisteException
+          | UsuarioEmailRepetidoException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    controladorOferta.altaKeyword("Keyword1");
+
+    controladorOferta.altaOfertaLaboral("test",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    Assert.assertEquals(true,
+          controladorOferta.existeOfertaLaboral("test"));
+
+    Assert.assertEquals(false,
+          controladorOferta.existeOfertaLaboral("test1"));
+  }
+
+  @Test
+  public void testAgregarVisitaOferta()
+        throws TipoPublicacionYaExisteException,
+        KeywordYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException,
+        OfertaLaboralNoExisteException {
+    manejadorOfertas = ManejadorOfertas.getInstance();
+    controladorUsuario = new ControladorUsuario();
+    controladorOferta = new ControladorOferta();
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 50, 500f, fechaDate);
+    try {
+      controladorUsuario.altaEmpresa("nicknameEmpresa1",
+            "nombre1", "apellido1", "email1@test.com",
+            "descripcion1", "sitioWeb1", null,
+            "nuevaContraseña");
+    } catch (UsuarioYaExisteException
+          | UsuarioEmailRepetidoException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    controladorOferta.altaKeyword("Keyword1");
+
+    controladorOferta.altaOfertaLaboral("test",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorOferta.agregarVisitaOferta("test");
+    controladorOferta.agregarVisitaOferta("test");
+    OfertaLaboral test =
+          controladorOferta.obtenerOfertaLaboral("test");
+    Assert.assertEquals(2, test.getCantidadVisitas());
+  }
+
+  @Test
+  public void testObtenerOfertasMasVisitadas()
+        throws TipoPublicacionYaExisteException,
+        KeywordYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException,
+        OfertaLaboralNoExisteException, IOException {
+    manejadorOfertas = ManejadorOfertas.getInstance();
+    controladorUsuario = new ControladorUsuario();
+    controladorOferta = new ControladorOferta();
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 50, 500f, fechaDate);
+    try {
+      controladorUsuario.altaEmpresa("nicknameEmpresa1",
+            "nombre1", "apellido1", "email1@test.com",
+            "descripcion1", "sitioWeb1", null,
+            "nuevaContraseña");
+    } catch (UsuarioYaExisteException
+          | UsuarioEmailRepetidoException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    controladorOferta.altaKeyword("Keyword1");
+
+    controladorOferta.altaOfertaLaboral("testPrimera",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorOferta.altaOfertaLaboral("testSegunda",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorOferta.altaOfertaLaboral("testTercera",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorOferta.agregarVisitaOferta("testPrimera");
+    controladorOferta.agregarVisitaOferta("testPrimera");
+    controladorOferta.agregarVisitaOferta("testPrimera");
+
+    controladorOferta.agregarVisitaOferta("testSegunda");
+    controladorOferta.agregarVisitaOferta("testSegunda");
+
+    controladorOferta.agregarVisitaOferta("testTercera");
+
+    List<DtOfertaLaboral> ofertasMasVisitadas =
+          controladorOferta.obtenerOfertasMasVisitadas();
+
+    Assert.assertEquals("testPrimera",
+          ofertasMasVisitadas.get(0).getNombre());
+    Assert.assertEquals("testSegunda",
+          ofertasMasVisitadas.get(1).getNombre());
+    Assert.assertEquals("testTercera",
+          ofertasMasVisitadas.get(2).getNombre());
+
+  }
+
+  @Test
+  public void testBuscarOfertas()
+        throws KeywordYaExisteException,
+        TipoPublicacionYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException,
+        IOException, OfertaLaboralNoExisteException {
+    manejadorOfertas = ManejadorOfertas.getInstance();
+    controladorUsuario = new ControladorUsuario();
+    controladorOferta = new ControladorOferta();
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 400, 500f, fechaDate);
+    try {
+      controladorUsuario.altaEmpresa("nicknameEmpresa1",
+            "nombre1", "apellido1", "email1@test.com",
+            "descripcion1", "sitioWeb1", null,
+            "nuevaContraseña");
+    } catch (UsuarioYaExisteException
+          | UsuarioEmailRepetidoException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    controladorOferta.altaKeyword("Keyword1");
+
+    controladorOferta.altaOfertaLaboral("testPrimera",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorOferta.altaOfertaLaboral("testSegunda",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorOferta.altaOfertaLaboral("testTercera",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    List<DtOfertaLaboral> buscarOfertasPrimera =
+          controladorOferta.buscarOfertas("descipcionTest");
+
+    Assert.assertEquals(buscarOfertasPrimera.size(), 0);
+
+    controladorOferta.aceptarRechazarOfertaLaboral(
+          "testPrimera",
+          EstadoOferta.CONFIRMADA, fechaDate);
+
+    List<DtOfertaLaboral> buscarOfertasSegundaDescripcion =
+          controladorOferta.buscarOfertas("descipcionTest");
+
+    List<DtOfertaLaboral> buscarOfertasSegundaNombre =
+          controladorOferta.buscarOfertas("testPrimera");
+
+    Assert.assertEquals(
+          buscarOfertasSegundaDescripcion.size(), 1);
+    Assert.assertEquals(buscarOfertasSegundaDescripcion
+          .get(0).getNombre(), "testPrimera");
+
+    Assert.assertEquals(
+          buscarOfertasSegundaNombre.size(), 1);
+    Assert.assertEquals(buscarOfertasSegundaNombre
+          .get(0).getNombre(), "testPrimera");
+
+    controladorOferta.aceptarRechazarOfertaLaboral(
+          "testSegunda",
+          EstadoOferta.CONFIRMADA, fechaDate);
+
+    List<DtOfertaLaboral> buscarOfertasTerceraNombre =
+          controladorOferta.buscarOfertas("testPrimera");
+
+    List<DtOfertaLaboral> buscarOfertasTerceraDescripcion =
+          controladorOferta.buscarOfertas("descipcionTest");
+
+    Assert.assertEquals(
+          buscarOfertasTerceraNombre.size(), 1);
+    Assert.assertEquals(
+          buscarOfertasTerceraDescripcion.size(), 2);
+
+  }
+
+  @Test
+  public void testFinalizarOferta()
+        throws TipoPublicacionYaExisteException,
+        KeywordYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException,
+        OfertaLaboralNoExisteException,
+        OfertaLaboralNoSePuedeFinalizar {
+
+    manejadorOfertas = ManejadorOfertas.getInstance();
+    controladorUsuario = new ControladorUsuario();
+    controladorOferta = new ControladorOferta();
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 400, 500f, fechaDate);
+    try {
+      controladorUsuario.altaEmpresa("nicknameEmpresa1",
+            "nombre1", "apellido1", "email1@test.com",
+            "descripcion1", "sitioWeb1", null,
+            "nuevaContraseña");
+    } catch (UsuarioYaExisteException
+          | UsuarioEmailRepetidoException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    controladorOferta.altaKeyword("Keyword1");
+
+    controladorOferta.altaOfertaLaboral("testPrimera",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorOferta.aceptarRechazarOfertaLaboral(
+          "testPrimera",
+          EstadoOferta.CONFIRMADA, fechaDate);
+
+    try {
+      controladorOferta.finalizarOferta("testPrimera");
+    } catch (OfertaLaboralNoExisteException
+          | OfertaLaboralNoSePuedeFinalizar e) {
+      Assert.assertEquals(e.getMessage(),
+            "La oferta testPrimera "
+                  + "no puede ser finalizada");
+    }
+
+    controladorOferta.altaTipoPublicacion(
+          "tipoTestingSegunda",
+          "Uso para testing", "baja", 20, 500f, fechaDate);
+
+    controladorOferta.altaOfertaLaboral("testSegunda",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTestingSegunda", "nicknameEmpresa1",
+          listaKeyword,
+          null, null);
+
+    controladorOferta.aceptarRechazarOfertaLaboral(
+          "testSegunda",
+          EstadoOferta.INGRESADA, fechaDate);
+
+    try {
+      controladorOferta.finalizarOferta("testSegunda");
+    } catch (OfertaLaboralNoExisteException
+          | OfertaLaboralNoSePuedeFinalizar e) {
+      Assert.assertEquals(e.getMessage(),
+            "La oferta testSegunda "
+                  + "no puede ser finalizada");
+    }
+
+    controladorOferta.altaTipoPublicacion(
+          "tipoTestingTercera",
+          "Uso para testing", "baja", 20, 500f, fechaDate);
+
+    controladorOferta.altaOfertaLaboral("testTercera",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTestingTercera", "nicknameEmpresa1",
+          listaKeyword,
+          null, null);
+
+    controladorOferta.aceptarRechazarOfertaLaboral(
+          "testTercera", EstadoOferta.CONFIRMADA,
+          fechaDate);
+
+    controladorOferta.finalizarOferta("testTercera");
+
+    OfertaLaboral resultado = controladorOferta
+          .obtenerOfertaLaboral("testTercera");
+
+    Assert.assertEquals(EstadoOferta.FINALIZADA,
+          resultado.getEstado());
+
+  }
+
+  @Test
+  public void testOrdenarPostulaciones()
+        throws TipoPublicacionYaExisteException,
+        KeywordYaExisteException,
+        OfertaLaboralYaExisteException,
+        TipoPublicacionNoExisteException,
+        KeywordNoExisteException, UsuarioNoExisteException,
+        UsuarioYaExisteException,
+        UsuarioEmailRepetidoException,
+        OfertaLaboralNoExisteException,
+        UsuarioYaExistePostulacion {
+    manejadorOfertas = ManejadorOfertas.getInstance();
+    controladorUsuario = new ControladorUsuario();
+    controladorOferta = new ControladorOferta();
+    controladorOferta.altaTipoPublicacion("tipoTesting",
+          "Uso para testing", "baja", 400, 500f, fechaDate);
+    try {
+      controladorUsuario.altaEmpresa("nicknameEmpresa1",
+            "nombre1", "apellido1", "email1@test.com",
+            "descripcion1", "sitioWeb1", null,
+            "nuevaContraseña");
+    } catch (UsuarioYaExisteException
+          | UsuarioEmailRepetidoException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    List<String> listaKeyword = new ArrayList<String>();
+    listaKeyword.add("Keyword1");
+    controladorOferta.altaKeyword("Keyword1");
+
+    controladorOferta.altaOfertaLaboral("testPrimera",
+          "descipcionTest", "09:00", "15:00", 500f,
+          "Montevideo", "Montevideo", fechaDate,
+          "tipoTesting", "nicknameEmpresa1", listaKeyword,
+          null, null);
+
+    controladorUsuario.altaPostulante(
+          "nicknameTestingPrimero",
+          "nombreTesting", "apellidoTesting", "email",
+          fechaDate, "Montevideo", null, "nuevaContraseña");
+
+    controladorUsuario.altaPostulante(
+          "nicknameTestingSegundo",
+          "nombreTesting", "apellidoTesting", "email123",
+          fechaDate, "Montevideo", null, "nuevaContraseña");
+
+    controladorUsuario.registrarPostulacion(
+          "cvReducidoString", "MotivacionTesting",
+          fechaDate,
+          "nicknameTestingPrimero", "testPrimera", null);
+
+    controladorUsuario.registrarPostulacion(
+          "cvReducidoString", "MotivacionTesting",
+          fechaDate,
+          "nicknameTestingSegundo", "testPrimera", null);
+
+    List<DtPostulacion> listaPostulantes = controladorOferta
+          .obtenerDtPostulacionesDeOferta("testPrimera");
+    List<String> postulanteString = new ArrayList<String>();
+    for (DtPostulacion postulante : listaPostulantes) {
+      postulanteString
+            .add(postulante.getnicknamePostulante());
+    }
+    controladorOferta.ordenarPostulaciones("testPrimera",
+          postulanteString);
+
+    OfertaLaboral resultado = controladorOferta
+          .obtenerOfertaLaboral("testPrimera");
+
+    List<Postulacion> postulacionesOrdenadas =
+          resultado.getPostulacion();
+
+    Assert.assertEquals("nicknameTestingPrimero",
+          postulacionesOrdenadas.get(0).getPostulante()
+                .getNickname());
+    
+    Assert.assertEquals("nicknameTestingSegundo",
+          postulacionesOrdenadas.get(1).getPostulante()
+                .getNickname());
+
+  }
+
 }
