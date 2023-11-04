@@ -35,7 +35,7 @@ public class ChequeoNicknameServlet extends HttpServlet {
 		PublicadorService publicadorService = new PublicadorService();
 		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
 		String nickname = request.getParameter("nickname");
-		List<String> listaUsuarios = (List<String>) port.listaDeUsuarios();
+		List<String> listaUsuarios = (List<String>) port.listaDeUsuarios().getItem();
 		boolean nicknameDisponible = listaUsuarios.contains(nickname);
 		// Crear una cadena JSON manualmente
 		String jsonResponse = "{ \"disponible\": " + nicknameDisponible + " }";

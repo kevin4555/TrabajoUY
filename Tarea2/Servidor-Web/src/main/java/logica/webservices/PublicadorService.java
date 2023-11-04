@@ -17,14 +17,14 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "PublicadorService", targetNamespace = "http://webServices.logica/", wsdlLocation = "http://localhost:8085/webservices?wsdl")
+@WebServiceClient(name = "PublicadorService", targetNamespace = "http://webservices.logica/", wsdlLocation = "http://localhost:8085/webservices?wsdl")
 public class PublicadorService
     extends Service
 {
 
     private final static URL PUBLICADORSERVICE_WSDL_LOCATION;
     private final static WebServiceException PUBLICADORSERVICE_EXCEPTION;
-    private final static QName PUBLICADORSERVICE_QNAME = new QName("http://webServices.logica/", "PublicadorService");
+    private final static QName PUBLICADORSERVICE_QNAME = new QName("http://webservices.logica/", "PublicadorService");
 
     static {
         URL url = null;
@@ -69,7 +69,7 @@ public class PublicadorService
      */
     @WebEndpoint(name = "PublicadorPort")
     public Publicador getPublicadorPort() {
-        return super.getPort(new QName("http://webServices.logica/", "PublicadorPort"), Publicador.class);
+        return super.getPort(new QName("http://webservices.logica/", "PublicadorPort"), Publicador.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class PublicadorService
      */
     @WebEndpoint(name = "PublicadorPort")
     public Publicador getPublicadorPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://webServices.logica/", "PublicadorPort"), Publicador.class, features);
+        return super.getPort(new QName("http://webservices.logica/", "PublicadorPort"), Publicador.class, features);
     }
 
     private static URL __getWsdlLocation() {

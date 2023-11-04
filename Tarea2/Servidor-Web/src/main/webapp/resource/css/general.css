@@ -120,3 +120,17 @@ footer {
 .videoBorder {
 	background-color: black;
 }
+
+.orange-star {
+    color: orange;
+  }
+  
+#estrella {
+  transition: transform 0.2s; /* Agregar una transición de 0.2 segundos para el efecto hover */
+}
+
+#estrella :hover {
+  	background-color: lightgray;
+  	border: 0.3rem solid lightgray;
+  	border-radius: 50%;
+}

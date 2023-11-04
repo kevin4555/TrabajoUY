@@ -19,7 +19,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="item" type="{http://webServices.logica/}dtPostulacion" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="item" type="{http://webservices.logica/}dtPostulacion" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>

@@ -21,11 +21,11 @@ TipoUsuario tipoUsuario = (TipoUsuario) session.getAttribute("tipoUsuairo");
 			<div class="col">
 				<div class="row justify-content-center">
 					<div class="col-5">
-						<form class="form-inline">
+						<form class="form-inline" action="<%=request.getContextPath()%>/search" method="post">
 							<div class="input-group">
 								<input class="form-control" type="search"
-									placeholder="Buscar oferta" aria-label="Search">
-								<button class="btn btn-outline-success" disabled>
+									placeholder="Buscar" aria-label="Search" name="toSearch">
+								<button class="btn btn-outline-success" >
 									<i class="bi bi-search text-white"></i>
 								</button>
 							</div>

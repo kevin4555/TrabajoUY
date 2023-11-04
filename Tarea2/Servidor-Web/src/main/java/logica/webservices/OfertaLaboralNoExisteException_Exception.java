@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "OfertaLaboralNoExisteException", targetNamespace = "http://webServices.logica/")
+@WebFault(name = "OfertaLaboralNoExisteException", targetNamespace = "http://webservices.logica/")
 public class OfertaLaboralNoExisteException_Exception
     extends Exception
 {

@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "OfertaLaboralNoSePuedeFinalizar", targetNamespace = "http://webServices.logica/")
+@WebFault(name = "OfertaLaboralNoSePuedeFinalizar", targetNamespace = "http://webservices.logica/")
 public class OfertaLaboralNoSePuedeFinalizar_Exception
     extends Exception
 {

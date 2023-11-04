@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "UsuarioNoEstaSeguidoException", targetNamespace = "http://webServices.logica/")
+@WebFault(name = "UsuarioNoEstaSeguidoException", targetNamespace = "http://webservices.logica/")
 public class UsuarioNoEstaSeguidoException_Exception
     extends Exception
 {

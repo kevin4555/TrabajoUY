@@ -14,7 +14,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <complexType name="dtEmpresa">
  *   <complexContent>
- *     <extension base="{http://webServices.logica/}dtUsuario">
+ *     <extension base="{http://webservices.logica/}dtUsuario">
  *       <sequence>
  *         <element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="sitioWeb" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>

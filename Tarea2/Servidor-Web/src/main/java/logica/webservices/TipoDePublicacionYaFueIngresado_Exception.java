@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "TipoDePublicacionYaFueIngresado", targetNamespace = "http://webServices.logica/")
+@WebFault(name = "TipoDePublicacionYaFueIngresado", targetNamespace = "http://webservices.logica/")
 public class TipoDePublicacionYaFueIngresado_Exception
     extends Exception
 {

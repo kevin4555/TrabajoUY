@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "OfertaLaboralNoTienePaquete", targetNamespace = "http://webServices.logica/")
+@WebFault(name = "OfertaLaboralNoTienePaquete", targetNamespace = "http://webservices.logica/")
 public class OfertaLaboralNoTienePaquete_Exception
     extends Exception
 {

@@ -27,10 +27,10 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="horarioInicio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="horarioFinal" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="remuneracion" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
- *         <element name="postulaciones" type="{http://webServices.logica/}dtPostulacion" maxOccurs="unbounded" minOccurs="0"/>
- *         <element name="estadoOferta" type="{http://webServices.logica/}estadoOferta" minOccurs="0"/>
+ *         <element name="postulaciones" type="{http://webservices.logica/}dtPostulacion" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="estadoOferta" type="{http://webservices.logica/}estadoOferta" minOccurs="0"/>
  *         <element name="imagenBase64" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="paqueteAsociado" type="{http://webServices.logica/}dtPaquetePublicacion" minOccurs="0"/>
+ *         <element name="paqueteAsociado" type="{http://webservices.logica/}dtPaquetePublicacion" minOccurs="0"/>
  *         <element name="keywords" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="estaVencida" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         <element name="nombreTipoPublicacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>

@@ -24,6 +24,7 @@ public class DtPostulante extends DtUsuario
   private LocalDate fechaNacimiento;
   private String nacionalidad;
   private String fechaNacimientoString;
+  private List<String> ofertasFavoritas;
 
   /**
    * Contructor.
@@ -40,7 +41,7 @@ public class DtPostulante extends DtUsuario
           LocalDate fechaNacimiento,
           String nacionalidad,
           List<String> seguidos,
-          List<String> seguidores)
+          List<String> seguidores,List<String> ofertasFavoritas)
         throws IOException {
     super(nickname, nombre, apellido, email, imagen,
           contrasenia, ofertasColeccion, seguidos,
@@ -48,6 +49,7 @@ public class DtPostulante extends DtUsuario
     this.fechaNacimiento = fechaNacimiento;
     this.nacionalidad = nacionalidad;
     this.fechaNacimientoString = fechaNacimiento.toString();
+    this.ofertasFavoritas = ofertasFavoritas;
   }
 
   public DtPostulante() {
@@ -78,5 +80,19 @@ public class DtPostulante extends DtUsuario
         String fechaNacimientoString) {
     this.fechaNacimientoString = fechaNacimientoString;
   }
+
+	/**
+	 * @return the ofertasFavoritas
+	 */
+	public List<String> getOfertasFavoritas() {
+		return ofertasFavoritas;
+	}
+	
+	/**
+	 * @param ofertasFavoritas the ofertasFavoritas to set
+	 */
+	public void setOfertasFavoritas(List<String> ofertasFavoritas) {
+		this.ofertasFavoritas = ofertasFavoritas;
+	}
 
 }

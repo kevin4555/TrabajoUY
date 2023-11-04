@@ -19,8 +19,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="publicacionesRestantes" type="{http://webServices.logica/}dtCantidadTipoPublicacionRestante" maxOccurs="unbounded" minOccurs="0"/>
- *         <element name="paquete" type="{http://webServices.logica/}dtPaquetePublicacion" minOccurs="0"/>
+ *         <element name="publicacionesRestantes" type="{http://webservices.logica/}dtCantidadTipoPublicacionRestante" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="paquete" type="{http://webservices.logica/}dtPaquetePublicacion" minOccurs="0"/>
  *         <element name="fechaCompraString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="fechaVencimientoString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>

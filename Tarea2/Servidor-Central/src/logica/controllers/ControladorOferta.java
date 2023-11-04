@@ -446,8 +446,7 @@ public class ControladorOferta
   @Override
   public List<DtOfertaLaboral>
         buscarOfertas(String parametro) throws IOException {
-    List<DtOfertaLaboral> resultado =
-          new ArrayList<DtOfertaLaboral>();
+    List<DtOfertaLaboral> resultado = new ArrayList<DtOfertaLaboral>();
     List<DtOfertaLaboral> ofertas =
           (List<DtOfertaLaboral>) ManejadorOfertas
                 .getInstance()

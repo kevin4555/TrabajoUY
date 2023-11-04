@@ -17,7 +17,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="cantidad" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         <element name="tipoPublicacion" type="{http://webServices.logica/}dtTipoPublicacion" minOccurs="0"/>
+ *         <element name="tipoPublicacion" type="{http://webservices.logica/}dtTipoPublicacion" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>

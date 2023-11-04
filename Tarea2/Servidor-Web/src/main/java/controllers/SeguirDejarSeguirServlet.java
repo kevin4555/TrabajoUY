@@ -1,7 +1,9 @@
 package controllers;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import logica.webservices.DtCompraPaquete;
 import logica.webservices.DtEmpresa;
 import logica.webservices.DtOfertaLaboral;
@@ -37,12 +40,29 @@ public class SeguirDejarSeguirServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession sesion = request.getSession();
 		DtUsuario usuarioLogueado = (DtUsuario) sesion.getAttribute("usuarioLogueado");
+		if(usuarioLogueado == null){
+			response.sendError(403, "No autorizado");
+			return;
+		}
+		BufferedReader reader = request.getReader();
+		StringBuilder data = new StringBuilder();
+		String line;
+		while ((line = reader.readLine()) != null) {
+		    data.append(line);
+		}		
+        
 		String nicknameSeguidor = request.getParameter("perfilUsuario");
-		String accion = request.getParameter("follow/unfollow");
+		
+		
+		
+		if(nicknameSeguidor.equals(usuarioLogueado.getNickname())) {
+			response.sendError(400, "Bad Request");
+			return;
+		}
+		String accion = usuarioLogueado.getSeguidos().contains(nicknameSeguidor)? "dejarSeguir" : "seguir";
 		logica.webservices.PublicadorService service = new PublicadorService();
 		logica.webservices.Publicador port = service.getPublicadorPort();
 		Boolean flag = usuarioLogueado.getSeguidos().contains(nicknameSeguidor);
-		System.out.print(flag);
 		
 		try {
 			DtUsuario usuario = port.obtenerDtUsuario(nicknameSeguidor);
@@ -78,24 +98,26 @@ public class SeguirDejarSeguirServlet extends HttpServlet {
 			if("seguir".equals(accion))
 			{
 				port.agregarSeguidor(usuarioLogueado.getNickname(), nicknameSeguidor);
+				usuarioLogueado.getSeguidos().add(nicknameSeguidor);
 				flag = true;
 			}
 			else if("dejarSeguir".equals(accion))
 			{
 				port.dejarDeSeguir(usuarioLogueado.getNickname(), nicknameSeguidor);
+				usuarioLogueado.getSeguidos().remove(nicknameSeguidor);
 				flag = false;
 			}
-
+			sesion.setAttribute("usuarioLogueado", usuarioLogueado);
 		} catch (UsuarioNoExisteException_Exception | IOException_Exception | UsuarioNoEstaSeguidoException_Exception | UsuarioYaEstaSeguidoException_Exception e) {
-			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+			response.sendError(500, e.getMessage());
 			e.printStackTrace();
+			return;
+			
 		}
 		request.setAttribute("seguidoOno", flag);
-		if (usuarioLogueado != null && nicknameSeguidor.equals(usuarioLogueado.getNickname())) {
-			request.getRequestDispatcher("/WEB-INF/consultas/miPerfil.jsp").forward(request, response);
-		}
-
-		request.getRequestDispatcher("/WEB-INF/consultas/Perfil.jsp").forward(request, response);
+		
+		response.setStatus(200);
+		return;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

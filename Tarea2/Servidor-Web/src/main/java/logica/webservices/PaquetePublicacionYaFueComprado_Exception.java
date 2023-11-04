@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "PaquetePublicacionYaFueComprado", targetNamespace = "http://webServices.logica/")
+@WebFault(name = "PaquetePublicacionYaFueComprado", targetNamespace = "http://webservices.logica/")
 public class PaquetePublicacionYaFueComprado_Exception
     extends Exception
 {

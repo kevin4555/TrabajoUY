@@ -24,26 +24,28 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _IOException_QNAME = new QName("http://webServices.logica/", "IOException");
-    private final static QName _KeywordNoExisteException_QNAME = new QName("http://webServices.logica/", "KeywordNoExisteException");
-    private final static QName _KeywordYaExisteException_QNAME = new QName("http://webServices.logica/", "KeywordYaExisteException");
-    private final static QName _OfertaLaboralNoExisteException_QNAME = new QName("http://webServices.logica/", "OfertaLaboralNoExisteException");
-    private final static QName _OfertaLaboralNoSePuedeFinalizar_QNAME = new QName("http://webServices.logica/", "OfertaLaboralNoSePuedeFinalizar");
-    private final static QName _OfertaLaboralNoTienePaquete_QNAME = new QName("http://webServices.logica/", "OfertaLaboralNoTienePaquete");
-    private final static QName _OfertaLaboralYaExisteException_QNAME = new QName("http://webServices.logica/", "OfertaLaboralYaExisteException");
-    private final static QName _PaquetePublicacionNoExisteException_QNAME = new QName("http://webServices.logica/", "PaquetePublicacionNoExisteException");
-    private final static QName _PaquetePublicacionYaExisteException_QNAME = new QName("http://webServices.logica/", "PaquetePublicacionYaExisteException");
-    private final static QName _PaquetePublicacionYaFueComprado_QNAME = new QName("http://webServices.logica/", "PaquetePublicacionYaFueComprado");
-    private final static QName _TipoDePublicacionYaFueIngresado_QNAME = new QName("http://webServices.logica/", "TipoDePublicacionYaFueIngresado");
-    private final static QName _TipoPublicacionNoExisteException_QNAME = new QName("http://webServices.logica/", "TipoPublicacionNoExisteException");
-    private final static QName _TipoPublicacionYaExisteException_QNAME = new QName("http://webServices.logica/", "TipoPublicacionYaExisteException");
-    private final static QName _UsuarioEmailRepetidoException_QNAME = new QName("http://webServices.logica/", "UsuarioEmailRepetidoException");
-    private final static QName _UsuarioNoEstaSeguidoException_QNAME = new QName("http://webServices.logica/", "UsuarioNoEstaSeguidoException");
-    private final static QName _UsuarioNoExisteException_QNAME = new QName("http://webServices.logica/", "UsuarioNoExisteException");
-    private final static QName _UsuarioNoExistePostulacion_QNAME = new QName("http://webServices.logica/", "UsuarioNoExistePostulacion");
-    private final static QName _UsuarioYaEstaSeguidoException_QNAME = new QName("http://webServices.logica/", "UsuarioYaEstaSeguidoException");
-    private final static QName _UsuarioYaExisteException_QNAME = new QName("http://webServices.logica/", "UsuarioYaExisteException");
-    private final static QName _UsuarioYaExistePostulacion_QNAME = new QName("http://webServices.logica/", "UsuarioYaExistePostulacion");
+    private final static QName _IOException_QNAME = new QName("http://webservices.logica/", "IOException");
+    private final static QName _KeywordNoExisteException_QNAME = new QName("http://webservices.logica/", "KeywordNoExisteException");
+    private final static QName _KeywordYaExisteException_QNAME = new QName("http://webservices.logica/", "KeywordYaExisteException");
+    private final static QName _OfertaLaboralNoExisteException_QNAME = new QName("http://webservices.logica/", "OfertaLaboralNoExisteException");
+    private final static QName _OfertaLaboralNoSePuedeFinalizar_QNAME = new QName("http://webservices.logica/", "OfertaLaboralNoSePuedeFinalizar");
+    private final static QName _OfertaLaboralNoTienePaquete_QNAME = new QName("http://webservices.logica/", "OfertaLaboralNoTienePaquete");
+    private final static QName _OfertaLaboralYaExisteException_QNAME = new QName("http://webservices.logica/", "OfertaLaboralYaExisteException");
+    private final static QName _PaquetePublicacionNoExisteException_QNAME = new QName("http://webservices.logica/", "PaquetePublicacionNoExisteException");
+    private final static QName _PaquetePublicacionYaExisteException_QNAME = new QName("http://webservices.logica/", "PaquetePublicacionYaExisteException");
+    private final static QName _PaquetePublicacionYaFueComprado_QNAME = new QName("http://webservices.logica/", "PaquetePublicacionYaFueComprado");
+    private final static QName _PostulanteNoEsOfertaFavoritaException_QNAME = new QName("http://webservices.logica/", "PostulanteNoEsOfertaFavoritaException");
+    private final static QName _PostulanteYaEsOfertaFavoritaException_QNAME = new QName("http://webservices.logica/", "PostulanteYaEsOfertaFavoritaException");
+    private final static QName _TipoDePublicacionYaFueIngresado_QNAME = new QName("http://webservices.logica/", "TipoDePublicacionYaFueIngresado");
+    private final static QName _TipoPublicacionNoExisteException_QNAME = new QName("http://webservices.logica/", "TipoPublicacionNoExisteException");
+    private final static QName _TipoPublicacionYaExisteException_QNAME = new QName("http://webservices.logica/", "TipoPublicacionYaExisteException");
+    private final static QName _UsuarioEmailRepetidoException_QNAME = new QName("http://webservices.logica/", "UsuarioEmailRepetidoException");
+    private final static QName _UsuarioNoEstaSeguidoException_QNAME = new QName("http://webservices.logica/", "UsuarioNoEstaSeguidoException");
+    private final static QName _UsuarioNoExisteException_QNAME = new QName("http://webservices.logica/", "UsuarioNoExisteException");
+    private final static QName _UsuarioNoExistePostulacion_QNAME = new QName("http://webservices.logica/", "UsuarioNoExistePostulacion");
+    private final static QName _UsuarioYaEstaSeguidoException_QNAME = new QName("http://webservices.logica/", "UsuarioYaEstaSeguidoException");
+    private final static QName _UsuarioYaExisteException_QNAME = new QName("http://webservices.logica/", "UsuarioYaExisteException");
+    private final static QName _UsuarioYaExistePostulacion_QNAME = new QName("http://webservices.logica/", "UsuarioYaExistePostulacion");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: logica.webservices
@@ -153,6 +155,26 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link PostulanteNoEsOfertaFavoritaException }
+     * 
+     * @return
+     *     the new instance of {@link PostulanteNoEsOfertaFavoritaException }
+     */
+    public PostulanteNoEsOfertaFavoritaException createPostulanteNoEsOfertaFavoritaException() {
+        return new PostulanteNoEsOfertaFavoritaException();
+    }
+
+    /**
+     * Create an instance of {@link PostulanteYaEsOfertaFavoritaException }
+     * 
+     * @return
+     *     the new instance of {@link PostulanteYaEsOfertaFavoritaException }
+     */
+    public PostulanteYaEsOfertaFavoritaException createPostulanteYaEsOfertaFavoritaException() {
+        return new PostulanteYaEsOfertaFavoritaException();
+    }
+
+    /**
      * Create an instance of {@link TipoDePublicacionYaFueIngresado }
      * 
      * @return
@@ -253,13 +275,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtDatosPdf }
+     * Create an instance of {@link DtTipoPublicacion }
      * 
      * @return
-     *     the new instance of {@link DtDatosPdf }
+     *     the new instance of {@link DtTipoPublicacion }
      */
-    public DtDatosPdf createDtDatosPdf() {
-        return new DtDatosPdf();
+    public DtTipoPublicacion createDtTipoPublicacion() {
+        return new DtTipoPublicacion();
     }
 
     /**
@@ -270,6 +292,16 @@ public class ObjectFactory {
      */
     public DtPostulacion createDtPostulacion() {
         return new DtPostulacion();
+    }
+
+    /**
+     * Create an instance of {@link DtDatosPdf }
+     * 
+     * @return
+     *     the new instance of {@link DtDatosPdf }
+     */
+    public DtDatosPdf createDtDatosPdf() {
+        return new DtDatosPdf();
     }
 
     /**
@@ -303,13 +335,33 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtTipoPublicacion }
+     * Create an instance of {@link DtEmpresa }
      * 
      * @return
-     *     the new instance of {@link DtTipoPublicacion }
+     *     the new instance of {@link DtEmpresa }
      */
-    public DtTipoPublicacion createDtTipoPublicacion() {
-        return new DtTipoPublicacion();
+    public DtEmpresa createDtEmpresa() {
+        return new DtEmpresa();
+    }
+
+    /**
+     * Create an instance of {@link DtUsuario }
+     * 
+     * @return
+     *     the new instance of {@link DtUsuario }
+     */
+    public DtUsuario createDtUsuario() {
+        return new DtUsuario();
+    }
+
+    /**
+     * Create an instance of {@link DtPostulante }
+     * 
+     * @return
+     *     the new instance of {@link DtPostulante }
+     */
+    public DtPostulante createDtPostulante() {
+        return new DtPostulante();
     }
 
     /**
@@ -353,36 +405,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtEmpresa }
-     * 
-     * @return
-     *     the new instance of {@link DtEmpresa }
-     */
-    public DtEmpresa createDtEmpresa() {
-        return new DtEmpresa();
-    }
-
-    /**
-     * Create an instance of {@link DtUsuario }
-     * 
-     * @return
-     *     the new instance of {@link DtUsuario }
-     */
-    public DtUsuario createDtUsuario() {
-        return new DtUsuario();
-    }
-
-    /**
-     * Create an instance of {@link DtPostulante }
-     * 
-     * @return
-     *     the new instance of {@link DtPostulante }
-     */
-    public DtPostulante createDtPostulante() {
-        return new DtPostulante();
-    }
-
-    /**
      * Create an instance of {@link DtPostulacionArray }
      * 
      * @return
@@ -403,6 +425,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtEmpresaArray }
+     * 
+     * @return
+     *     the new instance of {@link DtEmpresaArray }
+     */
+    public DtEmpresaArray createDtEmpresaArray() {
+        return new DtEmpresaArray();
+    }
+
+    /**
      * Create an instance of {@link DtCantidadTipoPublicacionArray }
      * 
      * @return
@@ -420,16 +452,6 @@ public class ObjectFactory {
      */
     public DtCompraPaqueteArray createDtCompraPaqueteArray() {
         return new DtCompraPaqueteArray();
-    }
-
-    /**
-     * Create an instance of {@link DtEmpresaArray }
-     * 
-     * @return
-     *     the new instance of {@link DtEmpresaArray }
-     */
-    public DtEmpresaArray createDtEmpresaArray() {
-        return new DtEmpresaArray();
     }
 
     /**
@@ -460,7 +482,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link IOException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "IOException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "IOException")
     public JAXBElement<IOException> createIOException(IOException value) {
         return new JAXBElement<>(_IOException_QNAME, IOException.class, null, value);
     }
@@ -473,7 +495,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link KeywordNoExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "KeywordNoExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "KeywordNoExisteException")
     public JAXBElement<KeywordNoExisteException> createKeywordNoExisteException(KeywordNoExisteException value) {
         return new JAXBElement<>(_KeywordNoExisteException_QNAME, KeywordNoExisteException.class, null, value);
     }
@@ -486,7 +508,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link KeywordYaExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "KeywordYaExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "KeywordYaExisteException")
     public JAXBElement<KeywordYaExisteException> createKeywordYaExisteException(KeywordYaExisteException value) {
         return new JAXBElement<>(_KeywordYaExisteException_QNAME, KeywordYaExisteException.class, null, value);
     }
@@ -499,7 +521,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link OfertaLaboralNoExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "OfertaLaboralNoExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "OfertaLaboralNoExisteException")
     public JAXBElement<OfertaLaboralNoExisteException> createOfertaLaboralNoExisteException(OfertaLaboralNoExisteException value) {
         return new JAXBElement<>(_OfertaLaboralNoExisteException_QNAME, OfertaLaboralNoExisteException.class, null, value);
     }
@@ -512,7 +534,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link OfertaLaboralNoSePuedeFinalizar }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "OfertaLaboralNoSePuedeFinalizar")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "OfertaLaboralNoSePuedeFinalizar")
     public JAXBElement<OfertaLaboralNoSePuedeFinalizar> createOfertaLaboralNoSePuedeFinalizar(OfertaLaboralNoSePuedeFinalizar value) {
         return new JAXBElement<>(_OfertaLaboralNoSePuedeFinalizar_QNAME, OfertaLaboralNoSePuedeFinalizar.class, null, value);
     }
@@ -525,7 +547,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link OfertaLaboralNoTienePaquete }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "OfertaLaboralNoTienePaquete")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "OfertaLaboralNoTienePaquete")
     public JAXBElement<OfertaLaboralNoTienePaquete> createOfertaLaboralNoTienePaquete(OfertaLaboralNoTienePaquete value) {
         return new JAXBElement<>(_OfertaLaboralNoTienePaquete_QNAME, OfertaLaboralNoTienePaquete.class, null, value);
     }
@@ -538,7 +560,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link OfertaLaboralYaExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "OfertaLaboralYaExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "OfertaLaboralYaExisteException")
     public JAXBElement<OfertaLaboralYaExisteException> createOfertaLaboralYaExisteException(OfertaLaboralYaExisteException value) {
         return new JAXBElement<>(_OfertaLaboralYaExisteException_QNAME, OfertaLaboralYaExisteException.class, null, value);
     }
@@ -551,7 +573,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link PaquetePublicacionNoExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "PaquetePublicacionNoExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "PaquetePublicacionNoExisteException")
     public JAXBElement<PaquetePublicacionNoExisteException> createPaquetePublicacionNoExisteException(PaquetePublicacionNoExisteException value) {
         return new JAXBElement<>(_PaquetePublicacionNoExisteException_QNAME, PaquetePublicacionNoExisteException.class, null, value);
     }
@@ -564,7 +586,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link PaquetePublicacionYaExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "PaquetePublicacionYaExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "PaquetePublicacionYaExisteException")
     public JAXBElement<PaquetePublicacionYaExisteException> createPaquetePublicacionYaExisteException(PaquetePublicacionYaExisteException value) {
         return new JAXBElement<>(_PaquetePublicacionYaExisteException_QNAME, PaquetePublicacionYaExisteException.class, null, value);
     }
@@ -577,9 +599,35 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link PaquetePublicacionYaFueComprado }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "PaquetePublicacionYaFueComprado")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "PaquetePublicacionYaFueComprado")
     public JAXBElement<PaquetePublicacionYaFueComprado> createPaquetePublicacionYaFueComprado(PaquetePublicacionYaFueComprado value) {
         return new JAXBElement<>(_PaquetePublicacionYaFueComprado_QNAME, PaquetePublicacionYaFueComprado.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link PostulanteNoEsOfertaFavoritaException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link PostulanteNoEsOfertaFavoritaException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "PostulanteNoEsOfertaFavoritaException")
+    public JAXBElement<PostulanteNoEsOfertaFavoritaException> createPostulanteNoEsOfertaFavoritaException(PostulanteNoEsOfertaFavoritaException value) {
+        return new JAXBElement<>(_PostulanteNoEsOfertaFavoritaException_QNAME, PostulanteNoEsOfertaFavoritaException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link PostulanteYaEsOfertaFavoritaException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link PostulanteYaEsOfertaFavoritaException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "PostulanteYaEsOfertaFavoritaException")
+    public JAXBElement<PostulanteYaEsOfertaFavoritaException> createPostulanteYaEsOfertaFavoritaException(PostulanteYaEsOfertaFavoritaException value) {
+        return new JAXBElement<>(_PostulanteYaEsOfertaFavoritaException_QNAME, PostulanteYaEsOfertaFavoritaException.class, null, value);
     }
 
     /**
@@ -590,7 +638,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link TipoDePublicacionYaFueIngresado }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "TipoDePublicacionYaFueIngresado")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "TipoDePublicacionYaFueIngresado")
     public JAXBElement<TipoDePublicacionYaFueIngresado> createTipoDePublicacionYaFueIngresado(TipoDePublicacionYaFueIngresado value) {
         return new JAXBElement<>(_TipoDePublicacionYaFueIngresado_QNAME, TipoDePublicacionYaFueIngresado.class, null, value);
     }
@@ -603,7 +651,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link TipoPublicacionNoExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "TipoPublicacionNoExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "TipoPublicacionNoExisteException")
     public JAXBElement<TipoPublicacionNoExisteException> createTipoPublicacionNoExisteException(TipoPublicacionNoExisteException value) {
         return new JAXBElement<>(_TipoPublicacionNoExisteException_QNAME, TipoPublicacionNoExisteException.class, null, value);
     }
@@ -616,7 +664,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link TipoPublicacionYaExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "TipoPublicacionYaExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "TipoPublicacionYaExisteException")
     public JAXBElement<TipoPublicacionYaExisteException> createTipoPublicacionYaExisteException(TipoPublicacionYaExisteException value) {
         return new JAXBElement<>(_TipoPublicacionYaExisteException_QNAME, TipoPublicacionYaExisteException.class, null, value);
     }
@@ -629,7 +677,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioEmailRepetidoException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioEmailRepetidoException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "UsuarioEmailRepetidoException")
     public JAXBElement<UsuarioEmailRepetidoException> createUsuarioEmailRepetidoException(UsuarioEmailRepetidoException value) {
         return new JAXBElement<>(_UsuarioEmailRepetidoException_QNAME, UsuarioEmailRepetidoException.class, null, value);
     }
@@ -642,7 +690,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioNoEstaSeguidoException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioNoEstaSeguidoException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "UsuarioNoEstaSeguidoException")
     public JAXBElement<UsuarioNoEstaSeguidoException> createUsuarioNoEstaSeguidoException(UsuarioNoEstaSeguidoException value) {
         return new JAXBElement<>(_UsuarioNoEstaSeguidoException_QNAME, UsuarioNoEstaSeguidoException.class, null, value);
     }
@@ -655,7 +703,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioNoExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioNoExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "UsuarioNoExisteException")
     public JAXBElement<UsuarioNoExisteException> createUsuarioNoExisteException(UsuarioNoExisteException value) {
         return new JAXBElement<>(_UsuarioNoExisteException_QNAME, UsuarioNoExisteException.class, null, value);
     }
@@ -668,7 +716,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioNoExistePostulacion }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioNoExistePostulacion")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "UsuarioNoExistePostulacion")
     public JAXBElement<UsuarioNoExistePostulacion> createUsuarioNoExistePostulacion(UsuarioNoExistePostulacion value) {
         return new JAXBElement<>(_UsuarioNoExistePostulacion_QNAME, UsuarioNoExistePostulacion.class, null, value);
     }
@@ -681,7 +729,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioYaEstaSeguidoException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioYaEstaSeguidoException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "UsuarioYaEstaSeguidoException")
     public JAXBElement<UsuarioYaEstaSeguidoException> createUsuarioYaEstaSeguidoException(UsuarioYaEstaSeguidoException value) {
         return new JAXBElement<>(_UsuarioYaEstaSeguidoException_QNAME, UsuarioYaEstaSeguidoException.class, null, value);
     }
@@ -694,7 +742,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioYaExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioYaExisteException")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "UsuarioYaExisteException")
     public JAXBElement<UsuarioYaExisteException> createUsuarioYaExisteException(UsuarioYaExisteException value) {
         return new JAXBElement<>(_UsuarioYaExisteException_QNAME, UsuarioYaExisteException.class, null, value);
     }
@@ -707,7 +755,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioYaExistePostulacion }{@code >}
      */
-    @XmlElementDecl(namespace = "http://webServices.logica/", name = "UsuarioYaExistePostulacion")
+    @XmlElementDecl(namespace = "http://webservices.logica/", name = "UsuarioYaExistePostulacion")
     public JAXBElement<UsuarioYaExistePostulacion> createUsuarioYaExistePostulacion(UsuarioYaExistePostulacion value) {
         return new JAXBElement<>(_UsuarioYaExistePostulacion_QNAME, UsuarioYaExistePostulacion.class, null, value);
     }

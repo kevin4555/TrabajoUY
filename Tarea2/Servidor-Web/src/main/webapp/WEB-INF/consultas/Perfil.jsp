@@ -1,3 +1,5 @@
+<%@page import="model.EstadoSesion"%>
+<%@page import="model.TipoUsuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="logica.webservices.DtUsuario"%>
@@ -12,6 +14,7 @@
 <meta charset="UTF-8">
 <title>Perfil de Usuario</title>
 <jsp:include page="../include/Head.jsp" />
+<script src="<%= request.getContextPath() %>/resource/javaScript/addSeguirOrRemove.js"></script>
 </head>
 <body>
 	<jsp:include page="../include/NavBar.jsp" />
@@ -22,6 +25,8 @@
 			DtUsuario usuario = (DtUsuario) request.getAttribute("usuario");
 			String tipoUsuario = (String) request.getAttribute("tipoUsuario");
 			DtUsuario usuarioLogueado = (DtUsuario) session.getAttribute("usuarioLogueado");
+			EstadoSesion estadoSesion = (EstadoSesion) session.getAttribute("estadoSesion");
+			TipoUsuario tipoUsuarioLoguado = (TipoUsuario) session.getAttribute("tipoUsuario");
 			Boolean seguidoOno = (Boolean) request.getAttribute("seguidoOno");
 			%>
 			
@@ -29,57 +34,36 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<section>
+					<div class="alert alert-danger" role="alert" id="errorAlert" style="display: none;">
+						<span id="errorMessage"></span>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
 						<div class="row">
-							<div class="col-4">
+							<div class="col-3">
 								<%
 								if (usuario.getImagenBase64() != null) {
 								%>
 								<img src="data:image/png;base64,<%=usuario.getImagenBase64()%>"
-									alt="Imagen de Perfil" width="200" height="200">
+									alt="Imagen de Perfil" class="img img-fluid">
 								<%
 								}
 								%>
 							</div>
-
-
-							<div class="row">
-								<div class="col-md-8">
-									<h2 class="mb-3"><%=usuario.getNombre()%>
-										<%=usuario.getApellido()%></h2>
-									<label for="" class="labelNicknameEmail mb-3"><%=usuario.getNickname()%>
-										/ <%=usuario.getEmail()%></label>
-								</div>
-								<div class="col-md-4">
-									<%
-									if (seguidoOno) {
-									%>
-									<form action="<%=request.getContextPath()%>/seguirDejarSeguir"
-										method="POST">
-										<input type="hidden" name="perfilUsuario"
-											value="<%=usuario.getNickname()%>"> <input
-											type="hidden" name="follow/unfollow" value="dejarSeguir">
-										<button class="btn btn-primary" type="submit">Dejar
-											de seguir</button>
-									</form>
-									<%
-									} else {
-									%>
-									<form action="<%=request.getContextPath()%>/seguirDejarSeguir"
-										method="POST">
-										<input type="hidden" name="perfilUsuario"
-											value="<%=usuario.getNickname()%>"> <input
-											type="hidden" name="follow/unfollow" value="seguir">
-										<button class="btn btn-primary" type="submit">Seguir</button>
-									</form>
-									<%
-									}
-									%>
-								</div>
+							<div class="col-10 col-sm-5 col-md-8  p-0" id="info">
+								<h2 class="mb-3"><%=usuario.getNombre()%>
+									<%=usuario.getApellido()%></h2>
+								<p  class="labelNicknameEmail mb-3"><%=usuario.getNickname()%>
+									/ <%=usuario.getEmail()%></p>
 							</div>
+							<%if (usuarioLogueado != null ) {%>
+							<div class="col-1 p-0">
+					            <button class="btn btn-primary" onclick="seguirDejarSeguir('<%= usuario.getNickname() %>')">
+					            <i id="accionIcon" class="bi bi-person-<%= usuarioLogueado.getSeguidos().contains(usuario.getNickname())? "dash-fill":"plus" %>"></i>
+					            </button>
+					        </div>	
+					        <%} %>							
 						</div>
 						<div class="menuMiPerfil container mt-3">
-							<!-- Nav tabs -->
-
 							<ul class="nav nav-tabs" role="tablist">
 								<li class="nav-item"><a class="nav-link active"
 									data-bs-toggle="tab" href="#perfilUsuario">Perfil</a></li>

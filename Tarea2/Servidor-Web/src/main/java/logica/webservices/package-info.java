@@ -1,2 +1,2 @@
-@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://webServices.logica/")
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://webservices.logica/")
 package logica.webservices;

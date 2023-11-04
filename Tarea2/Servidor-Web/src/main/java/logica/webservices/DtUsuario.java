@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagenBase64" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="contrasenia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="ofertasColeccion" type="{http://webServices.logica/}dtOfertaLaboral" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="ofertasColeccion" type="{http://webservices.logica/}dtOfertaLaboral" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="seguidos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="seguidores" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>

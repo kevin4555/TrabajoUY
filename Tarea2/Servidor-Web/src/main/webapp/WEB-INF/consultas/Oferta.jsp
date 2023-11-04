@@ -1,3 +1,5 @@
+<%@page import="jakarta.servlet.http.HttpSession"%>
+<%@page import="logica.webservices.DtPostulante"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="logica.webservices.DtPostulacion"%>
@@ -15,6 +17,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Detalles de la Oferta</title>
+<link href="<%= request.getContextPath() %>/recourse/css/general.css" />
+<script src="<%= request.getContextPath() %>/resource/javaScript/oferta.js"></script>
 <jsp:include page="../include/Head.jsp" />
 
 
@@ -39,6 +43,10 @@
 			%>
 			<div class="col-8">
 				<section>
+				<div class="alert alert-danger" role="alert" id="errorAlert" style="display: none;">
+				<span id="errorMessage"></span>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
 					<div class="row">
 						<div class="col">
 							<div class="card">
@@ -56,12 +64,23 @@
 									%>
 									<div class="col-md-8">
 										<div class="card-body">
-											<h5 class="card-header p-0 border-0 bg-white text-start">
-												<%=oferta.getNombre()%>
-											</h5>
-											<p class="card-text"><%=oferta.getDescripcion()%></p>
+										<div class="card-header d-flex justify-content-between align-items-start">
+                                	<h5  class=" card-title">
+                                            <%= oferta.getNombre() %>
+	                                </h5>
+	                                <%
+				                    TipoUsuario tipoUsuarioSesion = (TipoUsuario) session.getAttribute("tipoUsuario");
+				                    if (tipoUsuarioSesion == TipoUsuario.POSTULANTE) { 
+				                    	DtPostulante postulante = (DtPostulante) usuario; %>
+				                    		<div id="estrella" class="star-icon" onclick="agregarFavorita('<%= postulante.getNickname() %>', '<%= oferta.getNombre() %>')">
+			     								<i id="estrellaIcon" class="bi bi-star<%= postulante.getOfertasFavoritas().contains(oferta.getNombre())? "-fill":"" %> fs-5 orange-star" ></i>
+			    							</div>	                        
+				                    <% } %>	                                
+			    				</div>
+											
 										</div>
 										<div class="card-body">
+										<p class="card-text"><%=oferta.getDescripcion()%></p>
 											<ul class="list-group list-group-flush">
 												<li class="list-group-item"><b>Remuneración:</b> <%=oferta.getRemuneracion()%></li>
 												<li class="list-group-item"><b>Horario:</b> <%=oferta.getHorarioInicio()%>

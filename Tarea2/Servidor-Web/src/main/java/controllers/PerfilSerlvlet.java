@@ -39,7 +39,7 @@ public class PerfilSerlvlet extends HttpServlet {
 		HttpSession sesion = request.getSession();
 		DtUsuario usuarioLogueado = (DtUsuario) sesion.getAttribute("usuarioLogueado");
 		String nicknameUsuario = request.getParameter("nicknameUsuario");
-		Boolean flag = usuarioLogueado.getSeguidos().contains(nicknameUsuario);
+		Boolean flag = usuarioLogueado == null? false : usuarioLogueado.getSeguidos().contains(nicknameUsuario);
 		logica.webservices.PublicadorService service = new PublicadorService();
 		logica.webservices.Publicador port = service.getPublicadorPort();
 		request.setAttribute("seguidoOno", flag);

@@ -26,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="fechaAltaString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagenBase64" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="cantidadTipoPublicaciones" type="{http://webServices.logica/}dtCantidadTipoPublicacion" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="cantidadTipoPublicaciones" type="{http://webservices.logica/}dtCantidadTipoPublicacion" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>

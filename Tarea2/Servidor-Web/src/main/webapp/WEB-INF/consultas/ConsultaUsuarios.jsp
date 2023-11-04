@@ -34,10 +34,13 @@
                                     />
                                 </div>
                                 <div class="col-md-9">
+                                <div class="card-header d-flex justify-content-between align-items-start">
+                                	<h5  class=" card-title">
+                                            <%= usuario.getNickname() %>
+	                                </h5>
+	                                </div>                
                                     <div class="card-body">
-                                        <h5 class="card-header p-0 border-0 bg-white text-start">
-                                            <%=usuario.getNickname()%>
-                                        </h5>
+                                        
                                         <p class="card-text"><%=usuario.getNombre()+" " + usuario.getApellido()%></p>
                                         <%
                                         if (usuario instanceof DtPostulante) {

@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "TipoPublicacionNoExisteException", targetNamespace = "http://webServices.logica/")
+@WebFault(name = "TipoPublicacionNoExisteException", targetNamespace = "http://webservices.logica/")
 public class TipoPublicacionNoExisteException_Exception
     extends Exception
 {

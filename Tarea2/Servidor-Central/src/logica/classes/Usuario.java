@@ -113,5 +113,4 @@ public abstract class Usuario {
   public Set<String> getSeguidores() {
     return seguidores;
   }
-
 }

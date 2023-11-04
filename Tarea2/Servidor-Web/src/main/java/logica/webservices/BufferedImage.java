@@ -16,7 +16,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="data" type="{http://webServices.logica/}raster" minOccurs="0"/>
+ *         <element name="data" type="{http://webservices.logica/}raster" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>

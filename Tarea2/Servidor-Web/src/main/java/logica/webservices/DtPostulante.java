@@ -1,8 +1,11 @@
 
 package logica.webservices;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -14,10 +17,11 @@ import jakarta.xml.bind.annotation.XmlType;
  * <pre>{@code
  * <complexType name="dtPostulante">
  *   <complexContent>
- *     <extension base="{http://webServices.logica/}dtUsuario">
+ *     <extension base="{http://webservices.logica/}dtUsuario">
  *       <sequence>
  *         <element name="nacionalidad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="fechaNacimientoString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="ofertasFavoritas" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </extension>
  *   </complexContent>
@@ -29,7 +33,8 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dtPostulante", propOrder = {
     "nacionalidad",
-    "fechaNacimientoString"
+    "fechaNacimientoString",
+    "ofertasFavoritas"
 })
 public class DtPostulante
     extends DtUsuario
@@ -37,6 +42,8 @@ public class DtPostulante
 
     protected String nacionalidad;
     protected String fechaNacimientoString;
+    @XmlElement(nillable = true)
+    protected List<String> ofertasFavoritas;
 
     /**
      * Obtiene el valor de la propiedad nacionalidad.
@@ -84,6 +91,37 @@ public class DtPostulante
      */
     public void setFechaNacimientoString(String value) {
         this.fechaNacimientoString = value;
+    }
+
+    /**
+     * Gets the value of the ofertasFavoritas property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the ofertasFavoritas property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getOfertasFavoritas().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     * @return
+     *     The value of the ofertasFavoritas property.
+     */
+    public List<String> getOfertasFavoritas() {
+        if (ofertasFavoritas == null) {
+            ofertasFavoritas = new ArrayList<>();
+        }
+        return this.ofertasFavoritas;
     }
 
 }

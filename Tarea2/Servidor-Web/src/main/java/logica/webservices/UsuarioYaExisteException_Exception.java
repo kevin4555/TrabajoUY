@@ -10,7 +10,7 @@ import jakarta.xml.ws.WebFault;
  * Generated source version: 3.0
  * 
  */
-@WebFault(name = "UsuarioYaExisteException", targetNamespace = "http://webServices.logica/")
+@WebFault(name = "UsuarioYaExisteException", targetNamespace = "http://webservices.logica/")
 public class UsuarioYaExisteException_Exception
     extends Exception
 {

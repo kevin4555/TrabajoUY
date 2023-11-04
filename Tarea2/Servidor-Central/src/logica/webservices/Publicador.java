@@ -1,5 +1,4 @@
-
-package logica.webServices;
+package logica.webservices;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -20,6 +19,8 @@ import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.PostulanteNoEsOfertaFavoritaException;
+import excepciones.PostulanteYaEsOfertaFavoritaException;
 import excepciones.TipoDePublicacionYaFueIngresado;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
@@ -46,7 +47,6 @@ import logica.datatypes.DtPaquetePublicacion;
 import logica.datatypes.DtPostulacion;
 import logica.datatypes.DtTipoPublicacion;
 import logica.datatypes.DtUsuario;
-import logica.datatypes.EstadoOferta;
 import logica.interfaces.IcontroladorOferta;
 import logica.interfaces.IcontroladorUsuario;
 
@@ -413,5 +413,14 @@ public class Publicador {
  @WebMethod
  public void agregarVisitaAoferta(String nombreOferta) throws OfertaLaboralNoExisteException {
    controladorOferta.agregarVisitaOferta(nombreOferta);
+ }
+ 
+ @WebMethod
+ public void agregarOfertaFavorita(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException, PostulanteYaEsOfertaFavoritaException, OfertaLaboralNoExisteException {
+	 controladorUsuario.agregarOfertaFavorita(nicknamePostulante, nombreOferta);
+ }
+ @WebMethod
+ public void removerOfertaFavorita(String nicknamePostulante, String nombreOferta) throws UsuarioNoExisteException, PostulanteNoEsOfertaFavoritaException {
+	 controladorUsuario.removerOfertaFavorita(nicknamePostulante, nombreOferta);
  }
 }
