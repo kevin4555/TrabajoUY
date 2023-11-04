@@ -14,18 +14,21 @@ function cambiarColorEstrella() {
 
 async function agregarFavorita(nickNamePostulante, nombreOferta) {
   try {
-    const respuesta = await fetch(`ofertaFavorita?nicknamePostulante=${nickNamePostulante}&nombreOferta=${nombreOferta}`, {
-      method: "GET",
-    });
+    const respuesta = await fetch(
+      `ofertaFavorita?nicknamePostulante=${nickNamePostulante}&nombreOferta=${nombreOferta}`,
+      {
+        method: "GET",
+      }
+    );
     if (respuesta.ok) {
       cambiarColorEstrella();
     }
   } catch (error) {
-    console.error('Error en la solicitud:', error);
-    const errorAlert = document.getElementById('errorAlert');
-    const errorMessage = document.getElementById('errorMessage');
+    console.error("Error en la solicitud:", error);
+    const errorAlert = document.getElementById("errorAlert");
+    const errorMessage = document.getElementById("errorMessage");
 
-    errorAlert.style.display = 'block';
+    errorAlert.style.display = "block";
     errorMessage.textContent = error.message;
   }
   return;
