@@ -1642,7 +1642,7 @@ public class ControladorUsuarioTesting {
     DtDatosPdf dtDatosPdfa =
           controladorUsuario.obtenerDatosPdf("a",
                 "test");
-    
+
     DtDatosPdf dtDatosPdfb =
           controladorUsuario.obtenerDatosPdf("b",
                 "test");
@@ -1661,7 +1661,7 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals(dtDatosPdfa.getNombrePostulante(),
           "NombreTest");
     Assert.assertEquals(dtDatosPdfa.getPosicion(), 1);
-    
+
     Assert.assertEquals(dtDatosPdfb.getPosicion(), 2);
 
   }

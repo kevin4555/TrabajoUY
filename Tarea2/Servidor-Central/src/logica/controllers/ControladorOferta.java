@@ -446,15 +446,18 @@ public class ControladorOferta
   @Override
   public List<DtOfertaLaboral>
         buscarOfertas(String parametro) throws IOException {
-    List<DtOfertaLaboral> resultado = new ArrayList<DtOfertaLaboral>();
+    List<DtOfertaLaboral> resultado =
+          new ArrayList<DtOfertaLaboral>();
     List<DtOfertaLaboral> ofertas =
           (List<DtOfertaLaboral>) ManejadorOfertas
                 .getInstance()
                 .obtenerDtofertasConfirmadas();
     for (DtOfertaLaboral oferta : ofertas) {
-      if ((oferta.getNombre().toLowerCase().contains(parametro.toLowerCase())
-          || oferta.getDescripcion().toLowerCase().contains(parametro.toLowerCase()))
-          && !oferta.getEstaVencida()) {
+      if ((oferta.getNombre().toLowerCase()
+            .contains(parametro.toLowerCase())
+            || oferta.getDescripcion().toLowerCase()
+                  .contains(parametro.toLowerCase()))
+            && !oferta.getEstaVencida()) {
         resultado.add(oferta);
       }
     }

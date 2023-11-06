@@ -292,7 +292,7 @@ public class OfertaLaboral {
   /**
    * Metodo ordenarPostulaciones.
    */
- 
+
   public void ordenarPostulaciones(
         List<String> nicknamesPostulantes) {
     this.fechaSeleccion = LocalDate.now();
@@ -312,7 +312,7 @@ public class OfertaLaboral {
   /**
    * Metodo obtenerPosicion.
    */
-  
+
   public int obtenerPosicion(String nicknamePostulante) {
     int posicion = 1;
     for (Postulacion postulacion : postulaciones) {

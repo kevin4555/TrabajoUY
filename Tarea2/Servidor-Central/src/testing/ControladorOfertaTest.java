@@ -34,6 +34,8 @@ import logica.classes.Postulacion;
 import logica.classes.TipoPublicacion;
 import logica.controllers.ControladorOferta;
 import logica.controllers.ControladorUsuario;
+import logica.controllers.Fabrica;
+import logica.controllers.Loader;
 import logica.datatypes.DtCantidadTipoPublicacion;
 import logica.datatypes.DtOfertaLaboral;
 import logica.datatypes.DtPaquetePublicacion;
@@ -1648,7 +1650,9 @@ public class ControladorOfertaTest {
         UsuarioYaExisteException,
         UsuarioEmailRepetidoException,
         OfertaLaboralNoExisteException,
-        UsuarioYaExistePostulacion, IOException {
+        UsuarioYaExistePostulacion, IOException,
+        ParseException, PaquetePublicacionYaExisteException,
+        PaquetePublicacionNoExisteException {
     manejadorOfertas = ManejadorOfertas.getInstance();
     controladorUsuario = new ControladorUsuario();
     controladorOferta = new ControladorOferta();
@@ -1733,6 +1737,16 @@ public class ControladorOfertaTest {
           resultado.getDepartamento());
     Assert.assertEquals(obtenerDtOfertaLaboral.getNombre(),
           resultado.getNombre());
+
+    Loader nuevoLoader = new Loader();
+    nuevoLoader.cargarDatos();
+    nuevoLoader.confirmarOfertas();
+
+    Assert.assertEquals(true, nuevoLoader.datosCargados());
+
+    Fabrica nueva = Fabrica.getInstance();
+
+    nueva = Fabrica.getInstance();
 
   }
 

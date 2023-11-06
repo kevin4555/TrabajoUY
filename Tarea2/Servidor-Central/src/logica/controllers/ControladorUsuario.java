@@ -39,6 +39,7 @@ import logica.interfaces.IcontroladorUsuario;
 /**
  * Clase controlador oferta.
  */
+
 public class ControladorUsuario
       implements
       IcontroladorUsuario {
@@ -445,28 +446,39 @@ public class ControladorUsuario
   }
 
   @Override
-  public List<DtEmpresa> buscarEmpresas(String parametro) throws IOException {
-    List<DtEmpresa> listaAuxiliar = new ArrayList<DtEmpresa>();
-    List<DtEmpresa> dtempresas = ManejadorUsuario.getInstance().obtenerDtEmpresas();
+  public List<DtEmpresa> buscarEmpresas(String parametro)
+        throws IOException {
+    List<DtEmpresa> listaAuxiliar =
+          new ArrayList<DtEmpresa>();
+    List<DtEmpresa> dtempresas = ManejadorUsuario
+          .getInstance().obtenerDtEmpresas();
     for (DtEmpresa empresa : dtempresas) {
-      if (empresa.getNombre().toLowerCase().contains(parametro.toLowerCase()) || empresa.getDescripcion().toLowerCase().contains(parametro.toLowerCase())) {
+      if (empresa.getNombre().toLowerCase()
+            .contains(parametro.toLowerCase()) 
+            || empresa.getDescripcion().toLowerCase()
+                  .contains(parametro.toLowerCase())) {
         listaAuxiliar.add(empresa);
       }
     }
-    ArrayList<DtEmpresa> empresasSinOfertas = new ArrayList<DtEmpresa>();
-    ArrayList<DtEmpresa> empresasConOfertas = new ArrayList<DtEmpresa>();
-    for(DtEmpresa empresa : listaAuxiliar) {
-      if(empresa.getOfertasColeccion().isEmpty()) {
+    List<DtEmpresa> empresasSinOfertas =
+          new ArrayList<DtEmpresa>();
+    List<DtEmpresa> empresasConOfertas =
+          new ArrayList<DtEmpresa>();
+    for (DtEmpresa empresa : listaAuxiliar) {
+      if (empresa.getOfertasColeccion().isEmpty()) {
         empresasSinOfertas.add(empresa);
-      }
-      else {
+      } else {
         empresasConOfertas.add(empresa);
       }
     }
-    Comparator<DtEmpresa> comparadorFecha = (empresa1, empresa2) -> empresa1.obtenerUltimaFechaDeAlta()
-        .compareTo(empresa2.obtenerUltimaFechaDeAlta());
-    Collections.sort(empresasConOfertas, comparadorFecha.reversed());
-    for(DtEmpresa empresa : empresasSinOfertas) {
+    Comparator<DtEmpresa> comparadorFecha =
+          (empresa1, empresa2) -> empresa1
+                .obtenerUltimaFechaDeAlta()
+                .compareTo(
+                      empresa2.obtenerUltimaFechaDeAlta());
+    Collections.sort(empresasConOfertas,
+          comparadorFecha.reversed());
+    for (DtEmpresa empresa : empresasSinOfertas) {
       empresasConOfertas.add(empresa);
     }
     return empresasConOfertas;

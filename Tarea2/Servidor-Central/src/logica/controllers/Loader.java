@@ -46,7 +46,7 @@ public class Loader {
     try {
       imagen = ImageIO.read(input);
     } catch (IOException e) {
-     //catchVacio
+      // catchVacio
     }
     return imagen;
   }
@@ -491,7 +491,7 @@ public class Loader {
 
     controladorUsuario.registrarPostulacion(
           "Músico profesional, experiencia en espectáculos en vivo. "
-          + "Habilidades en canto y guitarra.",
+                + "Habilidades en canto y guitarra.",
           "Me gustaría combinar mi pasión por la música con una oportunidad laboral "
                 + "que me permita seguir creciendo como artista.",
           LocalDate.parse("2023-09-30"), "valen25",
@@ -508,8 +508,7 @@ public class Loader {
     datosCargados = true;
 
   }
-  
-  
+
   /**
    * Metodo confirmar ofertas.
    */

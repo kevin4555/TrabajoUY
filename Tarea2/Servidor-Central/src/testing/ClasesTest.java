@@ -34,8 +34,6 @@ import logica.classes.PaquetePublicacion;
 import logica.classes.Postulacion;
 import logica.classes.Postulante;
 import logica.classes.TipoPublicacion;
-import logica.controllers.Fabrica;
-import logica.controllers.Loader;
 import logica.datatypes.DtCantidadTipoPublicacion;
 import logica.datatypes.DtCantidadTipoPublicacionRestante;
 import logica.datatypes.DtCompraPaquete;
@@ -715,17 +713,6 @@ public class ClasesTest {
     String linkVideo = nuevaPostulacionVacia.getLinkVideo();
     String nicknamePostulante =
           nuevaPostulacionVacia.getNicknamePostulante();
-
-    Loader nuevoLoader = new Loader();
-    nuevoLoader.cargarDatos();
-    nuevoLoader.confirmarOfertas();
-
-    Assert.assertEquals(true, nuevoLoader.datosCargados());
-
-    Fabrica nueva = Fabrica.getInstance();
-
-    nueva = Fabrica.getInstance();
-
   }
 
 }

@@ -209,7 +209,7 @@ public class ManejadorUsuario {
   /**
    * Metodo obtenerDtEmpresas.
    */
-  
+
   public List<DtEmpresa> obtenerDtEmpresas()
         throws IOException {
     List<DtEmpresa> listaResultado =

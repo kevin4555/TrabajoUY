@@ -57,7 +57,6 @@ public class ManejadorOfertas {
     }
   }
 
- 
   /**
    * Obtener oferta laboral .
    */
@@ -129,11 +128,11 @@ public class ManejadorOfertas {
   public Boolean existeOfertaLaboral(String nombreOferta) {
     return coleccionOfertaLaboral.containsKey(nombreOferta);
   }
-  
+
   /**
    * Metodo obtenerDtOfertas.
    */
-  
+
   public List<DtOfertaLaboral> obtenerDtOfertas()
         throws IOException {
     List<DtOfertaLaboral> listaResultado =

@@ -178,7 +178,7 @@ public class Empresa extends Usuario {
   /**
    * Metodo obtenerDtofertasFinalizadas.
    */
-  
+
   public List<DtOfertaLaboral> obtenerDtofertasFinalizadas()
         throws IOException {
     List<DtOfertaLaboral> listaResultado =

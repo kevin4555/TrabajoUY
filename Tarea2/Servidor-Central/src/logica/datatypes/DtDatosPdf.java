@@ -23,12 +23,11 @@ public class DtDatosPdf
 
   public DtDatosPdf() {
   }
-  
-  
+
   /**
    * Constructor DtDatosPdf.
    */
- 
+
   public DtDatosPdf(
         String nombrePostulante,
           String nombreEmpresa,
