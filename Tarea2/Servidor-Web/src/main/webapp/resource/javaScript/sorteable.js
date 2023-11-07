@@ -15,7 +15,6 @@ jQuery(document).ready(function($){
   $("#guardarOrdenButton").click(function() {
     const $data = $("#sortable").sortable('toArray');
     $("#sorted-data").val(JSON.stringify($data));
-    console.log("Form Submit, orden:", $("#sorted-data").val());
     
     // Envía el formulario
     $("#frmExample").submit();
