@@ -25,7 +25,7 @@ public class HeadersFilter implements Filter {
 			    "default-src 'self' https://googleads.g.doubleclick.net https://static.doubleclick.net; " +
 			    "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com http://code.jquery.com; " +
 			    "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://ajax.googleapis.com " +
-			    "https://cdnjs.cloudflare.com https://www.youtube.com https://maxcdn.bootstrapcdn.com https://code.jquery.com; " +
+			    "https://cdnjs.cloudflare.com https://www.youtube.com https://maxcdn.bootstrapcdn.com https://code.jquery.com https://apis.google.com; " +
 			    "img-src 'self' data: https://cdn.jsdelivr.net; " +
 			    "font-src 'self' https://cdn.jsdelivr.net; " +
 			    "frame-src 'self' https://www.youtube.com;");

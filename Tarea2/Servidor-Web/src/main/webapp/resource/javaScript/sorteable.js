@@ -1,31 +1,24 @@
-$(document).ready(function() {
-    $("#sortable").sortable();
-
-    // Evento para capturar el orden cuando se haga clic en el botón
-    $("#confirmarOrden").click(function(e) {
-        e.preventDefault(); // Evita el envío por defecto del formulario
-
-        // Obtiene el orden de los elementos
-        const ordenElementos = $("#sortable").sortable("toArray");
-
-        // Crea un objeto JavaScript que contiene el orden
-        const data = {
-            orden: ordenElementos
-        };
-
-        // Realiza una solicitud POST al servidor para enviar el orden
-        $.ajax({
-            url: "/seleccionarPostulacion", // Ajusta la URL a la ruta de tu servlet
-            type: "POST",
-            data: data,
-            success: function(response) {
-                // Maneja la respuesta del servidor aquí
-                console.log("Orden enviado al servidor:", response);
-            },
-            error: function(xhr, status, error) {
-                // Maneja los errores de la solicitud aquí
-                console.error("Error en la solicitud:", status, error);
-            }
-        });
-    });
+$.noConflict();
+jQuery(document).ready(function($){
+  // Habilita el ordenamiento al cargar la página
+  const $sortable = $("#sortable").sortable({
+    update: function(event, ui) {
+      const $data = $(this).sortable('toArray');
+      $("#sorted-data").val(JSON.stringify($data));
+    }
+  });
+  
+  // Evita la selección de elementos mientras se ordenan
+  $sortable.disableSelection();
+  
+  // Configura el botón "Guardar Orden" para almacenar el orden y enviar el formulario
+  $("#guardarOrdenButton").click(function() {
+    const $data = $("#sortable").sortable('toArray');
+    $("#sorted-data").val(JSON.stringify($data));
+    console.log("Form Submit, orden:", $("#sorted-data").val());
+    
+    // Envía el formulario
+    $("#frmExample").submit();
+  });
 });
+

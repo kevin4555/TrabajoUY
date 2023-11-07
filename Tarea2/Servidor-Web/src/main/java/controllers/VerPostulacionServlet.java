@@ -16,8 +16,6 @@ import logica.webservices.UsuarioNoExistePostulacion_Exception;
 
 import java.io.IOException;
 
-
-
 /**
  * Servlet implementation class VerPostulacionServlet
  */
@@ -40,7 +38,7 @@ public class VerPostulacionServlet extends HttpServlet
 	{
 		logica.webservices.PublicadorService service = new PublicadorService();
 		logica.webservices.Publicador port = service.getPublicadorPort();
-		
+
 		String nicknamePostulante = request.getParameter("nicknamePostulante");
 		String nombreOferta = request.getParameter("nombreOferta");
 		String userAgent = request.getHeader("User-Agent");
@@ -62,7 +60,8 @@ public class VerPostulacionServlet extends HttpServlet
 			request.setAttribute("postulante", postulante);
 
 		}
-		catch (UsuarioNoExisteException_Exception | UsuarioNoExistePostulacion_Exception | IOException_Exception | OfertaLaboralNoExisteException_Exception e)
+		catch (UsuarioNoExisteException_Exception | UsuarioNoExistePostulacion_Exception | IOException_Exception
+				| OfertaLaboralNoExisteException_Exception e)
 		{
 			request.setAttribute("error", e.getMessage());
 			request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);

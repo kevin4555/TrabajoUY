@@ -2,16 +2,16 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import logica.webservices.DtOfertaLaboral;
 import logica.webservices.DtPostulacion;
 import logica.webservices.DtUsuario;
@@ -20,6 +20,8 @@ import logica.webservices.OfertaLaboralNoExisteException_Exception;
 import logica.webservices.PublicadorService;
 import logica.webservices.UsuarioNoExisteException_Exception;
 import net.java.dev.jaxb.array.StringArray;
+
+@MultipartConfig()
 
 @WebServlet("/seleccionarPostulacion")
 public class SeleccionarPostulacionServlet extends HttpServlet {
@@ -38,14 +40,17 @@ public class SeleccionarPostulacionServlet extends HttpServlet {
 		PublicadorService publicadorService = new PublicadorService();
 		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
 		
-		String nombreOferta = request.getParameter("nombreOferta");
-		String sortedData = request.getParameter("orden"); // Ordenamiento de la pagina
+		String nombreOferta = request.getParameter("nomOferta");
+		String[] sortedData = request.getParameterValues("sorted-data");
 		
-		String[] sortedIds = sortedData.split(",");
 		ArrayList<String> arrayListPostulantes = new ArrayList<String>();
-		for(String nickname: sortedIds) {
-		  arrayListPostulantes.add(nickname);
+		if (sortedData != null) {
+		    for (String element : sortedData) {
+		        String[] ids = element.split(",");
+		        arrayListPostulantes.addAll(Arrays.asList(ids));
+		    }
 		}
+		  
 		StringArray listaPsotulantes = new StringArray();
 		listaPsotulantes.getItem().addAll(arrayListPostulantes);
 		

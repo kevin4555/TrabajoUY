@@ -15,17 +15,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <meta charset="UTF-8">
 <title>Detalles de la Oferta</title>
-<link href="<%= request.getContextPath() %>/recourse/css/general.css" />
-<script src="<%= request.getContextPath() %>/resource/javaScript/oferta.js"></script>
+<link href="<%=request.getContextPath()%>/recourse/css/general.css" />
+
+<script
+	src="<%=request.getContextPath()%>/resource/javaScript/oferta.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resource/javaScript/sorteable.js"></script>
+
 <jsp:include page="../include/Head.jsp" />
 
 
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 	<jsp:include page="../include/NavBar.jsp" />
@@ -43,16 +50,19 @@
 			%>
 			<div class="col-8">
 				<section>
-				<div class="alert alert-danger" role="alert" id="errorAlert" style="display: none;">
-				<span id="errorMessage"></span>
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
+					<div class="alert alert-danger" role="alert" id="errorAlert"
+						style="display: none;">
+						<span id="errorMessage"></span>
+						<button type="button" class="btn-close" data-bs-dismiss="alert"
+							aria-label="Close"></button>
+					</div>
 					<div class="row">
 						<div class="col">
 							<div class="card">
 								<div class="row g-0">
 									<%
-									if (oferta != null && oferta.getImagenBase64() != null) {
+									if (oferta != null && oferta.getImagenBase64() != null)
+									{
 									%>
 									<div
 										class="col-md-4 justify-content-center align-items-center d-flex">
@@ -64,23 +74,30 @@
 									%>
 									<div class="col-md-8">
 										<div class="card-body">
-										<div class="card-header d-flex justify-content-between align-items-start">
-                                	<h5  class=" card-title">
-                                            <%= oferta.getNombre() %>
-	                                </h5>
-	                                <%
-				                    TipoUsuario tipoUsuarioSesion = (TipoUsuario) session.getAttribute("tipoUsuario");
-				                    if (tipoUsuarioSesion == TipoUsuario.POSTULANTE) { 
-				                    	DtPostulante postulante = (DtPostulante) usuario; %>
-				                    		<div id="estrella" class="star-icon" onclick="agregarFavorita('<%= postulante.getNickname() %>', '<%= oferta.getNombre() %>')">
-			     								<i id="estrellaIcon" class="bi bi-star<%= postulante.getOfertasFavoritas().contains(oferta.getNombre())? "-fill":"" %> fs-5 orange-star" ></i>
-			    							</div>	                        
-				                    <% } %>	                                
-			    				</div>
-											
+											<div
+												class="card-header d-flex justify-content-between align-items-start">
+												<h5 class=" card-title">
+													<%=oferta.getNombre()%>
+												</h5>
+												<%
+												TipoUsuario tipoUsuarioSesion = (TipoUsuario) session.getAttribute("tipoUsuario");
+												if (tipoUsuarioSesion == TipoUsuario.POSTULANTE)
+												{
+													DtPostulante postulante = (DtPostulante) usuario;
+												%>
+												<div id="estrella" class="star-icon"
+													onclick="agregarFavorita('<%=postulante.getNickname()%>', '<%=oferta.getNombre()%>')">
+													<i id="estrellaIcon"
+														class="bi bi-star<%=postulante.getOfertasFavoritas().contains(oferta.getNombre()) ? "-fill" : ""%> fs-5 orange-star"></i>
+												</div>
+												<%
+												}
+												%>
+											</div>
+
 										</div>
 										<div class="card-body">
-										<p class="card-text"><%=oferta.getDescripcion()%></p>
+											<p class="card-text"><%=oferta.getDescripcion()%></p>
 											<ul class="list-group list-group-flush">
 												<li class="list-group-item"><b>Remuneración:</b> <%=oferta.getRemuneracion()%></li>
 												<li class="list-group-item"><b>Horario:</b> <%=oferta.getHorarioInicio()%>
@@ -89,14 +106,17 @@
 												<li class="list-group-item"><b>Ciudad:</b> <%=oferta.getCiudad()%></li>
 												<li class="list-group-item"><b>Fecha de alta:</b> <%=oferta.getFechaAltaString()%></li>
 												<li class="list-group-item"><b>Keywords:</b> <%
- if (oferta.getKeywords() != null) {
- 	for (String keyword : oferta.getKeywords()) {
+ if (oferta.getKeywords() != null)
+ {
+ 	for (String keyword : oferta.getKeywords())
+ 	{
  		out.print(keyword + ", ");
  	}
  }
  %></li>
 												<%
-												if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa())) {
+												if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa()))
+												{
 												%>
 												<li class="list-group-item"><b>Estado de la Oferta:</b>
 													<%=oferta.getEstadoOferta()%></li>
@@ -105,8 +125,10 @@
 												%>
 											</ul>
 											<%
-											if (tipoUsuario.equals(TipoUsuario.POSTULANTE)) {
-												if ((Boolean) request.getAttribute("estaPostulado")) {
+											if (tipoUsuario.equals(TipoUsuario.POSTULANTE))
+											{
+												if ((Boolean) request.getAttribute("estaPostulado"))
+												{
 											%>
 											<div class="text-center">
 												<a
@@ -114,7 +136,9 @@
 													class="btn btn-primary">Ir a Mi Postulacion</a>
 											</div>
 											<%
-											} else {
+											}
+											else
+											{
 											%>
 											<div class="text-center">
 
@@ -135,10 +159,12 @@
 							</div>
 
 							<%
-							if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa())) {
+							if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa()))
+							{
 							%>
 							<%
-							if (oferta.getPaqueteAsociado() != null ) {
+							if (oferta.getPaqueteAsociado() != null)
+							{
 								DtPaquetePublicacion paquete = oferta.getPaqueteAsociado();
 							%>
 							<div>
@@ -176,35 +202,42 @@
 							%>
 						</div>
 						<%
-						if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa())) {
+						if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa()))
+						{
 						%>
 						<div class="col-md-3">
 
 							<%
-							if (oferta.getPostulaciones() != null) {
+							if (oferta.getPostulaciones() != null)
+							{
 							%>
 							<div>
 								<h1>Postulaciones</h1>
 							</div>
 							<form
-								action="<%=request.getContextPath()%>/seleccionarPostulacion"
-								id="frmExample" method="post" enctype="multipart/form-data">
+								action="<%=request.getContextPath()%>/seleccionarPostulacion" method="post"
+								id="frmExample" enctype="multipart/form-data">
+								<input type="hidden" name="nomOferta"
+									value="<%=oferta.getNombre()%>" id="nomOferta">
 								<ul id="sortable" class="list-group">
 									<%
-									for (DtPostulacion postulacion : oferta.getPostulaciones()) {
+									for (DtPostulacion postulacion : oferta.getPostulaciones())
+									{
 									%>
-									<li>
-										<div class="card"
-											id="postulante<%=i%>">
+									<li id="<%=postulacion.getNicknamePostulante()%>">
+										<div class="card">
 											<%
-											if (mapImagenes != null && mapImagenes.getOrDefault(postulacion.getNicknamePostulante(), null) != null) {
+											if (mapImagenes != null && mapImagenes.getOrDefault(postulacion.getNicknamePostulante(), null) != null)
+											{
 											%>
 
 											<img
 												src="data:image/png;base64,<%=mapImagenes.get(postulacion.getNicknamePostulante())%>"
 												class="card-img-top" />
 											<%
-											} else {
+											}
+											else
+											{
 											%>
 											<img src="" class="card-img-top" />
 											<%
@@ -226,21 +259,24 @@
 												</p>
 												<a href="<%=postulacionUrl%>" class="btn btn-primary">Postulacion</a>
 											</div>
-											<% i = i + 1; %>
+											<%
+											i = i + 1;
+											%>
 										</div> <%
  }
  %>
 									</li>
 								</ul>
-
+								<input type="hidden" id="sorted-data" name="sorted-data"
+									value="">
 								<%
 								String contextPath3 = request.getContextPath();
 								%>
-								<div class="espacio"></div>
-								<a class="btn btn-secondary"
-									href="<%=contextPath3%>/seleccionarPostulacion?nombreOferta=<%=oferta.getNombre()%>">Confirmar
-									Orden</a>
 
+								<div class="espacio"></div>
+
+								<input class="btn btn-secondary" type="submit" value="Confirmar"
+									id="guardarOrdenButton" />
 							</form>
 							<%
 							}
@@ -256,7 +292,6 @@
 			</div>
 		</div>
 	</main>
-	<script
-		src="<%=request.getContextPath()%>/resource/javaScript/sorteable.js"></script>
+
 </body>
 </html>
