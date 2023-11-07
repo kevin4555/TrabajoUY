@@ -7,9 +7,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dtPostulacion complex type.
+ * <p>Clase Java para dtPostulacion complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
  * <complexType name="dtPostulacion">
@@ -49,7 +49,7 @@ public class DtPostulacion {
     protected String fechaPostulacionString;
 
     /**
-     * Gets the value of the nicknamePostulante property.
+     * Obtiene el valor de la propiedad nicknamePostulante.
      * 
      * @return
      *     possible object is
@@ -61,7 +61,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Sets the value of the nicknamePostulante property.
+     * Define el valor de la propiedad nicknamePostulante.
      * 
      * @param value
      *     allowed object is
@@ -73,7 +73,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Gets the value of the descripMotivacion property.
+     * Obtiene el valor de la propiedad descripMotivacion.
      * 
      * @return
      *     possible object is
@@ -85,7 +85,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Sets the value of the descripMotivacion property.
+     * Define el valor de la propiedad descripMotivacion.
      * 
      * @param value
      *     allowed object is
@@ -97,7 +97,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Gets the value of the cvReducido property.
+     * Obtiene el valor de la propiedad cvReducido.
      * 
      * @return
      *     possible object is
@@ -109,7 +109,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Sets the value of the cvReducido property.
+     * Define el valor de la propiedad cvReducido.
      * 
      * @param value
      *     allowed object is
@@ -121,7 +121,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Gets the value of the nombreOferta property.
+     * Obtiene el valor de la propiedad nombreOferta.
      * 
      * @return
      *     possible object is
@@ -133,7 +133,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Sets the value of the nombreOferta property.
+     * Define el valor de la propiedad nombreOferta.
      * 
      * @param value
      *     allowed object is
@@ -145,7 +145,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Gets the value of the linkVideo property.
+     * Obtiene el valor de la propiedad linkVideo.
      * 
      * @return
      *     possible object is
@@ -157,7 +157,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Sets the value of the linkVideo property.
+     * Define el valor de la propiedad linkVideo.
      * 
      * @param value
      *     allowed object is
@@ -169,7 +169,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Gets the value of the fechaPostulacionString property.
+     * Obtiene el valor de la propiedad fechaPostulacionString.
      * 
      * @return
      *     possible object is
@@ -181,7 +181,7 @@ public class DtPostulacion {
     }
 
     /**
-     * Sets the value of the fechaPostulacionString property.
+     * Define el valor de la propiedad fechaPostulacionString.
      * 
      * @param value
      *     allowed object is

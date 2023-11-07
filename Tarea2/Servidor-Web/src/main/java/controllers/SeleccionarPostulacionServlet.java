@@ -3,10 +3,12 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -17,11 +19,17 @@ import logica.webservices.IOException_Exception;
 import logica.webservices.OfertaLaboralNoExisteException_Exception;
 import logica.webservices.PublicadorService;
 import logica.webservices.UsuarioNoExisteException_Exception;
+import net.java.dev.jaxb.array.StringArray;
 
 @WebServlet("/seleccionarPostulacion")
-public class SeleccionarPostulacionServlet {
+public class SeleccionarPostulacionServlet extends HttpServlet {
 
-	public SeleccionarPostulacionServlet() {
+	/**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+
+  public SeleccionarPostulacionServlet() {
 		super();
 	}
 
@@ -29,18 +37,20 @@ public class SeleccionarPostulacionServlet {
 			throws ServletException, IOException {
 		PublicadorService publicadorService = new PublicadorService();
 		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
-		HttpSession sesion = request.getSession();
+		
 		String nombreOferta = request.getParameter("nombreOferta");
 		String sortedData = request.getParameter("sorted-data"); // Ordenamiento de la pagina
-		ArrayList<String> ordenPorId = (ArrayList<String>) new ArrayList<String>();
+		
 		String[] sortedIds = sortedData.split(",");
-
-		for (String id : sortedIds) {
-			ordenPorId.add(id);
-			
+		ArrayList<String> arrayListPostulantes = new ArrayList<String>();
+		for(String nickname: sortedIds) {
+		  arrayListPostulantes.add(nickname);
 		}
+		StringArray listaPsotulantes = new StringArray();
+		listaPsotulantes.getItem().addAll(arrayListPostulantes);
+		
 		try {
-			port.ordenarPostulaciones(nombreOferta, ordenPorId);
+			port.ordenarPostulaciones(nombreOferta, listaPsotulantes);
 			
 			DtOfertaLaboral oferta = port.obtenerDtOfertaLaboral(nombreOferta);
 			Map<String, String> mapImagen = new HashMap<String, String>();

@@ -11,9 +11,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dtOfertaLaboral complex type.
+ * <p>Clase Java para dtOfertaLaboral complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
  * <complexType name="dtOfertaLaboral">
@@ -98,7 +98,7 @@ public class DtOfertaLaboral {
     protected String fechaFinalizacionString;
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -110,7 +110,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
@@ -122,7 +122,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the descripcion property.
+     * Obtiene el valor de la propiedad descripcion.
      * 
      * @return
      *     possible object is
@@ -134,7 +134,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the descripcion property.
+     * Define el valor de la propiedad descripcion.
      * 
      * @param value
      *     allowed object is
@@ -146,7 +146,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the ciudad property.
+     * Obtiene el valor de la propiedad ciudad.
      * 
      * @return
      *     possible object is
@@ -158,7 +158,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the ciudad property.
+     * Define el valor de la propiedad ciudad.
      * 
      * @param value
      *     allowed object is
@@ -170,7 +170,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the departamento property.
+     * Obtiene el valor de la propiedad departamento.
      * 
      * @return
      *     possible object is
@@ -182,7 +182,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the departamento property.
+     * Define el valor de la propiedad departamento.
      * 
      * @param value
      *     allowed object is
@@ -194,7 +194,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the horarioInicio property.
+     * Obtiene el valor de la propiedad horarioInicio.
      * 
      * @return
      *     possible object is
@@ -206,7 +206,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the horarioInicio property.
+     * Define el valor de la propiedad horarioInicio.
      * 
      * @param value
      *     allowed object is
@@ -218,7 +218,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the horarioFinal property.
+     * Obtiene el valor de la propiedad horarioFinal.
      * 
      * @return
      *     possible object is
@@ -230,7 +230,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the horarioFinal property.
+     * Define el valor de la propiedad horarioFinal.
      * 
      * @param value
      *     allowed object is
@@ -242,7 +242,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the remuneracion property.
+     * Obtiene el valor de la propiedad remuneracion.
      * 
      * @return
      *     possible object is
@@ -254,7 +254,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the remuneracion property.
+     * Define el valor de la propiedad remuneracion.
      * 
      * @param value
      *     allowed object is
@@ -297,7 +297,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the estadoOferta property.
+     * Obtiene el valor de la propiedad estadoOferta.
      * 
      * @return
      *     possible object is
@@ -309,7 +309,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the estadoOferta property.
+     * Define el valor de la propiedad estadoOferta.
      * 
      * @param value
      *     allowed object is
@@ -321,7 +321,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the imagenBase64 property.
+     * Obtiene el valor de la propiedad imagenBase64.
      * 
      * @return
      *     possible object is
@@ -333,7 +333,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the imagenBase64 property.
+     * Define el valor de la propiedad imagenBase64.
      * 
      * @param value
      *     allowed object is
@@ -345,7 +345,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the paqueteAsociado property.
+     * Obtiene el valor de la propiedad paqueteAsociado.
      * 
      * @return
      *     possible object is
@@ -357,7 +357,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the paqueteAsociado property.
+     * Define el valor de la propiedad paqueteAsociado.
      * 
      * @param value
      *     allowed object is
@@ -400,7 +400,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the estaVencida property.
+     * Obtiene el valor de la propiedad estaVencida.
      * 
      * @return
      *     possible object is
@@ -412,7 +412,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the estaVencida property.
+     * Define el valor de la propiedad estaVencida.
      * 
      * @param value
      *     allowed object is
@@ -424,7 +424,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the nombreTipoPublicacion property.
+     * Obtiene el valor de la propiedad nombreTipoPublicacion.
      * 
      * @return
      *     possible object is
@@ -436,7 +436,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the nombreTipoPublicacion property.
+     * Define el valor de la propiedad nombreTipoPublicacion.
      * 
      * @param value
      *     allowed object is
@@ -448,7 +448,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the empresa property.
+     * Obtiene el valor de la propiedad empresa.
      * 
      * @return
      *     possible object is
@@ -460,7 +460,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the empresa property.
+     * Define el valor de la propiedad empresa.
      * 
      * @param value
      *     allowed object is
@@ -472,7 +472,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the visitas property.
+     * Obtiene el valor de la propiedad visitas.
      * 
      */
     public int getVisitas() {
@@ -480,7 +480,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the visitas property.
+     * Define el valor de la propiedad visitas.
      * 
      */
     public void setVisitas(int value) {
@@ -488,7 +488,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the exposicion property.
+     * Obtiene el valor de la propiedad exposicion.
      * 
      * @return
      *     possible object is
@@ -500,7 +500,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the exposicion property.
+     * Define el valor de la propiedad exposicion.
      * 
      * @param value
      *     allowed object is
@@ -512,7 +512,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the fechaAltaString property.
+     * Obtiene el valor de la propiedad fechaAltaString.
      * 
      * @return
      *     possible object is
@@ -524,7 +524,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the fechaAltaString property.
+     * Define el valor de la propiedad fechaAltaString.
      * 
      * @param value
      *     allowed object is
@@ -536,7 +536,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the fechaResolucionString property.
+     * Obtiene el valor de la propiedad fechaResolucionString.
      * 
      * @return
      *     possible object is
@@ -548,7 +548,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the fechaResolucionString property.
+     * Define el valor de la propiedad fechaResolucionString.
      * 
      * @param value
      *     allowed object is
@@ -560,7 +560,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Gets the value of the fechaFinalizacionString property.
+     * Obtiene el valor de la propiedad fechaFinalizacionString.
      * 
      * @return
      *     possible object is
@@ -572,7 +572,7 @@ public class DtOfertaLaboral {
     }
 
     /**
-     * Sets the value of the fechaFinalizacionString property.
+     * Define el valor de la propiedad fechaFinalizacionString.
      * 
      * @param value
      *     allowed object is

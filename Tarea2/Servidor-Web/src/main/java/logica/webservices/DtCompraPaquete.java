@@ -10,9 +10,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dtCompraPaquete complex type.
+ * <p>Clase Java para dtCompraPaquete complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
  * <complexType name="dtCompraPaquete">
@@ -78,7 +78,7 @@ public class DtCompraPaquete {
     }
 
     /**
-     * Gets the value of the paquete property.
+     * Obtiene el valor de la propiedad paquete.
      * 
      * @return
      *     possible object is
@@ -90,7 +90,7 @@ public class DtCompraPaquete {
     }
 
     /**
-     * Sets the value of the paquete property.
+     * Define el valor de la propiedad paquete.
      * 
      * @param value
      *     allowed object is
@@ -102,7 +102,7 @@ public class DtCompraPaquete {
     }
 
     /**
-     * Gets the value of the fechaCompraString property.
+     * Obtiene el valor de la propiedad fechaCompraString.
      * 
      * @return
      *     possible object is
@@ -114,7 +114,7 @@ public class DtCompraPaquete {
     }
 
     /**
-     * Sets the value of the fechaCompraString property.
+     * Define el valor de la propiedad fechaCompraString.
      * 
      * @param value
      *     allowed object is
@@ -126,7 +126,7 @@ public class DtCompraPaquete {
     }
 
     /**
-     * Gets the value of the fechaVencimientoString property.
+     * Obtiene el valor de la propiedad fechaVencimientoString.
      * 
      * @return
      *     possible object is
@@ -138,7 +138,7 @@ public class DtCompraPaquete {
     }
 
     /**
-     * Sets the value of the fechaVencimientoString property.
+     * Define el valor de la propiedad fechaVencimientoString.
      * 
      * @param value
      *     allowed object is

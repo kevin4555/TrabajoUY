@@ -7,9 +7,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for bufferedImage complex type.
+ * <p>Clase Java para bufferedImage complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
  * <complexType name="bufferedImage">
@@ -34,7 +34,7 @@ public class BufferedImage {
     protected Raster data;
 
     /**
-     * Gets the value of the data property.
+     * Obtiene el valor de la propiedad data.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class BufferedImage {
     }
 
     /**
-     * Sets the value of the data property.
+     * Define el valor de la propiedad data.
      * 
      * @param value
      *     allowed object is

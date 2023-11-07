@@ -709,4 +709,13 @@ public class Publicador {
     controladorUsuario.removerOfertaFavorita(
           nicknamePostulante, nombreOferta);
   }
+  
+  @WebMethod
+  public void ordenarPostulaciones(String nombreOferta, String [] nicknamePostulantes) throws OfertaLaboralNoExisteException {
+    ArrayList<String> listaPostulantes = new ArrayList<String>();
+    for(String postulante : nicknamePostulantes) {
+      listaPostulantes.add(postulante);
+    }
+    controladorOferta.ordenarPostulaciones(nombreOferta, listaPostulantes);
+  }
 }

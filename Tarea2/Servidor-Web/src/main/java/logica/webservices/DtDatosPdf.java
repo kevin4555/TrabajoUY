@@ -7,9 +7,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dtDatosPdf complex type.
+ * <p>Clase Java para dtDatosPdf complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>{@code
  * <complexType name="dtDatosPdf">
@@ -49,7 +49,7 @@ public class DtDatosPdf {
     protected String fechaResolucion;
 
     /**
-     * Gets the value of the nombrePostulante property.
+     * Obtiene el valor de la propiedad nombrePostulante.
      * 
      * @return
      *     possible object is
@@ -61,7 +61,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Sets the value of the nombrePostulante property.
+     * Define el valor de la propiedad nombrePostulante.
      * 
      * @param value
      *     allowed object is
@@ -73,7 +73,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Gets the value of the nombreEmpresa property.
+     * Obtiene el valor de la propiedad nombreEmpresa.
      * 
      * @return
      *     possible object is
@@ -85,7 +85,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Sets the value of the nombreEmpresa property.
+     * Define el valor de la propiedad nombreEmpresa.
      * 
      * @param value
      *     allowed object is
@@ -97,7 +97,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Gets the value of the nombreOferta property.
+     * Obtiene el valor de la propiedad nombreOferta.
      * 
      * @return
      *     possible object is
@@ -109,7 +109,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Sets the value of the nombreOferta property.
+     * Define el valor de la propiedad nombreOferta.
      * 
      * @param value
      *     allowed object is
@@ -121,7 +121,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Gets the value of the posicion property.
+     * Obtiene el valor de la propiedad posicion.
      * 
      */
     public int getPosicion() {
@@ -129,7 +129,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Sets the value of the posicion property.
+     * Define el valor de la propiedad posicion.
      * 
      */
     public void setPosicion(int value) {
@@ -137,7 +137,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Gets the value of the fechaPostulacion property.
+     * Obtiene el valor de la propiedad fechaPostulacion.
      * 
      * @return
      *     possible object is
@@ -149,7 +149,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Sets the value of the fechaPostulacion property.
+     * Define el valor de la propiedad fechaPostulacion.
      * 
      * @param value
      *     allowed object is
@@ -161,7 +161,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Gets the value of the fechaResolucion property.
+     * Obtiene el valor de la propiedad fechaResolucion.
      * 
      * @return
      *     possible object is
@@ -173,7 +173,7 @@ public class DtDatosPdf {
     }
 
     /**
-     * Sets the value of the fechaResolucion property.
+     * Define el valor de la propiedad fechaResolucion.
      * 
      * @param value
      *     allowed object is
