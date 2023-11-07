@@ -1,5 +1,15 @@
 package logica.webservices;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -27,14 +37,7 @@ import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import javax.imageio.ImageIO;
+import logica.controllers.ConfigManager;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtCantidadTipoPublicacion;
 import logica.datatypes.DtCompraPaquete;
@@ -56,14 +59,15 @@ import logica.interfaces.IcontroladorUsuario;
 @SOAPBinding(style = Style.RPC,
       parameterStyle = ParameterStyle.WRAPPED)
 public class Publicador {
-  private Fabrica factory = Fabrica.getInstance();
-  private IcontroladorOferta controladorOferta =
-        factory.obtenerControladorOferta();
-  private IcontroladorUsuario controladorUsuario =
-        factory.obtenerControladorUsuario();
-  private Endpoint endpoint = null;
-
-  private String urlBase = "http://localhost:8085"; 
+	private Fabrica factory = Fabrica.getInstance();
+	private ConfigManager configManager = ConfigManager.getInstance();
+	private IcontroladorOferta controladorOferta = factory.obtenerControladorOferta();
+	private IcontroladorUsuario controladorUsuario = factory.obtenerControladorUsuario();
+	private Endpoint endpoint = null;
+	private final String dominio = configManager.getProperty("dominio");
+	private final String puerto = configManager.getProperty("puerto");
+	
+	private String UrlBase = dominio + ":" + puerto; // ToDo : Cambiar por lo que es te en el archivo de propiedades
 
   // Constructor
   public Publicador() {
@@ -72,8 +76,10 @@ public class Publicador {
 
   @WebMethod(exclude = true)
   public void publicar() {
+	  String urlWebSrv = UrlBase + "/webservices";
+	  System.out.println("URL_WEB_SERVICE: " + urlWebSrv);
     endpoint =
-          Endpoint.publish(urlBase + "/webservices", this);
+          Endpoint.publish(urlWebSrv, this);
   }
 
   @WebMethod(exclude = true)
