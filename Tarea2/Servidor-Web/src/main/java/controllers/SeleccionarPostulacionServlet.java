@@ -39,7 +39,7 @@ public class SeleccionarPostulacionServlet extends HttpServlet {
 		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
 		
 		String nombreOferta = request.getParameter("nombreOferta");
-		String sortedData = request.getParameter("sorted-data"); // Ordenamiento de la pagina
+		String sortedData = request.getParameter("orden"); // Ordenamiento de la pagina
 		
 		String[] sortedIds = sortedData.split(",");
 		ArrayList<String> arrayListPostulantes = new ArrayList<String>();

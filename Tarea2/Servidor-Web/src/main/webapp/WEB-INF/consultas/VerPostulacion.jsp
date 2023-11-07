@@ -78,16 +78,16 @@
 									<br> <br> <strong>Fecha de postulación: </strong>
 									<%=fecha%>
 									<br> <br>
+									<%
+										if(video != null){%>
+									
 									<iframe class="videoPostulacion"
 									
 										src="https://www.youtube.com/embed/<%=videoId%>"
 										frameborder="0" allowfullscreen></iframe>
-										<iframe class="videoContainer"
-										src="https://www.youtube.com/embed/u4IkJgTu22E?si=GFgWGxhFIOPSbp1K"
-										frameborder="0"
-										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-										allowfullscreen></iframe>
+										
 										<br><br>
+									<%} %>
 								</p>
 							</div>
 						</div>

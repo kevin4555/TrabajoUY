@@ -135,10 +135,10 @@
 							</div>
 
 							<%
-							if (tipoUsuario.equals(TipoUsuario.EMPRESA)) {
+							if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa())) {
 							%>
 							<%
-							if (oferta.getPaqueteAsociado() != null) {
+							if (oferta.getPaqueteAsociado() != null ) {
 								DtPaquetePublicacion paquete = oferta.getPaqueteAsociado();
 							%>
 							<div>
@@ -176,7 +176,7 @@
 							%>
 						</div>
 						<%
-						if (tipoUsuario.equals(TipoUsuario.EMPRESA)) {
+						if (tipoUsuario.equals(TipoUsuario.EMPRESA) && usuario.getNickname().equals(oferta.getEmpresa())) {
 						%>
 						<div class="col-md-3">
 
