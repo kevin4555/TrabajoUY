@@ -30,8 +30,15 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>ServidorCentral</finalName>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
+			<resource>
+				<directory>resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
 			<resource>
 				<directory>img/usuarios</directory>
 				<excludes>

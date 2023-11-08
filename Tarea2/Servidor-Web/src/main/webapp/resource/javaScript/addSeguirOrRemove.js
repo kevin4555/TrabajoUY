@@ -12,8 +12,7 @@ function cambiarIcono() {
   }
 }
 
-async function seguirDejarSeguir(nickName){ // seguir/dejarSeguir
-console.log(nickName)
+async function seguirDejarSeguir(nickName){ 
 	try{
 		 const respuesta = await fetch(`seguirDejarSeguir?perfilUsuario=${nickName}`, {
       						method: "GET",});
