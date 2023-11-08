@@ -274,9 +274,10 @@
 								%>
 
 								<div class="espacio"></div>
-
+	`							<% if(oferta.getFechaResolucionString() == null) {%>
 								<input class="btn btn-secondary" type="submit" value="Confirmar"
 									id="guardarOrdenButton" />
+								<%} %>
 							</form>
 							<%
 							}
