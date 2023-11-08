@@ -6,10 +6,12 @@ import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import excepciones.PostulanteYaEsOfertaFavoritaException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaEstaSeguidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
@@ -53,6 +55,7 @@ public class Loader {
 
   /**
    * Metodo cargar datos.
+   * 
    */
 
   public void cargarDatos() throws UsuarioNoExisteException,
@@ -65,7 +68,10 @@ public class Loader {
         OfertaLaboralYaExisteException,
         PaquetePublicacionYaExisteException,
         UsuarioYaExistePostulacion, IOException,
-        PaquetePublicacionNoExisteException {
+        PaquetePublicacionNoExisteException,
+        UsuarioYaEstaSeguidoException,
+        PostulanteYaEsOfertaFavoritaException {
+
     IcontroladorUsuario controladorUsuario = Fabrica
           .getInstance().obtenerControladorUsuario();
     controladorUsuario.altaPostulante("lgarcia", "Lucía",
@@ -96,7 +102,7 @@ public class Loader {
           "Silva", "camilasilva89@gmail.com",
           LocalDate.parse("1989-09-30"), "Uruguaya",
           this.getBufferImage("U7.jpg"), "mnjkiu89");
-    controladorUsuario.altaPostulante("gonza95",
+    controladorUsuario.altaPostulante("sebgon",
           "Sebastián", "González", "gonza95@yahoo.com",
           LocalDate.parse("1995-01-18"), "Colombiana",
           this.getBufferImage("U8.jpg"), "ytrewq10");
@@ -124,7 +130,7 @@ public class Loader {
           this.getBufferImage("U11.jpg"), "qsxcdw43");
     controladorUsuario.altaEmpresa("FusionTech", "William",
           "Smith", "contacto@FusionTech.net",
-          "FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y "
+          "FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y"
                 + "la automatización avanzada. Nuestro equipo multidisciplinario de ingenieros,"
                 + " científicos de datos y desarrolladores crea soluciones innovadoras que "
                 + "aprovechan la potencia de la IA para transformar industrias. Desde la "
@@ -138,7 +144,7 @@ public class Loader {
           this.getBufferImage("U12.jpg"), "qpwoei586");
     controladorUsuario.altaEmpresa("GlobalHealth",
           "Isabella", "Brown", "jobs@GlobalHealth.uy",
-          "GlobalHealth Dynamics es una empresa comprometida con el avance de la atención médica a "
+          "GlobalHealth Dynamics es una empresa comprometida con el avance de la atención médica a"
                 + "nivel mundial. Como líderes en el campo de la salud digital, "
                 + "desarrollamos plataformas y herramientas que permiten a los profesionales de "
                 + "la salud ofrecer diagnósticos más precisos, tratamientos personalizados y "
@@ -176,6 +182,79 @@ public class Loader {
           "TechSolutions.com",
           this.getBufferImage("U16.jpg"),
           "1ngs03p");
+
+    controladorUsuario.agregarSeguidor("lgarcia",
+          "EcoTech");
+    controladorUsuario.agregarSeguidor("lgarcia",
+          "FusionTech");
+    controladorUsuario.agregarSeguidor("lgarcia",
+          "GlobalHealth");
+    controladorUsuario.agregarSeguidor("lgarcia", "ANTEL");
+    controladorUsuario.agregarSeguidor("lgarcia", "MIEM");
+
+    controladorUsuario.agregarSeguidor("matilo",
+          "FusionTech");
+
+    controladorUsuario.agregarSeguidor("maro",
+          "FusionTech");
+    controladorUsuario.agregarSeguidor("maro",
+          "GlobalHealth");
+    controladorUsuario.agregarSeguidor("maro", "MIEM");
+    controladorUsuario.agregarSeguidor("maro",
+          "TechSolutions");
+
+    controladorUsuario.agregarSeguidor("javierf",
+          "FusionTech");
+    controladorUsuario.agregarSeguidor("javierf", "ANTEL");
+
+    controladorUsuario.agregarSeguidor("valen25",
+          "GlobalHealth");
+    controladorUsuario.agregarSeguidor("valen25", "MIEM");
+    controladorUsuario.agregarSeguidor("valen25",
+          "TechSolutions");
+
+    controladorUsuario.agregarSeguidor("andpe12",
+          "FusionTech");
+    controladorUsuario.agregarSeguidor("andpe12", "ANTEL");
+    controladorUsuario.agregarSeguidor("andpe12", "MIEM");
+
+    controladorUsuario.agregarSeguidor("sicam", "EcoTech");
+    controladorUsuario.agregarSeguidor("sicam", "ANTEL");
+
+    controladorUsuario.agregarSeguidor("sebgon",
+          "FusionTech");
+    controladorUsuario.agregarSeguidor("sebgon",
+          "GlobalHealth");
+
+    controladorUsuario.agregarSeguidor("isabel", "lgarcia");
+    controladorUsuario.agregarSeguidor("isabel", "EcoTech");
+    controladorUsuario.agregarSeguidor("isabel",
+          "FusionTech");
+    controladorUsuario.agregarSeguidor("isabel", "MIEM");
+
+    controladorUsuario.agregarSeguidor("EcoTech",
+          "lgarcia");
+    controladorUsuario.agregarSeguidor("EcoTech",
+          "FusionTech");
+
+    controladorUsuario.agregarSeguidor("FusionTech",
+          "GlobalHealth");
+
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "lgarcia");
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "ANTEL");
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "MIEM");
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "TechSolutions");
+
+    controladorUsuario.agregarSeguidor("ANTEL", "MIEM");
+
+    controladorUsuario.agregarSeguidor("MIEM", "ANTEL");
+
+    controladorUsuario.agregarSeguidor("TechSolutions",
+          "MIEM");
 
     IcontroladorOferta controladorOferta = Fabrica
           .getInstance().obtenerControladorOferta();
@@ -276,15 +355,15 @@ public class Loader {
           LocalDate.parse("2023-08-13"), paquete4);
 
     controladorUsuario.comprarPaquete("EcoTech", "Básico",
-          LocalDate.parse("2023-09-29"));
+          LocalDate.parse("2023-10-30"));
     controladorUsuario.comprarPaquete("TechSolutions",
-          "Destacado", LocalDate.parse("2023-09-08"));
+          "Destacado", LocalDate.parse("2023-10-08"));
     controladorUsuario.comprarPaquete("EcoTech", "Premium",
-          LocalDate.parse("2023-10-01"));
+          LocalDate.parse("2023-10-31"));
     controladorUsuario.comprarPaquete("FusionTech",
-          "Destacado", LocalDate.parse("2023-10-23"));
+          "Destacado", LocalDate.parse("2023-10-13"));
     controladorUsuario.comprarPaquete("EcoTech", "Express",
-          LocalDate.parse("2023-09-01"));
+          LocalDate.parse("2023-10-01"));
 
     List<String> keywords = new ArrayList<String>();
     Keyword keyword1 = controladorOferta
@@ -334,7 +413,7 @@ public class Loader {
           "Trabaja en colaboración con nuestro talentoso equipo de diseño "
                 + "para crear soluciones impactantes.",
           "14:00", "18:00", 65000f, "Rosario", "Colonia",
-          LocalDate.parse("2023-09-29"), "Estándar",
+          LocalDate.parse("2023-10-29"), "Estándar",
           "FusionTech", keywords3,
           this.getBufferImage("O3.jpg"), null);
 
@@ -345,7 +424,7 @@ public class Loader {
                 + "en análisis y visualizaciones de datos.",
           "09:00", "13:00", 40000f, "Maldonado",
           "Maldonado",
-          LocalDate.parse("2023-09-19"), "Premium", "ANTEL",
+          LocalDate.parse("2023-10-19"), "Premium", "ANTEL",
           keywords4, this.getBufferImage("O4.jpg"), null);
 
     List<String> keywords5 = new ArrayList<String>();
@@ -354,7 +433,7 @@ public class Loader {
           "Gestiona y crea contenido persuasivo y relevante para impulsar "
                 + "la presencia en línea de nuestros clientes.",
           "18:00", "22:00", 10000f, "Montevideo",
-          "Montevideo", LocalDate.parse("2023-10-02"),
+          "Montevideo", LocalDate.parse("2023-10-20"),
           "Destacada", "MIEM", keywords5,
           this.getBufferImage("O5.jpg"), null);
 
@@ -364,7 +443,7 @@ public class Loader {
           "Ofrece un excelente servicio de soporte técnico a nuestros clientes, "
                 + "resolviendo problemas y brindando soluciones",
           "09:00", "18:00", 30000f, "Minas", "Lavalleja",
-          LocalDate.parse("2023-09-10"), "Básica",
+          LocalDate.parse("2023-11-02"), "Básica",
           "TechSolutions", keywords6,
           this.getBufferImage("O6.jpg"), "Destacado");
 
@@ -374,7 +453,7 @@ public class Loader {
           "A. de Marketing Digital",
           "Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.",
           "10:00", "19:00", 80000f, "Flores", "Flores",
-          LocalDate.parse("2023-09-21"), "Premium",
+          LocalDate.parse("2023-11-02"), "Premium",
           "EcoTech",
           keywords7, this.getBufferImage("O7.jpg"), null);
 
@@ -383,7 +462,7 @@ public class Loader {
     controladorOferta.altaOfertaLaboral("Contador Senior",
           "Unete a nuestro equipo contable y ayuda en la gestión financiera de la empresa.",
           "08:30", "17:30", 100000f, "Colonia Suiza",
-          "Colonia", LocalDate.parse("2023-10-02"),
+          "Colonia", LocalDate.parse("2023-11-04"),
           "Destacada", "GlobalHealth", keywords8,
           this.getBufferImage("O8.jpg"), null);
 
@@ -398,7 +477,7 @@ public class Loader {
                 + "EL ART. 11 DE LA LEY 17.930 DE 19 DE DICIEMBRE DE 2005).\r\n"
                 + "",
           "09:00", "17:00", 40000f, "Paysandú", "Paysandú",
-          LocalDate.parse("2023-09-29"), "Premium", "ANTEL",
+          LocalDate.parse("2023-10-29"), "Premium", "ANTEL",
           keywords9, this.getBufferImage("O9.jpg"), null);
 
     List<String> keywords10 = new ArrayList<String>();
@@ -413,7 +492,7 @@ public class Loader {
                 + "rollo de software sostenible y ecológico. Impulsa la\r\n"
                 + "innovación y contribuye a un futuro más verde.",
           "09:00", "16:00", 123000f, "Montevideo",
-          "Montevideo", LocalDate.parse("2023-10-02"),
+          "Montevideo", LocalDate.parse("2023-11-04"),
           "Destacada", "EcoTech", keywords10,
           this.getBufferImage("O10.jpg"), "Básico");
 
@@ -425,7 +504,7 @@ public class Loader {
                 + "ware personalizadas de extremo a extremo. Colabora\r\n"
                 + "en proyectos emocionantes y desafiantes.",
           "04:00", "13:00", 135000f, "Fray Bentos",
-          "Río Negro", LocalDate.parse("2023-09-25"),
+          "Río Negro", LocalDate.parse("2023-10-25"),
           "Premium", "TechSolutions", keywords11,
           this.getBufferImage("O11.jpg"), null);
 
@@ -438,7 +517,7 @@ public class Loader {
                 + "era la entrega exitosa de soluciones de software personalizadas."
                 + " Colabora con equipos multidisciplinarios y clientes exigentes.",
           "04:00", "12:00", 230000f, "Montevideo",
-          "Montevideo", LocalDate.parse("2023-10-02"),
+          "Montevideo", LocalDate.parse("2023-11-05"),
           "Destacada", "TechSolutions", keywords12,
           this.getBufferImage("O12.jpg"), null);
 
@@ -453,7 +532,7 @@ public class Loader {
                 + "sostenibles. Únete a nosotros para garantizar un im- \r\n"
                 + "pacto positivo en el medio ambiente.",
           "14:00", "18:00", 60000f, "Montevideo",
-          "Montevideo", LocalDate.parse("2023-10-01"),
+          "Montevideo", LocalDate.parse("2023-11-01"),
           "Premium", "EcoTech", keywords13,
           this.getBufferImage("O13.jpg"), null);
 
@@ -463,7 +542,8 @@ public class Loader {
           "Estoy emocionada por la oportunidad de formar parte de un equipo "
                 + "dinámico y contribuir con mis habilidades de liderazgo.",
           LocalDate.parse("2023-10-01"), "lgarcia",
-          "Desarrollador Frontend", null);
+          "Desarrollador Frontend",
+          "https://www.youtube.com/embed/sqh77QZS0G4");
 
     controladorUsuario.registrarPostulacion(
           "Estudiante de Comunicación, habilidades en redacción y manejo de redes "
@@ -471,7 +551,8 @@ public class Loader {
           "Me encantaría formar parte de un equipo que me permita desarrollar "
                 + "mis habilidades en comunicación y marketing.",
           LocalDate.parse("2023-09-30"), "matilo",
-          "Estratega de Negocios", null);
+          "Estratega de Negocios",
+          "https://www.youtube.com/embed/ekm1D3sKoVA");
 
     controladorUsuario.registrarPostulacion(
           "Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles."
@@ -486,8 +567,9 @@ public class Loader {
                 + "Conocimientos en lectura de planos eléctricos.",
           "Estoy interesado en formar parte de un equipo que me permita aplicar "
                 + "mis habilidades técnicas y contribuir al mantenimiento eficiente.",
-          LocalDate.parse("2023-09-30"), "javierf",
-          "Diseñador UX/UI", null);
+          LocalDate.parse("2023-10-30"), "javierf",
+          "Diseñador UX/UI",
+          "https://www.youtube.com/embed/uNCzhfQCqAs");
 
     controladorUsuario.registrarPostulacion(
           "Músico profesional, experiencia en espectáculos en vivo. "
@@ -495,7 +577,8 @@ public class Loader {
           "Me gustaría combinar mi pasión por la música con una oportunidad laboral "
                 + "que me permita seguir creciendo como artista.",
           LocalDate.parse("2023-09-30"), "valen25",
-          "Estratega de Negocios", null);
+          "Estratega de Negocios",
+          "https://www.youtube.com/embed/jwiV9gbjEi8");
 
     controladorUsuario.registrarPostulacion(
           "Licenciada en Administración, me considero genia, experiencia en gestión "
@@ -505,6 +588,65 @@ public class Loader {
           LocalDate.parse("2023-10-02"), "lgarcia",
           "Estratega de Negocios", null);
 
+    controladorUsuario.registrarPostulacion(
+          "Licenciada en Administración,"
+                + "me considero la mejor menejadora de contenidos del mundo,"
+                + "tengo experiencia en gestión"
+                + "de equipos y proyectos."
+                + "Conocimientos en Microsoft"
+                + "Office.",
+          "Estoy emocionada por la oportunidad de formar parte de un"
+                + "equipo tan bonito y contribuir"
+                + "con mis habilidades de liderazgo.",
+          LocalDate.parse("2023-10-21"), "lgarcia",
+          "Content Manager", null);
+
+    controladorUsuario.registrarPostulacion(
+          "Me manejo las redes, tengo 20M"
+                + "de seguidores.",
+          "Me gustaría combinar mi pasión"
+                + "por la música con una oportunidad laboral que me permita"
+                + "seguir creciendo como artista.",
+          LocalDate.parse("2023-10-22"), "valen25",
+          "Content Manager",
+          "https://www.youtube.com/embed/jwiV9gbjEi8");
+
+    controladorUsuario.agregarOfertaFavorita("lgarcia",
+          "Desarrollador Frontend");
+    controladorUsuario.agregarOfertaFavorita("lgarcia",
+          "A. de Marketing Digital");
+    controladorUsuario.agregarOfertaFavorita("lgarcia",
+          "Gerente de Proyecto");
+
+    controladorUsuario.agregarOfertaFavorita("matilo",
+          "A. de Marketing Digital");
+
+    controladorUsuario.agregarOfertaFavorita("maro", "Desarrollador Frontend");
+    controladorUsuario.agregarOfertaFavorita("maro", "Gerente de Proyecto");
+
+    controladorUsuario.agregarOfertaFavorita("javierf",
+          "A. de Marketing Digital");
+
+    controladorUsuario.agregarOfertaFavorita("valen25",
+          "Técnico/a Básico Red");
+    controladorUsuario.agregarOfertaFavorita("valen25",
+          "A. de Marketing Digital");
+
+    
+    List<String> postulacionesOferta1 = new ArrayList<String>();
+    postulacionesOferta1.add("maro");
+    postulacionesOferta1.add("lgarcia");
+    
+    controladorOferta.ordenarPostulaciones("Desarrollador Frontend", postulacionesOferta1);
+     
+    List<String> postulacionesOferta2 = new ArrayList<String>();
+    postulacionesOferta2.add("lgarcia");
+    postulacionesOferta2.add("valen25");
+    postulacionesOferta2.add("matilo");
+
+    controladorOferta.ordenarPostulaciones("Estratega de Negocios", postulacionesOferta2);
+    
+    
     datosCargados = true;
 
   }
@@ -525,24 +667,28 @@ public class Loader {
           LocalDate.parse("2023-09-29"));
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Diseñador UX/UI", EstadoOferta.CONFIRMADA,
-          LocalDate.parse("2023-09-29"));
+          LocalDate.parse("2023-10-29"));
+    
+    controladorOferta.aceptarRechazarOfertaLaboral(
+          "Content Manager", EstadoOferta.FINALIZADA,
+          LocalDate.parse("2023-10-20"));
+    
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Soporte Técnico", EstadoOferta.CONFIRMADA,
-          LocalDate.parse("2023-10-09"));
+          LocalDate.parse("2023-11-02"));
     controladorOferta.aceptarRechazarOfertaLaboral(
           "A. de Marketing Digital",
           EstadoOferta.CONFIRMADA,
-          LocalDate.parse("2023-09-21"));
+          LocalDate.parse("2023-11-02"));
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Contador Senior", EstadoOferta.RECHAZADA,
-          LocalDate.parse("2023-10-02"));
+          LocalDate.parse("2023-11-04"));
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Técnico/a Básico Red", EstadoOferta.CONFIRMADA,
-          LocalDate.parse("2023-09-29"));
+          LocalDate.parse("2023-10-29"));
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Gerente de Proyecto", EstadoOferta.CONFIRMADA,
-          LocalDate.parse("2023-10-01"));
-
+          LocalDate.parse("2023-11-05"));
   }
 
   public static Boolean datosCargados() {

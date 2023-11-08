@@ -1,30 +1,30 @@
 package presentacion;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.text.ParseException;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
 import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
+import excepciones.PostulanteYaEsOfertaFavoritaException;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaEstaSeguidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.text.ParseException;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import logica.controllers.Fabrica;
 import logica.controllers.Loader;
 import logica.interfaces.IcontroladorOferta;
@@ -202,7 +202,15 @@ public class Principal extends JFrame {
     menuCargarDatos.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg0) {
         try {
-          cargarDatosDePrueba(arg0);
+          try {
+            cargarDatosDePrueba(arg0);
+          } catch (UsuarioYaEstaSeguidoException e) {
+            // TODO Auto-generated catch block
+            
+          } catch (PostulanteYaEsOfertaFavoritaException e) {
+            // TODO Auto-generated catch block
+            
+          }
         } catch (ParseException | KeywordNoExisteException
               | PaquetePublicacionYaExisteException
               | UsuarioEmailRepetidoException
@@ -420,7 +428,9 @@ public class Principal extends JFrame {
         PaquetePublicacionYaExisteException,
         UsuarioEmailRepetidoException,
         UsuarioYaExistePostulacion,
-        PaquetePublicacionNoExisteException {
+        PaquetePublicacionNoExisteException,
+        UsuarioYaEstaSeguidoException,
+        PostulanteYaEsOfertaFavoritaException {
     try {
 
       Loader loader = new Loader();

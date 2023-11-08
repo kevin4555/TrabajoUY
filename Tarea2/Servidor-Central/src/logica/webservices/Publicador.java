@@ -1,15 +1,5 @@
 package logica.webservices;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
 import excepciones.KeywordNoExisteException;
 import excepciones.KeywordYaExisteException;
 import excepciones.OfertaLaboralNoExisteException;
@@ -37,6 +27,14 @@ import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+import javax.imageio.ImageIO;
 import logica.controllers.ConfigManager;
 import logica.controllers.Fabrica;
 import logica.datatypes.DtCantidadTipoPublicacion;
@@ -59,25 +57,33 @@ import logica.interfaces.IcontroladorUsuario;
 @SOAPBinding(style = Style.RPC,
       parameterStyle = ParameterStyle.WRAPPED)
 public class Publicador {
-	private Fabrica factory = Fabrica.getInstance();
-	private ConfigManager configManager = ConfigManager.getInstance();
-	private IcontroladorOferta controladorOferta = factory.obtenerControladorOferta();
-	private IcontroladorUsuario controladorUsuario = factory.obtenerControladorUsuario();
-	private Endpoint endpoint = null;
-	private final String dominio = configManager.getProperty("dominio");
-	private final String puerto = configManager.getProperty("puerto");
-	
-	private String UrlBase = dominio + ":" + puerto; // ToDo : Cambiar por lo que es te en el archivo de propiedades
+  private Fabrica factory = Fabrica.getInstance();
+  private ConfigManager configManager =
+        ConfigManager.getInstance();
+  private IcontroladorOferta controladorOferta =
+        factory.obtenerControladorOferta();
+  private IcontroladorUsuario controladorUsuario =
+        factory.obtenerControladorUsuario();
+  private Endpoint endpoint = null;
+  private final String dominio =
+        configManager.getProperty("dominio");
+  private final String puerto =
+        configManager.getProperty("puerto");
+
+  private String urlBase = dominio + ":" + puerto;
 
   // Constructor
   public Publicador() {
   }
-  // Operaciones las cuales quiero publicar
 
+  /**
+   * Metodo publicar.
+   */
+  
   @WebMethod(exclude = true)
   public void publicar() {
-	  String urlWebSrv = UrlBase + "/webservices";
-	  System.out.println("URL_WEB_SERVICE: " + urlWebSrv);
+    String urlWebSrv = urlBase + "/webservices";
+    System.out.println("URL_WEB_SERVICE: " + urlWebSrv);
     endpoint =
           Endpoint.publish(urlWebSrv, this);
   }
@@ -153,7 +159,7 @@ public class Publicador {
   /**
    * Metodo WS altaTipoPublicacion.
    */
-  
+
   @WebMethod
   public void altaTipoPublicacion(String nombre,
         String descripcion, String exposicion, int duracion,
@@ -188,7 +194,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerOfertasEmpresa.
    */
-  
+
   @WebMethod
   public String[]
         obtenerOfertasEmpresa(String nicknameEmpresa)
@@ -234,7 +240,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerKeywordsDeOfertaLaboral.
    */
-  
+
   @WebMethod
   public String[]
         obtenerKeywordsDeOfertaLaboral(String nomOfertaLab)
@@ -251,11 +257,10 @@ public class Publicador {
           .toArray(new DtOfertaLaboral[0]);
   }
 
-  
   /**
    * Metodo WS obtenerDtOfertasPorKeyword.
    */
-  
+
   @WebMethod
   public DtOfertaLaboral[] obtenerDtOfertasPorKeyword(
         String keyword) throws IOException {
@@ -267,7 +272,7 @@ public class Publicador {
   /**
    * Metodo WS DtPostulacion.
    */
-  
+
   @WebMethod
   public DtPostulacion[]
         obtenerDtPostulacionesDeOferta(String nombreOferta)
@@ -354,7 +359,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerOfertasEmpresaUsuario.
    */
-  
+
   @WebMethod
   public String[]
         obtenerOfertasEmpresaUsuario(String nicknameEmpresa)
@@ -373,7 +378,7 @@ public class Publicador {
   /**
    * Metodo WS registrarPostulacion.
    */
-  
+
   @WebMethod
   public void registrarPostulacion(String cvReducido,
         String motivacion, String fechaPostulacion,
@@ -460,8 +465,7 @@ public class Publicador {
   /**
    * Metodo WS editarEmpresa.
    */
-  
-  
+
   @WebMethod
   public void editarEmpresa(String nickname, String nombre,
         String apellido, String sitioWeb,
@@ -478,7 +482,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerDtPostulacion.
    */
-  
+
   @WebMethod
   public DtPostulacion obtenerDtPostulacion(
         String nicknamePostulante, String nombreOferta)
@@ -487,11 +491,11 @@ public class Publicador {
     return controladorUsuario.obtenerDtPostulacion(
           nicknamePostulante, nombreOferta);
   }
-    
+
   /**
    * Metodo WS obtenerDtOfertasIngresadasDeEmpresa.
    */
-  
+
   @WebMethod
   public DtOfertaLaboral[]
         obtenerDtOfertasIngresadasDeEmpresa(
@@ -506,7 +510,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerDtOfertasConfirmadasDeEmpresa.
    */
-  
+
   @WebMethod
   public DtOfertaLaboral[]
         obtenerDtOfertasConfirmadasDeEmpresa(
@@ -521,7 +525,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerDtOfertasRechazadasDeEmpresa.
    */
-  
+
   @WebMethod
   public DtOfertaLaboral[]
         obtenerDtOfertasRechazadasDeEmpresa(
@@ -551,7 +555,7 @@ public class Publicador {
   /**
    * Metodo WS comprarPaquete.
    */
-  
+
   @WebMethod
   public void comprarPaquete(String nicknameEmpresa,
         String nombrePaquete, String fechaCompra)
@@ -565,8 +569,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerDtPaquetesDeEmpresa.
    */
-  
-  
+
   @WebMethod
   public DtPaquetePublicacion[]
         obtenerDtPaquetesDeEmpresa(String nicknameEmpresa)
@@ -579,8 +582,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerDtPostulacionesDePostulante.
    */
-  
-  
+
   @WebMethod
   public DtPostulacion[] obtenerDtPostulacionesDePostulante(
         String nicknamePostulante)
@@ -594,7 +596,7 @@ public class Publicador {
   /**
    * Metodo WS listarPaquetesNoCompradosDeEmpresa.
    */
-  
+
   @WebMethod
   public String[] listarPaquetesNoCompradosDeEmpresa(
         String nicknameEmpresa)
@@ -608,7 +610,7 @@ public class Publicador {
   /**
    * Metodo WS obtenerDtCompraPaqueteDeEmpresa.
    */
-  
+
   @WebMethod
   public DtCompraPaquete[] obtenerDtCompraPaqueteDeEmpresa(
         String nicknameEmpresa)
@@ -709,13 +711,21 @@ public class Publicador {
     controladorUsuario.removerOfertaFavorita(
           nicknamePostulante, nombreOferta);
   }
+
+  /**
+   * Metodo ordenarPostulaciones.
+   */
   
   @WebMethod
-  public void ordenarPostulaciones(String nombreOferta, String [] nicknamePostulantes) throws OfertaLaboralNoExisteException {
-    ArrayList<String> listaPostulantes = new ArrayList<String>();
-    for(String postulante : nicknamePostulantes) {
+  public void ordenarPostulaciones(String nombreOferta,
+        String[] nicknamePostulantes)
+        throws OfertaLaboralNoExisteException {
+    ArrayList<String> listaPostulantes =
+          new ArrayList<String>();
+    for (String postulante : nicknamePostulantes) {
       listaPostulantes.add(postulante);
     }
-    controladorOferta.ordenarPostulaciones(nombreOferta, listaPostulantes);
+    controladorOferta.ordenarPostulaciones(nombreOferta,
+          listaPostulantes);
   }
 }

@@ -9,11 +9,13 @@ import excepciones.OfertaLaboralYaExisteException;
 import excepciones.PaquetePublicacionNoExisteException;
 import excepciones.PaquetePublicacionYaExisteException;
 import excepciones.PaquetePublicacionYaFueComprado;
+import excepciones.PostulanteYaEsOfertaFavoritaException;
 import excepciones.TipoDePublicacionYaFueIngresado;
 import excepciones.TipoPublicacionNoExisteException;
 import excepciones.TipoPublicacionYaExisteException;
 import excepciones.UsuarioEmailRepetidoException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioYaEstaSeguidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.UsuarioYaExistePostulacion;
 import java.io.IOException;
@@ -1652,7 +1654,9 @@ public class ControladorOfertaTest {
         OfertaLaboralNoExisteException,
         UsuarioYaExistePostulacion, IOException,
         ParseException, PaquetePublicacionYaExisteException,
-        PaquetePublicacionNoExisteException {
+        PaquetePublicacionNoExisteException,
+        UsuarioYaEstaSeguidoException,
+        PostulanteYaEsOfertaFavoritaException {
     manejadorOfertas = ManejadorOfertas.getInstance();
     controladorUsuario = new ControladorUsuario();
     controladorOferta = new ControladorOferta();
