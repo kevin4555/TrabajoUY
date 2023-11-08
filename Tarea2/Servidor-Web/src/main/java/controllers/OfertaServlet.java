@@ -51,7 +51,6 @@ public class OfertaServlet extends HttpServlet
 		try
 		{
 			DtOfertaLaboral oferta = port.obtenerDtOfertaLaboral(nombreOferta);
-			
 			Map<String, String> mapImagen = new HashMap<String, String>();
 			for (DtPostulacion postulacion : oferta.getPostulaciones())
 			{

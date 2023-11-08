@@ -45,8 +45,6 @@ public class VerPostulacionServlet extends HttpServlet
 		String nombreOferta = request.getParameter("nombreOferta");
 		String userAgent = request.getHeader("User-Agent");
 		HttpSession sesion = request.getSession();
-		System.out.println(nicknamePostulante);
-		System.out.println(nombreOferta);
 	
 		if (nombreOferta == null || nicknamePostulante == null || sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO)
 		{
@@ -66,7 +64,7 @@ public class VerPostulacionServlet extends HttpServlet
 		   request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 		   return;
 		 }
-		 
+
 			request.setAttribute("ofertas", dtOferta);
 			request.setAttribute("postulacion", postulacion);
 			request.setAttribute("postulante", postulante);
