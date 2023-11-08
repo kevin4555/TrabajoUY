@@ -516,8 +516,9 @@ public class ControladorUsuario
             "no se ha realizado la seleccion para la oferta laboral "
                   + nombreOferta);
     }
-    String nombrePostulante = postulante.getNombre();
-    String nombreEmpresa = oferta.getEmpresa().getNombre();
+    String nombrePostulante = postulante.getNombre()
+        + " " + postulante.getApellido();
+    String nombreEmpresa = oferta.getEmpresa().getNickname();
     int posicion =
           oferta.obtenerPosicion(nicknamePostulante);
     String fechaPostulacion =
