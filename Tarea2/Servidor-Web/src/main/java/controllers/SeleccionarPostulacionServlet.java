@@ -42,12 +42,15 @@ public class SeleccionarPostulacionServlet extends HttpServlet {
 		
 		String nombreOferta = request.getParameter("nomOferta");
 		String[] sortedData = request.getParameterValues("sorted-data");
-		
 		ArrayList<String> arrayListPostulantes = new ArrayList<String>();
 		if (sortedData != null) {
 		    for (String element : sortedData) {
 		        String[] ids = element.split(",");
-		        arrayListPostulantes.addAll(Arrays.asList(ids));
+		        for(String elemento : ids) {
+		          String correg = elemento.replaceAll("[\\[\\]\",\\s]", "");
+		          arrayListPostulantes.add(correg);
+		        }
+		        
 		    }
 		}
 		  
