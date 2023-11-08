@@ -51,34 +51,34 @@ public class SeguirDejarSeguirServlet extends HttpServlet {
 		    data.append(line);
 		}		
         
-		String nicknameSeguidor = request.getParameter("perfilUsuario");
+		String nicknameSeguido = request.getParameter("perfilUsuario");
 		
 		
 		
-		if(nicknameSeguidor.equals(usuarioLogueado.getNickname())) {
+		if(nicknameSeguido.equals(usuarioLogueado.getNickname())) {
 			response.sendError(400, "Bad Request");
 			return;
 		}
-		String accion = usuarioLogueado.getSeguidos().contains(nicknameSeguidor)? "dejarSeguir" : "seguir";
+		String accion = usuarioLogueado.getSeguidos().contains(nicknameSeguido)? "dejarSeguir" : "seguir";
 		logica.webservices.PublicadorService service = new PublicadorService();
 		logica.webservices.Publicador port = service.getPublicadorPort();
-		Boolean flag = usuarioLogueado.getSeguidos().contains(nicknameSeguidor);
+		Boolean flag = usuarioLogueado.getSeguidos().contains(nicknameSeguido);
 		
 		try {
-			DtUsuario usuario = port.obtenerDtUsuario(nicknameSeguidor);
+			DtUsuario usuario = port.obtenerDtUsuario(nicknameSeguido);
 			request.setAttribute("usuario", usuario);
 			if (usuario instanceof DtEmpresa) {
 				ArrayList<DtOfertaLaboral> ofertasConfirmadas = (ArrayList<DtOfertaLaboral>) port
-						.obtenerDtOfertasConfirmadasDeEmpresa(nicknameSeguidor).getItem();
+						.obtenerDtOfertasConfirmadasDeEmpresa(nicknameSeguido).getItem();
 
 				ArrayList<DtOfertaLaboral> ofertasIngresadas = (ArrayList<DtOfertaLaboral>) port
-						.obtenerDtOfertasIngresadasDeEmpresa(nicknameSeguidor).getItem();
+						.obtenerDtOfertasIngresadasDeEmpresa(nicknameSeguido).getItem();
 
 				ArrayList<DtOfertaLaboral> ofertasRechazadas = (ArrayList<DtOfertaLaboral>) port
-						.obtenerDtOfertasRechazadasDeEmpresa(nicknameSeguidor).getItem();
+						.obtenerDtOfertasRechazadasDeEmpresa(nicknameSeguido).getItem();
 
 				ArrayList<DtCompraPaquete> compraPaquetes = (ArrayList<DtCompraPaquete>) port
-						.obtenerDtCompraPaqueteDeEmpresa(nicknameSeguidor).getItem();
+						.obtenerDtCompraPaqueteDeEmpresa(nicknameSeguido).getItem();
 
 				request.setAttribute("ofertasConfirmadas", ofertasConfirmadas);
 				request.setAttribute("ofertasIngresadas", ofertasIngresadas);
@@ -89,7 +89,7 @@ public class SeguirDejarSeguirServlet extends HttpServlet {
 
 			if (usuario instanceof DtPostulante) {
 				ArrayList<DtPostulacion> postulaciones = (ArrayList<DtPostulacion>) port
-						.obtenerDtPostulacionesDePostulante(nicknameSeguidor).getItem();
+						.obtenerDtPostulacionesDePostulante(nicknameSeguido).getItem();
 
 				request.setAttribute("postulaciones", postulaciones);
 				request.setAttribute("tipoUsuario", "postulante");
@@ -97,17 +97,19 @@ public class SeguirDejarSeguirServlet extends HttpServlet {
 			
 			if("seguir".equals(accion))
 			{
-				port.agregarSeguidor(usuarioLogueado.getNickname(), nicknameSeguidor);
-				usuarioLogueado.getSeguidos().add(nicknameSeguidor);
+				port.agregarSeguidor( nicknameSeguido, usuarioLogueado.getNickname());
+				DtUsuario nuevoUsuario = port.obtenerDtUsuario(usuarioLogueado.getNickname());
+				sesion.setAttribute("usuarioLogueado", nuevoUsuario);
 				flag = true;
 			}
 			else if("dejarSeguir".equals(accion))
 			{
-				port.dejarDeSeguir(usuarioLogueado.getNickname(), nicknameSeguidor);
-				usuarioLogueado.getSeguidos().remove(nicknameSeguidor);
+				port.dejarDeSeguir(nicknameSeguido, usuarioLogueado.getNickname());
+				DtUsuario nuevoUsuario = port.obtenerDtUsuario(usuarioLogueado.getNickname());
+    sesion.setAttribute("usuarioLogueado", nuevoUsuario);
 				flag = false;
 			}
-			sesion.setAttribute("usuarioLogueado", usuarioLogueado);
+			//sesion.setAttribute("usuarioLogueado", usuarioLogueado);
 		} catch (UsuarioNoExisteException_Exception | IOException_Exception | UsuarioNoEstaSeguidoException_Exception | UsuarioYaEstaSeguidoException_Exception e) {
 			response.sendError(500, e.getMessage());
 			e.printStackTrace();

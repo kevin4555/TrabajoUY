@@ -28,6 +28,7 @@
                     
                     ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request.getAttribute("listaOfertasConfirmadas");
                     for (DtOfertaLaboral oferta : listaOfertasConfirmadas) {
+                      if(!oferta.isEstaVencida()){
                     %>
                         <div class="card">
                             <div class="row g-0">
@@ -64,7 +65,7 @@
                         </div>
                         <br>
                     <%
-                    }
+                    }}
                     %>
                 </section>
             </div>
