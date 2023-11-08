@@ -15,6 +15,7 @@ import logica.webservices.DtOfertaLaboral;
 import logica.webservices.DtPostulacion;
 import logica.webservices.DtPostulante;
 import logica.webservices.DtUsuario;
+import logica.webservices.EstadoOferta;
 import logica.webservices.IOException_Exception;
 import logica.webservices.OfertaLaboralNoExisteException_Exception;
 import logica.webservices.PublicadorService;
@@ -65,7 +66,7 @@ public class OfertaServlet extends HttpServlet
 				if (usuario instanceof DtPostulante)
 				{
 					Boolean estaPostulado = port.estaPostulado(usuario.getNickname(), nombreOferta);
-					if(!estaPostulado && oferta.isEstaVencida()) {
+					if(!estaPostulado && (oferta.isEstaVencida() || oferta.getEstadoOferta() != EstadoOferta.CONFIRMADA)) {
 					  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 					  return;
 					}
@@ -74,14 +75,14 @@ public class OfertaServlet extends HttpServlet
 				if (usuario instanceof DtEmpresa)
 				{
 					Boolean miOferta = usuario.getNickname().equals(oferta.getEmpresa());
-					if(!miOferta && oferta.isEstaVencida()) {
+					if(!miOferta && (oferta.isEstaVencida() || oferta.getEstadoOferta() != EstadoOferta.CONFIRMADA)) {
 					  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 					  return;
 					}
 					request.setAttribute("miOferta", miOferta);
 				}
 			}
-			else if(oferta.isEstaVencida()) {
+			else if(oferta.isEstaVencida() || oferta.getEstadoOferta() != EstadoOferta.CONFIRMADA) {
 			  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 			  return;
 			}
