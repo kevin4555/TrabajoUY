@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import logica.webservices.DtOfertaLaboral;
 import logica.webservices.DtPostulacion;
 import logica.webservices.DtUsuario;
@@ -13,6 +14,7 @@ import logica.webservices.OfertaLaboralNoExisteException_Exception;
 import logica.webservices.PublicadorService;
 import logica.webservices.UsuarioNoExisteException_Exception;
 import logica.webservices.UsuarioNoExistePostulacion_Exception;
+import model.EstadoSesion;
 
 import java.io.IOException;
 
@@ -42,9 +44,13 @@ public class VerPostulacionServlet extends HttpServlet
 		String nicknamePostulante = request.getParameter("nicknamePostulante");
 		String nombreOferta = request.getParameter("nombreOferta");
 		String userAgent = request.getHeader("User-Agent");
-
-		if (nombreOferta == null || nicknamePostulante == null)
+		HttpSession sesion = request.getSession();
+		System.out.println(nicknamePostulante);
+		System.out.println(nombreOferta);
+	
+		if (nombreOferta == null || nicknamePostulante == null || sesion.getAttribute("estadoSesion") != EstadoSesion.LOGIN_CORRECTO)
 		{
+		 request.setAttribute("error", "acceso denegado");
 			request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 			return;
 		}
@@ -54,7 +60,13 @@ public class VerPostulacionServlet extends HttpServlet
 			DtUsuario postulante = port.obtenerDtUsuario(nicknamePostulante);
 			DtOfertaLaboral dtOferta = port.obtenerDtOfertaLaboral(nombreOferta);
 			DtPostulacion postulacion = port.obtenerDtPostulacion(nicknamePostulante, nombreOferta);
-
+		 DtUsuario usuario = (DtUsuario) sesion.getAttribute("usuarioLogueado");
+		 if(!usuario.getNickname().equals(dtOferta.getEmpresa()) && !usuario.getNickname().equals(postulante.getNickname())) {
+		   request.setAttribute("error", "acceso denegado");
+		   request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+		   return;
+		 }
+		 
 			request.setAttribute("ofertas", dtOferta);
 			request.setAttribute("postulacion", postulacion);
 			request.setAttribute("postulante", postulante);

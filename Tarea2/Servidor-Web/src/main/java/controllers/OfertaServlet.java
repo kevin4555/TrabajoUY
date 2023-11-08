@@ -67,6 +67,7 @@ public class OfertaServlet extends HttpServlet
 				{
 					Boolean estaPostulado = port.estaPostulado(usuario.getNickname(), nombreOferta);
 					if(!estaPostulado && (oferta.isEstaVencida() || oferta.getEstadoOferta() != EstadoOferta.CONFIRMADA)) {
+					  request.setAttribute("error", "acceso denegado");
 					  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 					  return;
 					}
@@ -76,6 +77,7 @@ public class OfertaServlet extends HttpServlet
 				{
 					Boolean miOferta = usuario.getNickname().equals(oferta.getEmpresa());
 					if(!miOferta && (oferta.isEstaVencida() || oferta.getEstadoOferta() != EstadoOferta.CONFIRMADA)) {
+					  request.setAttribute("error", "acceso denegado");
 					  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 					  return;
 					}
@@ -83,6 +85,7 @@ public class OfertaServlet extends HttpServlet
 				}
 			}
 			else if(oferta.isEstaVencida() || oferta.getEstadoOferta() != EstadoOferta.CONFIRMADA) {
+			  request.setAttribute("error", "acceso denegado");
 			  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
 			  return;
 			}
