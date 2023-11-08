@@ -183,78 +183,56 @@ public class Loader {
           this.getBufferImage("U16.jpg"),
           "1ngs03p");
 
-    controladorUsuario.agregarSeguidor("lgarcia",
-          "EcoTech");
-    controladorUsuario.agregarSeguidor("lgarcia",
-          "FusionTech");
-    controladorUsuario.agregarSeguidor("lgarcia",
-          "GlobalHealth");
-    controladorUsuario.agregarSeguidor("lgarcia", "ANTEL");
-    controladorUsuario.agregarSeguidor("lgarcia", "MIEM");
+    controladorUsuario.agregarSeguidor("EcoTech", "lgarcia");
+    controladorUsuario.agregarSeguidor("FusionTech", "lgarcia");
+    controladorUsuario.agregarSeguidor("GlobalHealth", "lgarcia");
+    controladorUsuario.agregarSeguidor("ANTEL", "lgarcia");
+    controladorUsuario.agregarSeguidor("MIEM", "lgarcia");
 
-    controladorUsuario.agregarSeguidor("matilo",
-          "FusionTech");
+    controladorUsuario.agregarSeguidor("EcoTech", "matilo");
 
-    controladorUsuario.agregarSeguidor("maro",
-          "FusionTech");
-    controladorUsuario.agregarSeguidor("maro",
-          "GlobalHealth");
-    controladorUsuario.agregarSeguidor("maro", "MIEM");
-    controladorUsuario.agregarSeguidor("maro",
-          "TechSolutions");
+    controladorUsuario.agregarSeguidor("FusionTech", "maro");
+    controladorUsuario.agregarSeguidor("GlobalHealth", "maro");
+    controladorUsuario.agregarSeguidor("MIEM", "maro");
+    controladorUsuario.agregarSeguidor("TechSolutions", "maro");
 
-    controladorUsuario.agregarSeguidor("javierf",
-          "FusionTech");
-    controladorUsuario.agregarSeguidor("javierf", "ANTEL");
+    controladorUsuario.agregarSeguidor("FusionTech", "javierf");
+    controladorUsuario.agregarSeguidor("ANTEL", "javierf");
 
-    controladorUsuario.agregarSeguidor("valen25",
-          "GlobalHealth");
-    controladorUsuario.agregarSeguidor("valen25", "MIEM");
-    controladorUsuario.agregarSeguidor("valen25",
-          "TechSolutions");
+    controladorUsuario.agregarSeguidor("GlobalHealth", "valen25");
+    controladorUsuario.agregarSeguidor("MIEM", "valen25");
+    controladorUsuario.agregarSeguidor("TechSolutions", "valen25");
 
-    controladorUsuario.agregarSeguidor("andpe12",
-          "FusionTech");
-    controladorUsuario.agregarSeguidor("andpe12", "ANTEL");
-    controladorUsuario.agregarSeguidor("andpe12", "MIEM");
+    controladorUsuario.agregarSeguidor("FusionTech", "andpe12");
+    controladorUsuario.agregarSeguidor("ANTEL", "andpe12");
+    controladorUsuario.agregarSeguidor("MIEM", "andpe12");
 
-    controladorUsuario.agregarSeguidor("sicam", "EcoTech");
-    controladorUsuario.agregarSeguidor("sicam", "ANTEL");
+    controladorUsuario.agregarSeguidor("EcoTech", "sicam");
+    controladorUsuario.agregarSeguidor("ANTEL", "sicam");
 
-    controladorUsuario.agregarSeguidor("sebgon",
-          "FusionTech");
-    controladorUsuario.agregarSeguidor("sebgon",
-          "GlobalHealth");
+    controladorUsuario.agregarSeguidor("FusionTech", "sebgon");
+    controladorUsuario.agregarSeguidor("GlobalHealth", "sebgon");
 
-    controladorUsuario.agregarSeguidor("isabel", "lgarcia");
-    controladorUsuario.agregarSeguidor("isabel", "EcoTech");
-    controladorUsuario.agregarSeguidor("isabel",
-          "FusionTech");
-    controladorUsuario.agregarSeguidor("isabel", "MIEM");
+    controladorUsuario.agregarSeguidor("lgarcia", "isabel");
+    controladorUsuario.agregarSeguidor("EcoTech", "isabel");
+    controladorUsuario.agregarSeguidor("FusionTech", "isabel");
+    controladorUsuario.agregarSeguidor("MIEM", "isabel");
 
-    controladorUsuario.agregarSeguidor("EcoTech",
-          "lgarcia");
-    controladorUsuario.agregarSeguidor("EcoTech",
-          "FusionTech");
+    controladorUsuario.agregarSeguidor("lgarcia", "EcoTech");
+    controladorUsuario.agregarSeguidor("FusionTech", "EcoTech");
 
-    controladorUsuario.agregarSeguidor("FusionTech",
-          "GlobalHealth");
+    controladorUsuario.agregarSeguidor("GlobalHealth", "FusionTech");
 
-    controladorUsuario.agregarSeguidor("GlobalHealth",
-          "lgarcia");
-    controladorUsuario.agregarSeguidor("GlobalHealth",
-          "ANTEL");
-    controladorUsuario.agregarSeguidor("GlobalHealth",
-          "MIEM");
-    controladorUsuario.agregarSeguidor("GlobalHealth",
-          "TechSolutions");
-
-    controladorUsuario.agregarSeguidor("ANTEL", "MIEM");
+    controladorUsuario.agregarSeguidor("lgarcia", "GlobalHealth");
+    controladorUsuario.agregarSeguidor("ANTEL", "GlobalHealth");
+    controladorUsuario.agregarSeguidor("MIEM", "GlobalHealth");
+    controladorUsuario.agregarSeguidor("TechSolutions", "GlobalHealth");
 
     controladorUsuario.agregarSeguidor("MIEM", "ANTEL");
 
-    controladorUsuario.agregarSeguidor("TechSolutions",
-          "MIEM");
+    controladorUsuario.agregarSeguidor("ANTEL", "MIEM");
+
+    controladorUsuario.agregarSeguidor("MIEM", "TechSolutions");
 
     IcontroladorOferta controladorOferta = Fabrica
           .getInstance().obtenerControladorOferta();
