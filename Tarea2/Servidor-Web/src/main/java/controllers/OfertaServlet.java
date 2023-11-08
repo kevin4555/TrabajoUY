@@ -50,6 +50,7 @@ public class OfertaServlet extends HttpServlet
 		try
 		{
 			DtOfertaLaboral oferta = port.obtenerDtOfertaLaboral(nombreOferta);
+			
 			Map<String, String> mapImagen = new HashMap<String, String>();
 			for (DtPostulacion postulacion : oferta.getPostulaciones())
 			{
@@ -64,13 +65,25 @@ public class OfertaServlet extends HttpServlet
 				if (usuario instanceof DtPostulante)
 				{
 					Boolean estaPostulado = port.estaPostulado(usuario.getNickname(), nombreOferta);
+					if(!estaPostulado && oferta.isEstaVencida()) {
+					  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+					  return;
+					}
 					request.setAttribute("estaPostulado", estaPostulado);
 				}
 				if (usuario instanceof DtEmpresa)
 				{
 					Boolean miOferta = usuario.getNickname().equals(oferta.getEmpresa());
+					if(!miOferta && oferta.isEstaVencida()) {
+					  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+					  return;
+					}
 					request.setAttribute("miOferta", miOferta);
 				}
+			}
+			else if(oferta.isEstaVencida()) {
+			  request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
+			  return;
 			}
 			
 		}
