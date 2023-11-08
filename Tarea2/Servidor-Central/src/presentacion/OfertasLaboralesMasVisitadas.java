@@ -62,7 +62,11 @@ public class OfertasLaboralesMasVisitadas
 
     btnCerrar.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evento) {
-        datosFilas = new Object[5][5];
+        for (int i = 0; i < datosFilas.length; i++) {
+          for (int j = 0; j < datosFilas[i].length; j++) {
+            datosFilas[i][j] = null;
+          }
+      }
         dispose();
       }
     });
