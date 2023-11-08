@@ -371,6 +371,11 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-09-30"),
           "Premium", "EcoTech", keywords,
           this.getBufferImage("O1.jpg"), "Básico");
+    
+    for(int i = 0; i <= 4; i++) {
+      controladorOferta.agregarVisitaOferta("Desarrollador Frontend");
+    }
+    
 
     List<String> keywords2 = new ArrayList<String>();
     keywords2.add(keyword5.getNombre());
@@ -382,7 +387,12 @@ public class Loader {
           "Maldonado", LocalDate.parse("2023-09-29"),
           "Estándar", "GlobalHealth", keywords2,
           this.getBufferImage("O2.jpg"), null);
-
+    
+    for(int i = 0; i <= 9; i++) {
+      controladorOferta.agregarVisitaOferta("Estratega de Negocios");
+    }
+    
+    
     List<String> keywords3 = new ArrayList<String>();
     keywords3.add(keyword2.getNombre());
     keywords3.add(keyword3.getNombre());
@@ -394,6 +404,7 @@ public class Loader {
           LocalDate.parse("2023-10-29"), "Estándar",
           "FusionTech", keywords3,
           this.getBufferImage("O3.jpg"), null);
+    
 
     List<String> keywords4 = new ArrayList<String>();
     keywords4.add(keyword2.getNombre());
@@ -404,6 +415,11 @@ public class Loader {
           "Maldonado",
           LocalDate.parse("2023-10-19"), "Premium", "ANTEL",
           keywords4, this.getBufferImage("O4.jpg"), null);
+    
+    for(int i = 0 ; i <= 14 ; i++) {
+      controladorOferta.agregarVisitaOferta("Analista de Datos");
+    }
+    
 
     List<String> keywords5 = new ArrayList<String>();
     keywords5.add(keyword4.getNombre());
@@ -414,6 +430,10 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-10-20"),
           "Destacada", "MIEM", keywords5,
           this.getBufferImage("O5.jpg"), null);
+    
+    for(int i = 0 ; i <= 19 ; i++) {
+      controladorOferta.agregarVisitaOferta("Content Manager");
+    }
 
     List<String> keywords6 = new ArrayList<String>();
     keywords6.add(keyword1.getNombre());
@@ -424,6 +444,10 @@ public class Loader {
           LocalDate.parse("2023-11-02"), "Básica",
           "TechSolutions", keywords6,
           this.getBufferImage("O6.jpg"), "Destacado");
+    
+    for(int i = 0 ; i <= 24 ; i++) {
+      controladorOferta.agregarVisitaOferta("Soporte Técnico");
+    }
 
     List<String> keywords7 = new ArrayList<String>();
     keywords7.add(keyword4.getNombre());
@@ -434,6 +458,11 @@ public class Loader {
           LocalDate.parse("2023-11-02"), "Premium",
           "EcoTech",
           keywords7, this.getBufferImage("O7.jpg"), null);
+    
+    for(int i = 0 ; i <= 29 ; i++) {
+      controladorOferta.agregarVisitaOferta("A. de Marketing Digital");
+    }
+    
 
     List<String> keywords8 = new ArrayList<String>();
     keywords8.add(keyword1.getNombre());
@@ -443,6 +472,11 @@ public class Loader {
           "Colonia", LocalDate.parse("2023-11-04"),
           "Destacada", "GlobalHealth", keywords8,
           this.getBufferImage("O8.jpg"), null);
+    
+    for(int i = 0 ; i <= 34 ; i++) {
+      controladorOferta.agregarVisitaOferta("Contador Senior");
+    }
+    
 
     List<String> keywords9 = new ArrayList<String>();
     keywords9.add(keyword5.getNombre());
@@ -457,6 +491,10 @@ public class Loader {
           "09:00", "17:00", 40000f, "Paysandú", "Paysandú",
           LocalDate.parse("2023-10-29"), "Premium", "ANTEL",
           keywords9, this.getBufferImage("O9.jpg"), null);
+    
+    for(int i = 0 ; i <= 39 ; i++) {
+      controladorOferta.agregarVisitaOferta("Técnico/a Básico Red");
+    }
 
     List<String> keywords10 = new ArrayList<String>();
     keywords10.add(keyword1.getNombre());
@@ -465,19 +503,23 @@ public class Loader {
           .obtenerKeywords("Logística");
     keywords10.add(keyword9.getNombre());
     controladorOferta.altaOfertaLaboral(
-          "Desarrollador de Software " + "Senior",
-          "Únete a nuestro equipo y lidera proyectos de desar- \r\n"
-                + "rollo de software sostenible y ecológico. Impulsa la\r\n"
+          "Desarrollador de Software Senior",
+          "Únete a nuestro equipo y lidera proyectos de desar"
+                + "rollo de software sostenible y ecológico. Impulsa la"
                 + "innovación y contribuye a un futuro más verde.",
           "09:00", "16:00", 123000f, "Montevideo",
           "Montevideo", LocalDate.parse("2023-11-04"),
           "Destacada", "EcoTech", keywords10,
           this.getBufferImage("O10.jpg"), "Básico");
+    
+    for(int i = 0 ; i <= 44 ; i++) {
+      controladorOferta.agregarVisitaOferta("Desarrollador de Software Senior");
+    }
 
     List<String> keywords11 = new ArrayList<String>();
     keywords11.add(keyword3.getNombre());
     controladorOferta.altaOfertaLaboral(
-          "Desarrollador de Software " + "Full Stack" + "",
+          "Desarrollador de Software Full Stack",
           "Únete a nuestro equipo para crear soluciones de soft- \r\n"
                 + "ware personalizadas de extremo a extremo. Colabora\r\n"
                 + "en proyectos emocionantes y desafiantes.",
@@ -485,6 +527,13 @@ public class Loader {
           "Río Negro", LocalDate.parse("2023-10-25"),
           "Premium", "TechSolutions", keywords11,
           this.getBufferImage("O11.jpg"), null);
+    
+    for(int i = 0 ; i <= 49 ; i++) {
+      controladorOferta.agregarVisitaOferta("Desarrollador de Software Full Stack");
+    }
+    
+    
+    
 
     List<String> keywords12 = new ArrayList<String>();
     keywords12.add(keyword3.getNombre());
@@ -498,6 +547,10 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-11-05"),
           "Destacada", "TechSolutions", keywords12,
           this.getBufferImage("O12.jpg"), null);
+    
+    for(int i = 0 ; i <= 54 ; i++) {
+      controladorOferta.agregarVisitaOferta("Gerente de Proyecto");
+    }
 
     List<String> keywords13 = new ArrayList<String>();
     keywords13.add(keyword1.getNombre());
@@ -513,6 +566,10 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-11-01"),
           "Premium", "EcoTech", keywords13,
           this.getBufferImage("O13.jpg"), null);
+    
+    for(int i = 0 ; i <= 6 ; i++) {
+      controladorOferta.agregarVisitaOferta("Ingeniero de Calidad de Software");
+    }
 
     controladorUsuario.registrarPostulacion(
           "Licenciada en Administración, experiencia en gestión de equipos y "
