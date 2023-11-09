@@ -57,7 +57,7 @@ public class SearchServlet extends HttpServlet {
 		PublicadorService publicadorService = new PublicadorService();
 		logica.webservices.Publicador cliente =  publicadorService.getPublicadorPort();
 		String toSearch = request.getParameter("toSearch");
-		System.out.println(String.valueOf(toSearch));
+		
 		if(toSearch == null) {
 			toSearch = "";
 		}
@@ -72,8 +72,7 @@ public class SearchServlet extends HttpServlet {
 			e.printStackTrace();
 			return;
 		}
-		System.out.print("dtOfertas.size(): " + dtOfertas.size());
-		System.out.print("dtEmpresas.size(): " + dtEmpresas.size());
+		
 		
 		boolean alfabetico = false;
 		if(request.getParameter("orden") != null && "alfabetico".equals(request.getParameter("orden"))) {

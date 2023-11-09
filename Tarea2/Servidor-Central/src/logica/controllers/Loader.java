@@ -130,7 +130,7 @@ public class Loader {
           this.getBufferImage("U11.jpg"), "qsxcdw43");
     controladorUsuario.altaEmpresa("FusionTech", "William",
           "Smith", "contacto@FusionTech.net",
-          "FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y"
+          "FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y "
                 + "la automatización avanzada. Nuestro equipo multidisciplinario de ingenieros,"
                 + " científicos de datos y desarrolladores crea soluciones innovadoras que "
                 + "aprovechan la potencia de la IA para transformar industrias. Desde la "
@@ -453,7 +453,7 @@ public class Loader {
     keywords7.add(keyword4.getNombre());
     controladorOferta.altaOfertaLaboral(
           "A. de Marketing Digital",
-          "Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.",
+          "Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.",
           "10:00", "19:00", 80000f, "Flores", "Flores",
           LocalDate.parse("2023-11-02"), "Premium",
           "EcoTech",
