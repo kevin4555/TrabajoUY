@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-            
-    
-    <wb-module deploy-name="ServidorCentral">
-                        
-        
-        <wb-resource deploy-path="/" source-path="/src"/>
-                        
-        
-        <wb-resource deploy-path="/" source-path="/img/usuarios"/>
-                        
-        
-        <wb-resource deploy-path="/" source-path="/img/paquetes"/>
-                        
-        
-        <wb-resource deploy-path="/" source-path="/img/ofertas"/>
-        <wb-resource deploy-path="/" source-path="/resources"/>
                     
     
+    
+    
+    <wb-module deploy-name="ServidorCentral">
+                
+        <wb-resource deploy-path="/" source-path="/src"/>
+                
+        <wb-resource deploy-path="/" source-path="/src/resources/usuarios"/>
+                
+        <wb-resource deploy-path="/" source-path="/src/resources/paquetes"/>
+                
+        <wb-resource deploy-path="/" source-path="/src/resources/ofertas"/>
+        <wb-resource deploy-path="/" source-path="/src/test"/>
+                                    
+    
+    
+    
     </wb-module>
-        
+                
+
+
 
 </project-modules>
