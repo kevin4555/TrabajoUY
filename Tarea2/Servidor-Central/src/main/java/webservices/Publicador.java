@@ -70,7 +70,7 @@ public class Publicador {
   private final String puerto =
         configManager.getProperty("puerto");
 
-  private String urlBase = dominio + ":" + puerto;
+  private String urlBase = dominio + puerto;
 
   // Constructor
   public Publicador() {
