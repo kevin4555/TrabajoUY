@@ -12,20 +12,22 @@ function cambiarIcono() {
   }
 }
 
-async function seguirDejarSeguir(nickName){ 
-	try{
-		 const respuesta = await fetch(`seguirDejarSeguir?perfilUsuario=${nickName}`, {
-      						method: "GET",});
-		if(respuesta.ok){
-			cambiarIcono();
-		}
-	} catch (error) {
-        console.error('Error en la solicitud:', error);
-        const errorAlert = document.getElementById('errorAlert');
-	    const errorMessage = document.getElementById('errorMessage');
-	
-	    errorAlert.style.display = 'block';
-	    errorMessage.textContent =  error.message;
-	}
-	return;
+async function seguirDejarSeguir(nickName) {
+  try {
+    const respuesta = await fetch(`seguirDejarSeguir?perfilUsuario=${nickName}`, {
+      method: "GET",
+    });
+
+    if (respuesta.ok) {
+      cambiarIcono();
+    }
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
+    const errorAlert = document.getElementById('errorAlert');
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorAlert.style.display = 'block';
+    errorMessage.textContent =  error.message;
+  }
+  return;
 }

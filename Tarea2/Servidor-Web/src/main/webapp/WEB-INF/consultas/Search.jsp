@@ -20,6 +20,13 @@
         <div class="row">
             <jsp:include page="../include/Menu.jsp"/>
             <div class="col-8">
+            <div class="d-flex justify-content-end">
+            <% String sort = request.getContextPath() + "/search?toSearch="+request.getAttribute("toSearch"); 
+            	Boolean alfabetico = (Boolean) request.getAttribute("alfabetico");
+            %>
+		        <a href="<%= sort %>" class="btn btn-<%= alfabetico ?"secondary":"primary" %> mx-2"><i class="bi bi-sort-down"></i></a>
+		        <a href="<%= sort + "&orden=alfabetico" %>"class="btn btn-<%= alfabetico ?"primary":"secondary" %>"><i class="bi bi-sort-alpha-down"></i></a>
+		    </div>
                 <section>
                 <%ArrayList<DtEmpresa> listaEmpresas = (ArrayList<DtEmpresa>) request.getAttribute("listaEmpresas");
                 if(!listaEmpresas.isEmpty())%>

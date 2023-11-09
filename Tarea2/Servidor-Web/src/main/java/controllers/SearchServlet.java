@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -72,8 +74,19 @@ public class SearchServlet extends HttpServlet {
 		}
 		System.out.print("dtOfertas.size(): " + dtOfertas.size());
 		System.out.print("dtEmpresas.size(): " + dtEmpresas.size());
+		
+		boolean alfabetico = false;
+		if(request.getParameter("orden") != null && "alfabetico".equals(request.getParameter("orden"))) {
+			Collections.sort(dtOfertas, Comparator.comparing(DtOfertaLaboral::getNombre));
+			Collections.sort(dtEmpresas, Comparator.comparing(DtEmpresa::getNombre));
+			alfabetico = true;
+		}
+		
+		
 		request.setAttribute("listaOfertas", dtOfertas);
 		request.setAttribute("listaEmpresas", dtEmpresas);
+		request.setAttribute("toSearch", toSearch);
+		request.setAttribute("alfabetico", alfabetico);
 		request.getRequestDispatcher("/WEB-INF/consultas/Search.jsp").forward(request, response);
 	}
 	/**
