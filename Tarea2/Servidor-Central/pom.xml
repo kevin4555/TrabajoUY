@@ -28,35 +28,30 @@
 			<version>4.0.0</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>Servidor-Web</groupId>
-			<artifactId>Servidor-Web</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<finalName>ServidorCentral</finalName>
 		<resources>
 			<resource>
-				<directory>resources</directory>
+				<directory>src/resources</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
 			<resource>
-				<directory>resources/img</directory>
+				<directory>src/resources/img</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
 			<resource>
-				<directory>resources/usuarios</directory>
+				<directory>src/resources/usuarios</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
 			<resource>
-				<directory>resources/paquetes</directory>
+				<directory>src/resources/paquetes</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
