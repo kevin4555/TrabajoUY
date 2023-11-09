@@ -38,19 +38,25 @@
 		<finalName>ServidorCentral</finalName>
 		<resources>
 			<resource>
-				<directory>src/resources/img</directory>
+				<directory>resources</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
 			<resource>
-				<directory>src/resources/usuarios</directory>
+				<directory>resources/img</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
 			<resource>
-				<directory>src/resources/paquetes</directory>
+				<directory>resources/usuarios</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>resources/paquetes</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
