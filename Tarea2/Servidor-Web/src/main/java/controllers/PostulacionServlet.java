@@ -9,13 +9,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.DtOfertaLaboral;
-import logica.webservices.DtUsuario;
-import logica.webservices.IOException_Exception;
-import logica.webservices.OfertaLaboralNoExisteException_Exception;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException_Exception;
-import logica.webservices.UsuarioYaExistePostulacion_Exception;
+import main.java.webservices.DtOfertaLaboral;
+import main.java.webservices.DtUsuario;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.OfertaLaboralNoExisteException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.UsuarioYaExistePostulacion_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -39,9 +39,9 @@ public class PostulacionServlet extends HttpServlet {
         throws ServletException, IOException {
     HttpSession sesion = request.getSession();
 
-    logica.webservices.PublicadorService service =
+    main.java.webservices.PublicadorService service =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           service.getPublicadorPort();
 
     if (sesion.getAttribute("estadoSesion")
@@ -91,9 +91,9 @@ public class PostulacionServlet extends HttpServlet {
     String userAgent = request.getHeader("User-Agent");
     HttpSession sesion = request.getSession();
 
-    logica.webservices.PublicadorService service =
+    main.java.webservices.PublicadorService service =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           service.getPublicadorPort();
 
     if (sesion.getAttribute("estadoSesion")

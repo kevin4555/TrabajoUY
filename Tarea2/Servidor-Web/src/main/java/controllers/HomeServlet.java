@@ -10,9 +10,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.DtOfertaLaboral;
-import logica.webservices.IOException_Exception;
-import logica.webservices.PublicadorService;
+import main.java.webservices.DtOfertaLaboral;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.PublicadorService;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -33,7 +33,7 @@ public class HomeServlet extends HttpServlet {
     HttpSession sesion = request.getSession();
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
 
     ArrayList<String> listaKeywords = (ArrayList<
@@ -59,7 +59,7 @@ public class HomeServlet extends HttpServlet {
     String userAgent = request.getHeader("User-Agent");
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador cliente =
+    main.java.webservices.Publicador cliente =
           publicadorService.getPublicadorPort();
     ArrayList<DtOfertaLaboral> dTOfertas;
     try {

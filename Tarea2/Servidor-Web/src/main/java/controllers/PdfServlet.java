@@ -12,10 +12,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.webservices.DtDatosPdf;
-import logica.webservices.OfertaLaboralNoExisteException_Exception;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.DtDatosPdf;
+import main.java.webservices.OfertaLaboralNoExisteException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException_Exception;
 
 /**
  * Servlet implementation class PdfServlet
@@ -40,7 +40,7 @@ public class PdfServlet extends HttpServlet {
         throws ServletException, IOException {
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
     String nicknamePostulante =
           request.getParameter("nicknamePostulante");

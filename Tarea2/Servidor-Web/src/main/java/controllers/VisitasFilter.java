@@ -1,8 +1,8 @@
 package controllers;
 
 import jakarta.servlet.http.HttpFilter;
-import logica.webservices.OfertaLaboralNoExisteException_Exception;
-import logica.webservices.PublicadorService;
+import main.java.webservices.OfertaLaboralNoExisteException_Exception;
+import main.java.webservices.PublicadorService;
 
 import java.io.IOException;
 import jakarta.servlet.Filter;
@@ -45,7 +45,7 @@ public class VisitasFilter extends HttpFilter
         throws IOException, ServletException {
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
     String nombreOferta =
           request.getParameter("nombreOferta");

@@ -7,10 +7,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.webservices.DtTipoPublicacion;
-import logica.webservices.Publicador;
-import logica.webservices.PublicadorService;
-import logica.webservices.TipoPublicacionNoExisteException_Exception;
+import main.java.webservices.DtTipoPublicacion;
+import main.java.webservices.Publicador;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.TipoPublicacionNoExisteException_Exception;
 
 /**
  * Servlet implementation class TipoPostulacionServlet

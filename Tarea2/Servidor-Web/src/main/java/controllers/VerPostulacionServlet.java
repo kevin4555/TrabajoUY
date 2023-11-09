@@ -6,14 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.DtOfertaLaboral;
-import logica.webservices.DtPostulacion;
-import logica.webservices.DtUsuario;
-import logica.webservices.IOException_Exception;
-import logica.webservices.OfertaLaboralNoExisteException_Exception;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException_Exception;
-import logica.webservices.UsuarioNoExistePostulacion_Exception;
+import main.java.webservices.DtOfertaLaboral;
+import main.java.webservices.DtPostulacion;
+import main.java.webservices.DtUsuario;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.OfertaLaboralNoExisteException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.UsuarioNoExistePostulacion_Exception;
 import model.EstadoSesion;
 
 import java.io.IOException;
@@ -36,9 +36,9 @@ public class VerPostulacionServlet extends HttpServlet {
   private void procesarRequest(HttpServletRequest request,
         HttpServletResponse response)
         throws ServletException, IOException {
-    logica.webservices.PublicadorService service =
+    main.java.webservices.PublicadorService service =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           service.getPublicadorPort();
 
     String nicknamePostulante =

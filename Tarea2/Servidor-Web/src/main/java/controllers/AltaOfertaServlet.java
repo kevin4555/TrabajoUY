@@ -1,16 +1,19 @@
 package controllers;
 
-import controllers.main.java.webservices.DtCantidadTipoPublicacionRestante;
-import controllers.main.java.webservices.DtCompraPaquete;
-import controllers.main.java.webservices.DtTipoPublicacion;
-import controllers.main.java.webservices.DtUsuario;
-import controllers.main.java.webservices.IOException_Exception;
-import controllers.main.java.webservices.KeywordNoExisteException_Exception;
-import controllers.main.java.webservices.OfertaLaboralYaExisteException_Exception;
-import controllers.main.java.webservices.PublicadorService;
-import controllers.main.java.webservices.TipoPublicacionNoExisteException_Exception;
-import controllers.main.java.webservices.UsuarioNoExisteException_Exception;
-import controllers.net.java.dev.jaxb.array.StringArray;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+import java.util.Locale;
+
+import javax.imageio.ImageIO;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,18 +22,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLEncoder;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import javax.imageio.ImageIO;
+import main.java.webservices.DtCantidadTipoPublicacionRestante;
+import main.java.webservices.DtCompraPaquete;
+import main.java.webservices.DtTipoPublicacion;
+import main.java.webservices.DtUsuario;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.KeywordNoExisteException_Exception;
+import main.java.webservices.OfertaLaboralYaExisteException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.TipoPublicacionNoExisteException_Exception;
+import main.java.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
+import net.java.dev.jaxb.array.StringArray;
 
 @MultipartConfig()
 
@@ -62,7 +66,7 @@ public class AltaOfertaServlet extends HttpServlet {
     }
     PublicadorService publicadorService =
           new PublicadorService();
-    controllers.main.java.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
 
     ArrayList<String> listaTipos = (ArrayList<String>) port
@@ -136,7 +140,7 @@ public class AltaOfertaServlet extends HttpServlet {
     }
     PublicadorService publicadorService =
           new PublicadorService();
-    controllers.main.java.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
     DtUsuario empresa = (DtUsuario) sesion
           .getAttribute("usuarioLogueado");
@@ -249,7 +253,7 @@ public class AltaOfertaServlet extends HttpServlet {
             empresa.getNickname(), stringArray,
             imagenString, nombrePaquete);
 
-      String url = request.getContextPath()
+       String url = request.getContextPath()
             + "/perfil?nicknameUsuario="
             + URLEncoder.encode(empresa.getNickname(),
                   "UTF-8");

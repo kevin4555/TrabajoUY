@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.PublicadorService;
+import main.java.webservices.PublicadorService;
 
 /**
  * Servlet implementation class AltaUsuario
@@ -35,7 +35,7 @@ public class ChequeoNicknameServlet extends HttpServlet {
     HttpSession sesion = request.getSession();
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
     String nickname = request.getParameter("nickname");
     List<String> listaUsuarios =

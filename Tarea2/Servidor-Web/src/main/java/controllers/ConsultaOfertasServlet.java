@@ -8,11 +8,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.webservices.DtOfertaLaboral;
-import logica.webservices.DtUsuario;
-import logica.webservices.IOException_Exception;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.DtOfertaLaboral;
+import main.java.webservices.DtUsuario;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException_Exception;
 
 /**
  * Servlet implementation class OfertasServlet
@@ -34,7 +34,7 @@ public class ConsultaOfertasServlet extends HttpServlet {
         throws ServletException, IOException {
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador cliente =
+    main.java.webservices.Publicador cliente =
           publicadorService.getPublicadorPort();
 
     String nicknameEmpresa =

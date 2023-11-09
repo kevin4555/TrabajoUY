@@ -1,7 +1,7 @@
-<%@page import="logica.webservices.DtPostulante"%>
-<%@page import="logica.webservices.DtUsuario"%>
+<%@page import="main.java.webservices.DtPostulante"%>
+<%@page import="main.java.webservices.DtUsuario"%>
 <%@page import="model.TipoUsuario"%>
-<%@page import="logica.webservices.DtOfertaLaboral"%>
+<%@page import="main.java.webservices.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 

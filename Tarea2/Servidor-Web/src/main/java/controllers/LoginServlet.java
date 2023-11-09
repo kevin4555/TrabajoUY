@@ -8,13 +8,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException_Exception;
-import logica.webservices.DtPostulante;
-import logica.webservices.DtEmpresa;
-import logica.webservices.DtOfertaLaboral;
-import logica.webservices.DtUsuario;
-import logica.webservices.IOException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.DtPostulante;
+import main.java.webservices.DtEmpresa;
+import main.java.webservices.DtOfertaLaboral;
+import main.java.webservices.DtUsuario;
+import main.java.webservices.IOException_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
     HttpSession sesion = request.getSession();
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
 
     if (nombreEmail == null

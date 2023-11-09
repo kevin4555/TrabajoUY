@@ -1,4 +1,4 @@
-<%@page import="logica.webservices.DtTipoPublicacion"%>
+<%@page import="main.java.webservices.DtTipoPublicacion"%>
 <%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>

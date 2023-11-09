@@ -12,15 +12,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.DtPostulacion;
-import logica.webservices.DtPostulante;
-import logica.webservices.OfertaLaboralNoExisteException_Exception;
-import logica.webservices.PaquetePublicacionNoExisteException;
-import logica.webservices.PostulanteNoEsOfertaFavoritaException_Exception;
-import logica.webservices.PostulanteYaEsOfertaFavoritaException_Exception;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException;
-import logica.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.DtPostulacion;
+import main.java.webservices.DtPostulante;
+import main.java.webservices.OfertaLaboralNoExisteException_Exception;
+import main.java.webservices.PaquetePublicacionNoExisteException;
+import main.java.webservices.PostulanteNoEsOfertaFavoritaException_Exception;
+import main.java.webservices.PostulanteYaEsOfertaFavoritaException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException;
+import main.java.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
@@ -55,7 +55,7 @@ public class AddOrRemoveOfertaFavorita extends HttpServlet {
 
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
     String nicknamePostulante =
           request.getParameter("nicknamePostulante");

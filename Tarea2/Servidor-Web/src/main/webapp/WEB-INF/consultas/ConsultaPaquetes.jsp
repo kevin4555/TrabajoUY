@@ -1,4 +1,4 @@
-<%@page import="logica.webservices.DtPaquetePublicacion"%>
+<%@page import="main.java.webservices.DtPaquetePublicacion"%>
 
 
 <!DOCTYPE html>

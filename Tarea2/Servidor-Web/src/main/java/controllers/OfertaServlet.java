@@ -10,16 +10,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.webservices.DtEmpresa;
-import logica.webservices.DtOfertaLaboral;
-import logica.webservices.DtPostulacion;
-import logica.webservices.DtPostulante;
-import logica.webservices.DtUsuario;
-import logica.webservices.EstadoOferta;
-import logica.webservices.IOException_Exception;
-import logica.webservices.OfertaLaboralNoExisteException_Exception;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.DtEmpresa;
+import main.java.webservices.DtOfertaLaboral;
+import main.java.webservices.DtPostulacion;
+import main.java.webservices.DtPostulante;
+import main.java.webservices.DtUsuario;
+import main.java.webservices.EstadoOferta;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.OfertaLaboralNoExisteException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
 
 /**
@@ -42,7 +42,7 @@ public class OfertaServlet extends HttpServlet {
         throws ServletException, IOException {
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
     String nombreOferta =
           request.getParameter("nombreOferta");

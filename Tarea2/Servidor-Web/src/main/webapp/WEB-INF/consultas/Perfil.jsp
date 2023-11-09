@@ -2,11 +2,11 @@
 <%@page import="model.TipoUsuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.webservices.DtUsuario"%>
-<%@page import="logica.webservices.DtOfertaLaboral"%>
-<%@page import="logica.webservices.DtPostulante"%>
-<%@page import="logica.webservices.DtEmpresa"%>
-<%@page import="logica.webservices.EstadoOferta"%>
+<%@page import="main.java.webservices.DtUsuario"%>
+<%@page import="main.java.webservices.DtOfertaLaboral"%>
+<%@page import="main.java.webservices.DtPostulante"%>
+<%@page import="main.java.webservices.DtEmpresa"%>
+<%@page import="main.java.webservices.EstadoOferta"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>

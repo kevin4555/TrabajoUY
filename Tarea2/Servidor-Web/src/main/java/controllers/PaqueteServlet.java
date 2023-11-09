@@ -6,12 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.webservices.DtPaquetePublicacion;
-import logica.webservices.IOException_Exception;
-import logica.webservices.OfertaLaboralNoExisteException_Exception;
-import logica.webservices.OfertaLaboralNoTienePaquete_Exception;
-import logica.webservices.PaquetePublicacionNoExisteException_Exception;
-import logica.webservices.PublicadorService;
+import main.java.webservices.DtPaquetePublicacion;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.OfertaLaboralNoExisteException_Exception;
+import main.java.webservices.OfertaLaboralNoTienePaquete_Exception;
+import main.java.webservices.PaquetePublicacionNoExisteException_Exception;
+import main.java.webservices.PublicadorService;
 
 /**
  * Servlet implementation class PaqueteServlet
@@ -33,7 +33,7 @@ public class PaqueteServlet extends HttpServlet {
         throws ServletException, IOException {
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
     try {
       String nombrePaquete =

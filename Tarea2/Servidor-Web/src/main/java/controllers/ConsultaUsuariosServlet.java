@@ -9,11 +9,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.webservices.DtUsuario;
-import logica.webservices.IOException_Exception;
-import logica.webservices.Publicador;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.DtUsuario;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.Publicador;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException_Exception;
 
 /**
  * Servlet implementation class ConsultaUsuariosServlet

@@ -12,17 +12,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import logica.webservices.DtCompraPaquete;
-import logica.webservices.DtEmpresa;
-import logica.webservices.DtOfertaLaboral;
-import logica.webservices.DtPostulacion;
-import logica.webservices.DtPostulante;
-import logica.webservices.DtUsuario;
-import logica.webservices.IOException_Exception;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoEstaSeguidoException_Exception;
-import logica.webservices.UsuarioNoExisteException_Exception;
-import logica.webservices.UsuarioYaEstaSeguidoException_Exception;
+import main.java.webservices.DtCompraPaquete;
+import main.java.webservices.DtEmpresa;
+import main.java.webservices.DtOfertaLaboral;
+import main.java.webservices.DtPostulacion;
+import main.java.webservices.DtPostulante;
+import main.java.webservices.DtUsuario;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoEstaSeguidoException_Exception;
+import main.java.webservices.UsuarioNoExisteException_Exception;
+import main.java.webservices.UsuarioYaEstaSeguidoException_Exception;
 
 @WebServlet("/seguirDejarSeguir")
 public class SeguirDejarSeguirServlet extends HttpServlet {
@@ -57,9 +57,9 @@ public class SeguirDejarSeguirServlet extends HttpServlet {
     }
     boolean seguir = !usuarioLogueado.getSeguidos()
           .contains(nicknameSeguido);
-    logica.webservices.PublicadorService service =
+    main.java.webservices.PublicadorService service =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           service.getPublicadorPort();
     Boolean flag = false;
 

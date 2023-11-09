@@ -11,10 +11,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.webservices.DtPostulacion;
-import logica.webservices.PaquetePublicacionNoExisteException;
-import logica.webservices.PublicadorService;
-import logica.webservices.UsuarioNoExisteException;
+import main.java.webservices.DtPostulacion;
+import main.java.webservices.PaquetePublicacionNoExisteException;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class ConsultaPaquetes
@@ -36,7 +36,7 @@ public class CompraPaqueteServlet extends HttpServlet {
         throws ServletException, IOException {
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador port =
+    main.java.webservices.Publicador port =
           publicadorService.getPublicadorPort();
     String nicknameempresa =
           request.getParameter("nicknameEmpresa");

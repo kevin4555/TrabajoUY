@@ -8,9 +8,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica.webservices.DtPaquetePublicacion;
-import logica.webservices.IOException_Exception;
-import logica.webservices.PublicadorService;
+import main.java.webservices.DtPaquetePublicacion;
+import main.java.webservices.IOException_Exception;
+import main.java.webservices.PublicadorService;
 
 /**
  * Servlet implementation class ConsultaPaquetes
@@ -32,7 +32,7 @@ public class ConsultaPaquetesServlet extends HttpServlet {
         throws ServletException, IOException {
     PublicadorService publicadorService =
           new PublicadorService();
-    logica.webservices.Publicador cliente =
+    main.java.webservices.Publicador cliente =
           publicadorService.getPublicadorPort();
     ArrayList<DtPaquetePublicacion> listaPaquetes;
     try {
