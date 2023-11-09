@@ -1,4 +1,4 @@
-<%@page import="logica.webservices.DtUsuario"%> <%@page
+<%@page import="main.java.webservices.DtUsuario"%> <%@page
 import="model.TipoUsuario"%> <%@page import="model.EstadoSesion"%> <%@page
 import="java.util.ArrayList"%> <% EstadoSesion estadoSesion = (EstadoSesion)
 session.getAttribute("estadoSesion"); DtUsuario usuario = (DtUsuario)

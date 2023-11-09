@@ -409,6 +409,7 @@ public class Publicador {
     controladorUsuario.altaPostulante(nickname, nombre,
           apellido, email, fecha, nacionalidad,
           base64StringToImage(imagen), constrasenia);
+    
   }
 
   /**

@@ -40,7 +40,7 @@ public class ChequeoEmailServlet extends HttpServlet {
     String email =
           request.getParameter("email").toLowerCase();
     List<DtUsuario> listaDtUsuarios =
-          (List<DtUsuario>) port.obtenerDtUsuarios();
+          (List<DtUsuario>) port.obtenerDtUsuarios().getItem();;
     boolean emailEnUso = false;
     for (DtUsuario dtUsuario : listaDtUsuarios) {
       if (dtUsuario.getEmail().equals(email)) {

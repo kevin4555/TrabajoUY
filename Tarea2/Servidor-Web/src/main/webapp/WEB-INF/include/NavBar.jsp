@@ -1,4 +1,4 @@
-<%@page import="logica.webservices.DtUsuario"%>
+<%@page import="main.java.webservices.DtUsuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 

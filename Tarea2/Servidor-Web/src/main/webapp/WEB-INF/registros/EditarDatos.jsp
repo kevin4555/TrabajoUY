@@ -1,6 +1,6 @@
-<%@page import="logica.webservices.DtUsuario"%>
-<%@page import="logica.webservices.DtPostulante"%>
-<%@page import="logica.webservices.DtEmpresa"%>
+<%@page import="main.java.webservices.DtUsuario"%>
+<%@page import="main.java.webservices.DtPostulante"%>
+<%@page import="main.java.webservices.DtEmpresa"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 <!DOCTYPE html>
