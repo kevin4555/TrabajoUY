@@ -45,6 +45,7 @@ public class PdfServlet extends HttpServlet {
   
      DtDatosPdf datosPdf;
     try {
+      response.setHeader("Content-Disposition", "inline; filename=" + nicknamePostulante + "_" + nombreOferta);
       datosPdf = port.obtenerDatosPdf(nicknamePostulante, nombreOferta);
       Document document = new Document();
       PdfWriter.getInstance(document, response.getOutputStream());
