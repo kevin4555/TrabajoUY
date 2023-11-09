@@ -24,67 +24,87 @@ import net.java.dev.jaxb.array.StringArray;
 @MultipartConfig()
 
 @WebServlet("/seleccionarPostulacion")
-public class SeleccionarPostulacionServlet extends HttpServlet {
+public class SeleccionarPostulacionServlet
+      extends HttpServlet {
 
-	/**
+  /**
    * 
    */
   private static final long serialVersionUID = 1L;
 
   public SeleccionarPostulacionServlet() {
-		super();
-	}
+    super();
+  }
 
-	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		PublicadorService publicadorService = new PublicadorService();
-		logica.webservices.Publicador port = publicadorService.getPublicadorPort();
-		
-		String nombreOferta = request.getParameter("nomOferta");
-		String[] sortedData = request.getParameterValues("sorted-data");
-		ArrayList<String> arrayListPostulantes = new ArrayList<String>();
-		if (sortedData != null) {
-		    for (String element : sortedData) {
-		        String[] ids = element.split(",");
-		        for(String elemento : ids) {
-		          String correg = elemento.replaceAll("[\\[\\]\",\\s]", "");
-		          arrayListPostulantes.add(correg);
-		        }
-		        
-		    }
-		}
-		  
-		StringArray listaPsotulantes = new StringArray();
-		listaPsotulantes.getItem().addAll(arrayListPostulantes);
-		
-		try {
-			port.ordenarPostulaciones(nombreOferta, listaPsotulantes);
-			
-			DtOfertaLaboral oferta = port.obtenerDtOfertaLaboral(nombreOferta);
-			Map<String, String> mapImagen = new HashMap<String, String>();
-			for (DtPostulacion postulacion : oferta.getPostulaciones())
-			{
-				DtUsuario postulante = port.obtenerDtUsuario(postulacion.getNicknamePostulante());
-				mapImagen.put(postulante.getNickname(), postulante.getImagenBase64());
-			}
-			request.setAttribute("mapImagenes", mapImagen);
-			request.setAttribute("oferta", oferta);
-			
-		} catch (OfertaLaboralNoExisteException_Exception | UsuarioNoExisteException_Exception | IOException_Exception e) {
-			request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
-			e.printStackTrace();
-			return;
-		}
-		request.getRequestDispatcher("/WEB-INF/consultas/Oferta.jsp").forward(request, response);
-	}
+  private void procesarRequest(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    PublicadorService publicadorService =
+          new PublicadorService();
+    logica.webservices.Publicador port =
+          publicadorService.getPublicadorPort();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		procesarRequest(request, response);
-	}
+    String nombreOferta = request.getParameter("nomOferta");
+    String[] sortedData =
+          request.getParameterValues("sorted-data");
+    ArrayList<String> arrayListPostulantes =
+          new ArrayList<String>();
+    if (sortedData != null) {
+      for (String element : sortedData) {
+        String[] ids = element.split(",");
+        for (String elemento : ids) {
+          String correg =
+                elemento.replaceAll("[\\[\\]\",\\s]", "");
+          arrayListPostulantes.add(correg);
+        }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
+      }
+    }
+
+    StringArray listaPsotulantes = new StringArray();
+    listaPsotulantes.getItem().addAll(arrayListPostulantes);
+
+    try {
+      port.ordenarPostulaciones(nombreOferta,
+            listaPsotulantes);
+
+      DtOfertaLaboral oferta =
+            port.obtenerDtOfertaLaboral(nombreOferta);
+      Map<String, String> mapImagen =
+            new HashMap<String, String>();
+      for (DtPostulacion postulacion : oferta
+            .getPostulaciones()) {
+        DtUsuario postulante = port.obtenerDtUsuario(
+              postulacion.getNicknamePostulante());
+        mapImagen.put(postulante.getNickname(),
+              postulante.getImagenBase64());
+      }
+      request.setAttribute("mapImagenes", mapImagen);
+      request.setAttribute("oferta", oferta);
+
+    } catch (OfertaLaboralNoExisteException_Exception
+          | UsuarioNoExisteException_Exception
+          | IOException_Exception e) {
+      request.getRequestDispatcher("/WEB-INF/error/500.jsp")
+            .forward(request, response);
+      e.printStackTrace();
+      return;
+    }
+    request
+          .getRequestDispatcher(
+                "/WEB-INF/consultas/Oferta.jsp")
+          .forward(request, response);
+  }
+
+  protected void doGet(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    procesarRequest(request, response);
+  }
+
+  protected void doPost(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    doGet(request, response);
+  }
 }

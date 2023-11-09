@@ -20,53 +20,67 @@ import logica.webservices.UsuarioNoExisteException_Exception;
  */
 @WebServlet("/consultaUsuarios")
 public class ConsultaUsuariosServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public ConsultaUsuariosServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+  /**
+   * @see HttpServlet#HttpServlet()
+   */
+  public ConsultaUsuariosServlet() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
 
-	private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		PublicadorService publicadorService = new PublicadorService();
-		Publicador cliente = publicadorService.getPublicadorPort();
-		
-		ArrayList<String> listaUsuarios =  (ArrayList<String>) cliente.listaDeUsuarios().getItem();
-		Collections.sort(listaUsuarios);
-		ArrayList<DtUsuario> listaResultado = new ArrayList<DtUsuario>();
-		for (String nick : listaUsuarios) {
-			try {
-				listaResultado.add(cliente.obtenerDtUsuario(nick));
-			} catch (IOException_Exception | UsuarioNoExisteException_Exception e) {
-			  request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
-				e.printStackTrace();
-			}
-		}
-		request.setAttribute("listaUsuarios", listaResultado);
-		request.getRequestDispatcher("/WEB-INF/consultas/ConsultaUsuarios.jsp").forward(request, response);
-	}
+  private void procesarRequest(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    PublicadorService publicadorService =
+          new PublicadorService();
+    Publicador cliente =
+          publicadorService.getPublicadorPort();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		procesarRequest(request, response);
-	}
+    ArrayList<String> listaUsuarios = (ArrayList<
+          String>) cliente.listaDeUsuarios().getItem();
+    Collections.sort(listaUsuarios);
+    ArrayList<DtUsuario> listaResultado =
+          new ArrayList<DtUsuario>();
+    for (String nick : listaUsuarios) {
+      try {
+        listaResultado.add(cliente.obtenerDtUsuario(nick));
+      } catch (IOException_Exception
+            | UsuarioNoExisteException_Exception e) {
+        request
+              .getRequestDispatcher(
+                    "/WEB-INF/error/500.jsp")
+              .forward(request, response);
+        e.printStackTrace();
+      }
+    }
+    request.setAttribute("listaUsuarios", listaResultado);
+    request
+          .getRequestDispatcher(
+                "/WEB-INF/consultas/ConsultaUsuarios.jsp")
+          .forward(request, response);
+  }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+  /**
+   * @see HttpServlet#doGet(HttpServletRequest request,
+   *      HttpServletResponse response)
+   */
+  protected void doGet(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    procesarRequest(request, response);
+  }
+
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request,
+   *      HttpServletResponse response)
+   */
+  protected void doPost(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    doGet(request, response);
+  }
 
 }

@@ -18,7 +18,7 @@ import logica.webservices.PublicadorService;
 @WebServlet("/consultaPaquetes")
 public class ConsultaPaquetesServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-  
+
   /**
    * @see HttpServlet#HttpServlet()
    */
@@ -26,40 +26,50 @@ public class ConsultaPaquetesServlet extends HttpServlet {
     super();
     // TODO Auto-generated constructor stub
   }
-  
-  private void procesarRequest(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PublicadorService publicadorService = new PublicadorService();
-    logica.webservices.Publicador cliente = publicadorService.getPublicadorPort();
+
+  private void procesarRequest(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    PublicadorService publicadorService =
+          new PublicadorService();
+    logica.webservices.Publicador cliente =
+          publicadorService.getPublicadorPort();
     ArrayList<DtPaquetePublicacion> listaPaquetes;
     try {
-      listaPaquetes = (ArrayList<DtPaquetePublicacion>) cliente.listarDtPaquetes().getItem();
+      listaPaquetes =
+            (ArrayList<DtPaquetePublicacion>) cliente
+                  .listarDtPaquetes().getItem();
       request.setAttribute("listaPaquetes", listaPaquetes);
-      request.getRequestDispatcher("/WEB-INF/consultas/ConsultaPaquetes.jsp").forward(request,
-          response);
+      request
+            .getRequestDispatcher(
+                  "/WEB-INF/consultas/ConsultaPaquetes.jsp")
+            .forward(request,
+                  response);
     } catch (IOException_Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    
+
   }
-  
+
   /**
-   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-   *      response)
+   * @see HttpServlet#doGet(HttpServletRequest request,
+   *      HttpServletResponse response)
    */
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  protected void doGet(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
     procesarRequest(request, response);
   }
-  
+
   /**
-   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-   *      response)
+   * @see HttpServlet#doPost(HttpServletRequest request,
+   *      HttpServletResponse response)
    */
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  protected void doPost(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
     procesarRequest(request, response);
   }
-  
+
 }

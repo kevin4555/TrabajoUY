@@ -17,45 +17,62 @@ import logica.webservices.TipoPublicacionNoExisteException_Exception;
  */
 @WebServlet("/tipoPublicacion")
 public class TipoPublicacionServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TipoPublicacionServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * @see HttpServlet#HttpServlet()
+   */
+  public TipoPublicacionServlet() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
+
+  private void procesarRequest(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    String nombreTipo =
+          request.getParameter("nombreTipoPublicacion");
+    PublicadorService publicadorService =
+          new PublicadorService();
+    Publicador cliente =
+          publicadorService.getPublicadorPort();
+    try {
+      DtTipoPublicacion tipoPublicacion =
+            cliente.obtenerDtTipoPublicacion(nombreTipo);
+      request.setAttribute("tipoPublicacion",
+            tipoPublicacion);
+      request
+            .getRequestDispatcher(
+                  "/WEB-INF/consultas/TipoPublicacion.jsp")
+            .forward(request, response);
+    } catch (TipoPublicacionNoExisteException_Exception e) {
+      request.setAttribute("error", e.getMessage());
+      request.getRequestDispatcher("/WEB-INF/error/404.jsp")
+            .forward(request, response);
+      e.printStackTrace();
     }
 
-    private void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String nombreTipo = request.getParameter("nombreTipoPublicacion");
-    	PublicadorService publicadorService = new PublicadorService();
-		Publicador cliente = publicadorService.getPublicadorPort();
-    	try {
-			DtTipoPublicacion tipoPublicacion = cliente.obtenerDtTipoPublicacion(nombreTipo);
-			request.setAttribute("tipoPublicacion", tipoPublicacion);
-			request.getRequestDispatcher("/WEB-INF/consultas/TipoPublicacion.jsp").forward(request, response);
-		} catch (TipoPublicacionNoExisteException_Exception e) {
-			request.setAttribute("error", e.getMessage());
-			request.getRequestDispatcher("/WEB-INF/error/404.jsp").forward(request, response);
-			e.printStackTrace();
-		}
-    	
-    	
-    }
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		procesarRequest(request, response);
-	}
+  }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+  /**
+   * @see HttpServlet#doGet(HttpServletRequest request,
+   *      HttpServletResponse response)
+   */
+  protected void doGet(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    procesarRequest(request, response);
+  }
+
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request,
+   *      HttpServletResponse response)
+   */
+  protected void doPost(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    doGet(request, response);
+  }
 
 }
