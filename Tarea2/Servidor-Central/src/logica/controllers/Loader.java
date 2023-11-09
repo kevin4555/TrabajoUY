@@ -540,8 +540,8 @@ public class Loader {
     keywords12.add(keyword6.getNombre());
     controladorOferta.altaOfertaLaboral(
           "Gerente de Proyecto",
-          "Únete a nuestro equipo de gestión de proyectos y lid- \r\n"
-                + "era la entrega exitosa de soluciones de software personalizadas."
+          "Únete a nuestro equipo de gestión de proyectos y lidera \r\n"
+                + "la entrega exitosa de soluciones de software personalizadas."
                 + " Colabora con equipos multidisciplinarios y clientes exigentes.",
           "04:00", "12:00", 230000f, "Montevideo",
           "Montevideo", LocalDate.parse("2023-11-05"),
