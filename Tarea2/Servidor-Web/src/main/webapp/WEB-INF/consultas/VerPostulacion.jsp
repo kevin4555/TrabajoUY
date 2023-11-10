@@ -79,16 +79,26 @@
 									<%=fecha%>
 									<br> <br>
 									<%
-										if(postulacion.getLinkVideo() != null){%>
+										if(video != null && !videoId.equals("")){%>
 									<div>
 									<iframe class="videoPostulacion"
 									
-										src="<%=postulacion.getLinkVideo()%>"
+										src="https://www.youtube.com/embed/<%=videoId%>"
 										frameborder="0" allowfullscreen></iframe></div>
 									
 										
 										<br><br>
-									<%} %>
+									<%} 
+										else if (video != null){%>
+										<div>
+									<iframe class="videoPostulacion"
+									
+										src="<%=video%>"
+										frameborder="0" allowfullscreen></iframe></div>
+									
+										
+										<br><br>
+									<%}%>
 									<%if(oferta.getFechaSeleccionString() != null && postulante.getNickname().equals(usuario.getNickname()) ) {
 									  
 									  String contextPathpdf = request.getContextPath();
