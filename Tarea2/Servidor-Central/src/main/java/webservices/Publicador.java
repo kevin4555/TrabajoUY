@@ -70,7 +70,7 @@ public class Publicador {
   private final String puerto =
         configManager.getProperty("puerto");
 
-  private String urlBase = dominio + ":" + puerto;
+  private String urlBase = dominio + puerto;
 
   // Constructor
   public Publicador() {
@@ -84,6 +84,7 @@ public class Publicador {
   public void publicar() {
     String urlWebSrv = urlBase + "/webservices";
     System.out.println("URL_WEB_SERVICE: " + urlWebSrv);
+    
     endpoint =
           Endpoint.publish(urlWebSrv, this);
   }
