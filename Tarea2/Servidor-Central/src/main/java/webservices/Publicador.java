@@ -84,6 +84,7 @@ public class Publicador {
   public void publicar() {
     String urlWebSrv = urlBase + "/webservices";
     System.out.println("URL_WEB_SERVICE: " + urlWebSrv);
+    
     endpoint =
           Endpoint.publish(urlWebSrv, this);
   }
