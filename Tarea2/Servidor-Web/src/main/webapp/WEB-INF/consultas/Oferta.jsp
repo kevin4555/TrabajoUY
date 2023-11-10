@@ -275,7 +275,7 @@
 								%>
 
 								<div class="espacio"></div>
-	`							<% if(oferta.getEstadoOferta()==EstadoOferta.CONFIRMADA && oferta.isEstaVencida() && oferta.getFechaSeleccionString() == null) {%>
+	`							<% if(oferta.getEstadoOferta()==EstadoOferta.CONFIRMADA && oferta.isEstaVencida() && oferta.getFechaSeleccionString() == null && oferta.getPostulaciones().size()>0) {%>
 								<input class="btn btn-secondary" type="submit" value="Confirmar"
 									id="guardarOrdenButton" />
 								<%} %>
