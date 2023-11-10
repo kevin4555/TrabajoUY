@@ -63,6 +63,7 @@ public class ModificarDatosServlet extends HttpServlet {
     String contraseniaConf =
           request.getParameter("contraseniaConf");
     BufferedImage imagen = null;
+    String imagenString = usuario.getImagenBase64();
     if (!contraseniaConf.equals(contrasenia)) {
       request.setAttribute("mensajeError",
             "contraseña incorrecta");
@@ -84,23 +85,29 @@ public class ModificarDatosServlet extends HttpServlet {
       e.printStackTrace();
       return;
     }
+    if(imagen != null) {
+      imagenString = imageToBase64String(imagen);
+    }
     if (sesion.getAttribute("tipoUsuario")
           == TipoUsuario.EMPRESA) {
       String descripcion =
             request.getParameter("descripcion");
       String sitioWeb = request.getParameter("sitioWeb");
-      String imagenString = imageToBase64String(imagen);
       try {
         port.editarEmpresa(usuario.getNickname(), nombre,
               apellido, sitioWeb, descripcion, imagenString,
               contrasenia);
+        DtUsuario usuariomodificado =
+            port.obtenerDtUsuario(usuario.getNickname());
+      sesion.setAttribute("usuarioLogueado",
+            usuariomodificado);
         String url = request.getContextPath()
               + "/perfil?nicknameUsuario="
               + usuario.getNickname();
         response.sendRedirect(url);
         return;
       } catch (UsuarioNoExisteException_Exception
-            | IOException e) {
+            | IOException | IOException_Exception e) {
         request
               .getRequestDispatcher(
                     "/WEB-INF/error/500.jsp")
@@ -137,6 +144,8 @@ public class ModificarDatosServlet extends HttpServlet {
         e.printStackTrace();
         return;
       }
+      
+      
     }
   }
 
