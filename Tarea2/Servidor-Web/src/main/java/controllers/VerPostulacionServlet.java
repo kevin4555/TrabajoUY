@@ -62,7 +62,7 @@ public class VerPostulacionServlet extends HttpServlet {
             port.obtenerDtUsuario(nicknamePostulante);
       DtOfertaLaboral dtOferta =
             port.obtenerDtOfertaLaboral(nombreOferta);
-      System.out.println(dtOferta.getFechaResolucionString());
+      
       DtPostulacion postulacion = port.obtenerDtPostulacion(
             nicknamePostulante, nombreOferta);
       DtUsuario usuario = (DtUsuario) sesion

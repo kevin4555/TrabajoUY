@@ -79,16 +79,17 @@
 									<%=fecha%>
 									<br> <br>
 									<%
-										if(video != null){%>
-									
+										if(postulacion.getLinkVideo() != null){%>
+									<div>
 									<iframe class="videoPostulacion"
 									
-										src="https://www.youtube.com/embed/<%=videoId%>"
-										frameborder="0" allowfullscreen></iframe>
+										src="<%=postulacion.getLinkVideo()%>"
+										frameborder="0" allowfullscreen></iframe></div>
+									
 										
 										<br><br>
 									<%} %>
-									<%if(oferta.getFechaSeleccionString() != null ) {
+									<%if(oferta.getFechaSeleccionString() != null && postulante.getNickname().equals(usuario.getNickname()) ) {
 									  
 									  String contextPathpdf = request.getContextPath();
 									  String pdfUrl = contextPathpdf + "/PdfServlet?nicknamePostulante=" 
