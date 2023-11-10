@@ -195,7 +195,8 @@ public class OfertaLaboral {
           this.tipoPublicacion.getNombre(),
           this.empresa.getNickname(), this.cantidadVisitas,
           tipoPublicacion.getExposicion(),
-          this.fechaFinalizacion);
+          this.fechaFinalizacion,
+          this.fechaSeleccion);
     return dtOfertaLaboral;
   }
 

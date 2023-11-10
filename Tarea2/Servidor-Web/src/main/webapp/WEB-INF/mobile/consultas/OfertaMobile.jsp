@@ -1,12 +1,12 @@
 <%@page import="jakarta.servlet.http.HttpSession" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.webservices.DtPostulacion"%>
-<%@page import="logica.webservices.DtPaquetePublicacion"%>
-<%@page import="logica.webservices.DtOfertaLaboral"%>
+<%@page import="main.java.webservices.DtPostulacion"%>
+<%@page import="main.java.webservices.DtPaquetePublicacion"%>
+<%@page import="main.java.webservices.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
-<%@page import="logica.webservices.DtUsuario"%>
+<%@page import="main.java.webservices.DtUsuario"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
 

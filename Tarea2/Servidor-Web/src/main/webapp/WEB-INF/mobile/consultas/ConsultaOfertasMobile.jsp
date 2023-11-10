@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="logica.webservices.DtOfertaLaboral"%>
-<%@page import="logica.webservices.DtUsuario"%>
+<%@page import="main.java.webservices.DtOfertaLaboral"%>
+<%@page import="main.java.webservices.DtUsuario"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>

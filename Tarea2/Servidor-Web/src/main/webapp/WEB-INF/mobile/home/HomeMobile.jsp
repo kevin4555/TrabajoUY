@@ -1,4 +1,4 @@
-<%@page import="logica.webservices.DtOfertaLaboral"%>
+<%@page import="main.java.webservices.DtOfertaLaboral"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

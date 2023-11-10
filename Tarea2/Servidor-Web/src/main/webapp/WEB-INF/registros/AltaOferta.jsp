@@ -1,7 +1,7 @@
-<%@page import="logica.webservices.DtPaquetePublicacion"%>
+<%@page import="main.java.webservices.DtPaquetePublicacion"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="logica.webservices.DtTipoPublicacion"%>
-<%@page import="logica.webservices.DtCompraPaquete"%>
+<%@page import="main.java.webservices.DtTipoPublicacion"%>
+<%@page import="main.java.webservices.DtCompraPaquete"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 

@@ -1,6 +1,5 @@
 <%@page import="main.java.webservices.DtTipoPublicacion"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.time.LocalDate" %>
@@ -10,7 +9,7 @@
 <html lang="es">
 <head>
   	<meta charset="UTF-8">
-    <title>Tipo de publicación</title>
+    <title>Tipo de publicaciÃ³n</title>
     <jsp:include page="../include/Head.jsp" />
 </head>
 <body>
@@ -36,11 +35,11 @@ DtTipoPublicacion tipoPublicacion = (DtTipoPublicacion) request.getAttribute("ti
                             <ul class="list-unstyled">
                                 <li class="text-secondary">
                                     <i class="bi bi-arrow-right-circle text-primary"></i>
-                                    Exposición: <%= tipoPublicacion.getExposicion() %>
+                                    ExposiciÃ³n: <%= tipoPublicacion.getExposicion() %>
                                 </li>
                                 <li class="text-secondary">
                                     <i class="bi bi-arrow-right-circle text-primary"></i>
-                                    Duración: <%= tipoPublicacion.getDuracionDia() %>
+                                    DuraciÃ³n: <%= tipoPublicacion.getDuracionDia() %>
                                 </li>
                                 <li class="text-secondary">
                                     <i class="bi bi-arrow-right-circle text-primary"></i>

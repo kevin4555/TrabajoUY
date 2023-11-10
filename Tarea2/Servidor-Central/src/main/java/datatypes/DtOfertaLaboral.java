@@ -49,6 +49,7 @@ public class DtOfertaLaboral
   private String fechaAltaString;
   private String fechaResolucionString;
   private String fechaFinalizacionString;
+  private String fechaSeleccionString;
 
   /**
    * Contructor.
@@ -73,7 +74,8 @@ public class DtOfertaLaboral
           String empresa,
           int visitas,
           String exposicion,
-          LocalDate fechaFinalizacion)
+          LocalDate fechaFinalizacion, 
+          LocalDate fechaSeleccion)
         throws IOException {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -105,6 +107,7 @@ public class DtOfertaLaboral
     this.fechaAltaString = fechaAlta.toString();
     this.fechaResolucionString = null;
     this.fechaFinalizacionString = null;
+    this.fechaSeleccionString = null;
     if (fechaResolucion != null) {
       this.fechaResolucionString =
             fechaResolucion.toString();
@@ -112,6 +115,10 @@ public class DtOfertaLaboral
     if (fechaFinalizacion != null) {
       this.fechaFinalizacionString =
             fechaFinalizacion.toString();
+    }
+    if(fechaSeleccion != null) {
+      this.fechaSeleccionString =
+          fechaSeleccion.toString();
     }
   }
 

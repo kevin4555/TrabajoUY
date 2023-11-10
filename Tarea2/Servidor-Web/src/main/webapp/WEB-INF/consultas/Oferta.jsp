@@ -1,3 +1,4 @@
+<%@page import="main.java.webservices.EstadoOferta"%>
 <%@page import="jakarta.servlet.http.HttpSession"%>
 <%@page import="main.java.webservices.DtPostulante"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -274,7 +275,7 @@
 								%>
 
 								<div class="espacio"></div>
-	`							<% if(oferta.getFechaResolucionString() == null) {%>
+	`							<% if(oferta.getEstadoOferta()==EstadoOferta.CONFIRMADA && oferta.isEstaVencida() && oferta.getFechaSeleccionString() == null) {%>
 								<input class="btn btn-secondary" type="submit" value="Confirmar"
 									id="guardarOrdenButton" />
 								<%} %>

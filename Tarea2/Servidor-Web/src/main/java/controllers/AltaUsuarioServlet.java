@@ -92,8 +92,6 @@ public class AltaUsuarioServlet extends HttpServlet {
             .parse(request.getParameter("fechaNacimiento"));
       DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("dd/MM/yyyy", Locale.ENGLISH);
-      String fechaNacimientoString =
-            fechaNacimiento.format(formatter);
       String imagenString;
       if (imagen != null) {
         imagenString = imageToBase64String(imagen);
@@ -102,7 +100,7 @@ public class AltaUsuarioServlet extends HttpServlet {
       }
       try {
         port.altaPostulante(nickname, nombre, apellido,
-              email, fechaNacimientoString, nacionalidad,
+              email, fechaNacimiento.toString(), nacionalidad,
               imagenString, contrasenia);
         sesion.setAttribute("tipoUsuario",
               TipoUsuario.POSTULANTE);

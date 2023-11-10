@@ -672,6 +672,8 @@ public class Loader {
     postulacionesOferta1.add("maro");
     postulacionesOferta1.add("lgarcia");
     
+    
+    //Acordarse de descomentar. 
     controladorOferta.ordenarPostulaciones("Desarrollador Frontend", postulacionesOferta1);
      
     List<String> postulacionesOferta2 = new ArrayList<String>();

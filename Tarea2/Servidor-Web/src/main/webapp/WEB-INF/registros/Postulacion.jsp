@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="logica.webservices.DtOfertaLaboral"%>
+<%@page import="main.java.webservices.DtOfertaLaboral"%>
 <!DOCTYPE html>
 <html>
 <head>

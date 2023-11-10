@@ -29,6 +29,655 @@ public interface Publicador {
 
     /**
      * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosRequest", output = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosResponse")
+    public StringArray listarPaquetesNoComprados();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws OfertaLaboralNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerKeywordsDeOfertaLaboralRequest", output = "http://webservices.java.main/Publicador/obtenerKeywordsDeOfertaLaboralResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerKeywordsDeOfertaLaboral/Fault/OfertaLaboralNoExisteException")
+    })
+    public StringArray obtenerKeywordsDeOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     * @throws PaquetePublicacionNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/estaCompradoPaqueteRequest", output = "http://webservices.java.main/Publicador/estaCompradoPaqueteResponse", fault = {
+        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/estaCompradoPaquete/Fault/PaquetePublicacionNoExisteException")
+    })
+    public boolean estaCompradoPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PaquetePublicacionNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @throws OfertaLaboralNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/ordenarPostulacionesRequest", output = "http://webservices.java.main/Publicador/ordenarPostulacionesResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/ordenarPostulaciones/Fault/OfertaLaboralNoExisteException")
+    })
+    public void ordenarPostulaciones(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        StringArray arg1)
+        throws OfertaLaboralNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosDeEmpresaRequest", output = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosDeEmpresa/Fault/UsuarioNoExisteException")
+    })
+    public StringArray listarPaquetesNoCompradosDeEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @throws PostulanteNoEsOfertaFavoritaException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/removerOfertaFavoritaRequest", output = "http://webservices.java.main/Publicador/removerOfertaFavoritaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/removerOfertaFavorita/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = PostulanteNoEsOfertaFavoritaException_Exception.class, value = "http://webservices.java.main/Publicador/removerOfertaFavorita/Fault/PostulanteNoEsOfertaFavoritaException")
+    })
+    public void removerOfertaFavorita(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws PostulanteNoEsOfertaFavoritaException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtPostulacionArray
+     * @throws OfertaLaboralNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDeOfertaRequest", output = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDeOfertaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDeOferta/Fault/OfertaLaboralNoExisteException")
+    })
+    public DtPostulacionArray obtenerDtPostulacionesDeOferta(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     * @throws OfertaLaboralNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/estaCompradoPorPaqueteOfertaRequest", output = "http://webservices.java.main/Publicador/estaCompradoPorPaqueteOfertaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/estaCompradoPorPaqueteOferta/Fault/OfertaLaboralNoExisteException")
+    })
+    public boolean estaCompradoPorPaqueteOferta(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtPaquetePublicacion
+     * @throws IOException_Exception
+     * @throws OfertaLaboralNoExisteException_Exception
+     * @throws OfertaLaboralNoTienePaquete_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacionRequest", output = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacionResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacion/Fault/OfertaLaboralNoExisteException"),
+        @FaultAction(className = OfertaLaboralNoTienePaquete_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacion/Fault/OfertaLaboralNoTienePaquete"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacion/Fault/IOException")
+    })
+    public DtPaquetePublicacion obtenerDtPaquetePublicacion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, OfertaLaboralNoExisteException_Exception, OfertaLaboralNoTienePaquete_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerOfertasEmpresa/Fault/UsuarioNoExisteException")
+    })
+    public StringArray obtenerOfertasEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns main.java.webservices.DtOfertaLaboralArray
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertasConfirmadasRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertasConfirmadasResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasConfirmadas/Fault/IOException")
+    })
+    public DtOfertaLaboralArray obtenerDtOfertasConfirmadas()
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtOfertaLaboralArray
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertasPorKeywordRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertasPorKeywordResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasPorKeyword/Fault/IOException")
+    })
+    public DtOfertaLaboralArray obtenerDtOfertasPorKeyword(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtPaquetePublicacionArray
+     * @throws IOException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPaquetesDeEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerDtPaquetesDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetesDeEmpresa/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetesDeEmpresa/Fault/IOException")
+    })
+    public DtPaquetePublicacionArray obtenerDtPaquetesDeEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns boolean
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/confirmarContraseniaRequest", output = "http://webservices.java.main/Publicador/confirmarContraseniaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/confirmarContrasenia/Fault/UsuarioNoExisteException")
+    })
+    public boolean confirmarContrasenia(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @throws OfertaLaboralNoExisteException_Exception
+     * @throws PostulanteYaEsOfertaFavoritaException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/agregarOfertaFavoritaRequest", output = "http://webservices.java.main/Publicador/agregarOfertaFavoritaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/agregarOfertaFavorita/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = PostulanteYaEsOfertaFavoritaException_Exception.class, value = "http://webservices.java.main/Publicador/agregarOfertaFavorita/Fault/PostulanteYaEsOfertaFavoritaException"),
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/agregarOfertaFavorita/Fault/OfertaLaboralNoExisteException")
+    })
+    public void agregarOfertaFavorita(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws OfertaLaboralNoExisteException_Exception, PostulanteYaEsOfertaFavoritaException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtPostulacionArray
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDePostulanteRequest", output = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDePostulanteResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDePostulante/Fault/UsuarioNoExisteException")
+    })
+    public DtPostulacionArray obtenerDtPostulacionesDePostulante(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtOfertaLaboralArray
+     * @throws IOException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertasIngresadasDeEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertasIngresadasDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasIngresadasDeEmpresa/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasIngresadasDeEmpresa/Fault/IOException")
+    })
+    public DtOfertaLaboralArray obtenerDtOfertasIngresadasDeEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtOfertaLaboralArray
+     * @throws IOException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertasRechazadasDeEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertasRechazadasDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasRechazadasDeEmpresa/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasRechazadasDeEmpresa/Fault/IOException")
+    })
+    public DtOfertaLaboralArray obtenerDtOfertasRechazadasDeEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtPaquetePublicacion
+     * @throws IOException_Exception
+     * @throws PaquetePublicacionNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtpaqueteRequest", output = "http://webservices.java.main/Publicador/obtenerDtpaqueteResponse", fault = {
+        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtpaquete/Fault/PaquetePublicacionNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtpaquete/Fault/IOException")
+    })
+    public DtPaquetePublicacion obtenerDtpaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, PaquetePublicacionNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @throws PaquetePublicacionNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/comprarPaqueteRequest", output = "http://webservices.java.main/Publicador/comprarPaqueteResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/comprarPaquete/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/comprarPaquete/Fault/PaquetePublicacionNoExisteException")
+    })
+    public void comprarPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2)
+        throws PaquetePublicacionNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @throws UsuarioNoEstaSeguidoException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     * @throws UsuarioYaEstaSeguidoException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/agregarSeguidorRequest", output = "http://webservices.java.main/Publicador/agregarSeguidorResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/agregarSeguidor/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = UsuarioNoEstaSeguidoException_Exception.class, value = "http://webservices.java.main/Publicador/agregarSeguidor/Fault/UsuarioNoEstaSeguidoException"),
+        @FaultAction(className = UsuarioYaEstaSeguidoException_Exception.class, value = "http://webservices.java.main/Publicador/agregarSeguidor/Fault/UsuarioYaEstaSeguidoException")
+    })
+    public void agregarSeguidor(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws UsuarioNoEstaSeguidoException_Exception, UsuarioNoExisteException_Exception, UsuarioYaEstaSeguidoException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @throws UsuarioNoEstaSeguidoException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/dejarDeSeguirRequest", output = "http://webservices.java.main/Publicador/dejarDeSeguirResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/dejarDeSeguir/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = UsuarioNoEstaSeguidoException_Exception.class, value = "http://webservices.java.main/Publicador/dejarDeSeguir/Fault/UsuarioNoEstaSeguidoException")
+    })
+    public void dejarDeSeguir(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws UsuarioNoEstaSeguidoException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns main.java.webservices.DtUsuarioArray
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtUsuariosRequest", output = "http://webservices.java.main/Publicador/obtenerDtUsuariosResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtUsuarios/Fault/IOException")
+    })
+    public DtUsuarioArray obtenerDtUsuarios()
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws KeywordYaExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/altaKeywordRequest", output = "http://webservices.java.main/Publicador/altaKeywordResponse", fault = {
+        @FaultAction(className = KeywordYaExisteException_Exception.class, value = "http://webservices.java.main/Publicador/altaKeyword/Fault/KeywordYaExisteException")
+    })
+    public void altaKeyword(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws KeywordYaExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns main.java.webservices.DtPaquetePublicacionArray
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listarDtPaquetesRequest", output = "http://webservices.java.main/Publicador/listarDtPaquetesResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/listarDtPaquetes/Fault/IOException")
+    })
+    public DtPaquetePublicacionArray listarDtPaquetes()
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtEmpresaArray
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/buscarEmpresasRequest", output = "http://webservices.java.main/Publicador/buscarEmpresasResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/buscarEmpresas/Fault/IOException")
+    })
+    public DtEmpresaArray buscarEmpresas(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws OfertaLaboralNoExisteException_Exception
+     * @throws OfertaLaboralNoSePuedeFinalizar_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/finalizarOfertaRequest", output = "http://webservices.java.main/Publicador/finalizarOfertaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/finalizarOferta/Fault/OfertaLaboralNoExisteException"),
+        @FaultAction(className = OfertaLaboralNoSePuedeFinalizar_Exception.class, value = "http://webservices.java.main/Publicador/finalizarOferta/Fault/OfertaLaboralNoSePuedeFinalizar")
+    })
+    public void finalizarOferta(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoExisteException_Exception, OfertaLaboralNoSePuedeFinalizar_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns main.java.webservices.DtDatosPdf
+     * @throws OfertaLaboralNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDatosPdfRequest", output = "http://webservices.java.main/Publicador/obtenerDatosPdfResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDatosPdf/Fault/OfertaLaboralNoExisteException"),
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDatosPdf/Fault/UsuarioNoExisteException")
+    })
+    public DtDatosPdf obtenerDatosPdf(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtOfertaLaboralArray
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/buscarOfertasRequest", output = "http://webservices.java.main/Publicador/buscarOfertasResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/buscarOfertas/Fault/IOException")
+    })
+    public DtOfertaLaboralArray buscarOfertas(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws OfertaLaboralNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/agregarVisitaAofertaRequest", output = "http://webservices.java.main/Publicador/agregarVisitaAofertaResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/agregarVisitaAoferta/Fault/OfertaLaboralNoExisteException")
+    })
+    public void agregarVisitaAoferta(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws OfertaLaboralNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @throws TipoPublicacionYaExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/altaTipoPublicacionRequest", output = "http://webservices.java.main/Publicador/altaTipoPublicacionResponse", fault = {
+        @FaultAction(className = TipoPublicacionYaExisteException_Exception.class, value = "http://webservices.java.main/Publicador/altaTipoPublicacion/Fault/TipoPublicacionYaExisteException")
+    })
+    public void altaTipoPublicacion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        int arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        float arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5)
+        throws TipoPublicacionYaExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtCompraPaqueteArray
+     * @throws IOException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtCompraPaqueteDeEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerDtCompraPaqueteDeEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtCompraPaqueteDeEmpresa/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtCompraPaqueteDeEmpresa/Fault/IOException")
+    })
+    public DtCompraPaqueteArray obtenerDtCompraPaqueteDeEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listarTipoDePublicacionesRequest", output = "http://webservices.java.main/Publicador/listarTipoDePublicacionesResponse")
+    public StringArray listarTipoDePublicaciones();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaUsuarioRequest", output = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaUsuarioResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaUsuario/Fault/UsuarioNoExisteException")
+    })
+    public StringArray obtenerOfertasEmpresaUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws PaquetePublicacionNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listarTipoPublicacionDePaqueteRequest", output = "http://webservices.java.main/Publicador/listarTipoPublicacionDePaqueteResponse", fault = {
+        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/listarTipoPublicacionDePaquete/Fault/PaquetePublicacionNoExisteException")
+    })
+    public StringArray listarTipoPublicacionDePaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PaquetePublicacionNoExisteException_Exception
+    ;
+
+    /**
+     * 
      * @param arg0
      * @param arg1
      * @param arg2
@@ -52,6 +701,67 @@ public interface Publicador {
         @WebParam(name = "arg2", partName = "arg2")
         String arg2)
         throws PaquetePublicacionNoExisteException_Exception, PaquetePublicacionYaFueComprado_Exception, TipoDePublicacionYaFueIngresado_Exception, TipoPublicacionNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listaOfertasUsuarioRequest", output = "http://webservices.java.main/Publicador/listaOfertasUsuarioResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/listaOfertasUsuario/Fault/UsuarioNoExisteException")
+    })
+    public StringArray listaOfertasUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns main.java.webservices.DtPostulacion
+     * @throws UsuarioNoExisteException_Exception
+     * @throws UsuarioNoExistePostulacion_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPostulacionRequest", output = "http://webservices.java.main/Publicador/obtenerDtPostulacionResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPostulacion/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = UsuarioNoExistePostulacion_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPostulacion/Fault/UsuarioNoExistePostulacion")
+    })
+    public DtPostulacion obtenerDtPostulacion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws UsuarioNoExisteException_Exception, UsuarioNoExistePostulacion_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtOfertaLaboral
+     * @throws IOException_Exception
+     * @throws OfertaLaboralNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertaLaboralRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertaLaboralResponse", fault = {
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertaLaboral/Fault/OfertaLaboralNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertaLaboral/Fault/IOException")
+    })
+    public DtOfertaLaboral obtenerDtOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, OfertaLaboralNoExisteException_Exception
     ;
 
     /**
@@ -94,215 +804,6 @@ public interface Publicador {
     /**
      * 
      * @param arg0
-     * @param arg1
-     * @return
-     *     returns main.java.webservices.DtPostulacion
-     * @throws UsuarioNoExisteException_Exception
-     * @throws UsuarioNoExistePostulacion_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPostulacionRequest", output = "http://webservices.java.main/Publicador/obtenerDtPostulacionResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPostulacion/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = UsuarioNoExistePostulacion_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPostulacion/Fault/UsuarioNoExistePostulacion")
-    })
-    public DtPostulacion obtenerDtPostulacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws UsuarioNoExisteException_Exception, UsuarioNoExistePostulacion_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listaOfertasUsuarioRequest", output = "http://webservices.java.main/Publicador/listaOfertasUsuarioResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/listaOfertasUsuario/Fault/UsuarioNoExisteException")
-    })
-    public StringArray listaOfertasUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtOfertaLaboral
-     * @throws IOException_Exception
-     * @throws OfertaLaboralNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertaLaboralRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertaLaboralResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertaLaboral/Fault/OfertaLaboralNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertaLaboral/Fault/IOException")
-    })
-    public DtOfertaLaboral obtenerDtOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, OfertaLaboralNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtCompraPaqueteArray
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtCompraPaqueteDeEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerDtCompraPaqueteDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtCompraPaqueteDeEmpresa/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtCompraPaqueteDeEmpresa/Fault/IOException")
-    })
-    public DtCompraPaqueteArray obtenerDtCompraPaqueteDeEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listarTipoDePublicacionesRequest", output = "http://webservices.java.main/Publicador/listarTipoDePublicacionesResponse")
-    public StringArray listarTipoDePublicaciones();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws PaquetePublicacionNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listarTipoPublicacionDePaqueteRequest", output = "http://webservices.java.main/Publicador/listarTipoPublicacionDePaqueteResponse", fault = {
-        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/listarTipoPublicacionDePaquete/Fault/PaquetePublicacionNoExisteException")
-    })
-    public StringArray listarTipoPublicacionDePaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws PaquetePublicacionNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @throws OfertaLaboralNoExisteException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     * @throws UsuarioYaExistePostulacion_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/registrarPostulacionRequest", output = "http://webservices.java.main/Publicador/registrarPostulacionResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/registrarPostulacion/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/registrarPostulacion/Fault/OfertaLaboralNoExisteException"),
-        @FaultAction(className = UsuarioYaExistePostulacion_Exception.class, value = "http://webservices.java.main/Publicador/registrarPostulacion/Fault/UsuarioYaExistePostulacion")
-    })
-    public void registrarPostulacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5)
-        throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception, UsuarioYaExistePostulacion_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @throws TipoPublicacionYaExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/altaTipoPublicacionRequest", output = "http://webservices.java.main/Publicador/altaTipoPublicacionResponse", fault = {
-        @FaultAction(className = TipoPublicacionYaExisteException_Exception.class, value = "http://webservices.java.main/Publicador/altaTipoPublicacion/Fault/TipoPublicacionYaExisteException")
-    })
-    public void altaTipoPublicacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        int arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        float arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5)
-        throws TipoPublicacionYaExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtTipoPublicacion
-     * @throws TipoPublicacionNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtTipoPublicacionRequest", output = "http://webservices.java.main/Publicador/obtenerDtTipoPublicacionResponse", fault = {
-        @FaultAction(className = TipoPublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtTipoPublicacion/Fault/TipoPublicacionNoExisteException")
-    })
-    public DtTipoPublicacion obtenerDtTipoPublicacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws TipoPublicacionNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaUsuarioRequest", output = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaUsuarioResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaUsuario/Fault/UsuarioNoExisteException")
-    })
-    public StringArray obtenerOfertasEmpresaUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
      * @return
      *     returns main.java.webservices.DtOfertaLaboralArray
      * @throws IOException_Exception
@@ -318,6 +819,74 @@ public interface Publicador {
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
         throws IOException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listaDeUsuariosRequest", output = "http://webservices.java.main/Publicador/listaDeUsuariosResponse")
+    public StringArray listaDeUsuarios();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns main.java.webservices.DtUsuario
+     * @throws IOException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtUsuarioRequest", output = "http://webservices.java.main/Publicador/obtenerDtUsuarioResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtUsuario/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtUsuario/Fault/IOException")
+    })
+    public DtUsuario obtenerDtUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws IOException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @throws UsuarioEmailRepetidoException_Exception
+     * @throws UsuarioYaExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://webservices.java.main/Publicador/altaEmpresaRequest", output = "http://webservices.java.main/Publicador/altaEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioYaExisteException_Exception.class, value = "http://webservices.java.main/Publicador/altaEmpresa/Fault/UsuarioYaExisteException"),
+        @FaultAction(className = UsuarioEmailRepetidoException_Exception.class, value = "http://webservices.java.main/Publicador/altaEmpresa/Fault/UsuarioEmailRepetidoException")
+    })
+    public void altaEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7)
+        throws UsuarioEmailRepetidoException_Exception, UsuarioYaExisteException_Exception
     ;
 
     /**
@@ -360,41 +929,23 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @param arg7
-     * @throws UsuarioEmailRepetidoException_Exception
-     * @throws UsuarioYaExisteException_Exception
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
      */
     @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/altaEmpresaRequest", output = "http://webservices.java.main/Publicador/altaEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioYaExisteException_Exception.class, value = "http://webservices.java.main/Publicador/altaEmpresa/Fault/UsuarioYaExisteException"),
-        @FaultAction(className = UsuarioEmailRepetidoException_Exception.class, value = "http://webservices.java.main/Publicador/altaEmpresa/Fault/UsuarioEmailRepetidoException")
-    })
-    public void altaEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7)
-        throws UsuarioEmailRepetidoException_Exception, UsuarioYaExisteException_Exception
-    ;
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listarEmpresasRequest", output = "http://webservices.java.main/Publicador/listarEmpresasResponse")
+    public StringArray listarEmpresas();
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices.java.main/Publicador/listarKeywordsRequest", output = "http://webservices.java.main/Publicador/listarKeywordsResponse")
+    public StringArray listarKeywords();
 
     /**
      * 
@@ -455,26 +1006,6 @@ public interface Publicador {
 
     /**
      * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listarKeywordsRequest", output = "http://webservices.java.main/Publicador/listarKeywordsResponse")
-    public StringArray listarKeywords();
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listarEmpresasRequest", output = "http://webservices.java.main/Publicador/listarEmpresasResponse")
-    public StringArray listarEmpresas();
-
-    /**
-     * 
      * @param arg0
      * @param arg1
      * @return
@@ -518,10 +1049,10 @@ public interface Publicador {
      * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/editarPostulanteRequest", output = "http://webservices.java.main/Publicador/editarPostulanteResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/editarPostulante/Fault/UsuarioNoExisteException")
+    @Action(input = "http://webservices.java.main/Publicador/editarEmpresaRequest", output = "http://webservices.java.main/Publicador/editarEmpresaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/editarEmpresa/Fault/UsuarioNoExisteException")
     })
-    public void editarPostulante(
+    public void editarEmpresa(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -551,10 +1082,10 @@ public interface Publicador {
      * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/editarEmpresaRequest", output = "http://webservices.java.main/Publicador/editarEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/editarEmpresa/Fault/UsuarioNoExisteException")
+    @Action(input = "http://webservices.java.main/Publicador/editarPostulanteRequest", output = "http://webservices.java.main/Publicador/editarPostulanteResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/editarPostulante/Fault/UsuarioNoExisteException")
     })
-    public void editarEmpresa(
+    public void editarPostulante(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -586,362 +1117,18 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns main.java.webservices.DtUsuario
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
+     *     returns main.java.webservices.DtTipoPublicacion
+     * @throws TipoPublicacionNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtUsuarioRequest", output = "http://webservices.java.main/Publicador/obtenerDtUsuarioResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtUsuario/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtUsuario/Fault/IOException")
+    @Action(input = "http://webservices.java.main/Publicador/obtenerDtTipoPublicacionRequest", output = "http://webservices.java.main/Publicador/obtenerDtTipoPublicacionResponse", fault = {
+        @FaultAction(className = TipoPublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtTipoPublicacion/Fault/TipoPublicacionNoExisteException")
     })
-    public DtUsuario obtenerDtUsuario(
+    public DtTipoPublicacion obtenerDtTipoPublicacion(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listaDeUsuariosRequest", output = "http://webservices.java.main/Publicador/listaDeUsuariosResponse")
-    public StringArray listaDeUsuarios();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtOfertaLaboralArray
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertasRechazadasDeEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertasRechazadasDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasRechazadasDeEmpresa/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasRechazadasDeEmpresa/Fault/IOException")
-    })
-    public DtOfertaLaboralArray obtenerDtOfertasRechazadasDeEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtOfertaLaboralArray
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertasIngresadasDeEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertasIngresadasDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasIngresadasDeEmpresa/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasIngresadasDeEmpresa/Fault/IOException")
-    })
-    public DtOfertaLaboralArray obtenerDtOfertasIngresadasDeEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @throws PostulanteNoEsOfertaFavoritaException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/removerOfertaFavoritaRequest", output = "http://webservices.java.main/Publicador/removerOfertaFavoritaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/removerOfertaFavorita/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = PostulanteNoEsOfertaFavoritaException_Exception.class, value = "http://webservices.java.main/Publicador/removerOfertaFavorita/Fault/PostulanteNoEsOfertaFavoritaException")
-    })
-    public void removerOfertaFavorita(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws PostulanteNoEsOfertaFavoritaException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns boolean
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/confirmarContraseniaRequest", output = "http://webservices.java.main/Publicador/confirmarContraseniaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/confirmarContrasenia/Fault/UsuarioNoExisteException")
-    })
-    public boolean confirmarContrasenia(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosDeEmpresaRequest", output = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosDeEmpresa/Fault/UsuarioNoExisteException")
-    })
-    public StringArray listarPaquetesNoCompradosDeEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerOfertasEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerOfertasEmpresa/Fault/UsuarioNoExisteException")
-    })
-    public StringArray obtenerOfertasEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns main.java.webservices.DtOfertaLaboralArray
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertasConfirmadasRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertasConfirmadasResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasConfirmadas/Fault/IOException")
-    })
-    public DtOfertaLaboralArray obtenerDtOfertasConfirmadas()
-        throws IOException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtPaquetePublicacionArray
-     * @throws IOException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPaquetesDeEmpresaRequest", output = "http://webservices.java.main/Publicador/obtenerDtPaquetesDeEmpresaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetesDeEmpresa/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetesDeEmpresa/Fault/IOException")
-    })
-    public DtPaquetePublicacionArray obtenerDtPaquetesDeEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtPostulacionArray
-     * @throws OfertaLaboralNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDeOfertaRequest", output = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDeOfertaResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDeOferta/Fault/OfertaLaboralNoExisteException")
-    })
-    public DtPostulacionArray obtenerDtPostulacionesDeOferta(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtPostulacionArray
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDePostulanteRequest", output = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDePostulanteResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPostulacionesDePostulante/Fault/UsuarioNoExisteException")
-    })
-    public DtPostulacionArray obtenerDtPostulacionesDePostulante(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @throws OfertaLaboralNoExisteException_Exception
-     * @throws PostulanteYaEsOfertaFavoritaException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/agregarOfertaFavoritaRequest", output = "http://webservices.java.main/Publicador/agregarOfertaFavoritaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/agregarOfertaFavorita/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = PostulanteYaEsOfertaFavoritaException_Exception.class, value = "http://webservices.java.main/Publicador/agregarOfertaFavorita/Fault/PostulanteYaEsOfertaFavoritaException"),
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/agregarOfertaFavorita/Fault/OfertaLaboralNoExisteException")
-    })
-    public void agregarOfertaFavorita(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws OfertaLaboralNoExisteException_Exception, PostulanteYaEsOfertaFavoritaException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     * @throws OfertaLaboralNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/estaCompradoPorPaqueteOfertaRequest", output = "http://webservices.java.main/Publicador/estaCompradoPorPaqueteOfertaResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/estaCompradoPorPaqueteOferta/Fault/OfertaLaboralNoExisteException")
-    })
-    public boolean estaCompradoPorPaqueteOferta(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtOfertaLaboralArray
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtOfertasPorKeywordRequest", output = "http://webservices.java.main/Publicador/obtenerDtOfertasPorKeywordResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtOfertasPorKeyword/Fault/IOException")
-    })
-    public DtOfertaLaboralArray obtenerDtOfertasPorKeyword(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtPaquetePublicacion
-     * @throws IOException_Exception
-     * @throws OfertaLaboralNoExisteException_Exception
-     * @throws OfertaLaboralNoTienePaquete_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacionRequest", output = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacionResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacion/Fault/OfertaLaboralNoExisteException"),
-        @FaultAction(className = OfertaLaboralNoTienePaquete_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacion/Fault/OfertaLaboralNoTienePaquete"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtPaquetePublicacion/Fault/IOException")
-    })
-    public DtPaquetePublicacion obtenerDtPaquetePublicacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, OfertaLaboralNoExisteException_Exception, OfertaLaboralNoTienePaquete_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     * @throws PaquetePublicacionNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/estaCompradoPaqueteRequest", output = "http://webservices.java.main/Publicador/estaCompradoPaqueteResponse", fault = {
-        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/estaCompradoPaquete/Fault/PaquetePublicacionNoExisteException")
-    })
-    public boolean estaCompradoPaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws PaquetePublicacionNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosRequest", output = "http://webservices.java.main/Publicador/listarPaquetesNoCompradosResponse")
-    public StringArray listarPaquetesNoComprados();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws OfertaLaboralNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerKeywordsDeOfertaLaboralRequest", output = "http://webservices.java.main/Publicador/obtenerKeywordsDeOfertaLaboralResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerKeywordsDeOfertaLaboral/Fault/OfertaLaboralNoExisteException")
-    })
-    public StringArray obtenerKeywordsDeOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @throws OfertaLaboralNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/ordenarPostulacionesRequest", output = "http://webservices.java.main/Publicador/ordenarPostulacionesResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/ordenarPostulaciones/Fault/OfertaLaboralNoExisteException")
-    })
-    public void ordenarPostulaciones(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        StringArray arg1)
-        throws OfertaLaboralNoExisteException_Exception
+        throws TipoPublicacionNoExisteException_Exception
     ;
 
     /**
@@ -949,220 +1136,33 @@ public interface Publicador {
      * @param arg0
      * @param arg1
      * @param arg2
-     * @throws PaquetePublicacionNoExisteException_Exception
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @throws OfertaLaboralNoExisteException_Exception
      * @throws UsuarioNoExisteException_Exception
+     * @throws UsuarioYaExistePostulacion_Exception
      */
     @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/comprarPaqueteRequest", output = "http://webservices.java.main/Publicador/comprarPaqueteResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/comprarPaquete/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/comprarPaquete/Fault/PaquetePublicacionNoExisteException")
+    @Action(input = "http://webservices.java.main/Publicador/registrarPostulacionRequest", output = "http://webservices.java.main/Publicador/registrarPostulacionResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/registrarPostulacion/Fault/UsuarioNoExisteException"),
+        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/registrarPostulacion/Fault/OfertaLaboralNoExisteException"),
+        @FaultAction(className = UsuarioYaExistePostulacion_Exception.class, value = "http://webservices.java.main/Publicador/registrarPostulacion/Fault/UsuarioYaExistePostulacion")
     })
-    public void comprarPaquete(
+    public void registrarPostulacion(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1,
         @WebParam(name = "arg2", partName = "arg2")
-        String arg2)
-        throws PaquetePublicacionNoExisteException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @throws UsuarioNoEstaSeguidoException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     * @throws UsuarioYaEstaSeguidoException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/agregarSeguidorRequest", output = "http://webservices.java.main/Publicador/agregarSeguidorResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/agregarSeguidor/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = UsuarioNoEstaSeguidoException_Exception.class, value = "http://webservices.java.main/Publicador/agregarSeguidor/Fault/UsuarioNoEstaSeguidoException"),
-        @FaultAction(className = UsuarioYaEstaSeguidoException_Exception.class, value = "http://webservices.java.main/Publicador/agregarSeguidor/Fault/UsuarioYaEstaSeguidoException")
-    })
-    public void agregarSeguidor(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws UsuarioNoEstaSeguidoException_Exception, UsuarioNoExisteException_Exception, UsuarioYaEstaSeguidoException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns main.java.webservices.DtDatosPdf
-     * @throws OfertaLaboralNoExisteException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDatosPdfRequest", output = "http://webservices.java.main/Publicador/obtenerDatosPdfResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDatosPdf/Fault/OfertaLaboralNoExisteException"),
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDatosPdf/Fault/UsuarioNoExisteException")
-    })
-    public DtDatosPdf obtenerDatosPdf(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtEmpresaArray
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/buscarEmpresasRequest", output = "http://webservices.java.main/Publicador/buscarEmpresasResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/buscarEmpresas/Fault/IOException")
-    })
-    public DtEmpresaArray buscarEmpresas(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @throws UsuarioNoEstaSeguidoException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/dejarDeSeguirRequest", output = "http://webservices.java.main/Publicador/dejarDeSeguirResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/dejarDeSeguir/Fault/UsuarioNoExisteException"),
-        @FaultAction(className = UsuarioNoEstaSeguidoException_Exception.class, value = "http://webservices.java.main/Publicador/dejarDeSeguir/Fault/UsuarioNoEstaSeguidoException")
-    })
-    public void dejarDeSeguir(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws UsuarioNoEstaSeguidoException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns main.java.webservices.DtUsuarioArray
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtUsuariosRequest", output = "http://webservices.java.main/Publicador/obtenerDtUsuariosResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtUsuarios/Fault/IOException")
-    })
-    public DtUsuarioArray obtenerDtUsuarios()
-        throws IOException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtOfertaLaboralArray
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/buscarOfertasRequest", output = "http://webservices.java.main/Publicador/buscarOfertasResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/buscarOfertas/Fault/IOException")
-    })
-    public DtOfertaLaboralArray buscarOfertas(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws KeywordYaExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/altaKeywordRequest", output = "http://webservices.java.main/Publicador/altaKeywordResponse", fault = {
-        @FaultAction(className = KeywordYaExisteException_Exception.class, value = "http://webservices.java.main/Publicador/altaKeyword/Fault/KeywordYaExisteException")
-    })
-    public void altaKeyword(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws KeywordYaExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws OfertaLaboralNoExisteException_Exception
-     * @throws OfertaLaboralNoSePuedeFinalizar_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/finalizarOfertaRequest", output = "http://webservices.java.main/Publicador/finalizarOfertaResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/finalizarOferta/Fault/OfertaLaboralNoExisteException"),
-        @FaultAction(className = OfertaLaboralNoSePuedeFinalizar_Exception.class, value = "http://webservices.java.main/Publicador/finalizarOferta/Fault/OfertaLaboralNoSePuedeFinalizar")
-    })
-    public void finalizarOferta(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoExisteException_Exception, OfertaLaboralNoSePuedeFinalizar_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns main.java.webservices.DtPaquetePublicacionArray
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/listarDtPaquetesRequest", output = "http://webservices.java.main/Publicador/listarDtPaquetesResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/listarDtPaquetes/Fault/IOException")
-    })
-    public DtPaquetePublicacionArray listarDtPaquetes()
-        throws IOException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns main.java.webservices.DtPaquetePublicacion
-     * @throws IOException_Exception
-     * @throws PaquetePublicacionNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices.java.main/Publicador/obtenerDtpaqueteRequest", output = "http://webservices.java.main/Publicador/obtenerDtpaqueteResponse", fault = {
-        @FaultAction(className = PaquetePublicacionNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtpaquete/Fault/PaquetePublicacionNoExisteException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://webservices.java.main/Publicador/obtenerDtpaquete/Fault/IOException")
-    })
-    public DtPaquetePublicacion obtenerDtpaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws IOException_Exception, PaquetePublicacionNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws OfertaLaboralNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://webservices.java.main/Publicador/agregarVisitaAofertaRequest", output = "http://webservices.java.main/Publicador/agregarVisitaAofertaResponse", fault = {
-        @FaultAction(className = OfertaLaboralNoExisteException_Exception.class, value = "http://webservices.java.main/Publicador/agregarVisitaAoferta/Fault/OfertaLaboralNoExisteException")
-    })
-    public void agregarVisitaAoferta(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws OfertaLaboralNoExisteException_Exception
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5)
+        throws OfertaLaboralNoExisteException_Exception, UsuarioNoExisteException_Exception, UsuarioYaExistePostulacion_Exception
     ;
 
 }
