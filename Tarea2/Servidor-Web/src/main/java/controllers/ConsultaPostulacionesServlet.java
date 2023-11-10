@@ -57,8 +57,6 @@ public class ConsultaPostulacionesServlet
       for (DtPostulacion dtPostulacion : postulaciones) {
         dTOfertas.add(cliente.obtenerDtOfertaLaboral(
               dtPostulacion.getNombreOferta()));
-        System.out.println(cliente.obtenerDtOfertaLaboral(
-              dtPostulacion.getNombreOferta()));
       }
 
       request.setAttribute("postulaciones", postulaciones);

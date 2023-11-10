@@ -35,20 +35,34 @@ session.getAttribute("tipoUsuairo"); %>
     </div>
     <div class="row w-100 justify-content-between align-items-center">
       <div class="col-5">
-        <div>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarToggleExternalContent"
-            aria-controls="navbarToggleExternalContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
+       <div class="container">
+    <div class="position-relative">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse position-absolute top-0 start-100 translate-middle-y bg-secondary p-2 border border-dark" id="navbarToggleExternalContent">
+        <!-- Contenido de la barra de navegación -->
+        <a class="btn btn-block border-bottom m-0" href="<%=request.getContextPath()%>/consultaOfertas">Ver ofertas</a>
+        <a class="btn btn-block m-0" href="<%=request.getContextPath()%>/listarOfertas">Ver Postulacion</a>
       </div>
+    </div>
+  </div>
+
+      </div>
+      <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("click", function (e) {
+        var navbarToggleExternalContent = document.getElementById("navbarToggleExternalContent");
+        var navbarToggler = document.querySelector(".navbar-toggler");
+
+        if (!navbarToggleExternalContent.contains(e.target) && !navbarToggler.contains(e.target)) {
+          // Cierra el menú si se hace clic fuera del botón y el contenido expandido
+          navbarToggleExternalContent.classList.remove("show");
+        }
+      });
+    });
+  </script>
 
       <div class="col-4">
         <ul class="navbar-nav justify-content-end fs-3">
