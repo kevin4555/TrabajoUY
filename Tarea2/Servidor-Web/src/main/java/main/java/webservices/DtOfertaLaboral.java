@@ -40,6 +40,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="fechaAltaString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="fechaResolucionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="fechaFinalizacionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaSeleccionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -69,7 +70,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "exposicion",
     "fechaAltaString",
     "fechaResolucionString",
-    "fechaFinalizacionString"
+    "fechaFinalizacionString",
+    "fechaSeleccionString"
 })
 public class DtOfertaLaboral {
 
@@ -96,6 +98,7 @@ public class DtOfertaLaboral {
     protected String fechaAltaString;
     protected String fechaResolucionString;
     protected String fechaFinalizacionString;
+    protected String fechaSeleccionString;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -581,6 +584,30 @@ public class DtOfertaLaboral {
      */
     public void setFechaFinalizacionString(String value) {
         this.fechaFinalizacionString = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaSeleccionString.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaSeleccionString() {
+        return fechaSeleccionString;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaSeleccionString.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaSeleccionString(String value) {
+        this.fechaSeleccionString = value;
     }
 
 }

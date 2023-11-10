@@ -88,7 +88,8 @@
 										
 										<br><br>
 									<%} %>
-									<%if(oferta.getFechaResolucionString()!= null) {
+									<%if(oferta.getFechaSeleccionString() != null ) {
+									  
 									  String contextPathpdf = request.getContextPath();
 									  String pdfUrl = contextPathpdf + "/PdfServlet?nicknamePostulante=" 
 									  + java.net.URLEncoder.encode(postulante.getNickname(), "UTF-8") 
