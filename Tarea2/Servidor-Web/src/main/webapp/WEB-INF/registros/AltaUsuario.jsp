@@ -74,7 +74,7 @@
 		<div class="row mt-3">
 			<div class="col">
 				<label for="inputPassword4" class="form-label"><strong>*Confirmar
-					contraseñaa</strong></label> <input type="password" class="form-control"
+					contraseña</strong></label> <input type="password" class="form-control"
 				id="inputPasswordConfirm" name="contraseniaConf"
 				placeholder="Ingrese su contraseña" required />
 			</div>
@@ -122,9 +122,9 @@
 				id="inputSitioWeb" name="sitioWeb" />
 		</div>
 		<div class="col-md-12 mt-3" id="divDescripcionEmpresa">
-			<label class="form-label"><strong>*DescripciÃ³n</strong></label> <textarea 
+			<label class="form-label"><strong>*Descripción</strong></label> <textarea 
 				class="form-control" rows="5"
-				placeholder="Ingrese una descripciÃ³n" id="inputDescripcion"
+				placeholder="Ingrese una descripción" id="inputDescripcion"
 				name="descripcion" required></textarea>
 		</div>
 		<div class="col-6 mt-3" id="radioTipoUsuario">

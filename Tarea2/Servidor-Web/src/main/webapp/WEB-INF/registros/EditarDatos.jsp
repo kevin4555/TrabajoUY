@@ -62,17 +62,17 @@
 			<input type="text" class="form-control" value="<%=usuario.getEmail()%>" readonly>
 		</div>
 		<div class="col-md-6 mt-3">
-			<label for="inputPassword" class="form-label"><strong>*ContraseÃ±a</strong></label>
+			<label for="inputPassword" class="form-label"><strong>*Contraseña</strong></label>
 			<input type="password" class="form-control" id="inputPassword"
 				name="contrasenia" value="<%=usuario.getContrasenia()%>"
-				placeholder="Ingrese su contraseÃ±a" required />
+				placeholder="Ingrese su contraseña" required />
 		</div>
 		<div class="row mt-3">
 			<div class="col">
 				<label for="inputPassword4" class="form-label"><strong>*Confirmar
-					contraseÃ±a</strong></label> <input type="password" class="form-control"
+					contraseña</strong></label> <input type="password" class="form-control"
 				id="inputPasswordConfirm" name="contraseniaConf"  value="<%=usuario.getContrasenia()%>"
-				placeholder="Ingrese su contraseÃ±a" required />
+				placeholder="Ingrese su contraseña" required />
 			</div>
 			<div class="col alert alert-sm" id="bloqueAvisoContrasenia">
 				<span id="chequeoContrasenia"></span>
