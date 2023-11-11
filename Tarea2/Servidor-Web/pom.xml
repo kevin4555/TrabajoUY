@@ -35,8 +35,18 @@
     		<version>5.5.13.2</version>
 		</dependency>
 	</dependencies>
+	
+	
 	<build>
 		<finalName>Servidor-Web</finalName>
+		<resources>
+		<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+	</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
