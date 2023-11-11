@@ -191,7 +191,7 @@
 							ArrayList<DtCompraPaquete> listaPaquetes = (ArrayList<DtCompraPaquete>) request.getAttribute("listaCompraPaquetes");
 							if (!listaPaquetes.isEmpty()) {
 							%>
-							
+							<option value="">-- Selecciona un paquete --</option>
 							<%
 							for (DtCompraPaquete paquete : listaPaquetes) {
 							%>
