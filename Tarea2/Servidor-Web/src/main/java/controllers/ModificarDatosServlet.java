@@ -64,7 +64,7 @@ public class ModificarDatosServlet extends HttpServlet {
     String contraseniaConf =
           request.getParameter("contraseniaConf");
     BufferedImage imagen = null;
-    String imagenString = usuario.getImagenBase64();
+    String imagenString = "";
     if (!contraseniaConf.equals(contrasenia)) {
       request.setAttribute("mensajeError",
             "contraseña incorrecta");
@@ -93,7 +93,7 @@ public class ModificarDatosServlet extends HttpServlet {
           == TipoUsuario.EMPRESA) {
       String descripcion =
             request.getParameter("descripcion");
-      String sitioWeb = request.getParameter("sitioWeb");
+      String sitioWeb = request.getParameter("sitioWeb");   
       try {
         port.editarEmpresa(usuario.getNickname(), nombre,
               apellido, sitioWeb, descripcion, imagenString,
@@ -123,10 +123,14 @@ public class ModificarDatosServlet extends HttpServlet {
       String fechaNacimiento = LocalDate
             .parse(request.getParameter("fechaNacimiento"))
             .toString();
+      if(imagen != null) {
+        imagenString = imageToBase64String(imagen);
+      }
+      
       try {
         port.editarPostulante(usuario.getNickname(), nombre,
               apellido, fechaNacimiento, nacionalidad,
-              imageToBase64String(imagen), contrasenia);
+              imagenString, contrasenia);
         DtUsuario usuariomodificado =
               port.obtenerDtUsuario(usuario.getNickname());
         sesion.setAttribute("usuarioLogueado",
