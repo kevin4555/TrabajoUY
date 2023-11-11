@@ -197,19 +197,11 @@ public class AltaOfertaServlet extends HttpServlet {
         for (DtCompraPaquete compra : listaCompras) {
           if (nombrePaquete
                 .equals(compra.getPaquete().getNombre())) {
-            System.out.println("encuentra el dtcompra");
             for (DtCantidadTipoPublicacionRestante cantidadRestante : compra
                   .getPublicacionesRestantes()) {
-              System.out.println(cantidadRestante
-                    .getTipoPublicacion().getNombre());
-              System.out.println(
-                    cantidadRestante.getCantidad());
               if (tipoPublicacion.equals(cantidadRestante
                     .getTipoPublicacion().getNombre())) {
-                System.out.println("encuentra el tipo");
                 if (cantidadRestante.getCantidad() > 0) {
-                  System.out.println(
-                        "setea hay publicacion en true");
                   hayPublicaciones = true;
                 }
               }
@@ -243,7 +235,6 @@ public class AltaOfertaServlet extends HttpServlet {
       StringArray stringArray = new StringArray();
       List<String> keywordsList = stringArray.getItem();
       keywordsList.addAll(listKeywords);
-
       port.altaOfertaLaboral(nombreOferta, descripcion,
             horaInicio, horaFin, remuneracion, ciudad,
             departamento,

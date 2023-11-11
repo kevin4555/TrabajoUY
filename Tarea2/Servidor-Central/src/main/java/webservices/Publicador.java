@@ -126,7 +126,7 @@ public class Publicador {
     if (!imagen.equals("")) {
       imagenBufferedImage = base64StringToImage(imagen);
     }
-    if (!nombrePaquete.equals("")) {
+    if (nombrePaquete.equals("")) {
       nombrePaquete = null;
     }
     LocalDate fechaAltaLocalDate =

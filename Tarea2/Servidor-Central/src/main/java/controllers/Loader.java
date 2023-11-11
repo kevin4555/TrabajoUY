@@ -489,7 +489,7 @@ public class Loader {
     List<String> keywords8 = new ArrayList<String>();
     keywords8.add(keyword1.getNombre());
     controladorOferta.altaOfertaLaboral("Contador Senior",
-          "Unete a nuestro equipo contable y ayuda en la gestión financiera de la empresa.",
+          "Únete a nuestro equipo contable y ayuda en la gestión financiera de la empresa.",
           "08:30", "17:30", 100000f, "Colonia Suiza",
           "Colonia", LocalDate.parse("2023-11-04"),
           "Destacada", "GlobalHealth", keywords8,
