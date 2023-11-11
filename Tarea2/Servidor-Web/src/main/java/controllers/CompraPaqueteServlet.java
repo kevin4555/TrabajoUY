@@ -4,17 +4,13 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import main.java.webservices.DtPostulacion;
-import main.java.webservices.PaquetePublicacionNoExisteException;
 import main.java.webservices.PublicadorService;
-import main.java.webservices.UsuarioNoExisteException;
 
 /**
  * Servlet implementation class ConsultaPaquetes

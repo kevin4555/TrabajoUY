@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,8 +17,6 @@ import main.java.webservices.PublicadorService;
 import main.java.webservices.UsuarioNoExisteException_Exception;
 import main.java.webservices.UsuarioNoExistePostulacion_Exception;
 import model.EstadoSesion;
-
-import java.io.IOException;
 
 /**
  * Servlet implementation class VerPostulacionServlet

@@ -1,9 +1,6 @@
 package controllers;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,12 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
-import main.java.webservices.DtCompraPaquete;
-import main.java.webservices.DtEmpresa;
-import main.java.webservices.DtOfertaLaboral;
-import main.java.webservices.DtPostulacion;
-import main.java.webservices.DtPostulante;
 import main.java.webservices.DtUsuario;
 import main.java.webservices.IOException_Exception;
 import main.java.webservices.PublicadorService;

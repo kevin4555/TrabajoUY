@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,8 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import main.java.webservices.DtPaquetePublicacion;
 import main.java.webservices.IOException_Exception;
-import main.java.webservices.OfertaLaboralNoExisteException_Exception;
-import main.java.webservices.OfertaLaboralNoTienePaquete_Exception;
 import main.java.webservices.PaquetePublicacionNoExisteException_Exception;
 import main.java.webservices.PublicadorService;
 

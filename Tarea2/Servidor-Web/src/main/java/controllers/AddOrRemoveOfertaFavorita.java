@@ -1,10 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,15 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import main.java.webservices.DtPostulacion;
 import main.java.webservices.DtPostulante;
-import main.java.webservices.OfertaLaboralNoExisteException_Exception;
-import main.java.webservices.PaquetePublicacionNoExisteException;
-import main.java.webservices.PostulanteNoEsOfertaFavoritaException_Exception;
-import main.java.webservices.PostulanteYaEsOfertaFavoritaException_Exception;
 import main.java.webservices.PublicadorService;
-import main.java.webservices.UsuarioNoExisteException;
-import main.java.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
 

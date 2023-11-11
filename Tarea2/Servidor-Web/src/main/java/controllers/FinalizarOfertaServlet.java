@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import jakarta.servlet.ServletException;
@@ -21,7 +20,6 @@ import main.java.webservices.OfertaLaboralNoExisteException_Exception;
 import main.java.webservices.OfertaLaboralNoSePuedeFinalizar_Exception;
 import main.java.webservices.PublicadorService;
 import main.java.webservices.UsuarioNoExisteException_Exception;
-import model.TipoUsuario;
 
 /**
  * Servlet implementation class PerfilSerlvlet
