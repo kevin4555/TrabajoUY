@@ -3,10 +3,11 @@
 <%@page import="main.java.webservices.DtEmpresa"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Editar perfil</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resource/css/general.css">
@@ -61,17 +62,17 @@
 			<input type="text" class="form-control" value="<%=usuario.getEmail()%>" readonly>
 		</div>
 		<div class="col-md-6 mt-3">
-			<label for="inputPassword" class="form-label"><strong>*Contraseña</strong></label>
+			<label for="inputPassword" class="form-label"><strong>*ContraseÃ±a</strong></label>
 			<input type="password" class="form-control" id="inputPassword"
 				name="contrasenia" value="<%=usuario.getContrasenia()%>"
-				placeholder="Ingrese su contraseña" required />
+				placeholder="Ingrese su contraseÃ±a" required />
 		</div>
 		<div class="row mt-3">
 			<div class="col">
 				<label for="inputPassword4" class="form-label"><strong>*Confirmar
-					contraseña</strong></label> <input type="password" class="form-control"
+					contraseÃ±a</strong></label> <input type="password" class="form-control"
 				id="inputPasswordConfirm" name="contraseniaConf"  value="<%=usuario.getContrasenia()%>"
-				placeholder="Ingrese su contraseña" required />
+				placeholder="Ingrese su contraseÃ±a" required />
 			</div>
 			<div class="col alert alert-sm" id="bloqueAvisoContrasenia">
 				<span id="chequeoContrasenia"></span>
@@ -114,9 +115,9 @@
 				id="inputSitioWeb" name="sitioWeb" value="<%=empresa.getSitioWeb()%>"/>
 		</div>
 		<div class="col-md-12 mt-3" id="divDescripcionEmpresa">
-			<label class="form-label"><strong>*Descripción</strong></label> <textarea 
+			<label class="form-label"><strong>*DescripciÃ³n</strong></label> <textarea 
 				rows="5" class="form-control"
-				placeholder="Ingrese una descripción" id="inputDescripcion" 
+				placeholder="Ingrese una descripciÃ³n" id="inputDescripcion" 
 				name="descripcion" required><%=empresa.getDescripcion()%></textarea>
 		</div>
 		<%

@@ -1,8 +1,9 @@
 <%@page import="main.java.webservices.DtUsuario"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Registrar usuario</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resource/css/general.css">
@@ -68,12 +69,12 @@
 		<div class="col-md-6 mt-3">
 			<label for="inputPassword" class="form-label"><strong>*Contraseña</strong></label>
 			<input type="password" class="form-control" id="inputPassword"
-				name="contrasenia" placeholder="Ingrese su contraseñaa" required />
+				name="contrasenia" placeholder="Ingrese su contraseña" required />
 		</div>
 		<div class="row mt-3">
 			<div class="col">
 				<label for="inputPassword4" class="form-label"><strong>*Confirmar
-					contraseña</strong></label> <input type="password" class="form-control"
+					contraseñaa</strong></label> <input type="password" class="form-control"
 				id="inputPasswordConfirm" name="contraseniaConf"
 				placeholder="Ingrese su contraseña" required />
 			</div>
@@ -121,9 +122,9 @@
 				id="inputSitioWeb" name="sitioWeb" />
 		</div>
 		<div class="col-md-12 mt-3" id="divDescripcionEmpresa">
-			<label class="form-label"><strong>*Descripción</strong></label> <textarea 
+			<label class="form-label"><strong>*DescripciÃ³n</strong></label> <textarea 
 				class="form-control" rows="5"
-				placeholder="Ingrese una descripción" id="inputDescripcion"
+				placeholder="Ingrese una descripciÃ³n" id="inputDescripcion"
 				name="descripcion" required></textarea>
 		</div>
 		<div class="col-6 mt-3" id="radioTipoUsuario">
@@ -137,7 +138,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
-	<!--InstalaciÃ³n bootstrap-->
+	<!--InstalaciÃÂ³n bootstrap-->
 </body>
 
 </body>
