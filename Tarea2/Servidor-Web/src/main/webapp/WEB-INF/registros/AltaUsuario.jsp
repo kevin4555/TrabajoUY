@@ -68,7 +68,7 @@
 		<div class="col-md-6 mt-3">
 			<label for="inputPassword" class="form-label"><strong>*Contraseña</strong></label>
 			<input type="password" class="form-control" id="inputPassword"
-				name="contrasenia" placeholder="Ingrese su contraseÃ±a" required />
+				name="contrasenia" placeholder="Ingrese su contraseñaa" required />
 		</div>
 		<div class="row mt-3">
 			<div class="col">
@@ -115,16 +115,16 @@
 					Nacimiento</strong></label> <input name="fechaNacimiento" type="date"
 				class="form-control" id="inputFechaNacimiento" required />
 		</div>
-		<div class="col-md-6 mt-3" id="divSitioWeb">
+		<div class="col-md-12 mt-3" id="divSitioWeb">
 			<label class="form-label"><strong>Sitio Web</strong></label> <input
 				type="text" class="form-control" placeholder="Ingrese su sitio web"
 				id="inputSitioWeb" name="sitioWeb" />
 		</div>
-		<div class="col-md-6 mt-3" id="divDescripcionEmpresa">
-			<label class="form-label"><strong>*DescripciÃ³n</strong></label> <input
-				type="text" class="form-control"
-				placeholder="Ingrese una descripciÃ³n" id="inputDescripcion"
-				name="descripcion" required />
+		<div class="col-md-12 mt-3" id="divDescripcionEmpresa">
+			<label class="form-label"><strong>*Descripción</strong></label> <textarea 
+				class="form-control" rows="5"
+				placeholder="Ingrese una descripción" id="inputDescripcion"
+				name="descripcion" required></textarea>
 		</div>
 		<div class="col-6 mt-3" id="radioTipoUsuario">
 			<input class="btn btn-primary" type="submit" value="Registrarse" />
