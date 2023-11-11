@@ -22,6 +22,15 @@ public class VisitasFilter extends HttpFilter
       Filter {
 
   /**
+	 * 
+	 */
+	private static final long serialVersionUID = -924637100603127801L;
+
+/**
+	 * 
+	 */
+
+/**
    * @see HttpFilter#HttpFilter()
    */
   public VisitasFilter() {
