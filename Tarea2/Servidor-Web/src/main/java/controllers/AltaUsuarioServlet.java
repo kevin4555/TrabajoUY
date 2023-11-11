@@ -5,9 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Base64;
-import java.util.Locale;
 
 import javax.imageio.ImageIO;
 
@@ -90,8 +88,6 @@ public class AltaUsuarioServlet extends HttpServlet {
             request.getParameter("nacionalidad");
       LocalDate fechaNacimiento = LocalDate
             .parse(request.getParameter("fechaNacimiento"));
-      DateTimeFormatter formatter = DateTimeFormatter
-            .ofPattern("dd/MM/yyyy", Locale.ENGLISH);
       String imagenString;
       if (imagen != null) {
         imagenString = imageToBase64String(imagen);

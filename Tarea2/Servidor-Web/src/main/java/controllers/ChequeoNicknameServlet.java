@@ -10,7 +10,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import main.java.webservices.PublicadorService;
 
 /**
@@ -32,7 +31,6 @@ public class ChequeoNicknameServlet extends HttpServlet {
   private void procesarRequest(HttpServletRequest request,
         HttpServletResponse response)
         throws ServletException, IOException {
-    HttpSession sesion = request.getSession();
     PublicadorService publicadorService =
           new PublicadorService();
     main.java.webservices.Publicador port =
