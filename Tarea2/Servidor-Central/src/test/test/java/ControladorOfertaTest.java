@@ -868,7 +868,7 @@ public class ControladorOfertaTest {
         KeywordYaExisteException,
         OfertaLaboralYaExisteException,
         KeywordNoExisteException, UsuarioNoExisteException,
-        IOException {
+        IOException, OfertaLaboralNoExisteException {
 
     manejadorOfertas = ManejadorOfertas.getInstance();
     manejadorPaquetes = ManejadorPaquetes.getInstance();
@@ -876,7 +876,7 @@ public class ControladorOfertaTest {
     controladorUsuario = new ControladorUsuario();
 
     controladorOferta.altaTipoPublicacion("tipoTesting",
-          "Uso para testing", "baja", 50, 500f, fechaDate);
+          "Uso para testing", "baja", 700, 500f, fechaDate);
     controladorUsuario.altaEmpresa("nicknameEmpresa1",
           "nombre1", "apellido1", "email1@test.com",
           "descripcion1", "sitioWeb1", null,
@@ -889,6 +889,8 @@ public class ControladorOfertaTest {
           "Montevideo", "Montevideo", fechaDate,
           "tipoTesting", "nicknameEmpresa1", listaKeyword,
           null, null);
+    controladorOferta.aceptarRechazarOfertaLaboral("test",
+          EstadoOferta.CONFIRMADA, fechaDateSecundaria);
 
     List<DtOfertaLaboral> resultadoOfertaLaboralDt =
           controladorOferta
