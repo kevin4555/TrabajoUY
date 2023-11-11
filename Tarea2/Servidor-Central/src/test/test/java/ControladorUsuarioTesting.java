@@ -1655,11 +1655,11 @@ public class ControladorUsuarioTesting {
     Assert.assertEquals(dtDatosPdfa.getFechaResolucion(),
           test.getFechaSeleccion().toString());
     Assert.assertEquals(dtDatosPdfa.getNombreEmpresa(),
-          "nombre1");
+          "nicknameEmpresa1");
     Assert.assertEquals(dtDatosPdfa.getNombreOferta(),
           "test");
     Assert.assertEquals(dtDatosPdfa.getNombrePostulante(),
-          "NombreTest");
+          "NombreTest ApellidoTest");
     Assert.assertEquals(dtDatosPdfa.getPosicion(), 1);
 
     Assert.assertEquals(dtDatosPdfb.getPosicion(), 2);

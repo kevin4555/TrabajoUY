@@ -683,8 +683,8 @@ public class ClasesTest {
           "tipoTesting",
           "nicknameEmpresa1", 5,
           "Alta",
-          fechaDate);
-
+          fechaDate, fechaDate);
+    
     String fechaAltaString =
           dtOfertaLaboral.getFechaAltaString();
     LocalDate fechaFinalizacion =
