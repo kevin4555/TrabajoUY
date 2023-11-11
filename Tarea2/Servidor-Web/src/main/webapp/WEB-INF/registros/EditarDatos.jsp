@@ -115,9 +115,9 @@
 				id="inputSitioWeb" name="sitioWeb" value="<%=empresa.getSitioWeb()%>"/>
 		</div>
 		<div class="col-md-12 mt-3" id="divDescripcionEmpresa">
-			<label class="form-label"><strong>*DescripciÃ³n</strong></label> <textarea 
+			<label class="form-label"><strong>*Descripción</strong></label> <textarea 
 				rows="5" class="form-control"
-				placeholder="Ingrese una descripciÃ³n" id="inputDescripcion" 
+				placeholder="Ingrese una descripción" id="inputDescripcion" 
 				name="descripcion" required><%=empresa.getDescripcion()%></textarea>
 		</div>
 		<%
