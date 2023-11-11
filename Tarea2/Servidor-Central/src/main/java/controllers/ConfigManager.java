@@ -39,7 +39,7 @@ public class ConfigManager {
     } catch (IOException e) {
     	InputStream input = ConfigManager.class
       		  .getResourceAsStream("/config.properties");
-    	System.out.println("no econtro archivo");
+    	System.out.println("no encontro archivo");
     	try {
 			properties.load(input);
 		} catch (IOException e1) {
