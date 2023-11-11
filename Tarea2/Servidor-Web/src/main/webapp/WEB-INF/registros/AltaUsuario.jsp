@@ -1,8 +1,9 @@
 <%@page import="main.java.webservices.DtUsuario"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Registrar usuario</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resource/css/general.css">
@@ -70,11 +71,16 @@
 			<input type="password" class="form-control" id="inputPassword"
 				name="contrasenia" placeholder="Ingrese su contraseña" required />
 		</div>
-		<div class="col-md-6 mt-3">
-			<label for="inputPassword4" class="form-label"><strong>*Confirmar
+		<div class="row mt-3">
+			<div class="col">
+				<label for="inputPassword4" class="form-label"><strong>*Confirmar
 					contraseña</strong></label> <input type="password" class="form-control"
 				id="inputPasswordConfirm" name="contraseniaConf"
 				placeholder="Ingrese su contraseña" required />
+			</div>
+			<div class="col alert alert-sm" id="bloqueAvisoContrasenia">
+				<span id="chequeoContrasenia"></span>
+			</div>
 		</div>
 		<div class="col-md-6 mt-3">
 			<label for="imagenUsuario" class="form-label"><strong>Foto
@@ -110,16 +116,16 @@
 					Nacimiento</strong></label> <input name="fechaNacimiento" type="date"
 				class="form-control" id="inputFechaNacimiento" required />
 		</div>
-		<div class="col-md-6 mt-3" id="divSitioWeb">
+		<div class="col-md-12 mt-3" id="divSitioWeb">
 			<label class="form-label"><strong>Sitio Web</strong></label> <input
 				type="text" class="form-control" placeholder="Ingrese su sitio web"
 				id="inputSitioWeb" name="sitioWeb" />
 		</div>
-		<div class="col-md-6 mt-3" id="divDescripcionEmpresa">
-			<label class="form-label"><strong>*Descripción</strong></label> <input
-				type="text" class="form-control"
+		<div class="col-md-12 mt-3" id="divDescripcionEmpresa">
+			<label class="form-label"><strong>*Descripción</strong></label> <textarea 
+				class="form-control" rows="5"
 				placeholder="Ingrese una descripción" id="inputDescripcion"
-				name="descripcion" required />
+				name="descripcion" required></textarea>
 		</div>
 		<div class="col-6 mt-3" id="radioTipoUsuario">
 			<input class="btn btn-primary" type="submit" value="Registrarse" />
@@ -132,7 +138,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
-	<!--Instalación bootstrap-->
+	<!--InstalaciÃÂ³n bootstrap-->
 </body>
 
 </body>

@@ -1,8 +1,5 @@
 package main.java.handlers;
 
-import main.java.excepciones.UsuarioEmailRepetidoException;
-import main.java.excepciones.UsuarioNoExisteException;
-import main.java.excepciones.UsuarioYaExisteException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +10,9 @@ import main.java.classes.Postulante;
 import main.java.classes.Usuario;
 import main.java.datatypes.DtEmpresa;
 import main.java.datatypes.DtUsuario;
+import main.java.excepciones.UsuarioEmailRepetidoException;
+import main.java.excepciones.UsuarioNoExisteException;
+import main.java.excepciones.UsuarioYaExisteException;
 
 /**
  * Clase Manejador usuario .

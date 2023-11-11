@@ -38,7 +38,7 @@ public class PostulacionServlet extends HttpServlet {
         HttpServletResponse response)
         throws ServletException, IOException {
     HttpSession sesion = request.getSession();
-
+    String userAgent = request.getHeader("User-Agent");
     main.java.webservices.PublicadorService service =
           new PublicadorService();
     main.java.webservices.Publicador port =
@@ -67,11 +67,20 @@ public class PostulacionServlet extends HttpServlet {
       port.registrarPostulacion(cVReducido, motivacion,
             fecha, usuario.getNickname(), nombreOferta,
             video);
-      String url = request.getContextPath()
-            + "/perfil?nicknameUsuario="
-            + usuario.getNickname();
-      response.sendRedirect(url);
-      return;
+      if (userAgent != null
+              && userAgent.toLowerCase().contains("mobile")) {
+    	  String url = request.getContextPath()
+  	            + "/home";
+    	  response.sendRedirect(url);
+    	  return;
+      }else
+      {
+    	  String url = request.getContextPath()
+    	            + "/perfil?nicknameUsuario="
+    	            + usuario.getNickname();
+    	      response.sendRedirect(url);
+    	      return;
+      }
     } catch (OfertaLaboralNoExisteException_Exception
           | UsuarioNoExisteException_Exception
           | UsuarioYaExistePostulacion_Exception e) {

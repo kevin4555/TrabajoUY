@@ -29,9 +29,16 @@
 		    </div>
                 <section>
                 <%ArrayList<DtEmpresa> listaEmpresas = (ArrayList<DtEmpresa>) request.getAttribute("listaEmpresas");
-                if(!listaEmpresas.isEmpty())%>
-                <h2>Empresas</h2>
+                
+                if(listaEmpresas.isEmpty()){
+                  %>
+                  <h2 >No hay empresas disponibles</h2>  
+                  <%
+                }else{
+                	%>
+                    <h2 >Empresas</h2>  
                     <%
+                }
                     for (DtEmpresa empresa : listaEmpresas) {
                     %>
                         <div class="card">

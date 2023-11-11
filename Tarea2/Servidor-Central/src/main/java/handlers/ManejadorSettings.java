@@ -1,15 +1,15 @@
 package main.java.handlers;
 
-import main.java.excepciones.KeywordNoExisteException;
-import main.java.excepciones.KeywordYaExisteException;
-import main.java.excepciones.TipoPublicacionNoExisteException;
-import main.java.excepciones.TipoPublicacionYaExisteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import main.java.classes.Keyword;
 import main.java.classes.TipoPublicacion;
+import main.java.excepciones.KeywordNoExisteException;
+import main.java.excepciones.KeywordYaExisteException;
+import main.java.excepciones.TipoPublicacionNoExisteException;
+import main.java.excepciones.TipoPublicacionYaExisteException;
 
 /**
  * Clase Manejador Settings .

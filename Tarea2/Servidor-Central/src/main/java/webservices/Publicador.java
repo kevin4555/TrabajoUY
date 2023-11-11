@@ -1,26 +1,5 @@
 package main.java.webservices;
 
-import main.java.excepciones.KeywordNoExisteException;
-import main.java.excepciones.KeywordYaExisteException;
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.OfertaLaboralNoSePuedeFinalizar;
-import main.java.excepciones.OfertaLaboralNoTienePaquete;
-import main.java.excepciones.OfertaLaboralYaExisteException;
-import main.java.excepciones.PaquetePublicacionNoExisteException;
-import main.java.excepciones.PaquetePublicacionYaExisteException;
-import main.java.excepciones.PaquetePublicacionYaFueComprado;
-import main.java.excepciones.PostulanteNoEsOfertaFavoritaException;
-import main.java.excepciones.PostulanteYaEsOfertaFavoritaException;
-import main.java.excepciones.TipoDePublicacionYaFueIngresado;
-import main.java.excepciones.TipoPublicacionNoExisteException;
-import main.java.excepciones.TipoPublicacionYaExisteException;
-import main.java.excepciones.UsuarioEmailRepetidoException;
-import main.java.excepciones.UsuarioNoEstaSeguidoException;
-import main.java.excepciones.UsuarioNoExisteException;
-import main.java.excepciones.UsuarioNoExistePostulacion;
-import main.java.excepciones.UsuarioYaEstaSeguidoException;
-import main.java.excepciones.UsuarioYaExisteException;
-import main.java.excepciones.UsuarioYaExistePostulacion;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
@@ -46,6 +25,27 @@ import main.java.datatypes.DtPaquetePublicacion;
 import main.java.datatypes.DtPostulacion;
 import main.java.datatypes.DtTipoPublicacion;
 import main.java.datatypes.DtUsuario;
+import main.java.excepciones.KeywordNoExisteException;
+import main.java.excepciones.KeywordYaExisteException;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.OfertaLaboralNoSePuedeFinalizar;
+import main.java.excepciones.OfertaLaboralNoTienePaquete;
+import main.java.excepciones.OfertaLaboralYaExisteException;
+import main.java.excepciones.PaquetePublicacionNoExisteException;
+import main.java.excepciones.PaquetePublicacionYaExisteException;
+import main.java.excepciones.PaquetePublicacionYaFueComprado;
+import main.java.excepciones.PostulanteNoEsOfertaFavoritaException;
+import main.java.excepciones.PostulanteYaEsOfertaFavoritaException;
+import main.java.excepciones.TipoDePublicacionYaFueIngresado;
+import main.java.excepciones.TipoPublicacionNoExisteException;
+import main.java.excepciones.TipoPublicacionYaExisteException;
+import main.java.excepciones.UsuarioEmailRepetidoException;
+import main.java.excepciones.UsuarioNoEstaSeguidoException;
+import main.java.excepciones.UsuarioNoExisteException;
+import main.java.excepciones.UsuarioNoExistePostulacion;
+import main.java.excepciones.UsuarioYaEstaSeguidoException;
+import main.java.excepciones.UsuarioYaExisteException;
+import main.java.excepciones.UsuarioYaExistePostulacion;
 import main.java.interfaces.IcontroladorOferta;
 import main.java.interfaces.IcontroladorUsuario;
 
@@ -126,7 +126,7 @@ public class Publicador {
     if (!imagen.equals("")) {
       imagenBufferedImage = base64StringToImage(imagen);
     }
-    if (!nombrePaquete.equals("")) {
+    if (nombrePaquete.equals("")) {
       nombrePaquete = null;
     }
     LocalDate fechaAltaLocalDate =
@@ -722,7 +722,7 @@ public class Publicador {
   public void ordenarPostulaciones(String nombreOferta,
         String[] nicknamePostulantes)
         throws OfertaLaboralNoExisteException {
-    ArrayList<String> listaPostulantes =
+    List<String> listaPostulantes =
           new ArrayList<String>();
     for (String postulante : nicknamePostulantes) {
       listaPostulantes.add(postulante);

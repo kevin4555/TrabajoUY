@@ -1,16 +1,5 @@
 package main.java.interfaces;
 
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.PaquetePublicacionNoExisteException;
-import main.java.excepciones.PostulanteNoEsOfertaFavoritaException;
-import main.java.excepciones.PostulanteYaEsOfertaFavoritaException;
-import main.java.excepciones.UsuarioEmailRepetidoException;
-import main.java.excepciones.UsuarioNoEstaSeguidoException;
-import main.java.excepciones.UsuarioNoExisteException;
-import main.java.excepciones.UsuarioNoExistePostulacion;
-import main.java.excepciones.UsuarioYaEstaSeguidoException;
-import main.java.excepciones.UsuarioYaExisteException;
-import main.java.excepciones.UsuarioYaExistePostulacion;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -25,6 +14,17 @@ import main.java.datatypes.DtOfertaLaboral;
 import main.java.datatypes.DtPaquetePublicacion;
 import main.java.datatypes.DtPostulacion;
 import main.java.datatypes.DtUsuario;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.PaquetePublicacionNoExisteException;
+import main.java.excepciones.PostulanteNoEsOfertaFavoritaException;
+import main.java.excepciones.PostulanteYaEsOfertaFavoritaException;
+import main.java.excepciones.UsuarioEmailRepetidoException;
+import main.java.excepciones.UsuarioNoEstaSeguidoException;
+import main.java.excepciones.UsuarioNoExisteException;
+import main.java.excepciones.UsuarioNoExistePostulacion;
+import main.java.excepciones.UsuarioYaEstaSeguidoException;
+import main.java.excepciones.UsuarioYaExisteException;
+import main.java.excepciones.UsuarioYaExistePostulacion;
 
 /**
  * Interface ControladorUsuario .

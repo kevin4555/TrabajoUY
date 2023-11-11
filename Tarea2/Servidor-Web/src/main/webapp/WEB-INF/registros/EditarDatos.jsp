@@ -3,10 +3,11 @@
 <%@page import="main.java.webservices.DtEmpresa"%>
 <%@page import="model.TipoUsuario"%>
 <%@page import="model.EstadoSesion"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Editar perfil</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resource/css/general.css">
@@ -61,22 +62,29 @@
 			<input type="text" class="form-control" value="<%=usuario.getEmail()%>" readonly>
 		</div>
 		<div class="col-md-6 mt-3">
-			<label for="inputPassword" class="form-label"><strong>*Contraseña</strong></label>
+			<label for="inputPassword" class="form-label"><strong>*ContraseÃ±a</strong></label>
 			<input type="password" class="form-control" id="inputPassword"
 				name="contrasenia" value="<%=usuario.getContrasenia()%>"
-				placeholder="Ingrese su contraseña" required />
+				placeholder="Ingrese su contraseÃ±a" required />
 		</div>
-		<div class="col-md-6 mt-3">
-			<label for="inputPassword4" class="form-label"><strong>*Confirmar
-					contraseña</strong></label> <input type="password" class="form-control"
-				id="inputPasswordConfirm" name="contraseniaConf"
-				placeholder="Ingrese su contraseña" required />
+		<div class="row mt-3">
+			<div class="col">
+				<label for="inputPassword4" class="form-label"><strong>*Confirmar
+					contraseÃ±a</strong></label> <input type="password" class="form-control"
+				id="inputPasswordConfirm" name="contraseniaConf"  value="<%=usuario.getContrasenia()%>"
+				placeholder="Ingrese su contraseÃ±a" required />
+			</div>
+			<div class="col alert alert-sm" id="bloqueAvisoContrasenia">
+				<span id="chequeoContrasenia"></span>
+			</div>
 		</div>
+		
 		<div class="col-md-6 mt-3">
 			<label for="imagenUsuario" class="form-label"><strong>Foto
 					de perfil</strong></label> <input type="file" name="imagen"
 				accept="image/jpg, image/png" />
 		</div>
+		
 		<%
 		if (tipoUsuario.equals(TipoUsuario.POSTULANTE)) {
 				  DtPostulante postulante = (DtPostulante) session.getAttribute("usuarioLogueado");
@@ -101,16 +109,16 @@
 		if (tipoUsuario.equals(TipoUsuario.EMPRESA)) {
 				  DtEmpresa empresa = (DtEmpresa) session.getAttribute("usuarioLogueado");
 		%>
-		<div class="col-md-6 mt-3" id="divSitioWeb">
+		<div class="col-md-12 mt-3" id="divSitioWeb">
 			<label class="form-label"><strong>Sitio Web</strong></label> <input
 				type="text" class="form-control" placeholder="Ingrese su sitio web"
 				id="inputSitioWeb" name="sitioWeb" value="<%=empresa.getSitioWeb()%>"/>
 		</div>
-		<div class="col-md-6 mt-3" id="divDescripcionEmpresa">
-			<label class="form-label"><strong>*Descripción</strong></label> <input
-				type="text" class="form-control"
-				placeholder="Ingrese una descripción" id="inputDescripcion" value="<%=empresa.getDescripcion()%>"
-				name="descripcion" required />
+		<div class="col-md-12 mt-3" id="divDescripcionEmpresa">
+			<label class="form-label"><strong>*DescripciÃ³n</strong></label> <textarea 
+				rows="5" class="form-control"
+				placeholder="Ingrese una descripciÃ³n" id="inputDescripcion" 
+				name="descripcion" required><%=empresa.getDescripcion()%></textarea>
 		</div>
 		<%
 		}
@@ -120,7 +128,7 @@
 		</div>
 	</form>
 
-
+	<script src="<%=request.getContextPath()%>/resource/js/chequeoContraseniasEditarDatos.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"

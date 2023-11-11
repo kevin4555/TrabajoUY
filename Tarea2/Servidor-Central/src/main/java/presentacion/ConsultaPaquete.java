@@ -1,7 +1,5 @@
 package main.java.presentacion;
 
-import main.java.excepciones.PaquetePublicacionNoExisteException;
-import main.java.excepciones.TipoPublicacionNoExisteException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -28,6 +26,8 @@ import javax.swing.JTextPane;
 import main.java.datatypes.DtCantidadTipoPublicacion;
 import main.java.datatypes.DtPaquetePublicacion;
 import main.java.datatypes.DtTipoPublicacion;
+import main.java.excepciones.PaquetePublicacionNoExisteException;
+import main.java.excepciones.TipoPublicacionNoExisteException;
 import main.java.interfaces.IcontroladorOferta;
 
 /**

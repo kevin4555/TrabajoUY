@@ -23,12 +23,17 @@
                 <section>
                     <%
                     ArrayList<DtOfertaLaboral> listaOfertas = (ArrayList<DtOfertaLaboral>) request.getAttribute("listaOfertas");
-                    if(listaOfertas.isEmpty()){
+                    Boolean todasVencidas = true;
+                    for(DtOfertaLaboral oferta : listaOfertas){
+                      todasVencidas = todasVencidas && oferta.isEstaVencida();
+                    }
+                    if(listaOfertas.isEmpty() || todasVencidas){
                       %>
                       <h1 class="card-text">No hay ofertas disponibles</h1>  
                       <%
                     }
                     for (DtOfertaLaboral oferta : listaOfertas) {
+                      if(!oferta.isEstaVencida()){
                     %>
                         <div class="card">
                             <div class="row g-0">
@@ -64,7 +69,7 @@
                         </div>
                         <br>
                     <%
-                    }
+                    }}
                     %>
                 </section>
             </div>

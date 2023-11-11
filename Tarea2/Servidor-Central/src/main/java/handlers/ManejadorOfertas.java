@@ -1,7 +1,5 @@
 package main.java.handlers;
 
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.OfertaLaboralYaExisteException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +8,8 @@ import java.util.Map;
 import main.java.classes.OfertaLaboral;
 import main.java.datatypes.DtOfertaLaboral;
 import main.java.datatypes.EstadoOferta;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.OfertaLaboralYaExisteException;
 
 /**
  * Clase Manejador de ofertas.
@@ -118,7 +118,7 @@ public class ManejadorOfertas {
           new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral
           .values()) {
-      if (oferta.tieneKeyword(keyword)) {
+      if (oferta.tieneKeyword(keyword) && oferta.getEstado() == EstadoOferta.CONFIRMADA && !oferta.estaVencida()) {
         listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }
     }

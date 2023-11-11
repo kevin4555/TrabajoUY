@@ -1,8 +1,6 @@
 package main.java.presentacion;
 
 import com.toedter.calendar.JDateChooser;
-import main.java.excepciones.UsuarioEmailRepetidoException;
-import main.java.excepciones.UsuarioYaExisteException;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
@@ -37,6 +35,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+import main.java.excepciones.UsuarioEmailRepetidoException;
+import main.java.excepciones.UsuarioYaExisteException;
 import main.java.interfaces.IcontroladorUsuario;
 
 /**

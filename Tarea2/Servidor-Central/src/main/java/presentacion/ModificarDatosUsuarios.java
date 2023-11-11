@@ -1,7 +1,6 @@
 package main.java.presentacion;
 
 import com.toedter.calendar.JDateChooser;
-import main.java.excepciones.UsuarioNoExisteException;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
@@ -39,6 +38,7 @@ import javax.swing.ScrollPaneConstants;
 import main.java.datatypes.DtEmpresa;
 import main.java.datatypes.DtPostulante;
 import main.java.datatypes.DtUsuario;
+import main.java.excepciones.UsuarioNoExisteException;
 import main.java.interfaces.IcontroladorUsuario;
 
 /**

@@ -1,6 +1,5 @@
 package main.java.classes;
 
-import main.java.excepciones.OfertaLaboralYaExisteException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import main.java.datatypes.DtOfertaLaboral;
 import main.java.datatypes.DtPaquetePublicacion;
 import main.java.datatypes.DtUsuario;
 import main.java.datatypes.EstadoOferta;
+import main.java.excepciones.OfertaLaboralYaExisteException;
 
 /**
  * Clase Empresa.

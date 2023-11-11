@@ -63,19 +63,6 @@
 								String perfilUrl = contextPath + "/perfil?nicknameUsuario="
 										+ java.net.URLEncoder.encode(postulante.getNickname(), "UTF-8");
 								String fecha = postulacion.getFechaPostulacionString();
-								%>
-								<p class="card-text">
-									<strong>Postulante: </strong><a><%=postulante.getNombre()%>
-										<%=postulante.getApellido()%></a> <br> <br> <strong>CV
-										reducido: </strong>
-									<%=postulacion.getCvReducido()%>
-									<br> <br> <strong>Motivación: </strong>
-									<%=postulacion.getDescripMotivacion()%>
-									<br> <br> <strong>Fecha de postulación: </strong>
-									<%=fecha%>
-									<br> <br>
-								</p>
-								<%
 								String video = postulacion.getLinkVideo();
 								String videoId = "";
 
@@ -90,16 +77,45 @@
 								}
 								%>
 								<p class="card-text">
+									<strong>Postulante: </strong><a><%=postulante.getNombre()%>
+										<%=postulante.getApellido()%></a> <br> <br> <strong>CV
+										reducido: </strong>
+									<%=postulacion.getCvReducido()%>
+									<br> <br> <strong>Motivación: </strong>
+									<%=postulacion.getDescripMotivacion()%>
+									<br> <br> <strong>Fecha de postulación: </strong>
+									<%=fecha%>
+									<br> <br>
+								</p>
+								<%
+								if (video != null && !videoId.equals("")) {
+								%>
+								<div class="card-video">
 									<iframe class="videoPostulacion"
-									
 										src="https://www.youtube.com/embed/<%=videoId%>"
-										frameborder="0" allowfullscreen></iframe>
-										<iframe class="videoContainer"
-										src="https://www.youtube.com/embed/u4IkJgTu22E?si=GFgWGxhFIOPSbp1K"
 										frameborder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 										allowfullscreen></iframe>
-								</p>
+
+								</div>
+
+
+								<br> <br>
+								<%
+								} else if (video != null) {
+								%>
+								<div class="card-video">
+									<iframe class="videoPostulacion"
+										src="https://www.youtube.com/embed/<%=video%>" frameborder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+										allowfullscreen></iframe>
+								</div>
+
+
+								<br> <br>
+								<%
+								}
+								%>
 							</div>
 						</div>
 					</div>

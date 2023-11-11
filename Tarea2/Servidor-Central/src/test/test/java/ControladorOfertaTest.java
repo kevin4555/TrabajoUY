@@ -1,23 +1,5 @@
 package test.java;
 
-import main.java.excepciones.KeywordNoExisteException;
-import main.java.excepciones.KeywordYaExisteException;
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.OfertaLaboralNoSePuedeFinalizar;
-import main.java.excepciones.OfertaLaboralNoTienePaquete;
-import main.java.excepciones.OfertaLaboralYaExisteException;
-import main.java.excepciones.PaquetePublicacionNoExisteException;
-import main.java.excepciones.PaquetePublicacionYaExisteException;
-import main.java.excepciones.PaquetePublicacionYaFueComprado;
-import main.java.excepciones.PostulanteYaEsOfertaFavoritaException;
-import main.java.excepciones.TipoDePublicacionYaFueIngresado;
-import main.java.excepciones.TipoPublicacionNoExisteException;
-import main.java.excepciones.TipoPublicacionYaExisteException;
-import main.java.excepciones.UsuarioEmailRepetidoException;
-import main.java.excepciones.UsuarioNoExisteException;
-import main.java.excepciones.UsuarioYaEstaSeguidoException;
-import main.java.excepciones.UsuarioYaExisteException;
-import main.java.excepciones.UsuarioYaExistePostulacion;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -44,6 +26,24 @@ import main.java.datatypes.DtPaquetePublicacion;
 import main.java.datatypes.DtPostulacion;
 import main.java.datatypes.DtTipoPublicacion;
 import main.java.datatypes.EstadoOferta;
+import main.java.excepciones.KeywordNoExisteException;
+import main.java.excepciones.KeywordYaExisteException;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.OfertaLaboralNoSePuedeFinalizar;
+import main.java.excepciones.OfertaLaboralNoTienePaquete;
+import main.java.excepciones.OfertaLaboralYaExisteException;
+import main.java.excepciones.PaquetePublicacionNoExisteException;
+import main.java.excepciones.PaquetePublicacionYaExisteException;
+import main.java.excepciones.PaquetePublicacionYaFueComprado;
+import main.java.excepciones.PostulanteYaEsOfertaFavoritaException;
+import main.java.excepciones.TipoDePublicacionYaFueIngresado;
+import main.java.excepciones.TipoPublicacionNoExisteException;
+import main.java.excepciones.TipoPublicacionYaExisteException;
+import main.java.excepciones.UsuarioEmailRepetidoException;
+import main.java.excepciones.UsuarioNoExisteException;
+import main.java.excepciones.UsuarioYaEstaSeguidoException;
+import main.java.excepciones.UsuarioYaExisteException;
+import main.java.excepciones.UsuarioYaExistePostulacion;
 import main.java.handlers.ManejadorOfertas;
 import main.java.handlers.ManejadorPaquetes;
 import main.java.handlers.ManejadorSettings;
@@ -868,7 +868,7 @@ public class ControladorOfertaTest {
         KeywordYaExisteException,
         OfertaLaboralYaExisteException,
         KeywordNoExisteException, UsuarioNoExisteException,
-        IOException {
+        IOException, OfertaLaboralNoExisteException {
 
     manejadorOfertas = ManejadorOfertas.getInstance();
     manejadorPaquetes = ManejadorPaquetes.getInstance();
@@ -876,7 +876,7 @@ public class ControladorOfertaTest {
     controladorUsuario = new ControladorUsuario();
 
     controladorOferta.altaTipoPublicacion("tipoTesting",
-          "Uso para testing", "baja", 50, 500f, fechaDate);
+          "Uso para testing", "baja", 700, 500f, fechaDate);
     controladorUsuario.altaEmpresa("nicknameEmpresa1",
           "nombre1", "apellido1", "email1@test.com",
           "descripcion1", "sitioWeb1", null,
@@ -889,6 +889,8 @@ public class ControladorOfertaTest {
           "Montevideo", "Montevideo", fechaDate,
           "tipoTesting", "nicknameEmpresa1", listaKeyword,
           null, null);
+    controladorOferta.aceptarRechazarOfertaLaboral("test",
+          EstadoOferta.CONFIRMADA, fechaDateSecundaria);
 
     List<DtOfertaLaboral> resultadoOfertaLaboralDt =
           controladorOferta
