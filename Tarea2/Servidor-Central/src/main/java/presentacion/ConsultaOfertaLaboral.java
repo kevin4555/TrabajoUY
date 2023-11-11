@@ -1,7 +1,5 @@
 package main.java.presentacion;
 
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.UsuarioNoExisteException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -29,6 +27,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import main.java.datatypes.DtOfertaLaboral;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.UsuarioNoExisteException;
 import main.java.interfaces.IcontroladorOferta;
 import main.java.interfaces.IcontroladorUsuario;
 
@@ -351,31 +351,33 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
           gbctextFieldFechaResolucion);
     this.textFieldFechaResolucion.setColumns(10);
     this.textFieldFechaResolucion.setEditable(false);
-    
+
     GridBagConstraints gbclblfechaFinalizacion =
-        new GridBagConstraints();
-    gbclblfechaFinalizacion.anchor = GridBagConstraints.EAST;
+          new GridBagConstraints();
+    gbclblfechaFinalizacion.anchor =
+          GridBagConstraints.EAST;
     gbclblfechaFinalizacion.insets = new Insets(0, 0, 5, 5);
     gbclblfechaFinalizacion.gridx = 0;
     gbclblfechaFinalizacion.gridy = 13;
-   JLabel lblFechaFinalizacion = new JLabel(
-        "Fecha de finalización");
-   ubicacionCentro.add(lblFechaFinalizacion,
-       gbclblfechaFinalizacion);
+    JLabel lblFechaFinalizacion = new JLabel(
+          "Fecha de finalización");
+    ubicacionCentro.add(lblFechaFinalizacion,
+          gbclblfechaFinalizacion);
 
-   this.textFieldFechaFinalizacion = new JTextField();
-   GridBagConstraints gbctextFieldFechaFinalizacion =
-         new GridBagConstraints();
-   gbctextFieldFechaFinalizacion.insets = new Insets(0, 0, 5,
-         0);
-   gbctextFieldFechaFinalizacion.fill =
-         GridBagConstraints.HORIZONTAL;
-   gbctextFieldFechaFinalizacion.gridx = 1;
-   gbctextFieldFechaFinalizacion.gridy = 13;
-   ubicacionCentro.add(this.textFieldFechaFinalizacion,
-       gbctextFieldFechaFinalizacion);
-   this.textFieldFechaFinalizacion.setColumns(10);
-   this.textFieldFechaFinalizacion.setEditable(false);
+    this.textFieldFechaFinalizacion = new JTextField();
+    GridBagConstraints gbctextFieldFechaFinalizacion =
+          new GridBagConstraints();
+    gbctextFieldFechaFinalizacion.insets =
+          new Insets(0, 0, 5,
+                0);
+    gbctextFieldFechaFinalizacion.fill =
+          GridBagConstraints.HORIZONTAL;
+    gbctextFieldFechaFinalizacion.gridx = 1;
+    gbctextFieldFechaFinalizacion.gridy = 13;
+    ubicacionCentro.add(this.textFieldFechaFinalizacion,
+          gbctextFieldFechaFinalizacion);
+    this.textFieldFechaFinalizacion.setColumns(10);
+    this.textFieldFechaFinalizacion.setEditable(false);
 
     GridBagConstraints gbclblEstado =
           new GridBagConstraints();
@@ -565,7 +567,9 @@ public class ConsultaOfertaLaboral extends JInternalFrame {
       if (dtOfertaLaboral.getFechaFinalizacion() == null) {
         this.textFieldFechaFinalizacion.setText("");
       } else {
-        this.textFieldFechaFinalizacion.setText(dtOfertaLaboral.getFechaFinalizacion().toString());
+        this.textFieldFechaFinalizacion
+              .setText(dtOfertaLaboral
+                    .getFechaFinalizacion().toString());
       }
     } catch (OfertaLaboralNoExisteException evento1) {
       JOptionPane.showMessageDialog(this,
