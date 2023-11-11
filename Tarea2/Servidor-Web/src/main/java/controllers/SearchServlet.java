@@ -89,7 +89,7 @@ public class SearchServlet extends HttpServlet {
       Collections.sort(dtOfertas, Comparator
             .comparing(DtOfertaLaboral::getNombre));
       Collections.sort(dtEmpresas,
-            Comparator.comparing(DtEmpresa::getNombre));
+            Comparator.comparing(DtEmpresa::getNickname));
       alfabetico = true;
     }
 
