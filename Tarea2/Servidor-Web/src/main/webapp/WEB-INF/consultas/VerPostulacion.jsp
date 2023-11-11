@@ -78,6 +78,7 @@
 									<br> <br> <strong>Fecha de postulación: </strong>
 									<%=fecha%>
 									<br> <br>
+									</p>
 									<%
 										if(video != null && !videoId.equals("")){%>
 									<div>
