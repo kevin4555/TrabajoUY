@@ -1,6 +1,5 @@
 package main.java.presentacion;
 
-import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
@@ -18,6 +17,7 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -35,6 +35,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+
+import com.toedter.calendar.JDateChooser;
+
 import main.java.datatypes.DtEmpresa;
 import main.java.datatypes.DtPostulante;
 import main.java.datatypes.DtUsuario;

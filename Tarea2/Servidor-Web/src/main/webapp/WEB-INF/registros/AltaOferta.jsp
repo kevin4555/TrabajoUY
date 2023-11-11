@@ -193,10 +193,10 @@
 							%>
 							<option value="">-- Selecciona un paquete --</option>
 							<%
-							for (DtCompraPaquete paquete : listaPaquetes) {
+							for (DtCompraPaquete compraPaquete : listaPaquetes) {
 							%>
 
-							<option value="<%=(paquete.getPaquete()).getNombre()%>"><%=(paquete.getPaquete()).getNombre()%></option>
+							<option  value="<%=(compraPaquete.getPaquete()).getNombre()%>"><%=(compraPaquete.getPaquete()).getNombre()%></option>
 							<%
 							}
 							%>

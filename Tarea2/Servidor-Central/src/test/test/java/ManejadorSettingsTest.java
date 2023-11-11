@@ -1,6 +1,10 @@
 package test.java;
 
 import java.time.LocalDate;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import junit.framework.Assert;
 import main.java.classes.Keyword;
 import main.java.classes.TipoPublicacion;
@@ -9,8 +13,6 @@ import main.java.excepciones.KeywordYaExisteException;
 import main.java.excepciones.TipoPublicacionNoExisteException;
 import main.java.excepciones.TipoPublicacionYaExisteException;
 import main.java.handlers.ManejadorSettings;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Clase ManejadorSettingsTest.

@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import main.java.classes.CantidadTotalTipoPublicacion;
 import main.java.classes.Keyword;
 import main.java.classes.OfertaLaboral;
@@ -48,9 +53,6 @@ import main.java.handlers.ManejadorOfertas;
 import main.java.handlers.ManejadorPaquetes;
 import main.java.handlers.ManejadorSettings;
 import main.java.handlers.ManejadorUsuario;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Clase Controlador oferta test .

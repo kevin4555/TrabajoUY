@@ -1,6 +1,5 @@
 package main.java.presentacion;
 
-import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -36,6 +36,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+
+import com.toedter.calendar.JDateChooser;
+
 import main.java.datatypes.DtCantidadTipoPublicacionRestante;
 import main.java.datatypes.DtCompraPaquete;
 import main.java.datatypes.DtPaquetePublicacion;

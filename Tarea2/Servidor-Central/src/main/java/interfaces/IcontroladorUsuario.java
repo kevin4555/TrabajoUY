@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+
 import main.java.classes.Empresa;
 import main.java.classes.Postulante;
 import main.java.classes.Usuario;

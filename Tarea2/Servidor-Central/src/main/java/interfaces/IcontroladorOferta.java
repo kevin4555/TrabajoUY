@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+
 import main.java.classes.Keyword;
 import main.java.classes.OfertaLaboral;
 import main.java.classes.PaquetePublicacion;

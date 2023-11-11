@@ -42,8 +42,8 @@
 		</div>
 		<div class="col-md-4 justify-content-center align-items-center d-flex">
 
-			<div class="col-8">
-				<div class="card">
+			<div class="col">
+				<div class="card mb-2">
 					<div class="row g-0">
 						<%
 						if (postulante != null && postulante.getImagenBase64() != null) {
@@ -91,7 +91,7 @@
 								if (video != null && !videoId.equals("")) {
 								%>
 								<div class="card-video">
-									<iframe class="videoPostulacion"
+									<iframe 
 										src="https://www.youtube.com/embed/<%=videoId%>"
 										frameborder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -105,7 +105,7 @@
 								} else if (video != null) {
 								%>
 								<div class="card-video">
-									<iframe class="videoPostulacion"
+									<iframe
 										src="https://www.youtube.com/embed/<%=video%>" frameborder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 										allowfullscreen></iframe>

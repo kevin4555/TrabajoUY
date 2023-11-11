@@ -20,7 +20,6 @@
 	</classpathentry>
 	<classpathentry excluding="resources/|test/java/|test/resources/|test/" kind="src" path="src"/>
 	<classpathentry excluding="resources/" kind="src" path="src/test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry excluding="**" kind="src" output="target/classes" path="src/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>

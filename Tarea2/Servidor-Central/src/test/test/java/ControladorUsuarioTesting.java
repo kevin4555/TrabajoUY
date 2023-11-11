@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import main.java.classes.Empresa;
 import main.java.classes.OfertaLaboral;
 import main.java.classes.Postulante;
@@ -47,10 +53,6 @@ import main.java.handlers.ManejadorSettings;
 import main.java.handlers.ManejadorUsuario;
 import main.java.interfaces.IcontroladorOferta;
 import main.java.interfaces.IcontroladorUsuario;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * Clase Controlador Usuario Testing .

@@ -1,6 +1,5 @@
 package main.java.presentacion;
 
-import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -15,6 +14,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,6 +28,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+
+import com.toedter.calendar.JDateChooser;
+
 import main.java.excepciones.PaquetePublicacionYaExisteException;
 import main.java.excepciones.TipoPublicacionNoExisteException;
 import main.java.excepciones.TipoPublicacionYaExisteException;
