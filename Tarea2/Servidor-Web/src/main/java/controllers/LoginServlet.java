@@ -1,20 +1,19 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import main.java.webservices.PublicadorService;
-import main.java.webservices.UsuarioNoExisteException_Exception;
-import main.java.webservices.DtPostulante;
 import main.java.webservices.DtEmpresa;
-import main.java.webservices.DtOfertaLaboral;
+import main.java.webservices.DtPostulante;
 import main.java.webservices.DtUsuario;
 import main.java.webservices.IOException_Exception;
+import main.java.webservices.PublicadorService;
+import main.java.webservices.UsuarioNoExisteException_Exception;
 import model.EstadoSesion;
 import model.TipoUsuario;
 
