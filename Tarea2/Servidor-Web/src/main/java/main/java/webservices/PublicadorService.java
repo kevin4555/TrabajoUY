@@ -9,6 +9,7 @@ import jakarta.xml.ws.WebEndpoint;
 import jakarta.xml.ws.WebServiceClient;
 import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.WebServiceFeature;
+import model.ConfigManager;
 
 
 /**
@@ -25,12 +26,19 @@ public class PublicadorService
     private final static URL PUBLICADORSERVICE_WSDL_LOCATION;
     private final static WebServiceException PUBLICADORSERVICE_EXCEPTION;
     private final static QName PUBLICADORSERVICE_QNAME = new QName("http://webservices.java.main/", "PublicadorService");
+    private static ConfigManager configManager = ConfigManager.getInstance();
+    private final static String dominio =
+            configManager.getProperty("dominio");
+      private final static String puerto =
+            configManager.getProperty("puerto");
+
+      private static String urlBase = dominio + puerto;
 
     static {
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8085/webservices?wsdl");
+            url = new URL(urlBase +"/webservices?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

@@ -1,4 +1,4 @@
-package main.java.controllers;
+package model;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class ConfigManager {
     } catch (IOException e) {
     	InputStream input = ConfigManager.class
       		  .getResourceAsStream("/config.properties");
-    	System.out.println("no encontro archivo");
+    	System.out.println("no econtro archivo");
     	try {
 			properties.load(input);
 		} catch (IOException e1) {
