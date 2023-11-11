@@ -1,5 +1,16 @@
 package main.java.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import javax.imageio.ImageIO;
+import main.java.classes.Keyword;
+import main.java.datatypes.DtCantidadTipoPublicacion;
+import main.java.datatypes.EstadoOferta;
 import main.java.excepciones.KeywordNoExisteException;
 import main.java.excepciones.KeywordYaExisteException;
 import main.java.excepciones.OfertaLaboralNoExisteException;
@@ -14,17 +25,6 @@ import main.java.excepciones.UsuarioNoExisteException;
 import main.java.excepciones.UsuarioYaEstaSeguidoException;
 import main.java.excepciones.UsuarioYaExisteException;
 import main.java.excepciones.UsuarioYaExistePostulacion;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import javax.imageio.ImageIO;
-import main.java.classes.Keyword;
-import main.java.datatypes.DtCantidadTipoPublicacion;
-import main.java.datatypes.EstadoOferta;
 import main.java.interfaces.IcontroladorOferta;
 import main.java.interfaces.IcontroladorUsuario;
 
@@ -183,56 +183,77 @@ public class Loader {
           this.getBufferImage("U16.jpg"),
           "1ngs03p");
 
-    controladorUsuario.agregarSeguidor("EcoTech", "lgarcia");
-    controladorUsuario.agregarSeguidor("FusionTech", "lgarcia");
-    controladorUsuario.agregarSeguidor("GlobalHealth", "lgarcia");
+    controladorUsuario.agregarSeguidor("EcoTech",
+          "lgarcia");
+    controladorUsuario.agregarSeguidor("FusionTech",
+          "lgarcia");
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "lgarcia");
     controladorUsuario.agregarSeguidor("ANTEL", "lgarcia");
     controladorUsuario.agregarSeguidor("MIEM", "lgarcia");
 
     controladorUsuario.agregarSeguidor("EcoTech", "matilo");
 
-    controladorUsuario.agregarSeguidor("FusionTech", "maro");
-    controladorUsuario.agregarSeguidor("GlobalHealth", "maro");
+    controladorUsuario.agregarSeguidor("FusionTech",
+          "maro");
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "maro");
     controladorUsuario.agregarSeguidor("MIEM", "maro");
-    controladorUsuario.agregarSeguidor("TechSolutions", "maro");
+    controladorUsuario.agregarSeguidor("TechSolutions",
+          "maro");
 
-    controladorUsuario.agregarSeguidor("FusionTech", "javierf");
+    controladorUsuario.agregarSeguidor("FusionTech",
+          "javierf");
     controladorUsuario.agregarSeguidor("ANTEL", "javierf");
 
-    controladorUsuario.agregarSeguidor("GlobalHealth", "valen25");
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "valen25");
     controladorUsuario.agregarSeguidor("MIEM", "valen25");
-    controladorUsuario.agregarSeguidor("TechSolutions", "valen25");
+    controladorUsuario.agregarSeguidor("TechSolutions",
+          "valen25");
 
-    controladorUsuario.agregarSeguidor("FusionTech", "andpe12");
+    controladorUsuario.agregarSeguidor("FusionTech",
+          "andpe12");
     controladorUsuario.agregarSeguidor("ANTEL", "andpe12");
     controladorUsuario.agregarSeguidor("MIEM", "andpe12");
 
     controladorUsuario.agregarSeguidor("EcoTech", "sicam");
     controladorUsuario.agregarSeguidor("ANTEL", "sicam");
 
-    controladorUsuario.agregarSeguidor("FusionTech", "sebgon");
-    controladorUsuario.agregarSeguidor("GlobalHealth", "sebgon");
+    controladorUsuario.agregarSeguidor("FusionTech",
+          "sebgon");
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "sebgon");
 
     controladorUsuario.agregarSeguidor("lgarcia", "isabel");
     controladorUsuario.agregarSeguidor("EcoTech", "isabel");
-    controladorUsuario.agregarSeguidor("FusionTech", "isabel");
+    controladorUsuario.agregarSeguidor("FusionTech",
+          "isabel");
     controladorUsuario.agregarSeguidor("MIEM", "isabel");
 
-    controladorUsuario.agregarSeguidor("lgarcia", "EcoTech");
-    controladorUsuario.agregarSeguidor("FusionTech", "EcoTech");
+    controladorUsuario.agregarSeguidor("lgarcia",
+          "EcoTech");
+    controladorUsuario.agregarSeguidor("FusionTech",
+          "EcoTech");
 
-    controladorUsuario.agregarSeguidor("GlobalHealth", "FusionTech");
+    controladorUsuario.agregarSeguidor("GlobalHealth",
+          "FusionTech");
 
-    controladorUsuario.agregarSeguidor("lgarcia", "GlobalHealth");
-    controladorUsuario.agregarSeguidor("ANTEL", "GlobalHealth");
-    controladorUsuario.agregarSeguidor("MIEM", "GlobalHealth");
-    controladorUsuario.agregarSeguidor("TechSolutions", "GlobalHealth");
+    controladorUsuario.agregarSeguidor("lgarcia",
+          "GlobalHealth");
+    controladorUsuario.agregarSeguidor("ANTEL",
+          "GlobalHealth");
+    controladorUsuario.agregarSeguidor("MIEM",
+          "GlobalHealth");
+    controladorUsuario.agregarSeguidor("TechSolutions",
+          "GlobalHealth");
 
     controladorUsuario.agregarSeguidor("MIEM", "ANTEL");
 
     controladorUsuario.agregarSeguidor("ANTEL", "MIEM");
 
-    controladorUsuario.agregarSeguidor("MIEM", "TechSolutions");
+    controladorUsuario.agregarSeguidor("MIEM",
+          "TechSolutions");
 
     IcontroladorOferta controladorOferta = Fabrica
           .getInstance().obtenerControladorOferta();
@@ -371,11 +392,11 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-09-30"),
           "Premium", "EcoTech", keywords,
           this.getBufferImage("O1.jpg"), "Básico");
-    
-    for(int i = 0; i <= 4; i++) {
-      controladorOferta.agregarVisitaOferta("Desarrollador Frontend");
+
+    for (int i = 0; i <= 4; i++) {
+      controladorOferta
+            .agregarVisitaOferta("Desarrollador Frontend");
     }
-    
 
     List<String> keywords2 = new ArrayList<String>();
     keywords2.add(keyword5.getNombre());
@@ -387,12 +408,12 @@ public class Loader {
           "Maldonado", LocalDate.parse("2023-09-29"),
           "Estándar", "GlobalHealth", keywords2,
           this.getBufferImage("O2.jpg"), null);
-    
-    for(int i = 0; i <= 9; i++) {
-      controladorOferta.agregarVisitaOferta("Estratega de Negocios");
+
+    for (int i = 0; i <= 9; i++) {
+      controladorOferta
+            .agregarVisitaOferta("Estratega de Negocios");
     }
-    
-    
+
     List<String> keywords3 = new ArrayList<String>();
     keywords3.add(keyword2.getNombre());
     keywords3.add(keyword3.getNombre());
@@ -404,7 +425,6 @@ public class Loader {
           LocalDate.parse("2023-10-29"), "Estándar",
           "FusionTech", keywords3,
           this.getBufferImage("O3.jpg"), null);
-    
 
     List<String> keywords4 = new ArrayList<String>();
     keywords4.add(keyword2.getNombre());
@@ -415,11 +435,11 @@ public class Loader {
           "Maldonado",
           LocalDate.parse("2023-10-19"), "Premium", "ANTEL",
           keywords4, this.getBufferImage("O4.jpg"), null);
-    
-    for(int i = 0 ; i <= 14 ; i++) {
-      controladorOferta.agregarVisitaOferta("Analista de Datos");
+
+    for (int i = 0; i <= 14; i++) {
+      controladorOferta
+            .agregarVisitaOferta("Analista de Datos");
     }
-    
 
     List<String> keywords5 = new ArrayList<String>();
     keywords5.add(keyword4.getNombre());
@@ -430,9 +450,10 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-10-20"),
           "Destacada", "MIEM", keywords5,
           this.getBufferImage("O5.jpg"), null);
-    
-    for(int i = 0 ; i <= 19 ; i++) {
-      controladorOferta.agregarVisitaOferta("Content Manager");
+
+    for (int i = 0; i <= 19; i++) {
+      controladorOferta
+            .agregarVisitaOferta("Content Manager");
     }
 
     List<String> keywords6 = new ArrayList<String>();
@@ -444,9 +465,10 @@ public class Loader {
           LocalDate.parse("2023-11-02"), "Básica",
           "TechSolutions", keywords6,
           this.getBufferImage("O6.jpg"), "Destacado");
-    
-    for(int i = 0 ; i <= 24 ; i++) {
-      controladorOferta.agregarVisitaOferta("Soporte Técnico");
+
+    for (int i = 0; i <= 24; i++) {
+      controladorOferta
+            .agregarVisitaOferta("Soporte Técnico");
     }
 
     List<String> keywords7 = new ArrayList<String>();
@@ -458,11 +480,11 @@ public class Loader {
           LocalDate.parse("2023-11-02"), "Premium",
           "EcoTech",
           keywords7, this.getBufferImage("O7.jpg"), null);
-    
-    for(int i = 0 ; i <= 29 ; i++) {
-      controladorOferta.agregarVisitaOferta("A. de Marketing Digital");
+
+    for (int i = 0; i <= 29; i++) {
+      controladorOferta
+            .agregarVisitaOferta("A. de Marketing Digital");
     }
-    
 
     List<String> keywords8 = new ArrayList<String>();
     keywords8.add(keyword1.getNombre());
@@ -472,11 +494,11 @@ public class Loader {
           "Colonia", LocalDate.parse("2023-11-04"),
           "Destacada", "GlobalHealth", keywords8,
           this.getBufferImage("O8.jpg"), null);
-    
-    for(int i = 0 ; i <= 34 ; i++) {
-      controladorOferta.agregarVisitaOferta("Contador Senior");
+
+    for (int i = 0; i <= 34; i++) {
+      controladorOferta
+            .agregarVisitaOferta("Contador Senior");
     }
-    
 
     List<String> keywords9 = new ArrayList<String>();
     keywords9.add(keyword5.getNombre());
@@ -491,9 +513,10 @@ public class Loader {
           "09:00", "17:00", 40000f, "Paysandú", "Paysandú",
           LocalDate.parse("2023-10-29"), "Premium", "ANTEL",
           keywords9, this.getBufferImage("O9.jpg"), null);
-    
-    for(int i = 0 ; i <= 39 ; i++) {
-      controladorOferta.agregarVisitaOferta("Técnico/a Básico Red");
+
+    for (int i = 0; i <= 39; i++) {
+      controladorOferta
+            .agregarVisitaOferta("Técnico/a Básico Red");
     }
 
     List<String> keywords10 = new ArrayList<String>();
@@ -511,9 +534,10 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-11-04"),
           "Destacada", "EcoTech", keywords10,
           this.getBufferImage("O10.jpg"), "Básico");
-    
-    for(int i = 0 ; i <= 44 ; i++) {
-      controladorOferta.agregarVisitaOferta("Desarrollador de Software Senior");
+
+    for (int i = 0; i <= 44; i++) {
+      controladorOferta.agregarVisitaOferta(
+            "Desarrollador de Software Senior");
     }
 
     List<String> keywords11 = new ArrayList<String>();
@@ -527,13 +551,11 @@ public class Loader {
           "Río Negro", LocalDate.parse("2023-10-25"),
           "Premium", "TechSolutions", keywords11,
           this.getBufferImage("O11.jpg"), null);
-    
-    for(int i = 0 ; i <= 49 ; i++) {
-      controladorOferta.agregarVisitaOferta("Desarrollador de Software Full Stack");
+
+    for (int i = 0; i <= 49; i++) {
+      controladorOferta.agregarVisitaOferta(
+            "Desarrollador de Software Full Stack");
     }
-    
-    
-    
 
     List<String> keywords12 = new ArrayList<String>();
     keywords12.add(keyword3.getNombre());
@@ -547,9 +569,10 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-11-05"),
           "Destacada", "TechSolutions", keywords12,
           this.getBufferImage("O12.jpg"), null);
-    
-    for(int i = 0 ; i <= 54 ; i++) {
-      controladorOferta.agregarVisitaOferta("Gerente de Proyecto");
+
+    for (int i = 0; i <= 54; i++) {
+      controladorOferta
+            .agregarVisitaOferta("Gerente de Proyecto");
     }
 
     List<String> keywords13 = new ArrayList<String>();
@@ -566,9 +589,10 @@ public class Loader {
           "Montevideo", LocalDate.parse("2023-11-01"),
           "Premium", "EcoTech", keywords13,
           this.getBufferImage("O13.jpg"), null);
-    
-    for(int i = 0 ; i <= 6 ; i++) {
-      controladorOferta.agregarVisitaOferta("Ingeniero de Calidad de Software");
+
+    for (int i = 0; i <= 6; i++) {
+      controladorOferta.agregarVisitaOferta(
+            "Ingeniero de Calidad de Software");
     }
 
     controladorUsuario.registrarPostulacion(
@@ -656,8 +680,10 @@ public class Loader {
     controladorUsuario.agregarOfertaFavorita("matilo",
           "A. de Marketing Digital");
 
-    controladorUsuario.agregarOfertaFavorita("maro", "Desarrollador Frontend");
-    controladorUsuario.agregarOfertaFavorita("maro", "Gerente de Proyecto");
+    controladorUsuario.agregarOfertaFavorita("maro",
+          "Desarrollador Frontend");
+    controladorUsuario.agregarOfertaFavorita("maro",
+          "Gerente de Proyecto");
 
     controladorUsuario.agregarOfertaFavorita("javierf",
           "A. de Marketing Digital");
@@ -667,23 +693,24 @@ public class Loader {
     controladorUsuario.agregarOfertaFavorita("valen25",
           "A. de Marketing Digital");
 
-    
-    List<String> postulacionesOferta1 = new ArrayList<String>();
+    List<String> postulacionesOferta1 =
+          new ArrayList<String>();
     postulacionesOferta1.add("maro");
     postulacionesOferta1.add("lgarcia");
-    
-    
-    //Acordarse de descomentar. 
-    controladorOferta.ordenarPostulaciones("Desarrollador Frontend", postulacionesOferta1);
-     
-    List<String> postulacionesOferta2 = new ArrayList<String>();
+
+    // Acordarse de descomentar.
+    controladorOferta.ordenarPostulaciones(
+          "Desarrollador Frontend", postulacionesOferta1);
+
+    List<String> postulacionesOferta2 =
+          new ArrayList<String>();
     postulacionesOferta2.add("lgarcia");
     postulacionesOferta2.add("valen25");
     postulacionesOferta2.add("matilo");
 
-    controladorOferta.ordenarPostulaciones("Estratega de Negocios", postulacionesOferta2);
-    
-    
+    controladorOferta.ordenarPostulaciones(
+          "Estratega de Negocios", postulacionesOferta2);
+
     datosCargados = true;
 
   }
@@ -705,11 +732,11 @@ public class Loader {
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Diseñador UX/UI", EstadoOferta.CONFIRMADA,
           LocalDate.parse("2023-10-29"));
-    
+
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Content Manager", EstadoOferta.FINALIZADA,
           LocalDate.parse("2023-10-20"));
-    
+
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Soporte Técnico", EstadoOferta.CONFIRMADA,
           LocalDate.parse("2023-11-02"));

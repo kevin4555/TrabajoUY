@@ -1,7 +1,5 @@
 package main.java.classes;
 
-import main.java.excepciones.PaquetePublicacionYaFueComprado;
-import main.java.excepciones.TipoDePublicacionYaFueIngresado;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -9,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import main.java.datatypes.DtCantidadTipoPublicacion;
 import main.java.datatypes.DtPaquetePublicacion;
+import main.java.excepciones.PaquetePublicacionYaFueComprado;
+import main.java.excepciones.TipoDePublicacionYaFueIngresado;
 
 /**
  * Clase Paquete publicacion .

@@ -1,8 +1,5 @@
 package test.java;
 
-import main.java.excepciones.UsuarioEmailRepetidoException;
-import main.java.excepciones.UsuarioNoExisteException;
-import main.java.excepciones.UsuarioYaExisteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +7,9 @@ import java.util.List;
 import main.java.classes.Empresa;
 import main.java.classes.Postulante;
 import main.java.classes.Usuario;
+import main.java.excepciones.UsuarioEmailRepetidoException;
+import main.java.excepciones.UsuarioNoExisteException;
+import main.java.excepciones.UsuarioYaExisteException;
 import main.java.handlers.ManejadorUsuario;
 import main.java.interfaces.IcontroladorOferta;
 import org.junit.Assert;

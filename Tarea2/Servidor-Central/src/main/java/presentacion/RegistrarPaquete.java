@@ -1,9 +1,6 @@
 package main.java.presentacion;
 
 import com.toedter.calendar.JDateChooser;
-import main.java.excepciones.PaquetePublicacionYaExisteException;
-import main.java.excepciones.TipoPublicacionNoExisteException;
-import main.java.excepciones.TipoPublicacionYaExisteException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -31,6 +28,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+import main.java.excepciones.PaquetePublicacionYaExisteException;
+import main.java.excepciones.TipoPublicacionNoExisteException;
+import main.java.excepciones.TipoPublicacionYaExisteException;
 import main.java.interfaces.IcontroladorOferta;
 
 /**

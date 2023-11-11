@@ -1,8 +1,5 @@
 package main.java.presentacion;
 
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.UsuarioNoExisteException;
-import main.java.excepciones.UsuarioNoExistePostulacion;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -38,6 +35,9 @@ import main.java.datatypes.DtOfertaLaboral;
 import main.java.datatypes.DtPostulacion;
 import main.java.datatypes.DtPostulante;
 import main.java.datatypes.DtUsuario;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.UsuarioNoExisteException;
+import main.java.excepciones.UsuarioNoExistePostulacion;
 import main.java.interfaces.IcontroladorOferta;
 import main.java.interfaces.IcontroladorUsuario;
 

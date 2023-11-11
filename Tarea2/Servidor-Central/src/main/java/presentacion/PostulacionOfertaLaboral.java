@@ -1,10 +1,6 @@
 package main.java.presentacion;
 
 import com.toedter.calendar.JDateChooser;
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.TipoPublicacionNoExisteException;
-import main.java.excepciones.UsuarioNoExisteException;
-import main.java.excepciones.UsuarioYaExistePostulacion;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
@@ -32,6 +28,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import main.java.datatypes.DtOfertaLaboral;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.TipoPublicacionNoExisteException;
+import main.java.excepciones.UsuarioNoExisteException;
+import main.java.excepciones.UsuarioYaExistePostulacion;
 import main.java.interfaces.IcontroladorOferta;
 import main.java.interfaces.IcontroladorUsuario;
 

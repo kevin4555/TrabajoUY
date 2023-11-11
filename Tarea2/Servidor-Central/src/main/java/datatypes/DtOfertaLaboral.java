@@ -74,7 +74,7 @@ public class DtOfertaLaboral
           String empresa,
           int visitas,
           String exposicion,
-          LocalDate fechaFinalizacion, 
+          LocalDate fechaFinalizacion,
           LocalDate fechaSeleccion)
         throws IOException {
     this.nombre = nombre;
@@ -116,9 +116,9 @@ public class DtOfertaLaboral
       this.fechaFinalizacionString =
             fechaFinalizacion.toString();
     }
-    if(fechaSeleccion != null) {
+    if (fechaSeleccion != null) {
       this.fechaSeleccionString =
-          fechaSeleccion.toString();
+            fechaSeleccion.toString();
     }
   }
 

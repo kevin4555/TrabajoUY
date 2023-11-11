@@ -1,7 +1,5 @@
 package test.java;
 
-import main.java.excepciones.PaquetePublicacionNoExisteException;
-import main.java.excepciones.PaquetePublicacionYaExisteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +7,8 @@ import java.util.List;
 import main.java.classes.CantidadTotalTipoPublicacion;
 import main.java.classes.PaquetePublicacion;
 import main.java.classes.TipoPublicacion;
+import main.java.excepciones.PaquetePublicacionNoExisteException;
+import main.java.excepciones.PaquetePublicacionYaExisteException;
 import main.java.handlers.ManejadorPaquetes;
 import org.junit.Assert;
 import org.junit.Before;

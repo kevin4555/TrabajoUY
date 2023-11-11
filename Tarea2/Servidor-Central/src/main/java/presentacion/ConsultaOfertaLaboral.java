@@ -1,7 +1,5 @@
 package main.java.presentacion;
 
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.UsuarioNoExisteException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -29,6 +27,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import main.java.datatypes.DtOfertaLaboral;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.UsuarioNoExisteException;
 import main.java.interfaces.IcontroladorOferta;
 import main.java.interfaces.IcontroladorUsuario;
 

@@ -2,10 +2,6 @@ package test.java;
 
 import static org.junit.Assert.assertEquals;
 
-import main.java.excepciones.OfertaLaboralNoExisteException;
-import main.java.excepciones.OfertaLaboralYaExisteException;
-import main.java.excepciones.TipoPublicacionNoExisteException;
-import main.java.excepciones.TipoPublicacionYaExisteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +9,10 @@ import java.util.List;
 import main.java.classes.Empresa;
 import main.java.classes.OfertaLaboral;
 import main.java.classes.TipoPublicacion;
+import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.OfertaLaboralYaExisteException;
+import main.java.excepciones.TipoPublicacionNoExisteException;
+import main.java.excepciones.TipoPublicacionYaExisteException;
 import main.java.handlers.ManejadorOfertas;
 import org.junit.Before;
 import org.junit.Test;

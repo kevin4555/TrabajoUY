@@ -21,7 +21,7 @@ public class ConfigManager {
   /**
    * Metodo getInstance.
    */
-  
+
   public static ConfigManager getInstance() {
     if (instancia == null) {
       instancia = new ConfigManager();
@@ -30,21 +30,23 @@ public class ConfigManager {
   }
 
   private void loadProperties() {
-	  String userHome = System.getProperty("user.home");
-	  String separador = FileSystems.getDefault().getSeparator();
-	  String file = userHome + separador + "config.properties";
-	  try {
-    	InputStream input = new FileInputStream(file);
+    String userHome = System.getProperty("user.home");
+    String separador =
+          FileSystems.getDefault().getSeparator();
+    String file =
+          userHome + separador + "config.properties";
+    try {
+      InputStream input = new FileInputStream(file);
       properties.load(input);
     } catch (IOException e) {
-    	InputStream input = ConfigManager.class
-      		  .getResourceAsStream("/config.properties");
-    	System.out.println("no encontro archivo");
-    	try {
-			properties.load(input);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+      InputStream input = ConfigManager.class
+            .getResourceAsStream("/config.properties");
+      System.out.println("no encontro archivo");
+      try {
+        properties.load(input);
+      } catch (IOException e1) {
+        e1.printStackTrace();
+      }
       e.printStackTrace();
     }
   }

@@ -1,9 +1,5 @@
 package main.java.presentacion;
 
-import main.java.excepciones.PaquetePublicacionNoExisteException;
-import main.java.excepciones.PaquetePublicacionYaFueComprado;
-import main.java.excepciones.TipoDePublicacionYaFueIngresado;
-import main.java.excepciones.TipoPublicacionNoExisteException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -27,6 +23,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import main.java.datatypes.DtTipoPublicacion;
+import main.java.excepciones.PaquetePublicacionNoExisteException;
+import main.java.excepciones.PaquetePublicacionYaFueComprado;
+import main.java.excepciones.TipoDePublicacionYaFueIngresado;
+import main.java.excepciones.TipoPublicacionNoExisteException;
 import main.java.interfaces.IcontroladorOferta;
 
 /**
