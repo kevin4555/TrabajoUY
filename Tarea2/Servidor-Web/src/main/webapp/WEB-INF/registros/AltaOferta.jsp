@@ -3,7 +3,7 @@
 <%@page import="main.java.webservices.DtTipoPublicacion"%>
 <%@page import="main.java.webservices.DtCompraPaquete"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,13 +20,14 @@ pageEncoding="UTF-8"%>
 		class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
 		<%
 		String mensaje = (String) request.getAttribute("mensajeError");
-			if(mensaje != null){
+		if (mensaje != null) {
 		%>
 		<div class="alert alert-danger alert-dismissible fade show"
 			role="alert">
 			<strong>Error:</strong>
 			<%=mensaje%>
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			<button type="button" class="btn-close" data-bs-dismiss="alert"
+				aria-label="Close"></button>
 		</div>
 		<%
 		}
@@ -36,23 +37,24 @@ pageEncoding="UTF-8"%>
 			<div class="row g-5 mx-2">
 				<div class="col-6">
 					<div class="camposForm">
-						 <label for="tipoPublicacion" class="form-label">
+						<label for="tipoPublicacion" class="form-label">
 							*Seleccione un Tipo de Publicación: </label> <select class="form-control"
 							id="tipoPublicacion" name="tipoPublicacion" required>
 							<option value="">-- Selecciona un tipo de publicación --
 							</option>
 							<%
-							ArrayList<DtTipoPublicacion> listaTipoPublicacion = (ArrayList<DtTipoPublicacion>) request.getAttribute("listaTipoPublicacion");
-												if (!(listaTipoPublicacion.isEmpty())) {
-													for (DtTipoPublicacion opcion : listaTipoPublicacion) {
+							ArrayList<DtTipoPublicacion> listaTipoPublicacion = (ArrayList<DtTipoPublicacion>) request
+							    .getAttribute("listaTipoPublicacion");
+							if (!(listaTipoPublicacion.isEmpty())) {
+							  for (DtTipoPublicacion opcion : listaTipoPublicacion) {
 							%>
-								<option value="<%=opcion.getNombre()%>"><%=opcion.getNombre()%></option>
+							<option value="<%=opcion.getNombre()%>"><%=opcion.getNombre()%></option>
 							<%
-								}
+							}
 							} else {
-								%>
-								<option value="none">-- No hay tipos cargados --</option>
-								<%
+							%>
+							<option value="none">-- No hay tipos cargados --</option>
+							<%
 							}
 							%>
 						</select>
@@ -63,10 +65,17 @@ pageEncoding="UTF-8"%>
 					</div>
 
 					<div class="camposForm">
-						<label for="inputNombreOferta" class="form-label">*Nombre</label>
-						<input type="text" class="form-control" id="inputNombreOferta"
-							name="nombreOferta" placeholder="Ingrese el nombre de la Oferta"
-							required />
+						<div class="row mt-3">
+							<div class="col">
+								<label for="inputNombreOferta" class="form-label">*Nombre</label>
+								<input type="text" class="form-control" id="inputNombreOferta"
+									name="nombreOferta"
+									placeholder="Ingrese el nombre de la Oferta" required />
+							</div>
+							<div class="col alert alert-sm" id="bloqueAviso">
+								<span id="chequeoNombreOferta"></span>
+							</div>
+						</div>
 					</div>
 
 					<div class="camposForm">
@@ -83,8 +92,7 @@ pageEncoding="UTF-8"%>
 							id="selecKeyword" name="keywords">
 							<%
 							ArrayList<String> listaKeywords = (ArrayList<String>) request.getAttribute("listaKeywords");
-							for (String keyword : listaKeywords)
-							{
+							for (String keyword : listaKeywords) {
 							%>
 							<option value="<%=keyword%>"><%=keyword%></option>
 							<%
@@ -152,7 +160,7 @@ pageEncoding="UTF-8"%>
 
 					<div class="camposForm pt-2">
 						<label for="imagenOferta" class="form-label">Imagen</label> <input
-							type="file" name="imagenOferta" accept="image/jpg, image/png"/>
+							type="file" name="imagenOferta" accept="image/jpg, image/png" />
 					</div>
 
 					<div class="row camposForm">
@@ -181,13 +189,11 @@ pageEncoding="UTF-8"%>
 
 							<%
 							ArrayList<DtCompraPaquete> listaPaquetes = (ArrayList<DtCompraPaquete>) request.getAttribute("listaCompraPaquetes");
-							if (!listaPaquetes.isEmpty())
-							{
+							if (!listaPaquetes.isEmpty()) {
 							%>
 							<option value="">-- Selecciona un paquete --</option>
 							<%
-							for (DtCompraPaquete paquete : listaPaquetes)
-							{
+							for (DtCompraPaquete paquete : listaPaquetes) {
 							%>
 
 							<option value="<%=(paquete.getPaquete()).getNombre()%>"><%=(paquete.getPaquete()).getNombre()%></option>
@@ -195,9 +201,7 @@ pageEncoding="UTF-8"%>
 							}
 							%>
 							<%
-							}
-							else
-							{
+							} else {
 							%>
 							<option value="">-- No tiene paquetes --</option>
 							<%
@@ -221,12 +225,14 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 		</form>
-	
-	<script
-		src="<%=request.getContextPath()%>/resource/javaScript/verTipoPublicacion.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resource/javaScript/tipoDePago.js"></script>
-		
+
+		<script
+			src="<%=request.getContextPath()%>/resource/js/chequeoNombreOferta.js"></script>
+		<script
+			src="<%=request.getContextPath()%>/resource/javaScript/verTipoPublicacion.js"></script>
+		<script
+			src="<%=request.getContextPath()%>/resource/javaScript/tipoDePago.js"></script>
+
 	</main>
 </body>
 </html>

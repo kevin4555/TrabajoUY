@@ -14,6 +14,10 @@ const bloqueAviso = document.getElementById('bloqueAviso');
 const bloqueAvisoEmail = document.getElementById('bloqueAvisoEmail');
 const chequeoEmail = document.getElementById('chequeoEmail');
 const inputEmail = document.getElementById('inputEmail');
+const inputContrasenia = document.getElementById('inputPassword');
+const inputConfirmarContrasenia = document.getElementById('inputPasswordConfirm');
+const chequeoContrasenia = document.getElementById('chequeoContrasenia');
+const bloqueAvisoContrasenia = document.getElementById('bloqueAvisoContrasenia');
 
 
 let postulanteSeleccionado = false;
@@ -95,25 +99,33 @@ inputEmail.addEventListener('change', () => {
         });
 });
 
-inputEmail.addEventListener('change', () => {
-    const email = inputEmail.value;
-
-    fetch('chequeoEmail?email=' + email)
-        .then(response => response.json())
-        .then(data => {
-            if (data.disponible) {
-                chequeoEmail.innerHTML =  `<strong>Error!</strong> El email ya esta en uso.`;
-                bloqueAvisoEmail.classList.remove('alert-success');
-                bloqueAvisoEmail.classList.add('alert-danger');
-                
-            } else {
-                chequeoEmail.innerHTML = `<strong>Éxito!</strong> El email esta disponible.`;
-                bloqueAvisoEmail.classList.add('alert-success');
-                bloqueAvisoEmail.classList.remove('alert-danger');
-            }
-        })
-        .catch(error => {
-            console.error('Error al verificar disponibilidad del email:', error);
-        });
+inputConfirmarContrasenia.addEventListener('change', () => {
+    const contraseniaConfirmada = inputConfirmarContrasenia.value;
+    const contrasenia = inputContrasenia.value;
+    if (contraseniaConfirmada == contrasenia) {
+		chequeoContrasenia.innerHTML = `<strong>Éxito!</strong> Las contraseñas coinciden.`;
+		bloqueAvisoContrasenia.classList.add('alert-success');
+		bloqueAvisoContrasenia.classList.remove('alert-danger');
+	} else {
+		chequeoContrasenia.innerHTML =  `<strong>Error!</strong> Las contraseñas no coinciden.`;
+        bloqueAvisoContrasenia.classList.remove('alert-success');
+        bloqueAvisoContrasenia.classList.add('alert-danger');
+	}
 });
+
+inputContrasenia.addEventListener('change', () => {
+    const contraseniaConfirmada = inputConfirmarContrasenia.value;
+    const contrasenia = inputContrasenia.value;
+    if (contraseniaConfirmada == contrasenia) {
+		chequeoContrasenia.innerHTML = `<strong>Éxito!</strong> Las contraseñas coinciden.`;
+		bloqueAvisoContrasenia.classList.add('alert-success');
+		bloqueAvisoContrasenia.classList.remove('alert-danger');
+	} else {
+		chequeoContrasenia.innerHTML =  `<strong>Error!</strong> Las contraseñas no coinciden.`;
+        bloqueAvisoContrasenia.classList.remove('alert-success');
+        bloqueAvisoContrasenia.classList.add('alert-danger');
+	}
+});
+
+
 
