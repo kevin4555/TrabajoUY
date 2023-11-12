@@ -106,6 +106,7 @@
 												<li class="list-group-item"><b>Departamento:</b> <%=oferta.getDepartamento()%></li>
 												<li class="list-group-item"><b>Ciudad:</b> <%=oferta.getCiudad()%></li>
 												<li class="list-group-item"><b>Fecha de alta:</b> <%=oferta.getFechaAltaString()%></li>
+												<li class="list-group-item"><b>Cantidad de Favoritos:</b> <%=oferta.getCantidadFavoritos()%></li>
 												<li class="list-group-item"><b>Keywords:</b> <%
  if (oferta.getKeywords() != null)
  {
