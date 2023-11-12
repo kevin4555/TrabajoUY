@@ -7,9 +7,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.imageio.ImageIO;
-
 import main.java.classes.Keyword;
 import main.java.datatypes.DtCantidadTipoPublicacion;
 import main.java.datatypes.EstadoOferta;
@@ -720,7 +718,7 @@ public class Loader {
 
   /**
    * Metodo confirmar ofertas.
-   * @throws OfertaLaboralNoSePuedeFinalizar 
+   *  
    */
 
   public void confirmarOfertas()

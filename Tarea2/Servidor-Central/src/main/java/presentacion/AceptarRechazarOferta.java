@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import main.java.datatypes.DtOfertaLaboral;
 import main.java.datatypes.EstadoOferta;
 import main.java.excepciones.OfertaLaboralNoExisteException;

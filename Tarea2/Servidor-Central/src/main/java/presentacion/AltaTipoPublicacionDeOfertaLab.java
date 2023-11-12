@@ -1,5 +1,6 @@
 package main.java.presentacion;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -8,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -17,9 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import com.toedter.calendar.JDateChooser;
-
 import main.java.excepciones.TipoPublicacionYaExisteException;
 import main.java.interfaces.IcontroladorOferta;
 

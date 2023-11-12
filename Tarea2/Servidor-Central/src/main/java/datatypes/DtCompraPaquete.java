@@ -1,12 +1,11 @@
 package main.java.datatypes;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.List;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Clase DtCompraPaquete.
