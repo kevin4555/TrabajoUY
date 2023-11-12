@@ -162,6 +162,9 @@ public class AltaOfertaServlet extends HttpServlet {
     String fechaAltaString = fechaAlta.toString();
     String nombrePaquete =
           request.getParameter("nombrePaquete");
+    if(nombrePaquete == null) {
+      nombrePaquete = "";
+    }
     String imagenString = "";
     if (request.getParameter("remuneracion") != null) {
       remuneracion = Float

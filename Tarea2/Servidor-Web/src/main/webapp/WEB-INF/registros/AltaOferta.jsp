@@ -216,9 +216,7 @@
 							<a class="btn btn-primary" href="<%=contextPath3%>/home">Cancelar</a>
 						</div>
 					</div>
-					<div>
-					<p id="coso">Hola</p>
-					</div>
+					
 
 				</div>
 			</div>
