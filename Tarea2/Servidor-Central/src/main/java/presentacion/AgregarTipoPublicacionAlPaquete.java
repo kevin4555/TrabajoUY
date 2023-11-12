@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,7 +22,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-
 import main.java.datatypes.DtTipoPublicacion;
 import main.java.excepciones.PaquetePublicacionNoExisteException;
 import main.java.excepciones.PaquetePublicacionYaFueComprado;

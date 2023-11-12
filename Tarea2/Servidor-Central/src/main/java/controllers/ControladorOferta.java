@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import main.java.classes.CantidadTotalTipoPublicacion;
 import main.java.classes.Empresa;
 import main.java.classes.Keyword;

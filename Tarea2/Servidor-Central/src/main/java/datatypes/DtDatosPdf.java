@@ -1,9 +1,8 @@
 package main.java.datatypes;
 
-import java.io.Serializable;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import java.io.Serializable;
 
 /**
  * Clase DtDatosPdf.

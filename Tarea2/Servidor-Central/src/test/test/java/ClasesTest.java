@@ -10,11 +10,6 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import main.java.classes.CantidadTipoPublicacionRestante;
 import main.java.classes.CantidadTotalTipoPublicacion;
 import main.java.classes.CompraPaquete;
@@ -51,6 +46,9 @@ import main.java.excepciones.UsuarioEmailRepetidoException;
 import main.java.excepciones.UsuarioNoExisteException;
 import main.java.excepciones.UsuarioYaExisteException;
 import main.java.excepciones.UsuarioYaExistePostulacion;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Clase ClasesTest.
@@ -685,7 +683,7 @@ public class ClasesTest {
           "tipoTesting",
           "nicknameEmpresa1", 5,
           "Alta",
-          fechaDate, fechaDate);
+          fechaDate, fechaDate, 0);
     
     String fechaAltaString =
           dtOfertaLaboral.getFechaAltaString();

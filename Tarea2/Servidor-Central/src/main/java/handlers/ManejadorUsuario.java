@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import main.java.classes.Empresa;
 import main.java.classes.Postulante;
 import main.java.classes.Usuario;

@@ -1,5 +1,6 @@
 package main.java.presentacion;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
@@ -13,7 +14,6 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,9 +27,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import com.toedter.calendar.JDateChooser;
-
 import main.java.datatypes.DtOfertaLaboral;
 import main.java.excepciones.OfertaLaboralNoExisteException;
 import main.java.excepciones.TipoPublicacionNoExisteException;
