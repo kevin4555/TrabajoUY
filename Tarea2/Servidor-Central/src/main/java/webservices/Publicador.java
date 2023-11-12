@@ -79,12 +79,12 @@ public class Publicador {
   /**
    * Metodo publicar.
    */
-
+  
   @WebMethod(exclude = true)
   public void publicar() {
     String urlWebSrv = urlBase + "/webservices";
     System.out.println("URL_WEB_SERVICE: " + urlWebSrv);
-
+    
     endpoint =
           Endpoint.publish(urlWebSrv, this);
   }
@@ -406,14 +406,10 @@ public class Publicador {
         throws UsuarioYaExisteException,
         UsuarioEmailRepetidoException {
     LocalDate fecha = LocalDate.parse(fechaNac);
-    BufferedImage buffertBufferedImage = null;
-    if (!imagen.equals("")) {
-      buffertBufferedImage = base64StringToImage(imagen);
-    }
     controladorUsuario.altaPostulante(nickname, nombre,
           apellido, email, fecha, nacionalidad,
-          buffertBufferedImage, constrasenia);
-
+          base64StringToImage(imagen), constrasenia);
+    
   }
 
   /**
@@ -426,13 +422,12 @@ public class Publicador {
         String link, String imagen, String contrasenia)
         throws UsuarioYaExisteException,
         UsuarioEmailRepetidoException {
-    BufferedImage buffertBufferedImage = null;
-    if (!imagen.equals("")) {
-      buffertBufferedImage = base64StringToImage(imagen);
-    }
+
+    BufferedImage imagenBufferImage =
+          base64StringToImage(imagen);
     controladorUsuario.altaEmpresa(nickname, nombre,
           apellido, email, descripcion, link,
-          buffertBufferedImage,
+          imagenBufferImage,
           contrasenia);
   }
 
@@ -721,7 +716,7 @@ public class Publicador {
   /**
    * Metodo ordenarPostulaciones.
    */
-
+  
   @WebMethod
   public void ordenarPostulaciones(String nombreOferta,
         String[] nicknamePostulantes)

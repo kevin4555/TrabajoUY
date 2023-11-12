@@ -64,7 +64,7 @@ public class ModificarDatosServlet extends HttpServlet {
     String contraseniaConf =
           request.getParameter("contraseniaConf");
     BufferedImage imagen = null;
-    String imagenString = "";
+    String imagenString = usuario.getImagenBase64();
     if (!contraseniaConf.equals(contrasenia)) {
       request.setAttribute("mensajeError",
             "contraseña incorrecta");
@@ -86,22 +86,26 @@ public class ModificarDatosServlet extends HttpServlet {
       e.printStackTrace();
       return;
     }
-    if(imagen != null) {
-      imagenString = imageToBase64String(imagen);
-    }
+
     if (sesion.getAttribute("tipoUsuario")
           == TipoUsuario.EMPRESA) {
       String descripcion =
             request.getParameter("descripcion");
-      String sitioWeb = request.getParameter("sitioWeb");   
+      String sitioWeb = request.getParameter("sitioWeb");
       try {
+        if (imagen != null) {
+          imagenString = imageToBase64String(imagen);
+        }
+        if (imagenString == null) {
+          imagenString = "";
+        }
         port.editarEmpresa(usuario.getNickname(), nombre,
               apellido, sitioWeb, descripcion, imagenString,
               contrasenia);
         DtUsuario usuariomodificado =
-            port.obtenerDtUsuario(usuario.getNickname());
-      sesion.setAttribute("usuarioLogueado",
-            usuariomodificado);
+              port.obtenerDtUsuario(usuario.getNickname());
+        sesion.setAttribute("usuarioLogueado",
+              usuariomodificado);
         String url = request.getContextPath()
               + "/perfil?nicknameUsuario="
               + usuario.getNickname();
@@ -123,11 +127,13 @@ public class ModificarDatosServlet extends HttpServlet {
       String fechaNacimiento = LocalDate
             .parse(request.getParameter("fechaNacimiento"))
             .toString();
-      if(imagen != null) {
-        imagenString = imageToBase64String(imagen);
-      }
-      
       try {
+        if (imagen != null) {
+          imagenString = imageToBase64String(imagen);
+        }
+        if (imagenString == null) {
+          imagenString = "";
+        }
         port.editarPostulante(usuario.getNickname(), nombre,
               apellido, fechaNacimiento, nacionalidad,
               imagenString, contrasenia);
@@ -149,8 +155,7 @@ public class ModificarDatosServlet extends HttpServlet {
         e.printStackTrace();
         return;
       }
-      
-      
+
     }
   }
 
