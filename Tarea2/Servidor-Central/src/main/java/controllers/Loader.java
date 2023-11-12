@@ -737,6 +737,9 @@ public class Loader {
           "Diseñador UX/UI", EstadoOferta.CONFIRMADA,
           LocalDate.parse("2023-10-29"));
 
+    controladorOferta.aceptarRechazarOfertaLaboral(
+        "Content Manager", EstadoOferta.CONFIRMADA,
+        LocalDate.parse("2023-10-20"));
     controladorOferta.finalizarOferta(
           "Content Manager");
 

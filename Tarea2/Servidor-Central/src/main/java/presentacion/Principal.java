@@ -18,6 +18,7 @@ import main.java.controllers.Loader;
 import main.java.excepciones.KeywordNoExisteException;
 import main.java.excepciones.KeywordYaExisteException;
 import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.OfertaLaboralNoSePuedeFinalizar;
 import main.java.excepciones.OfertaLaboralYaExisteException;
 import main.java.excepciones.PaquetePublicacionNoExisteException;
 import main.java.excepciones.PaquetePublicacionYaExisteException;
@@ -212,6 +213,9 @@ public class Principal extends JFrame {
           } catch (PostulanteYaEsOfertaFavoritaException e) {
             // TODO Auto-generated catch block
             
+          } catch (OfertaLaboralNoSePuedeFinalizar e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
           }
         } catch (ParseException | KeywordNoExisteException
               | PaquetePublicacionYaExisteException
@@ -432,7 +436,8 @@ public class Principal extends JFrame {
         UsuarioYaExistePostulacion,
         PaquetePublicacionNoExisteException,
         UsuarioYaEstaSeguidoException,
-        PostulanteYaEsOfertaFavoritaException {
+        PostulanteYaEsOfertaFavoritaException,
+        OfertaLaboralNoSePuedeFinalizar {
     try {
 
       Loader loader = new Loader();

@@ -113,6 +113,16 @@ public class PerfilSerlvlet extends HttpServlet {
 
     if (usuarioLogueado != null && nicknameUsuario
           .equals(usuarioLogueado.getNickname())) {
+      try {
+        DtUsuario usuarioActualizado = port.obtenerDtUsuario(nicknameUsuario);
+        if((usuarioLogueado.getImagenBase64()!= null && !usuarioLogueado.getImagenBase64().equals(usuarioActualizado.getImagenBase64()))
+            || (usuarioLogueado.getImagenBase64()== null && usuarioActualizado.getImagenBase64() != null)) {
+          sesion.setAttribute("usuarioLogueado", usuarioActualizado);
+        }
+      } catch (IOException_Exception | UsuarioNoExisteException_Exception e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
       request
             .getRequestDispatcher(
                   "/WEB-INF/consultas/miPerfil.jsp")
