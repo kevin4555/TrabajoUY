@@ -582,10 +582,9 @@ public class CrearUsuario extends JInternalFrame {
           || this.textFieldNombre.getText().isEmpty()
           || this.textFieldApellido.getText().isEmpty()
           || this.textFieldEmail.getText().isEmpty()
-          || this.passwordField1.getPassword().toString()
-                .isEmpty()
-          || this.passwordField.getPassword().toString()
-                .isEmpty()) {
+          || this.passwordField1.getPassword().length == 0
+          || this.passwordField
+          .getPassword().length == 0) {
       JOptionPane.showMessageDialog(this,
             "No puede haber campos vacíos",
             "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
