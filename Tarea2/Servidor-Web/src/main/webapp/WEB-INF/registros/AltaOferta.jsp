@@ -229,7 +229,7 @@
 		<script
 			src="<%=request.getContextPath()%>/resource/javaScript/verTipoPublicacion.js"></script>
 		<script
-			src="<%=request.getContextPath()%>/resource/javaScript/tipoDePago.js"></script>
+			src="<%=request.getContextPath()%>/resource/javaScript/SelectPaquete.js"></script>
 	</main>
 </body>
 </html>
