@@ -31,6 +31,7 @@
 						<%
 						}
 						for (DtOfertaLaboral oferta : listaOfertas)
+							if(!oferta.isEstaVencida()){
 						{
 						%>
 						<div class="card">
@@ -62,7 +63,7 @@
 						</div>
 						<br>
 						<%
-						}
+						}}
 						%>
 					</section>
 				</div>

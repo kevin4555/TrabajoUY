@@ -106,7 +106,7 @@
 								%>
 								<div class="card-video">
 									<iframe
-										src="https://www.youtube.com/embed/<%=video%>" frameborder="0"
+										src="<%=video%>" frameborder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 										allowfullscreen></iframe>
 								</div>

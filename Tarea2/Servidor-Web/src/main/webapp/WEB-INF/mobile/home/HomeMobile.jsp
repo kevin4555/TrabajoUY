@@ -29,6 +29,7 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 					ArrayList<DtOfertaLaboral> listaOfertasConfirmadas = (ArrayList<DtOfertaLaboral>) request
 							.getAttribute("listaOfertasConfirmadas");
 					for (DtOfertaLaboral oferta : listaOfertasConfirmadas)
+						if(!oferta.isEstaVencida()){
 					{
 					%>
 					<div class="card mb-3">
@@ -57,7 +58,7 @@ ArrayList<String> listaKeywords = (ArrayList<String>) session.getAttribute("list
 						</div>
 					</div>
 					<%
-					}
+					}}
 					%>
 				</section>
 			</div>
