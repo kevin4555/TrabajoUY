@@ -184,27 +184,22 @@
 
 					<div class="camposForm" id="divSeleccionPaquete"
 						style="display: none">
-						<label for="listPaquetes">*Selecciona un paquete:</label> <select
-							class="form-control" id="listPaquetes" name="nombrePaquete">
-
+						<label for="listPaquetes">*Selecciona un paquete:</label> 
+						<select	class="form-control" id="listPaquetes" name="nombrePaquete">
 							<%
 							ArrayList<DtCompraPaquete> listaPaquetes = (ArrayList<DtCompraPaquete>) request.getAttribute("listaCompraPaquetes");
 							if (!listaPaquetes.isEmpty()) {
-							%>
-							<option value="">-- Selecciona un paquete --</option>
-							<%
-							for (DtCompraPaquete compraPaquete : listaPaquetes) {
-							%>
-
-							<option  value="<%=(compraPaquete.getPaquete()).getNombre()%>"><%=(compraPaquete.getPaquete()).getNombre()%></option>
-							<%
-							}
-							%>
-							<%
-							} else {
-							%>
-							<option value="">-- No tiene paquetes --</option>
-							<%
+								for (DtCompraPaquete compraPaquete : listaPaquetes) {
+								%>
+									<option  value="<%=(compraPaquete.getPaquete()).getNombre()%>"><%=(compraPaquete.getPaquete()).getNombre()%></option>
+								<%
+								}
+								%>
+								<%
+								} else {
+								%>
+								<option value="">-- No tiene paquetes --</option>
+								<%
 							}
 							%>
 
@@ -221,6 +216,9 @@
 							<a class="btn btn-primary" href="<%=contextPath3%>/home">Cancelar</a>
 						</div>
 					</div>
+					<div>
+					<p id="coso">Hola</p>
+					</div>
 
 				</div>
 			</div>
@@ -232,7 +230,6 @@
 			src="<%=request.getContextPath()%>/resource/javaScript/verTipoPublicacion.js"></script>
 		<script
 			src="<%=request.getContextPath()%>/resource/javaScript/tipoDePago.js"></script>
-
 	</main>
 </body>
 </html>
