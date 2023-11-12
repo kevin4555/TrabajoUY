@@ -35,6 +35,7 @@ public class OfertaLaboral {
   private int cantidadVisitas;
   private LocalDate fechaFinalizacion;
   private LocalDate fechaSeleccion;
+  private int cantidadFavoritos;
 
   /**
    * Constructor .
@@ -71,6 +72,7 @@ public class OfertaLaboral {
     this.cantidadVisitas = 0;
     this.fechaFinalizacion = null;
     this.fechaSeleccion = null;
+    this.cantidadFavoritos = 0;
 
   }
 
@@ -197,7 +199,8 @@ public class OfertaLaboral {
           this.empresa.getNickname(), this.cantidadVisitas,
           tipoPublicacion.getExposicion(),
           this.fechaFinalizacion,
-          this.fechaSeleccion);
+          this.fechaSeleccion,
+          this.cantidadFavoritos);
     return dtOfertaLaboral;
   }
 
@@ -325,5 +328,13 @@ public class OfertaLaboral {
       posicion++;
     }
     return posicion;
+  }
+  
+  public void aumentarFavoritos() {
+    this.cantidadFavoritos++;
+  }
+  
+  public void disminuirFavoritos() {
+    this.cantidadFavoritos--;
   }
 }

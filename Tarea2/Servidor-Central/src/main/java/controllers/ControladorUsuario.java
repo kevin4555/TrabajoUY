@@ -428,13 +428,15 @@ public class ControladorUsuario
                   + " no existe");
     }
     postulante.agregarOfertaFavorita(nombreOferta);
+    OfertaLaboral oferta = controladorOferta.obtenerOfertaLaboral(nombreOferta);
+    oferta.aumentarFavoritos();
   }
 
   @Override
   public void removerOfertaFavorita(
         String nicknamePsotulante, String nombreOferta)
         throws UsuarioNoExisteException,
-        PostulanteNoEsOfertaFavoritaException {
+        PostulanteNoEsOfertaFavoritaException, OfertaLaboralNoExisteException {
     Postulante postulante = ManejadorUsuario.getInstance()
           .obtenerPostulante(nicknamePsotulante);
     if (!postulante.esOfertaFavorita(nombreOferta)) {
@@ -444,6 +446,9 @@ public class ControladorUsuario
                   + nicknamePsotulante);
     }
     postulante.removerOfertaFavorita(nombreOferta);
+    IcontroladorOferta controladorOferta = Fabrica.getInstance().obtenerControladorOferta();
+    OfertaLaboral oferta = controladorOferta.obtenerOfertaLaboral(nombreOferta);
+    oferta.disminuirFavoritos();
   }
 
   @Override

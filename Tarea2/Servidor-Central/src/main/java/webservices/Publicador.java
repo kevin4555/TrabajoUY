@@ -710,7 +710,7 @@ public class Publicador {
   public void removerOfertaFavorita(
         String nicknamePostulante, String nombreOferta)
         throws UsuarioNoExisteException,
-        PostulanteNoEsOfertaFavoritaException {
+        PostulanteNoEsOfertaFavoritaException, OfertaLaboralNoExisteException {
     controladorUsuario.removerOfertaFavorita(
           nicknamePostulante, nombreOferta);
   }

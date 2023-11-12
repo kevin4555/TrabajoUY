@@ -52,6 +52,7 @@ public class DtOfertaLaboral
   private String fechaResolucionString;
   private String fechaFinalizacionString;
   private String fechaSeleccionString;
+  private int cantidadFavoritos;
 
   /**
    * Contructor.
@@ -77,7 +78,8 @@ public class DtOfertaLaboral
           int visitas,
           String exposicion,
           LocalDate fechaFinalizacion,
-          LocalDate fechaSeleccion)
+          LocalDate fechaSeleccion,
+          int cantidadFavoritos)
         throws IOException {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -122,6 +124,7 @@ public class DtOfertaLaboral
       this.fechaSeleccionString =
             fechaSeleccion.toString();
     }
+    this.cantidadFavoritos = cantidadFavoritos;
   }
 
   public DtOfertaLaboral() {
@@ -324,6 +327,22 @@ public class DtOfertaLaboral
   public void setFechaFinalizacionString(
         String fechaFinalizacionString) {
     this.fechaFinalizacionString = fechaFinalizacionString;
+  }
+
+  public String getFechaSeleccionString() {
+    return fechaSeleccionString;
+  }
+
+  public void setFechaSeleccionString(String fechaSeleccionString) {
+    this.fechaSeleccionString = fechaSeleccionString;
+  }
+
+  public int getCantidadFavoritos() {
+    return cantidadFavoritos;
+  }
+
+  public void setCantidadFavoritos(int cantidadFavoritos) {
+    this.cantidadFavoritos = cantidadFavoritos;
   }
 
 }

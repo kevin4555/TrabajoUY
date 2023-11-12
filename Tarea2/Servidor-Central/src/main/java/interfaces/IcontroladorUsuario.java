@@ -158,7 +158,7 @@ public interface IcontroladorUsuario {
   void removerOfertaFavorita(String nicknamePsotulante,
         String nombreOferta)
         throws UsuarioNoExisteException,
-        PostulanteNoEsOfertaFavoritaException;
+        PostulanteNoEsOfertaFavoritaException, OfertaLaboralNoExisteException;
 
   List<DtOfertaLaboral>
         obtenerDtOfertasFinalizadasDeEmpresa(

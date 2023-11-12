@@ -41,6 +41,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="fechaResolucionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="fechaFinalizacionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="fechaSeleccionString" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="cantidadFavoritos" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -71,7 +72,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "fechaAltaString",
     "fechaResolucionString",
     "fechaFinalizacionString",
-    "fechaSeleccionString"
+    "fechaSeleccionString",
+    "cantidadFavoritos"
 })
 public class DtOfertaLaboral {
 
@@ -99,6 +101,7 @@ public class DtOfertaLaboral {
     protected String fechaResolucionString;
     protected String fechaFinalizacionString;
     protected String fechaSeleccionString;
+    protected int cantidadFavoritos;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -608,6 +611,22 @@ public class DtOfertaLaboral {
      */
     public void setFechaSeleccionString(String value) {
         this.fechaSeleccionString = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad cantidadFavoritos.
+     * 
+     */
+    public int getCantidadFavoritos() {
+        return cantidadFavoritos;
+    }
+
+    /**
+     * Define el valor de la propiedad cantidadFavoritos.
+     * 
+     */
+    public void setCantidadFavoritos(int value) {
+        this.cantidadFavoritos = value;
     }
 
 }
