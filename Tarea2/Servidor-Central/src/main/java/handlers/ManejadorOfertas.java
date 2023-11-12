@@ -119,7 +119,9 @@ public class ManejadorOfertas {
           new ArrayList<DtOfertaLaboral>();
     for (OfertaLaboral oferta : coleccionOfertaLaboral
           .values()) {
-      if (oferta.tieneKeyword(keyword) && oferta.getEstado() == EstadoOferta.CONFIRMADA && !oferta.estaVencida()) {
+      if (oferta.tieneKeyword(keyword)
+            && oferta.getEstado() == EstadoOferta.CONFIRMADA
+            && !oferta.estaVencida()) {
         listaResultado.add(oferta.obtenerDtOfertaLaboral());
       }
     }

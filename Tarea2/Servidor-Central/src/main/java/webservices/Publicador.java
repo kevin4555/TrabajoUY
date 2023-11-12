@@ -408,7 +408,6 @@ public class Publicador {
         throws UsuarioYaExisteException,
         UsuarioEmailRepetidoException {
     LocalDate fecha = LocalDate.parse(fechaNac);
-
     controladorUsuario.altaPostulante(nickname, nombre,
           apellido, email, fecha, nacionalidad,
           base64StringToImage(imagen), constrasenia);

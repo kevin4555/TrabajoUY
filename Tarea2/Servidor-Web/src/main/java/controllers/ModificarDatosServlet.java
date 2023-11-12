@@ -86,22 +86,26 @@ public class ModificarDatosServlet extends HttpServlet {
       e.printStackTrace();
       return;
     }
-    if(imagen != null) {
-      imagenString = imageToBase64String(imagen);
-    }
+
     if (sesion.getAttribute("tipoUsuario")
           == TipoUsuario.EMPRESA) {
       String descripcion =
             request.getParameter("descripcion");
       String sitioWeb = request.getParameter("sitioWeb");
       try {
+        if (imagen != null) {
+          imagenString = imageToBase64String(imagen);
+        }
+        if (imagenString == null) {
+          imagenString = "";
+        }
         port.editarEmpresa(usuario.getNickname(), nombre,
               apellido, sitioWeb, descripcion, imagenString,
               contrasenia);
         DtUsuario usuariomodificado =
-            port.obtenerDtUsuario(usuario.getNickname());
-      sesion.setAttribute("usuarioLogueado",
-            usuariomodificado);
+              port.obtenerDtUsuario(usuario.getNickname());
+        sesion.setAttribute("usuarioLogueado",
+              usuariomodificado);
         String url = request.getContextPath()
               + "/perfil?nicknameUsuario="
               + usuario.getNickname();
@@ -124,9 +128,15 @@ public class ModificarDatosServlet extends HttpServlet {
             .parse(request.getParameter("fechaNacimiento"))
             .toString();
       try {
+        if (imagen != null) {
+          imagenString = imageToBase64String(imagen);
+        }
+        if (imagenString == null) {
+          imagenString = "";
+        }
         port.editarPostulante(usuario.getNickname(), nombre,
               apellido, fechaNacimiento, nacionalidad,
-              imageToBase64String(imagen), contrasenia);
+              imagenString, contrasenia);
         DtUsuario usuariomodificado =
               port.obtenerDtUsuario(usuario.getNickname());
         sesion.setAttribute("usuarioLogueado",
@@ -145,8 +155,7 @@ public class ModificarDatosServlet extends HttpServlet {
         e.printStackTrace();
         return;
       }
-      
-      
+
     }
   }
 
