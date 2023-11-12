@@ -153,7 +153,7 @@
 												<%
 												List<DtOfertaLaboral> ofertasColeccion = usuario.getOfertasColeccion();
 												for (DtOfertaLaboral oferta : ofertasColeccion) {
-													if (oferta.getEstadoOferta().equals(EstadoOferta.CONFIRMADA)) {
+													if (oferta.getEstadoOferta().equals(EstadoOferta.CONFIRMADA) && !oferta.isEstaVencida()) {
 												%>
 												<td><a
 													href="<%=request.getContextPath()%>/oferta?nombreOferta=<%=oferta.getNombre()%>"><%=oferta.getNombre()%></a></td>

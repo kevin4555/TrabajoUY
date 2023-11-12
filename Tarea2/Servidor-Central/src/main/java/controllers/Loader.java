@@ -16,6 +16,7 @@ import main.java.datatypes.EstadoOferta;
 import main.java.excepciones.KeywordNoExisteException;
 import main.java.excepciones.KeywordYaExisteException;
 import main.java.excepciones.OfertaLaboralNoExisteException;
+import main.java.excepciones.OfertaLaboralNoSePuedeFinalizar;
 import main.java.excepciones.OfertaLaboralYaExisteException;
 import main.java.excepciones.PaquetePublicacionNoExisteException;
 import main.java.excepciones.PaquetePublicacionYaExisteException;
@@ -719,10 +720,11 @@ public class Loader {
 
   /**
    * Metodo confirmar ofertas.
+   * @throws OfertaLaboralNoSePuedeFinalizar 
    */
 
   public void confirmarOfertas()
-        throws OfertaLaboralNoExisteException {
+        throws OfertaLaboralNoExisteException, OfertaLaboralNoSePuedeFinalizar {
     IcontroladorOferta controladorOferta = Fabrica
           .getInstance().obtenerControladorOferta();
     controladorOferta.aceptarRechazarOfertaLaboral(
@@ -735,9 +737,8 @@ public class Loader {
           "Diseñador UX/UI", EstadoOferta.CONFIRMADA,
           LocalDate.parse("2023-10-29"));
 
-    controladorOferta.aceptarRechazarOfertaLaboral(
-          "Content Manager", EstadoOferta.FINALIZADA,
-          LocalDate.parse("2023-10-20"));
+    controladorOferta.finalizarOferta(
+          "Content Manager");
 
     controladorOferta.aceptarRechazarOfertaLaboral(
           "Soporte Técnico", EstadoOferta.CONFIRMADA,
