@@ -694,12 +694,12 @@ public class Loader {
     controladorUsuario.agregarOfertaFavorita("valen25",
           "A. de Marketing Digital");
 
-    List<String> postulacionesOferta1 =
+    /* List<String> postulacionesOferta1 =
           new ArrayList<String>();
     postulacionesOferta1.add("maro");
     postulacionesOferta1.add("lgarcia");
 
-    // Acordarse de descomentar.
+    
     controladorOferta.ordenarPostulaciones(
           "Desarrollador Frontend", postulacionesOferta1);
 
@@ -710,7 +710,7 @@ public class Loader {
     postulacionesOferta2.add("matilo");
 
     controladorOferta.ordenarPostulaciones(
-          "Estratega de Negocios", postulacionesOferta2);
+          "Estratega de Negocios", postulacionesOferta2); */
 
     datosCargados = true;
 
